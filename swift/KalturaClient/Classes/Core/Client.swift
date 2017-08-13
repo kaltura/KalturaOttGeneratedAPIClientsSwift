@@ -1,0 +1,178 @@
+// ===================================================================================================
+//                           _  __     _ _
+//                          | |/ /__ _| | |_ _  _ _ _ __ _
+//                          | ' </ _` | |  _| || | '_/ _` |
+//                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
+//
+// This file is part of the Kaltura Collaborative Media Suite which allows users
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// text.
+//
+// Copyright (C) 2006-2017  Kaltura Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @ignore
+// ===================================================================================================
+/**
+ * This class was generated using exec.php
+ * against an XML schema provided by Kaltura.
+ * 
+ * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
+ */
+
+@objc public class Client: RequestBuilderData {
+	public var configuration: ConnectionConfiguration
+	
+	@objc public init(_ config: ConnectionConfiguration) {
+		configuration = config
+		
+		super.init()
+		
+		clientTag = "swift:17-08-13"
+		apiVersion = "3.6.287.27027"
+	}
+}
+
+extension RequestBuilderData{
+	/**
+	 */
+	public var clientTag: String?{
+		get{
+			return params["clientTag"] as? String
+		}
+		set(value){
+			setBody(key: "clientTag", value: value)
+		}
+	}
+	
+	/**
+	 */
+	public var apiVersion: String?{
+		get{
+			return params["apiVersion"] as? String
+		}
+		set(value){
+			setBody(key: "apiVersion", value: value)
+		}
+	}
+	
+	/**
+	 * Impersonated partner id
+	 */
+	public var partnerId: Int?{
+		get{
+			return params["partnerId"] as? Int
+		}
+		set(value){
+			setBody(key: "partnerId", value: value)
+		}
+	}
+	
+	/**
+	 * Impersonated user id
+	 */
+	public var userId: Int?{
+		get{
+			return params["userId"] as? Int
+		}
+		set(value){
+			setBody(key: "userId", value: value)
+		}
+	}
+	
+	/**
+	 * Content language
+	 */
+	public var language: String?{
+		get{
+			return params["language"] as? String
+		}
+		set(value){
+			setBody(key: "language", value: value)
+		}
+	}
+	
+	/**
+	 * Content currency
+	 */
+	public var currency: String?{
+		get{
+			return params["currency"] as? String
+		}
+		set(value){
+			setBody(key: "currency", value: value)
+		}
+	}
+	
+	/**
+	 * Kaltura API session
+	 */
+	public var ks: String?{
+		get{
+			return params["ks"] as? String
+		}
+		set(value){
+			setBody(key: "ks", value: value)
+		}
+	}
+	
+	/**
+	 * Kaltura API session
+	 */
+	public var sessionId: String?{
+		get{
+			return params["ks"] as? String
+		}
+		set(value){
+			setBody(key: "ks", value: value)
+		}
+	}
+	
+	/**
+	 * Response profile - this attribute will be automatically unset after every API call
+	 */
+	public var responseProfile: BaseResponseProfile?{
+		get{
+			return params["responseProfile"] as? BaseResponseProfile
+		}
+		set(value){
+			setBody(key: "responseProfile", value: value)
+		}
+	}
+	
+	public func applyParams(_ requestBuilder: RequestBuilderData) {
+		if requestBuilder.clientTag == nil {
+			requestBuilder.clientTag = clientTag
+		}
+		if requestBuilder.apiVersion == nil {
+			requestBuilder.apiVersion = apiVersion
+		}
+		if requestBuilder.partnerId == nil {
+			requestBuilder.partnerId = partnerId
+		}
+		if requestBuilder.userId == nil {
+			requestBuilder.userId = userId
+		}
+		if requestBuilder.language == nil {
+			requestBuilder.language = language
+		}
+		if requestBuilder.currency == nil {
+			requestBuilder.currency = currency
+		}
+		if requestBuilder.ks == nil {
+			requestBuilder.ks = ks
+		}
+	}
+}
