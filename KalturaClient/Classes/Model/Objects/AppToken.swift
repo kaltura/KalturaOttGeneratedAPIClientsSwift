@@ -113,9 +113,6 @@ open class AppToken: ObjectBase {
 		if(sessionType != nil) {
 			dict["sessionType"] = sessionType!.rawValue
 		}
-		if(token != nil) {
-			dict["token"] = token!
-		}
 		if(sessionUserId != nil) {
 			dict["sessionUserId"] = sessionUserId!
 		}

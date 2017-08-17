@@ -35,6 +35,15 @@
 
 public final class TransactionService{
 
+	/**  downgrade specific subscription for a household. entitlements will be updated on
+	  the existing subscription end date.  */
+	public static func downgrade(purchase: Purchase) -> RequestBuilder<Void> {
+		let request: NullRequestBuilder = NullRequestBuilder(service: "transaction", action: "downgrade")
+			.setBody(key: "purchase", value: purchase)
+
+		return request
+	}
+
 	/**  Retrieve the purchase session identifier  */
 	public static func getPurchaseSessionId(purchaseSession: PurchaseSession) -> RequestBuilder<Int64> {
 		let request: RequestBuilder<Int64> = RequestBuilder<Int64>(service: "transaction", action: "getPurchaseSessionId")
@@ -69,6 +78,15 @@ public final class TransactionService{
 			.setBody(key: "externalTransactionId", value: externalTransactionId)
 			.setBody(key: "signature", value: signature)
 			.setBody(key: "status", value: status)
+
+		return request
+	}
+
+	/**  upgrade specific subscription for a household. Upon successful charge
+	  entitlements to use the requested product or subscription are granted.  */
+	public static func upgrade(purchase: Purchase) -> RequestBuilder<Transaction> {
+		let request: RequestBuilder<Transaction> = RequestBuilder<Transaction>(service: "transaction", action: "upgrade")
+			.setBody(key: "purchase", value: purchase)
 
 		return request
 	}

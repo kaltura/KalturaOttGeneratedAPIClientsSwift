@@ -49,6 +49,8 @@ open class SubscriptionEntitlement: Entitlement {
 	public var paymentGatewayId: Int? = nil
 	/**  Payment Method identifier  */
 	public var paymentMethodId: Int? = nil
+	/**  Scheduled Subscription Identifier  */
+	public var scheduledSubscriptionId: Int64? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -72,6 +74,9 @@ open class SubscriptionEntitlement: Entitlement {
 		if dict["paymentMethodId"] != nil {
 			paymentMethodId = dict["paymentMethodId"] as? Int
 		}
+		if dict["scheduledSubscriptionId"] != nil {
+			scheduledSubscriptionId = dict["scheduledSubscriptionId"] as? Int64
+		}
 
 	}
 
@@ -82,6 +87,9 @@ open class SubscriptionEntitlement: Entitlement {
 		}
 		if(paymentMethodId != nil) {
 			dict["paymentMethodId"] = paymentMethodId!
+		}
+		if(scheduledSubscriptionId != nil) {
+			dict["scheduledSubscriptionId"] = scheduledSubscriptionId!
 		}
 		return dict
 	}

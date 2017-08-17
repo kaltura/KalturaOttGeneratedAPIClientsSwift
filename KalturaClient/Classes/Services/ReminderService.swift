@@ -44,9 +44,10 @@ public final class ReminderService{
 	}
 
 	/**  Delete a reminder. Reminder cannot be delete while being sent.  */
-	public static func delete(id: Int64) -> RequestBuilder<Bool> {
+	public static func delete(id: Int64, type: ReminderType) -> RequestBuilder<Bool> {
 		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "reminder", action: "delete")
 			.setBody(key: "id", value: id)
+			.setBody(key: "type", value: type.rawValue)
 
 		return request
 	}
