@@ -208,15 +208,10 @@ public final class OttUserService{
 		return request
 	}
 
-	public static func update(user: OTTUser) -> RequestBuilder<OTTUser> {
-		return update(user: user, id: nil)
-	}
-
 	/**  Update user information  */
-	public static func update(user: OTTUser, id: String?) -> RequestBuilder<OTTUser> {
+	public static func update(user: OTTUser) -> RequestBuilder<OTTUser> {
 		let request: RequestBuilder<OTTUser> = RequestBuilder<OTTUser>(service: "ottuser", action: "update")
 			.setBody(key: "user", value: user)
-			.setBody(key: "id", value: id)
 
 		return request
 	}

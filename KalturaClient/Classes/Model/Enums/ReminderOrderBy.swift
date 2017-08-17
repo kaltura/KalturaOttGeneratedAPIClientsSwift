@@ -25,36 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  Recording-asset info  */
-open class RecordingAsset: ProgramAsset {
-
-	/**  Recording identifier  */
-	public var recordingId: String? = nil
-
-
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["recordingId"] != nil {
-			recordingId = dict["recordingId"] as? String
-		}
-
-	}
-
-	public override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(recordingId != nil) {
-			dict["recordingId"] = recordingId!
-		}
-		return dict
-	}
+public enum ReminderOrderBy: String {
+	case NONE = "NONE"
 }
-

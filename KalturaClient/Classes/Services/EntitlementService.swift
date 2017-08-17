@@ -54,14 +54,6 @@ public final class EntitlementService{
 		return request
 	}
 
-	/**  Cancel Scheduled Subscription  */
-	public static func cancelScheduledSubscription(scheduledSubscriptionId: Int64) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "entitlement", action: "cancelScheduledSubscription")
-			.setBody(key: "scheduledSubscriptionId", value: scheduledSubscriptionId)
-
-		return request
-	}
-
 	/**  Reconcile the user household&amp;#39;s entitlements with an external
 	  entitlements source. This request is frequency protected to avoid too frequent
 	  calls per household.  */

@@ -33,7 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RelatedFilter: BaseSearchAssetFilter {
+open class RelatedFilter: AssetFilter {
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
 	  with key, comparison operators, value, and logical conjunction.             
@@ -44,17 +44,15 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	  return.              parental_rules - only valid value is
 	  &amp;quot;true&amp;quot;: When enabled, only assets that the user
 	  doesn&amp;#39;t need to provide PIN code will return.             
-	  user_interests - only valid value is &amp;quot;true&amp;quot;. When enabled,
-	  only assets that the user defined as his interests (by tags and metas) will
-	  return.              epg_channel_id – the channel identifier of the EPG
-	  program.              entitled_assets - valid values: &amp;quot;free&amp;quot;,
+	  epg_channel_id – the channel identifier of the EPG program.             
+	  entitled_assets - valid values: &amp;quot;free&amp;quot;,
 	  &amp;quot;entitled&amp;quot;, &amp;quot;both&amp;quot;. free - gets only free to
 	  watch assets. entitled - only those that the user is implicitly entitled to
 	  watch.              Comparison operators: for numerical fields =, &amp;gt;,
 	  &amp;gt;=, &amp;lt;, &amp;lt;=, : (in). For alpha-numerical fields =, != (not),
-	  ~ (like), !~, ^ (starts with), + (exists), !+ (not exists).              Logical
-	  conjunction: and, or.               Search values are limited to 20 characters
-	  each.              (maximum length of entire filter is 2048 characters)  */
+	  ~ (like), !~, ^ (starts with). Logical conjunction: and, or.              
+	  Search values are limited to 20 characters each.              (maximum length of
+	  entire filter is 2048 characters)  */
 	public var kSql: String? = nil
 	/**  the ID of the asset for which to return related assets  */
 	public var idEqual: Int? = nil
