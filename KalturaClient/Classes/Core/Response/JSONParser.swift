@@ -131,16 +131,14 @@ internal class JSONParser{
         }
     }
     
+
+    
     public static func parse(primitive: Any) throws -> Any? {
         if let str = primitive as? String {
             return str
-        }else if let int = primitive as? Int64 {
+        }else if let int = primitive as? Int {
             return int
-        }
-        else if let int = primitive as? Int {
-            return int
-        }
-        else if let bool = primitive as? Bool {
+        }else if let bool = primitive as? Bool {
             return bool
         }else if let double = primitive as? Double {
             return double

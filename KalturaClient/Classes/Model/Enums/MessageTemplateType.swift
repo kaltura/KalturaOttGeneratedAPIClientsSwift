@@ -26,16 +26,16 @@
 // @ignore
 // ===================================================================================================
 /**
- * This class was generated using exec.php
+ * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum MessageTemplateType: Int {
-	case SERIES = 0
-	case REMINDER = 1
-	case CHURN = 2
-	case SERIESREMINDER = 3
-	case INTERESTVOD = 4
-	case INTERESTEPG = 5
+public enum MessageTemplateType: String {
+	case SERIES = "Series"
+	case REMINDER = "Reminder"
+	case CHURN = "Churn"
+	case SERIESREMINDER = "SeriesReminder"
+	case INTERESTVOD = "InterestVod"
+	case INTERESTEPG = "InterestEPG"
 }

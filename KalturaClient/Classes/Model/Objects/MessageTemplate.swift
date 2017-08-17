@@ -27,7 +27,7 @@
 // ===================================================================================================
 
 /**
- * This class was generated using exec.php
+ * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
@@ -60,7 +60,7 @@ open class MessageTemplate: ObjectBase {
 			dateFormat = dict["dateFormat"] as? String
 		}
 		if dict["messageType"] != nil {
-			messageType = MessageTemplateType(rawValue: (dict["messageType"] as? Int)!)
+			messageType = MessageTemplateType(rawValue: "\(dict["messageType"]!)")
 		}
 		if dict["sound"] != nil {
 			sound = dict["sound"] as? String

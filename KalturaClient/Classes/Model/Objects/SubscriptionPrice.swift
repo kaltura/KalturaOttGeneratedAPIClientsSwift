@@ -27,7 +27,7 @@
 // ===================================================================================================
 
 /**
- * This class was generated using exec.php
+ * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
@@ -36,11 +36,26 @@
 /**  Subscription price details  */
 open class SubscriptionPrice: ProductPrice {
 
+	/**  If the item related to unified billing cycle purchased - until when the this
+	  price is relevant  */
+	public var endDate: Int64? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["endDate"] != nil {
+			endDate = dict["endDate"] as? Int64
+		}
+
 	}
 
+	public override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(endDate != nil) {
+			dict["endDate"] = endDate!
+		}
+		return dict
+	}
 }
 

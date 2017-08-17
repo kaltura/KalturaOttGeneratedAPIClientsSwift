@@ -26,7 +26,7 @@
 // @ignore
 // ===================================================================================================
 /**
- * This class was generated using exec.php
+ * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
@@ -40,8 +40,8 @@
 		
 		super.init()
 		
-		clientTag = "swift:17-08-13"
-		apiVersion = "3.6.287.27027"
+		clientTag = "swift:17-08-17"
+		apiVersion = "4.4.80.21438"
 	}
 }
 

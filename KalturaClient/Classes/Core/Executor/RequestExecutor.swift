@@ -33,11 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public protocol RequestExecutor: class {
+public protocol RequestExecutor {
     
     func send(request: Request)
     func cancel(request: Request)
-    func cancel(id: String)
     func clean()
-    
 }

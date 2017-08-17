@@ -90,14 +90,16 @@ import SwiftyJSON
         var task: URLSessionDataTask? = nil
         // settings headers:
         task = session.dataTask(with: request) { (data, response, error) in
-
-            self.remove(id: r.requestId)
+            
+            let index = self.taskIndexForRequest(request: r)
+            if let i = index {
+               self.tasks.remove(at: i)
+            }
         
             DispatchQueue.main.async {
                 if let error = error as NSError? {
                     if error.code == NSURLErrorCancelled {
                         // cancel3ed
-                        logger.debug("request has been canceled")
                     } else {
                         let result = Response(data: nil, error: ApiClientException(message: error.localizedDescription, code: ApiClientException.ErrorCode.httpError))
                         r.completion(result)
@@ -160,37 +162,38 @@ import SwiftyJSON
         return body as Data
     }
     
-    
-    public func cancel(id requestId: String) {
-        let taskID = self.taskIdByRequestID[requestId]
-        let taskIndex = self.tasks.index { (
-            task) -> Bool in
-            return task.taskIdentifier == taskID
-        }
+    public func cancel(request:Request){
         
-        if let index = taskIndex {
-            let task = self.tasks[index]
+        let index = self.taskIndexForRequest(request: request)
+        if let i = index {
+            let task = self.tasks[i]
             task.cancel()
         }
     }
     
-    public func remove(id requestId: String) {
-        let taskID = self.taskIdByRequestID[requestId]
-        let taskIndex = self.tasks.index { (
-            task) -> Bool in
-            return task.taskIdentifier == taskID
-        }
-        
-        if let index = taskIndex {
-            self.taskIdByRequestID.removeValue(forKey: requestId)
-            self.tasks.remove(at: index)
+    public func taskIndexForRequest(request:Request) -> Int?{
+    
+        if let taskId = self.taskIdByRequestID[request.requestId]{
+            
+            let taskIndex = self.tasks.index(where: { (taskInArray:URLSessionDataTask) -> Bool in
+                
+                if taskInArray.taskIdentifier == taskId {
+                    return true
+                }else{
+                    return false
+                }
+            })
+            
+            if let index = taskIndex{
+                return index
+            } else {
+                return nil
+            }
+ 
+        } else {
+            return nil
         }
     }
-    
-    public func cancel(request:Request){
-        self.cancel(id: request.requestId)
-    }
-    
     
     public func clean(){
         
