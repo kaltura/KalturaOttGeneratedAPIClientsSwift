@@ -42,6 +42,8 @@ open class Price: ObjectBase {
 	public var currency: String? = nil
 	/**  Currency Sign  */
 	public var currencySign: String? = nil
+	/**  Currency  */
+	public var countryId: Int64? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -56,6 +58,9 @@ open class Price: ObjectBase {
 		if dict["currencySign"] != nil {
 			currencySign = dict["currencySign"] as? String
 		}
+		if dict["countryId"] != nil {
+			countryId = dict["countryId"] as? Int64
+		}
 
 	}
 
@@ -69,6 +74,9 @@ open class Price: ObjectBase {
 		}
 		if(currencySign != nil) {
 			dict["currencySign"] = currencySign!
+		}
+		if(countryId != nil) {
+			dict["countryId"] = countryId!
 		}
 		return dict
 	}

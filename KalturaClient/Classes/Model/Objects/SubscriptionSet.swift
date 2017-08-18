@@ -40,6 +40,8 @@ open class SubscriptionSet: ObjectBase {
 	public var id: Int64? = nil
 	/**  SubscriptionSet name  */
 	public var name: String? = nil
+	/**  Type of the Subscription Set  */
+	public var type: SubscriptionSetType? = nil
 	/**  A list of comma separated subscription ids associated with this set ordered by
 	  priority ascending  */
 	public var subscriptionIds: String? = nil
@@ -53,6 +55,9 @@ open class SubscriptionSet: ObjectBase {
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
+		}
+		if dict["type"] != nil {
+			type = SubscriptionSetType(rawValue: "\(dict["type"]!)")
 		}
 		if dict["subscriptionIds"] != nil {
 			subscriptionIds = dict["subscriptionIds"] as? String
