@@ -60,7 +60,7 @@ open class MessageTemplate: ObjectBase {
 			dateFormat = dict["dateFormat"] as? String
 		}
 		if dict["messageType"] != nil {
-			messageType = MessageTemplateType(rawValue: "\(dict["messageType"]!)")
+			messageType = MessageTemplateType(rawValue: (dict["messageType"] as? Int)!)
 		}
 		if dict["sound"] != nil {
 			sound = dict["sound"] as? String
