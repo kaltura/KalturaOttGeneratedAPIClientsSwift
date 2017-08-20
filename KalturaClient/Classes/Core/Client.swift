@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:17-08-20"
-		apiVersion = "4.4.5.16972"
+		apiVersion = "4.4.80.17257"
 	}
 }
 
@@ -137,6 +137,18 @@ extension RequestBuilderData{
 		}
 		set(value){
 			setBody(key: "ks", value: value)
+		}
+	}
+	
+	/**
+	 * Response profile - this attribute will be automatically unset after every API call
+	 */
+	public var responseProfile: BaseResponseProfile?{
+		get{
+			return params["responseProfile"] as? BaseResponseProfile
+		}
+		set(value){
+			setBody(key: "responseProfile", value: value)
 		}
 	}
 	

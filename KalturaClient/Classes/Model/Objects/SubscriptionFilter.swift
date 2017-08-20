@@ -35,11 +35,12 @@
 
 open class SubscriptionFilter: Filter {
 
-	/**  Comma separated subscription identifiers or file identifier (only 1) to get the
-	  subscriptions by  */
+	/**  Comma separated subscription IDs to get the subscriptions by  */
 	public var subscriptionIdIn: String? = nil
-	/**  Media-file identifier to get the subscriptions by  */
+	/**  Media-file ID to get the subscriptions by  */
 	public var mediaFileIdEqual: Int? = nil
+	/**  Comma separated subscription external IDs to get the subscriptions by  */
+	public var externalIdIn: String? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -51,6 +52,9 @@ open class SubscriptionFilter: Filter {
 		if dict["mediaFileIdEqual"] != nil {
 			mediaFileIdEqual = dict["mediaFileIdEqual"] as? Int
 		}
+		if dict["externalIdIn"] != nil {
+			externalIdIn = dict["externalIdIn"] as? String
+		}
 
 	}
 
@@ -61,6 +65,9 @@ open class SubscriptionFilter: Filter {
 		}
 		if(mediaFileIdEqual != nil) {
 			dict["mediaFileIdEqual"] = mediaFileIdEqual!
+		}
+		if(externalIdIn != nil) {
+			dict["externalIdIn"] = externalIdIn!
 		}
 		return dict
 	}
