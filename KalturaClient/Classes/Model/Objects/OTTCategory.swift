@@ -54,13 +54,13 @@ open class OTTCategory: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = dict["id"] as? Int64
+			id = Int64((dict["id"] as? String)!)
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
 		if dict["parentCategoryId"] != nil {
-			parentCategoryId = dict["parentCategoryId"] as? Int64
+			parentCategoryId = Int64((dict["parentCategoryId"] as? String)!)
 		}
 		if dict["childCategories"] != nil {
 			childCategories = try JSONParser.parse(array: dict["childCategories"] as! [Any])

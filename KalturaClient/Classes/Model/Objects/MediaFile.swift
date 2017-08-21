@@ -82,7 +82,7 @@ open class MediaFile: ObjectBase {
 			url = dict["url"] as? String
 		}
 		if dict["duration"] != nil {
-			duration = dict["duration"] as? Int64
+			duration = Int64((dict["duration"] as? String)!)
 		}
 		if dict["externalId"] != nil {
 			externalId = dict["externalId"] as? String

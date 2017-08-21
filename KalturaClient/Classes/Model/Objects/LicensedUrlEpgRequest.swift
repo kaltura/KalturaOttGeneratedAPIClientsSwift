@@ -48,7 +48,7 @@ open class LicensedUrlEpgRequest: LicensedUrlMediaRequest {
 			streamType = StreamType(rawValue: "\(dict["streamType"]!)")
 		}
 		if dict["startDate"] != nil {
-			startDate = dict["startDate"] as? Int64
+			startDate = Int64((dict["startDate"] as? String)!)
 		}
 
 	}

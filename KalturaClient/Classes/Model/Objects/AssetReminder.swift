@@ -43,7 +43,7 @@ open class AssetReminder: Reminder {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetId"] != nil {
-			assetId = dict["assetId"] as? Int64
+			assetId = Int64((dict["assetId"] as? String)!)
 		}
 
 	}

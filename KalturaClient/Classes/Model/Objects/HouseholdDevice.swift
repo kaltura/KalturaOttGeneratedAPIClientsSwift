@@ -68,13 +68,13 @@ open class HouseholdDevice: ObjectBase {
 			brandId = dict["brandId"] as? Int
 		}
 		if dict["activatedOn"] != nil {
-			activatedOn = dict["activatedOn"] as? Int64
+			activatedOn = Int64((dict["activatedOn"] as? String)!)
 		}
 		if dict["status"] != nil {
 			status = DeviceStatus(rawValue: "\(dict["status"]!)")
 		}
 		if dict["deviceFamilyId"] != nil {
-			deviceFamilyId = dict["deviceFamilyId"] as? Int64
+			deviceFamilyId = Int64((dict["deviceFamilyId"] as? String)!)
 		}
 
 	}

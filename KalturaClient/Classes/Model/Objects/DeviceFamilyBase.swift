@@ -46,7 +46,7 @@ open class DeviceFamilyBase: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = dict["id"] as? Int64
+			id = Int64((dict["id"] as? String)!)
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String

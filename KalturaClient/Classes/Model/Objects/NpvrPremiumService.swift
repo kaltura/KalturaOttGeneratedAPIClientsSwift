@@ -44,7 +44,7 @@ open class NpvrPremiumService: PremiumService {
 		try super.populate(dict);
 		// set members values:
 		if dict["quotaInMinutes"] != nil {
-			quotaInMinutes = dict["quotaInMinutes"] as? Int64
+			quotaInMinutes = Int64((dict["quotaInMinutes"] as? String)!)
 		}
 
 	}

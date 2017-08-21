@@ -57,10 +57,10 @@ open class PricePlan: UsageModule {
 			renewalsNumber = dict["renewalsNumber"] as? Int
 		}
 		if dict["discountId"] != nil {
-			discountId = dict["discountId"] as? Int64
+			discountId = Int64((dict["discountId"] as? String)!)
 		}
 		if dict["priceDetailsId"] != nil {
-			priceDetailsId = dict["priceDetailsId"] as? Int64
+			priceDetailsId = Int64((dict["priceDetailsId"] as? String)!)
 		}
 
 	}

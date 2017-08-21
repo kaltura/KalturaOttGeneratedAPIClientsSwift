@@ -48,7 +48,7 @@ open class EngagementFilter: Filter {
 			typeIn = dict["typeIn"] as? String
 		}
 		if dict["sendTimeGreaterThanOrEqual"] != nil {
-			sendTimeGreaterThanOrEqual = dict["sendTimeGreaterThanOrEqual"] as? Int64
+			sendTimeGreaterThanOrEqual = Int64((dict["sendTimeGreaterThanOrEqual"] as? String)!)
 		}
 
 	}

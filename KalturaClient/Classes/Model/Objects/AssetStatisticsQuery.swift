@@ -55,10 +55,10 @@ open class AssetStatisticsQuery: ObjectBase {
 			assetTypeEqual = AssetType(rawValue: "\(dict["assetTypeEqual"]!)")
 		}
 		if dict["startDateGreaterThanOrEqual"] != nil {
-			startDateGreaterThanOrEqual = dict["startDateGreaterThanOrEqual"] as? Int64
+			startDateGreaterThanOrEqual = Int64((dict["startDateGreaterThanOrEqual"] as? String)!)
 		}
 		if dict["endDateGreaterThanOrEqual"] != nil {
-			endDateGreaterThanOrEqual = dict["endDateGreaterThanOrEqual"] as? Int64
+			endDateGreaterThanOrEqual = Int64((dict["endDateGreaterThanOrEqual"] as? String)!)
 		}
 
 	}

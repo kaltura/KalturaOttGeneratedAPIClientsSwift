@@ -47,7 +47,7 @@ open class SocialFriendActivityFilter: Filter {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetIdEqual"] != nil {
-			assetIdEqual = dict["assetIdEqual"] as? Int64
+			assetIdEqual = Int64((dict["assetIdEqual"] as? String)!)
 		}
 		if dict["assetTypeEqual"] != nil {
 			assetTypeEqual = AssetType(rawValue: "\(dict["assetTypeEqual"]!)")

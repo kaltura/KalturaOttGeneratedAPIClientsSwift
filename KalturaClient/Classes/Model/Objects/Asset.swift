@@ -83,7 +83,7 @@ open class Asset: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = dict["id"] as? Int64
+			id = Int64((dict["id"] as? String)!)
 		}
 		if dict["type"] != nil {
 			type = dict["type"] as? Int
@@ -111,10 +111,10 @@ open class Asset: ObjectBase {
 			tags = try JSONParser.parse(map: dict["tags"] as! [String: Any])
 		}
 		if dict["startDate"] != nil {
-			startDate = dict["startDate"] as? Int64
+			startDate = Int64((dict["startDate"] as? String)!)
 		}
 		if dict["endDate"] != nil {
-			endDate = dict["endDate"] as? Int64
+			endDate = Int64((dict["endDate"] as? String)!)
 		}
 		if dict["enableCdvr"] != nil {
 			enableCdvr = dict["enableCdvr"] as? Bool

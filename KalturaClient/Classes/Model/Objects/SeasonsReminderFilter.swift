@@ -53,7 +53,7 @@ open class SeasonsReminderFilter: ReminderFilter {
 			seasonNumberIn = dict["seasonNumberIn"] as? String
 		}
 		if dict["epgChannelIdEqual"] != nil {
-			epgChannelIdEqual = dict["epgChannelIdEqual"] as? Int64
+			epgChannelIdEqual = Int64((dict["epgChannelIdEqual"] as? String)!)
 		}
 
 	}

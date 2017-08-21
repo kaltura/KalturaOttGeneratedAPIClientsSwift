@@ -60,28 +60,28 @@ open class Recording: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = dict["id"] as? Int64
+			id = Int64((dict["id"] as? String)!)
 		}
 		if dict["status"] != nil {
 			status = RecordingStatus(rawValue: "\(dict["status"]!)")
 		}
 		if dict["assetId"] != nil {
-			assetId = dict["assetId"] as? Int64
+			assetId = Int64((dict["assetId"] as? String)!)
 		}
 		if dict["type"] != nil {
 			type = RecordingType(rawValue: "\(dict["type"]!)")
 		}
 		if dict["viewableUntilDate"] != nil {
-			viewableUntilDate = dict["viewableUntilDate"] as? Int64
+			viewableUntilDate = Int64((dict["viewableUntilDate"] as? String)!)
 		}
 		if dict["isProtected"] != nil {
 			isProtected = dict["isProtected"] as? Bool
 		}
 		if dict["createDate"] != nil {
-			createDate = dict["createDate"] as? Int64
+			createDate = Int64((dict["createDate"] as? String)!)
 		}
 		if dict["updateDate"] != nil {
-			updateDate = dict["updateDate"] as? Int64
+			updateDate = Int64((dict["updateDate"] as? String)!)
 		}
 
 	}

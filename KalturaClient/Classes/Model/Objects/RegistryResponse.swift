@@ -47,7 +47,7 @@ open class RegistryResponse: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["announcementId"] != nil {
-			announcementId = dict["announcementId"] as? Int64
+			announcementId = Int64((dict["announcementId"] as? String)!)
 		}
 		if dict["key"] != nil {
 			key = dict["key"] as? String

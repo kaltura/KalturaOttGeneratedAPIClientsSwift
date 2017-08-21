@@ -50,10 +50,10 @@ open class SeriesReminder: Reminder {
 			seriesId = dict["seriesId"] as? String
 		}
 		if dict["seasonNumber"] != nil {
-			seasonNumber = dict["seasonNumber"] as? Int64
+			seasonNumber = Int64((dict["seasonNumber"] as? String)!)
 		}
 		if dict["epgChannelId"] != nil {
-			epgChannelId = dict["epgChannelId"] as? Int64
+			epgChannelId = Int64((dict["epgChannelId"] as? String)!)
 		}
 
 	}

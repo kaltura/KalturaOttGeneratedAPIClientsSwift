@@ -51,7 +51,7 @@ open class FollowDataBase: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["announcementId"] != nil {
-			announcementId = dict["announcementId"] as? Int64
+			announcementId = Int64((dict["announcementId"] as? String)!)
 		}
 		if dict["status"] != nil {
 			status = dict["status"] as? Int
@@ -60,7 +60,7 @@ open class FollowDataBase: ObjectBase {
 			title = dict["title"] as? String
 		}
 		if dict["timestamp"] != nil {
-			timestamp = dict["timestamp"] as? Int64
+			timestamp = Int64((dict["timestamp"] as? String)!)
 		}
 		if dict["followPhrase"] != nil {
 			followPhrase = dict["followPhrase"] as? String

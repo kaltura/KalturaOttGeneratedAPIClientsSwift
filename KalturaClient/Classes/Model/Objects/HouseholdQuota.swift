@@ -47,7 +47,7 @@ open class HouseholdQuota: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["householdId"] != nil {
-			householdId = dict["householdId"] as? Int64
+			householdId = Int64((dict["householdId"] as? String)!)
 		}
 		if dict["totalQuota"] != nil {
 			totalQuota = dict["totalQuota"] as? Int

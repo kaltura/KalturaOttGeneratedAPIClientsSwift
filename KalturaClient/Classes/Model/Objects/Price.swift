@@ -59,7 +59,7 @@ open class Price: ObjectBase {
 			currencySign = dict["currencySign"] as? String
 		}
 		if dict["countryId"] != nil {
-			countryId = dict["countryId"] as? Int64
+			countryId = Int64((dict["countryId"] as? String)!)
 		}
 
 	}

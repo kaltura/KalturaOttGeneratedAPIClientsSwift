@@ -111,10 +111,10 @@ open class Subscription: ObjectBase {
 			channels = try JSONParser.parse(array: dict["channels"] as! [Any])
 		}
 		if dict["startDate"] != nil {
-			startDate = dict["startDate"] as? Int64
+			startDate = Int64((dict["startDate"] as? String)!)
 		}
 		if dict["endDate"] != nil {
-			endDate = dict["endDate"] as? Int64
+			endDate = Int64((dict["endDate"] as? String)!)
 		}
 		if dict["fileTypes"] != nil {
 			fileTypes = try JSONParser.parse(array: dict["fileTypes"] as! [Any])
@@ -146,7 +146,7 @@ open class Subscription: ObjectBase {
 			mediaId = dict["mediaId"] as? Int
 		}
 		if dict["prorityInOrder"] != nil {
-			prorityInOrder = dict["prorityInOrder"] as? Int64
+			prorityInOrder = Int64((dict["prorityInOrder"] as? String)!)
 		}
 		if dict["pricePlanIds"] != nil {
 			pricePlanIds = dict["pricePlanIds"] as? String
