@@ -44,6 +44,15 @@ public final class NotificationService{
 		return request
 	}
 
+	/**  Sends push notification to user devices  */
+	public static func sendPush(userId: Int, pushMessage: PushMessage) -> RequestBuilder<Bool> {
+		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "notification", action: "sendPush")
+			.setBody(key: "userId", value: userId)
+			.setBody(key: "pushMessage", value: pushMessage)
+
+		return request
+	}
+
 	/**  Registers the device push token to the push service  */
 	public static func setDevicePushToken(pushToken: String) -> RequestBuilder<Bool> {
 		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "notification", action: "setDevicePushToken")

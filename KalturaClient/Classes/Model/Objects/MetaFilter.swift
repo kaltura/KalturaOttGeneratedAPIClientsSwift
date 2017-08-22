@@ -44,6 +44,8 @@ open class MetaFilter: Filter {
 	public var typeEqual: MetaType? = nil
 	/**  Asset type to filter by  */
 	public var assetTypeEqual: AssetType? = nil
+	/**  Features  */
+	public var featuresIn: String? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -61,6 +63,9 @@ open class MetaFilter: Filter {
 		if dict["assetTypeEqual"] != nil {
 			assetTypeEqual = AssetType(rawValue: "\(dict["assetTypeEqual"]!)")
 		}
+		if dict["featuresIn"] != nil {
+			featuresIn = dict["featuresIn"] as? String
+		}
 
 	}
 
@@ -77,6 +82,9 @@ open class MetaFilter: Filter {
 		}
 		if(assetTypeEqual != nil) {
 			dict["assetTypeEqual"] = assetTypeEqual!.rawValue
+		}
+		if(featuresIn != nil) {
+			dict["featuresIn"] = featuresIn!
 		}
 		return dict
 	}

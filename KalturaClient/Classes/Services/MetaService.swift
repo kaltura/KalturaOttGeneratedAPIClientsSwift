@@ -46,4 +46,13 @@ public final class MetaService{
 
 		return request
 	}
+
+	/**  Update meta&amp;#39;s user interest  */
+	public static func update(id: String, meta: Meta) -> RequestBuilder<Meta> {
+		let request: RequestBuilder<Meta> = RequestBuilder<Meta>(service: "meta", action: "update")
+			.setBody(key: "id", value: id)
+			.setBody(key: "meta", value: meta)
+
+		return request
+	}
 }
