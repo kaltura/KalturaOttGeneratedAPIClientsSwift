@@ -36,17 +36,17 @@
 public final class MessageTemplateService{
 
 	/**  Retrieve a message template used in push notifications and inbox  */
-	public static func get(messageType: MessageTemplateType) -> RequestBuilder<MessageTemplate> {
+	public static func get(assetType: OTTAssetType) -> RequestBuilder<MessageTemplate> {
 		let request: RequestBuilder<MessageTemplate> = RequestBuilder<MessageTemplate>(service: "messagetemplate", action: "get")
-			.setBody(key: "messageType", value: messageType.rawValue)
+			.setBody(key: "assetType", value: assetType.rawValue)
 
 		return request
 	}
 
 	/**  Set the account’s push notifications and inbox messages templates  */
-	public static func update(messageType: MessageTemplateType, template: MessageTemplate) -> RequestBuilder<MessageTemplate> {
+	public static func update(assetType: OTTAssetType, template: MessageTemplate) -> RequestBuilder<MessageTemplate> {
 		let request: RequestBuilder<MessageTemplate> = RequestBuilder<MessageTemplate>(service: "messagetemplate", action: "update")
-			.setBody(key: "messageType", value: messageType.rawValue)
+			.setBody(key: "assetType", value: assetType.rawValue)
 			.setBody(key: "template", value: template)
 
 		return request

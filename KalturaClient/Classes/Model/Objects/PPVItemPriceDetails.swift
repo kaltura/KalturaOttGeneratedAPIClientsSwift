@@ -118,13 +118,13 @@ open class PPVItemPriceDetails: ObjectBase {
 			relatedMediaFileIds = try JSONParser.parse(array: dict["relatedMediaFileIds"] as! [Any])
 		}
 		if dict["startDate"] != nil {
-			startDate = dict["startDate"] as? Int64
+			startDate = Int64((dict["startDate"] as? String)!)
 		}
 		if dict["endDate"] != nil {
-			endDate = dict["endDate"] as? Int64
+			endDate = Int64((dict["endDate"] as? String)!)
 		}
 		if dict["discountEndDate"] != nil {
-			discountEndDate = dict["discountEndDate"] as? Int64
+			discountEndDate = Int64((dict["discountEndDate"] as? String)!)
 		}
 		if dict["firstDeviceName"] != nil {
 			firstDeviceName = dict["firstDeviceName"] as? String

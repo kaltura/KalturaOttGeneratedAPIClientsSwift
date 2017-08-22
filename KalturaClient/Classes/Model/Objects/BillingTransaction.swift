@@ -66,8 +66,6 @@ open class BillingTransaction: ObjectBase {
 	public var purchaseId: Int? = nil
 	/**  Remarks  */
 	public var remarks: String? = nil
-	/**  Billing Price Info  */
-	public var billingPriceType: BillingPriceType? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -116,9 +114,6 @@ open class BillingTransaction: ObjectBase {
 		}
 		if dict["remarks"] != nil {
 			remarks = dict["remarks"] as? String
-		}
-		if dict["billingPriceType"] != nil {
-			billingPriceType = BillingPriceType(rawValue: "\(dict["billingPriceType"]!)")
 		}
 
 	}

@@ -33,5 +33,4 @@
  */
 public enum SocialFriendActivityOrderBy: String {
 	case NONE = "NONE"
-	case UPDATE_DATE_DESC = "UPDATE_DATE_DESC"
 }

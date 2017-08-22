@@ -41,10 +41,10 @@ open class PricePlan: UsageModule {
 	/**  Defines the number of times the module will be renewed (for the life_cycle
 	  period)  */
 	public var renewalsNumber: Int? = nil
+	/**  Unique identifier associated with this object&amp;#39;s price  */
+	public var priceId: Int? = nil
 	/**  The discount module identifier of the price plan  */
 	public var discountId: Int64? = nil
-	/**  The ID of the price details associated with this price plan  */
-	public var priceDetailsId: Int64? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -56,19 +56,28 @@ open class PricePlan: UsageModule {
 		if dict["renewalsNumber"] != nil {
 			renewalsNumber = dict["renewalsNumber"] as? Int
 		}
+		if dict["priceId"] != nil {
+			priceId = dict["priceId"] as? Int
+		}
 		if dict["discountId"] != nil {
 			discountId = Int64((dict["discountId"] as? String)!)
-		}
-		if dict["priceDetailsId"] != nil {
-			priceDetailsId = Int64((dict["priceDetailsId"] as? String)!)
 		}
 
 	}
 
 	public override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(priceDetailsId != nil) {
-			dict["priceDetailsId"] = priceDetailsId!
+		if(isRenewable != nil) {
+			dict["isRenewable"] = isRenewable!
+		}
+		if(renewalsNumber != nil) {
+			dict["renewalsNumber"] = renewalsNumber!
+		}
+		if(priceId != nil) {
+			dict["priceId"] = priceId!
+		}
+		if(discountId != nil) {
+			dict["discountId"] = discountId!
 		}
 		return dict
 	}

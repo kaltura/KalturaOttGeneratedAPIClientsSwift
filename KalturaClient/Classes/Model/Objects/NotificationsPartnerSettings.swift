@@ -57,14 +57,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 	public var reminderOffsetSec: Int? = nil
 	/**  Push adapter URL  */
 	public var pushAdapterUrl: String? = nil
-	/**  Churn mail template name  */
-	public var churnMailTemplateName: String? = nil
-	/**  Churn mail subject  */
-	public var churnMailSubject: String? = nil
-	/**  Sender email  */
-	public var senderEmail: String? = nil
-	/**  Mail sender name  */
-	public var mailSenderName: String? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -103,18 +95,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 		if dict["pushAdapterUrl"] != nil {
 			pushAdapterUrl = dict["pushAdapterUrl"] as? String
 		}
-		if dict["churnMailTemplateName"] != nil {
-			churnMailTemplateName = dict["churnMailTemplateName"] as? String
-		}
-		if dict["churnMailSubject"] != nil {
-			churnMailSubject = dict["churnMailSubject"] as? String
-		}
-		if dict["senderEmail"] != nil {
-			senderEmail = dict["senderEmail"] as? String
-		}
-		if dict["mailSenderName"] != nil {
-			mailSenderName = dict["mailSenderName"] as? String
-		}
 
 	}
 
@@ -152,18 +132,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 		}
 		if(pushAdapterUrl != nil) {
 			dict["pushAdapterUrl"] = pushAdapterUrl!
-		}
-		if(churnMailTemplateName != nil) {
-			dict["churnMailTemplateName"] = churnMailTemplateName!
-		}
-		if(churnMailSubject != nil) {
-			dict["churnMailSubject"] = churnMailSubject!
-		}
-		if(senderEmail != nil) {
-			dict["senderEmail"] = senderEmail!
-		}
-		if(mailSenderName != nil) {
-			dict["mailSenderName"] = mailSenderName!
 		}
 		return dict
 	}

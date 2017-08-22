@@ -38,8 +38,6 @@ open class RecordingAsset: ProgramAsset {
 
 	/**  Recording identifier  */
 	public var recordingId: String? = nil
-	/**  Recording Type: single/season/series  */
-	public var recordingType: RecordingType? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -48,9 +46,6 @@ open class RecordingAsset: ProgramAsset {
 		if dict["recordingId"] != nil {
 			recordingId = dict["recordingId"] as? String
 		}
-		if dict["recordingType"] != nil {
-			recordingType = RecordingType(rawValue: "\(dict["recordingType"]!)")
-		}
 
 	}
 
@@ -58,9 +53,6 @@ open class RecordingAsset: ProgramAsset {
 		var dict: [String: Any] = super.toDictionary()
 		if(recordingId != nil) {
 			dict["recordingId"] = recordingId!
-		}
-		if(recordingType != nil) {
-			dict["recordingType"] = recordingType!.rawValue
 		}
 		return dict
 	}

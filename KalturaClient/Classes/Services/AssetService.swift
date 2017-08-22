@@ -35,14 +35,15 @@
 
 public final class AssetService{
 
-	public static func count() -> RequestBuilder<AssetCount> {
-		return count(filter: nil)
+	public static func count(groupBy: Array<AssetGroupBy>) -> RequestBuilder<AssetCount> {
+		return count(groupBy: groupBy, filter: nil)
 	}
 
 	/**  Returns a group-by result for media or EPG according to given filter. Lists
 	  values of each field and their respective count.  */
-	public static func count(filter: SearchAssetFilter?) -> RequestBuilder<AssetCount> {
+	public static func count(groupBy: Array<AssetGroupBy>, filter: SearchAssetFilter?) -> RequestBuilder<AssetCount> {
 		let request: RequestBuilder<AssetCount> = RequestBuilder<AssetCount>(service: "asset", action: "count")
+			.setBody(key: "groupBy", value: groupBy)
 			.setBody(key: "filter", value: filter)
 
 		return request
