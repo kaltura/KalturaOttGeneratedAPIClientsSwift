@@ -48,8 +48,6 @@ open class Channel: BaseChannel {
 	public var isActive: Bool? = nil
 	/**  Channel order  */
 	public var order: AssetOrderBy? = nil
-	/**  Channel group by  */
-	public var groupBy: AssetGroupBy? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -73,8 +71,6 @@ open class Channel: BaseChannel {
 		if dict["order"] != nil {
 			order = AssetOrderBy(rawValue: "\(dict["order"]!)")
 		}
-		if dict["groupBy"] != nil {
-		groupBy = try JSONParser.parse(object: dict["groupBy"] as! [String: Any])		}
 
 	}
 
@@ -97,9 +93,6 @@ open class Channel: BaseChannel {
 		}
 		if(order != nil) {
 			dict["order"] = order!.rawValue
-		}
-		if(groupBy != nil) {
-			dict["groupBy"] = groupBy!.toDictionary()
 		}
 		return dict
 	}

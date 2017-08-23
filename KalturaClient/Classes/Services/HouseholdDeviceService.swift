@@ -88,20 +88,6 @@ public final class HouseholdDeviceService{
 		return request
 	}
 
-	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse> {
-		return loginWithPin(partnerId: partnerId, pin: pin, udid: nil)
-	}
-
-	/**  User sign-in via a time-expired sign-in PIN.  */
-	public static func loginWithPin(partnerId: Int, pin: String, udid: String?) -> RequestBuilder<LoginResponse> {
-		let request: RequestBuilder<LoginResponse> = RequestBuilder<LoginResponse>(service: "householddevice", action: "loginWithPin")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "pin", value: pin)
-			.setBody(key: "udid", value: udid)
-
-		return request
-	}
-
 	/**  Update the name of the device by UDID  */
 	public static func update(udid: String, device: HouseholdDevice) -> RequestBuilder<HouseholdDevice> {
 		let request: RequestBuilder<HouseholdDevice> = RequestBuilder<HouseholdDevice>(service: "householddevice", action: "update")
