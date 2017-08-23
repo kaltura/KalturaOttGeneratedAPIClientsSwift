@@ -42,4 +42,13 @@ public final class SubscriptionService{
 
 		return request
 	}
+
+	/**  Returns information about a coupon for subscription  */
+	public static func validateCoupon(id: Int, code: String) -> RequestBuilder<Coupon> {
+		let request: RequestBuilder<Coupon> = RequestBuilder<Coupon>(service: "subscription", action: "validateCoupon")
+			.setBody(key: "id", value: id)
+			.setBody(key: "code", value: code)
+
+		return request
+	}
 }

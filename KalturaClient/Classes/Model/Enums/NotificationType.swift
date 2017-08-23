@@ -35,4 +35,5 @@ public enum NotificationType: String {
 	case ANNOUNCEMENT = "announcement"
 	case SYSTEM = "system"
 	case REMINDER = "Reminder"
+	case SERIES_REMINDER = "series_reminder"
 }
