@@ -39,6 +39,8 @@ open class SubscriptionSetFilter: Filter {
 	public var idIn: String? = nil
 	/**  Comma separated subscription identifiers  */
 	public var subscriptionIdContains: String? = nil
+	/**  Subscription Type  */
+	public var typeEqual: SubscriptionSetType? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -50,6 +52,9 @@ open class SubscriptionSetFilter: Filter {
 		if dict["subscriptionIdContains"] != nil {
 			subscriptionIdContains = dict["subscriptionIdContains"] as? String
 		}
+		if dict["typeEqual"] != nil {
+			typeEqual = SubscriptionSetType(rawValue: "\(dict["typeEqual"]!)")
+		}
 
 	}
 
@@ -60,6 +65,9 @@ open class SubscriptionSetFilter: Filter {
 		}
 		if(subscriptionIdContains != nil) {
 			dict["subscriptionIdContains"] = subscriptionIdContains!
+		}
+		if(typeEqual != nil) {
+			dict["typeEqual"] = typeEqual!.rawValue
 		}
 		return dict
 	}

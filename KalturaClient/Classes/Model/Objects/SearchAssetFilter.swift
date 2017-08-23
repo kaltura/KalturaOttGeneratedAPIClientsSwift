@@ -33,7 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class SearchAssetFilter: AssetFilter {
+open class SearchAssetFilter: BaseSearchAssetFilter {
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
 	  with key, comparison operators, value, and logical conjunction.             

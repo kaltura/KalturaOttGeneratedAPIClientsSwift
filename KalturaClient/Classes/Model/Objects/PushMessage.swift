@@ -35,13 +35,14 @@
 
 open class PushMessage: ObjectBase {
 
-	/**  Push text  */
+	/**  The message that will be presented to the user.  */
 	public var message: String? = nil
-	/**  Push sound  */
+	/**  Optional. Can be used to change the default push sound on the user device.  */
 	public var sound: String? = nil
-	/**  Push action  */
+	/**  Optional. Used to change the default action of the application when a push is
+	  received.  */
 	public var action: String? = nil
-	/**  Push URL  */
+	/**  Optional. Used to direct the application to the relevant page.  */
 	public var url: String? = nil
 
 
