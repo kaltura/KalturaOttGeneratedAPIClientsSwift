@@ -35,6 +35,27 @@
 
 open class SearchExternalFilter: AssetFilter {
 
+	public class SearchExternalFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var query: BaseTokenizedObject {
+			get {
+				return self.append("query") 
+			}
+		}
+		
+		public var utcOffsetEqual: BaseTokenizedObject {
+			get {
+				return self.append("utcOffsetEqual") 
+			}
+		}
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+	}
+
 	/**  Query  */
 	public var query: String? = nil
 	/**  UtcOffsetEqual  */
@@ -46,6 +67,18 @@ open class SearchExternalFilter: AssetFilter {
 	public var typeIn: String? = nil
 
 
+	public func setMultiRequestToken(query: String) {
+		self.dict["query"] = query
+	}
+	
+	public func setMultiRequestToken(utcOffsetEqual: String) {
+		self.dict["utcOffsetEqual"] = utcOffsetEqual
+	}
+	
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

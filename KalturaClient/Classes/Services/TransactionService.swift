@@ -35,44 +35,113 @@
 
 public final class TransactionService{
 
+	public class DowngradeTokenizer: ClientTokenizer  {
+		
+		public var purchase: Purchase.PurchaseTokenizer {
+			get {
+				return Purchase.PurchaseTokenizer(self.append("purchase")) 
+			}
+		}
+	}
+
 	/**  downgrade specific subscription for a household. entitlements will be updated on
 	  the existing subscription end date.  */
-	public static func downgrade(purchase: Purchase) -> RequestBuilder<Void> {
+	public static func downgrade(purchase: Purchase) -> NullRequestBuilder {
 		let request: NullRequestBuilder = NullRequestBuilder(service: "transaction", action: "downgrade")
 			.setBody(key: "purchase", value: purchase)
 
 		return request
 	}
 
+	public class GetPurchaseSessionIdTokenizer: ClientTokenizer  {
+		
+		public var purchaseSession: PurchaseSession.PurchaseSessionTokenizer {
+			get {
+				return PurchaseSession.PurchaseSessionTokenizer(self.append("purchaseSession")) 
+			}
+		}
+	}
+
 	/**  Retrieve the purchase session identifier  */
-	public static func getPurchaseSessionId(purchaseSession: PurchaseSession) -> RequestBuilder<Int64> {
-		let request: RequestBuilder<Int64> = RequestBuilder<Int64>(service: "transaction", action: "getPurchaseSessionId")
+	public static func getPurchaseSessionId(purchaseSession: PurchaseSession) -> RequestBuilder<Int64, BaseTokenizedObject, GetPurchaseSessionIdTokenizer> {
+		let request: RequestBuilder<Int64, BaseTokenizedObject, GetPurchaseSessionIdTokenizer> = RequestBuilder<Int64, BaseTokenizedObject, GetPurchaseSessionIdTokenizer>(service: "transaction", action: "getPurchaseSessionId")
 			.setBody(key: "purchaseSession", value: purchaseSession)
 
 		return request
 	}
 
+	public class PurchaseTokenizer: ClientTokenizer  {
+		
+		public var purchase_: Purchase.PurchaseTokenizer {
+			get {
+				return Purchase.PurchaseTokenizer(self.append("purchase_")) 
+			}
+		}
+	}
+
 	/**  Purchase specific product or subscription for a household. Upon successful
 	  charge entitlements to use the requested product or subscription are granted.  */
-	public static func purchase(purchase_: Purchase) -> RequestBuilder<Transaction> {
-		let request: RequestBuilder<Transaction> = RequestBuilder<Transaction>(service: "transaction", action: "purchase")
+	public static func purchase(purchase_: Purchase) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer> {
+		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer>(service: "transaction", action: "purchase")
 			.setBody(key: "purchase", value: purchase_)
 
 		return request
 	}
 
+	public class SetWaiverTokenizer: ClientTokenizer  {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var transactionType: BaseTokenizedObject {
+			get {
+				return self.append("transactionType") 
+			}
+		}
+	}
+
 	/**  This method shall set the waiver flag on the user entitlement table and the
 	  waiver date field to the current date.  */
-	public static func setWaiver(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "transaction", action: "setWaiver")
+	public static func setWaiver(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, SetWaiverTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, SetWaiverTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetWaiverTokenizer>(service: "transaction", action: "setWaiver")
 			.setBody(key: "assetId", value: assetId)
 			.setBody(key: "transactionType", value: transactionType.rawValue)
 
 		return request
 	}
 
+	public class UpdateStatusTokenizer: ClientTokenizer  {
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+		
+		public var externalTransactionId: BaseTokenizedObject {
+			get {
+				return self.append("externalTransactionId") 
+			}
+		}
+		
+		public var signature: BaseTokenizedObject {
+			get {
+				return self.append("signature") 
+			}
+		}
+		
+		public var status: TransactionStatus.TransactionStatusTokenizer {
+			get {
+				return TransactionStatus.TransactionStatusTokenizer(self.append("status")) 
+			}
+		}
+	}
+
 	/**  Updates a pending purchase transaction state.  */
-	public static func updateStatus(paymentGatewayId: String, externalTransactionId: String, signature: String, status: TransactionStatus) -> RequestBuilder<Void> {
+	public static func updateStatus(paymentGatewayId: String, externalTransactionId: String, signature: String, status: TransactionStatus) -> NullRequestBuilder {
 		let request: NullRequestBuilder = NullRequestBuilder(service: "transaction", action: "updateStatus")
 			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
 			.setBody(key: "externalTransactionId", value: externalTransactionId)
@@ -82,19 +151,37 @@ public final class TransactionService{
 		return request
 	}
 
+	public class UpgradeTokenizer: ClientTokenizer  {
+		
+		public var purchase: Purchase.PurchaseTokenizer {
+			get {
+				return Purchase.PurchaseTokenizer(self.append("purchase")) 
+			}
+		}
+	}
+
 	/**  upgrade specific subscription for a household. Upon successful charge
 	  entitlements to use the requested product or subscription are granted.  */
-	public static func upgrade(purchase: Purchase) -> RequestBuilder<Transaction> {
-		let request: RequestBuilder<Transaction> = RequestBuilder<Transaction>(service: "transaction", action: "upgrade")
+	public static func upgrade(purchase: Purchase) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer> {
+		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer>(service: "transaction", action: "upgrade")
 			.setBody(key: "purchase", value: purchase)
 
 		return request
 	}
 
+	public class ValidateReceiptTokenizer: ClientTokenizer  {
+		
+		public var externalReceipt: ExternalReceipt.ExternalReceiptTokenizer {
+			get {
+				return ExternalReceipt.ExternalReceiptTokenizer(self.append("externalReceipt")) 
+			}
+		}
+	}
+
 	/**  Verifies PPV/Subscription/Collection client purchase (such as InApp) and
 	  entitles the user.  */
-	public static func validateReceipt(externalReceipt: ExternalReceipt) -> RequestBuilder<Transaction> {
-		let request: RequestBuilder<Transaction> = RequestBuilder<Transaction>(service: "transaction", action: "validateReceipt")
+	public static func validateReceipt(externalReceipt: ExternalReceipt) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, ValidateReceiptTokenizer> {
+		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, ValidateReceiptTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, ValidateReceiptTokenizer>(service: "transaction", action: "validateReceipt")
 			.setBody(key: "externalReceipt", value: externalReceipt)
 
 		return request

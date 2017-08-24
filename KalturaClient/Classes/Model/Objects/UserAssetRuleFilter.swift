@@ -36,12 +36,35 @@
 /**  User asset rule filter  */
 open class UserAssetRuleFilter: Filter {
 
+	public class UserAssetRuleFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetIdEqual") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+	}
+
 	/**  Asset identifier to filter by  */
 	public var assetIdEqual: Int64? = nil
 	/**  Asset type to filter by - 0 = EPG, 1 = media  */
 	public var assetTypeEqual: Int? = nil
 
 
+	public func setMultiRequestToken(assetIdEqual: String) {
+		self.dict["assetIdEqual"] = assetIdEqual
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,99 @@
 
 open class NotificationsPartnerSettings: ObjectBase {
 
+	public class NotificationsPartnerSettingsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var pushNotificationEnabled: BaseTokenizedObject {
+			get {
+				return self.append("pushNotificationEnabled") 
+			}
+		}
+		
+		public var pushSystemAnnouncementsEnabled: BaseTokenizedObject {
+			get {
+				return self.append("pushSystemAnnouncementsEnabled") 
+			}
+		}
+		
+		public var pushStartHour: BaseTokenizedObject {
+			get {
+				return self.append("pushStartHour") 
+			}
+		}
+		
+		public var pushEndHour: BaseTokenizedObject {
+			get {
+				return self.append("pushEndHour") 
+			}
+		}
+		
+		public var inboxEnabled: BaseTokenizedObject {
+			get {
+				return self.append("inboxEnabled") 
+			}
+		}
+		
+		public var messageTTLDays: BaseTokenizedObject {
+			get {
+				return self.append("messageTTLDays") 
+			}
+		}
+		
+		public var automaticIssueFollowNotification: BaseTokenizedObject {
+			get {
+				return self.append("automaticIssueFollowNotification") 
+			}
+		}
+		
+		public var topicExpirationDurationDays: BaseTokenizedObject {
+			get {
+				return self.append("topicExpirationDurationDays") 
+			}
+		}
+		
+		public var reminderEnabled: BaseTokenizedObject {
+			get {
+				return self.append("reminderEnabled") 
+			}
+		}
+		
+		public var reminderOffsetSec: BaseTokenizedObject {
+			get {
+				return self.append("reminderOffsetSec") 
+			}
+		}
+		
+		public var pushAdapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("pushAdapterUrl") 
+			}
+		}
+		
+		public var churnMailTemplateName: BaseTokenizedObject {
+			get {
+				return self.append("churnMailTemplateName") 
+			}
+		}
+		
+		public var churnMailSubject: BaseTokenizedObject {
+			get {
+				return self.append("churnMailSubject") 
+			}
+		}
+		
+		public var senderEmail: BaseTokenizedObject {
+			get {
+				return self.append("senderEmail") 
+			}
+		}
+		
+		public var mailSenderName: BaseTokenizedObject {
+			get {
+				return self.append("mailSenderName") 
+			}
+		}
+	}
+
 	/**  Push notification capability is enabled for the account  */
 	public var pushNotificationEnabled: Bool? = nil
 	/**  System announcement capability is enabled for the account  */
@@ -67,6 +160,66 @@ open class NotificationsPartnerSettings: ObjectBase {
 	public var mailSenderName: String? = nil
 
 
+	public func setMultiRequestToken(pushNotificationEnabled: String) {
+		self.dict["pushNotificationEnabled"] = pushNotificationEnabled
+	}
+	
+	public func setMultiRequestToken(pushSystemAnnouncementsEnabled: String) {
+		self.dict["pushSystemAnnouncementsEnabled"] = pushSystemAnnouncementsEnabled
+	}
+	
+	public func setMultiRequestToken(pushStartHour: String) {
+		self.dict["pushStartHour"] = pushStartHour
+	}
+	
+	public func setMultiRequestToken(pushEndHour: String) {
+		self.dict["pushEndHour"] = pushEndHour
+	}
+	
+	public func setMultiRequestToken(inboxEnabled: String) {
+		self.dict["inboxEnabled"] = inboxEnabled
+	}
+	
+	public func setMultiRequestToken(messageTTLDays: String) {
+		self.dict["messageTTLDays"] = messageTTLDays
+	}
+	
+	public func setMultiRequestToken(automaticIssueFollowNotification: String) {
+		self.dict["automaticIssueFollowNotification"] = automaticIssueFollowNotification
+	}
+	
+	public func setMultiRequestToken(topicExpirationDurationDays: String) {
+		self.dict["topicExpirationDurationDays"] = topicExpirationDurationDays
+	}
+	
+	public func setMultiRequestToken(reminderEnabled: String) {
+		self.dict["reminderEnabled"] = reminderEnabled
+	}
+	
+	public func setMultiRequestToken(reminderOffsetSec: String) {
+		self.dict["reminderOffsetSec"] = reminderOffsetSec
+	}
+	
+	public func setMultiRequestToken(pushAdapterUrl: String) {
+		self.dict["pushAdapterUrl"] = pushAdapterUrl
+	}
+	
+	public func setMultiRequestToken(churnMailTemplateName: String) {
+		self.dict["churnMailTemplateName"] = churnMailTemplateName
+	}
+	
+	public func setMultiRequestToken(churnMailSubject: String) {
+		self.dict["churnMailSubject"] = churnMailSubject
+	}
+	
+	public func setMultiRequestToken(senderEmail: String) {
+		self.dict["senderEmail"] = senderEmail
+	}
+	
+	public func setMultiRequestToken(mailSenderName: String) {
+		self.dict["mailSenderName"] = mailSenderName
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

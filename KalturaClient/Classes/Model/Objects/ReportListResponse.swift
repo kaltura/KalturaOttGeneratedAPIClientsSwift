@@ -36,6 +36,15 @@
 /**  Reports info wrapper  */
 open class ReportListResponse: ListResponse {
 
+	public class ReportListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Report.ReportTokenizer> {
+			get {
+				return ArrayTokenizedObject<Report.ReportTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Reports  */
 	public var objects: Array<Report>? = nil
 

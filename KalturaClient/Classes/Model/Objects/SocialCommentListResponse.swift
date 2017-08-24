@@ -35,6 +35,15 @@
 
 open class SocialCommentListResponse: ListResponse {
 
+	public class SocialCommentListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<SocialComment.SocialCommentTokenizer> {
+			get {
+				return ArrayTokenizedObject<SocialComment.SocialCommentTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Social comments list  */
 	public var objects: Array<SocialComment>? = nil
 

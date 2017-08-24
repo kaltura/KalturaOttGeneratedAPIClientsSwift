@@ -36,6 +36,27 @@
 /**  Device brand details  */
 open class DeviceBrand: ObjectBase {
 
+	public class DeviceBrandTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var deviceFamilyid: BaseTokenizedObject {
+			get {
+				return self.append("deviceFamilyid") 
+			}
+		}
+	}
+
 	/**  Device brand identifier  */
 	public var id: Int64? = nil
 	/**  Device brand name  */
@@ -44,6 +65,18 @@ open class DeviceBrand: ObjectBase {
 	public var deviceFamilyid: Int64? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(deviceFamilyid: String) {
+		self.dict["deviceFamilyid"] = deviceFamilyid
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

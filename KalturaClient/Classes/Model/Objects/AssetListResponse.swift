@@ -36,6 +36,15 @@
 /**  Asset wrapper  */
 open class AssetListResponse: ListResponse {
 
+	public class AssetListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Asset.AssetTokenizer> {
+			get {
+				return ArrayTokenizedObject<Asset.AssetTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Assets  */
 	public var objects: Array<Asset>? = nil
 

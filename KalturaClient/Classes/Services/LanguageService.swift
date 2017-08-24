@@ -35,10 +35,19 @@
 
 public final class LanguageService{
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: LanguageFilter.LanguageFilterTokenizer {
+			get {
+				return LanguageFilter.LanguageFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Get the list of languages for the partner with option to filter by language
 	  codes  */
-	public static func list(filter: LanguageFilter) -> RequestBuilder<LanguageListResponse> {
-		let request: RequestBuilder<LanguageListResponse> = RequestBuilder<LanguageListResponse>(service: "language", action: "list")
+	public static func list(filter: LanguageFilter) -> RequestBuilder<LanguageListResponse, LanguageListResponse.LanguageListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<LanguageListResponse, LanguageListResponse.LanguageListResponseTokenizer, ListTokenizer> = RequestBuilder<LanguageListResponse, LanguageListResponse.LanguageListResponseTokenizer, ListTokenizer>(service: "language", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

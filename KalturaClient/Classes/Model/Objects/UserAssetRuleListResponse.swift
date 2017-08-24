@@ -36,6 +36,15 @@
 /**  GenericRules list  */
 open class UserAssetRuleListResponse: ListResponse {
 
+	public class UserAssetRuleListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<UserAssetRule.UserAssetRuleTokenizer> {
+			get {
+				return ArrayTokenizedObject<UserAssetRule.UserAssetRuleTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of generic rules  */
 	public var objects: Array<UserAssetRule>? = nil
 

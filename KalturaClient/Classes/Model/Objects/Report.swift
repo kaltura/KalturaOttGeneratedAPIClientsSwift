@@ -35,6 +35,9 @@
 
 open class Report: ObjectBase {
 
+	public class ReportTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

@@ -35,10 +35,23 @@
 
 open class HouseholdUserFilter: Filter {
 
+	public class HouseholdUserFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var householdIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("householdIdEqual") 
+			}
+		}
+	}
+
 	/**  The identifier of the household  */
 	public var householdIdEqual: Int? = nil
 
 
+	public func setMultiRequestToken(householdIdEqual: String) {
+		self.dict["householdIdEqual"] = householdIdEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

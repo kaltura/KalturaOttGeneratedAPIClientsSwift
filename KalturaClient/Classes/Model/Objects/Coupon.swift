@@ -36,12 +36,31 @@
 /**  Coupon details container  */
 open class Coupon: ObjectBase {
 
+	public class CouponTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var couponsGroup: CouponsGroup.CouponsGroupTokenizer {
+			get {
+				return CouponsGroup.CouponsGroupTokenizer(self.append("couponsGroup")) 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+	}
+
 	/**  Coupons group details  */
 	public var couponsGroup: CouponsGroup? = nil
 	/**  Coupon status  */
 	public var status: CouponStatus? = nil
 
 
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

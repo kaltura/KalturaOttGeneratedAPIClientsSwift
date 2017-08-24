@@ -35,55 +35,121 @@
 
 public final class AnnouncementService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var announcement: Announcement.AnnouncementTokenizer {
+			get {
+				return Announcement.AnnouncementTokenizer(self.append("announcement")) 
+			}
+		}
+	}
+
 	/**  Add a new future scheduled system announcement push notification  */
-	public static func add(announcement: Announcement) -> RequestBuilder<Announcement> {
-		let request: RequestBuilder<Announcement> = RequestBuilder<Announcement>(service: "announcement", action: "add")
+	public static func add(announcement: Announcement) -> RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, AddTokenizer> = RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, AddTokenizer>(service: "announcement", action: "add")
 			.setBody(key: "announcement", value: announcement)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete an existing announcing. Announcement cannot be delete while being sent.  */
-	public static func delete(id: Int64) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "announcement", action: "delete")
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "announcement", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
+	public class EnableSystemAnnouncementsTokenizer: ClientTokenizer  {
+	}
+
 	/**  Enable system announcements  */
-	public static func enableSystemAnnouncements() -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "announcement", action: "enableSystemAnnouncements")
+	public static func enableSystemAnnouncements() -> RequestBuilder<Bool, BaseTokenizedObject, EnableSystemAnnouncementsTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, EnableSystemAnnouncementsTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, EnableSystemAnnouncementsTokenizer>(service: "announcement", action: "enableSystemAnnouncements")
 
 		return request
 	}
 
-	public static func list(filter: AnnouncementFilter) -> RequestBuilder<AnnouncementListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: AnnouncementFilter.AnnouncementFilterTokenizer {
+			get {
+				return AnnouncementFilter.AnnouncementFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: AnnouncementFilter) -> RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Lists all announcements in the system.  */
-	public static func list(filter: AnnouncementFilter, pager: FilterPager?) -> RequestBuilder<AnnouncementListResponse> {
-		let request: RequestBuilder<AnnouncementListResponse> = RequestBuilder<AnnouncementListResponse>(service: "announcement", action: "list")
+	public static func list(filter: AnnouncementFilter, pager: FilterPager?) -> RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer> = RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer>(service: "announcement", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var announcementId: BaseTokenizedObject {
+			get {
+				return self.append("announcementId") 
+			}
+		}
+		
+		public var announcement: Announcement.AnnouncementTokenizer {
+			get {
+				return Announcement.AnnouncementTokenizer(self.append("announcement")) 
+			}
+		}
+	}
+
 	/**  Update an existing future system announcement push notification. Announcement
 	  can only be updated only before sending  */
-	public static func update(announcementId: Int, announcement: Announcement) -> RequestBuilder<Announcement> {
-		let request: RequestBuilder<Announcement> = RequestBuilder<Announcement>(service: "announcement", action: "update")
+	public static func update(announcementId: Int, announcement: Announcement) -> RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, UpdateTokenizer> = RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, UpdateTokenizer>(service: "announcement", action: "update")
 			.setBody(key: "announcementId", value: announcementId)
 			.setBody(key: "announcement", value: announcement)
 
 		return request
 	}
 
+	public class UpdateStatusTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+	}
+
 	/**  Update a system announcement status  */
-	public static func updateStatus(id: Int64, status: Bool) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "announcement", action: "updateStatus")
+	public static func updateStatus(id: Int64, status: Bool) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "announcement", action: "updateStatus")
 			.setBody(key: "id", value: id)
 			.setBody(key: "status", value: status)
 

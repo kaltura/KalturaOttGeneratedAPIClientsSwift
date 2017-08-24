@@ -36,6 +36,57 @@
 /**  C-DVR Adapter  */
 open class CDVRAdapterProfile: ObjectBase {
 
+	public class CDVRAdapterProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var adapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("adapterUrl") 
+			}
+		}
+		
+		public var settings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("settings"))
+			}
+		}
+		
+		public var externalIdentifier: BaseTokenizedObject {
+			get {
+				return self.append("externalIdentifier") 
+			}
+		}
+		
+		public var sharedSecret: BaseTokenizedObject {
+			get {
+				return self.append("sharedSecret") 
+			}
+		}
+		
+		public var dynamicLinksSupport: BaseTokenizedObject {
+			get {
+				return self.append("dynamicLinksSupport") 
+			}
+		}
+	}
+
 	/**  C-DVR adapter identifier  */
 	public var id: Int? = nil
 	/**  C-DVR adapter name  */
@@ -54,6 +105,34 @@ open class CDVRAdapterProfile: ObjectBase {
 	public var dynamicLinksSupport: Bool? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(adapterUrl: String) {
+		self.dict["adapterUrl"] = adapterUrl
+	}
+	
+	public func setMultiRequestToken(externalIdentifier: String) {
+		self.dict["externalIdentifier"] = externalIdentifier
+	}
+	
+	public func setMultiRequestToken(sharedSecret: String) {
+		self.dict["sharedSecret"] = sharedSecret
+	}
+	
+	public func setMultiRequestToken(dynamicLinksSupport: String) {
+		self.dict["dynamicLinksSupport"] = dynamicLinksSupport
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

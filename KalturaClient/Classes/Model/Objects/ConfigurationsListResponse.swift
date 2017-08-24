@@ -36,6 +36,15 @@
 /**  Configurations info wrapper  */
 open class ConfigurationsListResponse: ListResponse {
 
+	public class ConfigurationsListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Configurations.ConfigurationsTokenizer> {
+			get {
+				return ArrayTokenizedObject<Configurations.ConfigurationsTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Configurations  */
 	public var objects: Array<Configurations>? = nil
 

@@ -35,6 +35,15 @@
 
 open class StringValueArray: ObjectBase {
 
+	public class StringValueArrayTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  List of string values  */
 	public var objects: Array<StringValue>? = nil
 

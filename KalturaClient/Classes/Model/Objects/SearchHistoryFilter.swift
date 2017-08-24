@@ -35,6 +35,9 @@
 
 open class SearchHistoryFilter: Filter {
 
+	public class SearchHistoryFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

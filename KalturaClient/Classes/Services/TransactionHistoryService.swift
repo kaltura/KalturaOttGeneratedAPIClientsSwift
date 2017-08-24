@@ -35,17 +35,32 @@
 
 public final class TransactionHistoryService{
 
-	public static func list() -> RequestBuilder<BillingTransactionListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: TransactionHistoryFilter.TransactionHistoryFilterTokenizer {
+			get {
+				return TransactionHistoryFilter.TransactionHistoryFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: TransactionHistoryFilter?) -> RequestBuilder<BillingTransactionListResponse> {
+	public static func list(filter: TransactionHistoryFilter?) -> RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Gets user or household transaction history.  */
-	public static func list(filter: TransactionHistoryFilter?, pager: FilterPager?) -> RequestBuilder<BillingTransactionListResponse> {
-		let request: RequestBuilder<BillingTransactionListResponse> = RequestBuilder<BillingTransactionListResponse>(service: "transactionhistory", action: "list")
+	public static func list(filter: TransactionHistoryFilter?, pager: FilterPager?) -> RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer> = RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer>(service: "transactionhistory", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

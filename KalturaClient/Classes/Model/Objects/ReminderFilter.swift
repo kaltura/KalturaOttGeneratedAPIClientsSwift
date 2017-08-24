@@ -35,6 +35,9 @@
 
 open class ReminderFilter: Filter {
 
+	public class ReminderFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

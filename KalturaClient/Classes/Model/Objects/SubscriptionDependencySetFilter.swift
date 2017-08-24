@@ -35,10 +35,23 @@
 
 open class SubscriptionDependencySetFilter: SubscriptionSetFilter {
 
+	public class SubscriptionDependencySetFilterTokenizer: SubscriptionSetFilter.SubscriptionSetFilterTokenizer {
+		
+		public var baseSubscriptionIdIn: BaseTokenizedObject {
+			get {
+				return self.append("baseSubscriptionIdIn") 
+			}
+		}
+	}
+
 	/**  Comma separated identifiers  */
 	public var baseSubscriptionIdIn: String? = nil
 
 
+	public func setMultiRequestToken(baseSubscriptionIdIn: String) {
+		self.dict["baseSubscriptionIdIn"] = baseSubscriptionIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

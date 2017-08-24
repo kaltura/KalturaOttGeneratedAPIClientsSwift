@@ -35,10 +35,23 @@
 
 open class LicensedUrlRecordingRequest: LicensedUrlBaseRequest {
 
+	public class LicensedUrlRecordingRequestTokenizer: LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer {
+		
+		public var fileType: BaseTokenizedObject {
+			get {
+				return self.append("fileType") 
+			}
+		}
+	}
+
 	/**  The file type for the URL  */
 	public var fileType: String? = nil
 
 
+	public func setMultiRequestToken(fileType: String) {
+		self.dict["fileType"] = fileType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

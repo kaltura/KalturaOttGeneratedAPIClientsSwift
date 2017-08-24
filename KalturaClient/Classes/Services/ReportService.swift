@@ -35,22 +35,46 @@
 
 public final class ReportService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
 	/**  Return a device configuration retrieval log request for a specific device.  */
-	public static func get(udid: String) -> RequestBuilder<Report> {
-		let request: RequestBuilder<Report> = RequestBuilder<Report>(service: "report", action: "get")
+	public static func get(udid: String) -> RequestBuilder<Report, Report.ReportTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Report, Report.ReportTokenizer, GetTokenizer> = RequestBuilder<Report, Report.ReportTokenizer, GetTokenizer>(service: "report", action: "get")
 			.setBody(key: "udid", value: udid)
 
 		return request
 	}
 
-	public static func list(filter: ReportFilter) -> RequestBuilder<ReportListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ReportFilter.ReportFilterTokenizer {
+			get {
+				return ReportFilter.ReportFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: ReportFilter) -> RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Return device configurations retrieval log. Supports paging and can be filtered
 	  with the parameter &amp;quot;FromData&amp;quot;.  */
-	public static func list(filter: ReportFilter, pager: FilterPager?) -> RequestBuilder<ReportListResponse> {
-		let request: RequestBuilder<ReportListResponse> = RequestBuilder<ReportListResponse>(service: "report", action: "list")
+	public static func list(filter: ReportFilter, pager: FilterPager?) -> RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer> = RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer>(service: "report", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

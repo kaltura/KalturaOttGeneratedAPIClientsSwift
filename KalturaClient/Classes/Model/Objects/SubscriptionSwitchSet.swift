@@ -36,6 +36,9 @@
 /**  Subscription details  */
 open class SubscriptionSwitchSet: SubscriptionSet {
 
+	public class SubscriptionSwitchSetTokenizer: SubscriptionSet.SubscriptionSetTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

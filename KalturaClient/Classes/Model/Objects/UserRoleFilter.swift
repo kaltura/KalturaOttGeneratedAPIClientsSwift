@@ -36,10 +36,23 @@
 /**  User roles filter  */
 open class UserRoleFilter: Filter {
 
+	public class UserRoleFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+	}
+
 	/**  Comma separated roles identifiers  */
 	public var idIn: String? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

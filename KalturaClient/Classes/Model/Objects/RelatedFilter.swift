@@ -35,6 +35,27 @@
 
 open class RelatedFilter: BaseSearchAssetFilter {
 
+	public class RelatedFilterTokenizer: BaseSearchAssetFilter.BaseSearchAssetFilterTokenizer {
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
+		
+		public var idEqual: BaseTokenizedObject {
+			get {
+				return self.append("idEqual") 
+			}
+		}
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+	}
+
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
 	  with key, comparison operators, value, and logical conjunction.             
 	  Possible keys: any Tag or Meta defined in the system and the following reserved
@@ -64,6 +85,18 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	public var typeIn: String? = nil
 
 
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(idEqual: String) {
+		self.dict["idEqual"] = idEqual
+	}
+	
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

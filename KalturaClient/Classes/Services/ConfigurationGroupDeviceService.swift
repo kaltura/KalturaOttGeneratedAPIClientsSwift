@@ -35,38 +35,80 @@
 
 public final class ConfigurationGroupDeviceService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var configurationGroupDevice: ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer {
+			get {
+				return ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer(self.append("configurationGroupDevice")) 
+			}
+		}
+	}
+
 	/**  Associate a collection of devices to a configuration group. If a device is
 	  already associated to another group – old association is replaced  */
-	public static func add(configurationGroupDevice: ConfigurationGroupDevice) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "configurationgroupdevice", action: "add")
+	public static func add(configurationGroupDevice: ConfigurationGroupDevice) -> RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer>(service: "configurationgroupdevice", action: "add")
 			.setBody(key: "configurationGroupDevice", value: configurationGroupDevice)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
 	/**  Remove a device association  */
-	public static func delete(udid: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "configurationgroupdevice", action: "delete")
+	public static func delete(udid: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "configurationgroupdevice", action: "delete")
 			.setBody(key: "udid", value: udid)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
 	}
 
 	/**  Return the configuration group to which a specific device is associated to  */
-	public static func get(udid: String) -> RequestBuilder<ConfigurationGroupDevice> {
-		let request: RequestBuilder<ConfigurationGroupDevice> = RequestBuilder<ConfigurationGroupDevice>(service: "configurationgroupdevice", action: "get")
+	public static func get(udid: String) -> RequestBuilder<ConfigurationGroupDevice, ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer, GetTokenizer> {
+		let request: RequestBuilder<ConfigurationGroupDevice, ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer, GetTokenizer> = RequestBuilder<ConfigurationGroupDevice, ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer, GetTokenizer>(service: "configurationgroupdevice", action: "get")
 			.setBody(key: "udid", value: udid)
 
 		return request
 	}
 
-	public static func list(filter: ConfigurationGroupDeviceFilter) -> RequestBuilder<ConfigurationGroupDeviceListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ConfigurationGroupDeviceFilter.ConfigurationGroupDeviceFilterTokenizer {
+			get {
+				return ConfigurationGroupDeviceFilter.ConfigurationGroupDeviceFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: ConfigurationGroupDeviceFilter) -> RequestBuilder<ConfigurationGroupDeviceListResponse, ConfigurationGroupDeviceListResponse.ConfigurationGroupDeviceListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Return the list of associated devices for a given configuration group  */
-	public static func list(filter: ConfigurationGroupDeviceFilter, pager: FilterPager?) -> RequestBuilder<ConfigurationGroupDeviceListResponse> {
-		let request: RequestBuilder<ConfigurationGroupDeviceListResponse> = RequestBuilder<ConfigurationGroupDeviceListResponse>(service: "configurationgroupdevice", action: "list")
+	public static func list(filter: ConfigurationGroupDeviceFilter, pager: FilterPager?) -> RequestBuilder<ConfigurationGroupDeviceListResponse, ConfigurationGroupDeviceListResponse.ConfigurationGroupDeviceListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ConfigurationGroupDeviceListResponse, ConfigurationGroupDeviceListResponse.ConfigurationGroupDeviceListResponseTokenizer, ListTokenizer> = RequestBuilder<ConfigurationGroupDeviceListResponse, ConfigurationGroupDeviceListResponse.ConfigurationGroupDeviceListResponseTokenizer, ListTokenizer>(service: "configurationgroupdevice", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

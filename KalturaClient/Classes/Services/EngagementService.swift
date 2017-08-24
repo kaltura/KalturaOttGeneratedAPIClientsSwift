@@ -35,33 +35,69 @@
 
 public final class EngagementService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var engagement: Engagement.EngagementTokenizer {
+			get {
+				return Engagement.EngagementTokenizer(self.append("engagement")) 
+			}
+		}
+	}
+
 	/**  Insert new Engagement for partner  */
-	public static func add(engagement: Engagement) -> RequestBuilder<Engagement> {
-		let request: RequestBuilder<Engagement> = RequestBuilder<Engagement>(service: "engagement", action: "add")
+	public static func add(engagement: Engagement) -> RequestBuilder<Engagement, Engagement.EngagementTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Engagement, Engagement.EngagementTokenizer, AddTokenizer> = RequestBuilder<Engagement, Engagement.EngagementTokenizer, AddTokenizer>(service: "engagement", action: "add")
 			.setBody(key: "engagement", value: engagement)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete engagement by engagement adapter id  */
-	public static func delete(id: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "engagement", action: "delete")
+	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "engagement", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
 	}
 
 	/**  Return engagement  */
-	public static func get(id: Int) -> RequestBuilder<Engagement> {
-		let request: RequestBuilder<Engagement> = RequestBuilder<Engagement>(service: "engagement", action: "get")
+	public static func get(id: Int) -> RequestBuilder<Engagement, Engagement.EngagementTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Engagement, Engagement.EngagementTokenizer, GetTokenizer> = RequestBuilder<Engagement, Engagement.EngagementTokenizer, GetTokenizer>(service: "engagement", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: EngagementFilter.EngagementFilterTokenizer {
+			get {
+				return EngagementFilter.EngagementFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Returns all Engagement for partner  */
-	public static func list(filter: EngagementFilter) -> RequestBuilder<EngagementListResponse> {
-		let request: RequestBuilder<EngagementListResponse> = RequestBuilder<EngagementListResponse>(service: "engagement", action: "list")
+	public static func list(filter: EngagementFilter) -> RequestBuilder<EngagementListResponse, EngagementListResponse.EngagementListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<EngagementListResponse, EngagementListResponse.EngagementListResponseTokenizer, ListTokenizer> = RequestBuilder<EngagementListResponse, EngagementListResponse.EngagementListResponseTokenizer, ListTokenizer>(service: "engagement", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

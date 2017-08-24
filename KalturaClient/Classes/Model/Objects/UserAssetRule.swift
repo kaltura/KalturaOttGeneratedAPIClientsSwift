@@ -37,6 +37,33 @@
   Geo, User Type, Device)  */
 open class UserAssetRule: ObjectBase {
 
+	public class UserAssetRuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var ruleType: BaseTokenizedObject {
+			get {
+				return self.append("ruleType") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+	}
+
 	/**  Unique rule identifier  */
 	public var id: Int64? = nil
 	/**  Rule type - possible values: Rule type – Parental, Geo, UserType, Device  */
@@ -47,6 +74,22 @@ open class UserAssetRule: ObjectBase {
 	public var description: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(ruleType: String) {
+		self.dict["ruleType"] = ruleType
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,21 @@
 
 open class ChannelFilter: AssetFilter {
 
+	public class ChannelFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var idEqual: BaseTokenizedObject {
+			get {
+				return self.append("idEqual") 
+			}
+		}
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
+	}
+
 	/**  Channel Id  */
 	public var idEqual: Int? = nil
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -60,6 +75,14 @@ open class ChannelFilter: AssetFilter {
 	public var kSql: String? = nil
 
 
+	public func setMultiRequestToken(idEqual: String) {
+		self.dict["idEqual"] = idEqual
+	}
+	
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

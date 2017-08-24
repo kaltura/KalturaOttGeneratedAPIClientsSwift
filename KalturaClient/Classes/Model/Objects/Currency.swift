@@ -36,6 +36,33 @@
 /**  Currency details  */
 open class Currency: ObjectBase {
 
+	public class CurrencyTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+		
+		public var sign: BaseTokenizedObject {
+			get {
+				return self.append("sign") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+	}
+
 	/**  Currency name  */
 	public var name: String? = nil
 	/**  Currency code  */
@@ -46,6 +73,22 @@ open class Currency: ObjectBase {
 	public var isDefault: Bool? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
+	public func setMultiRequestToken(sign: String) {
+		self.dict["sign"] = sign
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

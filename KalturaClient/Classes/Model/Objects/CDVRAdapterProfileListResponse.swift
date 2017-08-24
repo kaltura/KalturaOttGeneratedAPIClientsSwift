@@ -36,6 +36,15 @@
 /**  C-DVR adapter profiles  */
 open class CDVRAdapterProfileListResponse: ListResponse {
 
+	public class CDVRAdapterProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<CDVRAdapterProfile.CDVRAdapterProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<CDVRAdapterProfile.CDVRAdapterProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  C-DVR adapter profiles  */
 	public var objects: Array<CDVRAdapterProfile>? = nil
 

@@ -36,12 +36,35 @@
 /**  Filtering recordings  */
 open class RecordingFilter: Filter {
 
+	public class RecordingFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var statusIn: BaseTokenizedObject {
+			get {
+				return self.append("statusIn") 
+			}
+		}
+		
+		public var filterExpression: BaseTokenizedObject {
+			get {
+				return self.append("filterExpression") 
+			}
+		}
+	}
+
 	/**  Recording Statuses  */
 	public var statusIn: String? = nil
 	/**  KSQL expression  */
 	public var filterExpression: String? = nil
 
 
+	public func setMultiRequestToken(statusIn: String) {
+		self.dict["statusIn"] = statusIn
+	}
+	
+	public func setMultiRequestToken(filterExpression: String) {
+		self.dict["filterExpression"] = filterExpression
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

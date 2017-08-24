@@ -35,10 +35,23 @@
 
 open class FairPlayPlaybackPluginData: DrmPlaybackPluginData {
 
+	public class FairPlayPlaybackPluginDataTokenizer: DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer {
+		
+		public var certificate: BaseTokenizedObject {
+			get {
+				return self.append("certificate") 
+			}
+		}
+	}
+
 	/**  Custom data string  */
 	public var certificate: String? = nil
 
 
+	public func setMultiRequestToken(certificate: String) {
+		self.dict["certificate"] = certificate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

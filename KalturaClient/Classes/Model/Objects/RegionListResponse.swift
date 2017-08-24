@@ -36,6 +36,15 @@
 /**  Regions list  */
 open class RegionListResponse: ListResponse {
 
+	public class RegionListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Region.RegionTokenizer> {
+			get {
+				return ArrayTokenizedObject<Region.RegionTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of regions  */
 	public var objects: Array<Region>? = nil
 

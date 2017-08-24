@@ -36,10 +36,23 @@
 /**  Purchase settings and PIN  */
 open class PurchaseSettings: Pin {
 
+	public class PurchaseSettingsTokenizer: Pin.PinTokenizer {
+		
+		public var permission: BaseTokenizedObject {
+			get {
+				return self.append("permission") 
+			}
+		}
+	}
+
 	/**  Purchase permission - block, ask or allow  */
 	public var permission: PurchaseSettingsType? = nil
 
 
+	public func setMultiRequestToken(permission: String) {
+		self.dict["permission"] = permission
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

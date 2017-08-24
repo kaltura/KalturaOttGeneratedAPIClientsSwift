@@ -35,26 +35,71 @@
 
 public final class UserAssetsListItemService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var userAssetsListItem: UserAssetsListItem.UserAssetsListItemTokenizer {
+			get {
+				return UserAssetsListItem.UserAssetsListItemTokenizer(self.append("userAssetsListItem")) 
+			}
+		}
+	}
+
 	/**  Adds a new item to user’s private asset list  */
-	public static func add(userAssetsListItem: UserAssetsListItem) -> RequestBuilder<UserAssetsListItem> {
-		let request: RequestBuilder<UserAssetsListItem> = RequestBuilder<UserAssetsListItem>(service: "userassetslistitem", action: "add")
+	public static func add(userAssetsListItem: UserAssetsListItem) -> RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, AddTokenizer> {
+		let request: RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, AddTokenizer> = RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, AddTokenizer>(service: "userassetslistitem", action: "add")
 			.setBody(key: "userAssetsListItem", value: userAssetsListItem)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var listType: BaseTokenizedObject {
+			get {
+				return self.append("listType") 
+			}
+		}
+	}
+
 	/**  Deletes an item from user’s private asset list  */
-	public static func delete(assetId: String, listType: UserAssetsListType) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "userassetslistitem", action: "delete")
+	public static func delete(assetId: String, listType: UserAssetsListType) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userassetslistitem", action: "delete")
 			.setBody(key: "assetId", value: assetId)
 			.setBody(key: "listType", value: listType.rawValue)
 
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var listType: BaseTokenizedObject {
+			get {
+				return self.append("listType") 
+			}
+		}
+		
+		public var itemType: BaseTokenizedObject {
+			get {
+				return self.append("itemType") 
+			}
+		}
+	}
+
 	/**  Get an item from user’s private asset list  */
-	public static func get(assetId: String, listType: UserAssetsListType, itemType: UserAssetsListItemType) -> RequestBuilder<UserAssetsListItem> {
-		let request: RequestBuilder<UserAssetsListItem> = RequestBuilder<UserAssetsListItem>(service: "userassetslistitem", action: "get")
+	public static func get(assetId: String, listType: UserAssetsListType, itemType: UserAssetsListItemType) -> RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, GetTokenizer> {
+		let request: RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, GetTokenizer> = RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, GetTokenizer>(service: "userassetslistitem", action: "get")
 			.setBody(key: "assetId", value: assetId)
 			.setBody(key: "listType", value: listType.rawValue)
 			.setBody(key: "itemType", value: itemType.rawValue)

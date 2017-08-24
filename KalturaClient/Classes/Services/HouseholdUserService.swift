@@ -35,29 +35,56 @@
 
 public final class HouseholdUserService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var householdUser: HouseholdUser.HouseholdUserTokenizer {
+			get {
+				return HouseholdUser.HouseholdUserTokenizer(self.append("householdUser")) 
+			}
+		}
+	}
+
 	/**  Adds a user to household  */
-	public static func add(householdUser: HouseholdUser) -> RequestBuilder<HouseholdUser> {
-		let request: RequestBuilder<HouseholdUser> = RequestBuilder<HouseholdUser>(service: "householduser", action: "add")
+	public static func add(householdUser: HouseholdUser) -> RequestBuilder<HouseholdUser, HouseholdUser.HouseholdUserTokenizer, AddTokenizer> {
+		let request: RequestBuilder<HouseholdUser, HouseholdUser.HouseholdUserTokenizer, AddTokenizer> = RequestBuilder<HouseholdUser, HouseholdUser.HouseholdUserTokenizer, AddTokenizer>(service: "householduser", action: "add")
 			.setBody(key: "householdUser", value: householdUser)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Removes a user from household  */
-	public static func delete(id: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "householduser", action: "delete")
+	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "householduser", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<HouseholdUserListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: HouseholdUserFilter.HouseholdUserFilterTokenizer {
+			get {
+				return HouseholdUserFilter.HouseholdUserFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Returns the users within the household  */
-	public static func list(filter: HouseholdUserFilter?) -> RequestBuilder<HouseholdUserListResponse> {
-		let request: RequestBuilder<HouseholdUserListResponse> = RequestBuilder<HouseholdUserListResponse>(service: "householduser", action: "list")
+	public static func list(filter: HouseholdUserFilter?) -> RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer>(service: "householduser", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

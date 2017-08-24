@@ -36,10 +36,23 @@
 /**  Filtering assets  */
 open class RecordingContextFilter: Filter {
 
+	public class RecordingContextFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdIn: BaseTokenizedObject {
+			get {
+				return self.append("assetIdIn") 
+			}
+		}
+	}
+
 	/**  Comma separated asset ids  */
 	public var assetIdIn: String? = nil
 
 
+	public func setMultiRequestToken(assetIdIn: String) {
+		self.dict["assetIdIn"] = assetIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

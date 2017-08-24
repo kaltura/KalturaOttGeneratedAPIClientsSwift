@@ -36,6 +36,15 @@
 /**  User interest list  */
 open class UserInterestListResponse: ListResponse {
 
+	public class UserInterestListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<UserInterest.UserInterestTokenizer> {
+			get {
+				return ArrayTokenizedObject<UserInterest.UserInterestTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of UserInterests  */
 	public var objects: Array<UserInterest>? = nil
 

@@ -35,6 +35,39 @@
 
 open class Bookmark: SlimAsset {
 
+	public class BookmarkTokenizer: SlimAsset.SlimAssetTokenizer {
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var position: BaseTokenizedObject {
+			get {
+				return self.append("position") 
+			}
+		}
+		
+		public var positionOwner: BaseTokenizedObject {
+			get {
+				return self.append("positionOwner") 
+			}
+		}
+		
+		public var finishedWatching: BaseTokenizedObject {
+			get {
+				return self.append("finishedWatching") 
+			}
+		}
+		
+		public var playerData: BookmarkPlayerData.BookmarkPlayerDataTokenizer {
+			get {
+				return BookmarkPlayerData.BookmarkPlayerDataTokenizer(self.append("playerData")) 
+			}
+		}
+	}
+
 	/**  User identifier  */
 	public var userId: String? = nil
 	/**  The position of the user in the specific asset (in seconds)  */
@@ -48,6 +81,22 @@ open class Bookmark: SlimAsset {
 	public var playerData: BookmarkPlayerData? = nil
 
 
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(position: String) {
+		self.dict["position"] = position
+	}
+	
+	public func setMultiRequestToken(positionOwner: String) {
+		self.dict["positionOwner"] = positionOwner
+	}
+	
+	public func setMultiRequestToken(finishedWatching: String) {
+		self.dict["finishedWatching"] = finishedWatching
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

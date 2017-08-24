@@ -35,17 +35,32 @@
 
 public final class SocialFriendActivityService{
 
-	public static func list() -> RequestBuilder<SocialFriendActivityListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: SocialFriendActivityFilter.SocialFriendActivityFilterTokenizer {
+			get {
+				return SocialFriendActivityFilter.SocialFriendActivityFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: SocialFriendActivityFilter?) -> RequestBuilder<SocialFriendActivityListResponse> {
+	public static func list(filter: SocialFriendActivityFilter?) -> RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Get a list of the social friends activity for a user  */
-	public static func list(filter: SocialFriendActivityFilter?, pager: FilterPager?) -> RequestBuilder<SocialFriendActivityListResponse> {
-		let request: RequestBuilder<SocialFriendActivityListResponse> = RequestBuilder<SocialFriendActivityListResponse>(service: "socialfriendactivity", action: "list")
+	public static func list(filter: SocialFriendActivityFilter?, pager: FilterPager?) -> RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer> = RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer>(service: "socialfriendactivity", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

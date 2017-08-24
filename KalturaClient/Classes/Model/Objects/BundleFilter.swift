@@ -35,6 +35,27 @@
 
 open class BundleFilter: AssetFilter {
 
+	public class BundleFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var idEqual: BaseTokenizedObject {
+			get {
+				return self.append("idEqual") 
+			}
+		}
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+		
+		public var bundleTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("bundleTypeEqual") 
+			}
+		}
+	}
+
 	/**  Bundle Id.  */
 	public var idEqual: Int? = nil
 	/**  Comma separated list of asset types to search within.               Possible
@@ -46,6 +67,18 @@ open class BundleFilter: AssetFilter {
 	public var bundleTypeEqual: BundleType? = nil
 
 
+	public func setMultiRequestToken(idEqual: String) {
+		self.dict["idEqual"] = idEqual
+	}
+	
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
+	public func setMultiRequestToken(bundleTypeEqual: String) {
+		self.dict["bundleTypeEqual"] = bundleTypeEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

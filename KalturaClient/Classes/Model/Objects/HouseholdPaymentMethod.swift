@@ -35,6 +35,45 @@
 
 open class HouseholdPaymentMethod: ObjectBase {
 
+	public class HouseholdPaymentMethodTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+		
+		public var details: BaseTokenizedObject {
+			get {
+				return self.append("details") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+		
+		public var paymentMethodProfileId: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethodProfileId") 
+			}
+		}
+	}
+
 	/**  Household payment method identifier (internal)  */
 	public var id: Int? = nil
 	/**  External identifier for the household payment method  */
@@ -49,6 +88,30 @@ open class HouseholdPaymentMethod: ObjectBase {
 	public var paymentMethodProfileId: Int? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(paymentGatewayId: String) {
+		self.dict["paymentGatewayId"] = paymentGatewayId
+	}
+	
+	public func setMultiRequestToken(details: String) {
+		self.dict["details"] = details
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
+	public func setMultiRequestToken(paymentMethodProfileId: String) {
+		self.dict["paymentMethodProfileId"] = paymentMethodProfileId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

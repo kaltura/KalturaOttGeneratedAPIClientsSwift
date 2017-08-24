@@ -35,15 +35,36 @@
 
 public final class PinService{
 
-	public static func get(by: EntityReferenceBy, type: PinType) -> RequestBuilder<Pin> {
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var by: BaseTokenizedObject {
+			get {
+				return self.append("by") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+	}
+
+	public static func get(by: EntityReferenceBy, type: PinType) -> RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer> {
 		return get(by: by, type: type, ruleId: nil)
 	}
 
 	/**  Retrieve the parental or purchase PIN that applies for the household or user.
 	  Includes specification of where the PIN was defined at – account, household or
 	  user  level  */
-	public static func get(by: EntityReferenceBy, type: PinType, ruleId: Int?) -> RequestBuilder<Pin> {
-		let request: RequestBuilder<Pin> = RequestBuilder<Pin>(service: "pin", action: "get")
+	public static func get(by: EntityReferenceBy, type: PinType, ruleId: Int?) -> RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer> = RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer>(service: "pin", action: "get")
 			.setBody(key: "by", value: by.rawValue)
 			.setBody(key: "type", value: type.rawValue)
 			.setBody(key: "ruleId", value: ruleId)
@@ -51,13 +72,40 @@ public final class PinService{
 		return request
 	}
 
-	public static func update(by: EntityReferenceBy, type: PinType, pin: Pin) -> RequestBuilder<Pin> {
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var by: BaseTokenizedObject {
+			get {
+				return self.append("by") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var pin: Pin.PinTokenizer {
+			get {
+				return Pin.PinTokenizer(self.append("pin")) 
+			}
+		}
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+	}
+
+	public static func update(by: EntityReferenceBy, type: PinType, pin: Pin) -> RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer> {
 		return update(by: by, type: type, pin: pin, ruleId: nil)
 	}
 
 	/**  Set the parental or purchase PIN that applies for the user or the household.  */
-	public static func update(by: EntityReferenceBy, type: PinType, pin: Pin, ruleId: Int?) -> RequestBuilder<Pin> {
-		let request: RequestBuilder<Pin> = RequestBuilder<Pin>(service: "pin", action: "update")
+	public static func update(by: EntityReferenceBy, type: PinType, pin: Pin, ruleId: Int?) -> RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer> = RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer>(service: "pin", action: "update")
 			.setBody(key: "by", value: by.rawValue)
 			.setBody(key: "type", value: type.rawValue)
 			.setBody(key: "pin", value: pin)
@@ -66,13 +114,34 @@ public final class PinService{
 		return request
 	}
 
-	public static func validate(pin: String, type: PinType) -> RequestBuilder<Bool> {
+	public class ValidateTokenizer: ClientTokenizer  {
+		
+		public var pin: BaseTokenizedObject {
+			get {
+				return self.append("pin") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+	}
+
+	public static func validate(pin: String, type: PinType) -> RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer> {
 		return validate(pin: pin, type: type, ruleId: nil)
 	}
 
 	/**  Validate a purchase or parental PIN for a user.  */
-	public static func validate(pin: String, type: PinType, ruleId: Int?) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "pin", action: "validate")
+	public static func validate(pin: String, type: PinType, ruleId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer>(service: "pin", action: "validate")
 			.setBody(key: "pin", value: pin)
 			.setBody(key: "type", value: type.rawValue)
 			.setBody(key: "ruleId", value: ruleId)

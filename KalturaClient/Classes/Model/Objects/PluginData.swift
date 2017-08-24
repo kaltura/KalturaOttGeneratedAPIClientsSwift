@@ -35,6 +35,9 @@
 
 open class PluginData: ObjectBase {
 
+	public class PluginDataTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

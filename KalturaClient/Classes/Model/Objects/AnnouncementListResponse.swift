@@ -36,6 +36,15 @@
 /**  List of message announcements from DB.  */
 open class AnnouncementListResponse: ListResponse {
 
+	public class AnnouncementListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Announcement.AnnouncementTokenizer> {
+			get {
+				return ArrayTokenizedObject<Announcement.AnnouncementTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Announcements  */
 	public var objects: Array<Announcement>? = nil
 

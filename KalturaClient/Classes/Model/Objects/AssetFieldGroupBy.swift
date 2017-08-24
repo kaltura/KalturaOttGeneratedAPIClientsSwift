@@ -36,10 +36,23 @@
 /**  Group by a field that is defined in enum  */
 open class AssetFieldGroupBy: AssetGroupBy {
 
+	public class AssetFieldGroupByTokenizer: AssetGroupBy.AssetGroupByTokenizer {
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
 	/**  Group by a specific field that is defined in enum  */
 	public var value: GroupByField? = nil
 
 
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,9 +35,12 @@
 
 public final class HouseholdQuotaService{
 
+	public class GetTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns the household&amp;#39;s quota data  */
-	public static func get() -> RequestBuilder<HouseholdQuota> {
-		let request: RequestBuilder<HouseholdQuota> = RequestBuilder<HouseholdQuota>(service: "householdquota", action: "get")
+	public static func get() -> RequestBuilder<HouseholdQuota, HouseholdQuota.HouseholdQuotaTokenizer, GetTokenizer> {
+		let request: RequestBuilder<HouseholdQuota, HouseholdQuota.HouseholdQuotaTokenizer, GetTokenizer> = RequestBuilder<HouseholdQuota, HouseholdQuota.HouseholdQuotaTokenizer, GetTokenizer>(service: "householdquota", action: "get")
 
 		return request
 	}

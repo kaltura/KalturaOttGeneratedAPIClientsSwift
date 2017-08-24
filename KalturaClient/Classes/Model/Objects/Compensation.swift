@@ -36,6 +36,51 @@
 /**  Compensation request parameters  */
 open class Compensation: ObjectBase {
 
+	public class CompensationTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var subscriptionId: BaseTokenizedObject {
+			get {
+				return self.append("subscriptionId") 
+			}
+		}
+		
+		public var compensationType: BaseTokenizedObject {
+			get {
+				return self.append("compensationType") 
+			}
+		}
+		
+		public var amount: BaseTokenizedObject {
+			get {
+				return self.append("amount") 
+			}
+		}
+		
+		public var totalRenewalIterations: BaseTokenizedObject {
+			get {
+				return self.append("totalRenewalIterations") 
+			}
+		}
+		
+		public var appliedRenewalIterations: BaseTokenizedObject {
+			get {
+				return self.append("appliedRenewalIterations") 
+			}
+		}
+		
+		public var purchaseId: BaseTokenizedObject {
+			get {
+				return self.append("purchaseId") 
+			}
+		}
+	}
+
 	/**  Compensation identifier  */
 	public var id: Int64? = nil
 	/**  Subscription identifier  */
@@ -52,6 +97,34 @@ open class Compensation: ObjectBase {
 	public var purchaseId: Int? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(subscriptionId: String) {
+		self.dict["subscriptionId"] = subscriptionId
+	}
+	
+	public func setMultiRequestToken(compensationType: String) {
+		self.dict["compensationType"] = compensationType
+	}
+	
+	public func setMultiRequestToken(amount: String) {
+		self.dict["amount"] = amount
+	}
+	
+	public func setMultiRequestToken(totalRenewalIterations: String) {
+		self.dict["totalRenewalIterations"] = totalRenewalIterations
+	}
+	
+	public func setMultiRequestToken(appliedRenewalIterations: String) {
+		self.dict["appliedRenewalIterations"] = appliedRenewalIterations
+	}
+	
+	public func setMultiRequestToken(purchaseId: String) {
+		self.dict["purchaseId"] = purchaseId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

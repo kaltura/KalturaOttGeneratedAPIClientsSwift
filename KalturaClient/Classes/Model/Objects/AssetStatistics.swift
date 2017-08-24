@@ -36,6 +36,45 @@
 /**  Asset statistics  */
 open class AssetStatistics: ObjectBase {
 
+	public class AssetStatisticsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var likes: BaseTokenizedObject {
+			get {
+				return self.append("likes") 
+			}
+		}
+		
+		public var views: BaseTokenizedObject {
+			get {
+				return self.append("views") 
+			}
+		}
+		
+		public var ratingCount: BaseTokenizedObject {
+			get {
+				return self.append("ratingCount") 
+			}
+		}
+		
+		public var rating: BaseTokenizedObject {
+			get {
+				return self.append("rating") 
+			}
+		}
+		
+		public var buzzScore: BuzzScore.BuzzScoreTokenizer {
+			get {
+				return BuzzScore.BuzzScoreTokenizer(self.append("buzzScore")) 
+			}
+		}
+	}
+
 	/**  Unique identifier for the asset  */
 	public var assetId: Int? = nil
 	/**  Total number of likes for this asset  */
@@ -50,6 +89,26 @@ open class AssetStatistics: ObjectBase {
 	public var buzzScore: BuzzScore? = nil
 
 
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(likes: String) {
+		self.dict["likes"] = likes
+	}
+	
+	public func setMultiRequestToken(views: String) {
+		self.dict["views"] = views
+	}
+	
+	public func setMultiRequestToken(ratingCount: String) {
+		self.dict["ratingCount"] = ratingCount
+	}
+	
+	public func setMultiRequestToken(rating: String) {
+		self.dict["rating"] = rating
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

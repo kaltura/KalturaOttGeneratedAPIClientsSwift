@@ -36,6 +36,51 @@
 /**  Image details  */
 open class MediaImage: ObjectBase {
 
+	public class MediaImageTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var ratio: BaseTokenizedObject {
+			get {
+				return self.append("ratio") 
+			}
+		}
+		
+		public var width: BaseTokenizedObject {
+			get {
+				return self.append("width") 
+			}
+		}
+		
+		public var height: BaseTokenizedObject {
+			get {
+				return self.append("height") 
+			}
+		}
+		
+		public var url: BaseTokenizedObject {
+			get {
+				return self.append("url") 
+			}
+		}
+		
+		public var version: BaseTokenizedObject {
+			get {
+				return self.append("version") 
+			}
+		}
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+	}
+
 	/**  Image aspect ratio  */
 	public var ratio: String? = nil
 	/**  Image width  */
@@ -52,6 +97,34 @@ open class MediaImage: ObjectBase {
 	public var isDefault: Bool? = nil
 
 
+	public func setMultiRequestToken(ratio: String) {
+		self.dict["ratio"] = ratio
+	}
+	
+	public func setMultiRequestToken(width: String) {
+		self.dict["width"] = width
+	}
+	
+	public func setMultiRequestToken(height: String) {
+		self.dict["height"] = height
+	}
+	
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
+	}
+	
+	public func setMultiRequestToken(version: String) {
+		self.dict["version"] = version
+	}
+	
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

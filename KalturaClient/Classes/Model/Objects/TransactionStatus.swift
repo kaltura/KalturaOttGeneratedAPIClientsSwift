@@ -35,6 +35,39 @@
 
 open class TransactionStatus: ObjectBase {
 
+	public class TransactionStatusTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var adapterTransactionStatus: BaseTokenizedObject {
+			get {
+				return self.append("adapterTransactionStatus") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var externalStatus: BaseTokenizedObject {
+			get {
+				return self.append("externalStatus") 
+			}
+		}
+		
+		public var externalMessage: BaseTokenizedObject {
+			get {
+				return self.append("externalMessage") 
+			}
+		}
+		
+		public var failReason: BaseTokenizedObject {
+			get {
+				return self.append("failReason") 
+			}
+		}
+	}
+
 	/**  Payment gateway adapter application state for the transaction to update  */
 	public var adapterTransactionStatus: TransactionAdapterStatus? = nil
 	/**  External transaction identifier  */
@@ -47,6 +80,26 @@ open class TransactionStatus: ObjectBase {
 	public var failReason: Int? = nil
 
 
+	public func setMultiRequestToken(adapterTransactionStatus: String) {
+		self.dict["adapterTransactionStatus"] = adapterTransactionStatus
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(externalStatus: String) {
+		self.dict["externalStatus"] = externalStatus
+	}
+	
+	public func setMultiRequestToken(externalMessage: String) {
+		self.dict["externalMessage"] = externalMessage
+	}
+	
+	public func setMultiRequestToken(failReason: String) {
+		self.dict["failReason"] = failReason
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

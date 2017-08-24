@@ -35,12 +35,35 @@
 
 open class LicensedUrl: ObjectBase {
 
+	public class LicensedUrlTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var mainUrl: BaseTokenizedObject {
+			get {
+				return self.append("mainUrl") 
+			}
+		}
+		
+		public var altUrl: BaseTokenizedObject {
+			get {
+				return self.append("altUrl") 
+			}
+		}
+	}
+
 	/**  Main licensed URL  */
 	public var mainUrl: String? = nil
 	/**  An alternate URL to use in case the main fails  */
 	public var altUrl: String? = nil
 
 
+	public func setMultiRequestToken(mainUrl: String) {
+		self.dict["mainUrl"] = mainUrl
+	}
+	
+	public func setMultiRequestToken(altUrl: String) {
+		self.dict["altUrl"] = altUrl
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

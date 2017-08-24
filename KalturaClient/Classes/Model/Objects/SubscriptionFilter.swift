@@ -35,6 +35,27 @@
 
 open class SubscriptionFilter: Filter {
 
+	public class SubscriptionFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var subscriptionIdIn: BaseTokenizedObject {
+			get {
+				return self.append("subscriptionIdIn") 
+			}
+		}
+		
+		public var mediaFileIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("mediaFileIdEqual") 
+			}
+		}
+		
+		public var externalIdIn: BaseTokenizedObject {
+			get {
+				return self.append("externalIdIn") 
+			}
+		}
+	}
+
 	/**  Comma separated subscription IDs to get the subscriptions by  */
 	public var subscriptionIdIn: String? = nil
 	/**  Media-file ID to get the subscriptions by  */
@@ -43,6 +64,18 @@ open class SubscriptionFilter: Filter {
 	public var externalIdIn: String? = nil
 
 
+	public func setMultiRequestToken(subscriptionIdIn: String) {
+		self.dict["subscriptionIdIn"] = subscriptionIdIn
+	}
+	
+	public func setMultiRequestToken(mediaFileIdEqual: String) {
+		self.dict["mediaFileIdEqual"] = mediaFileIdEqual
+	}
+	
+	public func setMultiRequestToken(externalIdIn: String) {
+		self.dict["externalIdIn"] = externalIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,93 @@
 /**  Entitlement  */
 open class Entitlement: ObjectBase {
 
+	public class EntitlementTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var entitlementId: BaseTokenizedObject {
+			get {
+				return self.append("entitlementId") 
+			}
+		}
+		
+		public var currentUses: BaseTokenizedObject {
+			get {
+				return self.append("currentUses") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+		
+		public var currentDate: BaseTokenizedObject {
+			get {
+				return self.append("currentDate") 
+			}
+		}
+		
+		public var lastViewDate: BaseTokenizedObject {
+			get {
+				return self.append("lastViewDate") 
+			}
+		}
+		
+		public var purchaseDate: BaseTokenizedObject {
+			get {
+				return self.append("purchaseDate") 
+			}
+		}
+		
+		public var paymentMethod: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethod") 
+			}
+		}
+		
+		public var deviceUdid: BaseTokenizedObject {
+			get {
+				return self.append("deviceUdid") 
+			}
+		}
+		
+		public var deviceName: BaseTokenizedObject {
+			get {
+				return self.append("deviceName") 
+			}
+		}
+		
+		public var isCancelationWindowEnabled: BaseTokenizedObject {
+			get {
+				return self.append("isCancelationWindowEnabled") 
+			}
+		}
+		
+		public var maxUses: BaseTokenizedObject {
+			get {
+				return self.append("maxUses") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var householdId: BaseTokenizedObject {
+			get {
+				return self.append("householdId") 
+			}
+		}
+	}
+
 	/**  Purchase identifier (for subscriptions and collections only)  */
 	public var id: Int? = nil
 	/**  Entitlement identifier  */
@@ -67,6 +154,62 @@ open class Entitlement: ObjectBase {
 	public var householdId: Int64? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(entitlementId: String) {
+		self.dict["entitlementId"] = entitlementId
+	}
+	
+	public func setMultiRequestToken(currentUses: String) {
+		self.dict["currentUses"] = currentUses
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(currentDate: String) {
+		self.dict["currentDate"] = currentDate
+	}
+	
+	public func setMultiRequestToken(lastViewDate: String) {
+		self.dict["lastViewDate"] = lastViewDate
+	}
+	
+	public func setMultiRequestToken(purchaseDate: String) {
+		self.dict["purchaseDate"] = purchaseDate
+	}
+	
+	public func setMultiRequestToken(paymentMethod: String) {
+		self.dict["paymentMethod"] = paymentMethod
+	}
+	
+	public func setMultiRequestToken(deviceUdid: String) {
+		self.dict["deviceUdid"] = deviceUdid
+	}
+	
+	public func setMultiRequestToken(deviceName: String) {
+		self.dict["deviceName"] = deviceName
+	}
+	
+	public func setMultiRequestToken(isCancelationWindowEnabled: String) {
+		self.dict["isCancelationWindowEnabled"] = isCancelationWindowEnabled
+	}
+	
+	public func setMultiRequestToken(maxUses: String) {
+		self.dict["maxUses"] = maxUses
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

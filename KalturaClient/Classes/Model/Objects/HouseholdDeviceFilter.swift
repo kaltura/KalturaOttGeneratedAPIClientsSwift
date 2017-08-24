@@ -35,12 +35,35 @@
 
 open class HouseholdDeviceFilter: Filter {
 
+	public class HouseholdDeviceFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var householdIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("householdIdEqual") 
+			}
+		}
+		
+		public var deviceFamilyIdIn: BaseTokenizedObject {
+			get {
+				return self.append("deviceFamilyIdIn") 
+			}
+		}
+	}
+
 	/**  The identifier of the household  */
 	public var householdIdEqual: Int? = nil
 	/**  Device family Ids  */
 	public var deviceFamilyIdIn: String? = nil
 
 
+	public func setMultiRequestToken(householdIdEqual: String) {
+		self.dict["householdIdEqual"] = householdIdEqual
+	}
+	
+	public func setMultiRequestToken(deviceFamilyIdIn: String) {
+		self.dict["deviceFamilyIdIn"] = deviceFamilyIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

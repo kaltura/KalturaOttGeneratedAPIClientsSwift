@@ -36,6 +36,9 @@
 /**  Returns social configuration for the partner  */
 open class SocialConfig: ObjectBase {
 
+	public class SocialConfigTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

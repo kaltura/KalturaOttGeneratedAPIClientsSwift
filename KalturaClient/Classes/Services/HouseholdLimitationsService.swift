@@ -35,9 +35,18 @@
 
 public final class HouseholdLimitationsService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Get the limitation module by id  */
-	public static func get(id: Int) -> RequestBuilder<HouseholdLimitations> {
-		let request: RequestBuilder<HouseholdLimitations> = RequestBuilder<HouseholdLimitations>(service: "householdlimitations", action: "get")
+	public static func get(id: Int) -> RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, GetTokenizer> {
+		let request: RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, GetTokenizer> = RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, GetTokenizer>(service: "householdlimitations", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request

@@ -36,6 +36,27 @@
 /**  Buzz score  */
 open class BuzzScore: ObjectBase {
 
+	public class BuzzScoreTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var normalizedAvgScore: BaseTokenizedObject {
+			get {
+				return self.append("normalizedAvgScore") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
+		
+		public var avgScore: BaseTokenizedObject {
+			get {
+				return self.append("avgScore") 
+			}
+		}
+	}
+
 	/**  Normalized average score  */
 	public var normalizedAvgScore: Double? = nil
 	/**  Update date  */
@@ -44,6 +65,18 @@ open class BuzzScore: ObjectBase {
 	public var avgScore: Double? = nil
 
 
+	public func setMultiRequestToken(normalizedAvgScore: String) {
+		self.dict["normalizedAvgScore"] = normalizedAvgScore
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
+	public func setMultiRequestToken(avgScore: String) {
+		self.dict["avgScore"] = avgScore
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

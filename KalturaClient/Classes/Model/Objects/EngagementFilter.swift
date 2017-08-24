@@ -35,12 +35,35 @@
 
 open class EngagementFilter: Filter {
 
+	public class EngagementFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+		
+		public var sendTimeGreaterThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("sendTimeGreaterThanOrEqual") 
+			}
+		}
+	}
+
 	/**  List of inbox message types to search within.  */
 	public var typeIn: String? = nil
 	/**  SendTime GreaterThanOrEqual  */
 	public var sendTimeGreaterThanOrEqual: Int64? = nil
 
 
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
+	public func setMultiRequestToken(sendTimeGreaterThanOrEqual: String) {
+		self.dict["sendTimeGreaterThanOrEqual"] = sendTimeGreaterThanOrEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

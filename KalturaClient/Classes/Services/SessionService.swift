@@ -35,29 +35,50 @@
 
 public final class SessionService{
 
-	public static func get() -> RequestBuilder<Session> {
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var session: BaseTokenizedObject {
+			get {
+				return self.append("session") 
+			}
+		}
+	}
+
+	public static func get() -> RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer> {
 		return get(session: nil)
 	}
 
 	/**  Parses KS  */
-	public static func get(session: String?) -> RequestBuilder<Session> {
-		let request: RequestBuilder<Session> = RequestBuilder<Session>(service: "session", action: "get")
+	public static func get(session: String?) -> RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer> = RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer>(service: "session", action: "get")
 			.setBody(key: "session", value: session)
 
 		return request
 	}
 
+	public class RevokeTokenizer: ClientTokenizer  {
+	}
+
 	/**  Revokes all the sessions (KS) of a given user  */
-	public static func revoke() -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "session", action: "revoke")
+	public static func revoke() -> RequestBuilder<Bool, BaseTokenizedObject, RevokeTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, RevokeTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, RevokeTokenizer>(service: "session", action: "revoke")
 
 		return request
 	}
 
+	public class SwitchUserTokenizer: ClientTokenizer  {
+		
+		public var userIdToSwitch: BaseTokenizedObject {
+			get {
+				return self.append("userIdToSwitch") 
+			}
+		}
+	}
+
 	/**  Switching the user in the session by generating a new session for a new user
 	  within the same household  */
-	public static func switchUser(userIdToSwitch: String) -> RequestBuilder<LoginSession> {
-		let request: RequestBuilder<LoginSession> = RequestBuilder<LoginSession>(service: "session", action: "switchUser")
+	public static func switchUser(userIdToSwitch: String) -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, SwitchUserTokenizer> {
+		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, SwitchUserTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, SwitchUserTokenizer>(service: "session", action: "switchUser")
 			.setBody(key: "userIdToSwitch", value: userIdToSwitch)
 
 		return request

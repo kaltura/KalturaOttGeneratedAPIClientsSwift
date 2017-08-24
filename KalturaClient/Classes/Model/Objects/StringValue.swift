@@ -36,10 +36,23 @@
 /**  A string representation to return an array of strings  */
 open class StringValue: Value {
 
+	public class StringValueTokenizer: Value.ValueTokenizer {
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
 	/**  Value  */
 	public var value: String? = nil
 
 
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

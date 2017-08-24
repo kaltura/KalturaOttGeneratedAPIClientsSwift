@@ -36,10 +36,23 @@
 /**  Language filter  */
 open class LanguageFilter: Filter {
 
+	public class LanguageFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var codeIn: BaseTokenizedObject {
+			get {
+				return self.append("codeIn") 
+			}
+		}
+	}
+
 	/**  Language codes  */
 	public var codeIn: String? = nil
 
 
+	public func setMultiRequestToken(codeIn: String) {
+		self.dict["codeIn"] = codeIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

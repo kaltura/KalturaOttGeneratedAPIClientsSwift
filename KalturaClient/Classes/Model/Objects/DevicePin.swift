@@ -36,10 +36,23 @@
 /**  Device pin  */
 open class DevicePin: ObjectBase {
 
+	public class DevicePinTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var pin: BaseTokenizedObject {
+			get {
+				return self.append("pin") 
+			}
+		}
+	}
+
 	/**  Device pin  */
 	public var pin: String? = nil
 
 
+	public func setMultiRequestToken(pin: String) {
+		self.dict["pin"] = pin
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,27 @@
 
 open class SocialFriendActivityFilter: Filter {
 
+	public class SocialFriendActivityFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetIdEqual") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+		
+		public var actionTypeIn: BaseTokenizedObject {
+			get {
+				return self.append("actionTypeIn") 
+			}
+		}
+	}
+
 	/**  Asset ID to filter by  */
 	public var assetIdEqual: Int64? = nil
 	/**  Asset type to filter by, currently only VOD (media)  */
@@ -43,6 +64,18 @@ open class SocialFriendActivityFilter: Filter {
 	public var actionTypeIn: String? = nil
 
 
+	public func setMultiRequestToken(assetIdEqual: String) {
+		self.dict["assetIdEqual"] = assetIdEqual
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
+	public func setMultiRequestToken(actionTypeIn: String) {
+		self.dict["actionTypeIn"] = actionTypeIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

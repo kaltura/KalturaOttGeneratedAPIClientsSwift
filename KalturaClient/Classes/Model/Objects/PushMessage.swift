@@ -35,6 +35,33 @@
 
 open class PushMessage: ObjectBase {
 
+	public class PushMessageTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var message: BaseTokenizedObject {
+			get {
+				return self.append("message") 
+			}
+		}
+		
+		public var sound: BaseTokenizedObject {
+			get {
+				return self.append("sound") 
+			}
+		}
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var url: BaseTokenizedObject {
+			get {
+				return self.append("url") 
+			}
+		}
+	}
+
 	/**  The message that will be presented to the user.  */
 	public var message: String? = nil
 	/**  Optional. Can be used to change the default push sound on the user device.  */
@@ -46,6 +73,22 @@ open class PushMessage: ObjectBase {
 	public var url: String? = nil
 
 
+	public func setMultiRequestToken(message: String) {
+		self.dict["message"] = message
+	}
+	
+	public func setMultiRequestToken(sound: String) {
+		self.dict["sound"] = sound
+	}
+	
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

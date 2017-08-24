@@ -36,6 +36,27 @@
 /**  Country filter  */
 open class CountryFilter: Filter {
 
+	public class CountryFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+		
+		public var ipEqual: BaseTokenizedObject {
+			get {
+				return self.append("ipEqual") 
+			}
+		}
+		
+		public var ipEqualCurrent: BaseTokenizedObject {
+			get {
+				return self.append("ipEqualCurrent") 
+			}
+		}
+	}
+
 	/**  Country identifiers  */
 	public var idIn: String? = nil
 	/**  Ip to identify the country  */
@@ -44,6 +65,18 @@ open class CountryFilter: Filter {
 	public var ipEqualCurrent: Bool? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
+	public func setMultiRequestToken(ipEqual: String) {
+		self.dict["ipEqual"] = ipEqual
+	}
+	
+	public func setMultiRequestToken(ipEqualCurrent: String) {
+		self.dict["ipEqualCurrent"] = ipEqualCurrent
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

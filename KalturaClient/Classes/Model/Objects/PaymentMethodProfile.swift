@@ -35,6 +35,33 @@
 
 open class PaymentMethodProfile: ObjectBase {
 
+	public class PaymentMethodProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var allowMultiInstance: BaseTokenizedObject {
+			get {
+				return self.append("allowMultiInstance") 
+			}
+		}
+	}
+
 	/**  Payment method identifier (internal)  */
 	public var id: Int? = nil
 	/**  Payment gateway identifier (internal)  */
@@ -45,6 +72,22 @@ open class PaymentMethodProfile: ObjectBase {
 	public var allowMultiInstance: Bool? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(paymentGatewayId: String) {
+		self.dict["paymentGatewayId"] = paymentGatewayId
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(allowMultiInstance: String) {
+		self.dict["allowMultiInstance"] = allowMultiInstance
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

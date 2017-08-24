@@ -36,12 +36,31 @@
 /**  User Interest  */
 open class UserInterest: ObjectBase {
 
+	public class UserInterestTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var topic: UserInterestTopic.UserInterestTopicTokenizer {
+			get {
+				return UserInterestTopic.UserInterestTopicTokenizer(self.append("topic")) 
+			}
+		}
+	}
+
 	/**  Identifier  */
 	public var id: String? = nil
 	/**  Topic  */
 	public var topic: UserInterestTopic? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

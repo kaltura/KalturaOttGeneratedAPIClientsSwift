@@ -35,12 +35,35 @@
 
 open class AssetCommentFilter: Filter {
 
+	public class AssetCommentFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetIdEqual") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+	}
+
 	/**  Asset Id  */
 	public var assetIdEqual: Int? = nil
 	/**  Asset Type  */
 	public var assetTypeEqual: AssetType? = nil
 
 
+	public func setMultiRequestToken(assetIdEqual: String) {
+		self.dict["assetIdEqual"] = assetIdEqual
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

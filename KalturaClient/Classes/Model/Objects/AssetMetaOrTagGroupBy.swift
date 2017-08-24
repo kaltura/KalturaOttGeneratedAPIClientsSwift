@@ -37,11 +37,24 @@
   (similar to KSQL)  */
 open class AssetMetaOrTagGroupBy: AssetGroupBy {
 
+	public class AssetMetaOrTagGroupByTokenizer: AssetGroupBy.AssetGroupByTokenizer {
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
 	/**  Group by a tag or meta - according to the name that appears in the system
 	  (similar to KSQL)  */
 	public var value: String? = nil
 
 
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

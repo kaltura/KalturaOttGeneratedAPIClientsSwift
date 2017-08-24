@@ -36,6 +36,15 @@
 /**  List of household payment methods.  */
 open class HouseholdPaymentMethodListResponse: ListResponse {
 
+	public class HouseholdPaymentMethodListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer> {
+			get {
+				return ArrayTokenizedObject<HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Follow data list  */
 	public var objects: Array<HouseholdPaymentMethod>? = nil
 

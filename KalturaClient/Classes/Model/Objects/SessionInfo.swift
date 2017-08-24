@@ -36,6 +36,9 @@
 /**  Kaltura Session  */
 open class SessionInfo: Session {
 
+	public class SessionInfoTokenizer: Session.SessionTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

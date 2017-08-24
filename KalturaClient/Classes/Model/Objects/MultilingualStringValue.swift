@@ -36,12 +36,31 @@
 /**  Array of translated strings  */
 open class MultilingualStringValue: Value {
 
+	public class MultilingualStringValueTokenizer: Value.ValueTokenizer {
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+		
+		public var multilingualValue: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualValue")) 
+			}
+		}
+	}
+
 	/**  Value  */
 	public var value: String? = nil
 	/**  Value  */
 	public var multilingualValue: MultilingualString? = nil
 
 
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,10 +35,23 @@
 
 open class RegionFilter: Filter {
 
+	public class RegionFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var externalIdIn: BaseTokenizedObject {
+			get {
+				return self.append("externalIdIn") 
+			}
+		}
+	}
+
 	/**  List of comma separated regions external identifiers  */
 	public var externalIdIn: String? = nil
 
 
+	public func setMultiRequestToken(externalIdIn: String) {
+		self.dict["externalIdIn"] = externalIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

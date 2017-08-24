@@ -35,39 +35,87 @@
 
 public final class ParentalRuleService{
 
+	public class DisableTokenizer: ClientTokenizer  {
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+		
+		public var entityReference: BaseTokenizedObject {
+			get {
+				return self.append("entityReference") 
+			}
+		}
+	}
+
 	/**  Disables a parental rule that was previously defined by the household master.
 	  Disable can be at specific user or household level.  */
-	public static func disable(ruleId: Int64, entityReference: EntityReferenceBy) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "parentalrule", action: "disable")
+	public static func disable(ruleId: Int64, entityReference: EntityReferenceBy) -> RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer>(service: "parentalrule", action: "disable")
 			.setBody(key: "ruleId", value: ruleId)
 			.setBody(key: "entityReference", value: entityReference.rawValue)
 
 		return request
+	}
+
+	public class DisableDefaultTokenizer: ClientTokenizer  {
+		
+		public var entityReference: BaseTokenizedObject {
+			get {
+				return self.append("entityReference") 
+			}
+		}
 	}
 
 	/**  Disables a parental rule that was defined at account level. Disable can be at
 	  specific user or household level.  */
-	public static func disableDefault(entityReference: EntityReferenceBy) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "parentalrule", action: "disableDefault")
+	public static func disableDefault(entityReference: EntityReferenceBy) -> RequestBuilder<Bool, BaseTokenizedObject, DisableDefaultTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DisableDefaultTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DisableDefaultTokenizer>(service: "parentalrule", action: "disableDefault")
 			.setBody(key: "entityReference", value: entityReference.rawValue)
 
 		return request
 	}
 
+	public class EnableTokenizer: ClientTokenizer  {
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+		
+		public var entityReference: BaseTokenizedObject {
+			get {
+				return self.append("entityReference") 
+			}
+		}
+	}
+
 	/**  Enable a parental rules for a user  */
-	public static func enable(ruleId: Int64, entityReference: EntityReferenceBy) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "parentalrule", action: "enable")
+	public static func enable(ruleId: Int64, entityReference: EntityReferenceBy) -> RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer>(service: "parentalrule", action: "enable")
 			.setBody(key: "ruleId", value: ruleId)
 			.setBody(key: "entityReference", value: entityReference.rawValue)
 
 		return request
+	}
+
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ParentalRuleFilter.ParentalRuleFilterTokenizer {
+			get {
+				return ParentalRuleFilter.ParentalRuleFilterTokenizer(self.append("filter")) 
+			}
+		}
 	}
 
 	/**  Return the parental rules that applies for the user or household. Can include
 	  rules that have been associated in account, household, or user level.           
 	    Association level is also specified in the response.  */
-	public static func list(filter: ParentalRuleFilter) -> RequestBuilder<ParentalRuleListResponse> {
-		let request: RequestBuilder<ParentalRuleListResponse> = RequestBuilder<ParentalRuleListResponse>(service: "parentalrule", action: "list")
+	public static func list(filter: ParentalRuleFilter) -> RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer>(service: "parentalrule", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

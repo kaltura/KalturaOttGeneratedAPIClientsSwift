@@ -35,29 +35,62 @@
 
 public final class SocialActionService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var socialAction: SocialAction.SocialActionTokenizer {
+			get {
+				return SocialAction.SocialActionTokenizer(self.append("socialAction")) 
+			}
+		}
+	}
+
 	/**  Insert new user social action  */
-	public static func add(socialAction: SocialAction) -> RequestBuilder<UserSocialActionResponse> {
-		let request: RequestBuilder<UserSocialActionResponse> = RequestBuilder<UserSocialActionResponse>(service: "socialaction", action: "add")
+	public static func add(socialAction: SocialAction) -> RequestBuilder<UserSocialActionResponse, UserSocialActionResponse.UserSocialActionResponseTokenizer, AddTokenizer> {
+		let request: RequestBuilder<UserSocialActionResponse, UserSocialActionResponse.UserSocialActionResponseTokenizer, AddTokenizer> = RequestBuilder<UserSocialActionResponse, UserSocialActionResponse.UserSocialActionResponseTokenizer, AddTokenizer>(service: "socialaction", action: "add")
 			.setBody(key: "socialAction", value: socialAction)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  delete user social action  */
-	public static func delete(id: String) -> RequestBuilder<Array<NetworkActionStatus>> {
-		let request: ArrayRequestBuilder<NetworkActionStatus> = ArrayRequestBuilder<NetworkActionStatus>(service: "socialaction", action: "delete")
+	public static func delete(id: String) -> ArrayRequestBuilder<NetworkActionStatus, ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer>, DeleteTokenizer> {
+		let request: ArrayRequestBuilder<NetworkActionStatus, ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer>, DeleteTokenizer> = ArrayRequestBuilder<NetworkActionStatus, ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer>, DeleteTokenizer>(service: "socialaction", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list(filter: SocialActionFilter) -> RequestBuilder<SocialActionListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: SocialActionFilter.SocialActionFilterTokenizer {
+			get {
+				return SocialActionFilter.SocialActionFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: SocialActionFilter) -> RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Get list of user social actions  */
-	public static func list(filter: SocialActionFilter, pager: FilterPager?) -> RequestBuilder<SocialActionListResponse> {
-		let request: RequestBuilder<SocialActionListResponse> = RequestBuilder<SocialActionListResponse>(service: "socialaction", action: "list")
+	public static func list(filter: SocialActionFilter, pager: FilterPager?) -> RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer> = RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer>(service: "socialaction", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

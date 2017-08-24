@@ -36,6 +36,15 @@
 /**  Configuration groups info wrapper  */
 open class ConfigurationGroupListResponse: ListResponse {
 
+	public class ConfigurationGroupListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ConfigurationGroup.ConfigurationGroupTokenizer> {
+			get {
+				return ArrayTokenizedObject<ConfigurationGroup.ConfigurationGroupTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Configuration groups  */
 	public var objects: Array<ConfigurationGroup>? = nil
 

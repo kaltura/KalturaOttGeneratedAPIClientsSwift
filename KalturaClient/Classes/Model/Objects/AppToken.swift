@@ -36,6 +36,57 @@
 /**  Application token  */
 open class AppToken: ObjectBase {
 
+	public class AppTokenTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var expiry: BaseTokenizedObject {
+			get {
+				return self.append("expiry") 
+			}
+		}
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var sessionDuration: BaseTokenizedObject {
+			get {
+				return self.append("sessionDuration") 
+			}
+		}
+		
+		public var hashType: BaseTokenizedObject {
+			get {
+				return self.append("hashType") 
+			}
+		}
+		
+		public var sessionPrivileges: BaseTokenizedObject {
+			get {
+				return self.append("sessionPrivileges") 
+			}
+		}
+		
+		public var token: BaseTokenizedObject {
+			get {
+				return self.append("token") 
+			}
+		}
+		
+		public var sessionUserId: BaseTokenizedObject {
+			get {
+				return self.append("sessionUserId") 
+			}
+		}
+	}
+
 	/**  The id of the application token  */
 	public var id: String? = nil
 	/**  Expiry time of current token (unix timestamp in seconds)  */
@@ -56,6 +107,38 @@ open class AppToken: ObjectBase {
 	public var sessionUserId: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(expiry: String) {
+		self.dict["expiry"] = expiry
+	}
+	
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(sessionDuration: String) {
+		self.dict["sessionDuration"] = sessionDuration
+	}
+	
+	public func setMultiRequestToken(hashType: String) {
+		self.dict["hashType"] = hashType
+	}
+	
+	public func setMultiRequestToken(sessionPrivileges: String) {
+		self.dict["sessionPrivileges"] = sessionPrivileges
+	}
+	
+	public func setMultiRequestToken(token: String) {
+		self.dict["token"] = token
+	}
+	
+	public func setMultiRequestToken(sessionUserId: String) {
+		self.dict["sessionUserId"] = sessionUserId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

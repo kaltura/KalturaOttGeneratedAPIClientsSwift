@@ -35,21 +35,45 @@
 
 public final class AssetCommentService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var comment: AssetComment.AssetCommentTokenizer {
+			get {
+				return AssetComment.AssetCommentTokenizer(self.append("comment")) 
+			}
+		}
+	}
+
 	/**  Add asset comments by asset id  */
-	public static func add(comment: AssetComment) -> RequestBuilder<AssetComment> {
-		let request: RequestBuilder<AssetComment> = RequestBuilder<AssetComment>(service: "assetcomment", action: "add")
+	public static func add(comment: AssetComment) -> RequestBuilder<AssetComment, AssetComment.AssetCommentTokenizer, AddTokenizer> {
+		let request: RequestBuilder<AssetComment, AssetComment.AssetCommentTokenizer, AddTokenizer> = RequestBuilder<AssetComment, AssetComment.AssetCommentTokenizer, AddTokenizer>(service: "assetcomment", action: "add")
 			.setBody(key: "comment", value: comment)
 
 		return request
 	}
 
-	public static func list(filter: AssetCommentFilter) -> RequestBuilder<AssetCommentListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: AssetCommentFilter.AssetCommentFilterTokenizer {
+			get {
+				return AssetCommentFilter.AssetCommentFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: AssetCommentFilter) -> RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Returns asset comments by asset id  */
-	public static func list(filter: AssetCommentFilter, pager: FilterPager?) -> RequestBuilder<AssetCommentListResponse> {
-		let request: RequestBuilder<AssetCommentListResponse> = RequestBuilder<AssetCommentListResponse>(service: "assetcomment", action: "list")
+	public static func list(filter: AssetCommentFilter, pager: FilterPager?) -> RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer>(service: "assetcomment", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

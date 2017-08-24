@@ -36,6 +36,15 @@
 /**  Recordings info wrapper  */
 open class RecordingListResponse: ListResponse {
 
+	public class RecordingListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Recording.RecordingTokenizer> {
+			get {
+				return ArrayTokenizedObject<Recording.RecordingTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Recordings  */
 	public var objects: Array<Recording>? = nil
 

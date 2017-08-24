@@ -36,6 +36,51 @@
 /**  OSS Adapter  */
 open class ExternalChannelProfile: ObjectBase {
 
+	public class ExternalChannelProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var externalIdentifier: BaseTokenizedObject {
+			get {
+				return self.append("externalIdentifier") 
+			}
+		}
+		
+		public var filterExpression: BaseTokenizedObject {
+			get {
+				return self.append("filterExpression") 
+			}
+		}
+		
+		public var recommendationEngineId: BaseTokenizedObject {
+			get {
+				return self.append("recommendationEngineId") 
+			}
+		}
+		
+		public var enrichments: ArrayTokenizedObject<ChannelEnrichmentHolder.ChannelEnrichmentHolderTokenizer> {
+			get {
+				return ArrayTokenizedObject<ChannelEnrichmentHolder.ChannelEnrichmentHolderTokenizer>(self.append("enrichments"))
+			} 
+		}
+	}
+
 	/**  External channel id  */
 	public var id: Int? = nil
 	/**  External channel name  */
@@ -52,6 +97,30 @@ open class ExternalChannelProfile: ObjectBase {
 	public var enrichments: Array<ChannelEnrichmentHolder>? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(externalIdentifier: String) {
+		self.dict["externalIdentifier"] = externalIdentifier
+	}
+	
+	public func setMultiRequestToken(filterExpression: String) {
+		self.dict["filterExpression"] = filterExpression
+	}
+	
+	public func setMultiRequestToken(recommendationEngineId: String) {
+		self.dict["recommendationEngineId"] = recommendationEngineId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,15 @@
 /**  Premium services list  */
 open class HouseholdPremiumServiceListResponse: ListResponse {
 
+	public class HouseholdPremiumServiceListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HouseholdPremiumService.HouseholdPremiumServiceTokenizer> {
+			get {
+				return ArrayTokenizedObject<HouseholdPremiumService.HouseholdPremiumServiceTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of premium services  */
 	public var objects: Array<HouseholdPremiumService>? = nil
 

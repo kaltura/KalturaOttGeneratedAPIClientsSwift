@@ -36,6 +36,93 @@
 /**  User  */
 open class OTTUser: BaseOTTUser {
 
+	public class OTTUserTokenizer: BaseOTTUser.BaseOTTUserTokenizer {
+		
+		public var householdId: BaseTokenizedObject {
+			get {
+				return self.append("householdId") 
+			}
+		}
+		
+		public var email: BaseTokenizedObject {
+			get {
+				return self.append("email") 
+			}
+		}
+		
+		public var address: BaseTokenizedObject {
+			get {
+				return self.append("address") 
+			}
+		}
+		
+		public var city: BaseTokenizedObject {
+			get {
+				return self.append("city") 
+			}
+		}
+		
+		public var countryId: BaseTokenizedObject {
+			get {
+				return self.append("countryId") 
+			}
+		}
+		
+		public var zip: BaseTokenizedObject {
+			get {
+				return self.append("zip") 
+			}
+		}
+		
+		public var phone: BaseTokenizedObject {
+			get {
+				return self.append("phone") 
+			}
+		}
+		
+		public var affiliateCode: BaseTokenizedObject {
+			get {
+				return self.append("affiliateCode") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var userType: OTTUserType.OTTUserTypeTokenizer {
+			get {
+				return OTTUserType.OTTUserTypeTokenizer(self.append("userType")) 
+			}
+		}
+		
+		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
+			}
+		}
+		
+		public var isHouseholdMaster: BaseTokenizedObject {
+			get {
+				return self.append("isHouseholdMaster") 
+			}
+		}
+		
+		public var suspensionState: BaseTokenizedObject {
+			get {
+				return self.append("suspensionState") 
+			}
+		}
+		
+		public var userState: BaseTokenizedObject {
+			get {
+				return self.append("userState") 
+			}
+		}
+	}
+
 	/**  Household identifier  */
 	public var householdId: Int? = nil
 	/**  Email  */
@@ -66,6 +153,54 @@ open class OTTUser: BaseOTTUser {
 	public var userState: UserState? = nil
 
 
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
+	}
+	
+	public func setMultiRequestToken(email: String) {
+		self.dict["email"] = email
+	}
+	
+	public func setMultiRequestToken(address: String) {
+		self.dict["address"] = address
+	}
+	
+	public func setMultiRequestToken(city: String) {
+		self.dict["city"] = city
+	}
+	
+	public func setMultiRequestToken(countryId: String) {
+		self.dict["countryId"] = countryId
+	}
+	
+	public func setMultiRequestToken(zip: String) {
+		self.dict["zip"] = zip
+	}
+	
+	public func setMultiRequestToken(phone: String) {
+		self.dict["phone"] = phone
+	}
+	
+	public func setMultiRequestToken(affiliateCode: String) {
+		self.dict["affiliateCode"] = affiliateCode
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(isHouseholdMaster: String) {
+		self.dict["isHouseholdMaster"] = isHouseholdMaster
+	}
+	
+	public func setMultiRequestToken(suspensionState: String) {
+		self.dict["suspensionState"] = suspensionState
+	}
+	
+	public func setMultiRequestToken(userState: String) {
+		self.dict["userState"] = userState
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,9 +35,18 @@
 
 public final class LicensedUrlService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var request: LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer {
+			get {
+				return LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer(self.append("request")) 
+			}
+		}
+	}
+
 	/**  Get the URL for playing an asset - program, media or recording  */
-	public static func get(request: LicensedUrlBaseRequest) -> RequestBuilder<LicensedUrl> {
-		let request: RequestBuilder<LicensedUrl> = RequestBuilder<LicensedUrl>(service: "licensedurl", action: "get")
+	public static func get(request: LicensedUrlBaseRequest) -> RequestBuilder<LicensedUrl, LicensedUrl.LicensedUrlTokenizer, GetTokenizer> {
+		let request: RequestBuilder<LicensedUrl, LicensedUrl.LicensedUrlTokenizer, GetTokenizer> = RequestBuilder<LicensedUrl, LicensedUrl.LicensedUrlTokenizer, GetTokenizer>(service: "licensedurl", action: "get")
 			.setBody(key: "request", value: request)
 
 		return request

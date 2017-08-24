@@ -35,10 +35,23 @@
 
 open class PurchaseSession: Purchase {
 
+	public class PurchaseSessionTokenizer: Purchase.PurchaseTokenizer {
+		
+		public var previewModuleId: BaseTokenizedObject {
+			get {
+				return self.append("previewModuleId") 
+			}
+		}
+	}
+
 	/**  Preview module identifier (relevant only for subscription)  */
 	public var previewModuleId: Int? = nil
 
 
+	public func setMultiRequestToken(previewModuleId: String) {
+		self.dict["previewModuleId"] = previewModuleId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

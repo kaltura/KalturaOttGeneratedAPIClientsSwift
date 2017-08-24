@@ -36,6 +36,57 @@
 /**  Asset meta  */
 open class Meta: ObjectBase {
 
+	public class MetaTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var fieldName: BaseTokenizedObject {
+			get {
+				return self.append("fieldName") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var assetType: BaseTokenizedObject {
+			get {
+				return self.append("assetType") 
+			}
+		}
+		
+		public var features: BaseTokenizedObject {
+			get {
+				return self.append("features") 
+			}
+		}
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var parentId: BaseTokenizedObject {
+			get {
+				return self.append("parentId") 
+			}
+		}
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+	}
+
 	/**  Meta name for the partner  */
 	public var name: String? = nil
 	/**  Meta system field name  */
@@ -54,6 +105,38 @@ open class Meta: ObjectBase {
 	public var partnerId: Int? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(fieldName: String) {
+		self.dict["fieldName"] = fieldName
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(assetType: String) {
+		self.dict["assetType"] = assetType
+	}
+	
+	public func setMultiRequestToken(features: String) {
+		self.dict["features"] = features
+	}
+	
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(parentId: String) {
+		self.dict["parentId"] = parentId
+	}
+	
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

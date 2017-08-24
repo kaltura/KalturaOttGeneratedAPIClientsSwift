@@ -36,6 +36,15 @@
 /**  Engagement adapter list  */
 open class EngagementAdapterListResponse: ListResponse {
 
+	public class EngagementAdapterListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<EngagementAdapter.EngagementAdapterTokenizer> {
+			get {
+				return ArrayTokenizedObject<EngagementAdapter.EngagementAdapterTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of Engagement adapter  */
 	public var objects: Array<EngagementAdapter>? = nil
 

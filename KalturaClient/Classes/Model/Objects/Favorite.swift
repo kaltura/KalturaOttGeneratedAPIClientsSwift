@@ -36,6 +36,27 @@
 /**  Favorite details  */
 open class Favorite: ObjectBase {
 
+	public class FavoriteTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var extraData: BaseTokenizedObject {
+			get {
+				return self.append("extraData") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+	}
+
 	/**  AssetInfo Model  */
 	public var assetId: Int64? = nil
 	/**  Extra Value  */
@@ -44,6 +65,18 @@ open class Favorite: ObjectBase {
 	public var createDate: Int64? = nil
 
 
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(extraData: String) {
+		self.dict["extraData"] = extraData
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,9 +35,12 @@
 
 public final class HouseholdPremiumServiceService{
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns all the premium services allowed for the household  */
-	public static func list() -> RequestBuilder<HouseholdPremiumServiceListResponse> {
-		let request: RequestBuilder<HouseholdPremiumServiceListResponse> = RequestBuilder<HouseholdPremiumServiceListResponse>(service: "householdpremiumservice", action: "list")
+	public static func list() -> RequestBuilder<HouseholdPremiumServiceListResponse, HouseholdPremiumServiceListResponse.HouseholdPremiumServiceListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<HouseholdPremiumServiceListResponse, HouseholdPremiumServiceListResponse.HouseholdPremiumServiceListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdPremiumServiceListResponse, HouseholdPremiumServiceListResponse.HouseholdPremiumServiceListResponseTokenizer, ListTokenizer>(service: "householdpremiumservice", action: "list")
 
 		return request
 	}

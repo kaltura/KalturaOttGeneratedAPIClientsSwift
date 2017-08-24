@@ -36,6 +36,27 @@
 /**  OTT User filter  */
 open class OTTUserFilter: Filter {
 
+	public class OTTUserFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var usernameEqual: BaseTokenizedObject {
+			get {
+				return self.append("usernameEqual") 
+			}
+		}
+		
+		public var externalIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("externalIdEqual") 
+			}
+		}
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+	}
+
 	/**  Username  */
 	public var usernameEqual: String? = nil
 	/**  User external identifier  */
@@ -44,6 +65,18 @@ open class OTTUserFilter: Filter {
 	public var idIn: String? = nil
 
 
+	public func setMultiRequestToken(usernameEqual: String) {
+		self.dict["usernameEqual"] = usernameEqual
+	}
+	
+	public func setMultiRequestToken(externalIdEqual: String) {
+		self.dict["externalIdEqual"] = externalIdEqual
+	}
+	
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

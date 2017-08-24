@@ -35,12 +35,35 @@
 
 open class CDNPartnerSettings: ObjectBase {
 
+	public class CDNPartnerSettingsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var defaultAdapterId: BaseTokenizedObject {
+			get {
+				return self.append("defaultAdapterId") 
+			}
+		}
+		
+		public var defaultRecordingAdapterId: BaseTokenizedObject {
+			get {
+				return self.append("defaultRecordingAdapterId") 
+			}
+		}
+	}
+
 	/**  Default CDN adapter identifier  */
 	public var defaultAdapterId: Int? = nil
 	/**  Default recording CDN adapter identifier  */
 	public var defaultRecordingAdapterId: Int? = nil
 
 
+	public func setMultiRequestToken(defaultAdapterId: String) {
+		self.dict["defaultAdapterId"] = defaultAdapterId
+	}
+	
+	public func setMultiRequestToken(defaultRecordingAdapterId: String) {
+		self.dict["defaultRecordingAdapterId"] = defaultRecordingAdapterId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

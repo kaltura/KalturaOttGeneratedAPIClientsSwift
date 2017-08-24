@@ -35,6 +35,15 @@
 
 open class BaseSearchAssetFilter: AssetFilter {
 
+	public class BaseSearchAssetFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var groupBy: ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer>(self.append("groupBy"))
+			} 
+		}
+	}
+
 	/**  groupBy  */
 	public var groupBy: Array<AssetGroupBy>? = nil
 

@@ -36,6 +36,15 @@
 /**  List of recommendation profiles.  */
 open class RecommendationProfileListResponse: ListResponse {
 
+	public class RecommendationProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<RecommendationProfile.RecommendationProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<RecommendationProfile.RecommendationProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Recommendation profiles list  */
 	public var objects: Array<RecommendationProfile>? = nil
 

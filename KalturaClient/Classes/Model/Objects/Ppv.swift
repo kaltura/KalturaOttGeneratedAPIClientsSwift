@@ -36,6 +36,75 @@
 /**  PPV details  */
 open class Ppv: ObjectBase {
 
+	public class PpvTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var price: PriceDetails.PriceDetailsTokenizer {
+			get {
+				return PriceDetails.PriceDetailsTokenizer(self.append("price")) 
+			}
+		}
+		
+		public var fileTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("fileTypes"))
+			} 
+		}
+		
+		public var discountModule: DiscountModule.DiscountModuleTokenizer {
+			get {
+				return DiscountModule.DiscountModuleTokenizer(self.append("discountModule")) 
+			}
+		}
+		
+		public var couponsGroup: CouponsGroup.CouponsGroupTokenizer {
+			get {
+				return CouponsGroup.CouponsGroupTokenizer(self.append("couponsGroup")) 
+			}
+		}
+		
+		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("descriptions"))
+			} 
+		}
+		
+		public var productCode: BaseTokenizedObject {
+			get {
+				return self.append("productCode") 
+			}
+		}
+		
+		public var isSubscriptionOnly: BaseTokenizedObject {
+			get {
+				return self.append("isSubscriptionOnly") 
+			}
+		}
+		
+		public var firstDeviceLimitation: BaseTokenizedObject {
+			get {
+				return self.append("firstDeviceLimitation") 
+			}
+		}
+		
+		public var usageModule: UsageModule.UsageModuleTokenizer {
+			get {
+				return UsageModule.UsageModuleTokenizer(self.append("usageModule")) 
+			}
+		}
+	}
+
 	/**  PPV identifier  */
 	public var id: String? = nil
 	/**  the name for the ppv  */
@@ -62,6 +131,26 @@ open class Ppv: ObjectBase {
 	public var usageModule: UsageModule? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(productCode: String) {
+		self.dict["productCode"] = productCode
+	}
+	
+	public func setMultiRequestToken(isSubscriptionOnly: String) {
+		self.dict["isSubscriptionOnly"] = isSubscriptionOnly
+	}
+	
+	public func setMultiRequestToken(firstDeviceLimitation: String) {
+		self.dict["firstDeviceLimitation"] = firstDeviceLimitation
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,10 +36,23 @@
 /**  Configuration filter  */
 open class ConfigurationsFilter: Filter {
 
+	public class ConfigurationsFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var configurationGroupIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("configurationGroupIdEqual") 
+			}
+		}
+	}
+
 	/**  the ID of the configuration group for which to return related configurations  */
 	public var configurationGroupIdEqual: String? = nil
 
 
+	public func setMultiRequestToken(configurationGroupIdEqual: String) {
+		self.dict["configurationGroupIdEqual"] = configurationGroupIdEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

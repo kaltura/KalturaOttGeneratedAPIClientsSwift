@@ -36,6 +36,57 @@
 /**  Country details  */
 open class Country: ObjectBase {
 
+	public class CountryTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+		
+		public var mainLanguageCode: BaseTokenizedObject {
+			get {
+				return self.append("mainLanguageCode") 
+			}
+		}
+		
+		public var languagesCode: BaseTokenizedObject {
+			get {
+				return self.append("languagesCode") 
+			}
+		}
+		
+		public var currency: BaseTokenizedObject {
+			get {
+				return self.append("currency") 
+			}
+		}
+		
+		public var currencySign: BaseTokenizedObject {
+			get {
+				return self.append("currencySign") 
+			}
+		}
+		
+		public var vatPercent: BaseTokenizedObject {
+			get {
+				return self.append("vatPercent") 
+			}
+		}
+	}
+
 	/**  Country identifier  */
 	public var id: Int? = nil
 	/**  Country name  */
@@ -54,6 +105,38 @@ open class Country: ObjectBase {
 	public var vatPercent: Double? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
+	public func setMultiRequestToken(mainLanguageCode: String) {
+		self.dict["mainLanguageCode"] = mainLanguageCode
+	}
+	
+	public func setMultiRequestToken(languagesCode: String) {
+		self.dict["languagesCode"] = languagesCode
+	}
+	
+	public func setMultiRequestToken(currency: String) {
+		self.dict["currency"] = currency
+	}
+	
+	public func setMultiRequestToken(currencySign: String) {
+		self.dict["currencySign"] = currencySign
+	}
+	
+	public func setMultiRequestToken(vatPercent: String) {
+		self.dict["vatPercent"] = vatPercent
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

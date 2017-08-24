@@ -36,12 +36,35 @@
 /**  Kaltura Asset Order  */
 open class DynamicOrderBy: ObjectBase {
 
+	public class DynamicOrderByTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var orderBy: BaseTokenizedObject {
+			get {
+				return self.append("orderBy") 
+			}
+		}
+	}
+
 	/**  order by name  */
 	public var name: String? = nil
 	/**  order by meta asc/desc  */
 	public var orderBy: MetaTagOrderBy? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(orderBy: String) {
+		self.dict["orderBy"] = orderBy
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

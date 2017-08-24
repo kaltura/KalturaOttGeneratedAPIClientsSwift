@@ -35,10 +35,19 @@
 
 public final class CurrencyService{
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: CurrencyFilter.CurrencyFilterTokenizer {
+			get {
+				return CurrencyFilter.CurrencyFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Get the list of currencies for the partner with option to filter by currency
 	  codes  */
-	public static func list(filter: CurrencyFilter) -> RequestBuilder<CurrencyListResponse> {
-		let request: RequestBuilder<CurrencyListResponse> = RequestBuilder<CurrencyListResponse>(service: "currency", action: "list")
+	public static func list(filter: CurrencyFilter) -> RequestBuilder<CurrencyListResponse, CurrencyListResponse.CurrencyListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<CurrencyListResponse, CurrencyListResponse.CurrencyListResponseTokenizer, ListTokenizer> = RequestBuilder<CurrencyListResponse, CurrencyListResponse.CurrencyListResponseTokenizer, ListTokenizer>(service: "currency", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

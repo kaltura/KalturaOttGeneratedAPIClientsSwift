@@ -35,6 +35,15 @@
 
 open class LanguageListResponse: ListResponse {
 
+	public class LanguageListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Language.LanguageTokenizer> {
+			get {
+				return ArrayTokenizedObject<Language.LanguageTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Languages  */
 	public var objects: Array<Language>? = nil
 

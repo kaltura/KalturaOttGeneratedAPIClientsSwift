@@ -35,10 +35,23 @@
 
 open class SocialActionRate: SocialAction {
 
+	public class SocialActionRateTokenizer: SocialAction.SocialActionTokenizer {
+		
+		public var rate: BaseTokenizedObject {
+			get {
+				return self.append("rate") 
+			}
+		}
+	}
+
 	/**  The value of the rating  */
 	public var rate: Int? = nil
 
 
+	public func setMultiRequestToken(rate: String) {
+		self.dict["rate"] = rate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

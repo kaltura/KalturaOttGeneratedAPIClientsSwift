@@ -35,6 +35,9 @@
 
 open class FacebookSocial: Social {
 
+	public class FacebookSocialTokenizer: Social.SocialTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

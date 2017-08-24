@@ -36,6 +36,45 @@
 /**  Household user  */
 open class HouseholdUser: ObjectBase {
 
+	public class HouseholdUserTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var householdId: BaseTokenizedObject {
+			get {
+				return self.append("householdId") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var isMaster: BaseTokenizedObject {
+			get {
+				return self.append("isMaster") 
+			}
+		}
+		
+		public var householdMasterUsername: BaseTokenizedObject {
+			get {
+				return self.append("householdMasterUsername") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+	}
+
 	/**  The identifier of the household  */
 	public var householdId: Int? = nil
 	/**  The identifier of the user  */
@@ -51,6 +90,30 @@ open class HouseholdUser: ObjectBase {
 	public var isDefault: Bool? = nil
 
 
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(isMaster: String) {
+		self.dict["isMaster"] = isMaster
+	}
+	
+	public func setMultiRequestToken(householdMasterUsername: String) {
+		self.dict["householdMasterUsername"] = householdMasterUsername
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

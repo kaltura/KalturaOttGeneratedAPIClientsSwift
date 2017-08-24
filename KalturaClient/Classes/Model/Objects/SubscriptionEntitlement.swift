@@ -36,6 +36,51 @@
 /**  KalturaSubscriptionEntitlement  */
 open class SubscriptionEntitlement: Entitlement {
 
+	public class SubscriptionEntitlementTokenizer: Entitlement.EntitlementTokenizer {
+		
+		public var nextRenewalDate: BaseTokenizedObject {
+			get {
+				return self.append("nextRenewalDate") 
+			}
+		}
+		
+		public var isRenewableForPurchase: BaseTokenizedObject {
+			get {
+				return self.append("isRenewableForPurchase") 
+			}
+		}
+		
+		public var isRenewable: BaseTokenizedObject {
+			get {
+				return self.append("isRenewable") 
+			}
+		}
+		
+		public var isInGracePeriod: BaseTokenizedObject {
+			get {
+				return self.append("isInGracePeriod") 
+			}
+		}
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+		
+		public var paymentMethodId: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethodId") 
+			}
+		}
+		
+		public var scheduledSubscriptionId: BaseTokenizedObject {
+			get {
+				return self.append("scheduledSubscriptionId") 
+			}
+		}
+	}
+
 	/**  The date of the next renewal (only for subscription)  */
 	public var nextRenewalDate: Int64? = nil
 	/**  Indicates whether the subscription is renewable in this purchase (only for
@@ -53,6 +98,34 @@ open class SubscriptionEntitlement: Entitlement {
 	public var scheduledSubscriptionId: Int64? = nil
 
 
+	public func setMultiRequestToken(nextRenewalDate: String) {
+		self.dict["nextRenewalDate"] = nextRenewalDate
+	}
+	
+	public func setMultiRequestToken(isRenewableForPurchase: String) {
+		self.dict["isRenewableForPurchase"] = isRenewableForPurchase
+	}
+	
+	public func setMultiRequestToken(isRenewable: String) {
+		self.dict["isRenewable"] = isRenewable
+	}
+	
+	public func setMultiRequestToken(isInGracePeriod: String) {
+		self.dict["isInGracePeriod"] = isInGracePeriod
+	}
+	
+	public func setMultiRequestToken(paymentGatewayId: String) {
+		self.dict["paymentGatewayId"] = paymentGatewayId
+	}
+	
+	public func setMultiRequestToken(paymentMethodId: String) {
+		self.dict["paymentMethodId"] = paymentMethodId
+	}
+	
+	public func setMultiRequestToken(scheduledSubscriptionId: String) {
+		self.dict["scheduledSubscriptionId"] = scheduledSubscriptionId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

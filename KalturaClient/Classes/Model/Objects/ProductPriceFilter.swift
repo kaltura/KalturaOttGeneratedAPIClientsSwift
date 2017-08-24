@@ -35,6 +35,33 @@
 
 open class ProductPriceFilter: Filter {
 
+	public class ProductPriceFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var subscriptionIdIn: BaseTokenizedObject {
+			get {
+				return self.append("subscriptionIdIn") 
+			}
+		}
+		
+		public var fileIdIn: BaseTokenizedObject {
+			get {
+				return self.append("fileIdIn") 
+			}
+		}
+		
+		public var isLowest: BaseTokenizedObject {
+			get {
+				return self.append("isLowest") 
+			}
+		}
+		
+		public var couponCodeEqual: BaseTokenizedObject {
+			get {
+				return self.append("couponCodeEqual") 
+			}
+		}
+	}
+
 	/**  Comma separated subscriptions identifiers  */
 	public var subscriptionIdIn: String? = nil
 	/**  Comma separated media files identifiers  */
@@ -45,6 +72,22 @@ open class ProductPriceFilter: Filter {
 	public var couponCodeEqual: String? = nil
 
 
+	public func setMultiRequestToken(subscriptionIdIn: String) {
+		self.dict["subscriptionIdIn"] = subscriptionIdIn
+	}
+	
+	public func setMultiRequestToken(fileIdIn: String) {
+		self.dict["fileIdIn"] = fileIdIn
+	}
+	
+	public func setMultiRequestToken(isLowest: String) {
+		self.dict["isLowest"] = isLowest
+	}
+	
+	public func setMultiRequestToken(couponCodeEqual: String) {
+		self.dict["couponCodeEqual"] = couponCodeEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

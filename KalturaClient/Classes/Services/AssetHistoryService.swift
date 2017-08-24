@@ -35,17 +35,32 @@
 
 public final class AssetHistoryService{
 
-	public static func list() -> RequestBuilder<AssetHistoryListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: AssetHistoryFilter.AssetHistoryFilterTokenizer {
+			get {
+				return AssetHistoryFilter.AssetHistoryFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: AssetHistoryFilter?) -> RequestBuilder<AssetHistoryListResponse> {
+	public static func list(filter: AssetHistoryFilter?) -> RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Get recently watched media for user, ordered by recently watched first.  */
-	public static func list(filter: AssetHistoryFilter?, pager: FilterPager?) -> RequestBuilder<AssetHistoryListResponse> {
-		let request: RequestBuilder<AssetHistoryListResponse> = RequestBuilder<AssetHistoryListResponse>(service: "assethistory", action: "list")
+	public static func list(filter: AssetHistoryFilter?, pager: FilterPager?) -> RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer>(service: "assethistory", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

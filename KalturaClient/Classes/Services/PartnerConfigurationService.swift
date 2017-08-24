@@ -35,9 +35,18 @@
 
 public final class PartnerConfigurationService{
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var configuration: PartnerConfiguration.PartnerConfigurationTokenizer {
+			get {
+				return PartnerConfiguration.PartnerConfigurationTokenizer(self.append("configuration")) 
+			}
+		}
+	}
+
 	/**  Update Partner Configuration  */
-	public static func update(configuration: PartnerConfiguration) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "partnerconfiguration", action: "update")
+	public static func update(configuration: PartnerConfiguration) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "partnerconfiguration", action: "update")
 			.setBody(key: "configuration", value: configuration)
 
 		return request

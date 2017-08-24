@@ -35,12 +35,35 @@
 
 open class NetworkActionStatus: ObjectBase {
 
+	public class NetworkActionStatusTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var network: BaseTokenizedObject {
+			get {
+				return self.append("network") 
+			}
+		}
+	}
+
 	/**  Status  */
 	public var status: SocialStatus? = nil
 	/**  Social network  */
 	public var network: SocialNetwork? = nil
 
 
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(network: String) {
+		self.dict["network"] = network
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

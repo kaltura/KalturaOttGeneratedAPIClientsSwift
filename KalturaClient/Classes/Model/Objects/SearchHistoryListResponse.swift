@@ -36,6 +36,15 @@
 /**  Search history wrapper  */
 open class SearchHistoryListResponse: ListResponse {
 
+	public class SearchHistoryListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<SearchHistory.SearchHistoryTokenizer> {
+			get {
+				return ArrayTokenizedObject<SearchHistory.SearchHistoryTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  KalturaSearchHistory Models  */
 	public var objects: Array<SearchHistory>? = nil
 

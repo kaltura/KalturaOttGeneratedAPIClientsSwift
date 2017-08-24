@@ -36,6 +36,9 @@
 /**  Kaltura Aggregation CountFilter  */
 open class AggregationCountFilter: RelatedObjectFilter {
 
+	public class AggregationCountFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

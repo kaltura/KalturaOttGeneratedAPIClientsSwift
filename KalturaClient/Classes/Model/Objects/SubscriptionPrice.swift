@@ -36,11 +36,24 @@
 /**  Subscription price details  */
 open class SubscriptionPrice: ProductPrice {
 
+	public class SubscriptionPriceTokenizer: ProductPrice.ProductPriceTokenizer {
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+	}
+
 	/**  If the item related to unified billing cycle purchased - until when the this
 	  price is relevant  */
 	public var endDate: Int64? = nil
 
 
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

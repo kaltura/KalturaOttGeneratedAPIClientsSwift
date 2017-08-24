@@ -35,6 +35,21 @@
 
 open class NotificationsSettings: ObjectBase {
 
+	public class NotificationsSettingsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var pushNotificationEnabled: BaseTokenizedObject {
+			get {
+				return self.append("pushNotificationEnabled") 
+			}
+		}
+		
+		public var pushFollowEnabled: BaseTokenizedObject {
+			get {
+				return self.append("pushFollowEnabled") 
+			}
+		}
+	}
+
 	/**  Specify if the user want to receive push notifications or not  */
 	public var pushNotificationEnabled: Bool? = nil
 	/**  Specify if the user will be notified for followed content via push. (requires
@@ -42,6 +57,14 @@ open class NotificationsSettings: ObjectBase {
 	public var pushFollowEnabled: Bool? = nil
 
 
+	public func setMultiRequestToken(pushNotificationEnabled: String) {
+		self.dict["pushNotificationEnabled"] = pushNotificationEnabled
+	}
+	
+	public func setMultiRequestToken(pushFollowEnabled: String) {
+		self.dict["pushFollowEnabled"] = pushFollowEnabled
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,33 @@
 
 open class RelatedExternalFilter: AssetFilter {
 
+	public class RelatedExternalFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var idEqual: BaseTokenizedObject {
+			get {
+				return self.append("idEqual") 
+			}
+		}
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+		
+		public var utcOffsetEqual: BaseTokenizedObject {
+			get {
+				return self.append("utcOffsetEqual") 
+			}
+		}
+		
+		public var freeText: BaseTokenizedObject {
+			get {
+				return self.append("freeText") 
+			}
+		}
+	}
+
 	/**  the External ID of the asset for which to return related assets  */
 	public var idEqual: Int? = nil
 	/**  Comma separated list of asset types to search within.               Possible
@@ -48,6 +75,22 @@ open class RelatedExternalFilter: AssetFilter {
 	public var freeText: String? = nil
 
 
+	public func setMultiRequestToken(idEqual: String) {
+		self.dict["idEqual"] = idEqual
+	}
+	
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
+	public func setMultiRequestToken(utcOffsetEqual: String) {
+		self.dict["utcOffsetEqual"] = utcOffsetEqual
+	}
+	
+	public func setMultiRequestToken(freeText: String) {
+		self.dict["freeText"] = freeText
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

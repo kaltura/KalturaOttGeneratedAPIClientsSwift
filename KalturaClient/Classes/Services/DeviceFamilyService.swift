@@ -35,9 +35,12 @@
 
 public final class DeviceFamilyService{
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Return a list of the available device families.  */
-	public static func list() -> RequestBuilder<DeviceFamilyListResponse> {
-		let request: RequestBuilder<DeviceFamilyListResponse> = RequestBuilder<DeviceFamilyListResponse>(service: "devicefamily", action: "list")
+	public static func list() -> RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> = RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer>(service: "devicefamily", action: "list")
 
 		return request
 	}

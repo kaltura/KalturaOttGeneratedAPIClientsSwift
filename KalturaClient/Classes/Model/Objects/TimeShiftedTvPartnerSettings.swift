@@ -35,6 +35,135 @@
 
 open class TimeShiftedTvPartnerSettings: ObjectBase {
 
+	public class TimeShiftedTvPartnerSettingsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var catchUpEnabled: BaseTokenizedObject {
+			get {
+				return self.append("catchUpEnabled") 
+			}
+		}
+		
+		public var cdvrEnabled: BaseTokenizedObject {
+			get {
+				return self.append("cdvrEnabled") 
+			}
+		}
+		
+		public var startOverEnabled: BaseTokenizedObject {
+			get {
+				return self.append("startOverEnabled") 
+			}
+		}
+		
+		public var trickPlayEnabled: BaseTokenizedObject {
+			get {
+				return self.append("trickPlayEnabled") 
+			}
+		}
+		
+		public var recordingScheduleWindowEnabled: BaseTokenizedObject {
+			get {
+				return self.append("recordingScheduleWindowEnabled") 
+			}
+		}
+		
+		public var protectionEnabled: BaseTokenizedObject {
+			get {
+				return self.append("protectionEnabled") 
+			}
+		}
+		
+		public var catchUpBufferLength: BaseTokenizedObject {
+			get {
+				return self.append("catchUpBufferLength") 
+			}
+		}
+		
+		public var trickPlayBufferLength: BaseTokenizedObject {
+			get {
+				return self.append("trickPlayBufferLength") 
+			}
+		}
+		
+		public var recordingScheduleWindow: BaseTokenizedObject {
+			get {
+				return self.append("recordingScheduleWindow") 
+			}
+		}
+		
+		public var paddingBeforeProgramStarts: BaseTokenizedObject {
+			get {
+				return self.append("paddingBeforeProgramStarts") 
+			}
+		}
+		
+		public var paddingAfterProgramEnds: BaseTokenizedObject {
+			get {
+				return self.append("paddingAfterProgramEnds") 
+			}
+		}
+		
+		public var protectionPeriod: BaseTokenizedObject {
+			get {
+				return self.append("protectionPeriod") 
+			}
+		}
+		
+		public var protectionQuotaPercentage: BaseTokenizedObject {
+			get {
+				return self.append("protectionQuotaPercentage") 
+			}
+		}
+		
+		public var recordingLifetimePeriod: BaseTokenizedObject {
+			get {
+				return self.append("recordingLifetimePeriod") 
+			}
+		}
+		
+		public var cleanupNoticePeriod: BaseTokenizedObject {
+			get {
+				return self.append("cleanupNoticePeriod") 
+			}
+		}
+		
+		public var seriesRecordingEnabled: BaseTokenizedObject {
+			get {
+				return self.append("seriesRecordingEnabled") 
+			}
+		}
+		
+		public var nonEntitledChannelPlaybackEnabled: BaseTokenizedObject {
+			get {
+				return self.append("nonEntitledChannelPlaybackEnabled") 
+			}
+		}
+		
+		public var nonExistingChannelPlaybackEnabled: BaseTokenizedObject {
+			get {
+				return self.append("nonExistingChannelPlaybackEnabled") 
+			}
+		}
+		
+		public var quotaOveragePolicy: BaseTokenizedObject {
+			get {
+				return self.append("quotaOveragePolicy") 
+			}
+		}
+		
+		public var protectionPolicy: BaseTokenizedObject {
+			get {
+				return self.append("protectionPolicy") 
+			}
+		}
+		
+		public var recoveryGracePeriod: BaseTokenizedObject {
+			get {
+				return self.append("recoveryGracePeriod") 
+			}
+		}
+	}
+
 	/**  Is catch-up enabled  */
 	public var catchUpEnabled: Bool? = nil
 	/**  Is c-dvr enabled  */
@@ -84,6 +213,90 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 	public var recoveryGracePeriod: Int? = nil
 
 
+	public func setMultiRequestToken(catchUpEnabled: String) {
+		self.dict["catchUpEnabled"] = catchUpEnabled
+	}
+	
+	public func setMultiRequestToken(cdvrEnabled: String) {
+		self.dict["cdvrEnabled"] = cdvrEnabled
+	}
+	
+	public func setMultiRequestToken(startOverEnabled: String) {
+		self.dict["startOverEnabled"] = startOverEnabled
+	}
+	
+	public func setMultiRequestToken(trickPlayEnabled: String) {
+		self.dict["trickPlayEnabled"] = trickPlayEnabled
+	}
+	
+	public func setMultiRequestToken(recordingScheduleWindowEnabled: String) {
+		self.dict["recordingScheduleWindowEnabled"] = recordingScheduleWindowEnabled
+	}
+	
+	public func setMultiRequestToken(protectionEnabled: String) {
+		self.dict["protectionEnabled"] = protectionEnabled
+	}
+	
+	public func setMultiRequestToken(catchUpBufferLength: String) {
+		self.dict["catchUpBufferLength"] = catchUpBufferLength
+	}
+	
+	public func setMultiRequestToken(trickPlayBufferLength: String) {
+		self.dict["trickPlayBufferLength"] = trickPlayBufferLength
+	}
+	
+	public func setMultiRequestToken(recordingScheduleWindow: String) {
+		self.dict["recordingScheduleWindow"] = recordingScheduleWindow
+	}
+	
+	public func setMultiRequestToken(paddingBeforeProgramStarts: String) {
+		self.dict["paddingBeforeProgramStarts"] = paddingBeforeProgramStarts
+	}
+	
+	public func setMultiRequestToken(paddingAfterProgramEnds: String) {
+		self.dict["paddingAfterProgramEnds"] = paddingAfterProgramEnds
+	}
+	
+	public func setMultiRequestToken(protectionPeriod: String) {
+		self.dict["protectionPeriod"] = protectionPeriod
+	}
+	
+	public func setMultiRequestToken(protectionQuotaPercentage: String) {
+		self.dict["protectionQuotaPercentage"] = protectionQuotaPercentage
+	}
+	
+	public func setMultiRequestToken(recordingLifetimePeriod: String) {
+		self.dict["recordingLifetimePeriod"] = recordingLifetimePeriod
+	}
+	
+	public func setMultiRequestToken(cleanupNoticePeriod: String) {
+		self.dict["cleanupNoticePeriod"] = cleanupNoticePeriod
+	}
+	
+	public func setMultiRequestToken(seriesRecordingEnabled: String) {
+		self.dict["seriesRecordingEnabled"] = seriesRecordingEnabled
+	}
+	
+	public func setMultiRequestToken(nonEntitledChannelPlaybackEnabled: String) {
+		self.dict["nonEntitledChannelPlaybackEnabled"] = nonEntitledChannelPlaybackEnabled
+	}
+	
+	public func setMultiRequestToken(nonExistingChannelPlaybackEnabled: String) {
+		self.dict["nonExistingChannelPlaybackEnabled"] = nonExistingChannelPlaybackEnabled
+	}
+	
+	public func setMultiRequestToken(quotaOveragePolicy: String) {
+		self.dict["quotaOveragePolicy"] = quotaOveragePolicy
+	}
+	
+	public func setMultiRequestToken(protectionPolicy: String) {
+		self.dict["protectionPolicy"] = protectionPolicy
+	}
+	
+	public func setMultiRequestToken(recoveryGracePeriod: String) {
+		self.dict["recoveryGracePeriod"] = recoveryGracePeriod
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,51 @@
 
 open class ConfigurationGroup: ObjectBase {
 
+	public class ConfigurationGroupTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+		
+		public var tags: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("tags"))
+			} 
+		}
+		
+		public var numberOfDevices: BaseTokenizedObject {
+			get {
+				return self.append("numberOfDevices") 
+			}
+		}
+		
+		public var configurationIdentifiers: ArrayTokenizedObject<ConfigurationIdentifier.ConfigurationIdentifierTokenizer> {
+			get {
+				return ArrayTokenizedObject<ConfigurationIdentifier.ConfigurationIdentifierTokenizer>(self.append("configurationIdentifiers"))
+			} 
+		}
+	}
+
 	/**  Configuration group identifier  */
 	public var id: String? = nil
 	/**  Configuration group name  */
@@ -51,6 +96,26 @@ open class ConfigurationGroup: ObjectBase {
 	public var configurationIdentifiers: Array<ConfigurationIdentifier>? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
+	public func setMultiRequestToken(numberOfDevices: String) {
+		self.dict["numberOfDevices"] = numberOfDevices
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,27 @@
 
 open class InboxMessageFilter: Filter {
 
+	public class InboxMessageFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+		
+		public var createdAtGreaterThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("createdAtGreaterThanOrEqual") 
+			}
+		}
+		
+		public var createdAtLessThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("createdAtLessThanOrEqual") 
+			}
+		}
+	}
+
 	/**  List of inbox message types to search within.  */
 	public var typeIn: String? = nil
 	/**  createdAtGreaterThanOrEqual  */
@@ -43,6 +64,18 @@ open class InboxMessageFilter: Filter {
 	public var createdAtLessThanOrEqual: Int64? = nil
 
 
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
+	public func setMultiRequestToken(createdAtGreaterThanOrEqual: String) {
+		self.dict["createdAtGreaterThanOrEqual"] = createdAtGreaterThanOrEqual
+	}
+	
+	public func setMultiRequestToken(createdAtLessThanOrEqual: String) {
+		self.dict["createdAtLessThanOrEqual"] = createdAtLessThanOrEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

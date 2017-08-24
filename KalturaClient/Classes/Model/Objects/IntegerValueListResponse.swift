@@ -36,6 +36,15 @@
 /**  Integer list wrapper  */
 open class IntegerValueListResponse: ListResponse {
 
+	public class IntegerValueListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Interger value items  */
 	public var objects: Array<IntegerValue>? = nil
 

@@ -36,10 +36,23 @@
 /**  Login response  */
 open class LoginSession: ObjectBase {
 
+	public class LoginSessionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var ks: BaseTokenizedObject {
+			get {
+				return self.append("ks") 
+			}
+		}
+	}
+
 	/**  Access token in a KS format  */
 	public var ks: String? = nil
 
 
+	public func setMultiRequestToken(ks: String) {
+		self.dict["ks"] = ks
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

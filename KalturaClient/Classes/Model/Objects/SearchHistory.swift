@@ -36,6 +36,57 @@
 /**  Search history info  */
 open class SearchHistory: ObjectBase {
 
+	public class SearchHistoryTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var filter: BaseTokenizedObject {
+			get {
+				return self.append("filter") 
+			}
+		}
+		
+		public var language: BaseTokenizedObject {
+			get {
+				return self.append("language") 
+			}
+		}
+		
+		public var createdAt: BaseTokenizedObject {
+			get {
+				return self.append("createdAt") 
+			}
+		}
+		
+		public var service: BaseTokenizedObject {
+			get {
+				return self.append("service") 
+			}
+		}
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var deviceId: BaseTokenizedObject {
+			get {
+				return self.append("deviceId") 
+			}
+		}
+	}
+
 	/**  Search ID  */
 	public var id: String? = nil
 	/**  Search name  */
@@ -54,6 +105,38 @@ open class SearchHistory: ObjectBase {
 	public var deviceId: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(filter: String) {
+		self.dict["filter"] = filter
+	}
+	
+	public func setMultiRequestToken(language: String) {
+		self.dict["language"] = language
+	}
+	
+	public func setMultiRequestToken(createdAt: String) {
+		self.dict["createdAt"] = createdAt
+	}
+	
+	public func setMultiRequestToken(service: String) {
+		self.dict["service"] = service
+	}
+	
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
+	public func setMultiRequestToken(deviceId: String) {
+		self.dict["deviceId"] = deviceId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

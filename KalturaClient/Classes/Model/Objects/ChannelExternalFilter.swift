@@ -35,6 +35,27 @@
 
 open class ChannelExternalFilter: AssetFilter {
 
+	public class ChannelExternalFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var idEqual: BaseTokenizedObject {
+			get {
+				return self.append("idEqual") 
+			}
+		}
+		
+		public var utcOffsetEqual: BaseTokenizedObject {
+			get {
+				return self.append("utcOffsetEqual") 
+			}
+		}
+		
+		public var freeText: BaseTokenizedObject {
+			get {
+				return self.append("freeText") 
+			}
+		}
+	}
+
 	/**  External Channel Id.  */
 	public var idEqual: Int? = nil
 	/**  UtcOffsetEqual  */
@@ -43,6 +64,18 @@ open class ChannelExternalFilter: AssetFilter {
 	public var freeText: String? = nil
 
 
+	public func setMultiRequestToken(idEqual: String) {
+		self.dict["idEqual"] = idEqual
+	}
+	
+	public func setMultiRequestToken(utcOffsetEqual: String) {
+		self.dict["utcOffsetEqual"] = utcOffsetEqual
+	}
+	
+	public func setMultiRequestToken(freeText: String) {
+		self.dict["freeText"] = freeText
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

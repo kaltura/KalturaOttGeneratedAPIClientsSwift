@@ -35,6 +35,33 @@
 
 open class PlaybackContextOptions: ObjectBase {
 
+	public class PlaybackContextOptionsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var mediaProtocol: BaseTokenizedObject {
+			get {
+				return self.append("mediaProtocol") 
+			}
+		}
+		
+		public var streamerType: BaseTokenizedObject {
+			get {
+				return self.append("streamerType") 
+			}
+		}
+		
+		public var assetFileIds: BaseTokenizedObject {
+			get {
+				return self.append("assetFileIds") 
+			}
+		}
+		
+		public var context: BaseTokenizedObject {
+			get {
+				return self.append("context") 
+			}
+		}
+	}
+
 	/**  Protocol of the specific media object (http / https).  */
 	public var mediaProtocol: String? = nil
 	/**  Playback streamer type: applehttp, mpegdash, url.  */
@@ -45,6 +72,22 @@ open class PlaybackContextOptions: ObjectBase {
 	public var context: PlaybackContextType? = nil
 
 
+	public func setMultiRequestToken(mediaProtocol: String) {
+		self.dict["mediaProtocol"] = mediaProtocol
+	}
+	
+	public func setMultiRequestToken(streamerType: String) {
+		self.dict["streamerType"] = streamerType
+	}
+	
+	public func setMultiRequestToken(assetFileIds: String) {
+		self.dict["assetFileIds"] = assetFileIds
+	}
+	
+	public func setMultiRequestToken(context: String) {
+		self.dict["context"] = context
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

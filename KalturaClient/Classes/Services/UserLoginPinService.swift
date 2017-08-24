@@ -35,44 +35,80 @@
 
 public final class UserLoginPinService{
 
-	public static func add() -> RequestBuilder<UserLoginPin> {
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var secret: BaseTokenizedObject {
+			get {
+				return self.append("secret") 
+			}
+		}
+	}
+
+	public static func add() -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
 		return add(secret: nil)
 	}
 
 	/**  Generate a time and usage expiry login-PIN that can allow a single login per
 	  PIN. If an active login-PIN already exists. Calling this API again for same user
 	  will add another login-PIN  */
-	public static func add(secret: String?) -> RequestBuilder<UserLoginPin> {
-		let request: RequestBuilder<UserLoginPin> = RequestBuilder<UserLoginPin>(service: "userloginpin", action: "add")
+	public static func add(secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
+		let request: RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> = RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer>(service: "userloginpin", action: "add")
 			.setBody(key: "secret", value: secret)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var pinCode: BaseTokenizedObject {
+			get {
+				return self.append("pinCode") 
+			}
+		}
+	}
+
 	/**  Immediately deletes a given pre set login pin code for the user.  */
-	public static func delete(pinCode: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "userloginpin", action: "delete")
+	public static func delete(pinCode: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userloginpin", action: "delete")
 			.setBody(key: "pinCode", value: pinCode)
 
 		return request
 	}
 
+	public class DeleteAllTokenizer: ClientTokenizer  {
+	}
+
 	/**  Immediately expire all active login-PINs for a user  */
-	public static func deleteAll() -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "userloginpin", action: "deleteAll")
+	public static func deleteAll() -> RequestBuilder<Bool, BaseTokenizedObject, DeleteAllTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteAllTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteAllTokenizer>(service: "userloginpin", action: "deleteAll")
 
 		return request
 	}
 
-	public static func update(pinCode: String) -> RequestBuilder<UserLoginPin> {
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var pinCode: BaseTokenizedObject {
+			get {
+				return self.append("pinCode") 
+			}
+		}
+		
+		public var secret: BaseTokenizedObject {
+			get {
+				return self.append("secret") 
+			}
+		}
+	}
+
+	public static func update(pinCode: String) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
 		return update(pinCode: pinCode, secret: nil)
 	}
 
 	/**  Set a time and usage expiry login-PIN that can allow a single login per PIN. If
 	  an active login-PIN already exists. Calling this API again for same user will
 	  add another login-PIN  */
-	public static func update(pinCode: String, secret: String?) -> RequestBuilder<UserLoginPin> {
-		let request: RequestBuilder<UserLoginPin> = RequestBuilder<UserLoginPin>(service: "userloginpin", action: "update")
+	public static func update(pinCode: String, secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> = RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer>(service: "userloginpin", action: "update")
 			.setBody(key: "pinCode", value: pinCode)
 			.setBody(key: "secret", value: secret)
 

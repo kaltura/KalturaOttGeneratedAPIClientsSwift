@@ -35,6 +35,57 @@
 
 open class Announcement: ObjectBase {
 
+	public class AnnouncementTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var message: BaseTokenizedObject {
+			get {
+				return self.append("message") 
+			}
+		}
+		
+		public var enabled: BaseTokenizedObject {
+			get {
+				return self.append("enabled") 
+			}
+		}
+		
+		public var startTime: BaseTokenizedObject {
+			get {
+				return self.append("startTime") 
+			}
+		}
+		
+		public var timezone: BaseTokenizedObject {
+			get {
+				return self.append("timezone") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var recipients: BaseTokenizedObject {
+			get {
+				return self.append("recipients") 
+			}
+		}
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Announcement name  */
 	public var name: String? = nil
 	/**  Announcement message  */
@@ -53,6 +104,38 @@ open class Announcement: ObjectBase {
 	public var id: Int? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(message: String) {
+		self.dict["message"] = message
+	}
+	
+	public func setMultiRequestToken(enabled: String) {
+		self.dict["enabled"] = enabled
+	}
+	
+	public func setMultiRequestToken(startTime: String) {
+		self.dict["startTime"] = startTime
+	}
+	
+	public func setMultiRequestToken(timezone: String) {
+		self.dict["timezone"] = timezone
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(recipients: String) {
+		self.dict["recipients"] = recipients
+	}
+	
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

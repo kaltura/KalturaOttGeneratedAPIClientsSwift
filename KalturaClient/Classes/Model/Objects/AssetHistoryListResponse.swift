@@ -36,6 +36,15 @@
 /**  Watch history asset wrapper  */
 open class AssetHistoryListResponse: ListResponse {
 
+	public class AssetHistoryListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<AssetHistory.AssetHistoryTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetHistory.AssetHistoryTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  WatchHistoryAssets Models  */
 	public var objects: Array<AssetHistory>? = nil
 

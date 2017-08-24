@@ -36,6 +36,15 @@
 /**  Favorite list  */
 open class FavoriteListResponse: ListResponse {
 
+	public class FavoriteListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Favorite.FavoriteTokenizer> {
+			get {
+				return ArrayTokenizedObject<Favorite.FavoriteTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of favorites  */
 	public var objects: Array<Favorite>? = nil
 

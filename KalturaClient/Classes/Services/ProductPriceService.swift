@@ -35,11 +35,20 @@
 
 public final class ProductPriceService{
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ProductPriceFilter.ProductPriceFilterTokenizer {
+			get {
+				return ProductPriceFilter.ProductPriceFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Returns a price and a purchase status for each subscription or/and media file,
 	  for a given user (if passed) and with the consideration of a coupon code (if
 	  passed).  */
-	public static func list(filter: ProductPriceFilter) -> RequestBuilder<ProductPriceListResponse> {
-		let request: RequestBuilder<ProductPriceListResponse> = RequestBuilder<ProductPriceListResponse>(service: "productprice", action: "list")
+	public static func list(filter: ProductPriceFilter) -> RequestBuilder<ProductPriceListResponse, ProductPriceListResponse.ProductPriceListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ProductPriceListResponse, ProductPriceListResponse.ProductPriceListResponseTokenizer, ListTokenizer> = RequestBuilder<ProductPriceListResponse, ProductPriceListResponse.ProductPriceListResponseTokenizer, ListTokenizer>(service: "productprice", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

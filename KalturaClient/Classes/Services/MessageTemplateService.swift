@@ -35,17 +35,41 @@
 
 public final class MessageTemplateService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var messageType: BaseTokenizedObject {
+			get {
+				return self.append("messageType") 
+			}
+		}
+	}
+
 	/**  Retrieve a message template used in push notifications and inbox  */
-	public static func get(messageType: MessageTemplateType) -> RequestBuilder<MessageTemplate> {
-		let request: RequestBuilder<MessageTemplate> = RequestBuilder<MessageTemplate>(service: "messagetemplate", action: "get")
+	public static func get(messageType: MessageTemplateType) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> {
+		let request: RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> = RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer>(service: "messagetemplate", action: "get")
 			.setBody(key: "messageType", value: messageType.rawValue)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var messageType: BaseTokenizedObject {
+			get {
+				return self.append("messageType") 
+			}
+		}
+		
+		public var template: MessageTemplate.MessageTemplateTokenizer {
+			get {
+				return MessageTemplate.MessageTemplateTokenizer(self.append("template")) 
+			}
+		}
+	}
+
 	/**  Set the account’s push notifications and inbox messages templates  */
-	public static func update(messageType: MessageTemplateType, template: MessageTemplate) -> RequestBuilder<MessageTemplate> {
-		let request: RequestBuilder<MessageTemplate> = RequestBuilder<MessageTemplate>(service: "messagetemplate", action: "update")
+	public static func update(messageType: MessageTemplateType, template: MessageTemplate) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> = RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer>(service: "messagetemplate", action: "update")
 			.setBody(key: "messageType", value: messageType.rawValue)
 			.setBody(key: "template", value: template)
 

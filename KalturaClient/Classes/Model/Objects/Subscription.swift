@@ -36,6 +36,189 @@
 /**  Subscription details  */
 open class Subscription: ObjectBase {
 
+	public class SubscriptionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var channels: ArrayTokenizedObject<BaseChannel.BaseChannelTokenizer> {
+			get {
+				return ArrayTokenizedObject<BaseChannel.BaseChannelTokenizer>(self.append("channels"))
+			} 
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+		
+		public var fileTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("fileTypes"))
+			} 
+		}
+		
+		public var isRenewable: BaseTokenizedObject {
+			get {
+				return self.append("isRenewable") 
+			}
+		}
+		
+		public var renewalsNumber: BaseTokenizedObject {
+			get {
+				return self.append("renewalsNumber") 
+			}
+		}
+		
+		public var isInfiniteRenewal: BaseTokenizedObject {
+			get {
+				return self.append("isInfiniteRenewal") 
+			}
+		}
+		
+		public var price: PriceDetails.PriceDetailsTokenizer {
+			get {
+				return PriceDetails.PriceDetailsTokenizer(self.append("price")) 
+			}
+		}
+		
+		public var discountModule: DiscountModule.DiscountModuleTokenizer {
+			get {
+				return DiscountModule.DiscountModuleTokenizer(self.append("discountModule")) 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var multilingualName: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualName")) 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var multilingualDescription: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualDescription")) 
+			}
+		}
+		
+		public var mediaId: BaseTokenizedObject {
+			get {
+				return self.append("mediaId") 
+			}
+		}
+		
+		public var prorityInOrder: BaseTokenizedObject {
+			get {
+				return self.append("prorityInOrder") 
+			}
+		}
+		
+		public var pricePlanIds: BaseTokenizedObject {
+			get {
+				return self.append("pricePlanIds") 
+			}
+		}
+		
+		public var previewModule: PreviewModule.PreviewModuleTokenizer {
+			get {
+				return PreviewModule.PreviewModuleTokenizer(self.append("previewModule")) 
+			}
+		}
+		
+		public var householdLimitationsId: BaseTokenizedObject {
+			get {
+				return self.append("householdLimitationsId") 
+			}
+		}
+		
+		public var gracePeriodMinutes: BaseTokenizedObject {
+			get {
+				return self.append("gracePeriodMinutes") 
+			}
+		}
+		
+		public var premiumServices: ArrayTokenizedObject<PremiumService.PremiumServiceTokenizer> {
+			get {
+				return ArrayTokenizedObject<PremiumService.PremiumServiceTokenizer>(self.append("premiumServices"))
+			} 
+		}
+		
+		public var maxViewsNumber: BaseTokenizedObject {
+			get {
+				return self.append("maxViewsNumber") 
+			}
+		}
+		
+		public var viewLifeCycle: BaseTokenizedObject {
+			get {
+				return self.append("viewLifeCycle") 
+			}
+		}
+		
+		public var waiverPeriod: BaseTokenizedObject {
+			get {
+				return self.append("waiverPeriod") 
+			}
+		}
+		
+		public var isWaiverEnabled: BaseTokenizedObject {
+			get {
+				return self.append("isWaiverEnabled") 
+			}
+		}
+		
+		public var userTypes: ArrayTokenizedObject<OTTUserType.OTTUserTypeTokenizer> {
+			get {
+				return ArrayTokenizedObject<OTTUserType.OTTUserTypeTokenizer>(self.append("userTypes"))
+			} 
+		}
+		
+		public var couponsGroups: ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer> {
+			get {
+				return ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer>(self.append("couponsGroups"))
+			} 
+		}
+		
+		public var productCodes: ArrayTokenizedObject<ProductCode.ProductCodeTokenizer> {
+			get {
+				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
+			} 
+		}
+		
+		public var dependencyType: BaseTokenizedObject {
+			get {
+				return self.append("dependencyType") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+	}
+
 	/**  Subscription identifier  */
 	public var id: String? = nil
 	/**  A list of channels associated with this subscription  */
@@ -101,6 +284,82 @@ open class Subscription: ObjectBase {
 	public var externalId: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(isRenewable: String) {
+		self.dict["isRenewable"] = isRenewable
+	}
+	
+	public func setMultiRequestToken(renewalsNumber: String) {
+		self.dict["renewalsNumber"] = renewalsNumber
+	}
+	
+	public func setMultiRequestToken(isInfiniteRenewal: String) {
+		self.dict["isInfiniteRenewal"] = isInfiniteRenewal
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(mediaId: String) {
+		self.dict["mediaId"] = mediaId
+	}
+	
+	public func setMultiRequestToken(prorityInOrder: String) {
+		self.dict["prorityInOrder"] = prorityInOrder
+	}
+	
+	public func setMultiRequestToken(pricePlanIds: String) {
+		self.dict["pricePlanIds"] = pricePlanIds
+	}
+	
+	public func setMultiRequestToken(householdLimitationsId: String) {
+		self.dict["householdLimitationsId"] = householdLimitationsId
+	}
+	
+	public func setMultiRequestToken(gracePeriodMinutes: String) {
+		self.dict["gracePeriodMinutes"] = gracePeriodMinutes
+	}
+	
+	public func setMultiRequestToken(maxViewsNumber: String) {
+		self.dict["maxViewsNumber"] = maxViewsNumber
+	}
+	
+	public func setMultiRequestToken(viewLifeCycle: String) {
+		self.dict["viewLifeCycle"] = viewLifeCycle
+	}
+	
+	public func setMultiRequestToken(waiverPeriod: String) {
+		self.dict["waiverPeriod"] = waiverPeriod
+	}
+	
+	public func setMultiRequestToken(isWaiverEnabled: String) {
+		self.dict["isWaiverEnabled"] = isWaiverEnabled
+	}
+	
+	public func setMultiRequestToken(dependencyType: String) {
+		self.dict["dependencyType"] = dependencyType
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

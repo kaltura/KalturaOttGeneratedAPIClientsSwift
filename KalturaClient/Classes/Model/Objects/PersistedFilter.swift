@@ -35,11 +35,24 @@
 
 open class PersistedFilter: Filter {
 
+	public class PersistedFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+	}
+
 	/**  Name for the presisted filter. If empty, no action will be done. If has value,
 	  the filter will be saved and persisted in user&amp;#39;s search history.  */
 	public var name: String? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

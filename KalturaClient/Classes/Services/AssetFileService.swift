@@ -35,21 +35,75 @@
 
 public final class AssetFileService{
 
+	public class GetContextTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var contextType: BaseTokenizedObject {
+			get {
+				return self.append("contextType") 
+			}
+		}
+	}
+
 	/**  get KalturaAssetFileContext  */
-	public static func getContext(id: String, contextType: ContextType) -> RequestBuilder<AssetFileContext> {
-		let request: RequestBuilder<AssetFileContext> = RequestBuilder<AssetFileContext>(service: "assetfile", action: "getContext")
+	public static func getContext(id: String, contextType: ContextType) -> RequestBuilder<AssetFileContext, AssetFileContext.AssetFileContextTokenizer, GetContextTokenizer> {
+		let request: RequestBuilder<AssetFileContext, AssetFileContext.AssetFileContextTokenizer, GetContextTokenizer> = RequestBuilder<AssetFileContext, AssetFileContext.AssetFileContextTokenizer, GetContextTokenizer>(service: "assetfile", action: "getContext")
 			.setBody(key: "id", value: id)
 			.setBody(key: "contextType", value: contextType.rawValue)
 
 		return request
 	}
 
-	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType) -> RequestBuilder<Void> {
+	public class PlayManifestTokenizer: ClientTokenizer  {
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var assetType: BaseTokenizedObject {
+			get {
+				return self.append("assetType") 
+			}
+		}
+		
+		public var assetFileId: BaseTokenizedObject {
+			get {
+				return self.append("assetFileId") 
+			}
+		}
+		
+		public var contextType: BaseTokenizedObject {
+			get {
+				return self.append("contextType") 
+			}
+		}
+		
+		public override var ks: BaseTokenizedObject {
+			get {
+				return self.append("ks") 
+			}
+		}
+	}
+
+	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType) -> NullRequestBuilder {
 		return playManifest(partnerId: partnerId, assetId: assetId, assetType: assetType, assetFileId: assetFileId, contextType: contextType, ks: nil)
 	}
 
 	/**  Redirects to play manifest  */
-	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?) -> RequestBuilder<Void> {
+	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?) -> NullRequestBuilder {
 		let request: NullRequestBuilder = NullRequestBuilder(service: "assetfile", action: "playManifest")
 			.setBody(key: "partnerId", value: partnerId)
 			.setBody(key: "assetId", value: assetId)

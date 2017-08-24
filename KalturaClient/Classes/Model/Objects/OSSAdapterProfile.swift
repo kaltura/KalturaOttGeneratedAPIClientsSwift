@@ -36,6 +36,39 @@
 /**  OSS Adapter  */
 open class OSSAdapterProfile: OSSAdapterBaseProfile {
 
+	public class OSSAdapterProfileTokenizer: OSSAdapterBaseProfile.OSSAdapterBaseProfileTokenizer {
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var adapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("adapterUrl") 
+			}
+		}
+		
+		public var ossAdapterSettings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("ossAdapterSettings"))
+			}
+		}
+		
+		public var externalIdentifier: BaseTokenizedObject {
+			get {
+				return self.append("externalIdentifier") 
+			}
+		}
+		
+		public var sharedSecret: BaseTokenizedObject {
+			get {
+				return self.append("sharedSecret") 
+			}
+		}
+	}
+
 	/**  OSS adapter active status  */
 	public var isActive: Bool? = nil
 	/**  OSS adapter adapter URL  */
@@ -48,6 +81,22 @@ open class OSSAdapterProfile: OSSAdapterBaseProfile {
 	public var sharedSecret: String? = nil
 
 
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(adapterUrl: String) {
+		self.dict["adapterUrl"] = adapterUrl
+	}
+	
+	public func setMultiRequestToken(externalIdentifier: String) {
+		self.dict["externalIdentifier"] = externalIdentifier
+	}
+	
+	public func setMultiRequestToken(sharedSecret: String) {
+		self.dict["sharedSecret"] = sharedSecret
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

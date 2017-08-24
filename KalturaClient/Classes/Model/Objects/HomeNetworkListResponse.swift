@@ -36,6 +36,15 @@
 /**  Home networks  */
 open class HomeNetworkListResponse: ListResponse {
 
+	public class HomeNetworkListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HomeNetwork.HomeNetworkTokenizer> {
+			get {
+				return ArrayTokenizedObject<HomeNetwork.HomeNetworkTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Home networks  */
 	public var objects: Array<HomeNetwork>? = nil
 

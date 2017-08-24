@@ -36,6 +36,9 @@
 /**  Houshold premium service  */
 open class HouseholdPremiumService: PremiumService {
 
+	public class HouseholdPremiumServiceTokenizer: PremiumService.PremiumServiceTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

@@ -36,6 +36,63 @@
 /**  Media-asset info  */
 open class MediaAsset: Asset {
 
+	public class MediaAssetTokenizer: Asset.AssetTokenizer {
+		
+		public var externalIds: BaseTokenizedObject {
+			get {
+				return self.append("externalIds") 
+			}
+		}
+		
+		public var catchUpBuffer: BaseTokenizedObject {
+			get {
+				return self.append("catchUpBuffer") 
+			}
+		}
+		
+		public var trickPlayBuffer: BaseTokenizedObject {
+			get {
+				return self.append("trickPlayBuffer") 
+			}
+		}
+		
+		public var enableRecordingPlaybackNonEntitledChannel: BaseTokenizedObject {
+			get {
+				return self.append("enableRecordingPlaybackNonEntitledChannel") 
+			}
+		}
+		
+		public var typeDescription: BaseTokenizedObject {
+			get {
+				return self.append("typeDescription") 
+			}
+		}
+		
+		public var entryId: BaseTokenizedObject {
+			get {
+				return self.append("entryId") 
+			}
+		}
+		
+		public var deviceRule: BaseTokenizedObject {
+			get {
+				return self.append("deviceRule") 
+			}
+		}
+		
+		public var geoBlockRule: BaseTokenizedObject {
+			get {
+				return self.append("geoBlockRule") 
+			}
+		}
+		
+		public var watchPermissionRule: BaseTokenizedObject {
+			get {
+				return self.append("watchPermissionRule") 
+			}
+		}
+	}
+
 	/**  External identifiers  */
 	public var externalIds: String? = nil
 	/**  Catch-up buffer  */
@@ -56,6 +113,42 @@ open class MediaAsset: Asset {
 	public var watchPermissionRule: String? = nil
 
 
+	public func setMultiRequestToken(externalIds: String) {
+		self.dict["externalIds"] = externalIds
+	}
+	
+	public func setMultiRequestToken(catchUpBuffer: String) {
+		self.dict["catchUpBuffer"] = catchUpBuffer
+	}
+	
+	public func setMultiRequestToken(trickPlayBuffer: String) {
+		self.dict["trickPlayBuffer"] = trickPlayBuffer
+	}
+	
+	public func setMultiRequestToken(enableRecordingPlaybackNonEntitledChannel: String) {
+		self.dict["enableRecordingPlaybackNonEntitledChannel"] = enableRecordingPlaybackNonEntitledChannel
+	}
+	
+	public func setMultiRequestToken(typeDescription: String) {
+		self.dict["typeDescription"] = typeDescription
+	}
+	
+	public func setMultiRequestToken(entryId: String) {
+		self.dict["entryId"] = entryId
+	}
+	
+	public func setMultiRequestToken(deviceRule: String) {
+		self.dict["deviceRule"] = deviceRule
+	}
+	
+	public func setMultiRequestToken(geoBlockRule: String) {
+		self.dict["geoBlockRule"] = geoBlockRule
+	}
+	
+	public func setMultiRequestToken(watchPermissionRule: String) {
+		self.dict["watchPermissionRule"] = watchPermissionRule
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

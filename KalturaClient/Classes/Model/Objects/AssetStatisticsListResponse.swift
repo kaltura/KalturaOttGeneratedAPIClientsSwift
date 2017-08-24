@@ -36,6 +36,15 @@
 /**  List of assets statistics  */
 open class AssetStatisticsListResponse: ListResponse {
 
+	public class AssetStatisticsListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<AssetStatistics.AssetStatisticsTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetStatistics.AssetStatisticsTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Assets  */
 	public var objects: Array<AssetStatistics>? = nil
 

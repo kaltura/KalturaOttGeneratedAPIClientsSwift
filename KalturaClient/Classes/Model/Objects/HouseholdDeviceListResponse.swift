@@ -35,6 +35,15 @@
 
 open class HouseholdDeviceListResponse: ListResponse {
 
+	public class HouseholdDeviceListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HouseholdDevice.HouseholdDeviceTokenizer> {
+			get {
+				return ArrayTokenizedObject<HouseholdDevice.HouseholdDeviceTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Household devices  */
 	public var objects: Array<HouseholdDevice>? = nil
 

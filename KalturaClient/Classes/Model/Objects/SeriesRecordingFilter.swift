@@ -36,6 +36,9 @@
 /**  Filtering recordings  */
 open class SeriesRecordingFilter: Filter {
 
+	public class SeriesRecordingFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

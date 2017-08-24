@@ -35,6 +35,27 @@
 
 open class SocialActionFilter: Filter {
 
+	public class SocialActionFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdIn: BaseTokenizedObject {
+			get {
+				return self.append("assetIdIn") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+		
+		public var actionTypeIn: BaseTokenizedObject {
+			get {
+				return self.append("actionTypeIn") 
+			}
+		}
+	}
+
 	/**  Comma separated list of asset identifiers.  */
 	public var assetIdIn: String? = nil
 	/**  Asset Type  */
@@ -43,6 +64,18 @@ open class SocialActionFilter: Filter {
 	public var actionTypeIn: String? = nil
 
 
+	public func setMultiRequestToken(assetIdIn: String) {
+		self.dict["assetIdIn"] = assetIdIn
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
+	public func setMultiRequestToken(actionTypeIn: String) {
+		self.dict["actionTypeIn"] = actionTypeIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

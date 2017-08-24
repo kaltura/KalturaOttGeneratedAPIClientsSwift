@@ -35,6 +35,45 @@
 
 open class Purchase: PurchaseBase {
 
+	public class PurchaseTokenizer: PurchaseBase.PurchaseBaseTokenizer {
+		
+		public var currency: BaseTokenizedObject {
+			get {
+				return self.append("currency") 
+			}
+		}
+		
+		public var price: BaseTokenizedObject {
+			get {
+				return self.append("price") 
+			}
+		}
+		
+		public var paymentMethodId: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethodId") 
+			}
+		}
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+		
+		public var coupon: BaseTokenizedObject {
+			get {
+				return self.append("coupon") 
+			}
+		}
+		
+		public var adapterData: BaseTokenizedObject {
+			get {
+				return self.append("adapterData") 
+			}
+		}
+	}
+
 	/**  Identifier for paying currency, according to ISO 4217  */
 	public var currency: String? = nil
 	/**  Net sum to charge – as a one-time transaction. Price must match the previously
@@ -52,6 +91,30 @@ open class Purchase: PurchaseBase {
 	public var adapterData: String? = nil
 
 
+	public func setMultiRequestToken(currency: String) {
+		self.dict["currency"] = currency
+	}
+	
+	public func setMultiRequestToken(price: String) {
+		self.dict["price"] = price
+	}
+	
+	public func setMultiRequestToken(paymentMethodId: String) {
+		self.dict["paymentMethodId"] = paymentMethodId
+	}
+	
+	public func setMultiRequestToken(paymentGatewayId: String) {
+		self.dict["paymentGatewayId"] = paymentGatewayId
+	}
+	
+	public func setMultiRequestToken(coupon: String) {
+		self.dict["coupon"] = coupon
+	}
+	
+	public func setMultiRequestToken(adapterData: String) {
+		self.dict["adapterData"] = adapterData
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

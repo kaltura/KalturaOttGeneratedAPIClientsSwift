@@ -36,6 +36,39 @@
 /**  Define client request optional configurations  */
 open class RequestConfiguration: ObjectBase {
 
+	public class RequestConfigurationTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var language: BaseTokenizedObject {
+			get {
+				return self.append("language") 
+			}
+		}
+		
+		public var ks: BaseTokenizedObject {
+			get {
+				return self.append("ks") 
+			}
+		}
+		
+		public var responseProfile: BaseResponseProfile.BaseResponseProfileTokenizer {
+			get {
+				return BaseResponseProfile.BaseResponseProfileTokenizer(self.append("responseProfile")) 
+			}
+		}
+	}
+
 	/**  Impersonated partner id  */
 	public var partnerId: Int? = nil
 	/**  Impersonated user id  */
@@ -48,6 +81,22 @@ open class RequestConfiguration: ObjectBase {
 	public var responseProfile: BaseResponseProfile? = nil
 
 
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(language: String) {
+		self.dict["language"] = language
+	}
+	
+	public func setMultiRequestToken(ks: String) {
+		self.dict["ks"] = ks
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,15 @@
 /**  Configurations group tags info wrapper  */
 open class ConfigurationGroupTagListResponse: ListResponse {
 
+	public class ConfigurationGroupTagListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ConfigurationGroupTag.ConfigurationGroupTagTokenizer> {
+			get {
+				return ArrayTokenizedObject<ConfigurationGroupTag.ConfigurationGroupTagTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Configuration group tags  */
 	public var objects: Array<ConfigurationGroupTag>? = nil
 

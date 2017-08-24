@@ -35,38 +35,71 @@
 
 public final class SearchHistoryService{
 
-	public static func clean() -> RequestBuilder<Bool> {
+	public class CleanTokenizer: ClientTokenizer  {
+		
+		public var filter: SearchHistoryFilter.SearchHistoryFilterTokenizer {
+			get {
+				return SearchHistoryFilter.SearchHistoryFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func clean() -> RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer> {
 		return clean(filter: nil)
 	}
 
 	/**  Clean the user’s search history  */
-	public static func clean(filter: SearchHistoryFilter?) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "searchhistory", action: "clean")
+	public static func clean(filter: SearchHistoryFilter?) -> RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer>(service: "searchhistory", action: "clean")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete a specific search history.              Possible error code: 2032 -
 	  ItemNotFound  */
-	public static func delete(id: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "searchhistory", action: "delete")
+	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "searchhistory", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<SearchHistoryListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: SearchHistoryFilter.SearchHistoryFilterTokenizer {
+			get {
+				return SearchHistoryFilter.SearchHistoryFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: SearchHistoryFilter?) -> RequestBuilder<SearchHistoryListResponse> {
+	public static func list(filter: SearchHistoryFilter?) -> RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Get user&amp;#39;s last search requests  */
-	public static func list(filter: SearchHistoryFilter?, pager: FilterPager?) -> RequestBuilder<SearchHistoryListResponse> {
-		let request: RequestBuilder<SearchHistoryListResponse> = RequestBuilder<SearchHistoryListResponse>(service: "searchhistory", action: "list")
+	public static func list(filter: SearchHistoryFilter?, pager: FilterPager?) -> RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer> = RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer>(service: "searchhistory", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

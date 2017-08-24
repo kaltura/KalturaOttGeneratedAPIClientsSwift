@@ -36,10 +36,23 @@
 /**  A representation to return an array of values  */
 open class Value: ObjectBase {
 
+	public class ValueTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+	}
+
 	/**  Description  */
 	public var description: String? = nil
 
 
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

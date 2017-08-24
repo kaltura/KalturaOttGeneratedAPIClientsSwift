@@ -36,6 +36,15 @@
 /**  Household users list  */
 open class HouseholdUserListResponse: ListResponse {
 
+	public class HouseholdUserListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HouseholdUser.HouseholdUserTokenizer> {
+			get {
+				return ArrayTokenizedObject<HouseholdUser.HouseholdUserTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Household users  */
 	public var objects: Array<HouseholdUser>? = nil
 

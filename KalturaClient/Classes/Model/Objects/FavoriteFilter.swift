@@ -36,12 +36,35 @@
 /**  Favorite request filter  */
 open class FavoriteFilter: Filter {
 
+	public class FavoriteFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var mediaTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("mediaTypeEqual") 
+			}
+		}
+		
+		public var mediaIdIn: BaseTokenizedObject {
+			get {
+				return self.append("mediaIdIn") 
+			}
+		}
+	}
+
 	/**  Media type to filter by the favorite assets  */
 	public var mediaTypeEqual: Int? = nil
 	/**  Media identifiers from which to filter the favorite assets  */
 	public var mediaIdIn: String? = nil
 
 
+	public func setMultiRequestToken(mediaTypeEqual: String) {
+		self.dict["mediaTypeEqual"] = mediaTypeEqual
+	}
+	
+	public func setMultiRequestToken(mediaIdIn: String) {
+		self.dict["mediaIdIn"] = mediaIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

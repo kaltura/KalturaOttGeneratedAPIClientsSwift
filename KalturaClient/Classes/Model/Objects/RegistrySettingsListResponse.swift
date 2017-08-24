@@ -36,6 +36,15 @@
 /**  List of registry settings.  */
 open class RegistrySettingsListResponse: ListResponse {
 
+	public class RegistrySettingsListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<RegistrySettings.RegistrySettingsTokenizer> {
+			get {
+				return ArrayTokenizedObject<RegistrySettings.RegistrySettingsTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Registry settings list  */
 	public var objects: Array<RegistrySettings>? = nil
 

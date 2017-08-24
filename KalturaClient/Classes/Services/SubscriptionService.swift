@@ -35,17 +35,41 @@
 
 public final class SubscriptionService{
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: SubscriptionFilter.SubscriptionFilterTokenizer {
+			get {
+				return SubscriptionFilter.SubscriptionFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
-	public static func list(filter: SubscriptionFilter) -> RequestBuilder<SubscriptionListResponse> {
-		let request: RequestBuilder<SubscriptionListResponse> = RequestBuilder<SubscriptionListResponse>(service: "subscription", action: "list")
+	public static func list(filter: SubscriptionFilter) -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> = RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer>(service: "subscription", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
+	public class ValidateCouponTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+	}
+
 	/**  Returns information about a coupon for subscription  */
-	public static func validateCoupon(id: Int, code: String) -> RequestBuilder<Coupon> {
-		let request: RequestBuilder<Coupon> = RequestBuilder<Coupon>(service: "subscription", action: "validateCoupon")
+	public static func validateCoupon(id: Int, code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer> {
+		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer>(service: "subscription", action: "validateCoupon")
 			.setBody(key: "id", value: id)
 			.setBody(key: "code", value: code)
 

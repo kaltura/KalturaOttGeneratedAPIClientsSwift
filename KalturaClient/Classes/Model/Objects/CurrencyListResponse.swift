@@ -35,6 +35,15 @@
 
 open class CurrencyListResponse: ListResponse {
 
+	public class CurrencyListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Currency.CurrencyTokenizer> {
+			get {
+				return ArrayTokenizedObject<Currency.CurrencyTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Currencies  */
 	public var objects: Array<Currency>? = nil
 

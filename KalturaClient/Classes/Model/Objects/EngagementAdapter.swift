@@ -36,6 +36,39 @@
 /**  Engagement Adapter  */
 open class EngagementAdapter: EngagementAdapterBase {
 
+	public class EngagementAdapterTokenizer: EngagementAdapterBase.EngagementAdapterBaseTokenizer {
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var adapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("adapterUrl") 
+			}
+		}
+		
+		public var providerUrl: BaseTokenizedObject {
+			get {
+				return self.append("providerUrl") 
+			}
+		}
+		
+		public var engagementAdapterSettings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("engagementAdapterSettings"))
+			}
+		}
+		
+		public var sharedSecret: BaseTokenizedObject {
+			get {
+				return self.append("sharedSecret") 
+			}
+		}
+	}
+
 	/**  Engagement adapter active status  */
 	public var isActive: Bool? = nil
 	/**  Engagement adapter adapter URL  */
@@ -48,6 +81,22 @@ open class EngagementAdapter: EngagementAdapterBase {
 	public var sharedSecret: String? = nil
 
 
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(adapterUrl: String) {
+		self.dict["adapterUrl"] = adapterUrl
+	}
+	
+	public func setMultiRequestToken(providerUrl: String) {
+		self.dict["providerUrl"] = providerUrl
+	}
+	
+	public func setMultiRequestToken(sharedSecret: String) {
+		self.dict["sharedSecret"] = sharedSecret
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,81 @@
 /**  Parental rule  */
 open class ParentalRule: ObjectBase {
 
+	public class ParentalRuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var order: BaseTokenizedObject {
+			get {
+				return self.append("order") 
+			}
+		}
+		
+		public var mediaTag: BaseTokenizedObject {
+			get {
+				return self.append("mediaTag") 
+			}
+		}
+		
+		public var epgTag: BaseTokenizedObject {
+			get {
+				return self.append("epgTag") 
+			}
+		}
+		
+		public var blockAnonymousAccess: BaseTokenizedObject {
+			get {
+				return self.append("blockAnonymousAccess") 
+			}
+		}
+		
+		public var ruleType: BaseTokenizedObject {
+			get {
+				return self.append("ruleType") 
+			}
+		}
+		
+		public var mediaTagValues: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("mediaTagValues"))
+			} 
+		}
+		
+		public var epgTagValues: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("epgTagValues"))
+			} 
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+		
+		public var origin: BaseTokenizedObject {
+			get {
+				return self.append("origin") 
+			}
+		}
+	}
+
 	/**  Unique parental rule identifier  */
 	public var id: Int64? = nil
 	/**  Rule display name  */
@@ -62,6 +137,46 @@ open class ParentalRule: ObjectBase {
 	public var origin: RuleLevel? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(order: String) {
+		self.dict["order"] = order
+	}
+	
+	public func setMultiRequestToken(mediaTag: String) {
+		self.dict["mediaTag"] = mediaTag
+	}
+	
+	public func setMultiRequestToken(epgTag: String) {
+		self.dict["epgTag"] = epgTag
+	}
+	
+	public func setMultiRequestToken(blockAnonymousAccess: String) {
+		self.dict["blockAnonymousAccess"] = blockAnonymousAccess
+	}
+	
+	public func setMultiRequestToken(ruleType: String) {
+		self.dict["ruleType"] = ruleType
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
+	public func setMultiRequestToken(origin: String) {
+		self.dict["origin"] = origin
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

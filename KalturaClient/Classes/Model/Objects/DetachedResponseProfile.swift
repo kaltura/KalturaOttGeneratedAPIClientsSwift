@@ -36,6 +36,27 @@
 /**  Define specific base profile response  */
 open class DetachedResponseProfile: BaseResponseProfile {
 
+	public class DetachedResponseProfileTokenizer: BaseResponseProfile.BaseResponseProfileTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var filter: RelatedObjectFilter.RelatedObjectFilterTokenizer {
+			get {
+				return RelatedObjectFilter.RelatedObjectFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var relatedProfiles: ArrayTokenizedObject<DetachedResponseProfile.DetachedResponseProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<DetachedResponseProfile.DetachedResponseProfileTokenizer>(self.append("relatedProfiles"))
+			} 
+		}
+	}
+
 	/**  name  */
 	public var name: String? = nil
 	/**  filter  */
@@ -44,6 +65,10 @@ open class DetachedResponseProfile: BaseResponseProfile {
 	public var relatedProfiles: Array<DetachedResponseProfile>? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

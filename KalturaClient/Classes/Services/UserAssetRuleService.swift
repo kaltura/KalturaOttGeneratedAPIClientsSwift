@@ -35,10 +35,19 @@
 
 public final class UserAssetRuleService{
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: UserAssetRuleFilter.UserAssetRuleFilterTokenizer {
+			get {
+				return UserAssetRuleFilter.UserAssetRuleFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Retrieve all the rules (parental, geo, device or user-type) that applies for
 	  this user and asset.  */
-	public static func list(filter: UserAssetRuleFilter) -> RequestBuilder<UserAssetRuleListResponse> {
-		let request: RequestBuilder<UserAssetRuleListResponse> = RequestBuilder<UserAssetRuleListResponse>(service: "userassetrule", action: "list")
+	public static func list(filter: UserAssetRuleFilter) -> RequestBuilder<UserAssetRuleListResponse, UserAssetRuleListResponse.UserAssetRuleListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<UserAssetRuleListResponse, UserAssetRuleListResponse.UserAssetRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<UserAssetRuleListResponse, UserAssetRuleListResponse.UserAssetRuleListResponseTokenizer, ListTokenizer>(service: "userassetrule", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

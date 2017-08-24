@@ -36,12 +36,35 @@
 /**  KalturaPpvEntitlement  */
 open class PpvEntitlement: Entitlement {
 
+	public class PpvEntitlementTokenizer: Entitlement.EntitlementTokenizer {
+		
+		public var mediaFileId: BaseTokenizedObject {
+			get {
+				return self.append("mediaFileId") 
+			}
+		}
+		
+		public var mediaId: BaseTokenizedObject {
+			get {
+				return self.append("mediaId") 
+			}
+		}
+	}
+
 	/**  Media file identifier  */
 	public var mediaFileId: Int? = nil
 	/**  Media identifier  */
 	public var mediaId: Int? = nil
 
 
+	public func setMultiRequestToken(mediaFileId: String) {
+		self.dict["mediaFileId"] = mediaFileId
+	}
+	
+	public func setMultiRequestToken(mediaId: String) {
+		self.dict["mediaId"] = mediaId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

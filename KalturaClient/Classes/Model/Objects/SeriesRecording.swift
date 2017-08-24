@@ -35,6 +35,63 @@
 
 open class SeriesRecording: ObjectBase {
 
+	public class SeriesRecordingTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var epgId: BaseTokenizedObject {
+			get {
+				return self.append("epgId") 
+			}
+		}
+		
+		public var channelId: BaseTokenizedObject {
+			get {
+				return self.append("channelId") 
+			}
+		}
+		
+		public var seriesId: BaseTokenizedObject {
+			get {
+				return self.append("seriesId") 
+			}
+		}
+		
+		public var seasonNumber: BaseTokenizedObject {
+			get {
+				return self.append("seasonNumber") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
+		
+		public var excludedSeasons: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("excludedSeasons"))
+			} 
+		}
+	}
+
 	/**  Kaltura unique ID representing the series recording identifier  */
 	public var id: Int64? = nil
 	/**  Kaltura EpgId  */
@@ -57,6 +114,38 @@ open class SeriesRecording: ObjectBase {
 	public var excludedSeasons: Array<IntegerValue>? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(epgId: String) {
+		self.dict["epgId"] = epgId
+	}
+	
+	public func setMultiRequestToken(channelId: String) {
+		self.dict["channelId"] = channelId
+	}
+	
+	public func setMultiRequestToken(seriesId: String) {
+		self.dict["seriesId"] = seriesId
+	}
+	
+	public func setMultiRequestToken(seasonNumber: String) {
+		self.dict["seasonNumber"] = seasonNumber
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

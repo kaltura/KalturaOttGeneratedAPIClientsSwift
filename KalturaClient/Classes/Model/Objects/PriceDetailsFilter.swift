@@ -35,10 +35,23 @@
 
 open class PriceDetailsFilter: Filter {
 
+	public class PriceDetailsFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+	}
+
 	/**  Comma separated price identifiers  */
 	public var idIn: String? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

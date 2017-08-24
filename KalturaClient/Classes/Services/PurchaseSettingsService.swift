@@ -35,18 +35,42 @@
 
 public final class PurchaseSettingsService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var by: BaseTokenizedObject {
+			get {
+				return self.append("by") 
+			}
+		}
+	}
+
 	/**  Retrieve the purchase settings.              Includes specification of where
 	  these settings were defined – account, household or user  */
-	public static func get(by: EntityReferenceBy) -> RequestBuilder<PurchaseSettings> {
-		let request: RequestBuilder<PurchaseSettings> = RequestBuilder<PurchaseSettings>(service: "purchasesettings", action: "get")
+	public static func get(by: EntityReferenceBy) -> RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, GetTokenizer> {
+		let request: RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, GetTokenizer> = RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, GetTokenizer>(service: "purchasesettings", action: "get")
 			.setBody(key: "by", value: by.rawValue)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var entityReference: BaseTokenizedObject {
+			get {
+				return self.append("entityReference") 
+			}
+		}
+		
+		public var settings: PurchaseSettings.PurchaseSettingsTokenizer {
+			get {
+				return PurchaseSettings.PurchaseSettingsTokenizer(self.append("settings")) 
+			}
+		}
+	}
+
 	/**  Set a purchase PIN for the household or user  */
-	public static func update(entityReference: EntityReferenceBy, settings: PurchaseSettings) -> RequestBuilder<PurchaseSettings> {
-		let request: RequestBuilder<PurchaseSettings> = RequestBuilder<PurchaseSettings>(service: "purchasesettings", action: "update")
+	public static func update(entityReference: EntityReferenceBy, settings: PurchaseSettings) -> RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, UpdateTokenizer> = RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, UpdateTokenizer>(service: "purchasesettings", action: "update")
 			.setBody(key: "entityReference", value: entityReference.rawValue)
 			.setBody(key: "settings", value: settings)
 

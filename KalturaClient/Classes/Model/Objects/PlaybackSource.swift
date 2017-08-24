@@ -35,6 +35,39 @@
 
 open class PlaybackSource: MediaFile {
 
+	public class PlaybackSourceTokenizer: MediaFile.MediaFileTokenizer {
+		
+		public var format: BaseTokenizedObject {
+			get {
+				return self.append("format") 
+			}
+		}
+		
+		public var protocols: BaseTokenizedObject {
+			get {
+				return self.append("protocols") 
+			}
+		}
+		
+		public var drm: ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer> {
+			get {
+				return ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer>(self.append("drm"))
+			} 
+		}
+		
+		public var adsPolicy: BaseTokenizedObject {
+			get {
+				return self.append("adsPolicy") 
+			}
+		}
+		
+		public var adsParam: BaseTokenizedObject {
+			get {
+				return self.append("adsParam") 
+			}
+		}
+	}
+
 	/**  Source format according to delivery profile streamer type (applehttp, mpegdash
 	  etc.)  */
 	public var format: String? = nil
@@ -49,6 +82,22 @@ open class PlaybackSource: MediaFile {
 	public var adsParam: String? = nil
 
 
+	public func setMultiRequestToken(format: String) {
+		self.dict["format"] = format
+	}
+	
+	public func setMultiRequestToken(protocols: String) {
+		self.dict["protocols"] = protocols
+	}
+	
+	public func setMultiRequestToken(adsPolicy: String) {
+		self.dict["adsPolicy"] = adsPolicy
+	}
+	
+	public func setMultiRequestToken(adsParam: String) {
+		self.dict["adsParam"] = adsParam
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

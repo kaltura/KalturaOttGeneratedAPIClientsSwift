@@ -36,6 +36,57 @@
 /**  Coupons group details  */
 open class CouponsGroup: ObjectBase {
 
+	public class CouponsGroupTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("descriptions"))
+			} 
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+		
+		public var maxUsesNumber: BaseTokenizedObject {
+			get {
+				return self.append("maxUsesNumber") 
+			}
+		}
+		
+		public var maxUsesNumberOnRenewableSub: BaseTokenizedObject {
+			get {
+				return self.append("maxUsesNumberOnRenewableSub") 
+			}
+		}
+		
+		public var couponGroupType: BaseTokenizedObject {
+			get {
+				return self.append("couponGroupType") 
+			}
+		}
+	}
+
 	/**  Coupon group identifier  */
 	public var id: String? = nil
 	/**  Coupon group name  */
@@ -55,6 +106,34 @@ open class CouponsGroup: ObjectBase {
 	public var couponGroupType: CouponGroupType? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(maxUsesNumber: String) {
+		self.dict["maxUsesNumber"] = maxUsesNumber
+	}
+	
+	public func setMultiRequestToken(maxUsesNumberOnRenewableSub: String) {
+		self.dict["maxUsesNumberOnRenewableSub"] = maxUsesNumberOnRenewableSub
+	}
+	
+	public func setMultiRequestToken(couponGroupType: String) {
+		self.dict["couponGroupType"] = couponGroupType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

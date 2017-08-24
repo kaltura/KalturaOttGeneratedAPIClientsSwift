@@ -36,6 +36,33 @@
 /**  Price plan  */
 open class PricePlan: UsageModule {
 
+	public class PricePlanTokenizer: UsageModule.UsageModuleTokenizer {
+		
+		public var isRenewable: BaseTokenizedObject {
+			get {
+				return self.append("isRenewable") 
+			}
+		}
+		
+		public var renewalsNumber: BaseTokenizedObject {
+			get {
+				return self.append("renewalsNumber") 
+			}
+		}
+		
+		public var discountId: BaseTokenizedObject {
+			get {
+				return self.append("discountId") 
+			}
+		}
+		
+		public var priceDetailsId: BaseTokenizedObject {
+			get {
+				return self.append("priceDetailsId") 
+			}
+		}
+	}
+
 	/**  Denotes whether or not this object can be renewed  */
 	public var isRenewable: Bool? = nil
 	/**  Defines the number of times the module will be renewed (for the life_cycle
@@ -47,6 +74,22 @@ open class PricePlan: UsageModule {
 	public var priceDetailsId: Int64? = nil
 
 
+	public func setMultiRequestToken(isRenewable: String) {
+		self.dict["isRenewable"] = isRenewable
+	}
+	
+	public func setMultiRequestToken(renewalsNumber: String) {
+		self.dict["renewalsNumber"] = renewalsNumber
+	}
+	
+	public func setMultiRequestToken(discountId: String) {
+		self.dict["discountId"] = discountId
+	}
+	
+	public func setMultiRequestToken(priceDetailsId: String) {
+		self.dict["priceDetailsId"] = priceDetailsId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

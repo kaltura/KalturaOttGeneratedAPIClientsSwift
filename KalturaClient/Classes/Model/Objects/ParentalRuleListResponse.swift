@@ -36,6 +36,15 @@
 /**  ParentalRules list  */
 open class ParentalRuleListResponse: ListResponse {
 
+	public class ParentalRuleListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ParentalRule.ParentalRuleTokenizer> {
+			get {
+				return ArrayTokenizedObject<ParentalRule.ParentalRuleTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of parental rules  */
 	public var objects: Array<ParentalRule>? = nil
 

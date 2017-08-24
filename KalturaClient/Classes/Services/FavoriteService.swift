@@ -35,29 +35,56 @@
 
 public final class FavoriteService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var favorite: Favorite.FavoriteTokenizer {
+			get {
+				return Favorite.FavoriteTokenizer(self.append("favorite")) 
+			}
+		}
+	}
+
 	/**  Add media to user&amp;#39;s favorite list  */
-	public static func add(favorite: Favorite) -> RequestBuilder<Favorite> {
-		let request: RequestBuilder<Favorite> = RequestBuilder<Favorite>(service: "favorite", action: "add")
+	public static func add(favorite: Favorite) -> RequestBuilder<Favorite, Favorite.FavoriteTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Favorite, Favorite.FavoriteTokenizer, AddTokenizer> = RequestBuilder<Favorite, Favorite.FavoriteTokenizer, AddTokenizer>(service: "favorite", action: "add")
 			.setBody(key: "favorite", value: favorite)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Remove media from user&amp;#39;s favorite list  */
-	public static func delete(id: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "favorite", action: "delete")
+	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "favorite", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<FavoriteListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: FavoriteFilter.FavoriteFilterTokenizer {
+			get {
+				return FavoriteFilter.FavoriteFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Retrieving users&amp;#39; favorites  */
-	public static func list(filter: FavoriteFilter?) -> RequestBuilder<FavoriteListResponse> {
-		let request: RequestBuilder<FavoriteListResponse> = RequestBuilder<FavoriteListResponse>(service: "favorite", action: "list")
+	public static func list(filter: FavoriteFilter?) -> RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer> = RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer>(service: "favorite", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

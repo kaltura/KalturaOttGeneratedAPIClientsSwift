@@ -35,6 +35,9 @@
 
 open class TwitterTwit: SocialNetworkComment {
 
+	public class TwitterTwitTokenizer: SocialNetworkComment.SocialNetworkCommentTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

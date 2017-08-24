@@ -35,6 +35,15 @@
 
 open class DeviceBrandListResponse: ListResponse {
 
+	public class DeviceBrandListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<DeviceBrand.DeviceBrandTokenizer> {
+			get {
+				return ArrayTokenizedObject<DeviceBrand.DeviceBrandTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Device brands  */
 	public var objects: Array<DeviceBrand>? = nil
 

@@ -36,6 +36,27 @@
 /**  Discount module  */
 open class DiscountModule: ObjectBase {
 
+	public class DiscountModuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var percent: BaseTokenizedObject {
+			get {
+				return self.append("percent") 
+			}
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+	}
+
 	/**  The discount percentage  */
 	public var percent: Double? = nil
 	/**  The first date the discount is available  */
@@ -44,6 +65,18 @@ open class DiscountModule: ObjectBase {
 	public var endDate: Int64? = nil
 
 
+	public func setMultiRequestToken(percent: String) {
+		self.dict["percent"] = percent
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

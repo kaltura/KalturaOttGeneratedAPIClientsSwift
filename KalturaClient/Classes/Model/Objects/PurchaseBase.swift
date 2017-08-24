@@ -35,6 +35,27 @@
 
 open class PurchaseBase: ObjectBase {
 
+	public class PurchaseBaseTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var productId: BaseTokenizedObject {
+			get {
+				return self.append("productId") 
+			}
+		}
+		
+		public var contentId: BaseTokenizedObject {
+			get {
+				return self.append("contentId") 
+			}
+		}
+		
+		public var productType: BaseTokenizedObject {
+			get {
+				return self.append("productType") 
+			}
+		}
+	}
+
 	/**  Identifier for the package from which this content is offered  */
 	public var productId: Int? = nil
 	/**  Identifier for the content to purchase. Relevant only if Product type = PPV  */
@@ -43,6 +64,18 @@ open class PurchaseBase: ObjectBase {
 	public var productType: TransactionType? = nil
 
 
+	public func setMultiRequestToken(productId: String) {
+		self.dict["productId"] = productId
+	}
+	
+	public func setMultiRequestToken(contentId: String) {
+		self.dict["contentId"] = contentId
+	}
+	
+	public func setMultiRequestToken(productType: String) {
+		self.dict["productType"] = productType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

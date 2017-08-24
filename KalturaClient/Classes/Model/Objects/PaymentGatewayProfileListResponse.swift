@@ -36,6 +36,15 @@
 /**  PaymentGatewayProfile list  */
 open class PaymentGatewayProfileListResponse: ListResponse {
 
+	public class PaymentGatewayProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<PaymentGatewayProfile.PaymentGatewayProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<PaymentGatewayProfile.PaymentGatewayProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of payment-gateway profiles  */
 	public var objects: Array<PaymentGatewayProfile>? = nil
 

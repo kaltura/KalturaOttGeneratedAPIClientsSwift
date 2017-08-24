@@ -36,10 +36,23 @@
 /**  Npvr Premium Service  */
 open class NpvrPremiumService: PremiumService {
 
+	public class NpvrPremiumServiceTokenizer: PremiumService.PremiumServiceTokenizer {
+		
+		public var quotaInMinutes: BaseTokenizedObject {
+			get {
+				return self.append("quotaInMinutes") 
+			}
+		}
+	}
+
 	/**  Quota in minutes  */
 	public var quotaInMinutes: Int64? = nil
 
 
+	public func setMultiRequestToken(quotaInMinutes: String) {
+		self.dict["quotaInMinutes"] = quotaInMinutes
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,15 @@
 /**  Export task list wrapper  */
 open class ExportTaskListResponse: ListResponse {
 
+	public class ExportTaskListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ExportTask.ExportTaskTokenizer> {
+			get {
+				return ArrayTokenizedObject<ExportTask.ExportTaskTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Export task items  */
 	public var objects: Array<ExportTask>? = nil
 

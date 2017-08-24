@@ -35,6 +35,33 @@
 
 open class AssetHistoryFilter: Filter {
 
+	public class AssetHistoryFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+		
+		public var assetIdIn: BaseTokenizedObject {
+			get {
+				return self.append("assetIdIn") 
+			}
+		}
+		
+		public var statusEqual: BaseTokenizedObject {
+			get {
+				return self.append("statusEqual") 
+			}
+		}
+		
+		public var daysLessThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("daysLessThanOrEqual") 
+			}
+		}
+	}
+
 	/**  Comma separated list of asset types to search within.              Possible
 	  values: 0 – EPG linear programs entries, any media type ID (according to media
 	  type IDs defined dynamically in the system).              If omitted – all
@@ -52,6 +79,22 @@ open class AssetHistoryFilter: Filter {
 	public var daysLessThanOrEqual: Int? = nil
 
 
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
+	public func setMultiRequestToken(assetIdIn: String) {
+		self.dict["assetIdIn"] = assetIdIn
+	}
+	
+	public func setMultiRequestToken(statusEqual: String) {
+		self.dict["statusEqual"] = statusEqual
+	}
+	
+	public func setMultiRequestToken(daysLessThanOrEqual: String) {
+		self.dict["daysLessThanOrEqual"] = daysLessThanOrEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,40 +35,85 @@
 
 public final class CdnAdapterProfileService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var adapter: CDNAdapterProfile.CDNAdapterProfileTokenizer {
+			get {
+				return CDNAdapterProfile.CDNAdapterProfileTokenizer(self.append("adapter")) 
+			}
+		}
+	}
+
 	/**  Insert new CDN adapter for partner  */
-	public static func add(adapter: CDNAdapterProfile) -> RequestBuilder<CDNAdapterProfile> {
-		let request: RequestBuilder<CDNAdapterProfile> = RequestBuilder<CDNAdapterProfile>(service: "cdnadapterprofile", action: "add")
+	public static func add(adapter: CDNAdapterProfile) -> RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, AddTokenizer> {
+		let request: RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, AddTokenizer> = RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, AddTokenizer>(service: "cdnadapterprofile", action: "add")
 			.setBody(key: "adapter", value: adapter)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
+	}
+
 	/**  Delete CDN adapter by CDN adapter id  */
-	public static func delete(adapterId: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "cdnadapterprofile", action: "delete")
+	public static func delete(adapterId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "cdnadapterprofile", action: "delete")
 			.setBody(key: "adapterId", value: adapterId)
 
 		return request
+	}
+
+	public class GenerateSharedSecretTokenizer: ClientTokenizer  {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
 	}
 
 	/**  Generate CDN adapter shared secret  */
-	public static func generateSharedSecret(adapterId: Int) -> RequestBuilder<CDNAdapterProfile> {
-		let request: RequestBuilder<CDNAdapterProfile> = RequestBuilder<CDNAdapterProfile>(service: "cdnadapterprofile", action: "generateSharedSecret")
+	public static func generateSharedSecret(adapterId: Int) -> RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, GenerateSharedSecretTokenizer> {
+		let request: RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, GenerateSharedSecretTokenizer>(service: "cdnadapterprofile", action: "generateSharedSecret")
 			.setBody(key: "adapterId", value: adapterId)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns all CDN adapters for partner  */
-	public static func list() -> RequestBuilder<CDNAdapterProfileListResponse> {
-		let request: RequestBuilder<CDNAdapterProfileListResponse> = RequestBuilder<CDNAdapterProfileListResponse>(service: "cdnadapterprofile", action: "list")
+	public static func list() -> RequestBuilder<CDNAdapterProfileListResponse, CDNAdapterProfileListResponse.CDNAdapterProfileListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<CDNAdapterProfileListResponse, CDNAdapterProfileListResponse.CDNAdapterProfileListResponseTokenizer, ListTokenizer> = RequestBuilder<CDNAdapterProfileListResponse, CDNAdapterProfileListResponse.CDNAdapterProfileListResponseTokenizer, ListTokenizer>(service: "cdnadapterprofile", action: "list")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
+		
+		public var adapter: CDNAdapterProfile.CDNAdapterProfileTokenizer {
+			get {
+				return CDNAdapterProfile.CDNAdapterProfileTokenizer(self.append("adapter")) 
+			}
+		}
+	}
+
 	/**  Update CDN adapter details  */
-	public static func update(adapterId: Int, adapter: CDNAdapterProfile) -> RequestBuilder<CDNAdapterProfile> {
-		let request: RequestBuilder<CDNAdapterProfile> = RequestBuilder<CDNAdapterProfile>(service: "cdnadapterprofile", action: "update")
+	public static func update(adapterId: Int, adapter: CDNAdapterProfile) -> RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, UpdateTokenizer> = RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, UpdateTokenizer>(service: "cdnadapterprofile", action: "update")
 			.setBody(key: "adapterId", value: adapterId)
 			.setBody(key: "adapter", value: adapter)
 

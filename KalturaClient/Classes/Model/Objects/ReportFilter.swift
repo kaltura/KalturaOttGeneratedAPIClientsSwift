@@ -36,6 +36,9 @@
 /**  Report filter  */
 open class ReportFilter: Filter {
 
+	public class ReportFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

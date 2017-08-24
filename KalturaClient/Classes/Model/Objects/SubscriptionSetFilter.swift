@@ -35,6 +35,27 @@
 
 open class SubscriptionSetFilter: Filter {
 
+	public class SubscriptionSetFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+		
+		public var subscriptionIdContains: BaseTokenizedObject {
+			get {
+				return self.append("subscriptionIdContains") 
+			}
+		}
+		
+		public var typeEqual: BaseTokenizedObject {
+			get {
+				return self.append("typeEqual") 
+			}
+		}
+	}
+
 	/**  Comma separated identifiers  */
 	public var idIn: String? = nil
 	/**  Comma separated subscription identifiers  */
@@ -43,6 +64,18 @@ open class SubscriptionSetFilter: Filter {
 	public var typeEqual: SubscriptionSetType? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
+	public func setMultiRequestToken(subscriptionIdContains: String) {
+		self.dict["subscriptionIdContains"] = subscriptionIdContains
+	}
+	
+	public func setMultiRequestToken(typeEqual: String) {
+		self.dict["typeEqual"] = typeEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

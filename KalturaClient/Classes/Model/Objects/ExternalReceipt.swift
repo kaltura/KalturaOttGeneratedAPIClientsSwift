@@ -35,6 +35,21 @@
 
 open class ExternalReceipt: PurchaseBase {
 
+	public class ExternalReceiptTokenizer: PurchaseBase.PurchaseBaseTokenizer {
+		
+		public var receiptId: BaseTokenizedObject {
+			get {
+				return self.append("receiptId") 
+			}
+		}
+		
+		public var paymentGatewayName: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayName") 
+			}
+		}
+	}
+
 	/**  A unique identifier that was provided by the In-App billing service to validate
 	  the purchase  */
 	public var receiptId: String? = nil
@@ -43,6 +58,14 @@ open class ExternalReceipt: PurchaseBase {
 	public var paymentGatewayName: String? = nil
 
 
+	public func setMultiRequestToken(receiptId: String) {
+		self.dict["receiptId"] = receiptId
+	}
+	
+	public func setMultiRequestToken(paymentGatewayName: String) {
+		self.dict["paymentGatewayName"] = paymentGatewayName
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

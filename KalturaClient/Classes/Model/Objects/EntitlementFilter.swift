@@ -36,6 +36,27 @@
 /**  Entitlements filter  */
 open class EntitlementFilter: Filter {
 
+	public class EntitlementFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var entitlementTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("entitlementTypeEqual") 
+			}
+		}
+		
+		public var entityReferenceEqual: BaseTokenizedObject {
+			get {
+				return self.append("entityReferenceEqual") 
+			}
+		}
+		
+		public var isExpiredEqual: BaseTokenizedObject {
+			get {
+				return self.append("isExpiredEqual") 
+			}
+		}
+	}
+
 	/**  The type of the entitlements to return  */
 	public var entitlementTypeEqual: TransactionType? = nil
 	/**  Reference type to filter by  */
@@ -44,6 +65,18 @@ open class EntitlementFilter: Filter {
 	public var isExpiredEqual: Bool? = nil
 
 
+	public func setMultiRequestToken(entitlementTypeEqual: String) {
+		self.dict["entitlementTypeEqual"] = entitlementTypeEqual
+	}
+	
+	public func setMultiRequestToken(entityReferenceEqual: String) {
+		self.dict["entityReferenceEqual"] = entityReferenceEqual
+	}
+	
+	public func setMultiRequestToken(isExpiredEqual: String) {
+		self.dict["isExpiredEqual"] = isExpiredEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

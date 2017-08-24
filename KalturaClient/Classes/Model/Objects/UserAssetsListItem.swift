@@ -36,6 +36,39 @@
 /**  An item of user asset list  */
 open class UserAssetsListItem: ObjectBase {
 
+	public class UserAssetsListItemTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var orderIndex: BaseTokenizedObject {
+			get {
+				return self.append("orderIndex") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var listType: BaseTokenizedObject {
+			get {
+				return self.append("listType") 
+			}
+		}
+	}
+
 	/**  Asset identifier  */
 	public var id: String? = nil
 	/**  The order index of the asset in the list  */
@@ -48,6 +81,26 @@ open class UserAssetsListItem: ObjectBase {
 	public var listType: UserAssetsListType? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(orderIndex: String) {
+		self.dict["orderIndex"] = orderIndex
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(listType: String) {
+		self.dict["listType"] = listType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

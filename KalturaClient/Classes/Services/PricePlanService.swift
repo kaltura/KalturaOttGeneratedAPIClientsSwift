@@ -35,21 +35,45 @@
 
 public final class PricePlanService{
 
-	public static func list() -> RequestBuilder<PricePlanListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: PricePlanFilter.PricePlanFilterTokenizer {
+			get {
+				return PricePlanFilter.PricePlanFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Returns a list of price plans by IDs  */
-	public static func list(filter: PricePlanFilter?) -> RequestBuilder<PricePlanListResponse> {
-		let request: RequestBuilder<PricePlanListResponse> = RequestBuilder<PricePlanListResponse>(service: "priceplan", action: "list")
+	public static func list(filter: PricePlanFilter?) -> RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer> = RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer>(service: "priceplan", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var pricePlan: PricePlan.PricePlanTokenizer {
+			get {
+				return PricePlan.PricePlanTokenizer(self.append("pricePlan")) 
+			}
+		}
+	}
+
 	/**  Updates a price plan  */
-	public static func update(id: Int64, pricePlan: PricePlan) -> RequestBuilder<PricePlan> {
-		let request: RequestBuilder<PricePlan> = RequestBuilder<PricePlan>(service: "priceplan", action: "update")
+	public static func update(id: Int64, pricePlan: PricePlan) -> RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, UpdateTokenizer> = RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, UpdateTokenizer>(service: "priceplan", action: "update")
 			.setBody(key: "id", value: id)
 			.setBody(key: "pricePlan", value: pricePlan)
 

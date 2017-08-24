@@ -35,14 +35,23 @@
 
 public final class UserRoleService{
 
-	public static func list() -> RequestBuilder<UserRoleListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: UserRoleFilter.UserRoleFilterTokenizer {
+			get {
+				return UserRoleFilter.UserRoleFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Retrieving user roles by identifiers, if filter is empty, returns all partner
 	  roles  */
-	public static func list(filter: UserRoleFilter?) -> RequestBuilder<UserRoleListResponse> {
-		let request: RequestBuilder<UserRoleListResponse> = RequestBuilder<UserRoleListResponse>(service: "userrole", action: "list")
+	public static func list(filter: UserRoleFilter?) -> RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer> = RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer>(service: "userrole", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

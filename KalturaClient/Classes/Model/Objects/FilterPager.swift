@@ -37,6 +37,21 @@
   service list actions  */
 open class FilterPager: ObjectBase {
 
+	public class FilterPagerTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var pageSize: BaseTokenizedObject {
+			get {
+				return self.append("pageSize") 
+			}
+		}
+		
+		public var pageIndex: BaseTokenizedObject {
+			get {
+				return self.append("pageIndex") 
+			}
+		}
+	}
+
 	/**  The number of objects to retrieve. Possible range 1 ≤ value ≤ 50. If omitted
 	  or value &amp;lt; 1 - will be set to 25. If a value &amp;gt; 50 provided –
 	  will be set to 50  */
@@ -45,6 +60,14 @@ open class FilterPager: ObjectBase {
 	public var pageIndex: Int? = nil
 
 
+	public func setMultiRequestToken(pageSize: String) {
+		self.dict["pageSize"] = pageSize
+	}
+	
+	public func setMultiRequestToken(pageIndex: String) {
+		self.dict["pageIndex"] = pageIndex
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,12 +35,35 @@
 
 open class RegistrySettings: ObjectBase {
 
+	public class RegistrySettingsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
 	/**  Permission item identifier  */
 	public var key: String? = nil
 	/**  Permission item name  */
 	public var value: String? = nil
 
 
+	public func setMultiRequestToken(key: String) {
+		self.dict["key"] = key
+	}
+	
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

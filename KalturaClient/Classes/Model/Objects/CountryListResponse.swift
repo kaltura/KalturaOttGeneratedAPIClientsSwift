@@ -35,6 +35,15 @@
 
 open class CountryListResponse: ListResponse {
 
+	public class CountryListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Country.CountryTokenizer> {
+			get {
+				return ArrayTokenizedObject<Country.CountryTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Countries  */
 	public var objects: Array<Country>? = nil
 

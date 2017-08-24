@@ -36,6 +36,15 @@
 /**  Billing Transactions  */
 open class BillingTransactionListResponse: ListResponse {
 
+	public class BillingTransactionListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<BillingTransaction.BillingTransactionTokenizer> {
+			get {
+				return ArrayTokenizedObject<BillingTransaction.BillingTransactionTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Transactions  */
 	public var objects: Array<BillingTransaction>? = nil
 

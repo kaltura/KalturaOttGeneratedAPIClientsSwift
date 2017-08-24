@@ -36,12 +36,35 @@
 /**  Define client optional configurations  */
 open class ClientConfiguration: ObjectBase {
 
+	public class ClientConfigurationTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var clientTag: BaseTokenizedObject {
+			get {
+				return self.append("clientTag") 
+			}
+		}
+		
+		public var apiVersion: BaseTokenizedObject {
+			get {
+				return self.append("apiVersion") 
+			}
+		}
+	}
+
 	/**  Client Tag  */
 	public var clientTag: String? = nil
 	/**  API client version  */
 	public var apiVersion: String? = nil
 
 
+	public func setMultiRequestToken(clientTag: String) {
+		self.dict["clientTag"] = clientTag
+	}
+	
+	public func setMultiRequestToken(apiVersion: String) {
+		self.dict["apiVersion"] = apiVersion
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

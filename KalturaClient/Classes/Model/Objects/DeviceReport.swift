@@ -35,6 +35,75 @@
 
 open class DeviceReport: Report {
 
+	public class DeviceReportTokenizer: Report.ReportTokenizer {
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var configurationGroupId: BaseTokenizedObject {
+			get {
+				return self.append("configurationGroupId") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var pushParameters: PushParams.PushParamsTokenizer {
+			get {
+				return PushParams.PushParamsTokenizer(self.append("pushParameters")) 
+			}
+		}
+		
+		public var versionNumber: BaseTokenizedObject {
+			get {
+				return self.append("versionNumber") 
+			}
+		}
+		
+		public var versionPlatform: BaseTokenizedObject {
+			get {
+				return self.append("versionPlatform") 
+			}
+		}
+		
+		public var versionAppName: BaseTokenizedObject {
+			get {
+				return self.append("versionAppName") 
+			}
+		}
+		
+		public var lastAccessIP: BaseTokenizedObject {
+			get {
+				return self.append("lastAccessIP") 
+			}
+		}
+		
+		public var lastAccessDate: BaseTokenizedObject {
+			get {
+				return self.append("lastAccessDate") 
+			}
+		}
+		
+		public var userAgent: BaseTokenizedObject {
+			get {
+				return self.append("userAgent") 
+			}
+		}
+		
+		public var operationSystem: BaseTokenizedObject {
+			get {
+				return self.append("operationSystem") 
+			}
+		}
+	}
+
 	/**  Partner id  */
 	public var partnerId: Int? = nil
 	/**  Configuration group id  */
@@ -59,6 +128,46 @@ open class DeviceReport: Report {
 	public var operationSystem: String? = nil
 
 
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(configurationGroupId: String) {
+		self.dict["configurationGroupId"] = configurationGroupId
+	}
+	
+	public func setMultiRequestToken(udid: String) {
+		self.dict["udid"] = udid
+	}
+	
+	public func setMultiRequestToken(versionNumber: String) {
+		self.dict["versionNumber"] = versionNumber
+	}
+	
+	public func setMultiRequestToken(versionPlatform: String) {
+		self.dict["versionPlatform"] = versionPlatform
+	}
+	
+	public func setMultiRequestToken(versionAppName: String) {
+		self.dict["versionAppName"] = versionAppName
+	}
+	
+	public func setMultiRequestToken(lastAccessIP: String) {
+		self.dict["lastAccessIP"] = lastAccessIP
+	}
+	
+	public func setMultiRequestToken(lastAccessDate: String) {
+		self.dict["lastAccessDate"] = lastAccessDate
+	}
+	
+	public func setMultiRequestToken(userAgent: String) {
+		self.dict["userAgent"] = userAgent
+	}
+	
+	public func setMultiRequestToken(operationSystem: String) {
+		self.dict["operationSystem"] = operationSystem
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

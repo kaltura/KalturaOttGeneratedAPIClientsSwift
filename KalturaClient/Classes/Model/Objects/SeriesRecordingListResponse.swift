@@ -36,6 +36,15 @@
 /**  Series Recordings info wrapper  */
 open class SeriesRecordingListResponse: ListResponse {
 
+	public class SeriesRecordingListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<SeriesRecording.SeriesRecordingTokenizer> {
+			get {
+				return ArrayTokenizedObject<SeriesRecording.SeriesRecordingTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Series Recordings  */
 	public var objects: Array<SeriesRecording>? = nil
 

@@ -36,12 +36,35 @@
 /**  Container for translation  */
 open class TranslationToken: ObjectBase {
 
+	public class TranslationTokenTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var language: BaseTokenizedObject {
+			get {
+				return self.append("language") 
+			}
+		}
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
 	/**  Language code  */
 	public var language: String? = nil
 	/**  Translated value  */
 	public var value: String? = nil
 
 
+	public func setMultiRequestToken(language: String) {
+		self.dict["language"] = language
+	}
+	
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

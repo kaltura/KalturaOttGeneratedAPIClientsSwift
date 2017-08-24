@@ -35,6 +35,27 @@
 
 open class SocialFriendActivity: ObjectBase {
 
+	public class SocialFriendActivityTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var userFullName: BaseTokenizedObject {
+			get {
+				return self.append("userFullName") 
+			}
+		}
+		
+		public var userPictureUrl: BaseTokenizedObject {
+			get {
+				return self.append("userPictureUrl") 
+			}
+		}
+		
+		public var socialAction: SocialAction.SocialActionTokenizer {
+			get {
+				return SocialAction.SocialActionTokenizer(self.append("socialAction")) 
+			}
+		}
+	}
+
 	/**  The full name of the user who did the social action  */
 	public var userFullName: String? = nil
 	/**  The URL of the profile picture of the user who did the social action  */
@@ -43,6 +64,14 @@ open class SocialFriendActivity: ObjectBase {
 	public var socialAction: SocialAction? = nil
 
 
+	public func setMultiRequestToken(userFullName: String) {
+		self.dict["userFullName"] = userFullName
+	}
+	
+	public func setMultiRequestToken(userPictureUrl: String) {
+		self.dict["userPictureUrl"] = userPictureUrl
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

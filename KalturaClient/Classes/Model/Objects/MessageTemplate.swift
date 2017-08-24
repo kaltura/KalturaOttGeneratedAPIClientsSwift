@@ -35,6 +35,45 @@
 
 open class MessageTemplate: ObjectBase {
 
+	public class MessageTemplateTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var message: BaseTokenizedObject {
+			get {
+				return self.append("message") 
+			}
+		}
+		
+		public var dateFormat: BaseTokenizedObject {
+			get {
+				return self.append("dateFormat") 
+			}
+		}
+		
+		public var messageType: BaseTokenizedObject {
+			get {
+				return self.append("messageType") 
+			}
+		}
+		
+		public var sound: BaseTokenizedObject {
+			get {
+				return self.append("sound") 
+			}
+		}
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var url: BaseTokenizedObject {
+			get {
+				return self.append("url") 
+			}
+		}
+	}
+
 	/**  The message template with placeholders  */
 	public var message: String? = nil
 	/**  Default date format for the date &amp;amp; time entries used in the template  */
@@ -50,6 +89,30 @@ open class MessageTemplate: ObjectBase {
 	public var url: String? = nil
 
 
+	public func setMultiRequestToken(message: String) {
+		self.dict["message"] = message
+	}
+	
+	public func setMultiRequestToken(dateFormat: String) {
+		self.dict["dateFormat"] = dateFormat
+	}
+	
+	public func setMultiRequestToken(messageType: String) {
+		self.dict["messageType"] = messageType
+	}
+	
+	public func setMultiRequestToken(sound: String) {
+		self.dict["sound"] = sound
+	}
+	
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

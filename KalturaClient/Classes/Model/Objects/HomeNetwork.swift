@@ -36,6 +36,33 @@
 /**  Home network details  */
 open class HomeNetwork: ObjectBase {
 
+	public class HomeNetworkTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+	}
+
 	/**  Home network identifier  */
 	public var externalId: String? = nil
 	/**  Home network name  */
@@ -46,6 +73,22 @@ open class HomeNetwork: ObjectBase {
 	public var isActive: Bool? = nil
 
 
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

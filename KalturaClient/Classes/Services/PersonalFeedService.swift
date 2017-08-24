@@ -35,13 +35,28 @@
 
 public final class PersonalFeedService{
 
-	public static func list(filter: PersonalFeedFilter) -> RequestBuilder<PersonalFeedListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: PersonalFeedFilter.PersonalFeedFilterTokenizer {
+			get {
+				return PersonalFeedFilter.PersonalFeedFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: PersonalFeedFilter) -> RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  List user&amp;#39;s feeds.              Possible status codes:  */
-	public static func list(filter: PersonalFeedFilter, pager: FilterPager?) -> RequestBuilder<PersonalFeedListResponse> {
-		let request: RequestBuilder<PersonalFeedListResponse> = RequestBuilder<PersonalFeedListResponse>(service: "personalfeed", action: "list")
+	public static func list(filter: PersonalFeedFilter, pager: FilterPager?) -> RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer> = RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer>(service: "personalfeed", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

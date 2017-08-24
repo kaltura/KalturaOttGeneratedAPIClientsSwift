@@ -35,6 +35,45 @@
 
 open class SocialAction: ObjectBase {
 
+	public class SocialActionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var actionType: BaseTokenizedObject {
+			get {
+				return self.append("actionType") 
+			}
+		}
+		
+		public var time: BaseTokenizedObject {
+			get {
+				return self.append("time") 
+			}
+		}
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var assetType: BaseTokenizedObject {
+			get {
+				return self.append("assetType") 
+			}
+		}
+		
+		public var url: BaseTokenizedObject {
+			get {
+				return self.append("url") 
+			}
+		}
+	}
+
 	/**  social action document id  */
 	public var id: String? = nil
 	/**  Action type  */
@@ -49,6 +88,30 @@ open class SocialAction: ObjectBase {
 	public var url: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(actionType: String) {
+		self.dict["actionType"] = actionType
+	}
+	
+	public func setMultiRequestToken(time: String) {
+		self.dict["time"] = time
+	}
+	
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(assetType: String) {
+		self.dict["assetType"] = assetType
+	}
+	
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,15 @@
 /**  External channel profiles  */
 open class ExternalChannelProfileListResponse: ListResponse {
 
+	public class ExternalChannelProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ExternalChannelProfile.ExternalChannelProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<ExternalChannelProfile.ExternalChannelProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  External channel profiles  */
 	public var objects: Array<ExternalChannelProfile>? = nil
 

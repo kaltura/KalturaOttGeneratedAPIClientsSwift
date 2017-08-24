@@ -36,6 +36,15 @@
 /**  Array of translated strings  */
 open class MultilingualStringValueArray: ObjectBase {
 
+	public class MultilingualStringValueArrayTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<MultilingualStringValue.MultilingualStringValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<MultilingualStringValue.MultilingualStringValueTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  List of string values  */
 	public var objects: Array<MultilingualStringValue>? = nil
 

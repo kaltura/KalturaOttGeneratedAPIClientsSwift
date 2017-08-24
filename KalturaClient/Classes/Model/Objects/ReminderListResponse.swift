@@ -36,6 +36,15 @@
 /**  List of reminders from DB.  */
 open class ReminderListResponse: ListResponse {
 
+	public class ReminderListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Reminder.ReminderTokenizer> {
+			get {
+				return ArrayTokenizedObject<Reminder.ReminderTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Reminders  */
 	public var objects: Array<Reminder>? = nil
 

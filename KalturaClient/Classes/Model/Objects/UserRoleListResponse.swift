@@ -36,6 +36,15 @@
 /**  User-roles list  */
 open class UserRoleListResponse: ListResponse {
 
+	public class UserRoleListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<UserRole.UserRoleTokenizer> {
+			get {
+				return ArrayTokenizedObject<UserRole.UserRoleTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of generic rules  */
 	public var objects: Array<UserRole>? = nil
 

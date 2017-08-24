@@ -36,12 +36,35 @@
 /**  Partner billing configuration  */
 open class BillingPartnerConfig: PartnerConfiguration {
 
+	public class BillingPartnerConfigTokenizer: PartnerConfiguration.PartnerConfigurationTokenizer {
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
 	/**  configuration value  */
 	public var value: String? = nil
 	/**  partner configuration type  */
 	public var type: PartnerConfigurationType? = nil
 
 
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

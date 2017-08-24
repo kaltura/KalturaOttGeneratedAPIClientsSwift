@@ -35,10 +35,23 @@
 
 open class LicensedUrlBaseRequest: ObjectBase {
 
+	public class LicensedUrlBaseRequestTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+	}
+
 	/**  Asset identifier  */
 	public var assetId: String? = nil
 
 
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

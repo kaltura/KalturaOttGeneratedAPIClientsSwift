@@ -35,6 +35,15 @@
 
 open class CDNAdapterProfileListResponse: ListResponse {
 
+	public class CDNAdapterProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<CDNAdapterProfile.CDNAdapterProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<CDNAdapterProfile.CDNAdapterProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Adapters  */
 	public var objects: Array<CDNAdapterProfile>? = nil
 

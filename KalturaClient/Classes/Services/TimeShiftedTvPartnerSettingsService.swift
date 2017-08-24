@@ -35,18 +35,30 @@
 
 public final class TimeShiftedTvPartnerSettingsService{
 
+	public class GetTokenizer: ClientTokenizer  {
+	}
+
 	/**  Retrieve the account’s time-shifted TV settings (catch-up and C-DVR,
 	  Trick-play, Start-over)  */
-	public static func get() -> RequestBuilder<TimeShiftedTvPartnerSettings> {
-		let request: RequestBuilder<TimeShiftedTvPartnerSettings> = RequestBuilder<TimeShiftedTvPartnerSettings>(service: "timeshiftedtvpartnersettings", action: "get")
+	public static func get() -> RequestBuilder<TimeShiftedTvPartnerSettings, TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer, GetTokenizer> {
+		let request: RequestBuilder<TimeShiftedTvPartnerSettings, TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer, GetTokenizer> = RequestBuilder<TimeShiftedTvPartnerSettings, TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer, GetTokenizer>(service: "timeshiftedtvpartnersettings", action: "get")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var settings: TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer {
+			get {
+				return TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer(self.append("settings")) 
+			}
+		}
+	}
+
 	/**  Configure the account’s time-shifted TV settings (catch-up and C-DVR,
 	  Trick-play, Start-over)  */
-	public static func update(settings: TimeShiftedTvPartnerSettings) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "timeshiftedtvpartnersettings", action: "update")
+	public static func update(settings: TimeShiftedTvPartnerSettings) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "timeshiftedtvpartnersettings", action: "update")
 			.setBody(key: "settings", value: settings)
 
 		return request

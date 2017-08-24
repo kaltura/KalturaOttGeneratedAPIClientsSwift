@@ -35,6 +35,39 @@
 
 open class FollowDataBase: ObjectBase {
 
+	public class FollowDataBaseTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var announcementId: BaseTokenizedObject {
+			get {
+				return self.append("announcementId") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var title: BaseTokenizedObject {
+			get {
+				return self.append("title") 
+			}
+		}
+		
+		public var timestamp: BaseTokenizedObject {
+			get {
+				return self.append("timestamp") 
+			}
+		}
+		
+		public var followPhrase: BaseTokenizedObject {
+			get {
+				return self.append("followPhrase") 
+			}
+		}
+	}
+
 	/**  Announcement Id  */
 	public var announcementId: Int64? = nil
 	/**  Status  */
@@ -47,6 +80,26 @@ open class FollowDataBase: ObjectBase {
 	public var followPhrase: String? = nil
 
 
+	public func setMultiRequestToken(announcementId: String) {
+		self.dict["announcementId"] = announcementId
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(title: String) {
+		self.dict["title"] = title
+	}
+	
+	public func setMultiRequestToken(timestamp: String) {
+		self.dict["timestamp"] = timestamp
+	}
+	
+	public func setMultiRequestToken(followPhrase: String) {
+		self.dict["followPhrase"] = followPhrase
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

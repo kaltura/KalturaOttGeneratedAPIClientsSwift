@@ -35,6 +35,9 @@
 
 open class PersonalFeed: Feed {
 
+	public class PersonalFeedTokenizer: Feed.FeedTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

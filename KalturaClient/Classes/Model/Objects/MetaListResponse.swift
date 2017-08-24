@@ -36,6 +36,15 @@
 /**  Meta list response  */
 open class MetaListResponse: ListResponse {
 
+	public class MetaListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Meta.MetaTokenizer> {
+			get {
+				return ArrayTokenizedObject<Meta.MetaTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list asset meta  */
 	public var objects: Array<Meta>? = nil
 

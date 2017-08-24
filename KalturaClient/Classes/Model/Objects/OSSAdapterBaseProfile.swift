@@ -36,12 +36,35 @@
 /**  OSS adapter basic  */
 open class OSSAdapterBaseProfile: ObjectBase {
 
+	public class OSSAdapterBaseProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+	}
+
 	/**  OSS adapter id  */
 	public var id: Int? = nil
 	/**  OSS adapter name  */
 	public var name: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

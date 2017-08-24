@@ -36,6 +36,27 @@
 /**  Device family limitations details  */
 open class HouseholdDeviceFamilyLimitations: DeviceFamilyBase {
 
+	public class HouseholdDeviceFamilyLimitationsTokenizer: DeviceFamilyBase.DeviceFamilyBaseTokenizer {
+		
+		public var frequency: BaseTokenizedObject {
+			get {
+				return self.append("frequency") 
+			}
+		}
+		
+		public var deviceLimit: BaseTokenizedObject {
+			get {
+				return self.append("deviceLimit") 
+			}
+		}
+		
+		public var concurrentLimit: BaseTokenizedObject {
+			get {
+				return self.append("concurrentLimit") 
+			}
+		}
+	}
+
 	/**  Allowed device change frequency code  */
 	public var frequency: Int? = nil
 	/**  Max number of devices allowed for this family  */
@@ -44,6 +65,18 @@ open class HouseholdDeviceFamilyLimitations: DeviceFamilyBase {
 	public var concurrentLimit: Int? = nil
 
 
+	public func setMultiRequestToken(frequency: String) {
+		self.dict["frequency"] = frequency
+	}
+	
+	public func setMultiRequestToken(deviceLimit: String) {
+		self.dict["deviceLimit"] = deviceLimit
+	}
+	
+	public func setMultiRequestToken(concurrentLimit: String) {
+		self.dict["concurrentLimit"] = concurrentLimit
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

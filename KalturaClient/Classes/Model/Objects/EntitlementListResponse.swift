@@ -36,6 +36,15 @@
 /**  Entitlements list  */
 open class EntitlementListResponse: ListResponse {
 
+	public class EntitlementListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Entitlement.EntitlementTokenizer> {
+			get {
+				return ArrayTokenizedObject<Entitlement.EntitlementTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of entitlements  */
 	public var objects: Array<Entitlement>? = nil
 

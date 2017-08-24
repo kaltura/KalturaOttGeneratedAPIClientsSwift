@@ -36,6 +36,15 @@
 /**  List of message follow data.  */
 open class PersonalFeedListResponse: ListResponse {
 
+	public class PersonalFeedListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<PersonalFeed.PersonalFeedTokenizer> {
+			get {
+				return ArrayTokenizedObject<PersonalFeed.PersonalFeedTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Follow data list  */
 	public var objects: Array<PersonalFeed>? = nil
 

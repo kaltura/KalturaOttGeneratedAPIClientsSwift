@@ -35,12 +35,35 @@
 
 open class SeriesReminderFilter: ReminderFilter {
 
+	public class SeriesReminderFilterTokenizer: ReminderFilter.ReminderFilterTokenizer {
+		
+		public var seriesIdIn: BaseTokenizedObject {
+			get {
+				return self.append("seriesIdIn") 
+			}
+		}
+		
+		public var epgChannelIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("epgChannelIdEqual") 
+			}
+		}
+	}
+
 	/**  Comma separated series IDs  */
 	public var seriesIdIn: String? = nil
 	/**  EPG channel ID  */
 	public var epgChannelIdEqual: Int64? = nil
 
 
+	public func setMultiRequestToken(seriesIdIn: String) {
+		self.dict["seriesIdIn"] = seriesIdIn
+	}
+	
+	public func setMultiRequestToken(epgChannelIdEqual: String) {
+		self.dict["epgChannelIdEqual"] = epgChannelIdEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

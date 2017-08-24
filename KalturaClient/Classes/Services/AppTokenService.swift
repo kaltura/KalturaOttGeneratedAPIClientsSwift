@@ -35,45 +35,105 @@
 
 public final class AppTokenService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var appToken: AppToken.AppTokenTokenizer {
+			get {
+				return AppToken.AppTokenTokenizer(self.append("appToken")) 
+			}
+		}
+	}
+
 	/**  Add new application authentication token  */
-	public static func add(appToken: AppToken) -> RequestBuilder<AppToken> {
-		let request: RequestBuilder<AppToken> = RequestBuilder<AppToken>(service: "apptoken", action: "add")
+	public static func add(appToken: AppToken) -> RequestBuilder<AppToken, AppToken.AppTokenTokenizer, AddTokenizer> {
+		let request: RequestBuilder<AppToken, AppToken.AppTokenTokenizer, AddTokenizer> = RequestBuilder<AppToken, AppToken.AppTokenTokenizer, AddTokenizer>(service: "apptoken", action: "add")
 			.setBody(key: "appToken", value: appToken)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete application authentication token by id  */
-	public static func delete(id: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "apptoken", action: "delete")
+	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "apptoken", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
 	}
 
 	/**  Get application authentication token by id  */
-	public static func get(id: String) -> RequestBuilder<AppToken> {
-		let request: RequestBuilder<AppToken> = RequestBuilder<AppToken>(service: "apptoken", action: "get")
+	public static func get(id: String) -> RequestBuilder<AppToken, AppToken.AppTokenTokenizer, GetTokenizer> {
+		let request: RequestBuilder<AppToken, AppToken.AppTokenTokenizer, GetTokenizer> = RequestBuilder<AppToken, AppToken.AppTokenTokenizer, GetTokenizer>(service: "apptoken", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func startSession(id: String, tokenHash: String) -> RequestBuilder<SessionInfo> {
+	public class StartSessionTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var tokenHash: BaseTokenizedObject {
+			get {
+				return self.append("tokenHash") 
+			}
+		}
+		
+		public override var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var expiry: BaseTokenizedObject {
+			get {
+				return self.append("expiry") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
+	public static func startSession(id: String, tokenHash: String) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
 		return startSession(id: id, tokenHash: tokenHash, userId: nil)
 	}
 
-	public static func startSession(id: String, tokenHash: String, userId: String?) -> RequestBuilder<SessionInfo> {
+	public static func startSession(id: String, tokenHash: String, userId: String?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
 		return startSession(id: id, tokenHash: tokenHash, userId: userId, expiry: nil)
 	}
 
-	public static func startSession(id: String, tokenHash: String, userId: String?, expiry: Int?) -> RequestBuilder<SessionInfo> {
+	public static func startSession(id: String, tokenHash: String, userId: String?, expiry: Int?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
 		return startSession(id: id, tokenHash: tokenHash, userId: userId, expiry: expiry, udid: nil)
 	}
 
 	/**  Starts a new KS (Kaltura Session) based on application authentication token id  */
-	public static func startSession(id: String, tokenHash: String, userId: String?, expiry: Int?, udid: String?) -> RequestBuilder<SessionInfo> {
-		let request: RequestBuilder<SessionInfo> = RequestBuilder<SessionInfo>(service: "apptoken", action: "startSession")
+	public static func startSession(id: String, tokenHash: String, userId: String?, expiry: Int?, udid: String?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
+		let request: RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> = RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer>(service: "apptoken", action: "startSession")
 			.setBody(key: "id", value: id)
 			.setBody(key: "tokenHash", value: tokenHash)
 			.setBody(key: "userId", value: userId)

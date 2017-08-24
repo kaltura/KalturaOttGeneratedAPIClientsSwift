@@ -35,10 +35,23 @@
 
 open class GroupPermission: Permission {
 
+	public class GroupPermissionTokenizer: Permission.PermissionTokenizer {
+		
+		public var group: BaseTokenizedObject {
+			get {
+				return self.append("group") 
+			}
+		}
+	}
+
 	/**  Permission identifier  */
 	public var group: String? = nil
 
 
+	public func setMultiRequestToken(group: String) {
+		self.dict["group"] = group
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

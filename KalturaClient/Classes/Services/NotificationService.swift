@@ -35,27 +35,66 @@
 
 public final class NotificationService{
 
+	public class RegisterTokenizer: ClientTokenizer  {
+		
+		public var identifier: BaseTokenizedObject {
+			get {
+				return self.append("identifier") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
 	/**  TBD  */
-	public static func register(identifier: String, type: NotificationType) -> RequestBuilder<RegistryResponse> {
-		let request: RequestBuilder<RegistryResponse> = RequestBuilder<RegistryResponse>(service: "notification", action: "register")
+	public static func register(identifier: String, type: NotificationType) -> RequestBuilder<RegistryResponse, RegistryResponse.RegistryResponseTokenizer, RegisterTokenizer> {
+		let request: RequestBuilder<RegistryResponse, RegistryResponse.RegistryResponseTokenizer, RegisterTokenizer> = RequestBuilder<RegistryResponse, RegistryResponse.RegistryResponseTokenizer, RegisterTokenizer>(service: "notification", action: "register")
 			.setBody(key: "identifier", value: identifier)
 			.setBody(key: "type", value: type.rawValue)
 
 		return request
 	}
 
+	public class SendPushTokenizer: ClientTokenizer  {
+		
+		public override var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var pushMessage: PushMessage.PushMessageTokenizer {
+			get {
+				return PushMessage.PushMessageTokenizer(self.append("pushMessage")) 
+			}
+		}
+	}
+
 	/**  Sends push notification to user devices  */
-	public static func sendPush(userId: Int, pushMessage: PushMessage) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "notification", action: "sendPush")
+	public static func sendPush(userId: Int, pushMessage: PushMessage) -> RequestBuilder<Bool, BaseTokenizedObject, SendPushTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, SendPushTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SendPushTokenizer>(service: "notification", action: "sendPush")
 			.setBody(key: "userId", value: userId)
 			.setBody(key: "pushMessage", value: pushMessage)
 
 		return request
 	}
 
+	public class SetDevicePushTokenTokenizer: ClientTokenizer  {
+		
+		public var pushToken: BaseTokenizedObject {
+			get {
+				return self.append("pushToken") 
+			}
+		}
+	}
+
 	/**  Registers the device push token to the push service  */
-	public static func setDevicePushToken(pushToken: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "notification", action: "setDevicePushToken")
+	public static func setDevicePushToken(pushToken: String) -> RequestBuilder<Bool, BaseTokenizedObject, SetDevicePushTokenTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, SetDevicePushTokenTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetDevicePushTokenTokenizer>(service: "notification", action: "setDevicePushToken")
 			.setBody(key: "pushToken", value: pushToken)
 
 		return request

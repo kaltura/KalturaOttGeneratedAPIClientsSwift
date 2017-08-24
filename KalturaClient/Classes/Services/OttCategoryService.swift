@@ -35,9 +35,18 @@
 
 public final class OttCategoryService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Retrieve the list of categories (hierarchical) and their associated channels  */
-	public static func get(id: Int) -> RequestBuilder<OTTCategory> {
-		let request: RequestBuilder<OTTCategory> = RequestBuilder<OTTCategory>(service: "ottcategory", action: "get")
+	public static func get(id: Int) -> RequestBuilder<OTTCategory, OTTCategory.OTTCategoryTokenizer, GetTokenizer> {
+		let request: RequestBuilder<OTTCategory, OTTCategory.OTTCategoryTokenizer, GetTokenizer> = RequestBuilder<OTTCategory, OTTCategory.OTTCategoryTokenizer, GetTokenizer>(service: "ottcategory", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request

@@ -35,33 +35,75 @@
 
 public final class PaymentMethodProfileService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var paymentMethod: PaymentMethodProfile.PaymentMethodProfileTokenizer {
+			get {
+				return PaymentMethodProfile.PaymentMethodProfileTokenizer(self.append("paymentMethod")) 
+			}
+		}
+	}
+
 	/**  TBD  */
-	public static func add(paymentMethod: PaymentMethodProfile) -> RequestBuilder<PaymentMethodProfile> {
-		let request: RequestBuilder<PaymentMethodProfile> = RequestBuilder<PaymentMethodProfile>(service: "paymentmethodprofile", action: "add")
+	public static func add(paymentMethod: PaymentMethodProfile) -> RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, AddTokenizer> {
+		let request: RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, AddTokenizer> = RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, AddTokenizer>(service: "paymentmethodprofile", action: "add")
 			.setBody(key: "paymentMethod", value: paymentMethod)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var paymentMethodId: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethodId") 
+			}
+		}
+	}
+
 	/**  Delete payment method profile  */
-	public static func delete(paymentMethodId: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "paymentmethodprofile", action: "delete")
+	public static func delete(paymentMethodId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "paymentmethodprofile", action: "delete")
 			.setBody(key: "paymentMethodId", value: paymentMethodId)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: PaymentMethodProfileFilter.PaymentMethodProfileFilterTokenizer {
+			get {
+				return PaymentMethodProfileFilter.PaymentMethodProfileFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  TBD  */
-	public static func list(filter: PaymentMethodProfileFilter) -> RequestBuilder<PaymentMethodProfileListResponse> {
-		let request: RequestBuilder<PaymentMethodProfileListResponse> = RequestBuilder<PaymentMethodProfileListResponse>(service: "paymentmethodprofile", action: "list")
+	public static func list(filter: PaymentMethodProfileFilter) -> RequestBuilder<PaymentMethodProfileListResponse, PaymentMethodProfileListResponse.PaymentMethodProfileListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<PaymentMethodProfileListResponse, PaymentMethodProfileListResponse.PaymentMethodProfileListResponseTokenizer, ListTokenizer> = RequestBuilder<PaymentMethodProfileListResponse, PaymentMethodProfileListResponse.PaymentMethodProfileListResponseTokenizer, ListTokenizer>(service: "paymentmethodprofile", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var paymentMethodId: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethodId") 
+			}
+		}
+		
+		public var paymentMethod: PaymentMethodProfile.PaymentMethodProfileTokenizer {
+			get {
+				return PaymentMethodProfile.PaymentMethodProfileTokenizer(self.append("paymentMethod")) 
+			}
+		}
+	}
+
 	/**  Update payment method  */
-	public static func update(paymentMethodId: Int, paymentMethod: PaymentMethodProfile) -> RequestBuilder<PaymentMethodProfile> {
-		let request: RequestBuilder<PaymentMethodProfile> = RequestBuilder<PaymentMethodProfile>(service: "paymentmethodprofile", action: "update")
+	public static func update(paymentMethodId: Int, paymentMethod: PaymentMethodProfile) -> RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, UpdateTokenizer> = RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, UpdateTokenizer>(service: "paymentmethodprofile", action: "update")
 			.setBody(key: "paymentMethodId", value: paymentMethodId)
 			.setBody(key: "paymentMethod", value: paymentMethod)
 

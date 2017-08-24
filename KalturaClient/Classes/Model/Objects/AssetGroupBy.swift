@@ -36,6 +36,9 @@
 /**  Abstarct class - represents an asset parameter that can be used for grouping  */
 open class AssetGroupBy: ObjectBase {
 
+	public class AssetGroupByTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

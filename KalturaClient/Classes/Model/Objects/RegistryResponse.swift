@@ -35,6 +35,27 @@
 
 open class RegistryResponse: ObjectBase {
 
+	public class RegistryResponseTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var announcementId: BaseTokenizedObject {
+			get {
+				return self.append("announcementId") 
+			}
+		}
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+		
+		public var url: BaseTokenizedObject {
+			get {
+				return self.append("url") 
+			}
+		}
+	}
+
 	/**  Announcement Id  */
 	public var announcementId: Int64? = nil
 	/**  Key  */
@@ -43,6 +64,18 @@ open class RegistryResponse: ObjectBase {
 	public var url: String? = nil
 
 
+	public func setMultiRequestToken(announcementId: String) {
+		self.dict["announcementId"] = announcementId
+	}
+	
+	public func setMultiRequestToken(key: String) {
+		self.dict["key"] = key
+	}
+	
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

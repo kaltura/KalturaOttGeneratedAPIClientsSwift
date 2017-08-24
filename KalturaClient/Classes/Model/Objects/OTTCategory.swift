@@ -36,6 +36,45 @@
 /**  Category details  */
 open class OTTCategory: ObjectBase {
 
+	public class OTTCategoryTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var parentCategoryId: BaseTokenizedObject {
+			get {
+				return self.append("parentCategoryId") 
+			}
+		}
+		
+		public var childCategories: ArrayTokenizedObject<OTTCategory.OTTCategoryTokenizer> {
+			get {
+				return ArrayTokenizedObject<OTTCategory.OTTCategoryTokenizer>(self.append("childCategories"))
+			} 
+		}
+		
+		public var channels: ArrayTokenizedObject<Channel.ChannelTokenizer> {
+			get {
+				return ArrayTokenizedObject<Channel.ChannelTokenizer>(self.append("channels"))
+			} 
+		}
+		
+		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
+			get {
+				return ArrayTokenizedObject<MediaImage.MediaImageTokenizer>(self.append("images"))
+			} 
+		}
+	}
+
 	/**  Unique identifier for the category  */
 	public var id: Int64? = nil
 	/**  Category name  */
@@ -50,6 +89,18 @@ open class OTTCategory: ObjectBase {
 	public var images: Array<MediaImage>? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(parentCategoryId: String) {
+		self.dict["parentCategoryId"] = parentCategoryId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

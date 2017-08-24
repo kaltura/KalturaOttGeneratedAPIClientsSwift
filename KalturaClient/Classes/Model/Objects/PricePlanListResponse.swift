@@ -35,6 +35,15 @@
 
 open class PricePlanListResponse: ListResponse {
 
+	public class PricePlanListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<PricePlan.PricePlanTokenizer> {
+			get {
+				return ArrayTokenizedObject<PricePlan.PricePlanTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of price plans  */
 	public var objects: Array<PricePlan>? = nil
 

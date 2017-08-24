@@ -36,6 +36,33 @@
 /**  Preview module  */
 open class PreviewModule: ObjectBase {
 
+	public class PreviewModuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var lifeCycle: BaseTokenizedObject {
+			get {
+				return self.append("lifeCycle") 
+			}
+		}
+		
+		public var nonRenewablePeriod: BaseTokenizedObject {
+			get {
+				return self.append("nonRenewablePeriod") 
+			}
+		}
+	}
+
 	/**  Preview module identifier  */
 	public var id: Int64? = nil
 	/**  Preview module name  */
@@ -47,6 +74,22 @@ open class PreviewModule: ObjectBase {
 	public var nonRenewablePeriod: Int? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(lifeCycle: String) {
+		self.dict["lifeCycle"] = lifeCycle
+	}
+	
+	public func setMultiRequestToken(nonRenewablePeriod: String) {
+		self.dict["nonRenewablePeriod"] = nonRenewablePeriod
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

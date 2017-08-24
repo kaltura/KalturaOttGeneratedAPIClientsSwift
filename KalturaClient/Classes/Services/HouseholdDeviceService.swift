@@ -35,66 +35,147 @@
 
 public final class HouseholdDeviceService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var device: HouseholdDevice.HouseholdDeviceTokenizer {
+			get {
+				return HouseholdDevice.HouseholdDeviceTokenizer(self.append("device")) 
+			}
+		}
+	}
+
 	/**  Add device to household  */
-	public static func add(device: HouseholdDevice) -> RequestBuilder<HouseholdDevice> {
-		let request: RequestBuilder<HouseholdDevice> = RequestBuilder<HouseholdDevice>(service: "householddevice", action: "add")
+	public static func add(device: HouseholdDevice) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddTokenizer> {
+		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddTokenizer>(service: "householddevice", action: "add")
 			.setBody(key: "device", value: device)
 
 		return request
 	}
 
+	public class AddByPinTokenizer: ClientTokenizer  {
+		
+		public var deviceName: BaseTokenizedObject {
+			get {
+				return self.append("deviceName") 
+			}
+		}
+		
+		public var pin: BaseTokenizedObject {
+			get {
+				return self.append("pin") 
+			}
+		}
+	}
+
 	/**  Registers a device to a household using pin code  */
-	public static func addByPin(deviceName: String, pin: String) -> RequestBuilder<HouseholdDevice> {
-		let request: RequestBuilder<HouseholdDevice> = RequestBuilder<HouseholdDevice>(service: "householddevice", action: "addByPin")
+	public static func addByPin(deviceName: String, pin: String) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddByPinTokenizer> {
+		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddByPinTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddByPinTokenizer>(service: "householddevice", action: "addByPin")
 			.setBody(key: "deviceName", value: deviceName)
 			.setBody(key: "pin", value: pin)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
 	/**  Removes a device from household  */
-	public static func delete(udid: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "householddevice", action: "delete")
+	public static func delete(udid: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "householddevice", action: "delete")
 			.setBody(key: "udid", value: udid)
 
 		return request
 	}
 
+	public class GeneratePinTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var brandId: BaseTokenizedObject {
+			get {
+				return self.append("brandId") 
+			}
+		}
+	}
+
 	/**  Generates device pin to use when adding a device to household by pin  */
-	public static func generatePin(udid: String, brandId: Int) -> RequestBuilder<DevicePin> {
-		let request: RequestBuilder<DevicePin> = RequestBuilder<DevicePin>(service: "householddevice", action: "generatePin")
+	public static func generatePin(udid: String, brandId: Int) -> RequestBuilder<DevicePin, DevicePin.DevicePinTokenizer, GeneratePinTokenizer> {
+		let request: RequestBuilder<DevicePin, DevicePin.DevicePinTokenizer, GeneratePinTokenizer> = RequestBuilder<DevicePin, DevicePin.DevicePinTokenizer, GeneratePinTokenizer>(service: "householddevice", action: "generatePin")
 			.setBody(key: "udid", value: udid)
 			.setBody(key: "brandId", value: brandId)
 
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns device registration status to the supplied household  */
-	public static func get() -> RequestBuilder<HouseholdDevice> {
-		let request: RequestBuilder<HouseholdDevice> = RequestBuilder<HouseholdDevice>(service: "householddevice", action: "get")
+	public static func get() -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer> {
+		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer>(service: "householddevice", action: "get")
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<HouseholdDeviceListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: HouseholdDeviceFilter.HouseholdDeviceFilterTokenizer {
+			get {
+				return HouseholdDeviceFilter.HouseholdDeviceFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Returns the devices within the household  */
-	public static func list(filter: HouseholdDeviceFilter?) -> RequestBuilder<HouseholdDeviceListResponse> {
-		let request: RequestBuilder<HouseholdDeviceListResponse> = RequestBuilder<HouseholdDeviceListResponse>(service: "householddevice", action: "list")
+	public static func list(filter: HouseholdDeviceFilter?) -> RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer>(service: "householddevice", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
-	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse> {
+	public class LoginWithPinTokenizer: ClientTokenizer  {
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var pin: BaseTokenizedObject {
+			get {
+				return self.append("pin") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
+	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		return loginWithPin(partnerId: partnerId, pin: pin, udid: nil)
 	}
 
 	/**  User sign-in via a time-expired sign-in PIN.  */
-	public static func loginWithPin(partnerId: Int, pin: String, udid: String?) -> RequestBuilder<LoginResponse> {
-		let request: RequestBuilder<LoginResponse> = RequestBuilder<LoginResponse>(service: "householddevice", action: "loginWithPin")
+	public static func loginWithPin(partnerId: Int, pin: String, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "householddevice", action: "loginWithPin")
 			.setBody(key: "partnerId", value: partnerId)
 			.setBody(key: "pin", value: pin)
 			.setBody(key: "udid", value: udid)
@@ -102,18 +183,48 @@ public final class HouseholdDeviceService{
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var device: HouseholdDevice.HouseholdDeviceTokenizer {
+			get {
+				return HouseholdDevice.HouseholdDeviceTokenizer(self.append("device")) 
+			}
+		}
+	}
+
 	/**  Update the name of the device by UDID  */
-	public static func update(udid: String, device: HouseholdDevice) -> RequestBuilder<HouseholdDevice> {
-		let request: RequestBuilder<HouseholdDevice> = RequestBuilder<HouseholdDevice>(service: "householddevice", action: "update")
+	public static func update(udid: String, device: HouseholdDevice) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, UpdateTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, UpdateTokenizer>(service: "householddevice", action: "update")
 			.setBody(key: "udid", value: udid)
 			.setBody(key: "device", value: device)
 
 		return request
 	}
 
+	public class UpdateStatusTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+	}
+
 	/**  Update the name of the device by UDID  */
-	public static func updateStatus(udid: String, status: DeviceStatus) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "householddevice", action: "updateStatus")
+	public static func updateStatus(udid: String, status: DeviceStatus) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "householddevice", action: "updateStatus")
 			.setBody(key: "udid", value: udid)
 			.setBody(key: "status", value: status.rawValue)
 

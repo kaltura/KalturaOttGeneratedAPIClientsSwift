@@ -35,6 +35,33 @@
 
 open class HouseholdPaymentGateway: ObjectBase {
 
+	public class HouseholdPaymentGatewayTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+		
+		public var selectedBy: BaseTokenizedObject {
+			get {
+				return self.append("selectedBy") 
+			}
+		}
+	}
+
 	/**  payment gateway id  */
 	public var id: Int? = nil
 	/**  payment gateway name  */
@@ -45,6 +72,22 @@ open class HouseholdPaymentGateway: ObjectBase {
 	public var selectedBy: HouseholdPaymentGatewaySelectedBy? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
+	public func setMultiRequestToken(selectedBy: String) {
+		self.dict["selectedBy"] = selectedBy
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -37,6 +37,27 @@
   groups.  */
 open class AssetCount: ObjectBase {
 
+	public class AssetCountTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+		
+		public var count: BaseTokenizedObject {
+			get {
+				return self.append("count") 
+			}
+		}
+		
+		public var subs: ArrayTokenizedObject<AssetsCount.AssetsCountTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetsCount.AssetsCountTokenizer>(self.append("subs"))
+			} 
+		}
+	}
+
 	/**  Value  */
 	public var value: String? = nil
 	/**  Count  */
@@ -45,6 +66,14 @@ open class AssetCount: ObjectBase {
 	public var subs: Array<AssetsCount>? = nil
 
 
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
+	public func setMultiRequestToken(count: String) {
+		self.dict["count"] = count
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

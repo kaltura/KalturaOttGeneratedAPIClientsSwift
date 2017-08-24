@@ -35,6 +35,21 @@
 
 open class LoginResponse: ObjectBase {
 
+	public class LoginResponseTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var user: OTTUser.OTTUserTokenizer {
+			get {
+				return OTTUser.OTTUserTokenizer(self.append("user")) 
+			}
+		}
+		
+		public var loginSession: LoginSession.LoginSessionTokenizer {
+			get {
+				return LoginSession.LoginSessionTokenizer(self.append("loginSession")) 
+			}
+		}
+	}
+
 	/**  User  */
 	public var user: OTTUser? = nil
 	/**  Kaltura login session details  */

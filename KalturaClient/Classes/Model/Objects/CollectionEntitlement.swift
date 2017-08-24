@@ -35,6 +35,9 @@
 
 open class CollectionEntitlement: Entitlement {
 
+	public class CollectionEntitlementTokenizer: Entitlement.EntitlementTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

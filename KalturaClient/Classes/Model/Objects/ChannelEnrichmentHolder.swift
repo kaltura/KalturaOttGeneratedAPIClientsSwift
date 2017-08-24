@@ -36,10 +36,23 @@
 /**  Holder object for channel enrichment enum  */
 open class ChannelEnrichmentHolder: ObjectBase {
 
+	public class ChannelEnrichmentHolderTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
 	/**  Enrichment type  */
 	public var type: ChannelEnrichment? = nil
 
 
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

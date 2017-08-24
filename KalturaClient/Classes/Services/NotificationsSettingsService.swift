@@ -35,16 +35,28 @@
 
 public final class NotificationsSettingsService{
 
+	public class GetTokenizer: ClientTokenizer  {
+	}
+
 	/**  Retrieve the user’s notification settings.  */
-	public static func get() -> RequestBuilder<NotificationsSettings> {
-		let request: RequestBuilder<NotificationsSettings> = RequestBuilder<NotificationsSettings>(service: "notificationssettings", action: "get")
+	public static func get() -> RequestBuilder<NotificationsSettings, NotificationsSettings.NotificationsSettingsTokenizer, GetTokenizer> {
+		let request: RequestBuilder<NotificationsSettings, NotificationsSettings.NotificationsSettingsTokenizer, GetTokenizer> = RequestBuilder<NotificationsSettings, NotificationsSettings.NotificationsSettingsTokenizer, GetTokenizer>(service: "notificationssettings", action: "get")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var settings: NotificationsSettings.NotificationsSettingsTokenizer {
+			get {
+				return NotificationsSettings.NotificationsSettingsTokenizer(self.append("settings")) 
+			}
+		}
+	}
+
 	/**  Update the user’s notification settings.  */
-	public static func update(settings: NotificationsSettings) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "notificationssettings", action: "update")
+	public static func update(settings: NotificationsSettings) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "notificationssettings", action: "update")
 			.setBody(key: "settings", value: settings)
 
 		return request

@@ -35,9 +35,18 @@
 
 public final class AssetStatisticsService{
 
+	public class QueryTokenizer: ClientTokenizer  {
+		
+		public var query_: AssetStatisticsQuery.AssetStatisticsQueryTokenizer {
+			get {
+				return AssetStatisticsQuery.AssetStatisticsQueryTokenizer(self.append("query_")) 
+			}
+		}
+	}
+
 	/**  Returns statistics for given list of assets by type and / or time period  */
-	public static func query(query_: AssetStatisticsQuery) -> RequestBuilder<AssetStatisticsListResponse> {
-		let request: RequestBuilder<AssetStatisticsListResponse> = RequestBuilder<AssetStatisticsListResponse>(service: "assetstatistics", action: "query")
+	public static func query(query_: AssetStatisticsQuery) -> RequestBuilder<AssetStatisticsListResponse, AssetStatisticsListResponse.AssetStatisticsListResponseTokenizer, QueryTokenizer> {
+		let request: RequestBuilder<AssetStatisticsListResponse, AssetStatisticsListResponse.AssetStatisticsListResponseTokenizer, QueryTokenizer> = RequestBuilder<AssetStatisticsListResponse, AssetStatisticsListResponse.AssetStatisticsListResponseTokenizer, QueryTokenizer>(service: "assetstatistics", action: "query")
 			.setBody(key: "query", value: query_)
 
 		return request

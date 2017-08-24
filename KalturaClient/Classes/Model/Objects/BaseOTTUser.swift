@@ -36,6 +36,33 @@
 /**  Slim user data  */
 open class BaseOTTUser: ObjectBase {
 
+	public class BaseOTTUserTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var username: BaseTokenizedObject {
+			get {
+				return self.append("username") 
+			}
+		}
+		
+		public var firstName: BaseTokenizedObject {
+			get {
+				return self.append("firstName") 
+			}
+		}
+		
+		public var lastName: BaseTokenizedObject {
+			get {
+				return self.append("lastName") 
+			}
+		}
+	}
+
 	/**  User identifier  */
 	public var id: String? = nil
 	/**  Username  */
@@ -46,6 +73,22 @@ open class BaseOTTUser: ObjectBase {
 	public var lastName: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(username: String) {
+		self.dict["username"] = username
+	}
+	
+	public func setMultiRequestToken(firstName: String) {
+		self.dict["firstName"] = firstName
+	}
+	
+	public func setMultiRequestToken(lastName: String) {
+		self.dict["lastName"] = lastName
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

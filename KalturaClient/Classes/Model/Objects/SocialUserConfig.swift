@@ -35,6 +35,15 @@
 
 open class SocialUserConfig: SocialConfig {
 
+	public class SocialUserConfigTokenizer: SocialConfig.SocialConfigTokenizer {
+		
+		public var actionPermissionItems: ArrayTokenizedObject<ActionPermissionItem.ActionPermissionItemTokenizer> {
+			get {
+				return ArrayTokenizedObject<ActionPermissionItem.ActionPermissionItemTokenizer>(self.append("actionPermissionItems"))
+			} 
+		}
+	}
+
 	/**  List of action permission items  */
 	public var actionPermissionItems: Array<ActionPermissionItem>? = nil
 

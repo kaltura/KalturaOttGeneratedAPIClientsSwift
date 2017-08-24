@@ -35,6 +35,33 @@
 
 open class ProductPrice: ObjectBase {
 
+	public class ProductPriceTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var productId: BaseTokenizedObject {
+			get {
+				return self.append("productId") 
+			}
+		}
+		
+		public var productType: BaseTokenizedObject {
+			get {
+				return self.append("productType") 
+			}
+		}
+		
+		public var price: Price.PriceTokenizer {
+			get {
+				return Price.PriceTokenizer(self.append("price")) 
+			}
+		}
+		
+		public var purchaseStatus: BaseTokenizedObject {
+			get {
+				return self.append("purchaseStatus") 
+			}
+		}
+	}
+
 	/**  Product identifier  */
 	public var productId: String? = nil
 	/**  Product Type  */
@@ -45,6 +72,18 @@ open class ProductPrice: ObjectBase {
 	public var purchaseStatus: PurchaseStatus? = nil
 
 
+	public func setMultiRequestToken(productId: String) {
+		self.dict["productId"] = productId
+	}
+	
+	public func setMultiRequestToken(productType: String) {
+		self.dict["productType"] = productType
+	}
+	
+	public func setMultiRequestToken(purchaseStatus: String) {
+		self.dict["purchaseStatus"] = purchaseStatus
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

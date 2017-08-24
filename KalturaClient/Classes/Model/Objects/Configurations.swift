@@ -35,6 +35,63 @@
 
 open class Configurations: ObjectBase {
 
+	public class ConfigurationsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var configurationGroupId: BaseTokenizedObject {
+			get {
+				return self.append("configurationGroupId") 
+			}
+		}
+		
+		public var appName: BaseTokenizedObject {
+			get {
+				return self.append("appName") 
+			}
+		}
+		
+		public var clientVersion: BaseTokenizedObject {
+			get {
+				return self.append("clientVersion") 
+			}
+		}
+		
+		public var platform: BaseTokenizedObject {
+			get {
+				return self.append("platform") 
+			}
+		}
+		
+		public var externalPushId: BaseTokenizedObject {
+			get {
+				return self.append("externalPushId") 
+			}
+		}
+		
+		public var isForceUpdate: BaseTokenizedObject {
+			get {
+				return self.append("isForceUpdate") 
+			}
+		}
+		
+		public var content: BaseTokenizedObject {
+			get {
+				return self.append("content") 
+			}
+		}
+	}
+
 	/**  Configuration id  */
 	public var id: String? = nil
 	/**  Partner id  */
@@ -55,6 +112,42 @@ open class Configurations: ObjectBase {
 	public var content: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(configurationGroupId: String) {
+		self.dict["configurationGroupId"] = configurationGroupId
+	}
+	
+	public func setMultiRequestToken(appName: String) {
+		self.dict["appName"] = appName
+	}
+	
+	public func setMultiRequestToken(clientVersion: String) {
+		self.dict["clientVersion"] = clientVersion
+	}
+	
+	public func setMultiRequestToken(platform: String) {
+		self.dict["platform"] = platform
+	}
+	
+	public func setMultiRequestToken(externalPushId: String) {
+		self.dict["externalPushId"] = externalPushId
+	}
+	
+	public func setMultiRequestToken(isForceUpdate: String) {
+		self.dict["isForceUpdate"] = isForceUpdate
+	}
+	
+	public func setMultiRequestToken(content: String) {
+		self.dict["content"] = content
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

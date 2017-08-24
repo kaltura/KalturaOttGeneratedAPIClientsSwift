@@ -36,10 +36,23 @@
 /**  Subscription Dependency Set  */
 open class SubscriptionDependencySet: SubscriptionSet {
 
+	public class SubscriptionDependencySetTokenizer: SubscriptionSet.SubscriptionSetTokenizer {
+		
+		public var baseSubscriptionId: BaseTokenizedObject {
+			get {
+				return self.append("baseSubscriptionId") 
+			}
+		}
+	}
+
 	/**  Base Subscription identifier  */
 	public var baseSubscriptionId: Int64? = nil
 
 
+	public func setMultiRequestToken(baseSubscriptionId: String) {
+		self.dict["baseSubscriptionId"] = baseSubscriptionId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,12 +35,31 @@
 
 open class FacebookPost: SocialNetworkComment {
 
+	public class FacebookPostTokenizer: SocialNetworkComment.SocialNetworkCommentTokenizer {
+		
+		public var comments: ArrayTokenizedObject<SocialNetworkComment.SocialNetworkCommentTokenizer> {
+			get {
+				return ArrayTokenizedObject<SocialNetworkComment.SocialNetworkCommentTokenizer>(self.append("comments"))
+			} 
+		}
+		
+		public var link: BaseTokenizedObject {
+			get {
+				return self.append("link") 
+			}
+		}
+	}
+
 	/**  List of comments on the post  */
 	public var comments: Array<SocialNetworkComment>? = nil
 	/**  A link associated to the post  */
 	public var link: String? = nil
 
 
+	public func setMultiRequestToken(link: String) {
+		self.dict["link"] = link
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

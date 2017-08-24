@@ -36,12 +36,35 @@
 /**  Returns social configuration for the partner  */
 open class SocialFacebookConfig: SocialConfig {
 
+	public class SocialFacebookConfigTokenizer: SocialConfig.SocialConfigTokenizer {
+		
+		public var appId: BaseTokenizedObject {
+			get {
+				return self.append("appId") 
+			}
+		}
+		
+		public var permissions: BaseTokenizedObject {
+			get {
+				return self.append("permissions") 
+			}
+		}
+	}
+
 	/**  The application identifier  */
 	public var appId: String? = nil
 	/**  List of application permissions  */
 	public var permissions: String? = nil
 
 
+	public func setMultiRequestToken(appId: String) {
+		self.dict["appId"] = appId
+	}
+	
+	public func setMultiRequestToken(permissions: String) {
+		self.dict["permissions"] = permissions
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

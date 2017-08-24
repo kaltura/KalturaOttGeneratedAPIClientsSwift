@@ -35,6 +35,39 @@
 
 open class Topic: ObjectBase {
 
+	public class TopicTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var subscribersAmount: BaseTokenizedObject {
+			get {
+				return self.append("subscribersAmount") 
+			}
+		}
+		
+		public var automaticIssueNotification: BaseTokenizedObject {
+			get {
+				return self.append("automaticIssueNotification") 
+			}
+		}
+		
+		public var lastMessageSentDateSec: BaseTokenizedObject {
+			get {
+				return self.append("lastMessageSentDateSec") 
+			}
+		}
+	}
+
 	/**  message id  */
 	public var id: String? = nil
 	/**  message  */
@@ -47,6 +80,26 @@ open class Topic: ObjectBase {
 	public var lastMessageSentDateSec: Int64? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(subscribersAmount: String) {
+		self.dict["subscribersAmount"] = subscribersAmount
+	}
+	
+	public func setMultiRequestToken(automaticIssueNotification: String) {
+		self.dict["automaticIssueNotification"] = automaticIssueNotification
+	}
+	
+	public func setMultiRequestToken(lastMessageSentDateSec: String) {
+		self.dict["lastMessageSentDateSec"] = lastMessageSentDateSec
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

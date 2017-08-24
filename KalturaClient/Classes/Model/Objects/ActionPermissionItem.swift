@@ -35,6 +35,33 @@
 
 open class ActionPermissionItem: ObjectBase {
 
+	public class ActionPermissionItemTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var network: BaseTokenizedObject {
+			get {
+				return self.append("network") 
+			}
+		}
+		
+		public var actionPrivacy: BaseTokenizedObject {
+			get {
+				return self.append("actionPrivacy") 
+			}
+		}
+		
+		public var privacy: BaseTokenizedObject {
+			get {
+				return self.append("privacy") 
+			}
+		}
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+	}
+
 	/**  Social network  */
 	public var network: SocialNetwork? = nil
 	/**  Action privacy  */
@@ -45,6 +72,22 @@ open class ActionPermissionItem: ObjectBase {
 	public var action: String? = nil
 
 
+	public func setMultiRequestToken(network: String) {
+		self.dict["network"] = network
+	}
+	
+	public func setMultiRequestToken(actionPrivacy: String) {
+		self.dict["actionPrivacy"] = actionPrivacy
+	}
+	
+	public func setMultiRequestToken(privacy: String) {
+		self.dict["privacy"] = privacy
+	}
+	
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

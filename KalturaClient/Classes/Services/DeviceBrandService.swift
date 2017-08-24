@@ -35,9 +35,12 @@
 
 public final class DeviceBrandService{
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Return a list of the available device brands.  */
-	public static func list() -> RequestBuilder<DeviceBrandListResponse> {
-		let request: RequestBuilder<DeviceBrandListResponse> = RequestBuilder<DeviceBrandListResponse>(service: "devicebrand", action: "list")
+	public static func list() -> RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> = RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer>(service: "devicebrand", action: "list")
 
 		return request
 	}

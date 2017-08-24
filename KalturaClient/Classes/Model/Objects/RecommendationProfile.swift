@@ -36,6 +36,51 @@
 /**  PaymentGW  */
 open class RecommendationProfile: ObjectBase {
 
+	public class RecommendationProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var adapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("adapterUrl") 
+			}
+		}
+		
+		public var recommendationEngineSettings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("recommendationEngineSettings"))
+			}
+		}
+		
+		public var externalIdentifier: BaseTokenizedObject {
+			get {
+				return self.append("externalIdentifier") 
+			}
+		}
+		
+		public var sharedSecret: BaseTokenizedObject {
+			get {
+				return self.append("sharedSecret") 
+			}
+		}
+	}
+
 	/**  recommendation engine id  */
 	public var id: Int? = nil
 	/**  recommendation engine name  */
@@ -52,6 +97,30 @@ open class RecommendationProfile: ObjectBase {
 	public var sharedSecret: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(adapterUrl: String) {
+		self.dict["adapterUrl"] = adapterUrl
+	}
+	
+	public func setMultiRequestToken(externalIdentifier: String) {
+		self.dict["externalIdentifier"] = externalIdentifier
+	}
+	
+	public func setMultiRequestToken(sharedSecret: String) {
+		self.dict["sharedSecret"] = sharedSecret
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

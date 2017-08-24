@@ -36,12 +36,35 @@
 /**  Filtering Assets requests  */
 open class BookmarkFilter: Filter {
 
+	public class BookmarkFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdIn: BaseTokenizedObject {
+			get {
+				return self.append("assetIdIn") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+	}
+
 	/**  Comma separated list of assets identifiers  */
 	public var assetIdIn: String? = nil
 	/**  Asset type  */
 	public var assetTypeEqual: AssetType? = nil
 
 
+	public func setMultiRequestToken(assetIdIn: String) {
+		self.dict["assetIdIn"] = assetIdIn
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

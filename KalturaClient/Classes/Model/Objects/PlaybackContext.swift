@@ -35,6 +35,27 @@
 
 open class PlaybackContext: ObjectBase {
 
+	public class PlaybackContextTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var sources: ArrayTokenizedObject<PlaybackSource.PlaybackSourceTokenizer> {
+			get {
+				return ArrayTokenizedObject<PlaybackSource.PlaybackSourceTokenizer>(self.append("sources"))
+			} 
+		}
+		
+		public var actions: ArrayTokenizedObject<RuleAction.RuleActionTokenizer> {
+			get {
+				return ArrayTokenizedObject<RuleAction.RuleActionTokenizer>(self.append("actions"))
+			} 
+		}
+		
+		public var messages: ArrayTokenizedObject<AccessControlMessage.AccessControlMessageTokenizer> {
+			get {
+				return ArrayTokenizedObject<AccessControlMessage.AccessControlMessageTokenizer>(self.append("messages"))
+			} 
+		}
+	}
+
 	/**  Sources  */
 	public var sources: Array<PlaybackSource>? = nil
 	/**  Actions  */

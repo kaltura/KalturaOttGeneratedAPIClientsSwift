@@ -35,16 +35,28 @@
 
 public final class CdnPartnerSettingsService{
 
+	public class GetTokenizer: ClientTokenizer  {
+	}
+
 	/**  Retrieve the partner’s CDN settings (default adapters)  */
-	public static func get() -> RequestBuilder<CDNPartnerSettings> {
-		let request: RequestBuilder<CDNPartnerSettings> = RequestBuilder<CDNPartnerSettings>(service: "cdnpartnersettings", action: "get")
+	public static func get() -> RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, GetTokenizer> {
+		let request: RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, GetTokenizer> = RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, GetTokenizer>(service: "cdnpartnersettings", action: "get")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var settings: CDNPartnerSettings.CDNPartnerSettingsTokenizer {
+			get {
+				return CDNPartnerSettings.CDNPartnerSettingsTokenizer(self.append("settings")) 
+			}
+		}
+	}
+
 	/**  Configure the partner’s CDN settings (default adapters)  */
-	public static func update(settings: CDNPartnerSettings) -> RequestBuilder<CDNPartnerSettings> {
-		let request: RequestBuilder<CDNPartnerSettings> = RequestBuilder<CDNPartnerSettings>(service: "cdnpartnersettings", action: "update")
+	public static func update(settings: CDNPartnerSettings) -> RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, UpdateTokenizer> = RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, UpdateTokenizer>(service: "cdnpartnersettings", action: "update")
 			.setBody(key: "settings", value: settings)
 
 		return request

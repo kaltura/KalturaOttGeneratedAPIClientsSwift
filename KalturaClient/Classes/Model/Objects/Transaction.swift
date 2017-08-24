@@ -35,6 +35,45 @@
 
 open class Transaction: ObjectBase {
 
+	public class TransactionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var paymentGatewayReferenceId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayReferenceId") 
+			}
+		}
+		
+		public var paymentGatewayResponseId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayResponseId") 
+			}
+		}
+		
+		public var state: BaseTokenizedObject {
+			get {
+				return self.append("state") 
+			}
+		}
+		
+		public var failReasonCode: BaseTokenizedObject {
+			get {
+				return self.append("failReasonCode") 
+			}
+		}
+		
+		public var createdAt: BaseTokenizedObject {
+			get {
+				return self.append("createdAt") 
+			}
+		}
+	}
+
 	/**  Kaltura unique ID representing the transaction  */
 	public var id: String? = nil
 	/**  Transaction reference ID received from the payment gateway.               Value
@@ -54,6 +93,30 @@ open class Transaction: ObjectBase {
 	public var createdAt: Int? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(paymentGatewayReferenceId: String) {
+		self.dict["paymentGatewayReferenceId"] = paymentGatewayReferenceId
+	}
+	
+	public func setMultiRequestToken(paymentGatewayResponseId: String) {
+		self.dict["paymentGatewayResponseId"] = paymentGatewayResponseId
+	}
+	
+	public func setMultiRequestToken(state: String) {
+		self.dict["state"] = state
+	}
+	
+	public func setMultiRequestToken(failReasonCode: String) {
+		self.dict["failReasonCode"] = failReasonCode
+	}
+	
+	public func setMultiRequestToken(createdAt: String) {
+		self.dict["createdAt"] = createdAt
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

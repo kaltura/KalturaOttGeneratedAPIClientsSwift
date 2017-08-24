@@ -35,13 +35,28 @@
 
 public final class SocialCommentService{
 
-	public static func list(filter: SocialCommentFilter) -> RequestBuilder<SocialCommentListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: SocialCommentFilter.SocialCommentFilterTokenizer {
+			get {
+				return SocialCommentFilter.SocialCommentFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: SocialCommentFilter) -> RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Get a list of all social comments filtered by asset ID and social platform  */
-	public static func list(filter: SocialCommentFilter, pager: FilterPager?) -> RequestBuilder<SocialCommentListResponse> {
-		let request: RequestBuilder<SocialCommentListResponse> = RequestBuilder<SocialCommentListResponse>(service: "socialcomment", action: "list")
+	public static func list(filter: SocialCommentFilter, pager: FilterPager?) -> RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer> = RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer>(service: "socialcomment", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

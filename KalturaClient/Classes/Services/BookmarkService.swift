@@ -35,13 +35,31 @@
 
 public final class BookmarkService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var bookmark: Bookmark.BookmarkTokenizer {
+			get {
+				return Bookmark.BookmarkTokenizer(self.append("bookmark")) 
+			}
+		}
+	}
+
 	/**  Report player position and action for the user on the watched asset. Player
 	  position is used to later allow resume watching.  */
-	public static func add(bookmark: Bookmark) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "bookmark", action: "add")
+	public static func add(bookmark: Bookmark) -> RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer>(service: "bookmark", action: "add")
 			.setBody(key: "bookmark", value: bookmark)
 
 		return request
+	}
+
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: BookmarkFilter.BookmarkFilterTokenizer {
+			get {
+				return BookmarkFilter.BookmarkFilterTokenizer(self.append("filter")) 
+			}
+		}
 	}
 
 	/**  Returns player position record/s for the requested asset and the requesting
@@ -49,8 +67,8 @@ public final class BookmarkService{
 	  records are provided for all of the users in the household.              If
 	  non-default user makes the request - player position records are provided for
 	  the requesting user and the default user of the household.  */
-	public static func list(filter: BookmarkFilter) -> RequestBuilder<BookmarkListResponse> {
-		let request: RequestBuilder<BookmarkListResponse> = RequestBuilder<BookmarkListResponse>(service: "bookmark", action: "list")
+	public static func list(filter: BookmarkFilter) -> RequestBuilder<BookmarkListResponse, BookmarkListResponse.BookmarkListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<BookmarkListResponse, BookmarkListResponse.BookmarkListResponseTokenizer, ListTokenizer> = RequestBuilder<BookmarkListResponse, BookmarkListResponse.BookmarkListResponseTokenizer, ListTokenizer>(service: "bookmark", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

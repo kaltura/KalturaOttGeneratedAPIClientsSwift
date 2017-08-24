@@ -35,6 +35,15 @@
 
 open class SocialFriendActivityListResponse: ListResponse {
 
+	public class SocialFriendActivityListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<SocialFriendActivity.SocialFriendActivityTokenizer> {
+			get {
+				return ArrayTokenizedObject<SocialFriendActivity.SocialFriendActivityTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Social friends activity  */
 	public var objects: Array<SocialFriendActivity>? = nil
 

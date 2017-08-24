@@ -36,6 +36,39 @@
 /**  Program-asset info  */
 open class ProgramAsset: Asset {
 
+	public class ProgramAssetTokenizer: Asset.AssetTokenizer {
+		
+		public var epgChannelId: BaseTokenizedObject {
+			get {
+				return self.append("epgChannelId") 
+			}
+		}
+		
+		public var epgId: BaseTokenizedObject {
+			get {
+				return self.append("epgId") 
+			}
+		}
+		
+		public var relatedMediaId: BaseTokenizedObject {
+			get {
+				return self.append("relatedMediaId") 
+			}
+		}
+		
+		public var crid: BaseTokenizedObject {
+			get {
+				return self.append("crid") 
+			}
+		}
+		
+		public var linearAssetId: BaseTokenizedObject {
+			get {
+				return self.append("linearAssetId") 
+			}
+		}
+	}
+
 	/**  EPG channel identifier  */
 	public var epgChannelId: Int64? = nil
 	/**  EPG identifier  */
@@ -48,6 +81,26 @@ open class ProgramAsset: Asset {
 	public var linearAssetId: Int64? = nil
 
 
+	public func setMultiRequestToken(epgChannelId: String) {
+		self.dict["epgChannelId"] = epgChannelId
+	}
+	
+	public func setMultiRequestToken(epgId: String) {
+		self.dict["epgId"] = epgId
+	}
+	
+	public func setMultiRequestToken(relatedMediaId: String) {
+		self.dict["relatedMediaId"] = relatedMediaId
+	}
+	
+	public func setMultiRequestToken(crid: String) {
+		self.dict["crid"] = crid
+	}
+	
+	public func setMultiRequestToken(linearAssetId: String) {
+		self.dict["linearAssetId"] = linearAssetId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

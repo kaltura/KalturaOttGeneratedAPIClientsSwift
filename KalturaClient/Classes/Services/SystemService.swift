@@ -35,23 +35,32 @@
 
 public final class SystemService{
 
+	public class GetTimeTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns current server timestamp  */
-	public static func getTime() -> RequestBuilder<Int64> {
-		let request: RequestBuilder<Int64> = RequestBuilder<Int64>(service: "system", action: "getTime")
+	public static func getTime() -> RequestBuilder<Int64, BaseTokenizedObject, GetTimeTokenizer> {
+		let request: RequestBuilder<Int64, BaseTokenizedObject, GetTimeTokenizer> = RequestBuilder<Int64, BaseTokenizedObject, GetTimeTokenizer>(service: "system", action: "getTime")
 
 		return request
+	}
+
+	public class GetVersionTokenizer: ClientTokenizer  {
 	}
 
 	/**  Returns current server version  */
-	public static func getVersion() -> RequestBuilder<String> {
-		let request: RequestBuilder<String> = RequestBuilder<String>(service: "system", action: "getVersion")
+	public static func getVersion() -> RequestBuilder<String, BaseTokenizedObject, GetVersionTokenizer> {
+		let request: RequestBuilder<String, BaseTokenizedObject, GetVersionTokenizer> = RequestBuilder<String, BaseTokenizedObject, GetVersionTokenizer>(service: "system", action: "getVersion")
 
 		return request
 	}
 
+	public class PingTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns true  */
-	public static func ping() -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "system", action: "ping")
+	public static func ping() -> RequestBuilder<Bool, BaseTokenizedObject, PingTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, PingTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, PingTokenizer>(service: "system", action: "ping")
 
 		return request
 	}

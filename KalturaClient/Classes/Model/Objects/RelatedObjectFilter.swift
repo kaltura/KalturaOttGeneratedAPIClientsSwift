@@ -36,6 +36,9 @@
 /**  Define KalturaRelatedObjectFilter  */
 open class RelatedObjectFilter: Filter {
 
+	public class RelatedObjectFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

@@ -35,6 +35,39 @@
 
 open class BookmarkPlayerData: ObjectBase {
 
+	public class BookmarkPlayerDataTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var averageBitrate: BaseTokenizedObject {
+			get {
+				return self.append("averageBitrate") 
+			}
+		}
+		
+		public var totalBitrate: BaseTokenizedObject {
+			get {
+				return self.append("totalBitrate") 
+			}
+		}
+		
+		public var currentBitrate: BaseTokenizedObject {
+			get {
+				return self.append("currentBitrate") 
+			}
+		}
+		
+		public var fileId: BaseTokenizedObject {
+			get {
+				return self.append("fileId") 
+			}
+		}
+	}
+
 	/**  Action  */
 	public var action: BookmarkActionType? = nil
 	/**  Average Bitrate  */
@@ -47,6 +80,26 @@ open class BookmarkPlayerData: ObjectBase {
 	public var fileId: Int64? = nil
 
 
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
+	public func setMultiRequestToken(averageBitrate: String) {
+		self.dict["averageBitrate"] = averageBitrate
+	}
+	
+	public func setMultiRequestToken(totalBitrate: String) {
+		self.dict["totalBitrate"] = totalBitrate
+	}
+	
+	public func setMultiRequestToken(currentBitrate: String) {
+		self.dict["currentBitrate"] = currentBitrate
+	}
+	
+	public func setMultiRequestToken(fileId: String) {
+		self.dict["fileId"] = fileId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

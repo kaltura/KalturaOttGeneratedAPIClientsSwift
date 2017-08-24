@@ -35,6 +35,9 @@
 
 open class TopicFilter: Filter {
 
+	public class TopicFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

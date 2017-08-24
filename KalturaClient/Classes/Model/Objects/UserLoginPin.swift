@@ -36,6 +36,27 @@
 /**  Log in pin code details  */
 open class UserLoginPin: ObjectBase {
 
+	public class UserLoginPinTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var pinCode: BaseTokenizedObject {
+			get {
+				return self.append("pinCode") 
+			}
+		}
+		
+		public var expirationTime: BaseTokenizedObject {
+			get {
+				return self.append("expirationTime") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+	}
+
 	/**  Generated login pin code  */
 	public var pinCode: String? = nil
 	/**  Login pin expiration time (epoch)  */
@@ -44,6 +65,18 @@ open class UserLoginPin: ObjectBase {
 	public var userId: String? = nil
 
 
+	public func setMultiRequestToken(pinCode: String) {
+		self.dict["pinCode"] = pinCode
+	}
+	
+	public func setMultiRequestToken(expirationTime: String) {
+		self.dict["expirationTime"] = expirationTime
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

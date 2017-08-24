@@ -36,6 +36,15 @@
 /**  List of message follow data.  */
 open class FollowTvSeriesListResponse: ListResponse {
 
+	public class FollowTvSeriesListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<FollowTvSeries.FollowTvSeriesTokenizer> {
+			get {
+				return ArrayTokenizedObject<FollowTvSeries.FollowTvSeriesTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Follow data list  */
 	public var objects: Array<FollowTvSeries>? = nil
 

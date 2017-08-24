@@ -36,12 +36,31 @@
 /**  Asset counts wrapper - represents a group  */
 open class AssetCountListResponse: ListResponse {
 
+	public class AssetCountListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var assetsCount: BaseTokenizedObject {
+			get {
+				return self.append("assetsCount") 
+			}
+		}
+		
+		public var objects: ArrayTokenizedObject<AssetsCount.AssetsCountTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetsCount.AssetsCountTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Count of assets that match filter result, regardless of group by result  */
 	public var assetsCount: Int? = nil
 	/**  List of groupings (field name and sub-list of values and their counts)  */
 	public var objects: Array<AssetsCount>? = nil
 
 
+	public func setMultiRequestToken(assetsCount: String) {
+		self.dict["assetsCount"] = assetsCount
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

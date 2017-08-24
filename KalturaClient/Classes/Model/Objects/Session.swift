@@ -36,6 +36,51 @@
 /**  Kaltura Session  */
 open class Session: ObjectBase {
 
+	public class SessionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var ks: BaseTokenizedObject {
+			get {
+				return self.append("ks") 
+			}
+		}
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var expiry: BaseTokenizedObject {
+			get {
+				return self.append("expiry") 
+			}
+		}
+		
+		public var privileges: BaseTokenizedObject {
+			get {
+				return self.append("privileges") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+	}
+
 	/**  KS  */
 	public var ks: String? = nil
 	/**  Partner identifier  */
@@ -52,6 +97,34 @@ open class Session: ObjectBase {
 	public var createDate: Int? = nil
 
 
+	public func setMultiRequestToken(ks: String) {
+		self.dict["ks"] = ks
+	}
+	
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(expiry: String) {
+		self.dict["expiry"] = expiry
+	}
+	
+	public func setMultiRequestToken(privileges: String) {
+		self.dict["privileges"] = privileges
+	}
+	
+	public func setMultiRequestToken(udid: String) {
+		self.dict["udid"] = udid
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,51 @@
 /**  Device details  */
 open class HouseholdDevice: ObjectBase {
 
+	public class HouseholdDeviceTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var householdId: BaseTokenizedObject {
+			get {
+				return self.append("householdId") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var brandId: BaseTokenizedObject {
+			get {
+				return self.append("brandId") 
+			}
+		}
+		
+		public var activatedOn: BaseTokenizedObject {
+			get {
+				return self.append("activatedOn") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var deviceFamilyId: BaseTokenizedObject {
+			get {
+				return self.append("deviceFamilyId") 
+			}
+		}
+	}
+
 	/**  Household identifier  */
 	public var householdId: Int? = nil
 	/**  Device UDID  */
@@ -52,6 +97,34 @@ open class HouseholdDevice: ObjectBase {
 	public var deviceFamilyId: Int64? = nil
 
 
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
+	}
+	
+	public func setMultiRequestToken(udid: String) {
+		self.dict["udid"] = udid
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(brandId: String) {
+		self.dict["brandId"] = brandId
+	}
+	
+	public func setMultiRequestToken(activatedOn: String) {
+		self.dict["activatedOn"] = activatedOn
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(deviceFamilyId: String) {
+		self.dict["deviceFamilyId"] = deviceFamilyId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,41 +35,92 @@
 
 public final class ConfigurationsService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var configurations: Configurations.ConfigurationsTokenizer {
+			get {
+				return Configurations.ConfigurationsTokenizer(self.append("configurations")) 
+			}
+		}
+	}
+
 	/**  Add a new device configuration to a configuration group  */
-	public static func add(configurations: Configurations) -> RequestBuilder<Configurations> {
-		let request: RequestBuilder<Configurations> = RequestBuilder<Configurations>(service: "configurations", action: "add")
+	public static func add(configurations: Configurations) -> RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, AddTokenizer> = RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, AddTokenizer>(service: "configurations", action: "add")
 			.setBody(key: "configurations", value: configurations)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete a device configuration  */
-	public static func delete(id: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "configurations", action: "delete")
+	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "configurations", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
 	}
 
 	/**  Return the device configuration  */
-	public static func get(id: String) -> RequestBuilder<Configurations> {
-		let request: RequestBuilder<Configurations> = RequestBuilder<Configurations>(service: "configurations", action: "get")
+	public static func get(id: String) -> RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, GetTokenizer> = RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, GetTokenizer>(service: "configurations", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ConfigurationsFilter.ConfigurationsFilterTokenizer {
+			get {
+				return ConfigurationsFilter.ConfigurationsFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Return a list of device configurations of a configuration group  */
-	public static func list(filter: ConfigurationsFilter) -> RequestBuilder<ConfigurationsListResponse> {
-		let request: RequestBuilder<ConfigurationsListResponse> = RequestBuilder<ConfigurationsListResponse>(service: "configurations", action: "list")
+	public static func list(filter: ConfigurationsFilter) -> RequestBuilder<ConfigurationsListResponse, ConfigurationsListResponse.ConfigurationsListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ConfigurationsListResponse, ConfigurationsListResponse.ConfigurationsListResponseTokenizer, ListTokenizer> = RequestBuilder<ConfigurationsListResponse, ConfigurationsListResponse.ConfigurationsListResponseTokenizer, ListTokenizer>(service: "configurations", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var configurations: Configurations.ConfigurationsTokenizer {
+			get {
+				return Configurations.ConfigurationsTokenizer(self.append("configurations")) 
+			}
+		}
+	}
+
 	/**  Update device configuration  */
-	public static func update(id: String, configurations: Configurations) -> RequestBuilder<Configurations> {
-		let request: RequestBuilder<Configurations> = RequestBuilder<Configurations>(service: "configurations", action: "update")
+	public static func update(id: String, configurations: Configurations) -> RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, UpdateTokenizer> = RequestBuilder<Configurations, Configurations.ConfigurationsTokenizer, UpdateTokenizer>(service: "configurations", action: "update")
 			.setBody(key: "id", value: id)
 			.setBody(key: "configurations", value: configurations)
 

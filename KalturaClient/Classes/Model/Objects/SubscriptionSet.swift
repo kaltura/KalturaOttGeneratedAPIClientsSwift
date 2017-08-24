@@ -36,6 +36,33 @@
 /**  Subscription details  */
 open class SubscriptionSet: ObjectBase {
 
+	public class SubscriptionSetTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var subscriptionIds: BaseTokenizedObject {
+			get {
+				return self.append("subscriptionIds") 
+			}
+		}
+	}
+
 	/**  SubscriptionSet identifier  */
 	public var id: Int64? = nil
 	/**  SubscriptionSet name  */
@@ -47,6 +74,22 @@ open class SubscriptionSet: ObjectBase {
 	public var subscriptionIds: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(subscriptionIds: String) {
+		self.dict["subscriptionIds"] = subscriptionIds
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

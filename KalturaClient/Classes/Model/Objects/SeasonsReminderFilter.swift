@@ -35,6 +35,27 @@
 
 open class SeasonsReminderFilter: ReminderFilter {
 
+	public class SeasonsReminderFilterTokenizer: ReminderFilter.ReminderFilterTokenizer {
+		
+		public var seriesIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("seriesIdEqual") 
+			}
+		}
+		
+		public var seasonNumberIn: BaseTokenizedObject {
+			get {
+				return self.append("seasonNumberIn") 
+			}
+		}
+		
+		public var epgChannelIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("epgChannelIdEqual") 
+			}
+		}
+	}
+
 	/**  Series ID  */
 	public var seriesIdEqual: String? = nil
 	/**  Comma separated season numbers  */
@@ -43,6 +64,18 @@ open class SeasonsReminderFilter: ReminderFilter {
 	public var epgChannelIdEqual: Int64? = nil
 
 
+	public func setMultiRequestToken(seriesIdEqual: String) {
+		self.dict["seriesIdEqual"] = seriesIdEqual
+	}
+	
+	public func setMultiRequestToken(seasonNumberIn: String) {
+		self.dict["seasonNumberIn"] = seasonNumberIn
+	}
+	
+	public func setMultiRequestToken(epgChannelIdEqual: String) {
+		self.dict["epgChannelIdEqual"] = epgChannelIdEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

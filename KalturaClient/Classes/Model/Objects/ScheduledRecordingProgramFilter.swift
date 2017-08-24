@@ -35,6 +35,33 @@
 
 open class ScheduledRecordingProgramFilter: AssetFilter {
 
+	public class ScheduledRecordingProgramFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var recordingTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("recordingTypeEqual") 
+			}
+		}
+		
+		public var channelsIn: BaseTokenizedObject {
+			get {
+				return self.append("channelsIn") 
+			}
+		}
+		
+		public var startDateGreaterThanOrNull: BaseTokenizedObject {
+			get {
+				return self.append("startDateGreaterThanOrNull") 
+			}
+		}
+		
+		public var endDateLessThanOrNull: BaseTokenizedObject {
+			get {
+				return self.append("endDateLessThanOrNull") 
+			}
+		}
+	}
+
 	/**  The type of recordings to return  */
 	public var recordingTypeEqual: ScheduledRecordingAssetType? = nil
 	/**  Channels to filter by  */
@@ -45,6 +72,22 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 	public var endDateLessThanOrNull: Int64? = nil
 
 
+	public func setMultiRequestToken(recordingTypeEqual: String) {
+		self.dict["recordingTypeEqual"] = recordingTypeEqual
+	}
+	
+	public func setMultiRequestToken(channelsIn: String) {
+		self.dict["channelsIn"] = channelsIn
+	}
+	
+	public func setMultiRequestToken(startDateGreaterThanOrNull: String) {
+		self.dict["startDateGreaterThanOrNull"] = startDateGreaterThanOrNull
+	}
+	
+	public func setMultiRequestToken(endDateLessThanOrNull: String) {
+		self.dict["endDateLessThanOrNull"] = endDateLessThanOrNull
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

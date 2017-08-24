@@ -36,6 +36,15 @@
 /**  List of assets and their bookmarks  */
 open class BookmarkListResponse: ListResponse {
 
+	public class BookmarkListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Bookmark.BookmarkTokenizer> {
+			get {
+				return ArrayTokenizedObject<Bookmark.BookmarkTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Assets  */
 	public var objects: Array<Bookmark>? = nil
 

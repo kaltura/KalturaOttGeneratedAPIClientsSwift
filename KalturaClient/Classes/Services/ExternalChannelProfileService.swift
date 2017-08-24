@@ -35,32 +35,68 @@
 
 public final class ExternalChannelProfileService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var externalChannel: ExternalChannelProfile.ExternalChannelProfileTokenizer {
+			get {
+				return ExternalChannelProfile.ExternalChannelProfileTokenizer(self.append("externalChannel")) 
+			}
+		}
+	}
+
 	/**  Insert new External channel for partner  */
-	public static func add(externalChannel: ExternalChannelProfile) -> RequestBuilder<ExternalChannelProfile> {
-		let request: RequestBuilder<ExternalChannelProfile> = RequestBuilder<ExternalChannelProfile>(service: "externalchannelprofile", action: "add")
+	public static func add(externalChannel: ExternalChannelProfile) -> RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, AddTokenizer> {
+		let request: RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, AddTokenizer> = RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, AddTokenizer>(service: "externalchannelprofile", action: "add")
 			.setBody(key: "externalChannel", value: externalChannel)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var externalChannelId: BaseTokenizedObject {
+			get {
+				return self.append("externalChannelId") 
+			}
+		}
+	}
+
 	/**  Delete External channel by External channel id  */
-	public static func delete(externalChannelId: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "externalchannelprofile", action: "delete")
+	public static func delete(externalChannelId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "externalchannelprofile", action: "delete")
 			.setBody(key: "externalChannelId", value: externalChannelId)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns all External channels for partner  */
-	public static func list() -> RequestBuilder<ExternalChannelProfileListResponse> {
-		let request: RequestBuilder<ExternalChannelProfileListResponse> = RequestBuilder<ExternalChannelProfileListResponse>(service: "externalchannelprofile", action: "list")
+	public static func list() -> RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer> = RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer>(service: "externalchannelprofile", action: "list")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var externalChannelId: BaseTokenizedObject {
+			get {
+				return self.append("externalChannelId") 
+			}
+		}
+		
+		public var externalChannel: ExternalChannelProfile.ExternalChannelProfileTokenizer {
+			get {
+				return ExternalChannelProfile.ExternalChannelProfileTokenizer(self.append("externalChannel")) 
+			}
+		}
+	}
+
 	/**  Update External channel details  */
-	public static func update(externalChannelId: Int, externalChannel: ExternalChannelProfile) -> RequestBuilder<ExternalChannelProfile> {
-		let request: RequestBuilder<ExternalChannelProfile> = RequestBuilder<ExternalChannelProfile>(service: "externalchannelprofile", action: "update")
+	public static func update(externalChannelId: Int, externalChannel: ExternalChannelProfile) -> RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, UpdateTokenizer> = RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, UpdateTokenizer>(service: "externalchannelprofile", action: "update")
 			.setBody(key: "externalChannelId", value: externalChannelId)
 			.setBody(key: "externalChannel", value: externalChannel)
 

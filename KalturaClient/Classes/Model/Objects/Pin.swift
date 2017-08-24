@@ -36,6 +36,27 @@
 /**  PIN and its origin of definition  */
 open class Pin: ObjectBase {
 
+	public class PinTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var pin: BaseTokenizedObject {
+			get {
+				return self.append("pin") 
+			}
+		}
+		
+		public var origin: BaseTokenizedObject {
+			get {
+				return self.append("origin") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
 	/**  PIN code  */
 	public var pin: String? = nil
 	/**  Where the PIN was defined at – account, household or user  */
@@ -44,6 +65,18 @@ open class Pin: ObjectBase {
 	public var type: PinType? = nil
 
 
+	public func setMultiRequestToken(pin: String) {
+		self.dict["pin"] = pin
+	}
+	
+	public func setMultiRequestToken(origin: String) {
+		self.dict["origin"] = origin
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

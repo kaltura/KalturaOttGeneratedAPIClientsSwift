@@ -36,6 +36,9 @@
 /**  order announcements  */
 open class AnnouncementFilter: Filter {
 
+	public class AnnouncementFilterTokenizer: Filter.FilterTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

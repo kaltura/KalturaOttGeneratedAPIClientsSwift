@@ -36,6 +36,15 @@
 /**  List of inbox message.  */
 open class InboxMessageListResponse: ListResponse {
 
+	public class InboxMessageListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<InboxMessage.InboxMessageTokenizer> {
+			get {
+				return ArrayTokenizedObject<InboxMessage.InboxMessageTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Follow data list  */
 	public var objects: Array<InboxMessage>? = nil
 

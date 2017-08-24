@@ -35,12 +35,35 @@
 
 open class SocialNetworkComment: SocialComment {
 
+	public class SocialNetworkCommentTokenizer: SocialComment.SocialCommentTokenizer {
+		
+		public var likeCounter: BaseTokenizedObject {
+			get {
+				return self.append("likeCounter") 
+			}
+		}
+		
+		public var authorImageUrl: BaseTokenizedObject {
+			get {
+				return self.append("authorImageUrl") 
+			}
+		}
+	}
+
 	/**  Number of likes  */
 	public var likeCounter: String? = nil
 	/**  The URL of the profile picture of the author of the comment  */
 	public var authorImageUrl: String? = nil
 
 
+	public func setMultiRequestToken(likeCounter: String) {
+		self.dict["likeCounter"] = likeCounter
+	}
+	
+	public func setMultiRequestToken(authorImageUrl: String) {
+		self.dict["authorImageUrl"] = authorImageUrl
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

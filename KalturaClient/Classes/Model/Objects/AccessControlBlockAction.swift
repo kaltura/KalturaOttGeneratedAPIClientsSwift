@@ -35,6 +35,9 @@
 
 open class AccessControlBlockAction: RuleAction {
 
+	public class AccessControlBlockActionTokenizer: RuleAction.RuleActionTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

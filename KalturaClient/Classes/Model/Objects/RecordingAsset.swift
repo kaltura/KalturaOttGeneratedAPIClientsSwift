@@ -36,12 +36,35 @@
 /**  Recording-asset info  */
 open class RecordingAsset: ProgramAsset {
 
+	public class RecordingAssetTokenizer: ProgramAsset.ProgramAssetTokenizer {
+		
+		public var recordingId: BaseTokenizedObject {
+			get {
+				return self.append("recordingId") 
+			}
+		}
+		
+		public var recordingType: BaseTokenizedObject {
+			get {
+				return self.append("recordingType") 
+			}
+		}
+	}
+
 	/**  Recording identifier  */
 	public var recordingId: String? = nil
 	/**  Recording Type: single/season/series  */
 	public var recordingType: RecordingType? = nil
 
 
+	public func setMultiRequestToken(recordingId: String) {
+		self.dict["recordingId"] = recordingId
+	}
+	
+	public func setMultiRequestToken(recordingType: String) {
+		self.dict["recordingType"] = recordingType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

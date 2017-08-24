@@ -35,10 +35,23 @@
 
 open class PaymentMethodProfileFilter: Filter {
 
+	public class PaymentMethodProfileFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var paymentGatewayIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayIdEqual") 
+			}
+		}
+	}
+
 	/**  Payment gateway identifier to list the payment methods for  */
 	public var paymentGatewayIdEqual: Int? = nil
 
 
+	public func setMultiRequestToken(paymentGatewayIdEqual: String) {
+		self.dict["paymentGatewayIdEqual"] = paymentGatewayIdEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

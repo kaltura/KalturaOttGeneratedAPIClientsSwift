@@ -35,6 +35,39 @@
 
 open class Region: ObjectBase {
 
+	public class RegionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+		
+		public var linearChannels: ArrayTokenizedObject<RegionalChannel.RegionalChannelTokenizer> {
+			get {
+				return ArrayTokenizedObject<RegionalChannel.RegionalChannelTokenizer>(self.append("linearChannels"))
+			} 
+		}
+	}
+
 	/**  Region identifier  */
 	public var id: Int? = nil
 	/**  Region name  */
@@ -47,6 +80,22 @@ open class Region: ObjectBase {
 	public var linearChannels: Array<RegionalChannel>? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

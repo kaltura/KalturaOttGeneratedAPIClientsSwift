@@ -36,6 +36,63 @@
 /**  Pricing usage module  */
 open class UsageModule: ObjectBase {
 
+	public class UsageModuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var maxViewsNumber: BaseTokenizedObject {
+			get {
+				return self.append("maxViewsNumber") 
+			}
+		}
+		
+		public var viewLifeCycle: BaseTokenizedObject {
+			get {
+				return self.append("viewLifeCycle") 
+			}
+		}
+		
+		public var fullLifeCycle: BaseTokenizedObject {
+			get {
+				return self.append("fullLifeCycle") 
+			}
+		}
+		
+		public var couponId: BaseTokenizedObject {
+			get {
+				return self.append("couponId") 
+			}
+		}
+		
+		public var waiverPeriod: BaseTokenizedObject {
+			get {
+				return self.append("waiverPeriod") 
+			}
+		}
+		
+		public var isWaiverEnabled: BaseTokenizedObject {
+			get {
+				return self.append("isWaiverEnabled") 
+			}
+		}
+		
+		public var isOfflinePlayback: BaseTokenizedObject {
+			get {
+				return self.append("isOfflinePlayback") 
+			}
+		}
+	}
+
 	/**  Usage module identifier  */
 	public var id: Int64? = nil
 	/**  Usage module name  */
@@ -59,6 +116,42 @@ open class UsageModule: ObjectBase {
 	public var isOfflinePlayback: Bool? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(maxViewsNumber: String) {
+		self.dict["maxViewsNumber"] = maxViewsNumber
+	}
+	
+	public func setMultiRequestToken(viewLifeCycle: String) {
+		self.dict["viewLifeCycle"] = viewLifeCycle
+	}
+	
+	public func setMultiRequestToken(fullLifeCycle: String) {
+		self.dict["fullLifeCycle"] = fullLifeCycle
+	}
+	
+	public func setMultiRequestToken(couponId: String) {
+		self.dict["couponId"] = couponId
+	}
+	
+	public func setMultiRequestToken(waiverPeriod: String) {
+		self.dict["waiverPeriod"] = waiverPeriod
+	}
+	
+	public func setMultiRequestToken(isWaiverEnabled: String) {
+		self.dict["isWaiverEnabled"] = isWaiverEnabled
+	}
+	
+	public func setMultiRequestToken(isOfflinePlayback: String) {
+		self.dict["isOfflinePlayback"] = isOfflinePlayback
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

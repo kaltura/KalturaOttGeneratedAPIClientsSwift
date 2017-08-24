@@ -36,6 +36,105 @@
 /**  Billing Transaction  */
 open class BillingTransaction: ObjectBase {
 
+	public class BillingTransactionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var recieptCode: BaseTokenizedObject {
+			get {
+				return self.append("recieptCode") 
+			}
+		}
+		
+		public var purchasedItemName: BaseTokenizedObject {
+			get {
+				return self.append("purchasedItemName") 
+			}
+		}
+		
+		public var purchasedItemCode: BaseTokenizedObject {
+			get {
+				return self.append("purchasedItemCode") 
+			}
+		}
+		
+		public var itemType: BaseTokenizedObject {
+			get {
+				return self.append("itemType") 
+			}
+		}
+		
+		public var billingAction: BaseTokenizedObject {
+			get {
+				return self.append("billingAction") 
+			}
+		}
+		
+		public var price: Price.PriceTokenizer {
+			get {
+				return Price.PriceTokenizer(self.append("price")) 
+			}
+		}
+		
+		public var actionDate: BaseTokenizedObject {
+			get {
+				return self.append("actionDate") 
+			}
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+		
+		public var paymentMethod: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethod") 
+			}
+		}
+		
+		public var paymentMethodExtraDetails: BaseTokenizedObject {
+			get {
+				return self.append("paymentMethodExtraDetails") 
+			}
+		}
+		
+		public var isRecurring: BaseTokenizedObject {
+			get {
+				return self.append("isRecurring") 
+			}
+		}
+		
+		public var billingProviderRef: BaseTokenizedObject {
+			get {
+				return self.append("billingProviderRef") 
+			}
+		}
+		
+		public var purchaseId: BaseTokenizedObject {
+			get {
+				return self.append("purchaseId") 
+			}
+		}
+		
+		public var remarks: BaseTokenizedObject {
+			get {
+				return self.append("remarks") 
+			}
+		}
+		
+		public var billingPriceType: BaseTokenizedObject {
+			get {
+				return self.append("billingPriceType") 
+			}
+		}
+	}
+
 	/**  Reciept Code  */
 	public var recieptCode: String? = nil
 	/**  Purchased Item Name  */
@@ -70,6 +169,66 @@ open class BillingTransaction: ObjectBase {
 	public var billingPriceType: BillingPriceType? = nil
 
 
+	public func setMultiRequestToken(recieptCode: String) {
+		self.dict["recieptCode"] = recieptCode
+	}
+	
+	public func setMultiRequestToken(purchasedItemName: String) {
+		self.dict["purchasedItemName"] = purchasedItemName
+	}
+	
+	public func setMultiRequestToken(purchasedItemCode: String) {
+		self.dict["purchasedItemCode"] = purchasedItemCode
+	}
+	
+	public func setMultiRequestToken(itemType: String) {
+		self.dict["itemType"] = itemType
+	}
+	
+	public func setMultiRequestToken(billingAction: String) {
+		self.dict["billingAction"] = billingAction
+	}
+	
+	public func setMultiRequestToken(actionDate: String) {
+		self.dict["actionDate"] = actionDate
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(paymentMethod: String) {
+		self.dict["paymentMethod"] = paymentMethod
+	}
+	
+	public func setMultiRequestToken(paymentMethodExtraDetails: String) {
+		self.dict["paymentMethodExtraDetails"] = paymentMethodExtraDetails
+	}
+	
+	public func setMultiRequestToken(isRecurring: String) {
+		self.dict["isRecurring"] = isRecurring
+	}
+	
+	public func setMultiRequestToken(billingProviderRef: String) {
+		self.dict["billingProviderRef"] = billingProviderRef
+	}
+	
+	public func setMultiRequestToken(purchaseId: String) {
+		self.dict["purchaseId"] = purchaseId
+	}
+	
+	public func setMultiRequestToken(remarks: String) {
+		self.dict["remarks"] = remarks
+	}
+	
+	public func setMultiRequestToken(billingPriceType: String) {
+		self.dict["billingPriceType"] = billingPriceType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

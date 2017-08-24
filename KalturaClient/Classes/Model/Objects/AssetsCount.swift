@@ -36,12 +36,31 @@
 /**  Single aggregation objects  */
 open class AssetsCount: ObjectBase {
 
+	public class AssetsCountTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var field: BaseTokenizedObject {
+			get {
+				return self.append("field") 
+			}
+		}
+		
+		public var objects: ArrayTokenizedObject<AssetCount.AssetCountTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetCount.AssetCountTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Field name  */
 	public var field: String? = nil
 	/**  Values, their count and sub groups  */
 	public var objects: Array<AssetCount>? = nil
 
 
+	public func setMultiRequestToken(field: String) {
+		self.dict["field"] = field
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

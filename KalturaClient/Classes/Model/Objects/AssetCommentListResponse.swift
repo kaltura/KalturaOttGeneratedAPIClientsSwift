@@ -36,6 +36,15 @@
 /**  Asset Comment Response  */
 open class AssetCommentListResponse: ListResponse {
 
+	public class AssetCommentListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<AssetComment.AssetCommentTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetComment.AssetCommentTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Assets  */
 	public var objects: Array<AssetComment>? = nil
 

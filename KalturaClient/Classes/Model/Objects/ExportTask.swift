@@ -36,6 +36,69 @@
 /**  Bulk export task  */
 open class ExportTask: ObjectBase {
 
+	public class ExportTaskTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var alias: BaseTokenizedObject {
+			get {
+				return self.append("alias") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var dataType: BaseTokenizedObject {
+			get {
+				return self.append("dataType") 
+			}
+		}
+		
+		public var filter: BaseTokenizedObject {
+			get {
+				return self.append("filter") 
+			}
+		}
+		
+		public var exportType: BaseTokenizedObject {
+			get {
+				return self.append("exportType") 
+			}
+		}
+		
+		public var frequency: BaseTokenizedObject {
+			get {
+				return self.append("frequency") 
+			}
+		}
+		
+		public var notificationUrl: BaseTokenizedObject {
+			get {
+				return self.append("notificationUrl") 
+			}
+		}
+		
+		public var vodTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("vodTypes"))
+			} 
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+	}
+
 	/**  Task identifier  */
 	public var id: Int64? = nil
 	/**  Alias for the task used to solicit an export using API  */
@@ -62,6 +125,42 @@ open class ExportTask: ObjectBase {
 	public var isActive: Bool? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(alias: String) {
+		self.dict["alias"] = alias
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(dataType: String) {
+		self.dict["dataType"] = dataType
+	}
+	
+	public func setMultiRequestToken(filter: String) {
+		self.dict["filter"] = filter
+	}
+	
+	public func setMultiRequestToken(exportType: String) {
+		self.dict["exportType"] = exportType
+	}
+	
+	public func setMultiRequestToken(frequency: String) {
+		self.dict["frequency"] = frequency
+	}
+	
+	public func setMultiRequestToken(notificationUrl: String) {
+		self.dict["notificationUrl"] = notificationUrl
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,39 @@
 /**  Meta filter  */
 open class MetaFilter: Filter {
 
+	public class MetaFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var fieldNameEqual: BaseTokenizedObject {
+			get {
+				return self.append("fieldNameEqual") 
+			}
+		}
+		
+		public var fieldNameNotEqual: BaseTokenizedObject {
+			get {
+				return self.append("fieldNameNotEqual") 
+			}
+		}
+		
+		public var typeEqual: BaseTokenizedObject {
+			get {
+				return self.append("typeEqual") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+		
+		public var featuresIn: BaseTokenizedObject {
+			get {
+				return self.append("featuresIn") 
+			}
+		}
+	}
+
 	/**  Meta system field name to filter by  */
 	public var fieldNameEqual: MetaFieldName? = nil
 	/**  Meta system field name to filter by  */
@@ -48,6 +81,26 @@ open class MetaFilter: Filter {
 	public var featuresIn: String? = nil
 
 
+	public func setMultiRequestToken(fieldNameEqual: String) {
+		self.dict["fieldNameEqual"] = fieldNameEqual
+	}
+	
+	public func setMultiRequestToken(fieldNameNotEqual: String) {
+		self.dict["fieldNameNotEqual"] = fieldNameNotEqual
+	}
+	
+	public func setMultiRequestToken(typeEqual: String) {
+		self.dict["typeEqual"] = typeEqual
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
+	public func setMultiRequestToken(featuresIn: String) {
+		self.dict["featuresIn"] = featuresIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,12 +35,35 @@
 
 open class PushParams: ObjectBase {
 
+	public class PushParamsTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var token: BaseTokenizedObject {
+			get {
+				return self.append("token") 
+			}
+		}
+		
+		public var externalToken: BaseTokenizedObject {
+			get {
+				return self.append("externalToken") 
+			}
+		}
+	}
+
 	/**  Token  */
 	public var token: String? = nil
 	/**  External token  */
 	public var externalToken: String? = nil
 
 
+	public func setMultiRequestToken(token: String) {
+		self.dict["token"] = token
+	}
+	
+	public func setMultiRequestToken(externalToken: String) {
+		self.dict["externalToken"] = externalToken
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,27 @@
 /**  Transactions filter  */
 open class TransactionHistoryFilter: Filter {
 
+	public class TransactionHistoryFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var entityReferenceEqual: BaseTokenizedObject {
+			get {
+				return self.append("entityReferenceEqual") 
+			}
+		}
+		
+		public var startDateGreaterThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("startDateGreaterThanOrEqual") 
+			}
+		}
+		
+		public var endDateLessThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("endDateLessThanOrEqual") 
+			}
+		}
+	}
+
 	/**  Reference type to filter by  */
 	public var entityReferenceEqual: EntityReferenceBy? = nil
 	/**  Filter transactions later than specific date  */
@@ -44,6 +65,18 @@ open class TransactionHistoryFilter: Filter {
 	public var endDateLessThanOrEqual: Int? = nil
 
 
+	public func setMultiRequestToken(entityReferenceEqual: String) {
+		self.dict["entityReferenceEqual"] = entityReferenceEqual
+	}
+	
+	public func setMultiRequestToken(startDateGreaterThanOrEqual: String) {
+		self.dict["startDateGreaterThanOrEqual"] = startDateGreaterThanOrEqual
+	}
+	
+	public func setMultiRequestToken(endDateLessThanOrEqual: String) {
+		self.dict["endDateLessThanOrEqual"] = endDateLessThanOrEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

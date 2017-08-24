@@ -35,45 +35,96 @@
 
 public final class ExportTaskService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var task: ExportTask.ExportTaskTokenizer {
+			get {
+				return ExportTask.ExportTaskTokenizer(self.append("task")) 
+			}
+		}
+	}
+
 	/**  Adds a new bulk export task  */
-	public static func add(task: ExportTask) -> RequestBuilder<ExportTask> {
-		let request: RequestBuilder<ExportTask> = RequestBuilder<ExportTask>(service: "exporttask", action: "add")
+	public static func add(task: ExportTask) -> RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, AddTokenizer> {
+		let request: RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, AddTokenizer> = RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, AddTokenizer>(service: "exporttask", action: "add")
 			.setBody(key: "task", value: task)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Deletes an existing bulk export task by task identifier  */
-	public static func delete(id: Int64) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "exporttask", action: "delete")
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "exporttask", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
 	}
 
 	/**  Gets an existing bulk export task by task identifier  */
-	public static func get(id: Int64) -> RequestBuilder<ExportTask> {
-		let request: RequestBuilder<ExportTask> = RequestBuilder<ExportTask>(service: "exporttask", action: "get")
+	public static func get(id: Int64) -> RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, GetTokenizer> {
+		let request: RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, GetTokenizer> = RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, GetTokenizer>(service: "exporttask", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<ExportTaskListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ExportTaskFilter.ExportTaskFilterTokenizer {
+			get {
+				return ExportTaskFilter.ExportTaskFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Returns bulk export tasks by tasks identifiers  */
-	public static func list(filter: ExportTaskFilter?) -> RequestBuilder<ExportTaskListResponse> {
-		let request: RequestBuilder<ExportTaskListResponse> = RequestBuilder<ExportTaskListResponse>(service: "exporttask", action: "list")
+	public static func list(filter: ExportTaskFilter?) -> RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer> = RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer>(service: "exporttask", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var task: ExportTask.ExportTaskTokenizer {
+			get {
+				return ExportTask.ExportTaskTokenizer(self.append("task")) 
+			}
+		}
+	}
+
 	/**  Updates an existing bulk export task by task identifier  */
-	public static func update(id: Int64, task: ExportTask) -> RequestBuilder<ExportTask> {
-		let request: RequestBuilder<ExportTask> = RequestBuilder<ExportTask>(service: "exporttask", action: "update")
+	public static func update(id: Int64, task: ExportTask) -> RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, UpdateTokenizer> = RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, UpdateTokenizer>(service: "exporttask", action: "update")
 			.setBody(key: "id", value: id)
 			.setBody(key: "task", value: task)
 

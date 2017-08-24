@@ -35,12 +35,35 @@
 
 open class LicensedUrlEpgRequest: LicensedUrlMediaRequest {
 
+	public class LicensedUrlEpgRequestTokenizer: LicensedUrlMediaRequest.LicensedUrlMediaRequestTokenizer {
+		
+		public var streamType: BaseTokenizedObject {
+			get {
+				return self.append("streamType") 
+			}
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+	}
+
 	/**  The stream type to get the URL for  */
 	public var streamType: StreamType? = nil
 	/**  The start date of the stream (epoch)  */
 	public var startDate: Int64? = nil
 
 
+	public func setMultiRequestToken(streamType: String) {
+		self.dict["streamType"] = streamType
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

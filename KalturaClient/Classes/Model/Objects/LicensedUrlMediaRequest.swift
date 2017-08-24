@@ -35,12 +35,35 @@
 
 open class LicensedUrlMediaRequest: LicensedUrlBaseRequest {
 
+	public class LicensedUrlMediaRequestTokenizer: LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer {
+		
+		public var contentId: BaseTokenizedObject {
+			get {
+				return self.append("contentId") 
+			}
+		}
+		
+		public var baseUrl: BaseTokenizedObject {
+			get {
+				return self.append("baseUrl") 
+			}
+		}
+	}
+
 	/**  Identifier of the content to get the link for (file identifier)  */
 	public var contentId: Int? = nil
 	/**  Base URL for the licensed URLs  */
 	public var baseUrl: String? = nil
 
 
+	public func setMultiRequestToken(contentId: String) {
+		self.dict["contentId"] = contentId
+	}
+	
+	public func setMultiRequestToken(baseUrl: String) {
+		self.dict["baseUrl"] = baseUrl
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

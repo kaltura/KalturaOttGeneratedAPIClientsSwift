@@ -35,6 +35,27 @@
 
 open class HouseholdQuota: ObjectBase {
 
+	public class HouseholdQuotaTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var householdId: BaseTokenizedObject {
+			get {
+				return self.append("householdId") 
+			}
+		}
+		
+		public var totalQuota: BaseTokenizedObject {
+			get {
+				return self.append("totalQuota") 
+			}
+		}
+		
+		public var availableQuota: BaseTokenizedObject {
+			get {
+				return self.append("availableQuota") 
+			}
+		}
+	}
+
 	/**  Household identifier  */
 	public var householdId: Int64? = nil
 	/**  Total quota that is allocated to the household  */
@@ -43,6 +64,18 @@ open class HouseholdQuota: ObjectBase {
 	public var availableQuota: Int? = nil
 
 
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
+	}
+	
+	public func setMultiRequestToken(totalQuota: String) {
+		self.dict["totalQuota"] = totalQuota
+	}
+	
+	public func setMultiRequestToken(availableQuota: String) {
+		self.dict["availableQuota"] = availableQuota
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

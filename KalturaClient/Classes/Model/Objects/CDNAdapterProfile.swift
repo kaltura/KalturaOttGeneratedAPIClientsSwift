@@ -36,6 +36,57 @@
 /**  CDN Adapter  */
 open class CDNAdapterProfile: ObjectBase {
 
+	public class CDNAdapterProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var adapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("adapterUrl") 
+			}
+		}
+		
+		public var baseUrl: BaseTokenizedObject {
+			get {
+				return self.append("baseUrl") 
+			}
+		}
+		
+		public var settings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("settings"))
+			}
+		}
+		
+		public var systemName: BaseTokenizedObject {
+			get {
+				return self.append("systemName") 
+			}
+		}
+		
+		public var sharedSecret: BaseTokenizedObject {
+			get {
+				return self.append("sharedSecret") 
+			}
+		}
+	}
+
 	/**  CDN adapter identifier  */
 	public var id: Int? = nil
 	/**  CDNR adapter name  */
@@ -54,6 +105,34 @@ open class CDNAdapterProfile: ObjectBase {
 	public var sharedSecret: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(adapterUrl: String) {
+		self.dict["adapterUrl"] = adapterUrl
+	}
+	
+	public func setMultiRequestToken(baseUrl: String) {
+		self.dict["baseUrl"] = baseUrl
+	}
+	
+	public func setMultiRequestToken(systemName: String) {
+		self.dict["systemName"] = systemName
+	}
+	
+	public func setMultiRequestToken(sharedSecret: String) {
+		self.dict["sharedSecret"] = sharedSecret
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

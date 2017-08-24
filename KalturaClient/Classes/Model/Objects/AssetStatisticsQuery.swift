@@ -35,6 +35,33 @@
 
 open class AssetStatisticsQuery: ObjectBase {
 
+	public class AssetStatisticsQueryTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var assetIdIn: BaseTokenizedObject {
+			get {
+				return self.append("assetIdIn") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+		
+		public var startDateGreaterThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("startDateGreaterThanOrEqual") 
+			}
+		}
+		
+		public var endDateGreaterThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("endDateGreaterThanOrEqual") 
+			}
+		}
+	}
+
 	/**  Comma separated list of asset identifiers.  */
 	public var assetIdIn: String? = nil
 	/**  Asset type  */
@@ -45,6 +72,22 @@ open class AssetStatisticsQuery: ObjectBase {
 	public var endDateGreaterThanOrEqual: Int64? = nil
 
 
+	public func setMultiRequestToken(assetIdIn: String) {
+		self.dict["assetIdIn"] = assetIdIn
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
+	public func setMultiRequestToken(startDateGreaterThanOrEqual: String) {
+		self.dict["startDateGreaterThanOrEqual"] = startDateGreaterThanOrEqual
+	}
+	
+	public func setMultiRequestToken(endDateGreaterThanOrEqual: String) {
+		self.dict["endDateGreaterThanOrEqual"] = endDateGreaterThanOrEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

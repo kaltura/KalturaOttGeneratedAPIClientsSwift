@@ -35,6 +35,15 @@
 
 open class AssetReminderFilter: ReminderFilter {
 
+	public class AssetReminderFilterTokenizer: ReminderFilter.ReminderFilterTokenizer {
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
+	}
+
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
 	  with key, comparison operators, value, and logical conjunction.             
 	  Possible keys: any Tag or Meta defined in the system and the following reserved
@@ -58,6 +67,10 @@ open class AssetReminderFilter: ReminderFilter {
 	public var kSql: String? = nil
 
 
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

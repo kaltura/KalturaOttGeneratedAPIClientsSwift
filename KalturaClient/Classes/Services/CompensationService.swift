@@ -35,26 +35,53 @@
 
 public final class CompensationService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var compensation: Compensation.CompensationTokenizer {
+			get {
+				return Compensation.CompensationTokenizer(self.append("compensation")) 
+			}
+		}
+	}
+
 	/**  Adds a new compensation for a household for a given number of iterations of a
 	  subscription renewal for a fixed amount / percentage of the renewal price.  */
-	public static func add(compensation: Compensation) -> RequestBuilder<Compensation> {
-		let request: RequestBuilder<Compensation> = RequestBuilder<Compensation>(service: "compensation", action: "add")
+	public static func add(compensation: Compensation) -> RequestBuilder<Compensation, Compensation.CompensationTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Compensation, Compensation.CompensationTokenizer, AddTokenizer> = RequestBuilder<Compensation, Compensation.CompensationTokenizer, AddTokenizer>(service: "compensation", action: "add")
 			.setBody(key: "compensation", value: compensation)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete a compensation by identifier  */
-	public static func delete(id: Int64) -> RequestBuilder<Void> {
+	public static func delete(id: Int64) -> NullRequestBuilder {
 		let request: NullRequestBuilder = NullRequestBuilder(service: "compensation", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Get a compensation by identifier  */
-	public static func get(id: Int64) -> RequestBuilder<Compensation> {
-		let request: RequestBuilder<Compensation> = RequestBuilder<Compensation>(service: "compensation", action: "get")
+	public static func get(id: Int64) -> RequestBuilder<Compensation, Compensation.CompensationTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Compensation, Compensation.CompensationTokenizer, GetTokenizer> = RequestBuilder<Compensation, Compensation.CompensationTokenizer, GetTokenizer>(service: "compensation", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request

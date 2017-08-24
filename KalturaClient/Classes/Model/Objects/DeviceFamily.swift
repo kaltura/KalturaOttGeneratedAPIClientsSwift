@@ -36,6 +36,9 @@
 /**  Device family details  */
 open class DeviceFamily: DeviceFamilyBase {
 
+	public class DeviceFamilyTokenizer: DeviceFamilyBase.DeviceFamilyBaseTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

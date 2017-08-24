@@ -35,6 +35,57 @@
 
 open class Recording: ObjectBase {
 
+	public class RecordingTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var viewableUntilDate: BaseTokenizedObject {
+			get {
+				return self.append("viewableUntilDate") 
+			}
+		}
+		
+		public var isProtected: BaseTokenizedObject {
+			get {
+				return self.append("isProtected") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
+	}
+
 	/**  Kaltura unique ID representing the recording identifier  */
 	public var id: Int64? = nil
 	/**  Recording state:
@@ -56,6 +107,38 @@ open class Recording: ObjectBase {
 	public var updateDate: Int64? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(viewableUntilDate: String) {
+		self.dict["viewableUntilDate"] = viewableUntilDate
+	}
+	
+	public func setMultiRequestToken(isProtected: String) {
+		self.dict["isProtected"] = isProtected
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

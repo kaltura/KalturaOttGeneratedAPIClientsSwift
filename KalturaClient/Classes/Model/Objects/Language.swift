@@ -36,6 +36,39 @@
 /**  Language details  */
 open class Language: ObjectBase {
 
+	public class LanguageTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var systemName: BaseTokenizedObject {
+			get {
+				return self.append("systemName") 
+			}
+		}
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+		
+		public var direction: BaseTokenizedObject {
+			get {
+				return self.append("direction") 
+			}
+		}
+		
+		public var isDefault: BaseTokenizedObject {
+			get {
+				return self.append("isDefault") 
+			}
+		}
+	}
+
 	/**  Language name  */
 	public var name: String? = nil
 	/**  Language system name  */
@@ -48,6 +81,26 @@ open class Language: ObjectBase {
 	public var isDefault: Bool? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(systemName: String) {
+		self.dict["systemName"] = systemName
+	}
+	
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
+	public func setMultiRequestToken(direction: String) {
+		self.dict["direction"] = direction
+	}
+	
+	public func setMultiRequestToken(isDefault: String) {
+		self.dict["isDefault"] = isDefault
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

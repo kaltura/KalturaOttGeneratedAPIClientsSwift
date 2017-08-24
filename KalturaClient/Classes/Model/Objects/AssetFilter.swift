@@ -35,6 +35,15 @@
 
 open class AssetFilter: PersistedFilter {
 
+	public class AssetFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
+		
+		public var dynamicOrderBy: DynamicOrderBy.DynamicOrderByTokenizer {
+			get {
+				return DynamicOrderBy.DynamicOrderByTokenizer(self.append("dynamicOrderBy")) 
+			}
+		}
+	}
+
 	/**  dynamicOrderBy - order by Meta  */
 	public var dynamicOrderBy: DynamicOrderBy? = nil
 

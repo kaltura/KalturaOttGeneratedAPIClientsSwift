@@ -35,66 +35,117 @@
 
 public final class HouseholdService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var household: Household.HouseholdTokenizer {
+			get {
+				return Household.HouseholdTokenizer(self.append("household")) 
+			}
+		}
+	}
+
 	/**  Creates a household for the user  */
-	public static func add(household: Household) -> RequestBuilder<Household> {
-		let request: RequestBuilder<Household> = RequestBuilder<Household>(service: "household", action: "add")
+	public static func add(household: Household) -> RequestBuilder<Household, Household.HouseholdTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Household, Household.HouseholdTokenizer, AddTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, AddTokenizer>(service: "household", action: "add")
 			.setBody(key: "household", value: household)
 
 		return request
 	}
 
-	public static func delete() -> RequestBuilder<Bool> {
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	public static func delete() -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		return delete(id: nil)
 	}
 
 	/**  Fully delete a household. Delete all of the household information, including
 	  users, devices, entitlements, payment methods and notification date.  */
-	public static func delete(id: Int?) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "household", action: "delete")
+	public static func delete(id: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "household", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func get() -> RequestBuilder<Household> {
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	public static func get() -> RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer> {
 		return get(id: nil)
 	}
 
 	/**  Returns the household model  */
-	public static func get(id: Int?) -> RequestBuilder<Household> {
-		let request: RequestBuilder<Household> = RequestBuilder<Household>(service: "household", action: "get")
+	public static func get(id: Int?) -> RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer>(service: "household", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
+	public class ResetFrequencyTokenizer: ClientTokenizer  {
+		
+		public var frequencyType: BaseTokenizedObject {
+			get {
+				return self.append("frequencyType") 
+			}
+		}
+	}
+
 	/**  Reset a household’s time limitation for removing user or device  */
-	public static func resetFrequency(frequencyType: HouseholdFrequencyType) -> RequestBuilder<Household> {
-		let request: RequestBuilder<Household> = RequestBuilder<Household>(service: "household", action: "resetFrequency")
+	public static func resetFrequency(frequencyType: HouseholdFrequencyType) -> RequestBuilder<Household, Household.HouseholdTokenizer, ResetFrequencyTokenizer> {
+		let request: RequestBuilder<Household, Household.HouseholdTokenizer, ResetFrequencyTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, ResetFrequencyTokenizer>(service: "household", action: "resetFrequency")
 			.setBody(key: "frequencyType", value: frequencyType.rawValue)
 
 		return request
 	}
 
+	public class ResumeTokenizer: ClientTokenizer  {
+	}
+
 	/**  Resumed a given household service to its previous service settings  */
-	public static func resume() -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "household", action: "resume")
+	public static func resume() -> RequestBuilder<Bool, BaseTokenizedObject, ResumeTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, ResumeTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ResumeTokenizer>(service: "household", action: "resume")
 
 		return request
+	}
+
+	public class SuspendTokenizer: ClientTokenizer  {
 	}
 
 	/**  Suspend a given household service. Sets the household status to
 	  “suspended&amp;quot;.The household service settings are maintained for later
 	  resume  */
-	public static func suspend() -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "household", action: "suspend")
+	public static func suspend() -> RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer>(service: "household", action: "suspend")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var household: Household.HouseholdTokenizer {
+			get {
+				return Household.HouseholdTokenizer(self.append("household")) 
+			}
+		}
+	}
+
 	/**  Update the household name and description  */
-	public static func update(household: Household) -> RequestBuilder<Household> {
-		let request: RequestBuilder<Household> = RequestBuilder<Household>(service: "household", action: "update")
+	public static func update(household: Household) -> RequestBuilder<Household, Household.HouseholdTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Household, Household.HouseholdTokenizer, UpdateTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, UpdateTokenizer>(service: "household", action: "update")
 			.setBody(key: "household", value: household)
 
 		return request

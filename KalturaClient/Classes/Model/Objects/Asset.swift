@@ -36,6 +36,111 @@
 /**  Asset info  */
 open class Asset: ObjectBase {
 
+	public class AssetTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var multilingualName: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualName")) 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var multilingualDescription: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualDescription")) 
+			}
+		}
+		
+		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
+			get {
+				return ArrayTokenizedObject<MediaImage.MediaImageTokenizer>(self.append("images"))
+			} 
+		}
+		
+		public var mediaFiles: ArrayTokenizedObject<MediaFile.MediaFileTokenizer> {
+			get {
+				return ArrayTokenizedObject<MediaFile.MediaFileTokenizer>(self.append("mediaFiles"))
+			} 
+		}
+		
+		public var metas: DictionaryTokenizedObject<Value.ValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<Value.ValueTokenizer>(self.append("metas"))
+			}
+		}
+		
+		public var tags: DictionaryTokenizedObject<MultilingualStringValueArray.MultilingualStringValueArrayTokenizer> {
+			get {
+				return DictionaryTokenizedObject<MultilingualStringValueArray.MultilingualStringValueArrayTokenizer>(self.append("tags"))
+			}
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+		
+		public var enableCdvr: BaseTokenizedObject {
+			get {
+				return self.append("enableCdvr") 
+			}
+		}
+		
+		public var enableCatchUp: BaseTokenizedObject {
+			get {
+				return self.append("enableCatchUp") 
+			}
+		}
+		
+		public var enableStartOver: BaseTokenizedObject {
+			get {
+				return self.append("enableStartOver") 
+			}
+		}
+		
+		public var enableTrickPlay: BaseTokenizedObject {
+			get {
+				return self.append("enableTrickPlay") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+	}
+
 	/**  Unique identifier for the asset  */
 	public var id: Int64? = nil
 	/**  Identifies the asset type (EPG, Recording, Movie, TV Series, etc).              
@@ -79,6 +184,50 @@ open class Asset: ObjectBase {
 	public var externalId: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(enableCdvr: String) {
+		self.dict["enableCdvr"] = enableCdvr
+	}
+	
+	public func setMultiRequestToken(enableCatchUp: String) {
+		self.dict["enableCatchUp"] = enableCatchUp
+	}
+	
+	public func setMultiRequestToken(enableStartOver: String) {
+		self.dict["enableStartOver"] = enableStartOver
+	}
+	
+	public func setMultiRequestToken(enableTrickPlay: String) {
+		self.dict["enableTrickPlay"] = enableTrickPlay
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

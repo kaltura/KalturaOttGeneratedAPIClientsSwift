@@ -35,13 +35,22 @@
 
 public final class PriceDetailsService{
 
-	public static func list() -> RequestBuilder<PriceDetailsListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: PriceDetailsFilter.PriceDetailsFilterTokenizer {
+			get {
+				return PriceDetailsFilter.PriceDetailsFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
 	/**  Returns the list of available prices, can be filtered by price IDs  */
-	public static func list(filter: PriceDetailsFilter?) -> RequestBuilder<PriceDetailsListResponse> {
-		let request: RequestBuilder<PriceDetailsListResponse> = RequestBuilder<PriceDetailsListResponse>(service: "pricedetails", action: "list")
+	public static func list(filter: PriceDetailsFilter?) -> RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> = RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer>(service: "pricedetails", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

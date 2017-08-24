@@ -35,10 +35,23 @@
 
 open class ParentalRuleFilter: Filter {
 
+	public class ParentalRuleFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var entityReferenceEqual: BaseTokenizedObject {
+			get {
+				return self.append("entityReferenceEqual") 
+			}
+		}
+	}
+
 	/**  Reference type to filter by  */
 	public var entityReferenceEqual: EntityReferenceBy? = nil
 
 
+	public func setMultiRequestToken(entityReferenceEqual: String) {
+		self.dict["entityReferenceEqual"] = entityReferenceEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

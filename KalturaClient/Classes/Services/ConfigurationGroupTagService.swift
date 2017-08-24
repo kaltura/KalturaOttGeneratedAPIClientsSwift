@@ -35,34 +35,70 @@
 
 public final class ConfigurationGroupTagService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var configurationGroupTag: ConfigurationGroupTag.ConfigurationGroupTagTokenizer {
+			get {
+				return ConfigurationGroupTag.ConfigurationGroupTagTokenizer(self.append("configurationGroupTag")) 
+			}
+		}
+	}
+
 	/**  Add a new tag to a configuration group. If this tag is already associated to
 	  another group, request fails  */
-	public static func add(configurationGroupTag: ConfigurationGroupTag) -> RequestBuilder<ConfigurationGroupTag> {
-		let request: RequestBuilder<ConfigurationGroupTag> = RequestBuilder<ConfigurationGroupTag>(service: "configurationgrouptag", action: "add")
+	public static func add(configurationGroupTag: ConfigurationGroupTag) -> RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, AddTokenizer> {
+		let request: RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, AddTokenizer> = RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, AddTokenizer>(service: "configurationgrouptag", action: "add")
 			.setBody(key: "configurationGroupTag", value: configurationGroupTag)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var tag: BaseTokenizedObject {
+			get {
+				return self.append("tag") 
+			}
+		}
+	}
+
 	/**  Remove a tag association from configuration group  */
-	public static func delete(tag: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "configurationgrouptag", action: "delete")
+	public static func delete(tag: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "configurationgrouptag", action: "delete")
 			.setBody(key: "tag", value: tag)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var tag: BaseTokenizedObject {
+			get {
+				return self.append("tag") 
+			}
+		}
 	}
 
 	/**  Return the configuration group the tag is associated to  */
-	public static func get(tag: String) -> RequestBuilder<ConfigurationGroupTag> {
-		let request: RequestBuilder<ConfigurationGroupTag> = RequestBuilder<ConfigurationGroupTag>(service: "configurationgrouptag", action: "get")
+	public static func get(tag: String) -> RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, GetTokenizer> {
+		let request: RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, GetTokenizer> = RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, GetTokenizer>(service: "configurationgrouptag", action: "get")
 			.setBody(key: "tag", value: tag)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ConfigurationGroupTagFilter.ConfigurationGroupTagFilterTokenizer {
+			get {
+				return ConfigurationGroupTagFilter.ConfigurationGroupTagFilterTokenizer(self.append("filter")) 
+			}
+		}
+	}
+
 	/**  Return list of tags for a configuration group  */
-	public static func list(filter: ConfigurationGroupTagFilter) -> RequestBuilder<ConfigurationGroupTagListResponse> {
-		let request: RequestBuilder<ConfigurationGroupTagListResponse> = RequestBuilder<ConfigurationGroupTagListResponse>(service: "configurationgrouptag", action: "list")
+	public static func list(filter: ConfigurationGroupTagFilter) -> RequestBuilder<ConfigurationGroupTagListResponse, ConfigurationGroupTagListResponse.ConfigurationGroupTagListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ConfigurationGroupTagListResponse, ConfigurationGroupTagListResponse.ConfigurationGroupTagListResponseTokenizer, ListTokenizer> = RequestBuilder<ConfigurationGroupTagListResponse, ConfigurationGroupTagListResponse.ConfigurationGroupTagListResponseTokenizer, ListTokenizer>(service: "configurationgrouptag", action: "list")
 			.setBody(key: "filter", value: filter)
 
 		return request

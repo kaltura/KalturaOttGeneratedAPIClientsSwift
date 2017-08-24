@@ -35,12 +35,35 @@
 
 open class RegionalChannel: ObjectBase {
 
+	public class RegionalChannelTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var linearChannelId: BaseTokenizedObject {
+			get {
+				return self.append("linearChannelId") 
+			}
+		}
+		
+		public var channelNumber: BaseTokenizedObject {
+			get {
+				return self.append("channelNumber") 
+			}
+		}
+	}
+
 	/**  The identifier of the linear media representing the channel  */
 	public var linearChannelId: Int? = nil
 	/**  The number of the channel  */
 	public var channelNumber: Int? = nil
 
 
+	public func setMultiRequestToken(linearChannelId: String) {
+		self.dict["linearChannelId"] = linearChannelId
+	}
+	
+	public func setMultiRequestToken(channelNumber: String) {
+		self.dict["channelNumber"] = channelNumber
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

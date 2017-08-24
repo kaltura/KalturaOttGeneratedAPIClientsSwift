@@ -35,6 +35,33 @@
 
 open class SocialCommentFilter: Filter {
 
+	public class SocialCommentFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var assetIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetIdEqual") 
+			}
+		}
+		
+		public var assetTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetTypeEqual") 
+			}
+		}
+		
+		public var socialPlatformEqual: BaseTokenizedObject {
+			get {
+				return self.append("socialPlatformEqual") 
+			}
+		}
+		
+		public var createDateGreaterThan: BaseTokenizedObject {
+			get {
+				return self.append("createDateGreaterThan") 
+			}
+		}
+	}
+
 	/**  Asset ID to filter by  */
 	public var assetIdEqual: Int64? = nil
 	/**  Asset type to filter by, currently only VOD (media)  */
@@ -45,6 +72,22 @@ open class SocialCommentFilter: Filter {
 	public var createDateGreaterThan: Int64? = nil
 
 
+	public func setMultiRequestToken(assetIdEqual: String) {
+		self.dict["assetIdEqual"] = assetIdEqual
+	}
+	
+	public func setMultiRequestToken(assetTypeEqual: String) {
+		self.dict["assetTypeEqual"] = assetTypeEqual
+	}
+	
+	public func setMultiRequestToken(socialPlatformEqual: String) {
+		self.dict["socialPlatformEqual"] = socialPlatformEqual
+	}
+	
+	public func setMultiRequestToken(createDateGreaterThan: String) {
+		self.dict["createDateGreaterThan"] = createDateGreaterThan
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,15 @@
 /**  Users list  */
 open class OTTUserListResponse: ListResponse {
 
+	public class OTTUserListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<OTTUser.OTTUserTokenizer> {
+			get {
+				return ArrayTokenizedObject<OTTUser.OTTUserTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of users  */
 	public var objects: Array<OTTUser>? = nil
 

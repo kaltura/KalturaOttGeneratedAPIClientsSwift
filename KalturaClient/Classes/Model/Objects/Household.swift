@@ -36,6 +36,93 @@
 /**  Household details  */
 open class Household: ObjectBase {
 
+	public class HouseholdTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var householdLimitationsId: BaseTokenizedObject {
+			get {
+				return self.append("householdLimitationsId") 
+			}
+		}
+		
+		public var devicesLimit: BaseTokenizedObject {
+			get {
+				return self.append("devicesLimit") 
+			}
+		}
+		
+		public var usersLimit: BaseTokenizedObject {
+			get {
+				return self.append("usersLimit") 
+			}
+		}
+		
+		public var concurrentLimit: BaseTokenizedObject {
+			get {
+				return self.append("concurrentLimit") 
+			}
+		}
+		
+		public var regionId: BaseTokenizedObject {
+			get {
+				return self.append("regionId") 
+			}
+		}
+		
+		public var state: BaseTokenizedObject {
+			get {
+				return self.append("state") 
+			}
+		}
+		
+		public var isFrequencyEnabled: BaseTokenizedObject {
+			get {
+				return self.append("isFrequencyEnabled") 
+			}
+		}
+		
+		public var frequencyNextDeviceAction: BaseTokenizedObject {
+			get {
+				return self.append("frequencyNextDeviceAction") 
+			}
+		}
+		
+		public var frequencyNextUserAction: BaseTokenizedObject {
+			get {
+				return self.append("frequencyNextUserAction") 
+			}
+		}
+		
+		public var restriction: BaseTokenizedObject {
+			get {
+				return self.append("restriction") 
+			}
+		}
+	}
+
 	/**  Household identifier  */
 	public var id: Int64? = nil
 	/**  Household name  */
@@ -66,6 +153,62 @@ open class Household: ObjectBase {
 	public var restriction: HouseholdRestriction? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(householdLimitationsId: String) {
+		self.dict["householdLimitationsId"] = householdLimitationsId
+	}
+	
+	public func setMultiRequestToken(devicesLimit: String) {
+		self.dict["devicesLimit"] = devicesLimit
+	}
+	
+	public func setMultiRequestToken(usersLimit: String) {
+		self.dict["usersLimit"] = usersLimit
+	}
+	
+	public func setMultiRequestToken(concurrentLimit: String) {
+		self.dict["concurrentLimit"] = concurrentLimit
+	}
+	
+	public func setMultiRequestToken(regionId: String) {
+		self.dict["regionId"] = regionId
+	}
+	
+	public func setMultiRequestToken(state: String) {
+		self.dict["state"] = state
+	}
+	
+	public func setMultiRequestToken(isFrequencyEnabled: String) {
+		self.dict["isFrequencyEnabled"] = isFrequencyEnabled
+	}
+	
+	public func setMultiRequestToken(frequencyNextDeviceAction: String) {
+		self.dict["frequencyNextDeviceAction"] = frequencyNextDeviceAction
+	}
+	
+	public func setMultiRequestToken(frequencyNextUserAction: String) {
+		self.dict["frequencyNextUserAction"] = frequencyNextUserAction
+	}
+	
+	public func setMultiRequestToken(restriction: String) {
+		self.dict["restriction"] = restriction
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

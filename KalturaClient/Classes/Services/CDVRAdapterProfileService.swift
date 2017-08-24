@@ -35,40 +35,85 @@
 
 public final class CDVRAdapterProfileService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var adapter: CDVRAdapterProfile.CDVRAdapterProfileTokenizer {
+			get {
+				return CDVRAdapterProfile.CDVRAdapterProfileTokenizer(self.append("adapter")) 
+			}
+		}
+	}
+
 	/**  Insert new C-DVR adapter for partner  */
-	public static func add(adapter: CDVRAdapterProfile) -> RequestBuilder<CDVRAdapterProfile> {
-		let request: RequestBuilder<CDVRAdapterProfile> = RequestBuilder<CDVRAdapterProfile>(service: "cdvradapterprofile", action: "add")
+	public static func add(adapter: CDVRAdapterProfile) -> RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, AddTokenizer> {
+		let request: RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, AddTokenizer> = RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, AddTokenizer>(service: "cdvradapterprofile", action: "add")
 			.setBody(key: "adapter", value: adapter)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
+	}
+
 	/**  Delete C-DVR adapter by C-DVR adapter id  */
-	public static func delete(adapterId: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "cdvradapterprofile", action: "delete")
+	public static func delete(adapterId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "cdvradapterprofile", action: "delete")
 			.setBody(key: "adapterId", value: adapterId)
 
 		return request
+	}
+
+	public class GenerateSharedSecretTokenizer: ClientTokenizer  {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
 	}
 
 	/**  Generate C-DVR adapter shared secret  */
-	public static func generateSharedSecret(adapterId: Int) -> RequestBuilder<CDVRAdapterProfile> {
-		let request: RequestBuilder<CDVRAdapterProfile> = RequestBuilder<CDVRAdapterProfile>(service: "cdvradapterprofile", action: "generateSharedSecret")
+	public static func generateSharedSecret(adapterId: Int) -> RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, GenerateSharedSecretTokenizer> {
+		let request: RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, GenerateSharedSecretTokenizer>(service: "cdvradapterprofile", action: "generateSharedSecret")
 			.setBody(key: "adapterId", value: adapterId)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns all C-DVR adapters for partner  */
-	public static func list() -> RequestBuilder<CDVRAdapterProfileListResponse> {
-		let request: RequestBuilder<CDVRAdapterProfileListResponse> = RequestBuilder<CDVRAdapterProfileListResponse>(service: "cdvradapterprofile", action: "list")
+	public static func list() -> RequestBuilder<CDVRAdapterProfileListResponse, CDVRAdapterProfileListResponse.CDVRAdapterProfileListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<CDVRAdapterProfileListResponse, CDVRAdapterProfileListResponse.CDVRAdapterProfileListResponseTokenizer, ListTokenizer> = RequestBuilder<CDVRAdapterProfileListResponse, CDVRAdapterProfileListResponse.CDVRAdapterProfileListResponseTokenizer, ListTokenizer>(service: "cdvradapterprofile", action: "list")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
+		
+		public var adapter: CDVRAdapterProfile.CDVRAdapterProfileTokenizer {
+			get {
+				return CDVRAdapterProfile.CDVRAdapterProfileTokenizer(self.append("adapter")) 
+			}
+		}
+	}
+
 	/**  Update C-DVR adapter details  */
-	public static func update(adapterId: Int, adapter: CDVRAdapterProfile) -> RequestBuilder<CDVRAdapterProfile> {
-		let request: RequestBuilder<CDVRAdapterProfile> = RequestBuilder<CDVRAdapterProfile>(service: "cdvradapterprofile", action: "update")
+	public static func update(adapterId: Int, adapter: CDVRAdapterProfile) -> RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, UpdateTokenizer> = RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, UpdateTokenizer>(service: "cdvradapterprofile", action: "update")
 			.setBody(key: "adapterId", value: adapterId)
 			.setBody(key: "adapter", value: adapter)
 

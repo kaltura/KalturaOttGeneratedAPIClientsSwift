@@ -35,42 +35,90 @@
 
 public final class TopicService{
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Deleted a topic  */
-	public static func delete(id: Int) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "topic", action: "delete")
+	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "topic", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
 	}
 
 	/**  Gets a topic  */
-	public static func get(id: Int) -> RequestBuilder<Topic> {
-		let request: RequestBuilder<Topic> = RequestBuilder<Topic>(service: "topic", action: "get")
+	public static func get(id: Int) -> RequestBuilder<Topic, Topic.TopicTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Topic, Topic.TopicTokenizer, GetTokenizer> = RequestBuilder<Topic, Topic.TopicTokenizer, GetTokenizer>(service: "topic", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<TopicListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: TopicFilter.TopicFilterTokenizer {
+			get {
+				return TopicFilter.TopicFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: TopicFilter?) -> RequestBuilder<TopicListResponse> {
+	public static func list(filter: TopicFilter?) -> RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Get list of topics  */
-	public static func list(filter: TopicFilter?, pager: FilterPager?) -> RequestBuilder<TopicListResponse> {
-		let request: RequestBuilder<TopicListResponse> = RequestBuilder<TopicListResponse>(service: "topic", action: "list")
+	public static func list(filter: TopicFilter?, pager: FilterPager?) -> RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer> = RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer>(service: "topic", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 
 		return request
 	}
 
+	public class UpdateStatusTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var automaticIssueNotification: BaseTokenizedObject {
+			get {
+				return self.append("automaticIssueNotification") 
+			}
+		}
+	}
+
 	/**  Updates a topic &amp;quot;automatic issue notification&amp;quot; behavior.  */
-	public static func updateStatus(id: Int, automaticIssueNotification: TopicAutomaticIssueNotification) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "topic", action: "updateStatus")
+	public static func updateStatus(id: Int, automaticIssueNotification: TopicAutomaticIssueNotification) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "topic", action: "updateStatus")
 			.setBody(key: "id", value: id)
 			.setBody(key: "automaticIssueNotification", value: automaticIssueNotification.rawValue)
 

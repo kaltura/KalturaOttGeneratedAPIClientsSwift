@@ -36,6 +36,51 @@
 /**  Channel details  */
 open class Channel: BaseChannel {
 
+	public class ChannelTokenizer: BaseChannel.BaseChannelTokenizer {
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
+			get {
+				return ArrayTokenizedObject<MediaImage.MediaImageTokenizer>(self.append("images"))
+			} 
+		}
+		
+		public var assetTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("assetTypes"))
+			} 
+		}
+		
+		public var filterExpression: BaseTokenizedObject {
+			get {
+				return self.append("filterExpression") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var order: BaseTokenizedObject {
+			get {
+				return self.append("order") 
+			}
+		}
+		
+		public var groupBy: AssetGroupBy.AssetGroupByTokenizer {
+			get {
+				return AssetGroupBy.AssetGroupByTokenizer(self.append("groupBy")) 
+			}
+		}
+	}
+
 	/**  Cannel description  */
 	public var description: String? = nil
 	/**  Channel images  */
@@ -52,6 +97,22 @@ open class Channel: BaseChannel {
 	public var groupBy: AssetGroupBy? = nil
 
 
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(filterExpression: String) {
+		self.dict["filterExpression"] = filterExpression
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(order: String) {
+		self.dict["order"] = order
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -35,6 +35,33 @@
 
 open class SocialComment: ObjectBase {
 
+	public class SocialCommentTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var header: BaseTokenizedObject {
+			get {
+				return self.append("header") 
+			}
+		}
+		
+		public var text: BaseTokenizedObject {
+			get {
+				return self.append("text") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var writer: BaseTokenizedObject {
+			get {
+				return self.append("writer") 
+			}
+		}
+	}
+
 	/**  Comment header  */
 	public var header: String? = nil
 	/**  Comment body  */
@@ -45,6 +72,22 @@ open class SocialComment: ObjectBase {
 	public var writer: String? = nil
 
 
+	public func setMultiRequestToken(header: String) {
+		self.dict["header"] = header
+	}
+	
+	public func setMultiRequestToken(text: String) {
+		self.dict["text"] = text
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(writer: String) {
+		self.dict["writer"] = writer
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

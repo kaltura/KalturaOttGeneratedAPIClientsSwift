@@ -35,6 +35,69 @@
 
 open class Social: ObjectBase {
 
+	public class SocialTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var firstName: BaseTokenizedObject {
+			get {
+				return self.append("firstName") 
+			}
+		}
+		
+		public var lastName: BaseTokenizedObject {
+			get {
+				return self.append("lastName") 
+			}
+		}
+		
+		public var email: BaseTokenizedObject {
+			get {
+				return self.append("email") 
+			}
+		}
+		
+		public var gender: BaseTokenizedObject {
+			get {
+				return self.append("gender") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var birthday: BaseTokenizedObject {
+			get {
+				return self.append("birthday") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var pictureUrl: BaseTokenizedObject {
+			get {
+				return self.append("pictureUrl") 
+			}
+		}
+	}
+
 	/**  Facebook identifier  */
 	public var id: String? = nil
 	/**  Full name  */
@@ -59,6 +122,46 @@ open class Social: ObjectBase {
 	public var pictureUrl: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(firstName: String) {
+		self.dict["firstName"] = firstName
+	}
+	
+	public func setMultiRequestToken(lastName: String) {
+		self.dict["lastName"] = lastName
+	}
+	
+	public func setMultiRequestToken(email: String) {
+		self.dict["email"] = email
+	}
+	
+	public func setMultiRequestToken(gender: String) {
+		self.dict["gender"] = gender
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(birthday: String) {
+		self.dict["birthday"] = birthday
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(pictureUrl: String) {
+		self.dict["pictureUrl"] = pictureUrl
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

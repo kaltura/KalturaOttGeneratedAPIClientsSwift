@@ -35,9 +35,12 @@
 
 public final class RegistrySettingsService{
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Retrieve the registry settings.  */
-	public static func list() -> RequestBuilder<RegistrySettingsListResponse> {
-		let request: RequestBuilder<RegistrySettingsListResponse> = RequestBuilder<RegistrySettingsListResponse>(service: "registrysettings", action: "list")
+	public static func list() -> RequestBuilder<RegistrySettingsListResponse, RegistrySettingsListResponse.RegistrySettingsListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<RegistrySettingsListResponse, RegistrySettingsListResponse.RegistrySettingsListResponseTokenizer, ListTokenizer> = RequestBuilder<RegistrySettingsListResponse, RegistrySettingsListResponse.RegistrySettingsListResponseTokenizer, ListTokenizer>(service: "registrysettings", action: "list")
 
 		return request
 	}

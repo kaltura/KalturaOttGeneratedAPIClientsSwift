@@ -35,32 +35,68 @@
 
 public final class HomeNetworkService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var homeNetwork: HomeNetwork.HomeNetworkTokenizer {
+			get {
+				return HomeNetwork.HomeNetworkTokenizer(self.append("homeNetwork")) 
+			}
+		}
+	}
+
 	/**  Add a new home network to a household  */
-	public static func add(homeNetwork: HomeNetwork) -> RequestBuilder<HomeNetwork> {
-		let request: RequestBuilder<HomeNetwork> = RequestBuilder<HomeNetwork>(service: "homenetwork", action: "add")
+	public static func add(homeNetwork: HomeNetwork) -> RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, AddTokenizer> {
+		let request: RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, AddTokenizer> = RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, AddTokenizer>(service: "homenetwork", action: "add")
 			.setBody(key: "homeNetwork", value: homeNetwork)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+	}
+
 	/**  Delete household’s existing home network  */
-	public static func delete(externalId: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "homenetwork", action: "delete")
+	public static func delete(externalId: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "homenetwork", action: "delete")
 			.setBody(key: "externalId", value: externalId)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Retrieve the household’s home networks  */
-	public static func list() -> RequestBuilder<HomeNetworkListResponse> {
-		let request: RequestBuilder<HomeNetworkListResponse> = RequestBuilder<HomeNetworkListResponse>(service: "homenetwork", action: "list")
+	public static func list() -> RequestBuilder<HomeNetworkListResponse, HomeNetworkListResponse.HomeNetworkListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<HomeNetworkListResponse, HomeNetworkListResponse.HomeNetworkListResponseTokenizer, ListTokenizer> = RequestBuilder<HomeNetworkListResponse, HomeNetworkListResponse.HomeNetworkListResponseTokenizer, ListTokenizer>(service: "homenetwork", action: "list")
 
 		return request
 	}
 
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var homeNetwork: HomeNetwork.HomeNetworkTokenizer {
+			get {
+				return HomeNetwork.HomeNetworkTokenizer(self.append("homeNetwork")) 
+			}
+		}
+	}
+
 	/**  Update and existing home network for a household  */
-	public static func update(externalId: String, homeNetwork: HomeNetwork) -> RequestBuilder<HomeNetwork> {
-		let request: RequestBuilder<HomeNetwork> = RequestBuilder<HomeNetwork>(service: "homenetwork", action: "update")
+	public static func update(externalId: String, homeNetwork: HomeNetwork) -> RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, UpdateTokenizer> = RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, UpdateTokenizer>(service: "homenetwork", action: "update")
 			.setBody(key: "externalId", value: externalId)
 			.setBody(key: "homeNetwork", value: homeNetwork)
 

@@ -36,6 +36,15 @@
 /**  Subscriptions list  */
 open class SubscriptionListResponse: ListResponse {
 
+	public class SubscriptionListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<Subscription.SubscriptionTokenizer> {
+			get {
+				return ArrayTokenizedObject<Subscription.SubscriptionTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of subscriptions  */
 	public var objects: Array<Subscription>? = nil
 

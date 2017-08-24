@@ -36,6 +36,15 @@
 /**  List of household payment gateways.  */
 open class HouseholdPaymentGatewayListResponse: ListResponse {
 
+	public class HouseholdPaymentGatewayListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HouseholdPaymentGateway.HouseholdPaymentGatewayTokenizer> {
+			get {
+				return ArrayTokenizedObject<HouseholdPaymentGateway.HouseholdPaymentGatewayTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Follow data list  */
 	public var objects: Array<HouseholdPaymentGateway>? = nil
 

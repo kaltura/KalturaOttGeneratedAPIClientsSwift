@@ -36,6 +36,111 @@
 /**  PPV price details  */
 open class PpvPrice: ProductPrice {
 
+	public class PpvPriceTokenizer: ProductPrice.ProductPriceTokenizer {
+		
+		public var fileId: BaseTokenizedObject {
+			get {
+				return self.append("fileId") 
+			}
+		}
+		
+		public var ppvModuleId: BaseTokenizedObject {
+			get {
+				return self.append("ppvModuleId") 
+			}
+		}
+		
+		public var isSubscriptionOnly: BaseTokenizedObject {
+			get {
+				return self.append("isSubscriptionOnly") 
+			}
+		}
+		
+		public var fullPrice: Price.PriceTokenizer {
+			get {
+				return Price.PriceTokenizer(self.append("fullPrice")) 
+			}
+		}
+		
+		public var subscriptionId: BaseTokenizedObject {
+			get {
+				return self.append("subscriptionId") 
+			}
+		}
+		
+		public var collectionId: BaseTokenizedObject {
+			get {
+				return self.append("collectionId") 
+			}
+		}
+		
+		public var prePaidId: BaseTokenizedObject {
+			get {
+				return self.append("prePaidId") 
+			}
+		}
+		
+		public var ppvDescriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("ppvDescriptions"))
+			} 
+		}
+		
+		public var purchaseUserId: BaseTokenizedObject {
+			get {
+				return self.append("purchaseUserId") 
+			}
+		}
+		
+		public var purchasedMediaFileId: BaseTokenizedObject {
+			get {
+				return self.append("purchasedMediaFileId") 
+			}
+		}
+		
+		public var relatedMediaFileIds: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("relatedMediaFileIds"))
+			} 
+		}
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+		
+		public var discountEndDate: BaseTokenizedObject {
+			get {
+				return self.append("discountEndDate") 
+			}
+		}
+		
+		public var firstDeviceName: BaseTokenizedObject {
+			get {
+				return self.append("firstDeviceName") 
+			}
+		}
+		
+		public var isInCancelationPeriod: BaseTokenizedObject {
+			get {
+				return self.append("isInCancelationPeriod") 
+			}
+		}
+		
+		public var ppvProductCode: BaseTokenizedObject {
+			get {
+				return self.append("ppvProductCode") 
+			}
+		}
+	}
+
 	/**  Media file identifier  */
 	public var fileId: Int? = nil
 	/**  The associated PPV module identifier  */
@@ -77,6 +182,62 @@ open class PpvPrice: ProductPrice {
 	public var ppvProductCode: String? = nil
 
 
+	public func setMultiRequestToken(fileId: String) {
+		self.dict["fileId"] = fileId
+	}
+	
+	public func setMultiRequestToken(ppvModuleId: String) {
+		self.dict["ppvModuleId"] = ppvModuleId
+	}
+	
+	public func setMultiRequestToken(isSubscriptionOnly: String) {
+		self.dict["isSubscriptionOnly"] = isSubscriptionOnly
+	}
+	
+	public func setMultiRequestToken(subscriptionId: String) {
+		self.dict["subscriptionId"] = subscriptionId
+	}
+	
+	public func setMultiRequestToken(collectionId: String) {
+		self.dict["collectionId"] = collectionId
+	}
+	
+	public func setMultiRequestToken(prePaidId: String) {
+		self.dict["prePaidId"] = prePaidId
+	}
+	
+	public func setMultiRequestToken(purchaseUserId: String) {
+		self.dict["purchaseUserId"] = purchaseUserId
+	}
+	
+	public func setMultiRequestToken(purchasedMediaFileId: String) {
+		self.dict["purchasedMediaFileId"] = purchasedMediaFileId
+	}
+	
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(discountEndDate: String) {
+		self.dict["discountEndDate"] = discountEndDate
+	}
+	
+	public func setMultiRequestToken(firstDeviceName: String) {
+		self.dict["firstDeviceName"] = firstDeviceName
+	}
+	
+	public func setMultiRequestToken(isInCancelationPeriod: String) {
+		self.dict["isInCancelationPeriod"] = isInCancelationPeriod
+	}
+	
+	public func setMultiRequestToken(ppvProductCode: String) {
+		self.dict["ppvProductCode"] = ppvProductCode
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

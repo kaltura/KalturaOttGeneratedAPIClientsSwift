@@ -35,6 +35,15 @@
 
 open class PaymentGatewayConfiguration: ObjectBase {
 
+	public class PaymentGatewayConfigurationTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var paymentGatewayConfiguration: ArrayTokenizedObject<KeyValue.KeyValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<KeyValue.KeyValueTokenizer>(self.append("paymentGatewayConfiguration"))
+			} 
+		}
+	}
+
 	/**  Payment gateway configuration  */
 	public var paymentGatewayConfiguration: Array<KeyValue>? = nil
 

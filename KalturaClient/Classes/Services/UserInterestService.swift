@@ -35,25 +35,46 @@
 
 public final class UserInterestService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var userInterest: UserInterest.UserInterestTokenizer {
+			get {
+				return UserInterest.UserInterestTokenizer(self.append("userInterest")) 
+			}
+		}
+	}
+
 	/**  Insert new user interest for partner user  */
-	public static func add(userInterest: UserInterest) -> RequestBuilder<UserInterest> {
-		let request: RequestBuilder<UserInterest> = RequestBuilder<UserInterest>(service: "userinterest", action: "add")
+	public static func add(userInterest: UserInterest) -> RequestBuilder<UserInterest, UserInterest.UserInterestTokenizer, AddTokenizer> {
+		let request: RequestBuilder<UserInterest, UserInterest.UserInterestTokenizer, AddTokenizer> = RequestBuilder<UserInterest, UserInterest.UserInterestTokenizer, AddTokenizer>(service: "userinterest", action: "add")
 			.setBody(key: "userInterest", value: userInterest)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  Delete new user interest for partner user  */
-	public static func delete(id: String) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "userinterest", action: "delete")
+	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userinterest", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
 	/**  Returns all Engagement for partner  */
-	public static func list() -> RequestBuilder<UserInterestListResponse> {
-		let request: RequestBuilder<UserInterestListResponse> = RequestBuilder<UserInterestListResponse>(service: "userinterest", action: "list")
+	public static func list() -> RequestBuilder<UserInterestListResponse, UserInterestListResponse.UserInterestListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<UserInterestListResponse, UserInterestListResponse.UserInterestListResponseTokenizer, ListTokenizer> = RequestBuilder<UserInterestListResponse, UserInterestListResponse.UserInterestListResponseTokenizer, ListTokenizer>(service: "userinterest", action: "list")
 
 		return request
 	}

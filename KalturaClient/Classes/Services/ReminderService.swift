@@ -35,30 +35,69 @@
 
 public final class ReminderService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public var reminder: Reminder.ReminderTokenizer {
+			get {
+				return Reminder.ReminderTokenizer(self.append("reminder")) 
+			}
+		}
+	}
+
 	/**  Add a new future reminder  */
-	public static func add(reminder: Reminder) -> RequestBuilder<Reminder> {
-		let request: RequestBuilder<Reminder> = RequestBuilder<Reminder>(service: "reminder", action: "add")
+	public static func add(reminder: Reminder) -> RequestBuilder<Reminder, Reminder.ReminderTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Reminder, Reminder.ReminderTokenizer, AddTokenizer> = RequestBuilder<Reminder, Reminder.ReminderTokenizer, AddTokenizer>(service: "reminder", action: "add")
 			.setBody(key: "reminder", value: reminder)
 
 		return request
 	}
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
 	/**  Delete a reminder. Reminder cannot be delete while being sent.  */
-	public static func delete(id: Int64, type: ReminderType) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "reminder", action: "delete")
+	public static func delete(id: Int64, type: ReminderType) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "reminder", action: "delete")
 			.setBody(key: "id", value: id)
 			.setBody(key: "type", value: type.rawValue)
 
 		return request
 	}
 
-	public static func list(filter: ReminderFilter) -> RequestBuilder<ReminderListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: ReminderFilter.ReminderFilterTokenizer {
+			get {
+				return ReminderFilter.ReminderFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list(filter: ReminderFilter) -> RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Return a list of reminders with optional filter by KSQL.  */
-	public static func list(filter: ReminderFilter, pager: FilterPager?) -> RequestBuilder<ReminderListResponse> {
-		let request: RequestBuilder<ReminderListResponse> = RequestBuilder<ReminderListResponse>(service: "reminder", action: "list")
+	public static func list(filter: ReminderFilter, pager: FilterPager?) -> RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer> = RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer>(service: "reminder", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 

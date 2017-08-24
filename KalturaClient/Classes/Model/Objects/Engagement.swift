@@ -36,6 +36,63 @@
 /**  Engagement  */
 open class Engagement: ObjectBase {
 
+	public class EngagementTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var totalNumberOfRecipients: BaseTokenizedObject {
+			get {
+				return self.append("totalNumberOfRecipients") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
+		
+		public var adapterDynamicData: BaseTokenizedObject {
+			get {
+				return self.append("adapterDynamicData") 
+			}
+		}
+		
+		public var intervalSeconds: BaseTokenizedObject {
+			get {
+				return self.append("intervalSeconds") 
+			}
+		}
+		
+		public var userList: BaseTokenizedObject {
+			get {
+				return self.append("userList") 
+			}
+		}
+		
+		public var sendTimeInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("sendTimeInSeconds") 
+			}
+		}
+		
+		public var couponGroupId: BaseTokenizedObject {
+			get {
+				return self.append("couponGroupId") 
+			}
+		}
+	}
+
 	/**  Engagement id  */
 	public var id: Int? = nil
 	/**  Total number of recipients  */
@@ -56,6 +113,42 @@ open class Engagement: ObjectBase {
 	public var couponGroupId: Int? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(totalNumberOfRecipients: String) {
+		self.dict["totalNumberOfRecipients"] = totalNumberOfRecipients
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(adapterId: String) {
+		self.dict["adapterId"] = adapterId
+	}
+	
+	public func setMultiRequestToken(adapterDynamicData: String) {
+		self.dict["adapterDynamicData"] = adapterDynamicData
+	}
+	
+	public func setMultiRequestToken(intervalSeconds: String) {
+		self.dict["intervalSeconds"] = intervalSeconds
+	}
+	
+	public func setMultiRequestToken(userList: String) {
+		self.dict["userList"] = userList
+	}
+	
+	public func setMultiRequestToken(sendTimeInSeconds: String) {
+		self.dict["sendTimeInSeconds"] = sendTimeInSeconds
+	}
+	
+	public func setMultiRequestToken(couponGroupId: String) {
+		self.dict["couponGroupId"] = couponGroupId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

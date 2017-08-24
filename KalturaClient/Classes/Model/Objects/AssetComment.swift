@@ -36,6 +36,33 @@
 /**  Asset Comment  */
 open class AssetComment: SocialComment {
 
+	public class AssetCommentTokenizer: SocialComment.SocialCommentTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var assetType: BaseTokenizedObject {
+			get {
+				return self.append("assetType") 
+			}
+		}
+		
+		public var subHeader: BaseTokenizedObject {
+			get {
+				return self.append("subHeader") 
+			}
+		}
+	}
+
 	/**  Comment ID  */
 	public var id: Int? = nil
 	/**  Asset identifier  */
@@ -46,6 +73,22 @@ open class AssetComment: SocialComment {
 	public var subHeader: String? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(assetType: String) {
+		self.dict["assetType"] = assetType
+	}
+	
+	public func setMultiRequestToken(subHeader: String) {
+		self.dict["subHeader"] = subHeader
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

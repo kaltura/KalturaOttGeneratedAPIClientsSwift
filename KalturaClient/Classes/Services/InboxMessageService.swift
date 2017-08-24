@@ -35,34 +35,73 @@
 
 public final class InboxMessageService{
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
 	/**  TBD  */
-	public static func get(id: String) -> RequestBuilder<InboxMessage> {
-		let request: RequestBuilder<InboxMessage> = RequestBuilder<InboxMessage>(service: "inboxmessage", action: "get")
+	public static func get(id: String) -> RequestBuilder<InboxMessage, InboxMessage.InboxMessageTokenizer, GetTokenizer> {
+		let request: RequestBuilder<InboxMessage, InboxMessage.InboxMessageTokenizer, GetTokenizer> = RequestBuilder<InboxMessage, InboxMessage.InboxMessageTokenizer, GetTokenizer>(service: "inboxmessage", action: "get")
 			.setBody(key: "id", value: id)
 
 		return request
 	}
 
-	public static func list() -> RequestBuilder<InboxMessageListResponse> {
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public var filter: InboxMessageFilter.InboxMessageFilterTokenizer {
+			get {
+				return InboxMessageFilter.InboxMessageFilterTokenizer(self.append("filter")) 
+			}
+		}
+		
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
+		}
+	}
+
+	public static func list() -> RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: InboxMessageFilter?) -> RequestBuilder<InboxMessageListResponse> {
+	public static func list(filter: InboxMessageFilter?) -> RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  List inbox messages  */
-	public static func list(filter: InboxMessageFilter?, pager: FilterPager?) -> RequestBuilder<InboxMessageListResponse> {
-		let request: RequestBuilder<InboxMessageListResponse> = RequestBuilder<InboxMessageListResponse>(service: "inboxmessage", action: "list")
+	public static func list(filter: InboxMessageFilter?, pager: FilterPager?) -> RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer> = RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer>(service: "inboxmessage", action: "list")
 			.setBody(key: "filter", value: filter)
 			.setBody(key: "pager", value: pager)
 
 		return request
 	}
 
+	public class UpdateStatusTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+	}
+
 	/**  Updates the message status.  */
-	public static func updateStatus(id: String, status: InboxMessageStatus) -> RequestBuilder<Bool> {
-		let request: RequestBuilder<Bool> = RequestBuilder<Bool>(service: "inboxmessage", action: "updateStatus")
+	public static func updateStatus(id: String, status: InboxMessageStatus) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "inboxmessage", action: "updateStatus")
 			.setBody(key: "id", value: id)
 			.setBody(key: "status", value: status.rawValue)
 

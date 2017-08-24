@@ -36,10 +36,23 @@
 /**  Report filter  */
 open class DeviceReportFilter: ReportFilter {
 
+	public class DeviceReportFilterTokenizer: ReportFilter.ReportFilterTokenizer {
+		
+		public var lastAccessDateGreaterThanOrEqual: BaseTokenizedObject {
+			get {
+				return self.append("lastAccessDateGreaterThanOrEqual") 
+			}
+		}
+	}
+
 	/**  Filter device configuration later than specific date  */
 	public var lastAccessDateGreaterThanOrEqual: Int64? = nil
 
 
+	public func setMultiRequestToken(lastAccessDateGreaterThanOrEqual: String) {
+		self.dict["lastAccessDateGreaterThanOrEqual"] = lastAccessDateGreaterThanOrEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

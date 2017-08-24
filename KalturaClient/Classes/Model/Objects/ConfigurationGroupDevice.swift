@@ -35,6 +35,27 @@
 
 open class ConfigurationGroupDevice: ObjectBase {
 
+	public class ConfigurationGroupDeviceTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var configurationGroupId: BaseTokenizedObject {
+			get {
+				return self.append("configurationGroupId") 
+			}
+		}
+		
+		public var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
 	/**  Configuration group id  */
 	public var configurationGroupId: String? = nil
 	/**  Partner id  */
@@ -43,6 +64,18 @@ open class ConfigurationGroupDevice: ObjectBase {
 	public var udid: String? = nil
 
 
+	public func setMultiRequestToken(configurationGroupId: String) {
+		self.dict["configurationGroupId"] = configurationGroupId
+	}
+	
+	public func setMultiRequestToken(partnerId: String) {
+		self.dict["partnerId"] = partnerId
+	}
+	
+	public func setMultiRequestToken(udid: String) {
+		self.dict["udid"] = udid
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

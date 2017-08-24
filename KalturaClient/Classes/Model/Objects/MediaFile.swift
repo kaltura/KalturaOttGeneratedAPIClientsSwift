@@ -36,6 +36,93 @@
 /**  Media file details  */
 open class MediaFile: ObjectBase {
 
+	public class MediaFileTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var url: BaseTokenizedObject {
+			get {
+				return self.append("url") 
+			}
+		}
+		
+		public var duration: BaseTokenizedObject {
+			get {
+				return self.append("duration") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+		
+		public var billingType: BaseTokenizedObject {
+			get {
+				return self.append("billingType") 
+			}
+		}
+		
+		public var quality: BaseTokenizedObject {
+			get {
+				return self.append("quality") 
+			}
+		}
+		
+		public var handlingType: BaseTokenizedObject {
+			get {
+				return self.append("handlingType") 
+			}
+		}
+		
+		public var cdnName: BaseTokenizedObject {
+			get {
+				return self.append("cdnName") 
+			}
+		}
+		
+		public var cdnCode: BaseTokenizedObject {
+			get {
+				return self.append("cdnCode") 
+			}
+		}
+		
+		public var altCdnCode: BaseTokenizedObject {
+			get {
+				return self.append("altCdnCode") 
+			}
+		}
+		
+		public var ppvModules: StringValueArray.StringValueArrayTokenizer {
+			get {
+				return StringValueArray.StringValueArrayTokenizer(self.append("ppvModules")) 
+			}
+		}
+		
+		public var productCode: BaseTokenizedObject {
+			get {
+				return self.append("productCode") 
+			}
+		}
+	}
+
 	/**  Unique identifier for the asset  */
 	public var assetId: Int? = nil
 	/**  File unique identifier  */
@@ -66,6 +153,58 @@ open class MediaFile: ObjectBase {
 	public var productCode: String? = nil
 
 
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
+	}
+	
+	public func setMultiRequestToken(duration: String) {
+		self.dict["duration"] = duration
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(billingType: String) {
+		self.dict["billingType"] = billingType
+	}
+	
+	public func setMultiRequestToken(quality: String) {
+		self.dict["quality"] = quality
+	}
+	
+	public func setMultiRequestToken(handlingType: String) {
+		self.dict["handlingType"] = handlingType
+	}
+	
+	public func setMultiRequestToken(cdnName: String) {
+		self.dict["cdnName"] = cdnName
+	}
+	
+	public func setMultiRequestToken(cdnCode: String) {
+		self.dict["cdnCode"] = cdnCode
+	}
+	
+	public func setMultiRequestToken(altCdnCode: String) {
+		self.dict["altCdnCode"] = altCdnCode
+	}
+	
+	public func setMultiRequestToken(productCode: String) {
+		self.dict["productCode"] = productCode
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

@@ -36,6 +36,81 @@
 /**  Payment gateway profile  */
 open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 
+	public class PaymentGatewayProfileTokenizer: PaymentGatewayBaseProfile.PaymentGatewayBaseProfileTokenizer {
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var adapterUrl: BaseTokenizedObject {
+			get {
+				return self.append("adapterUrl") 
+			}
+		}
+		
+		public var transactUrl: BaseTokenizedObject {
+			get {
+				return self.append("transactUrl") 
+			}
+		}
+		
+		public var statusUrl: BaseTokenizedObject {
+			get {
+				return self.append("statusUrl") 
+			}
+		}
+		
+		public var renewUrl: BaseTokenizedObject {
+			get {
+				return self.append("renewUrl") 
+			}
+		}
+		
+		public var paymentGatewaySettings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("paymentGatewaySettings"))
+			}
+		}
+		
+		public var externalIdentifier: BaseTokenizedObject {
+			get {
+				return self.append("externalIdentifier") 
+			}
+		}
+		
+		public var pendingInterval: BaseTokenizedObject {
+			get {
+				return self.append("pendingInterval") 
+			}
+		}
+		
+		public var pendingRetries: BaseTokenizedObject {
+			get {
+				return self.append("pendingRetries") 
+			}
+		}
+		
+		public var sharedSecret: BaseTokenizedObject {
+			get {
+				return self.append("sharedSecret") 
+			}
+		}
+		
+		public var renewIntervalMinutes: BaseTokenizedObject {
+			get {
+				return self.append("renewIntervalMinutes") 
+			}
+		}
+		
+		public var renewStartMinutes: BaseTokenizedObject {
+			get {
+				return self.append("renewStartMinutes") 
+			}
+		}
+	}
+
 	/**  Payment gateway is active status  */
 	public var isActive: Int? = nil
 	/**  Payment gateway adapter URL  */
@@ -62,6 +137,50 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 	public var renewStartMinutes: Int? = nil
 
 
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(adapterUrl: String) {
+		self.dict["adapterUrl"] = adapterUrl
+	}
+	
+	public func setMultiRequestToken(transactUrl: String) {
+		self.dict["transactUrl"] = transactUrl
+	}
+	
+	public func setMultiRequestToken(statusUrl: String) {
+		self.dict["statusUrl"] = statusUrl
+	}
+	
+	public func setMultiRequestToken(renewUrl: String) {
+		self.dict["renewUrl"] = renewUrl
+	}
+	
+	public func setMultiRequestToken(externalIdentifier: String) {
+		self.dict["externalIdentifier"] = externalIdentifier
+	}
+	
+	public func setMultiRequestToken(pendingInterval: String) {
+		self.dict["pendingInterval"] = pendingInterval
+	}
+	
+	public func setMultiRequestToken(pendingRetries: String) {
+		self.dict["pendingRetries"] = pendingRetries
+	}
+	
+	public func setMultiRequestToken(sharedSecret: String) {
+		self.dict["sharedSecret"] = sharedSecret
+	}
+	
+	public func setMultiRequestToken(renewIntervalMinutes: String) {
+		self.dict["renewIntervalMinutes"] = renewIntervalMinutes
+	}
+	
+	public func setMultiRequestToken(renewStartMinutes: String) {
+		self.dict["renewStartMinutes"] = renewStartMinutes
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

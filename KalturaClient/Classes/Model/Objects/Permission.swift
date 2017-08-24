@@ -35,6 +35,27 @@
 
 open class Permission: ObjectBase {
 
+	public class PermissionTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var permissionItems: ArrayTokenizedObject<PermissionItem.PermissionItemTokenizer> {
+			get {
+				return ArrayTokenizedObject<PermissionItem.PermissionItemTokenizer>(self.append("permissionItems"))
+			} 
+		}
+	}
+
 	/**  Permission identifier  */
 	public var id: Int64? = nil
 	/**  Permission name  */
@@ -43,6 +64,14 @@ open class Permission: ObjectBase {
 	public var permissionItems: Array<PermissionItem>? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

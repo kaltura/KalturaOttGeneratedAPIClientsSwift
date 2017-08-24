@@ -36,12 +36,35 @@
 /**  Slim Asset Details  */
 open class SlimAsset: ObjectBase {
 
+	public class SlimAssetTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
 	/**  Internal identifier of the asset  */
 	public var id: String? = nil
 	/**  The type of the asset. Possible values: media, recording, epg  */
 	public var type: AssetType? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

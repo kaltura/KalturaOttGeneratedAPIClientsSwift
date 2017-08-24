@@ -36,6 +36,15 @@
 /**  OSS adapter-profiles list  */
 open class OSSAdapterProfileListResponse: ListResponse {
 
+	public class OSSAdapterProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<OSSAdapterProfile.OSSAdapterProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<OSSAdapterProfile.OSSAdapterProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of OSS adapter-profiles  */
 	public var objects: Array<OSSAdapterProfile>? = nil
 

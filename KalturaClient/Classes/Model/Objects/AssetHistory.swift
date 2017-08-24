@@ -36,6 +36,45 @@
 /**  Watch history asset info  */
 open class AssetHistory: ObjectBase {
 
+	public class AssetHistoryTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var assetType: BaseTokenizedObject {
+			get {
+				return self.append("assetType") 
+			}
+		}
+		
+		public var position: BaseTokenizedObject {
+			get {
+				return self.append("position") 
+			}
+		}
+		
+		public var duration: BaseTokenizedObject {
+			get {
+				return self.append("duration") 
+			}
+		}
+		
+		public var watchedDate: BaseTokenizedObject {
+			get {
+				return self.append("watchedDate") 
+			}
+		}
+		
+		public var finishedWatching: BaseTokenizedObject {
+			get {
+				return self.append("finishedWatching") 
+			}
+		}
+	}
+
 	/**  Asset identifier  */
 	public var assetId: Int64? = nil
 	/**  Asset identifier  */
@@ -50,6 +89,30 @@ open class AssetHistory: ObjectBase {
 	public var finishedWatching: Bool? = nil
 
 
+	public func setMultiRequestToken(assetId: String) {
+		self.dict["assetId"] = assetId
+	}
+	
+	public func setMultiRequestToken(assetType: String) {
+		self.dict["assetType"] = assetType
+	}
+	
+	public func setMultiRequestToken(position: String) {
+		self.dict["position"] = position
+	}
+	
+	public func setMultiRequestToken(duration: String) {
+		self.dict["duration"] = duration
+	}
+	
+	public func setMultiRequestToken(watchedDate: String) {
+		self.dict["watchedDate"] = watchedDate
+	}
+	
+	public func setMultiRequestToken(finishedWatching: String) {
+		self.dict["finishedWatching"] = finishedWatching
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

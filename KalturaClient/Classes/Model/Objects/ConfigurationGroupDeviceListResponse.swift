@@ -36,6 +36,15 @@
 /**  Configuration group devices info wrapper  */
 open class ConfigurationGroupDeviceListResponse: ListResponse {
 
+	public class ConfigurationGroupDeviceListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer> {
+			get {
+				return ArrayTokenizedObject<ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  Configuration group devices  */
 	public var objects: Array<ConfigurationGroupDevice>? = nil
 

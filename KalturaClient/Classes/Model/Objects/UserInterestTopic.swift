@@ -36,6 +36,27 @@
 /**  User interest topic  */
 open class UserInterestTopic: ObjectBase {
 
+	public class UserInterestTopicTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var metaId: BaseTokenizedObject {
+			get {
+				return self.append("metaId") 
+			}
+		}
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+		
+		public var parentTopic: UserInterestTopic.UserInterestTopicTokenizer {
+			get {
+				return UserInterestTopic.UserInterestTopicTokenizer(self.append("parentTopic")) 
+			}
+		}
+	}
+
 	/**  Meta identifier  */
 	public var metaId: String? = nil
 	/**  Meta Value  */
@@ -44,6 +65,14 @@ open class UserInterestTopic: ObjectBase {
 	public var parentTopic: UserInterestTopic? = nil
 
 
+	public func setMultiRequestToken(metaId: String) {
+		self.dict["metaId"] = metaId
+	}
+	
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

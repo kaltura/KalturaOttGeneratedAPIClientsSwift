@@ -36,6 +36,9 @@
 /**  Partner  base configuration  */
 open class PartnerConfiguration: ObjectBase {
 
+	public class PartnerConfigurationTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
 
 
 	internal override func populate(_ dict: [String: Any]) throws {

@@ -36,6 +36,15 @@
 /**  Prices list  */
 open class ProductPriceListResponse: ListResponse {
 
+	public class ProductPriceListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<ProductPrice.ProductPriceTokenizer> {
+			get {
+				return ArrayTokenizedObject<ProductPrice.ProductPriceTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
 	/**  A list of prices  */
 	public var objects: Array<ProductPrice>? = nil
 

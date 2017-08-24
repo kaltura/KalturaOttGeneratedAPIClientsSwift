@@ -36,12 +36,35 @@
 /**  Product Code  */
 open class ProductCode: ObjectBase {
 
+	public class ProductCodeTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var inappProvider: BaseTokenizedObject {
+			get {
+				return self.append("inappProvider") 
+			}
+		}
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+	}
+
 	/**  Provider Name  */
 	public var inappProvider: String? = nil
 	/**  Product Code  */
 	public var code: String? = nil
 
 
+	public func setMultiRequestToken(inappProvider: String) {
+		self.dict["inappProvider"] = inappProvider
+	}
+	
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
