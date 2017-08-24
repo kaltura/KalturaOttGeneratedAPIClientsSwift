@@ -143,28 +143,28 @@ open class Recording: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["status"] != nil {
 			status = RecordingStatus(rawValue: "\(dict["status"]!)")
 		}
 		if dict["assetId"] != nil {
-			assetId = Int64((dict["assetId"] as? String)!)
+			assetId = Int64("\(dict["assetId"]!)")
 		}
 		if dict["type"] != nil {
 			type = RecordingType(rawValue: "\(dict["type"]!)")
 		}
 		if dict["viewableUntilDate"] != nil {
-			viewableUntilDate = Int64((dict["viewableUntilDate"] as? String)!)
+			viewableUntilDate = Int64("\(dict["viewableUntilDate"]!)")
 		}
 		if dict["isProtected"] != nil {
 			isProtected = dict["isProtected"] as? Bool
 		}
 		if dict["createDate"] != nil {
-			createDate = Int64((dict["createDate"] as? String)!)
+			createDate = Int64("\(dict["createDate"]!)")
 		}
 		if dict["updateDate"] != nil {
-			updateDate = Int64((dict["updateDate"] as? String)!)
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 
 	}

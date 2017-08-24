@@ -71,7 +71,7 @@ open class SeriesReminderFilter: ReminderFilter {
 			seriesIdIn = dict["seriesIdIn"] as? String
 		}
 		if dict["epgChannelIdEqual"] != nil {
-			epgChannelIdEqual = Int64((dict["epgChannelIdEqual"] as? String)!)
+			epgChannelIdEqual = Int64("\(dict["epgChannelIdEqual"]!)")
 		}
 
 	}

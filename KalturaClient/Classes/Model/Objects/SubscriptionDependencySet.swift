@@ -57,7 +57,7 @@ open class SubscriptionDependencySet: SubscriptionSet {
 		try super.populate(dict);
 		// set members values:
 		if dict["baseSubscriptionId"] != nil {
-			baseSubscriptionId = Int64((dict["baseSubscriptionId"] as? String)!)
+			baseSubscriptionId = Int64("\(dict["baseSubscriptionId"]!)")
 		}
 
 	}

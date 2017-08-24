@@ -116,7 +116,7 @@ open class BookmarkPlayerData: ObjectBase {
 			currentBitrate = dict["currentBitrate"] as? Int
 		}
 		if dict["fileId"] != nil {
-			fileId = Int64((dict["fileId"] as? String)!)
+			fileId = Int64("\(dict["fileId"]!)")
 		}
 
 	}

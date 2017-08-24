@@ -213,7 +213,7 @@ open class Household: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
@@ -246,10 +246,10 @@ open class Household: ObjectBase {
 			isFrequencyEnabled = dict["isFrequencyEnabled"] as? Bool
 		}
 		if dict["frequencyNextDeviceAction"] != nil {
-			frequencyNextDeviceAction = Int64((dict["frequencyNextDeviceAction"] as? String)!)
+			frequencyNextDeviceAction = Int64("\(dict["frequencyNextDeviceAction"]!)")
 		}
 		if dict["frequencyNextUserAction"] != nil {
-			frequencyNextUserAction = Int64((dict["frequencyNextUserAction"] as? String)!)
+			frequencyNextUserAction = Int64("\(dict["frequencyNextUserAction"]!)")
 		}
 		if dict["restriction"] != nil {
 			restriction = HouseholdRestriction(rawValue: "\(dict["restriction"]!)")

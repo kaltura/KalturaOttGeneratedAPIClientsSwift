@@ -57,7 +57,7 @@ open class DeviceReportFilter: ReportFilter {
 		try super.populate(dict);
 		// set members values:
 		if dict["lastAccessDateGreaterThanOrEqual"] != nil {
-			lastAccessDateGreaterThanOrEqual = Int64((dict["lastAccessDateGreaterThanOrEqual"] as? String)!)
+			lastAccessDateGreaterThanOrEqual = Int64("\(dict["lastAccessDateGreaterThanOrEqual"]!)")
 		}
 
 	}

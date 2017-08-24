@@ -128,7 +128,7 @@ open class InboxMessage: ObjectBase {
 			type = InboxMessageType(rawValue: "\(dict["type"]!)")
 		}
 		if dict["createdAt"] != nil {
-			createdAt = Int64((dict["createdAt"] as? String)!)
+			createdAt = Int64("\(dict["createdAt"]!)")
 		}
 		if dict["url"] != nil {
 			url = dict["url"] as? String

@@ -94,7 +94,7 @@ open class UserAssetRule: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["ruleType"] != nil {
 			ruleType = RuleType(rawValue: "\(dict["ruleType"]!)")

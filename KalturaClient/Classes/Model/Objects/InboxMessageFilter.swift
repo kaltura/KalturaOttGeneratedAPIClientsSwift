@@ -83,10 +83,10 @@ open class InboxMessageFilter: Filter {
 			typeIn = dict["typeIn"] as? String
 		}
 		if dict["createdAtGreaterThanOrEqual"] != nil {
-			createdAtGreaterThanOrEqual = Int64((dict["createdAtGreaterThanOrEqual"] as? String)!)
+			createdAtGreaterThanOrEqual = Int64("\(dict["createdAtGreaterThanOrEqual"]!)")
 		}
 		if dict["createdAtLessThanOrEqual"] != nil {
-			createdAtLessThanOrEqual = Int64((dict["createdAtLessThanOrEqual"] as? String)!)
+			createdAtLessThanOrEqual = Int64("\(dict["createdAtLessThanOrEqual"]!)")
 		}
 
 	}

@@ -117,7 +117,7 @@ open class AssetHistory: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetId"] != nil {
-			assetId = Int64((dict["assetId"] as? String)!)
+			assetId = Int64("\(dict["assetId"]!)")
 		}
 		if dict["assetType"] != nil {
 			assetType = AssetType(rawValue: "\(dict["assetType"]!)")
@@ -129,7 +129,7 @@ open class AssetHistory: ObjectBase {
 			duration = dict["duration"] as? Int
 		}
 		if dict["watchedDate"] != nil {
-			watchedDate = Int64((dict["watchedDate"] as? String)!)
+			watchedDate = Int64("\(dict["watchedDate"]!)")
 		}
 		if dict["finishedWatching"] != nil {
 			finishedWatching = dict["finishedWatching"] as? Bool

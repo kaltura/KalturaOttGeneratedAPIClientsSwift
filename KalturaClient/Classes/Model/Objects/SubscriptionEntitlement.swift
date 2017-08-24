@@ -130,7 +130,7 @@ open class SubscriptionEntitlement: Entitlement {
 		try super.populate(dict);
 		// set members values:
 		if dict["nextRenewalDate"] != nil {
-			nextRenewalDate = Int64((dict["nextRenewalDate"] as? String)!)
+			nextRenewalDate = Int64("\(dict["nextRenewalDate"]!)")
 		}
 		if dict["isRenewableForPurchase"] != nil {
 			isRenewableForPurchase = dict["isRenewableForPurchase"] as? Bool
@@ -148,7 +148,7 @@ open class SubscriptionEntitlement: Entitlement {
 			paymentMethodId = dict["paymentMethodId"] as? Int
 		}
 		if dict["scheduledSubscriptionId"] != nil {
-			scheduledSubscriptionId = Int64((dict["scheduledSubscriptionId"] as? String)!)
+			scheduledSubscriptionId = Int64("\(dict["scheduledSubscriptionId"]!)")
 		}
 
 	}

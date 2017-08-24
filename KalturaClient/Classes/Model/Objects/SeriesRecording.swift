@@ -150,13 +150,13 @@ open class SeriesRecording: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["epgId"] != nil {
-			epgId = Int64((dict["epgId"] as? String)!)
+			epgId = Int64("\(dict["epgId"]!)")
 		}
 		if dict["channelId"] != nil {
-			channelId = Int64((dict["channelId"] as? String)!)
+			channelId = Int64("\(dict["channelId"]!)")
 		}
 		if dict["seriesId"] != nil {
 			seriesId = dict["seriesId"] as? String
@@ -168,10 +168,10 @@ open class SeriesRecording: ObjectBase {
 			type = RecordingType(rawValue: "\(dict["type"]!)")
 		}
 		if dict["createDate"] != nil {
-			createDate = Int64((dict["createDate"] as? String)!)
+			createDate = Int64("\(dict["createDate"]!)")
 		}
 		if dict["updateDate"] != nil {
-			updateDate = Int64((dict["updateDate"] as? String)!)
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 		if dict["excludedSeasons"] != nil {
 			excludedSeasons = try JSONParser.parse(array: dict["excludedSeasons"] as! [Any])

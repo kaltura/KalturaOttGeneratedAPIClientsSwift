@@ -83,10 +83,10 @@ open class SeriesReminder: Reminder {
 			seriesId = dict["seriesId"] as? String
 		}
 		if dict["seasonNumber"] != nil {
-			seasonNumber = Int64((dict["seasonNumber"] as? String)!)
+			seasonNumber = Int64("\(dict["seasonNumber"]!)")
 		}
 		if dict["epgChannelId"] != nil {
-			epgChannelId = Int64((dict["epgChannelId"] as? String)!)
+			epgChannelId = Int64("\(dict["epgChannelId"]!)")
 		}
 
 	}

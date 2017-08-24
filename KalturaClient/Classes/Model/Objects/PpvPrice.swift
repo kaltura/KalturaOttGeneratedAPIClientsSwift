@@ -274,13 +274,13 @@ open class PpvPrice: ProductPrice {
 			relatedMediaFileIds = try JSONParser.parse(array: dict["relatedMediaFileIds"] as! [Any])
 		}
 		if dict["startDate"] != nil {
-			startDate = Int64((dict["startDate"] as? String)!)
+			startDate = Int64("\(dict["startDate"]!)")
 		}
 		if dict["endDate"] != nil {
-			endDate = Int64((dict["endDate"] as? String)!)
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 		if dict["discountEndDate"] != nil {
-			discountEndDate = Int64((dict["discountEndDate"] as? String)!)
+			discountEndDate = Int64("\(dict["discountEndDate"]!)")
 		}
 		if dict["firstDeviceName"] != nil {
 			firstDeviceName = dict["firstDeviceName"] as? String

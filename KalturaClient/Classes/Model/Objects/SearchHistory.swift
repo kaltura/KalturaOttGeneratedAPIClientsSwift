@@ -153,7 +153,7 @@ open class SearchHistory: ObjectBase {
 			language = dict["language"] as? String
 		}
 		if dict["createdAt"] != nil {
-			createdAt = Int64((dict["createdAt"] as? String)!)
+			createdAt = Int64("\(dict["createdAt"]!)")
 		}
 		if dict["service"] != nil {
 			service = dict["service"] as? String

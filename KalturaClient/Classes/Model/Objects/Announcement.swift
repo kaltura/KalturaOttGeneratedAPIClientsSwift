@@ -149,7 +149,7 @@ open class Announcement: ObjectBase {
 			enabled = dict["enabled"] as? Bool
 		}
 		if dict["startTime"] != nil {
-			startTime = Int64((dict["startTime"] as? String)!)
+			startTime = Int64("\(dict["startTime"]!)")
 		}
 		if dict["timezone"] != nil {
 			timezone = dict["timezone"] as? String

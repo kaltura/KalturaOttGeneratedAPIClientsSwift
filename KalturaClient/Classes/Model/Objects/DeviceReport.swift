@@ -195,7 +195,7 @@ open class DeviceReport: Report {
 			lastAccessIP = dict["lastAccessIP"] as? String
 		}
 		if dict["lastAccessDate"] != nil {
-			lastAccessDate = Int64((dict["lastAccessDate"] as? String)!)
+			lastAccessDate = Int64("\(dict["lastAccessDate"]!)")
 		}
 		if dict["userAgent"] != nil {
 			userAgent = dict["userAgent"] as? String

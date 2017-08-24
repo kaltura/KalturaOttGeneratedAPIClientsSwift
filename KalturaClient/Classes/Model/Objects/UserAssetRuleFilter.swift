@@ -69,7 +69,7 @@ open class UserAssetRuleFilter: Filter {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64((dict["assetIdEqual"] as? String)!)
+			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
 		}
 		if dict["assetTypeEqual"] != nil {
 			assetTypeEqual = dict["assetTypeEqual"] as? Int

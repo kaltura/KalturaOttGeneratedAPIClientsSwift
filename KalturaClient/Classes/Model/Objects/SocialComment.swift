@@ -98,7 +98,7 @@ open class SocialComment: ObjectBase {
 			text = dict["text"] as? String
 		}
 		if dict["createDate"] != nil {
-			createDate = Int64((dict["createDate"] as? String)!)
+			createDate = Int64("\(dict["createDate"]!)")
 		}
 		if dict["writer"] != nil {
 			writer = dict["writer"] as? String

@@ -232,7 +232,7 @@ open class Asset: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["type"] != nil {
 			type = dict["type"] as? Int
@@ -260,10 +260,10 @@ open class Asset: ObjectBase {
 			tags = try JSONParser.parse(map: dict["tags"] as! [String: Any])
 		}
 		if dict["startDate"] != nil {
-			startDate = Int64((dict["startDate"] as? String)!)
+			startDate = Int64("\(dict["startDate"]!)")
 		}
 		if dict["endDate"] != nil {
-			endDate = Int64((dict["endDate"] as? String)!)
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 		if dict["enableCdvr"] != nil {
 			enableCdvr = dict["enableCdvr"] as? Bool

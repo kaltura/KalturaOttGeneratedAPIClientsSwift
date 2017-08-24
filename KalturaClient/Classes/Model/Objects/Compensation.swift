@@ -129,10 +129,10 @@ open class Compensation: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["subscriptionId"] != nil {
-			subscriptionId = Int64((dict["subscriptionId"] as? String)!)
+			subscriptionId = Int64("\(dict["subscriptionId"]!)")
 		}
 		if dict["compensationType"] != nil {
 			compensationType = CompensationType(rawValue: "\(dict["compensationType"]!)")

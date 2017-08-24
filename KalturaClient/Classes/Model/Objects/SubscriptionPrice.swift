@@ -58,7 +58,7 @@ open class SubscriptionPrice: ProductPrice {
 		try super.populate(dict);
 		// set members values:
 		if dict["endDate"] != nil {
-			endDate = Int64((dict["endDate"] as? String)!)
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 
 	}

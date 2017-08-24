@@ -84,7 +84,7 @@ open class BuzzScore: ObjectBase {
 			normalizedAvgScore = dict["normalizedAvgScore"] as? Double
 		}
 		if dict["updateDate"] != nil {
-			updateDate = Int64((dict["updateDate"] as? String)!)
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 		if dict["avgScore"] != nil {
 			avgScore = dict["avgScore"] as? Double

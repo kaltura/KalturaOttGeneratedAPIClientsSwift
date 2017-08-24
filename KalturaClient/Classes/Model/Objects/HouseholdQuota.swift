@@ -80,7 +80,7 @@ open class HouseholdQuota: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["householdId"] != nil {
-			householdId = Int64((dict["householdId"] as? String)!)
+			householdId = Int64("\(dict["householdId"]!)")
 		}
 		if dict["totalQuota"] != nil {
 			totalQuota = dict["totalQuota"] as? Int

@@ -223,16 +223,16 @@ open class Entitlement: ObjectBase {
 			currentUses = dict["currentUses"] as? Int
 		}
 		if dict["endDate"] != nil {
-			endDate = Int64((dict["endDate"] as? String)!)
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 		if dict["currentDate"] != nil {
-			currentDate = Int64((dict["currentDate"] as? String)!)
+			currentDate = Int64("\(dict["currentDate"]!)")
 		}
 		if dict["lastViewDate"] != nil {
-			lastViewDate = Int64((dict["lastViewDate"] as? String)!)
+			lastViewDate = Int64("\(dict["lastViewDate"]!)")
 		}
 		if dict["purchaseDate"] != nil {
-			purchaseDate = Int64((dict["purchaseDate"] as? String)!)
+			purchaseDate = Int64("\(dict["purchaseDate"]!)")
 		}
 		if dict["paymentMethod"] != nil {
 			paymentMethod = PaymentMethodType(rawValue: "\(dict["paymentMethod"]!)")
@@ -253,7 +253,7 @@ open class Entitlement: ObjectBase {
 			userId = dict["userId"] as? String
 		}
 		if dict["householdId"] != nil {
-			householdId = Int64((dict["householdId"] as? String)!)
+			householdId = Int64("\(dict["householdId"]!)")
 		}
 
 	}

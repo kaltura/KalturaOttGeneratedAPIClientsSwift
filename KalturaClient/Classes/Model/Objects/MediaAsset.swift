@@ -156,10 +156,10 @@ open class MediaAsset: Asset {
 			externalIds = dict["externalIds"] as? String
 		}
 		if dict["catchUpBuffer"] != nil {
-			catchUpBuffer = Int64((dict["catchUpBuffer"] as? String)!)
+			catchUpBuffer = Int64("\(dict["catchUpBuffer"]!)")
 		}
 		if dict["trickPlayBuffer"] != nil {
-			trickPlayBuffer = Int64((dict["trickPlayBuffer"] as? String)!)
+			trickPlayBuffer = Int64("\(dict["trickPlayBuffer"]!)")
 		}
 		if dict["enableRecordingPlaybackNonEntitledChannel"] != nil {
 			enableRecordingPlaybackNonEntitledChannel = dict["enableRecordingPlaybackNonEntitledChannel"] as? Bool

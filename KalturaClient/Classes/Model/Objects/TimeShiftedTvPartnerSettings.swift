@@ -319,19 +319,19 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 			protectionEnabled = dict["protectionEnabled"] as? Bool
 		}
 		if dict["catchUpBufferLength"] != nil {
-			catchUpBufferLength = Int64((dict["catchUpBufferLength"] as? String)!)
+			catchUpBufferLength = Int64("\(dict["catchUpBufferLength"]!)")
 		}
 		if dict["trickPlayBufferLength"] != nil {
-			trickPlayBufferLength = Int64((dict["trickPlayBufferLength"] as? String)!)
+			trickPlayBufferLength = Int64("\(dict["trickPlayBufferLength"]!)")
 		}
 		if dict["recordingScheduleWindow"] != nil {
-			recordingScheduleWindow = Int64((dict["recordingScheduleWindow"] as? String)!)
+			recordingScheduleWindow = Int64("\(dict["recordingScheduleWindow"]!)")
 		}
 		if dict["paddingBeforeProgramStarts"] != nil {
-			paddingBeforeProgramStarts = Int64((dict["paddingBeforeProgramStarts"] as? String)!)
+			paddingBeforeProgramStarts = Int64("\(dict["paddingBeforeProgramStarts"]!)")
 		}
 		if dict["paddingAfterProgramEnds"] != nil {
-			paddingAfterProgramEnds = Int64((dict["paddingAfterProgramEnds"] as? String)!)
+			paddingAfterProgramEnds = Int64("\(dict["paddingAfterProgramEnds"]!)")
 		}
 		if dict["protectionPeriod"] != nil {
 			protectionPeriod = dict["protectionPeriod"] as? Int

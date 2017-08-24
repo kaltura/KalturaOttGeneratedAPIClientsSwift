@@ -57,7 +57,7 @@ open class LongValue: Value {
 		try super.populate(dict);
 		// set members values:
 		if dict["value"] != nil {
-			value = Int64((dict["value"] as? String)!)
+			value = Int64("\(dict["value"]!)")
 		}
 
 	}

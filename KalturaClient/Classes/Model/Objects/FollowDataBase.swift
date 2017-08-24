@@ -104,7 +104,7 @@ open class FollowDataBase: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["announcementId"] != nil {
-			announcementId = Int64((dict["announcementId"] as? String)!)
+			announcementId = Int64("\(dict["announcementId"]!)")
 		}
 		if dict["status"] != nil {
 			status = dict["status"] as? Int
@@ -113,7 +113,7 @@ open class FollowDataBase: ObjectBase {
 			title = dict["title"] as? String
 		}
 		if dict["timestamp"] != nil {
-			timestamp = Int64((dict["timestamp"] as? String)!)
+			timestamp = Int64("\(dict["timestamp"]!)")
 		}
 		if dict["followPhrase"] != nil {
 			followPhrase = dict["followPhrase"] as? String

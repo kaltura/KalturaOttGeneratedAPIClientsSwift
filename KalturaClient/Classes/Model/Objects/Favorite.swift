@@ -81,13 +81,13 @@ open class Favorite: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetId"] != nil {
-			assetId = Int64((dict["assetId"] as? String)!)
+			assetId = Int64("\(dict["assetId"]!)")
 		}
 		if dict["extraData"] != nil {
 			extraData = dict["extraData"] as? String
 		}
 		if dict["createDate"] != nil {
-			createDate = Int64((dict["createDate"] as? String)!)
+			createDate = Int64("\(dict["createDate"]!)")
 		}
 
 	}

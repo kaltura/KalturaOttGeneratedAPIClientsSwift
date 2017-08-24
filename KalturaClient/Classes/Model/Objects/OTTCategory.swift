@@ -105,13 +105,13 @@ open class OTTCategory: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
 		if dict["parentCategoryId"] != nil {
-			parentCategoryId = Int64((dict["parentCategoryId"] as? String)!)
+			parentCategoryId = Int64("\(dict["parentCategoryId"]!)")
 		}
 		if dict["childCategories"] != nil {
 			childCategories = try JSONParser.parse(array: dict["childCategories"] as! [Any])

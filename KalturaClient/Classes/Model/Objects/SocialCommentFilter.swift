@@ -92,7 +92,7 @@ open class SocialCommentFilter: Filter {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64((dict["assetIdEqual"] as? String)!)
+			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
 		}
 		if dict["assetTypeEqual"] != nil {
 			assetTypeEqual = AssetType(rawValue: "\(dict["assetTypeEqual"]!)")
@@ -101,7 +101,7 @@ open class SocialCommentFilter: Filter {
 			socialPlatformEqual = SocialPlatform(rawValue: "\(dict["socialPlatformEqual"]!)")
 		}
 		if dict["createDateGreaterThan"] != nil {
-			createDateGreaterThan = Int64((dict["createDateGreaterThan"] as? String)!)
+			createDateGreaterThan = Int64("\(dict["createDateGreaterThan"]!)")
 		}
 
 	}

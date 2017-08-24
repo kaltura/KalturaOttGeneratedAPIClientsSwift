@@ -147,10 +147,10 @@ open class CouponsGroup: ObjectBase {
 			descriptions = try JSONParser.parse(array: dict["descriptions"] as! [Any])
 		}
 		if dict["startDate"] != nil {
-			startDate = Int64((dict["startDate"] as? String)!)
+			startDate = Int64("\(dict["startDate"]!)")
 		}
 		if dict["endDate"] != nil {
-			endDate = Int64((dict["endDate"] as? String)!)
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 		if dict["maxUsesNumber"] != nil {
 			maxUsesNumber = dict["maxUsesNumber"] as? Int

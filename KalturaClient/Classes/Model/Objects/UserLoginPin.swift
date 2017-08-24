@@ -84,7 +84,7 @@ open class UserLoginPin: ObjectBase {
 			pinCode = dict["pinCode"] as? String
 		}
 		if dict["expirationTime"] != nil {
-			expirationTime = Int64((dict["expirationTime"] as? String)!)
+			expirationTime = Int64("\(dict["expirationTime"]!)")
 		}
 		if dict["userId"] != nil {
 			userId = dict["userId"] as? String

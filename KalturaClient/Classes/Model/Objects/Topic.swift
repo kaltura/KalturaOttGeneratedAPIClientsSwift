@@ -116,7 +116,7 @@ open class Topic: ObjectBase {
 			automaticIssueNotification = TopicAutomaticIssueNotification(rawValue: "\(dict["automaticIssueNotification"]!)")
 		}
 		if dict["lastMessageSentDateSec"] != nil {
-			lastMessageSentDateSec = Int64((dict["lastMessageSentDateSec"] as? String)!)
+			lastMessageSentDateSec = Int64("\(dict["lastMessageSentDateSec"]!)")
 		}
 
 	}

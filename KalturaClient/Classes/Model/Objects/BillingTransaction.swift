@@ -250,13 +250,13 @@ open class BillingTransaction: ObjectBase {
 		if dict["price"] != nil {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
 		if dict["actionDate"] != nil {
-			actionDate = Int64((dict["actionDate"] as? String)!)
+			actionDate = Int64("\(dict["actionDate"]!)")
 		}
 		if dict["startDate"] != nil {
-			startDate = Int64((dict["startDate"] as? String)!)
+			startDate = Int64("\(dict["startDate"]!)")
 		}
 		if dict["endDate"] != nil {
-			endDate = Int64((dict["endDate"] as? String)!)
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 		if dict["paymentMethod"] != nil {
 			paymentMethod = PaymentMethodType(rawValue: "\(dict["paymentMethod"]!)")

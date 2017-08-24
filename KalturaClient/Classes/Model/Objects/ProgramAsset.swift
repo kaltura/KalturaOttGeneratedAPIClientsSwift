@@ -105,19 +105,19 @@ open class ProgramAsset: Asset {
 		try super.populate(dict);
 		// set members values:
 		if dict["epgChannelId"] != nil {
-			epgChannelId = Int64((dict["epgChannelId"] as? String)!)
+			epgChannelId = Int64("\(dict["epgChannelId"]!)")
 		}
 		if dict["epgId"] != nil {
 			epgId = dict["epgId"] as? String
 		}
 		if dict["relatedMediaId"] != nil {
-			relatedMediaId = Int64((dict["relatedMediaId"] as? String)!)
+			relatedMediaId = Int64("\(dict["relatedMediaId"]!)")
 		}
 		if dict["crid"] != nil {
 			crid = dict["crid"] as? String
 		}
 		if dict["linearAssetId"] != nil {
-			linearAssetId = Int64((dict["linearAssetId"] as? String)!)
+			linearAssetId = Int64("\(dict["linearAssetId"]!)")
 		}
 
 	}

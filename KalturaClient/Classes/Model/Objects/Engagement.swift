@@ -174,7 +174,7 @@ open class Engagement: ObjectBase {
 			userList = dict["userList"] as? String
 		}
 		if dict["sendTimeInSeconds"] != nil {
-			sendTimeInSeconds = Int64((dict["sendTimeInSeconds"] as? String)!)
+			sendTimeInSeconds = Int64("\(dict["sendTimeInSeconds"]!)")
 		}
 		if dict["couponGroupId"] != nil {
 			couponGroupId = dict["couponGroupId"] as? Int

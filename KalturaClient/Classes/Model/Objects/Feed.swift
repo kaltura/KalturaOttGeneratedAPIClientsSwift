@@ -56,7 +56,7 @@ open class Feed: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["assetId"] != nil {
-			assetId = Int64((dict["assetId"] as? String)!)
+			assetId = Int64("\(dict["assetId"]!)")
 		}
 
 	}

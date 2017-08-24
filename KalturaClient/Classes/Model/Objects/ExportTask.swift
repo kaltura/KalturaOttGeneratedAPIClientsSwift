@@ -165,7 +165,7 @@ open class ExportTask: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["alias"] != nil {
 			alias = dict["alias"] as? String
@@ -183,7 +183,7 @@ open class ExportTask: ObjectBase {
 			exportType = ExportType(rawValue: "\(dict["exportType"]!)")
 		}
 		if dict["frequency"] != nil {
-			frequency = Int64((dict["frequency"] as? String)!)
+			frequency = Int64("\(dict["frequency"]!)")
 		}
 		if dict["notificationUrl"] != nil {
 			notificationUrl = dict["notificationUrl"] as? String

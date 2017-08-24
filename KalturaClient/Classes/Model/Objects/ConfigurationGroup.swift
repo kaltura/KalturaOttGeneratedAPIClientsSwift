@@ -135,7 +135,7 @@ open class ConfigurationGroup: ObjectBase {
 			tags = try JSONParser.parse(array: dict["tags"] as! [Any])
 		}
 		if dict["numberOfDevices"] != nil {
-			numberOfDevices = Int64((dict["numberOfDevices"] as? String)!)
+			numberOfDevices = Int64("\(dict["numberOfDevices"]!)")
 		}
 		if dict["configurationIdentifiers"] != nil {
 			configurationIdentifiers = try JSONParser.parse(array: dict["configurationIdentifiers"] as! [Any])

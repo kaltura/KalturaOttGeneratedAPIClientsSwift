@@ -98,10 +98,10 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 			channelsIn = dict["channelsIn"] as? String
 		}
 		if dict["startDateGreaterThanOrNull"] != nil {
-			startDateGreaterThanOrNull = Int64((dict["startDateGreaterThanOrNull"] as? String)!)
+			startDateGreaterThanOrNull = Int64("\(dict["startDateGreaterThanOrNull"]!)")
 		}
 		if dict["endDateLessThanOrNull"] != nil {
-			endDateLessThanOrNull = Int64((dict["endDateLessThanOrNull"] as? String)!)
+			endDateLessThanOrNull = Int64("\(dict["endDateLessThanOrNull"]!)")
 		}
 
 	}

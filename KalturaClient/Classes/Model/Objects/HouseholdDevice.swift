@@ -141,13 +141,13 @@ open class HouseholdDevice: ObjectBase {
 			brandId = dict["brandId"] as? Int
 		}
 		if dict["activatedOn"] != nil {
-			activatedOn = Int64((dict["activatedOn"] as? String)!)
+			activatedOn = Int64("\(dict["activatedOn"]!)")
 		}
 		if dict["status"] != nil {
 			status = DeviceStatus(rawValue: "\(dict["status"]!)")
 		}
 		if dict["deviceFamilyId"] != nil {
-			deviceFamilyId = Int64((dict["deviceFamilyId"] as? String)!)
+			deviceFamilyId = Int64("\(dict["deviceFamilyId"]!)")
 		}
 
 	}

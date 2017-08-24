@@ -122,10 +122,10 @@ open class SocialAction: ObjectBase {
 			actionType = SocialActionType(rawValue: "\(dict["actionType"]!)")
 		}
 		if dict["time"] != nil {
-			time = Int64((dict["time"] as? String)!)
+			time = Int64("\(dict["time"]!)")
 		}
 		if dict["assetId"] != nil {
-			assetId = Int64((dict["assetId"] as? String)!)
+			assetId = Int64("\(dict["assetId"]!)")
 		}
 		if dict["assetType"] != nil {
 			assetType = AssetType(rawValue: "\(dict["assetType"]!)")

@@ -76,7 +76,7 @@ open class Permission: ObjectBase {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64((dict["id"] as? String)!)
+			id = Int64("\(dict["id"]!)")
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
