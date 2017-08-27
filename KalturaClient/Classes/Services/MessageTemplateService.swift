@@ -37,26 +37,26 @@ public final class MessageTemplateService{
 
 	public class GetTokenizer: ClientTokenizer  {
 		
-		public var assetType: BaseTokenizedObject {
+		public var messageType: BaseTokenizedObject {
 			get {
-				return self.append("assetType") 
+				return self.append("messageType") 
 			}
 		}
 	}
 
 	/**  Retrieve a message template used in push notifications and inbox  */
-	public static func get(assetType: OTTAssetType) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> {
+	public static func get(messageType: MessageTemplateType) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> {
 		let request: RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> = RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer>(service: "messagetemplate", action: "get")
-			.setBody(key: "assetType", value: assetType.rawValue)
+			.setBody(key: "messageType", value: messageType.rawValue)
 
 		return request
 	}
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var assetType: BaseTokenizedObject {
+		public var messageType: BaseTokenizedObject {
 			get {
-				return self.append("assetType") 
+				return self.append("messageType") 
 			}
 		}
 		
@@ -68,9 +68,9 @@ public final class MessageTemplateService{
 	}
 
 	/**  Set the account’s push notifications and inbox messages templates  */
-	public static func update(assetType: OTTAssetType, template: MessageTemplate) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> {
+	public static func update(messageType: MessageTemplateType, template: MessageTemplate) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> = RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer>(service: "messagetemplate", action: "update")
-			.setBody(key: "assetType", value: assetType.rawValue)
+			.setBody(key: "messageType", value: messageType.rawValue)
 			.setBody(key: "template", value: template)
 
 		return request

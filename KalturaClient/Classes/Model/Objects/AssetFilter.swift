@@ -33,16 +33,35 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AssetFilter: Filter {
+open class AssetFilter: PersistedFilter {
 
-	public class AssetFilterTokenizer: Filter.FilterTokenizer {
+	public class AssetFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
+		
+		public var dynamicOrderBy: DynamicOrderBy.DynamicOrderByTokenizer {
+			get {
+				return DynamicOrderBy.DynamicOrderByTokenizer(self.append("dynamicOrderBy")) 
+			}
+		}
 	}
 
+	/**  dynamicOrderBy - order by Meta  */
+	public var dynamicOrderBy: DynamicOrderBy? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["dynamicOrderBy"] != nil {
+		dynamicOrderBy = try JSONParser.parse(object: dict["dynamicOrderBy"] as! [String: Any])		}
+
 	}
 
+	public override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(dynamicOrderBy != nil) {
+			dict["dynamicOrderBy"] = dynamicOrderBy!.toDictionary()
+		}
+		return dict
+	}
 }
 

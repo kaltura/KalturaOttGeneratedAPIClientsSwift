@@ -61,6 +61,12 @@ open class MetaFilter: Filter {
 				return self.append("assetTypeEqual") 
 			}
 		}
+		
+		public var featuresIn: BaseTokenizedObject {
+			get {
+				return self.append("featuresIn") 
+			}
+		}
 	}
 
 	/**  Meta system field name to filter by  */
@@ -71,6 +77,8 @@ open class MetaFilter: Filter {
 	public var typeEqual: MetaType? = nil
 	/**  Asset type to filter by  */
 	public var assetTypeEqual: AssetType? = nil
+	/**  Features  */
+	public var featuresIn: String? = nil
 
 
 	public func setMultiRequestToken(fieldNameEqual: String) {
@@ -89,6 +97,10 @@ open class MetaFilter: Filter {
 		self.dict["assetTypeEqual"] = assetTypeEqual
 	}
 	
+	public func setMultiRequestToken(featuresIn: String) {
+		self.dict["featuresIn"] = featuresIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -103,6 +115,9 @@ open class MetaFilter: Filter {
 		}
 		if dict["assetTypeEqual"] != nil {
 			assetTypeEqual = AssetType(rawValue: "\(dict["assetTypeEqual"]!)")
+		}
+		if dict["featuresIn"] != nil {
+			featuresIn = dict["featuresIn"] as? String
 		}
 
 	}
@@ -120,6 +135,9 @@ open class MetaFilter: Filter {
 		}
 		if(assetTypeEqual != nil) {
 			dict["assetTypeEqual"] = assetTypeEqual!.rawValue
+		}
+		if(featuresIn != nil) {
+			dict["featuresIn"] = featuresIn!
 		}
 		return dict
 	}

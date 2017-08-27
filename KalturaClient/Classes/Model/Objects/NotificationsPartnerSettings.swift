@@ -102,6 +102,30 @@ open class NotificationsPartnerSettings: ObjectBase {
 				return self.append("pushAdapterUrl") 
 			}
 		}
+		
+		public var churnMailTemplateName: BaseTokenizedObject {
+			get {
+				return self.append("churnMailTemplateName") 
+			}
+		}
+		
+		public var churnMailSubject: BaseTokenizedObject {
+			get {
+				return self.append("churnMailSubject") 
+			}
+		}
+		
+		public var senderEmail: BaseTokenizedObject {
+			get {
+				return self.append("senderEmail") 
+			}
+		}
+		
+		public var mailSenderName: BaseTokenizedObject {
+			get {
+				return self.append("mailSenderName") 
+			}
+		}
 	}
 
 	/**  Push notification capability is enabled for the account  */
@@ -126,6 +150,14 @@ open class NotificationsPartnerSettings: ObjectBase {
 	public var reminderOffsetSec: Int? = nil
 	/**  Push adapter URL  */
 	public var pushAdapterUrl: String? = nil
+	/**  Churn mail template name  */
+	public var churnMailTemplateName: String? = nil
+	/**  Churn mail subject  */
+	public var churnMailSubject: String? = nil
+	/**  Sender email  */
+	public var senderEmail: String? = nil
+	/**  Mail sender name  */
+	public var mailSenderName: String? = nil
 
 
 	public func setMultiRequestToken(pushNotificationEnabled: String) {
@@ -172,6 +204,22 @@ open class NotificationsPartnerSettings: ObjectBase {
 		self.dict["pushAdapterUrl"] = pushAdapterUrl
 	}
 	
+	public func setMultiRequestToken(churnMailTemplateName: String) {
+		self.dict["churnMailTemplateName"] = churnMailTemplateName
+	}
+	
+	public func setMultiRequestToken(churnMailSubject: String) {
+		self.dict["churnMailSubject"] = churnMailSubject
+	}
+	
+	public func setMultiRequestToken(senderEmail: String) {
+		self.dict["senderEmail"] = senderEmail
+	}
+	
+	public func setMultiRequestToken(mailSenderName: String) {
+		self.dict["mailSenderName"] = mailSenderName
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -207,6 +255,18 @@ open class NotificationsPartnerSettings: ObjectBase {
 		}
 		if dict["pushAdapterUrl"] != nil {
 			pushAdapterUrl = dict["pushAdapterUrl"] as? String
+		}
+		if dict["churnMailTemplateName"] != nil {
+			churnMailTemplateName = dict["churnMailTemplateName"] as? String
+		}
+		if dict["churnMailSubject"] != nil {
+			churnMailSubject = dict["churnMailSubject"] as? String
+		}
+		if dict["senderEmail"] != nil {
+			senderEmail = dict["senderEmail"] as? String
+		}
+		if dict["mailSenderName"] != nil {
+			mailSenderName = dict["mailSenderName"] as? String
 		}
 
 	}
@@ -245,6 +305,18 @@ open class NotificationsPartnerSettings: ObjectBase {
 		}
 		if(pushAdapterUrl != nil) {
 			dict["pushAdapterUrl"] = pushAdapterUrl!
+		}
+		if(churnMailTemplateName != nil) {
+			dict["churnMailTemplateName"] = churnMailTemplateName!
+		}
+		if(churnMailSubject != nil) {
+			dict["churnMailSubject"] = churnMailSubject!
+		}
+		if(senderEmail != nil) {
+			dict["senderEmail"] = senderEmail!
+		}
+		if(mailSenderName != nil) {
+			dict["mailSenderName"] = mailSenderName!
 		}
 		return dict
 	}

@@ -98,12 +98,6 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public var couponsGroup: CouponsGroup.CouponsGroupTokenizer {
-			get {
-				return CouponsGroup.CouponsGroupTokenizer(self.append("couponsGroup")) 
-			}
-		}
-		
 		public var name: BaseTokenizedObject {
 			get {
 				return self.append("name") 
@@ -137,12 +131,6 @@ open class Subscription: ObjectBase {
 		public var prorityInOrder: BaseTokenizedObject {
 			get {
 				return self.append("prorityInOrder") 
-			}
-		}
-		
-		public var productCode: BaseTokenizedObject {
-			get {
-				return self.append("productCode") 
 			}
 		}
 		
@@ -205,6 +193,18 @@ open class Subscription: ObjectBase {
 				return ArrayTokenizedObject<OTTUserType.OTTUserTypeTokenizer>(self.append("userTypes"))
 			} 
 		}
+		
+		public var couponsGroups: ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer> {
+			get {
+				return ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer>(self.append("couponsGroups"))
+			} 
+		}
+		
+		public var productCodes: ArrayTokenizedObject<ProductCode.ProductCodeTokenizer> {
+			get {
+				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
+			} 
+		}
 	}
 
 	/**  Subscription identifier  */
@@ -227,8 +227,6 @@ open class Subscription: ObjectBase {
 	public var price: PriceDetails? = nil
 	/**  The internal discount module for the subscription  */
 	public var discountModule: DiscountModule? = nil
-	/**  Coupons group for the subscription  */
-	public var couponsGroup: CouponsGroup? = nil
 	/**  Name of the subscription  */
 	public var name: String? = nil
 	/**  Name of the subscription  */
@@ -241,8 +239,6 @@ open class Subscription: ObjectBase {
 	public var mediaId: Int? = nil
 	/**  Subscription order (when returned in methods that retrieve subscriptions)  */
 	public var prorityInOrder: Int64? = nil
-	/**  Product code for the subscription  */
-	public var productCode: String? = nil
 	/**  Subscription price plans  */
 	public var pricePlans: Array<PricePlan>? = nil
 	/**  Subscription preview module  */
@@ -266,6 +262,10 @@ open class Subscription: ObjectBase {
 	public var isWaiverEnabled: Bool? = nil
 	/**  List of permitted user types for the subscription  */
 	public var userTypes: Array<OTTUserType>? = nil
+	/**  List of Coupons group  */
+	public var couponsGroups: Array<CouponsGroup>? = nil
+	/**  List of Subscription product codes  */
+	public var productCodes: Array<ProductCode>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -306,10 +306,6 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(prorityInOrder: String) {
 		self.dict["prorityInOrder"] = prorityInOrder
-	}
-	
-	public func setMultiRequestToken(productCode: String) {
-		self.dict["productCode"] = productCode
 	}
 	
 	public func setMultiRequestToken(householdLimitationsId: String) {
@@ -367,8 +363,6 @@ open class Subscription: ObjectBase {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
 		if dict["discountModule"] != nil {
 		discountModule = try JSONParser.parse(object: dict["discountModule"] as! [String: Any])		}
-		if dict["couponsGroup"] != nil {
-		couponsGroup = try JSONParser.parse(object: dict["couponsGroup"] as! [String: Any])		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
@@ -384,9 +378,6 @@ open class Subscription: ObjectBase {
 		}
 		if dict["prorityInOrder"] != nil {
 			prorityInOrder = Int64("\(dict["prorityInOrder"]!)")
-		}
-		if dict["productCode"] != nil {
-			productCode = dict["productCode"] as? String
 		}
 		if dict["pricePlans"] != nil {
 			pricePlans = try JSONParser.parse(array: dict["pricePlans"] as! [Any])
@@ -416,6 +407,12 @@ open class Subscription: ObjectBase {
 		}
 		if dict["userTypes"] != nil {
 			userTypes = try JSONParser.parse(array: dict["userTypes"] as! [Any])
+		}
+		if dict["couponsGroups"] != nil {
+			couponsGroups = try JSONParser.parse(array: dict["couponsGroups"] as! [Any])
+		}
+		if dict["productCodes"] != nil {
+			productCodes = try JSONParser.parse(array: dict["productCodes"] as! [Any])
 		}
 
 	}
@@ -452,9 +449,6 @@ open class Subscription: ObjectBase {
 		if(discountModule != nil) {
 			dict["discountModule"] = discountModule!.toDictionary()
 		}
-		if(couponsGroup != nil) {
-			dict["couponsGroup"] = couponsGroup!.toDictionary()
-		}
 		if(name != nil) {
 			dict["name"] = name!
 		}
@@ -472,9 +466,6 @@ open class Subscription: ObjectBase {
 		}
 		if(prorityInOrder != nil) {
 			dict["prorityInOrder"] = prorityInOrder!
-		}
-		if(productCode != nil) {
-			dict["productCode"] = productCode!
 		}
 		if(pricePlans != nil) {
 			dict["pricePlans"] = pricePlans!.map { value in value.toDictionary() }
@@ -505,6 +496,12 @@ open class Subscription: ObjectBase {
 		}
 		if(userTypes != nil) {
 			dict["userTypes"] = userTypes!.map { value in value.toDictionary() }
+		}
+		if(couponsGroups != nil) {
+			dict["couponsGroups"] = couponsGroups!.map { value in value.toDictionary() }
+		}
+		if(productCodes != nil) {
+			dict["productCodes"] = productCodes!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

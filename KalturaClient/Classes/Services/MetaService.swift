@@ -55,4 +55,28 @@ public final class MetaService{
 
 		return request
 	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var meta: Meta.MetaTokenizer {
+			get {
+				return Meta.MetaTokenizer(self.append("meta")) 
+			}
+		}
+	}
+
+	/**  Update meta&amp;#39;s user interest  */
+	public static func update(id: String, meta: Meta) -> RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> = RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer>(service: "meta", action: "update")
+			.setBody(key: "id", value: id)
+			.setBody(key: "meta", value: meta)
+
+		return request
+	}
 }

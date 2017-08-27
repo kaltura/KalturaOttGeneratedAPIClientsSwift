@@ -148,6 +148,41 @@ public final class HouseholdDeviceService{
 		return request
 	}
 
+	public class LoginWithPinTokenizer: ClientTokenizer  {
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var pin: BaseTokenizedObject {
+			get {
+				return self.append("pin") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
+	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		return loginWithPin(partnerId: partnerId, pin: pin, udid: nil)
+	}
+
+	/**  User sign-in via a time-expired sign-in PIN.  */
+	public static func loginWithPin(partnerId: Int, pin: String, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "householddevice", action: "loginWithPin")
+			.setBody(key: "partnerId", value: partnerId)
+			.setBody(key: "pin", value: pin)
+			.setBody(key: "udid", value: udid)
+
+		return request
+	}
+
 	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public var udid: BaseTokenizedObject {

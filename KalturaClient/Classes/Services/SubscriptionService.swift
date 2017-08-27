@@ -51,4 +51,28 @@ public final class SubscriptionService{
 
 		return request
 	}
+
+	public class ValidateCouponTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+	}
+
+	/**  Returns information about a coupon for subscription  */
+	public static func validateCoupon(id: Int, code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer> {
+		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer>(service: "subscription", action: "validateCoupon")
+			.setBody(key: "id", value: id)
+			.setBody(key: "code", value: code)
+
+		return request
+	}
 }

@@ -35,6 +35,24 @@
 
 public final class TransactionService{
 
+	public class DowngradeTokenizer: ClientTokenizer  {
+		
+		public var purchase: Purchase.PurchaseTokenizer {
+			get {
+				return Purchase.PurchaseTokenizer(self.append("purchase")) 
+			}
+		}
+	}
+
+	/**  downgrade specific subscription for a household. entitlements will be updated on
+	  the existing subscription end date.  */
+	public static func downgrade(purchase: Purchase) -> NullRequestBuilder {
+		let request: NullRequestBuilder = NullRequestBuilder(service: "transaction", action: "downgrade")
+			.setBody(key: "purchase", value: purchase)
+
+		return request
+	}
+
 	public class GetPurchaseSessionIdTokenizer: ClientTokenizer  {
 		
 		public var purchaseSession: PurchaseSession.PurchaseSessionTokenizer {
@@ -129,6 +147,24 @@ public final class TransactionService{
 			.setBody(key: "externalTransactionId", value: externalTransactionId)
 			.setBody(key: "signature", value: signature)
 			.setBody(key: "status", value: status)
+
+		return request
+	}
+
+	public class UpgradeTokenizer: ClientTokenizer  {
+		
+		public var purchase: Purchase.PurchaseTokenizer {
+			get {
+				return Purchase.PurchaseTokenizer(self.append("purchase")) 
+			}
+		}
+	}
+
+	/**  upgrade specific subscription for a household. Upon successful charge
+	  entitlements to use the requested product or subscription are granted.  */
+	public static func upgrade(purchase: Purchase) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer> {
+		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer>(service: "transaction", action: "upgrade")
+			.setBody(key: "purchase", value: purchase)
 
 		return request
 	}
