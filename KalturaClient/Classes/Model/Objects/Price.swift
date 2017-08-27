@@ -55,6 +55,12 @@ open class Price: ObjectBase {
 				return self.append("currencySign") 
 			}
 		}
+		
+		public var countryId: BaseTokenizedObject {
+			get {
+				return self.append("countryId") 
+			}
+		}
 	}
 
 	/**  Price  */
@@ -63,6 +69,8 @@ open class Price: ObjectBase {
 	public var currency: String? = nil
 	/**  Currency Sign  */
 	public var currencySign: String? = nil
+	/**  Currency  */
+	public var countryId: Int64? = nil
 
 
 	public func setMultiRequestToken(amount: String) {
@@ -77,6 +85,10 @@ open class Price: ObjectBase {
 		self.dict["currencySign"] = currencySign
 	}
 	
+	public func setMultiRequestToken(countryId: String) {
+		self.dict["countryId"] = countryId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +100,9 @@ open class Price: ObjectBase {
 		}
 		if dict["currencySign"] != nil {
 			currencySign = dict["currencySign"] as? String
+		}
+		if dict["countryId"] != nil {
+			countryId = Int64("\(dict["countryId"]!)")
 		}
 
 	}
@@ -102,6 +117,9 @@ open class Price: ObjectBase {
 		}
 		if(currencySign != nil) {
 			dict["currencySign"] = currencySign!
+		}
+		if(countryId != nil) {
+			dict["countryId"] = countryId!
 		}
 		return dict
 	}

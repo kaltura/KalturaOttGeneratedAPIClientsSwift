@@ -73,6 +73,12 @@ open class Channel: BaseChannel {
 				return self.append("order") 
 			}
 		}
+		
+		public var groupBy: AssetGroupBy.AssetGroupByTokenizer {
+			get {
+				return AssetGroupBy.AssetGroupByTokenizer(self.append("groupBy")) 
+			}
+		}
 	}
 
 	/**  Cannel description  */
@@ -87,6 +93,8 @@ open class Channel: BaseChannel {
 	public var isActive: Bool? = nil
 	/**  Channel order  */
 	public var order: AssetOrderBy? = nil
+	/**  Channel group by  */
+	public var groupBy: AssetGroupBy? = nil
 
 
 	public func setMultiRequestToken(description: String) {
@@ -126,6 +134,8 @@ open class Channel: BaseChannel {
 		if dict["order"] != nil {
 			order = AssetOrderBy(rawValue: "\(dict["order"]!)")
 		}
+		if dict["groupBy"] != nil {
+		groupBy = try JSONParser.parse(object: dict["groupBy"] as! [String: Any])		}
 
 	}
 
@@ -148,6 +158,9 @@ open class Channel: BaseChannel {
 		}
 		if(order != nil) {
 			dict["order"] = order!.rawValue
+		}
+		if(groupBy != nil) {
+			dict["groupBy"] = groupBy!.toDictionary()
 		}
 		return dict
 	}

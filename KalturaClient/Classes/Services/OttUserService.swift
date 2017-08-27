@@ -428,12 +428,23 @@ public final class OttUserService{
 				return OTTUser.OTTUserTokenizer(self.append("user")) 
 			}
 		}
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	public static func update(user: OTTUser) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer> {
+		return update(user: user, id: nil)
 	}
 
 	/**  Update user information  */
-	public static func update(user: OTTUser) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer> {
+	public static func update(user: OTTUser, id: String?) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer> = RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer>(service: "ottuser", action: "update")
 			.setBody(key: "user", value: user)
+			.setBody(key: "id", value: id)
 
 		return request
 	}

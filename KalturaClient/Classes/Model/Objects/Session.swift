@@ -44,12 +44,6 @@ open class Session: ObjectBase {
 			}
 		}
 		
-		public var sessionType: BaseTokenizedObject {
-			get {
-				return self.append("sessionType") 
-			}
-		}
-		
 		public var partnerId: BaseTokenizedObject {
 			get {
 				return self.append("partnerId") 
@@ -89,8 +83,6 @@ open class Session: ObjectBase {
 
 	/**  KS  */
 	public var ks: String? = nil
-	/**  Session type  */
-	public var sessionType: SessionType? = nil
 	/**  Partner identifier  */
 	public var partnerId: Int? = nil
 	/**  User identifier  */
@@ -107,10 +99,6 @@ open class Session: ObjectBase {
 
 	public func setMultiRequestToken(ks: String) {
 		self.dict["ks"] = ks
-	}
-	
-	public func setMultiRequestToken(sessionType: String) {
-		self.dict["sessionType"] = sessionType
 	}
 	
 	public func setMultiRequestToken(partnerId: String) {
@@ -143,9 +131,6 @@ open class Session: ObjectBase {
 		if dict["ks"] != nil {
 			ks = dict["ks"] as? String
 		}
-		if dict["sessionType"] != nil {
-			sessionType = SessionType(rawValue: (dict["sessionType"] as? Int)!)
-		}
 		if dict["partnerId"] != nil {
 			partnerId = dict["partnerId"] as? Int
 		}
@@ -171,9 +156,6 @@ open class Session: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(ks != nil) {
 			dict["ks"] = ks!
-		}
-		if(sessionType != nil) {
-			dict["sessionType"] = sessionType!.rawValue
 		}
 		if(partnerId != nil) {
 			dict["partnerId"] = partnerId!

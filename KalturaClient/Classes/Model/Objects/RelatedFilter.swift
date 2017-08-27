@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RelatedFilter: AssetFilter {
+open class RelatedFilter: BaseSearchAssetFilter {
 
-	public class RelatedFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+	public class RelatedFilterTokenizer: BaseSearchAssetFilter.BaseSearchAssetFilterTokenizer {
 		
 		public var kSql: BaseTokenizedObject {
 			get {

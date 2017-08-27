@@ -37,12 +37,6 @@ public final class AssetService{
 
 	public class CountTokenizer: ClientTokenizer  {
 		
-		public var groupBy: ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer> {
-			get {
-				return ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer>(self.append("groupBy"))
-			} 
-		}
-		
 		public var filter: SearchAssetFilter.SearchAssetFilterTokenizer {
 			get {
 				return SearchAssetFilter.SearchAssetFilterTokenizer(self.append("filter")) 
@@ -50,15 +44,14 @@ public final class AssetService{
 		}
 	}
 
-	public static func count(groupBy: Array<AssetGroupBy>) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
-		return count(groupBy: groupBy, filter: nil)
+	public static func count() -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
+		return count(filter: nil)
 	}
 
 	/**  Returns a group-by result for media or EPG according to given filter. Lists
 	  values of each field and their respective count.  */
-	public static func count(groupBy: Array<AssetGroupBy>, filter: SearchAssetFilter?) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
+	public static func count(filter: SearchAssetFilter?) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
 		let request: RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> = RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer>(service: "asset", action: "count")
-			.setBody(key: "groupBy", value: groupBy)
 			.setBody(key: "filter", value: filter)
 
 		return request
