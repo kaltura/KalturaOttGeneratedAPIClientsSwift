@@ -33,72 +33,89 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class PlaybackSource: MediaFile {
+open class AdsSource: ObjectBase {
 
-	public class PlaybackSourceTokenizer: MediaFile.MediaFileTokenizer {
+	public class AdsSourceTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var format: BaseTokenizedObject {
+		public var id: BaseTokenizedObject {
 			get {
-				return self.append("format") 
+				return self.append("id") 
 			}
 		}
 		
-		public var protocols: BaseTokenizedObject {
+		public var type: BaseTokenizedObject {
 			get {
-				return self.append("protocols") 
+				return self.append("type") 
 			}
 		}
 		
-		public var drm: ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer> {
+		public var adsPolicy: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer>(self.append("drm"))
-			} 
+				return self.append("adsPolicy") 
+			}
+		}
+		
+		public var adsParam: BaseTokenizedObject {
+			get {
+				return self.append("adsParam") 
+			}
 		}
 	}
 
-	/**  Source format according to delivery profile streamer type (applehttp, mpegdash
-	  etc.)  */
-	public var format: String? = nil
-	/**  Comma separated string according to deliveryProfile media protocols
-	  (&amp;#39;http,https&amp;#39; etc.)  */
-	public var protocols: String? = nil
-	/**  DRM data object containing relevant license URL ,scheme name and certificate  */
-	public var drm: Array<DrmPlaybackPluginData>? = nil
+	/**  File unique identifier  */
+	public var id: Int? = nil
+	/**  Device types as defined in the system  */
+	public var type: String? = nil
+	/**  Ads policy  */
+	public var adsPolicy: AdsPolicy? = nil
+	/**  The parameters to pass to the ads server  */
+	public var adsParam: String? = nil
 
 
-	public func setMultiRequestToken(format: String) {
-		self.dict["format"] = format
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
 	}
 	
-	public func setMultiRequestToken(protocols: String) {
-		self.dict["protocols"] = protocols
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(adsPolicy: String) {
+		self.dict["adsPolicy"] = adsPolicy
+	}
+	
+	public func setMultiRequestToken(adsParam: String) {
+		self.dict["adsParam"] = adsParam
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["format"] != nil {
-			format = dict["format"] as? String
+		if dict["id"] != nil {
+			id = dict["id"] as? Int
 		}
-		if dict["protocols"] != nil {
-			protocols = dict["protocols"] as? String
+		if dict["type"] != nil {
+			type = dict["type"] as? String
 		}
-		if dict["drm"] != nil {
-			drm = try JSONParser.parse(array: dict["drm"] as! [Any])
+		if dict["adsPolicy"] != nil {
+			adsPolicy = AdsPolicy(rawValue: "\(dict["adsPolicy"]!)")
+		}
+		if dict["adsParam"] != nil {
+			adsParam = dict["adsParam"] as? String
 		}
 
 	}
 
 	public override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(format != nil) {
-			dict["format"] = format!
+		if(type != nil) {
+			dict["type"] = type!
 		}
-		if(protocols != nil) {
-			dict["protocols"] = protocols!
+		if(adsPolicy != nil) {
+			dict["adsPolicy"] = adsPolicy!.rawValue
 		}
-		if(drm != nil) {
-			dict["drm"] = drm!.map { value in value.toDictionary() }
+		if(adsParam != nil) {
+			dict["adsParam"] = adsParam!
 		}
 		return dict
 	}

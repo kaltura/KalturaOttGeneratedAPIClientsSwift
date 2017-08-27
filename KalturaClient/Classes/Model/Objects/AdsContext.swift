@@ -33,72 +33,34 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class PlaybackSource: MediaFile {
+open class AdsContext: ObjectBase {
 
-	public class PlaybackSourceTokenizer: MediaFile.MediaFileTokenizer {
+	public class AdsContextTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var format: BaseTokenizedObject {
+		public var sources: ArrayTokenizedObject<AdsSource.AdsSourceTokenizer> {
 			get {
-				return self.append("format") 
-			}
-		}
-		
-		public var protocols: BaseTokenizedObject {
-			get {
-				return self.append("protocols") 
-			}
-		}
-		
-		public var drm: ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer> {
-			get {
-				return ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer>(self.append("drm"))
+				return ArrayTokenizedObject<AdsSource.AdsSourceTokenizer>(self.append("sources"))
 			} 
 		}
 	}
 
-	/**  Source format according to delivery profile streamer type (applehttp, mpegdash
-	  etc.)  */
-	public var format: String? = nil
-	/**  Comma separated string according to deliveryProfile media protocols
-	  (&amp;#39;http,https&amp;#39; etc.)  */
-	public var protocols: String? = nil
-	/**  DRM data object containing relevant license URL ,scheme name and certificate  */
-	public var drm: Array<DrmPlaybackPluginData>? = nil
+	/**  Sources  */
+	public var sources: Array<AdsSource>? = nil
 
 
-	public func setMultiRequestToken(format: String) {
-		self.dict["format"] = format
-	}
-	
-	public func setMultiRequestToken(protocols: String) {
-		self.dict["protocols"] = protocols
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["format"] != nil {
-			format = dict["format"] as? String
-		}
-		if dict["protocols"] != nil {
-			protocols = dict["protocols"] as? String
-		}
-		if dict["drm"] != nil {
-			drm = try JSONParser.parse(array: dict["drm"] as! [Any])
+		if dict["sources"] != nil {
+			sources = try JSONParser.parse(array: dict["sources"] as! [Any])
 		}
 
 	}
 
 	public override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(format != nil) {
-			dict["format"] = format!
-		}
-		if(protocols != nil) {
-			dict["protocols"] = protocols!
-		}
-		if(drm != nil) {
-			dict["drm"] = drm!.map { value in value.toDictionary() }
+		if(sources != nil) {
+			dict["sources"] = sources!.map { value in value.toDictionary() }
 		}
 		return dict
 	}
