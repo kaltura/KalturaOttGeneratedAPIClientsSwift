@@ -73,12 +73,6 @@ open class SubscriptionEntitlement: Entitlement {
 				return self.append("paymentMethodId") 
 			}
 		}
-		
-		public var scheduledSubscriptionId: BaseTokenizedObject {
-			get {
-				return self.append("scheduledSubscriptionId") 
-			}
-		}
 	}
 
 	/**  The date of the next renewal (only for subscription)  */
@@ -94,8 +88,6 @@ open class SubscriptionEntitlement: Entitlement {
 	public var paymentGatewayId: Int? = nil
 	/**  Payment Method identifier  */
 	public var paymentMethodId: Int? = nil
-	/**  Scheduled Subscription Identifier  */
-	public var scheduledSubscriptionId: Int64? = nil
 
 
 	public func setMultiRequestToken(nextRenewalDate: String) {
@@ -122,10 +114,6 @@ open class SubscriptionEntitlement: Entitlement {
 		self.dict["paymentMethodId"] = paymentMethodId
 	}
 	
-	public func setMultiRequestToken(scheduledSubscriptionId: String) {
-		self.dict["scheduledSubscriptionId"] = scheduledSubscriptionId
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -147,9 +135,6 @@ open class SubscriptionEntitlement: Entitlement {
 		if dict["paymentMethodId"] != nil {
 			paymentMethodId = dict["paymentMethodId"] as? Int
 		}
-		if dict["scheduledSubscriptionId"] != nil {
-			scheduledSubscriptionId = Int64("\(dict["scheduledSubscriptionId"]!)")
-		}
 
 	}
 
@@ -160,9 +145,6 @@ open class SubscriptionEntitlement: Entitlement {
 		}
 		if(paymentMethodId != nil) {
 			dict["paymentMethodId"] = paymentMethodId!
-		}
-		if(scheduledSubscriptionId != nil) {
-			dict["scheduledSubscriptionId"] = scheduledSubscriptionId!
 		}
 		return dict
 	}

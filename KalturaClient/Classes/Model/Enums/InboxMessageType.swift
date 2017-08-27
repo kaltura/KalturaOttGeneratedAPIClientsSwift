@@ -34,6 +34,4 @@
 public enum InboxMessageType: String {
 	case SYSTEMANNOUNCEMENT = "SystemAnnouncement"
 	case FOLLOWED = "Followed"
-	case ENGAGEMENT = "Engagement"
-	case INTEREST = "Interest"
 }

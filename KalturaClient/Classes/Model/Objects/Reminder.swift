@@ -48,20 +48,12 @@ open class Reminder: ObjectBase {
 				return self.append("id") 
 			}
 		}
-		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
-			}
-		}
 	}
 
 	/**  Reminder name  */
 	public var name: String? = nil
 	/**  Reminder id  */
 	public var id: Int? = nil
-	/**  Reminder type  */
-	public var type: ReminderType? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -70,10 +62,6 @@ open class Reminder: ObjectBase {
 	
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
-	}
-	
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -85,18 +73,8 @@ open class Reminder: ObjectBase {
 		if dict["id"] != nil {
 			id = dict["id"] as? Int
 		}
-		if dict["type"] != nil {
-			type = ReminderType(rawValue: "\(dict["type"]!)")
-		}
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!.rawValue
-		}
-		return dict
-	}
 }
 

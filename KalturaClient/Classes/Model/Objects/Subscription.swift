@@ -98,6 +98,12 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
+		public var couponsGroup: CouponsGroup.CouponsGroupTokenizer {
+			get {
+				return CouponsGroup.CouponsGroupTokenizer(self.append("couponsGroup")) 
+			}
+		}
+		
 		public var name: BaseTokenizedObject {
 			get {
 				return self.append("name") 
@@ -134,10 +140,16 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public var pricePlanIds: BaseTokenizedObject {
+		public var productCode: BaseTokenizedObject {
 			get {
-				return self.append("pricePlanIds") 
+				return self.append("productCode") 
 			}
+		}
+		
+		public var pricePlans: ArrayTokenizedObject<PricePlan.PricePlanTokenizer> {
+			get {
+				return ArrayTokenizedObject<PricePlan.PricePlanTokenizer>(self.append("pricePlans"))
+			} 
 		}
 		
 		public var previewModule: PreviewModule.PreviewModuleTokenizer {
@@ -193,30 +205,6 @@ open class Subscription: ObjectBase {
 				return ArrayTokenizedObject<OTTUserType.OTTUserTypeTokenizer>(self.append("userTypes"))
 			} 
 		}
-		
-		public var couponsGroups: ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer> {
-			get {
-				return ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer>(self.append("couponsGroups"))
-			} 
-		}
-		
-		public var productCodes: ArrayTokenizedObject<ProductCode.ProductCodeTokenizer> {
-			get {
-				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
-			} 
-		}
-		
-		public var dependencyType: BaseTokenizedObject {
-			get {
-				return self.append("dependencyType") 
-			}
-		}
-		
-		public var externalId: BaseTokenizedObject {
-			get {
-				return self.append("externalId") 
-			}
-		}
 	}
 
 	/**  Subscription identifier  */
@@ -239,6 +227,8 @@ open class Subscription: ObjectBase {
 	public var price: PriceDetails? = nil
 	/**  The internal discount module for the subscription  */
 	public var discountModule: DiscountModule? = nil
+	/**  Coupons group for the subscription  */
+	public var couponsGroup: CouponsGroup? = nil
 	/**  Name of the subscription  */
 	public var name: String? = nil
 	/**  Name of the subscription  */
@@ -251,8 +241,10 @@ open class Subscription: ObjectBase {
 	public var mediaId: Int? = nil
 	/**  Subscription order (when returned in methods that retrieve subscriptions)  */
 	public var prorityInOrder: Int64? = nil
-	/**  Comma separated subscription price plan IDs  */
-	public var pricePlanIds: String? = nil
+	/**  Product code for the subscription  */
+	public var productCode: String? = nil
+	/**  Subscription price plans  */
+	public var pricePlans: Array<PricePlan>? = nil
 	/**  Subscription preview module  */
 	public var previewModule: PreviewModule? = nil
 	/**  The household limitation module identifier associated with this subscription  */
@@ -274,14 +266,6 @@ open class Subscription: ObjectBase {
 	public var isWaiverEnabled: Bool? = nil
 	/**  List of permitted user types for the subscription  */
 	public var userTypes: Array<OTTUserType>? = nil
-	/**  List of Coupons group  */
-	public var couponsGroups: Array<CouponsGroup>? = nil
-	/**  List of Subscription product codes  */
-	public var productCodes: Array<ProductCode>? = nil
-	/**  Dependency Type  */
-	public var dependencyType: SubscriptionDependencyType? = nil
-	/**  External ID  */
-	public var externalId: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -324,8 +308,8 @@ open class Subscription: ObjectBase {
 		self.dict["prorityInOrder"] = prorityInOrder
 	}
 	
-	public func setMultiRequestToken(pricePlanIds: String) {
-		self.dict["pricePlanIds"] = pricePlanIds
+	public func setMultiRequestToken(productCode: String) {
+		self.dict["productCode"] = productCode
 	}
 	
 	public func setMultiRequestToken(householdLimitationsId: String) {
@@ -350,14 +334,6 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(isWaiverEnabled: String) {
 		self.dict["isWaiverEnabled"] = isWaiverEnabled
-	}
-	
-	public func setMultiRequestToken(dependencyType: String) {
-		self.dict["dependencyType"] = dependencyType
-	}
-	
-	public func setMultiRequestToken(externalId: String) {
-		self.dict["externalId"] = externalId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -391,6 +367,8 @@ open class Subscription: ObjectBase {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
 		if dict["discountModule"] != nil {
 		discountModule = try JSONParser.parse(object: dict["discountModule"] as! [String: Any])		}
+		if dict["couponsGroup"] != nil {
+		couponsGroup = try JSONParser.parse(object: dict["couponsGroup"] as! [String: Any])		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
@@ -407,8 +385,11 @@ open class Subscription: ObjectBase {
 		if dict["prorityInOrder"] != nil {
 			prorityInOrder = Int64("\(dict["prorityInOrder"]!)")
 		}
-		if dict["pricePlanIds"] != nil {
-			pricePlanIds = dict["pricePlanIds"] as? String
+		if dict["productCode"] != nil {
+			productCode = dict["productCode"] as? String
+		}
+		if dict["pricePlans"] != nil {
+			pricePlans = try JSONParser.parse(array: dict["pricePlans"] as! [Any])
 		}
 		if dict["previewModule"] != nil {
 		previewModule = try JSONParser.parse(object: dict["previewModule"] as! [String: Any])		}
@@ -435,18 +416,6 @@ open class Subscription: ObjectBase {
 		}
 		if dict["userTypes"] != nil {
 			userTypes = try JSONParser.parse(array: dict["userTypes"] as! [Any])
-		}
-		if dict["couponsGroups"] != nil {
-			couponsGroups = try JSONParser.parse(array: dict["couponsGroups"] as! [Any])
-		}
-		if dict["productCodes"] != nil {
-			productCodes = try JSONParser.parse(array: dict["productCodes"] as! [Any])
-		}
-		if dict["dependencyType"] != nil {
-			dependencyType = SubscriptionDependencyType(rawValue: "\(dict["dependencyType"]!)")
-		}
-		if dict["externalId"] != nil {
-			externalId = dict["externalId"] as? String
 		}
 
 	}
@@ -483,6 +452,9 @@ open class Subscription: ObjectBase {
 		if(discountModule != nil) {
 			dict["discountModule"] = discountModule!.toDictionary()
 		}
+		if(couponsGroup != nil) {
+			dict["couponsGroup"] = couponsGroup!.toDictionary()
+		}
 		if(name != nil) {
 			dict["name"] = name!
 		}
@@ -501,8 +473,11 @@ open class Subscription: ObjectBase {
 		if(prorityInOrder != nil) {
 			dict["prorityInOrder"] = prorityInOrder!
 		}
-		if(pricePlanIds != nil) {
-			dict["pricePlanIds"] = pricePlanIds!
+		if(productCode != nil) {
+			dict["productCode"] = productCode!
+		}
+		if(pricePlans != nil) {
+			dict["pricePlans"] = pricePlans!.map { value in value.toDictionary() }
 		}
 		if(previewModule != nil) {
 			dict["previewModule"] = previewModule!.toDictionary()
@@ -530,18 +505,6 @@ open class Subscription: ObjectBase {
 		}
 		if(userTypes != nil) {
 			dict["userTypes"] = userTypes!.map { value in value.toDictionary() }
-		}
-		if(couponsGroups != nil) {
-			dict["couponsGroups"] = couponsGroups!.map { value in value.toDictionary() }
-		}
-		if(productCodes != nil) {
-			dict["productCodes"] = productCodes!.map { value in value.toDictionary() }
-		}
-		if(dependencyType != nil) {
-			dict["dependencyType"] = dependencyType!.rawValue
-		}
-		if(externalId != nil) {
-			dict["externalId"] = externalId!
 		}
 		return dict
 	}

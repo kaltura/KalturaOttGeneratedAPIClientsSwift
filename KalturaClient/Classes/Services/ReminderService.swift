@@ -59,19 +59,12 @@ public final class ReminderService{
 				return self.append("id") 
 			}
 		}
-		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
-			}
-		}
 	}
 
 	/**  Delete a reminder. Reminder cannot be delete while being sent.  */
-	public static func delete(id: Int64, type: ReminderType) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "reminder", action: "delete")
 			.setBody(key: "id", value: id)
-			.setBody(key: "type", value: type.rawValue)
 
 		return request
 	}

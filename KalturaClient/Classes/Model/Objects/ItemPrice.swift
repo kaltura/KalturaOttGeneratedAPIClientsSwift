@@ -36,12 +36,31 @@
 /**  PPV price details  */
 open class ItemPrice: ProductPrice {
 
+	public class ItemPriceTokenizer: ProductPrice.ProductPriceTokenizer {
+		
+		public var fileId: BaseTokenizedObject {
+			get {
+				return self.append("fileId") 
+			}
+		}
+		
+		public var ppvPriceDetails: ArrayTokenizedObject<PPVItemPriceDetails.PPVItemPriceDetailsTokenizer> {
+			get {
+				return ArrayTokenizedObject<PPVItemPriceDetails.PPVItemPriceDetailsTokenizer>(self.append("ppvPriceDetails"))
+			} 
+		}
+	}
+
 	/**  Media file identifier  */
 	public var fileId: Int? = nil
 	/**  PPV price details  */
 	public var ppvPriceDetails: Array<PPVItemPriceDetails>? = nil
 
 
+	public func setMultiRequestToken(fileId: String) {
+		self.dict["fileId"] = fileId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:

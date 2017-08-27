@@ -78,23 +78,6 @@ public final class EntitlementService{
 		return request
 	}
 
-	public class CancelScheduledSubscriptionTokenizer: ClientTokenizer  {
-		
-		public var scheduledSubscriptionId: BaseTokenizedObject {
-			get {
-				return self.append("scheduledSubscriptionId") 
-			}
-		}
-	}
-
-	/**  Cancel Scheduled Subscription  */
-	public static func cancelScheduledSubscription(scheduledSubscriptionId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, CancelScheduledSubscriptionTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, CancelScheduledSubscriptionTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CancelScheduledSubscriptionTokenizer>(service: "entitlement", action: "cancelScheduledSubscription")
-			.setBody(key: "scheduledSubscriptionId", value: scheduledSubscriptionId)
-
-		return request
-	}
-
 	public class ExternalReconcileTokenizer: ClientTokenizer  {
 	}
 

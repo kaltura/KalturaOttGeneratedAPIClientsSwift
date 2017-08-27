@@ -61,12 +61,6 @@ open class RequestConfiguration: ObjectBase {
 				return self.append("ks") 
 			}
 		}
-		
-		public var responseProfile: BaseResponseProfile.BaseResponseProfileTokenizer {
-			get {
-				return BaseResponseProfile.BaseResponseProfileTokenizer(self.append("responseProfile")) 
-			}
-		}
 	}
 
 	/**  Impersonated partner id  */
@@ -77,8 +71,6 @@ open class RequestConfiguration: ObjectBase {
 	public var language: String? = nil
 	/**  Kaltura API session  */
 	public var ks: String? = nil
-	/**  Kaltura response profile object  */
-	public var responseProfile: BaseResponseProfile? = nil
 
 
 	public func setMultiRequestToken(partnerId: String) {
@@ -112,8 +104,6 @@ open class RequestConfiguration: ObjectBase {
 		if dict["ks"] != nil {
 			ks = dict["ks"] as? String
 		}
-		if dict["responseProfile"] != nil {
-		responseProfile = try JSONParser.parse(object: dict["responseProfile"] as! [String: Any])		}
 
 	}
 
@@ -130,9 +120,6 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if(ks != nil) {
 			dict["ks"] = ks!
-		}
-		if(responseProfile != nil) {
-			dict["responseProfile"] = responseProfile!.toDictionary()
 		}
 		return dict
 	}

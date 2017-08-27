@@ -49,9 +49,9 @@ open class MessageTemplate: ObjectBase {
 			}
 		}
 		
-		public var messageType: BaseTokenizedObject {
+		public var assetType: BaseTokenizedObject {
 			get {
-				return self.append("messageType") 
+				return self.append("assetType") 
 			}
 		}
 		
@@ -78,8 +78,8 @@ open class MessageTemplate: ObjectBase {
 	public var message: String? = nil
 	/**  Default date format for the date &amp;amp; time entries used in the template  */
 	public var dateFormat: String? = nil
-	/**  Template type. Possible values: Series, Reminder,Churn, SeriesReminder  */
-	public var messageType: MessageTemplateType? = nil
+	/**  Template type. Possible values: Series  */
+	public var assetType: OTTAssetType? = nil
 	/**  Sound file name to play upon message arrival to the device (if supported by
 	  target device)  */
 	public var sound: String? = nil
@@ -97,8 +97,8 @@ open class MessageTemplate: ObjectBase {
 		self.dict["dateFormat"] = dateFormat
 	}
 	
-	public func setMultiRequestToken(messageType: String) {
-		self.dict["messageType"] = messageType
+	public func setMultiRequestToken(assetType: String) {
+		self.dict["assetType"] = assetType
 	}
 	
 	public func setMultiRequestToken(sound: String) {
@@ -122,8 +122,8 @@ open class MessageTemplate: ObjectBase {
 		if dict["dateFormat"] != nil {
 			dateFormat = dict["dateFormat"] as? String
 		}
-		if dict["messageType"] != nil {
-			messageType = MessageTemplateType(rawValue: "\(dict["messageType"]!)")
+		if dict["assetType"] != nil {
+			assetType = OTTAssetType(rawValue: (dict["assetType"] as? Int)!)
 		}
 		if dict["sound"] != nil {
 			sound = dict["sound"] as? String
@@ -145,8 +145,8 @@ open class MessageTemplate: ObjectBase {
 		if(dateFormat != nil) {
 			dict["dateFormat"] = dateFormat!
 		}
-		if(messageType != nil) {
-			dict["messageType"] = messageType!.rawValue
+		if(assetType != nil) {
+			dict["assetType"] = assetType!.rawValue
 		}
 		if(sound != nil) {
 			dict["sound"] = sound!

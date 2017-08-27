@@ -59,30 +59,6 @@ public final class NotificationService{
 		return request
 	}
 
-	public class SendPushTokenizer: ClientTokenizer  {
-		
-		public override var userId: BaseTokenizedObject {
-			get {
-				return self.append("userId") 
-			}
-		}
-		
-		public var pushMessage: PushMessage.PushMessageTokenizer {
-			get {
-				return PushMessage.PushMessageTokenizer(self.append("pushMessage")) 
-			}
-		}
-	}
-
-	/**  Sends push notification to user devices  */
-	public static func sendPush(userId: Int, pushMessage: PushMessage) -> RequestBuilder<Bool, BaseTokenizedObject, SendPushTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, SendPushTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SendPushTokenizer>(service: "notification", action: "sendPush")
-			.setBody(key: "userId", value: userId)
-			.setBody(key: "pushMessage", value: pushMessage)
-
-		return request
-	}
-
 	public class SetDevicePushTokenTokenizer: ClientTokenizer  {
 		
 		public var pushToken: BaseTokenizedObject {
