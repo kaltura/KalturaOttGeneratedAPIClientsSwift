@@ -50,15 +50,15 @@ open class PricePlan: UsageModule {
 			}
 		}
 		
-		public var discountId: BaseTokenizedObject {
+		public var priceId: BaseTokenizedObject {
 			get {
-				return self.append("discountId") 
+				return self.append("priceId") 
 			}
 		}
 		
-		public var priceDetailsId: BaseTokenizedObject {
+		public var discountId: BaseTokenizedObject {
 			get {
-				return self.append("priceDetailsId") 
+				return self.append("discountId") 
 			}
 		}
 	}
@@ -68,10 +68,10 @@ open class PricePlan: UsageModule {
 	/**  Defines the number of times the module will be renewed (for the life_cycle
 	  period)  */
 	public var renewalsNumber: Int? = nil
+	/**  Unique identifier associated with this object&amp;#39;s price  */
+	public var priceId: Int? = nil
 	/**  The discount module identifier of the price plan  */
 	public var discountId: Int64? = nil
-	/**  The ID of the price details associated with this price plan  */
-	public var priceDetailsId: Int64? = nil
 
 
 	public func setMultiRequestToken(isRenewable: String) {
@@ -82,12 +82,12 @@ open class PricePlan: UsageModule {
 		self.dict["renewalsNumber"] = renewalsNumber
 	}
 	
-	public func setMultiRequestToken(discountId: String) {
-		self.dict["discountId"] = discountId
+	public func setMultiRequestToken(priceId: String) {
+		self.dict["priceId"] = priceId
 	}
 	
-	public func setMultiRequestToken(priceDetailsId: String) {
-		self.dict["priceDetailsId"] = priceDetailsId
+	public func setMultiRequestToken(discountId: String) {
+		self.dict["discountId"] = discountId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -99,19 +99,28 @@ open class PricePlan: UsageModule {
 		if dict["renewalsNumber"] != nil {
 			renewalsNumber = dict["renewalsNumber"] as? Int
 		}
+		if dict["priceId"] != nil {
+			priceId = dict["priceId"] as? Int
+		}
 		if dict["discountId"] != nil {
 			discountId = Int64("\(dict["discountId"]!)")
-		}
-		if dict["priceDetailsId"] != nil {
-			priceDetailsId = Int64("\(dict["priceDetailsId"]!)")
 		}
 
 	}
 
 	public override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(priceDetailsId != nil) {
-			dict["priceDetailsId"] = priceDetailsId!
+		if(isRenewable != nil) {
+			dict["isRenewable"] = isRenewable!
+		}
+		if(renewalsNumber != nil) {
+			dict["renewalsNumber"] = renewalsNumber!
+		}
+		if(priceId != nil) {
+			dict["priceId"] = priceId!
+		}
+		if(discountId != nil) {
+			dict["discountId"] = discountId!
 		}
 		return dict
 	}

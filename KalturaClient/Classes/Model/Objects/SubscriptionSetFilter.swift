@@ -48,20 +48,12 @@ open class SubscriptionSetFilter: Filter {
 				return self.append("subscriptionIdContains") 
 			}
 		}
-		
-		public var typeEqual: BaseTokenizedObject {
-			get {
-				return self.append("typeEqual") 
-			}
-		}
 	}
 
 	/**  Comma separated identifiers  */
 	public var idIn: String? = nil
 	/**  Comma separated subscription identifiers  */
 	public var subscriptionIdContains: String? = nil
-	/**  Subscription Type  */
-	public var typeEqual: SubscriptionSetType? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
@@ -70,10 +62,6 @@ open class SubscriptionSetFilter: Filter {
 	
 	public func setMultiRequestToken(subscriptionIdContains: String) {
 		self.dict["subscriptionIdContains"] = subscriptionIdContains
-	}
-	
-	public func setMultiRequestToken(typeEqual: String) {
-		self.dict["typeEqual"] = typeEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -85,9 +73,6 @@ open class SubscriptionSetFilter: Filter {
 		if dict["subscriptionIdContains"] != nil {
 			subscriptionIdContains = dict["subscriptionIdContains"] as? String
 		}
-		if dict["typeEqual"] != nil {
-			typeEqual = SubscriptionSetType(rawValue: "\(dict["typeEqual"]!)")
-		}
 
 	}
 
@@ -98,9 +83,6 @@ open class SubscriptionSetFilter: Filter {
 		}
 		if(subscriptionIdContains != nil) {
 			dict["subscriptionIdContains"] = subscriptionIdContains!
-		}
-		if(typeEqual != nil) {
-			dict["typeEqual"] = typeEqual!.rawValue
 		}
 		return dict
 	}

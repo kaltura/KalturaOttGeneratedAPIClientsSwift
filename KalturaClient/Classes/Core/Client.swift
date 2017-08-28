@@ -40,8 +40,8 @@
 		
 		super.init()
 		
-		clientTag = "swift:17-08-27"
-		apiVersion = "4.5.10.345"
+		clientTag = "swift:17-08-28"
+		apiVersion = "4.4.6.21763"
 	}
 }
 
@@ -110,15 +110,6 @@ public class ClientTokenizer: BaseTokenizedObject {
 	public var sessionId: BaseTokenizedObject {
 		get {
 			return self.append("ks")
-		}
-	}
-	
-	/**
-	 * Response profile - this attribute will be automatically unset after every API call
-	 */
-	public var responseProfile: BaseTokenizedObject {
-		get {
-			return self.append("responseProfile")
 		}
 	}
 }
@@ -211,18 +202,6 @@ extension RequestBuilderData{
 		}
 		set(value){
 			setBody(key: "ks", value: value)
-		}
-	}
-	
-	/**
-	 * Response profile - this attribute will be automatically unset after every API call
-	 */
-	public var responseProfile: BaseResponseProfile?{
-		get{
-			return params["responseProfile"] as? BaseResponseProfile
-		}
-		set(value){
-			setBody(key: "responseProfile", value: value)
 		}
 	}
 	

@@ -134,10 +134,10 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public var pricePlanIds: BaseTokenizedObject {
+		public var pricePlans: ArrayTokenizedObject<PricePlan.PricePlanTokenizer> {
 			get {
-				return self.append("pricePlanIds") 
-			}
+				return ArrayTokenizedObject<PricePlan.PricePlanTokenizer>(self.append("pricePlans"))
+			} 
 		}
 		
 		public var previewModule: PreviewModule.PreviewModuleTokenizer {
@@ -205,18 +205,6 @@ open class Subscription: ObjectBase {
 				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
 			} 
 		}
-		
-		public var dependencyType: BaseTokenizedObject {
-			get {
-				return self.append("dependencyType") 
-			}
-		}
-		
-		public var externalId: BaseTokenizedObject {
-			get {
-				return self.append("externalId") 
-			}
-		}
 	}
 
 	/**  Subscription identifier  */
@@ -251,8 +239,8 @@ open class Subscription: ObjectBase {
 	public var mediaId: Int? = nil
 	/**  Subscription order (when returned in methods that retrieve subscriptions)  */
 	public var prorityInOrder: Int64? = nil
-	/**  Comma separated subscription price plan IDs  */
-	public var pricePlanIds: String? = nil
+	/**  Subscription price plans  */
+	public var pricePlans: Array<PricePlan>? = nil
 	/**  Subscription preview module  */
 	public var previewModule: PreviewModule? = nil
 	/**  The household limitation module identifier associated with this subscription  */
@@ -278,10 +266,6 @@ open class Subscription: ObjectBase {
 	public var couponsGroups: Array<CouponsGroup>? = nil
 	/**  List of Subscription product codes  */
 	public var productCodes: Array<ProductCode>? = nil
-	/**  Dependency Type  */
-	public var dependencyType: SubscriptionDependencyType? = nil
-	/**  External ID  */
-	public var externalId: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -324,10 +308,6 @@ open class Subscription: ObjectBase {
 		self.dict["prorityInOrder"] = prorityInOrder
 	}
 	
-	public func setMultiRequestToken(pricePlanIds: String) {
-		self.dict["pricePlanIds"] = pricePlanIds
-	}
-	
 	public func setMultiRequestToken(householdLimitationsId: String) {
 		self.dict["householdLimitationsId"] = householdLimitationsId
 	}
@@ -350,14 +330,6 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(isWaiverEnabled: String) {
 		self.dict["isWaiverEnabled"] = isWaiverEnabled
-	}
-	
-	public func setMultiRequestToken(dependencyType: String) {
-		self.dict["dependencyType"] = dependencyType
-	}
-	
-	public func setMultiRequestToken(externalId: String) {
-		self.dict["externalId"] = externalId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -407,8 +379,8 @@ open class Subscription: ObjectBase {
 		if dict["prorityInOrder"] != nil {
 			prorityInOrder = Int64("\(dict["prorityInOrder"]!)")
 		}
-		if dict["pricePlanIds"] != nil {
-			pricePlanIds = dict["pricePlanIds"] as? String
+		if dict["pricePlans"] != nil {
+			pricePlans = try JSONParser.parse(array: dict["pricePlans"] as! [Any])
 		}
 		if dict["previewModule"] != nil {
 		previewModule = try JSONParser.parse(object: dict["previewModule"] as! [String: Any])		}
@@ -441,12 +413,6 @@ open class Subscription: ObjectBase {
 		}
 		if dict["productCodes"] != nil {
 			productCodes = try JSONParser.parse(array: dict["productCodes"] as! [Any])
-		}
-		if dict["dependencyType"] != nil {
-			dependencyType = SubscriptionDependencyType(rawValue: "\(dict["dependencyType"]!)")
-		}
-		if dict["externalId"] != nil {
-			externalId = dict["externalId"] as? String
 		}
 
 	}
@@ -501,8 +467,8 @@ open class Subscription: ObjectBase {
 		if(prorityInOrder != nil) {
 			dict["prorityInOrder"] = prorityInOrder!
 		}
-		if(pricePlanIds != nil) {
-			dict["pricePlanIds"] = pricePlanIds!
+		if(pricePlans != nil) {
+			dict["pricePlans"] = pricePlans!.map { value in value.toDictionary() }
 		}
 		if(previewModule != nil) {
 			dict["previewModule"] = previewModule!.toDictionary()
@@ -536,12 +502,6 @@ open class Subscription: ObjectBase {
 		}
 		if(productCodes != nil) {
 			dict["productCodes"] = productCodes!.map { value in value.toDictionary() }
-		}
-		if(dependencyType != nil) {
-			dict["dependencyType"] = dependencyType!.rawValue
-		}
-		if(externalId != nil) {
-			dict["externalId"] = externalId!
 		}
 		return dict
 	}

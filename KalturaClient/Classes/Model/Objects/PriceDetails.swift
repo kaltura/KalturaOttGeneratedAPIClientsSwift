@@ -56,12 +56,6 @@ open class PriceDetails: ObjectBase {
 			}
 		}
 		
-		public var multiCurrencyPrice: ArrayTokenizedObject<Price.PriceTokenizer> {
-			get {
-				return ArrayTokenizedObject<Price.PriceTokenizer>(self.append("multiCurrencyPrice"))
-			} 
-		}
-		
 		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
 			get {
 				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("descriptions"))
@@ -75,8 +69,6 @@ open class PriceDetails: ObjectBase {
 	public var name: String? = nil
 	/**  The price  */
 	public var price: Price? = nil
-	/**  Multi currency prices for all countries and currencies  */
-	public var multiCurrencyPrice: Array<Price>? = nil
 	/**  A list of the descriptions for this price on different languages (language code
 	  and translation)  */
 	public var descriptions: Array<TranslationToken>? = nil
@@ -101,9 +93,6 @@ open class PriceDetails: ObjectBase {
 		}
 		if dict["price"] != nil {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
-		if dict["multiCurrencyPrice"] != nil {
-			multiCurrencyPrice = try JSONParser.parse(array: dict["multiCurrencyPrice"] as! [Any])
-		}
 		if dict["descriptions"] != nil {
 			descriptions = try JSONParser.parse(array: dict["descriptions"] as! [Any])
 		}
@@ -112,11 +101,14 @@ open class PriceDetails: ObjectBase {
 
 	public override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(multiCurrencyPrice != nil) {
-			dict["multiCurrencyPrice"] = multiCurrencyPrice!.map { value in value.toDictionary() }
+		if(price != nil) {
+			dict["price"] = price!.toDictionary()
 		}
 		if(descriptions != nil) {
 			dict["descriptions"] = descriptions!.map { value in value.toDictionary() }
