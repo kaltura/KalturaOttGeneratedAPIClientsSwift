@@ -74,18 +74,6 @@ open class AppToken: ObjectBase {
 			}
 		}
 		
-		public var sessionType: BaseTokenizedObject {
-			get {
-				return self.append("sessionType") 
-			}
-		}
-		
-		public var status: BaseTokenizedObject {
-			get {
-				return self.append("status") 
-			}
-		}
-		
 		public var token: BaseTokenizedObject {
 			get {
 				return self.append("token") 
@@ -113,10 +101,6 @@ open class AppToken: ObjectBase {
 	/**  Comma separated privileges to be applied on KS (Kaltura Session) that created
 	  using the current token  */
 	public var sessionPrivileges: String? = nil
-	/**  Type of KS (Kaltura Session) that created using the current token  */
-	public var sessionType: SessionType? = nil
-	/**  Application token status  */
-	public var status: AppTokenStatus? = nil
 	/**  The application token  */
 	public var token: String? = nil
 	/**  User id of KS (Kaltura Session) that created using the current token  */
@@ -145,14 +129,6 @@ open class AppToken: ObjectBase {
 	
 	public func setMultiRequestToken(sessionPrivileges: String) {
 		self.dict["sessionPrivileges"] = sessionPrivileges
-	}
-	
-	public func setMultiRequestToken(sessionType: String) {
-		self.dict["sessionType"] = sessionType
-	}
-	
-	public func setMultiRequestToken(status: String) {
-		self.dict["status"] = status
 	}
 	
 	public func setMultiRequestToken(token: String) {
@@ -184,12 +160,6 @@ open class AppToken: ObjectBase {
 		if dict["sessionPrivileges"] != nil {
 			sessionPrivileges = dict["sessionPrivileges"] as? String
 		}
-		if dict["sessionType"] != nil {
-			sessionType = SessionType(rawValue: (dict["sessionType"] as? Int)!)
-		}
-		if dict["status"] != nil {
-			status = AppTokenStatus(rawValue: (dict["status"] as? Int)!)
-		}
 		if dict["token"] != nil {
 			token = dict["token"] as? String
 		}
@@ -212,9 +182,6 @@ open class AppToken: ObjectBase {
 		}
 		if(sessionPrivileges != nil) {
 			dict["sessionPrivileges"] = sessionPrivileges!
-		}
-		if(sessionType != nil) {
-			dict["sessionType"] = sessionType!.rawValue
 		}
 		if(sessionUserId != nil) {
 			dict["sessionUserId"] = sessionUserId!

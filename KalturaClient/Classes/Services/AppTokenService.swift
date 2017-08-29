@@ -106,12 +106,6 @@ public final class AppTokenService{
 			}
 		}
 		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
-			}
-		}
-		
 		public var expiry: BaseTokenizedObject {
 			get {
 				return self.append("expiry") 
@@ -130,24 +124,19 @@ public final class AppTokenService{
 	}
 
 	public static func startSession(id: String, tokenHash: String, userId: String?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
-		return startSession(id: id, tokenHash: tokenHash, userId: userId, type: nil)
+		return startSession(id: id, tokenHash: tokenHash, userId: userId, expiry: nil)
 	}
 
-	public static func startSession(id: String, tokenHash: String, userId: String?, type: SessionType?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
-		return startSession(id: id, tokenHash: tokenHash, userId: userId, type: type, expiry: nil)
-	}
-
-	public static func startSession(id: String, tokenHash: String, userId: String?, type: SessionType?, expiry: Int?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
-		return startSession(id: id, tokenHash: tokenHash, userId: userId, type: type, expiry: expiry, udid: nil)
+	public static func startSession(id: String, tokenHash: String, userId: String?, expiry: Int?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
+		return startSession(id: id, tokenHash: tokenHash, userId: userId, expiry: expiry, udid: nil)
 	}
 
 	/**  Starts a new KS (Kaltura Session) based on application authentication token id  */
-	public static func startSession(id: String, tokenHash: String, userId: String?, type: SessionType?, expiry: Int?, udid: String?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
+	public static func startSession(id: String, tokenHash: String, userId: String?, expiry: Int?, udid: String?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
 		let request: RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> = RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer>(service: "apptoken", action: "startSession")
 			.setBody(key: "id", value: id)
 			.setBody(key: "tokenHash", value: tokenHash)
 			.setBody(key: "userId", value: userId)
-			.setBody(key: "type", value: type?.rawValue)
 			.setBody(key: "expiry", value: expiry)
 			.setBody(key: "udid", value: udid)
 

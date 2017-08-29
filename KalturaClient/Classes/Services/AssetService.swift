@@ -37,12 +37,6 @@ public final class AssetService{
 
 	public class CountTokenizer: ClientTokenizer  {
 		
-		public var groupBy: ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer> {
-			get {
-				return ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer>(self.append("groupBy"))
-			} 
-		}
-		
 		public var filter: SearchAssetFilter.SearchAssetFilterTokenizer {
 			get {
 				return SearchAssetFilter.SearchAssetFilterTokenizer(self.append("filter")) 
@@ -50,15 +44,14 @@ public final class AssetService{
 		}
 	}
 
-	public static func count(groupBy: Array<AssetGroupBy>) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
-		return count(groupBy: groupBy, filter: nil)
+	public static func count() -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
+		return count(filter: nil)
 	}
 
 	/**  Returns a group-by result for media or EPG according to given filter. Lists
 	  values of each field and their respective count.  */
-	public static func count(groupBy: Array<AssetGroupBy>, filter: SearchAssetFilter?) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
+	public static func count(filter: SearchAssetFilter?) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
 		let request: RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> = RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer>(service: "asset", action: "count")
-			.setBody(key: "groupBy", value: groupBy)
 			.setBody(key: "filter", value: filter)
 
 		return request
@@ -84,6 +77,37 @@ public final class AssetService{
 		let request: RequestBuilder<Asset, Asset.AssetTokenizer, GetTokenizer> = RequestBuilder<Asset, Asset.AssetTokenizer, GetTokenizer>(service: "asset", action: "get")
 			.setBody(key: "id", value: id)
 			.setBody(key: "assetReferenceType", value: assetReferenceType.rawValue)
+
+		return request
+	}
+
+	public class GetAdsContextTokenizer: ClientTokenizer  {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var assetType: BaseTokenizedObject {
+			get {
+				return self.append("assetType") 
+			}
+		}
+		
+		public var contextDataParams: PlaybackContextOptions.PlaybackContextOptionsTokenizer {
+			get {
+				return PlaybackContextOptions.PlaybackContextOptionsTokenizer(self.append("contextDataParams")) 
+			}
+		}
+	}
+
+	/**  Returns the data for ads control  */
+	public static func getAdsContext(assetId: String, assetType: AssetType, contextDataParams: PlaybackContextOptions) -> RequestBuilder<AdsContext, AdsContext.AdsContextTokenizer, GetAdsContextTokenizer> {
+		let request: RequestBuilder<AdsContext, AdsContext.AdsContextTokenizer, GetAdsContextTokenizer> = RequestBuilder<AdsContext, AdsContext.AdsContextTokenizer, GetAdsContextTokenizer>(service: "asset", action: "getAdsContext")
+			.setBody(key: "assetId", value: assetId)
+			.setBody(key: "assetType", value: assetType.rawValue)
+			.setBody(key: "contextDataParams", value: contextDataParams)
 
 		return request
 	}
