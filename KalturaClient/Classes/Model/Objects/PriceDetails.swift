@@ -50,10 +50,8 @@ open class PriceDetails: ObjectBase {
 			}
 		}
 		
-		public var price: Price.PriceTokenizer {
-			get {
-				return Price.PriceTokenizer(self.append("price")) 
-			}
+		public func price<T: Price.PriceTokenizer>() -> T {
+			return T(self.append("price"))
 		}
 		
 		public var multiCurrencyPrice: ArrayTokenizedObject<Price.PriceTokenizer> {

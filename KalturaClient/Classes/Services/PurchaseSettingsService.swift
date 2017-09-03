@@ -61,10 +61,8 @@ public final class PurchaseSettingsService{
 			}
 		}
 		
-		public var settings: PurchaseSettings.PurchaseSettingsTokenizer {
-			get {
-				return PurchaseSettings.PurchaseSettingsTokenizer(self.append("settings")) 
-			}
+		public func settings<T: PurchaseSettings.PurchaseSettingsTokenizer>() -> T {
+			return T(self.append("settings"))
 		}
 	}
 

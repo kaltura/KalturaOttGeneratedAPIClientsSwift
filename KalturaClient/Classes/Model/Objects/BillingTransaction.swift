@@ -68,10 +68,8 @@ open class BillingTransaction: ObjectBase {
 			}
 		}
 		
-		public var price: Price.PriceTokenizer {
-			get {
-				return Price.PriceTokenizer(self.append("price")) 
-			}
+		public func price<T: Price.PriceTokenizer>() -> T {
+			return T(self.append("price"))
 		}
 		
 		public var actionDate: BaseTokenizedObject {

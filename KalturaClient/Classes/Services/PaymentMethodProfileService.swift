@@ -37,10 +37,8 @@ public final class PaymentMethodProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var paymentMethod: PaymentMethodProfile.PaymentMethodProfileTokenizer {
-			get {
-				return PaymentMethodProfile.PaymentMethodProfileTokenizer(self.append("paymentMethod")) 
-			}
+		public func paymentMethod<T: PaymentMethodProfile.PaymentMethodProfileTokenizer>() -> T {
+			return T(self.append("paymentMethod"))
 		}
 	}
 
@@ -71,10 +69,8 @@ public final class PaymentMethodProfileService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: PaymentMethodProfileFilter.PaymentMethodProfileFilterTokenizer {
-			get {
-				return PaymentMethodProfileFilter.PaymentMethodProfileFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: PaymentMethodProfileFilter.PaymentMethodProfileFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -94,10 +90,8 @@ public final class PaymentMethodProfileService{
 			}
 		}
 		
-		public var paymentMethod: PaymentMethodProfile.PaymentMethodProfileTokenizer {
-			get {
-				return PaymentMethodProfile.PaymentMethodProfileTokenizer(self.append("paymentMethod")) 
-			}
+		public func paymentMethod<T: PaymentMethodProfile.PaymentMethodProfileTokenizer>() -> T {
+			return T(self.append("paymentMethod"))
 		}
 	}
 

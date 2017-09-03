@@ -37,10 +37,8 @@ public final class UserAssetsListItemService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var userAssetsListItem: UserAssetsListItem.UserAssetsListItemTokenizer {
-			get {
-				return UserAssetsListItem.UserAssetsListItemTokenizer(self.append("userAssetsListItem")) 
-			}
+		public func userAssetsListItem<T: UserAssetsListItem.UserAssetsListItemTokenizer>() -> T {
+			return T(self.append("userAssetsListItem"))
 		}
 	}
 

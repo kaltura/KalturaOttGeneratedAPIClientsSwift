@@ -37,10 +37,8 @@ public final class HomeNetworkService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var homeNetwork: HomeNetwork.HomeNetworkTokenizer {
-			get {
-				return HomeNetwork.HomeNetworkTokenizer(self.append("homeNetwork")) 
-			}
+		public func homeNetwork<T: HomeNetwork.HomeNetworkTokenizer>() -> T {
+			return T(self.append("homeNetwork"))
 		}
 	}
 
@@ -87,10 +85,8 @@ public final class HomeNetworkService{
 			}
 		}
 		
-		public var homeNetwork: HomeNetwork.HomeNetworkTokenizer {
-			get {
-				return HomeNetwork.HomeNetworkTokenizer(self.append("homeNetwork")) 
-			}
+		public func homeNetwork<T: HomeNetwork.HomeNetworkTokenizer>() -> T {
+			return T(self.append("homeNetwork"))
 		}
 	}
 

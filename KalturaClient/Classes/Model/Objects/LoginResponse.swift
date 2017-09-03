@@ -37,16 +37,12 @@ open class LoginResponse: ObjectBase {
 
 	public class LoginResponseTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var user: OTTUser.OTTUserTokenizer {
-			get {
-				return OTTUser.OTTUserTokenizer(self.append("user")) 
-			}
+		public func user<T: OTTUser.OTTUserTokenizer>() -> T {
+			return T(self.append("user"))
 		}
 		
-		public var loginSession: LoginSession.LoginSessionTokenizer {
-			get {
-				return LoginSession.LoginSessionTokenizer(self.append("loginSession")) 
-			}
+		public func loginSession<T: LoginSession.LoginSessionTokenizer>() -> T {
+			return T(self.append("loginSession"))
 		}
 	}
 

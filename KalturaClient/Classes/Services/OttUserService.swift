@@ -144,10 +144,8 @@ public final class OttUserService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: OTTUserFilter.OTTUserFilterTokenizer {
-			get {
-				return OTTUserFilter.OTTUserFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: OTTUserFilter.OTTUserFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -318,10 +316,8 @@ public final class OttUserService{
 			}
 		}
 		
-		public var user: OTTUser.OTTUserTokenizer {
-			get {
-				return OTTUser.OTTUserTokenizer(self.append("user")) 
-			}
+		public func user<T: OTTUser.OTTUserTokenizer>() -> T {
+			return T(self.append("user"))
 		}
 		
 		public var password: BaseTokenizedObject {
@@ -423,10 +419,8 @@ public final class OttUserService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var user: OTTUser.OTTUserTokenizer {
-			get {
-				return OTTUser.OTTUserTokenizer(self.append("user")) 
-			}
+		public func user<T: OTTUser.OTTUserTokenizer>() -> T {
+			return T(self.append("user"))
 		}
 		
 		public var id: BaseTokenizedObject {

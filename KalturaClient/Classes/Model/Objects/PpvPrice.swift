@@ -56,10 +56,8 @@ open class PpvPrice: ProductPrice {
 			}
 		}
 		
-		public var fullPrice: Price.PriceTokenizer {
-			get {
-				return Price.PriceTokenizer(self.append("fullPrice")) 
-			}
+		public func fullPrice<T: Price.PriceTokenizer>() -> T {
+			return T(self.append("fullPrice"))
 		}
 		
 		public var subscriptionId: BaseTokenizedObject {

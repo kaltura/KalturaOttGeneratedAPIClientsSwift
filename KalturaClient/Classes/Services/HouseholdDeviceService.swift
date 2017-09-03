@@ -37,10 +37,8 @@ public final class HouseholdDeviceService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var device: HouseholdDevice.HouseholdDeviceTokenizer {
-			get {
-				return HouseholdDevice.HouseholdDeviceTokenizer(self.append("device")) 
-			}
+		public func device<T: HouseholdDevice.HouseholdDeviceTokenizer>() -> T {
+			return T(self.append("device"))
 		}
 	}
 
@@ -129,10 +127,8 @@ public final class HouseholdDeviceService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: HouseholdDeviceFilter.HouseholdDeviceFilterTokenizer {
-			get {
-				return HouseholdDeviceFilter.HouseholdDeviceFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: HouseholdDeviceFilter.HouseholdDeviceFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -191,10 +187,8 @@ public final class HouseholdDeviceService{
 			}
 		}
 		
-		public var device: HouseholdDevice.HouseholdDeviceTokenizer {
-			get {
-				return HouseholdDevice.HouseholdDeviceTokenizer(self.append("device")) 
-			}
+		public func device<T: HouseholdDevice.HouseholdDeviceTokenizer>() -> T {
+			return T(self.append("device"))
 		}
 	}
 

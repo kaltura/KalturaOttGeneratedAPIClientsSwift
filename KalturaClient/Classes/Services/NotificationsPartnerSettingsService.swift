@@ -47,10 +47,8 @@ public final class NotificationsPartnerSettingsService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var settings: NotificationsPartnerSettings.NotificationsPartnerSettingsTokenizer {
-			get {
-				return NotificationsPartnerSettings.NotificationsPartnerSettingsTokenizer(self.append("settings")) 
-			}
+		public func settings<T: NotificationsPartnerSettings.NotificationsPartnerSettingsTokenizer>() -> T {
+			return T(self.append("settings"))
 		}
 	}
 

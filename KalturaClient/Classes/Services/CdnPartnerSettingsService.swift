@@ -47,10 +47,8 @@ public final class CdnPartnerSettingsService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var settings: CDNPartnerSettings.CDNPartnerSettingsTokenizer {
-			get {
-				return CDNPartnerSettings.CDNPartnerSettingsTokenizer(self.append("settings")) 
-			}
+		public func settings<T: CDNPartnerSettings.CDNPartnerSettingsTokenizer>() -> T {
+			return T(self.append("settings"))
 		}
 	}
 

@@ -37,10 +37,8 @@ public final class CDVRAdapterProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var adapter: CDVRAdapterProfile.CDVRAdapterProfileTokenizer {
-			get {
-				return CDVRAdapterProfile.CDVRAdapterProfileTokenizer(self.append("adapter")) 
-			}
+		public func adapter<T: CDVRAdapterProfile.CDVRAdapterProfileTokenizer>() -> T {
+			return T(self.append("adapter"))
 		}
 	}
 
@@ -104,10 +102,8 @@ public final class CDVRAdapterProfileService{
 			}
 		}
 		
-		public var adapter: CDVRAdapterProfile.CDVRAdapterProfileTokenizer {
-			get {
-				return CDVRAdapterProfile.CDVRAdapterProfileTokenizer(self.append("adapter")) 
-			}
+		public func adapter<T: CDVRAdapterProfile.CDVRAdapterProfileTokenizer>() -> T {
+			return T(self.append("adapter"))
 		}
 	}
 

@@ -37,10 +37,8 @@ public final class ChannelService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var channel: Channel.ChannelTokenizer {
-			get {
-				return Channel.ChannelTokenizer(self.append("channel")) 
-			}
+		public func channel<T: Channel.ChannelTokenizer>() -> T {
+			return T(self.append("channel"))
 		}
 	}
 
@@ -94,10 +92,8 @@ public final class ChannelService{
 			}
 		}
 		
-		public var channel: Channel.ChannelTokenizer {
-			get {
-				return Channel.ChannelTokenizer(self.append("channel")) 
-			}
+		public func channel<T: Channel.ChannelTokenizer>() -> T {
+			return T(self.append("channel"))
 		}
 	}
 

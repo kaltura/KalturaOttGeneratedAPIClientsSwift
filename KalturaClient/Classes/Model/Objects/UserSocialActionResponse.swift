@@ -37,10 +37,8 @@ open class UserSocialActionResponse: ObjectBase {
 
 	public class UserSocialActionResponseTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var socialAction: SocialAction.SocialActionTokenizer {
-			get {
-				return SocialAction.SocialActionTokenizer(self.append("socialAction")) 
-			}
+		public func socialAction<T: SocialAction.SocialActionTokenizer>() -> T {
+			return T(self.append("socialAction"))
 		}
 		
 		public var failStatus: ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer> {

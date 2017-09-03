@@ -37,10 +37,8 @@ public final class ConfigurationsService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var configurations: Configurations.ConfigurationsTokenizer {
-			get {
-				return Configurations.ConfigurationsTokenizer(self.append("configurations")) 
-			}
+		public func configurations<T: Configurations.ConfigurationsTokenizer>() -> T {
+			return T(self.append("configurations"))
 		}
 	}
 
@@ -88,10 +86,8 @@ public final class ConfigurationsService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: ConfigurationsFilter.ConfigurationsFilterTokenizer {
-			get {
-				return ConfigurationsFilter.ConfigurationsFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: ConfigurationsFilter.ConfigurationsFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -111,10 +107,8 @@ public final class ConfigurationsService{
 			}
 		}
 		
-		public var configurations: Configurations.ConfigurationsTokenizer {
-			get {
-				return Configurations.ConfigurationsTokenizer(self.append("configurations")) 
-			}
+		public func configurations<T: Configurations.ConfigurationsTokenizer>() -> T {
+			return T(self.append("configurations"))
 		}
 	}
 

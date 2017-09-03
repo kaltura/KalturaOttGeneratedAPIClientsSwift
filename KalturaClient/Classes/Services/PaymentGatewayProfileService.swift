@@ -37,10 +37,8 @@ public final class PaymentGatewayProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var paymentGateway: PaymentGatewayProfile.PaymentGatewayProfileTokenizer {
-			get {
-				return PaymentGatewayProfile.PaymentGatewayProfileTokenizer(self.append("paymentGateway")) 
-			}
+		public func paymentGateway<T: PaymentGatewayProfile.PaymentGatewayProfileTokenizer>() -> T {
+			return T(self.append("paymentGateway"))
 		}
 	}
 
@@ -135,10 +133,8 @@ public final class PaymentGatewayProfileService{
 			}
 		}
 		
-		public var paymentGateway: PaymentGatewayProfile.PaymentGatewayProfileTokenizer {
-			get {
-				return PaymentGatewayProfile.PaymentGatewayProfileTokenizer(self.append("paymentGateway")) 
-			}
+		public func paymentGateway<T: PaymentGatewayProfile.PaymentGatewayProfileTokenizer>() -> T {
+			return T(self.append("paymentGateway"))
 		}
 	}
 

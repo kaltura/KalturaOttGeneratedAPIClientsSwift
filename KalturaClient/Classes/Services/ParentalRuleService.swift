@@ -104,10 +104,8 @@ public final class ParentalRuleService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: ParentalRuleFilter.ParentalRuleFilterTokenizer {
-			get {
-				return ParentalRuleFilter.ParentalRuleFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: ParentalRuleFilter.ParentalRuleFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 

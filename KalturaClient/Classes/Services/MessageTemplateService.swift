@@ -60,10 +60,8 @@ public final class MessageTemplateService{
 			}
 		}
 		
-		public var template: MessageTemplate.MessageTemplateTokenizer {
-			get {
-				return MessageTemplate.MessageTemplateTokenizer(self.append("template")) 
-			}
+		public func template<T: MessageTemplate.MessageTemplateTokenizer>() -> T {
+			return T(self.append("template"))
 		}
 	}
 

@@ -71,16 +71,12 @@ public final class TopicService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: TopicFilter.TopicFilterTokenizer {
-			get {
-				return TopicFilter.TopicFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: TopicFilter.TopicFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 

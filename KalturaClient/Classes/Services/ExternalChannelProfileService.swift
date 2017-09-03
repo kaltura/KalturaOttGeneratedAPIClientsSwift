@@ -37,10 +37,8 @@ public final class ExternalChannelProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var externalChannel: ExternalChannelProfile.ExternalChannelProfileTokenizer {
-			get {
-				return ExternalChannelProfile.ExternalChannelProfileTokenizer(self.append("externalChannel")) 
-			}
+		public func externalChannel<T: ExternalChannelProfile.ExternalChannelProfileTokenizer>() -> T {
+			return T(self.append("externalChannel"))
 		}
 	}
 
@@ -87,10 +85,8 @@ public final class ExternalChannelProfileService{
 			}
 		}
 		
-		public var externalChannel: ExternalChannelProfile.ExternalChannelProfileTokenizer {
-			get {
-				return ExternalChannelProfile.ExternalChannelProfileTokenizer(self.append("externalChannel")) 
-			}
+		public func externalChannel<T: ExternalChannelProfile.ExternalChannelProfileTokenizer>() -> T {
+			return T(self.append("externalChannel"))
 		}
 	}
 

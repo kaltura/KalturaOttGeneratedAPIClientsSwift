@@ -37,10 +37,8 @@ public final class EngagementAdapterService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var engagementAdapter: EngagementAdapter.EngagementAdapterTokenizer {
-			get {
-				return EngagementAdapter.EngagementAdapterTokenizer(self.append("engagementAdapter")) 
-			}
+		public func engagementAdapter<T: EngagementAdapter.EngagementAdapterTokenizer>() -> T {
+			return T(self.append("engagementAdapter"))
 		}
 	}
 
@@ -121,10 +119,8 @@ public final class EngagementAdapterService{
 			}
 		}
 		
-		public var engagementAdapter: EngagementAdapter.EngagementAdapterTokenizer {
-			get {
-				return EngagementAdapter.EngagementAdapterTokenizer(self.append("engagementAdapter")) 
-			}
+		public func engagementAdapter<T: EngagementAdapter.EngagementAdapterTokenizer>() -> T {
+			return T(self.append("engagementAdapter"))
 		}
 	}
 

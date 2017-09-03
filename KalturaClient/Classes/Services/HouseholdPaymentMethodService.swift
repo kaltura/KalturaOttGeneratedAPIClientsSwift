@@ -37,10 +37,8 @@ public final class HouseholdPaymentMethodService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var householdPaymentMethod: HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer {
-			get {
-				return HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer(self.append("householdPaymentMethod")) 
-			}
+		public func householdPaymentMethod<T: HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer>() -> T {
+			return T(self.append("householdPaymentMethod"))
 		}
 	}
 

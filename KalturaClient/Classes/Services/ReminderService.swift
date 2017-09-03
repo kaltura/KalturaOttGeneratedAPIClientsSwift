@@ -37,10 +37,8 @@ public final class ReminderService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var reminder: Reminder.ReminderTokenizer {
-			get {
-				return Reminder.ReminderTokenizer(self.append("reminder")) 
-			}
+		public func reminder<T: Reminder.ReminderTokenizer>() -> T {
+			return T(self.append("reminder"))
 		}
 	}
 
@@ -78,16 +76,12 @@ public final class ReminderService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: ReminderFilter.ReminderFilterTokenizer {
-			get {
-				return ReminderFilter.ReminderFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: ReminderFilter.ReminderFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 

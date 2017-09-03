@@ -37,10 +37,8 @@ public final class CurrencyService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: CurrencyFilter.CurrencyFilterTokenizer {
-			get {
-				return CurrencyFilter.CurrencyFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: CurrencyFilter.CurrencyFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 

@@ -37,10 +37,8 @@ public final class UserInterestService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var userInterest: UserInterest.UserInterestTokenizer {
-			get {
-				return UserInterest.UserInterestTokenizer(self.append("userInterest")) 
-			}
+		public func userInterest<T: UserInterest.UserInterestTokenizer>() -> T {
+			return T(self.append("userInterest"))
 		}
 	}
 

@@ -37,10 +37,8 @@ public final class UserRoleService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: UserRoleFilter.UserRoleFilterTokenizer {
-			get {
-				return UserRoleFilter.UserRoleFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: UserRoleFilter.UserRoleFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 

@@ -37,10 +37,8 @@ public final class OssAdapterProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var ossAdapter: OSSAdapterProfile.OSSAdapterProfileTokenizer {
-			get {
-				return OSSAdapterProfile.OSSAdapterProfileTokenizer(self.append("ossAdapter")) 
-			}
+		public func ossAdapter<T: OSSAdapterProfile.OSSAdapterProfileTokenizer>() -> T {
+			return T(self.append("ossAdapter"))
 		}
 	}
 
@@ -121,10 +119,8 @@ public final class OssAdapterProfileService{
 			}
 		}
 		
-		public var ossAdapter: OSSAdapterProfile.OSSAdapterProfileTokenizer {
-			get {
-				return OSSAdapterProfile.OSSAdapterProfileTokenizer(self.append("ossAdapter")) 
-			}
+		public func ossAdapter<T: OSSAdapterProfile.OSSAdapterProfileTokenizer>() -> T {
+			return T(self.append("ossAdapter"))
 		}
 	}
 

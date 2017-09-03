@@ -37,10 +37,8 @@ public final class ProductPriceService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: ProductPriceFilter.ProductPriceFilterTokenizer {
-			get {
-				return ProductPriceFilter.ProductPriceFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: ProductPriceFilter.ProductPriceFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 

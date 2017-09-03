@@ -37,10 +37,8 @@ public final class AnnouncementService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var announcement: Announcement.AnnouncementTokenizer {
-			get {
-				return Announcement.AnnouncementTokenizer(self.append("announcement")) 
-			}
+		public func announcement<T: Announcement.AnnouncementTokenizer>() -> T {
+			return T(self.append("announcement"))
 		}
 	}
 
@@ -81,16 +79,12 @@ public final class AnnouncementService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: AnnouncementFilter.AnnouncementFilterTokenizer {
-			get {
-				return AnnouncementFilter.AnnouncementFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: AnnouncementFilter.AnnouncementFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 
@@ -115,10 +109,8 @@ public final class AnnouncementService{
 			}
 		}
 		
-		public var announcement: Announcement.AnnouncementTokenizer {
-			get {
-				return Announcement.AnnouncementTokenizer(self.append("announcement")) 
-			}
+		public func announcement<T: Announcement.AnnouncementTokenizer>() -> T {
+			return T(self.append("announcement"))
 		}
 	}
 
