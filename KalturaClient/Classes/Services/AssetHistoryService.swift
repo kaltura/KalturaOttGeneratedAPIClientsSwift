@@ -35,6 +35,25 @@
 
 public final class AssetHistoryService{
 
+	public class CleanTokenizer: ClientTokenizer  {
+		
+		public func filter<T: AssetHistoryFilter.AssetHistoryFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+	}
+
+	public static func clean() -> NullRequestBuilder {
+		return clean(filter: nil)
+	}
+
+	/**  Clean the user’s viewing history  */
+	public static func clean(filter: AssetHistoryFilter?) -> NullRequestBuilder {
+		let request: NullRequestBuilder = NullRequestBuilder(service: "assethistory", action: "clean")
+			.setBody(key: "filter", value: filter)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: AssetHistoryFilter.AssetHistoryFilterTokenizer>() -> T {
