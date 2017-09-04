@@ -37,8 +37,10 @@ public final class SearchHistoryService{
 
 	public class CleanTokenizer: ClientTokenizer  {
 		
-		public func filter<T: SearchHistoryFilter.SearchHistoryFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: SearchHistoryFilter.SearchHistoryFilterTokenizer {
+			get {
+				return SearchHistoryFilter.SearchHistoryFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 
@@ -74,12 +76,16 @@ public final class SearchHistoryService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: SearchHistoryFilter.SearchHistoryFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: SearchHistoryFilter.SearchHistoryFilterTokenizer {
+			get {
+				return SearchHistoryFilter.SearchHistoryFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

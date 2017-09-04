@@ -44,8 +44,10 @@ open class UserInterest: ObjectBase {
 			}
 		}
 		
-		public func topic<T: UserInterestTopic.UserInterestTopicTokenizer>() -> T {
-			return T(self.append("topic"))
+		public var topic: UserInterestTopic.UserInterestTopicTokenizer {
+			get {
+				return UserInterestTopic.UserInterestTopicTokenizer(self.append("topic")) 
+			}
 		}
 	}
 

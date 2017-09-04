@@ -38,8 +38,10 @@ open class Coupon: ObjectBase {
 
 	public class CouponTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public func couponsGroup<T: CouponsGroup.CouponsGroupTokenizer>() -> T {
-			return T(self.append("couponsGroup"))
+		public var couponsGroup: CouponsGroup.CouponsGroupTokenizer {
+			get {
+				return CouponsGroup.CouponsGroupTokenizer(self.append("couponsGroup")) 
+			}
 		}
 		
 		public var status: BaseTokenizedObject {

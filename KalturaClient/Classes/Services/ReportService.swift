@@ -54,12 +54,16 @@ public final class ReportService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: ReportFilter.ReportFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: ReportFilter.ReportFilterTokenizer {
+			get {
+				return ReportFilter.ReportFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

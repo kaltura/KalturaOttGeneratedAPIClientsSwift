@@ -37,8 +37,10 @@ public final class CdnAdapterProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func adapter<T: CDNAdapterProfile.CDNAdapterProfileTokenizer>() -> T {
-			return T(self.append("adapter"))
+		public var adapter: CDNAdapterProfile.CDNAdapterProfileTokenizer {
+			get {
+				return CDNAdapterProfile.CDNAdapterProfileTokenizer(self.append("adapter")) 
+			}
 		}
 	}
 
@@ -102,8 +104,10 @@ public final class CdnAdapterProfileService{
 			}
 		}
 		
-		public func adapter<T: CDNAdapterProfile.CDNAdapterProfileTokenizer>() -> T {
-			return T(self.append("adapter"))
+		public var adapter: CDNAdapterProfile.CDNAdapterProfileTokenizer {
+			get {
+				return CDNAdapterProfile.CDNAdapterProfileTokenizer(self.append("adapter")) 
+			}
 		}
 	}
 

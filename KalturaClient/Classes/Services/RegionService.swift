@@ -37,8 +37,10 @@ public final class RegionService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: RegionFilter.RegionFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: RegionFilter.RegionFilterTokenizer {
+			get {
+				return RegionFilter.RegionFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 

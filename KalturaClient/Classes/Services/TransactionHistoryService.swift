@@ -37,12 +37,16 @@ public final class TransactionHistoryService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: TransactionHistoryFilter.TransactionHistoryFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: TransactionHistoryFilter.TransactionHistoryFilterTokenizer {
+			get {
+				return TransactionHistoryFilter.TransactionHistoryFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

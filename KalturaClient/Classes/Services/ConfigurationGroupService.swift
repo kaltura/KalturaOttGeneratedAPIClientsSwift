@@ -37,8 +37,10 @@ public final class ConfigurationGroupService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func configurationGroup<T: ConfigurationGroup.ConfigurationGroupTokenizer>() -> T {
-			return T(self.append("configurationGroup"))
+		public var configurationGroup: ConfigurationGroup.ConfigurationGroupTokenizer {
+			get {
+				return ConfigurationGroup.ConfigurationGroupTokenizer(self.append("configurationGroup")) 
+			}
 		}
 	}
 
@@ -104,8 +106,10 @@ public final class ConfigurationGroupService{
 			}
 		}
 		
-		public func configurationGroup<T: ConfigurationGroup.ConfigurationGroupTokenizer>() -> T {
-			return T(self.append("configurationGroup"))
+		public var configurationGroup: ConfigurationGroup.ConfigurationGroupTokenizer {
+			get {
+				return ConfigurationGroup.ConfigurationGroupTokenizer(self.append("configurationGroup")) 
+			}
 		}
 	}
 

@@ -92,8 +92,10 @@ open class OTTUser: BaseOTTUser {
 			}
 		}
 		
-		public func userType<T: OTTUserType.OTTUserTypeTokenizer>() -> T {
-			return T(self.append("userType"))
+		public var userType: OTTUserType.OTTUserTypeTokenizer {
+			get {
+				return OTTUserType.OTTUserTypeTokenizer(self.append("userType")) 
+			}
 		}
 		
 		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {

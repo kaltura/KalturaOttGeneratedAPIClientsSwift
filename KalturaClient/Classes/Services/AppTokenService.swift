@@ -37,8 +37,10 @@ public final class AppTokenService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func appToken<T: AppToken.AppTokenTokenizer>() -> T {
-			return T(self.append("appToken"))
+		public var appToken: AppToken.AppTokenTokenizer {
+			get {
+				return AppToken.AppTokenTokenizer(self.append("appToken")) 
+			}
 		}
 	}
 

@@ -37,12 +37,16 @@ public final class PersonalFeedService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: PersonalFeedFilter.PersonalFeedFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: PersonalFeedFilter.PersonalFeedFilterTokenizer {
+			get {
+				return PersonalFeedFilter.PersonalFeedFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

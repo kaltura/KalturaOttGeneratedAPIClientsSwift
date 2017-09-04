@@ -37,8 +37,10 @@ public final class FavoriteService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func favorite<T: Favorite.FavoriteTokenizer>() -> T {
-			return T(self.append("favorite"))
+		public var favorite: Favorite.FavoriteTokenizer {
+			get {
+				return Favorite.FavoriteTokenizer(self.append("favorite")) 
+			}
 		}
 	}
 
@@ -69,8 +71,10 @@ public final class FavoriteService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: FavoriteFilter.FavoriteFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: FavoriteFilter.FavoriteFilterTokenizer {
+			get {
+				return FavoriteFilter.FavoriteFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 

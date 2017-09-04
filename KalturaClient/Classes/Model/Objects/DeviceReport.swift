@@ -55,8 +55,10 @@ open class DeviceReport: Report {
 			}
 		}
 		
-		public func pushParameters<T: PushParams.PushParamsTokenizer>() -> T {
-			return T(self.append("pushParameters"))
+		public var pushParameters: PushParams.PushParamsTokenizer {
+			get {
+				return PushParams.PushParamsTokenizer(self.append("pushParameters")) 
+			}
 		}
 		
 		public var versionNumber: BaseTokenizedObject {

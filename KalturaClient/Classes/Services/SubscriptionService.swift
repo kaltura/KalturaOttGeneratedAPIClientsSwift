@@ -37,8 +37,10 @@ public final class SubscriptionService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: SubscriptionFilter.SubscriptionFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: SubscriptionFilter.SubscriptionFilterTokenizer {
+			get {
+				return SubscriptionFilter.SubscriptionFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 

@@ -37,8 +37,10 @@ public final class SocialActionService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func socialAction<T: SocialAction.SocialActionTokenizer>() -> T {
-			return T(self.append("socialAction"))
+		public var socialAction: SocialAction.SocialActionTokenizer {
+			get {
+				return SocialAction.SocialActionTokenizer(self.append("socialAction")) 
+			}
 		}
 	}
 
@@ -69,12 +71,16 @@ public final class SocialActionService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: SocialActionFilter.SocialActionFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: SocialActionFilter.SocialActionFilterTokenizer {
+			get {
+				return SocialActionFilter.SocialActionFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

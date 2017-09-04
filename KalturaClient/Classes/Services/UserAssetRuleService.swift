@@ -37,8 +37,10 @@ public final class UserAssetRuleService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: UserAssetRuleFilter.UserAssetRuleFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: UserAssetRuleFilter.UserAssetRuleFilterTokenizer {
+			get {
+				return UserAssetRuleFilter.UserAssetRuleFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 

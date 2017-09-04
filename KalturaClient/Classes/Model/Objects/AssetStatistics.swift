@@ -68,8 +68,10 @@ open class AssetStatistics: ObjectBase {
 			}
 		}
 		
-		public func buzzScore<T: BuzzScore.BuzzScoreTokenizer>() -> T {
-			return T(self.append("buzzScore"))
+		public var buzzScore: BuzzScore.BuzzScoreTokenizer {
+			get {
+				return BuzzScore.BuzzScoreTokenizer(self.append("buzzScore")) 
+			}
 		}
 	}
 

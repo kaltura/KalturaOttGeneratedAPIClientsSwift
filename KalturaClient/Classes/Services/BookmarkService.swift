@@ -37,8 +37,10 @@ public final class BookmarkService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func bookmark<T: Bookmark.BookmarkTokenizer>() -> T {
-			return T(self.append("bookmark"))
+		public var bookmark: Bookmark.BookmarkTokenizer {
+			get {
+				return Bookmark.BookmarkTokenizer(self.append("bookmark")) 
+			}
 		}
 	}
 
@@ -53,8 +55,10 @@ public final class BookmarkService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: BookmarkFilter.BookmarkFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: BookmarkFilter.BookmarkFilterTokenizer {
+			get {
+				return BookmarkFilter.BookmarkFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 

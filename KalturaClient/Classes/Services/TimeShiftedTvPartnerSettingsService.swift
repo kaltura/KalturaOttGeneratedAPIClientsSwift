@@ -48,8 +48,10 @@ public final class TimeShiftedTvPartnerSettingsService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public func settings<T: TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer>() -> T {
-			return T(self.append("settings"))
+		public var settings: TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer {
+			get {
+				return TimeShiftedTvPartnerSettings.TimeShiftedTvPartnerSettingsTokenizer(self.append("settings")) 
+			}
 		}
 	}
 

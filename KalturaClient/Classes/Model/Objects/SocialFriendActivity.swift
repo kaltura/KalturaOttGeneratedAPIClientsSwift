@@ -49,8 +49,10 @@ open class SocialFriendActivity: ObjectBase {
 			}
 		}
 		
-		public func socialAction<T: SocialAction.SocialActionTokenizer>() -> T {
-			return T(self.append("socialAction"))
+		public var socialAction: SocialAction.SocialActionTokenizer {
+			get {
+				return SocialAction.SocialActionTokenizer(self.append("socialAction")) 
+			}
 		}
 	}
 

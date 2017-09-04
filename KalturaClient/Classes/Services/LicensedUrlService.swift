@@ -37,8 +37,10 @@ public final class LicensedUrlService{
 
 	public class GetTokenizer: ClientTokenizer  {
 		
-		public func request<T: LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer>() -> T {
-			return T(self.append("request"))
+		public var request: LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer {
+			get {
+				return LicensedUrlBaseRequest.LicensedUrlBaseRequestTokenizer(self.append("request")) 
+			}
 		}
 	}
 

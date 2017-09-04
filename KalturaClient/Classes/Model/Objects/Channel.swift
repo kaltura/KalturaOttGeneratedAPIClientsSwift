@@ -74,8 +74,10 @@ open class Channel: BaseChannel {
 			}
 		}
 		
-		public func groupBy<T: AssetGroupBy.AssetGroupByTokenizer>() -> T {
-			return T(self.append("groupBy"))
+		public var groupBy: AssetGroupBy.AssetGroupByTokenizer {
+			get {
+				return AssetGroupBy.AssetGroupByTokenizer(self.append("groupBy")) 
+			}
 		}
 	}
 

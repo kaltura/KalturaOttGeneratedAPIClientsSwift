@@ -56,8 +56,10 @@ open class Asset: ObjectBase {
 			}
 		}
 		
-		public func multilingualName<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualName"))
+		public var multilingualName: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualName")) 
+			}
 		}
 		
 		public var description: BaseTokenizedObject {
@@ -66,8 +68,10 @@ open class Asset: ObjectBase {
 			}
 		}
 		
-		public func multilingualDescription<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualDescription"))
+		public var multilingualDescription: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualDescription")) 
+			}
 		}
 		
 		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {

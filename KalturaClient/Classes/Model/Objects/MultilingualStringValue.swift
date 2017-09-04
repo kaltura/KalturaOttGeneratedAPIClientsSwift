@@ -44,8 +44,10 @@ open class MultilingualStringValue: Value {
 			}
 		}
 		
-		public func multilingualValue<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualValue"))
+		public var multilingualValue: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualValue")) 
+			}
 		}
 	}
 

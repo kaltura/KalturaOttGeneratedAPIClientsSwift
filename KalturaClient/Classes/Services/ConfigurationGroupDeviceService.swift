@@ -37,8 +37,10 @@ public final class ConfigurationGroupDeviceService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func configurationGroupDevice<T: ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer>() -> T {
-			return T(self.append("configurationGroupDevice"))
+		public var configurationGroupDevice: ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer {
+			get {
+				return ConfigurationGroupDevice.ConfigurationGroupDeviceTokenizer(self.append("configurationGroupDevice")) 
+			}
 		}
 	}
 
@@ -87,12 +89,16 @@ public final class ConfigurationGroupDeviceService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: ConfigurationGroupDeviceFilter.ConfigurationGroupDeviceFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: ConfigurationGroupDeviceFilter.ConfigurationGroupDeviceFilterTokenizer {
+			get {
+				return ConfigurationGroupDeviceFilter.ConfigurationGroupDeviceFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

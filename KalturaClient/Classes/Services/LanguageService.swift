@@ -37,8 +37,10 @@ public final class LanguageService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: LanguageFilter.LanguageFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: LanguageFilter.LanguageFilterTokenizer {
+			get {
+				return LanguageFilter.LanguageFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 

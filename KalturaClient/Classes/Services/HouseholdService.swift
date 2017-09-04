@@ -37,8 +37,10 @@ public final class HouseholdService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func household<T: Household.HouseholdTokenizer>() -> T {
-			return T(self.append("household"))
+		public var household: Household.HouseholdTokenizer {
+			get {
+				return Household.HouseholdTokenizer(self.append("household")) 
+			}
 		}
 	}
 
@@ -134,8 +136,10 @@ public final class HouseholdService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public func household<T: Household.HouseholdTokenizer>() -> T {
-			return T(self.append("household"))
+		public var household: Household.HouseholdTokenizer {
+			get {
+				return Household.HouseholdTokenizer(self.append("household")) 
+			}
 		}
 	}
 

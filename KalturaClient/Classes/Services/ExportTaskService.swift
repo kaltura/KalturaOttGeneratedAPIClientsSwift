@@ -37,8 +37,10 @@ public final class ExportTaskService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func task<T: ExportTask.ExportTaskTokenizer>() -> T {
-			return T(self.append("task"))
+		public var task: ExportTask.ExportTaskTokenizer {
+			get {
+				return ExportTask.ExportTaskTokenizer(self.append("task")) 
+			}
 		}
 	}
 
@@ -86,8 +88,10 @@ public final class ExportTaskService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: ExportTaskFilter.ExportTaskFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: ExportTaskFilter.ExportTaskFilterTokenizer {
+			get {
+				return ExportTaskFilter.ExportTaskFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 
@@ -111,8 +115,10 @@ public final class ExportTaskService{
 			}
 		}
 		
-		public func task<T: ExportTask.ExportTaskTokenizer>() -> T {
-			return T(self.append("task"))
+		public var task: ExportTask.ExportTaskTokenizer {
+			get {
+				return ExportTask.ExportTaskTokenizer(self.append("task")) 
+			}
 		}
 	}
 

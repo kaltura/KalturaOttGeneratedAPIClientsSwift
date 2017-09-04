@@ -37,8 +37,10 @@ public final class SubscriptionSetService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func subscriptionSet<T: SubscriptionSet.SubscriptionSetTokenizer>() -> T {
-			return T(self.append("subscriptionSet"))
+		public var subscriptionSet: SubscriptionSet.SubscriptionSetTokenizer {
+			get {
+				return SubscriptionSet.SubscriptionSetTokenizer(self.append("subscriptionSet")) 
+			}
 		}
 	}
 
@@ -86,8 +88,10 @@ public final class SubscriptionSetService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: SubscriptionSetFilter.SubscriptionSetFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: SubscriptionSetFilter.SubscriptionSetFilterTokenizer {
+			get {
+				return SubscriptionSetFilter.SubscriptionSetFilterTokenizer(self.append("filter")) 
+			}
 		}
 	}
 
@@ -111,8 +115,10 @@ public final class SubscriptionSetService{
 			}
 		}
 		
-		public func subscriptionSet<T: SubscriptionSet.SubscriptionSetTokenizer>() -> T {
-			return T(self.append("subscriptionSet"))
+		public var subscriptionSet: SubscriptionSet.SubscriptionSetTokenizer {
+			get {
+				return SubscriptionSet.SubscriptionSetTokenizer(self.append("subscriptionSet")) 
+			}
 		}
 	}
 

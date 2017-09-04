@@ -50,8 +50,10 @@ open class UserInterestTopic: ObjectBase {
 			}
 		}
 		
-		public func parentTopic<T: UserInterestTopic.UserInterestTopicTokenizer>() -> T {
-			return T(self.append("parentTopic"))
+		public var parentTopic: UserInterestTopic.UserInterestTopicTokenizer {
+			get {
+				return UserInterestTopic.UserInterestTopicTokenizer(self.append("parentTopic")) 
+			}
 		}
 	}
 

@@ -61,8 +61,10 @@ open class Bookmark: SlimAsset {
 			}
 		}
 		
-		public func playerData<T: BookmarkPlayerData.BookmarkPlayerDataTokenizer>() -> T {
-			return T(self.append("playerData"))
+		public var playerData: BookmarkPlayerData.BookmarkPlayerDataTokenizer {
+			get {
+				return BookmarkPlayerData.BookmarkPlayerDataTokenizer(self.append("playerData")) 
+			}
 		}
 	}
 

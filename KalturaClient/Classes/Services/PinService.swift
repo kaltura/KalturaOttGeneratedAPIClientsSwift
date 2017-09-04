@@ -86,8 +86,10 @@ public final class PinService{
 			}
 		}
 		
-		public func pin<T: Pin.PinTokenizer>() -> T {
-			return T(self.append("pin"))
+		public var pin: Pin.PinTokenizer {
+			get {
+				return Pin.PinTokenizer(self.append("pin")) 
+			}
 		}
 		
 		public var ruleId: BaseTokenizedObject {

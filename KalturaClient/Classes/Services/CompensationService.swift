@@ -37,8 +37,10 @@ public final class CompensationService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func compensation<T: Compensation.CompensationTokenizer>() -> T {
-			return T(self.append("compensation"))
+		public var compensation: Compensation.CompensationTokenizer {
+			get {
+				return Compensation.CompensationTokenizer(self.append("compensation")) 
+			}
 		}
 	}
 

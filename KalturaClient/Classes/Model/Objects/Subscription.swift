@@ -86,12 +86,16 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public func price<T: PriceDetails.PriceDetailsTokenizer>() -> T {
-			return T(self.append("price"))
+		public var price: PriceDetails.PriceDetailsTokenizer {
+			get {
+				return PriceDetails.PriceDetailsTokenizer(self.append("price")) 
+			}
 		}
 		
-		public func discountModule<T: DiscountModule.DiscountModuleTokenizer>() -> T {
-			return T(self.append("discountModule"))
+		public var discountModule: DiscountModule.DiscountModuleTokenizer {
+			get {
+				return DiscountModule.DiscountModuleTokenizer(self.append("discountModule")) 
+			}
 		}
 		
 		public var name: BaseTokenizedObject {
@@ -100,8 +104,10 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public func multilingualName<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualName"))
+		public var multilingualName: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualName")) 
+			}
 		}
 		
 		public var description: BaseTokenizedObject {
@@ -110,8 +116,10 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public func multilingualDescription<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualDescription"))
+		public var multilingualDescription: MultilingualString.MultilingualStringTokenizer {
+			get {
+				return MultilingualString.MultilingualStringTokenizer(self.append("multilingualDescription")) 
+			}
 		}
 		
 		public var mediaId: BaseTokenizedObject {
@@ -132,8 +140,10 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public func previewModule<T: PreviewModule.PreviewModuleTokenizer>() -> T {
-			return T(self.append("previewModule"))
+		public var previewModule: PreviewModule.PreviewModuleTokenizer {
+			get {
+				return PreviewModule.PreviewModuleTokenizer(self.append("previewModule")) 
+			}
 		}
 		
 		public var householdLimitationsId: BaseTokenizedObject {

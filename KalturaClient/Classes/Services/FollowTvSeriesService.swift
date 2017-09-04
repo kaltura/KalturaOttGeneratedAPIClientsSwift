@@ -37,8 +37,10 @@ public final class FollowTvSeriesService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func followTvSeries<T: FollowTvSeries.FollowTvSeriesTokenizer>() -> T {
-			return T(self.append("followTvSeries"))
+		public var followTvSeries: FollowTvSeries.FollowTvSeriesTokenizer {
+			get {
+				return FollowTvSeries.FollowTvSeriesTokenizer(self.append("followTvSeries")) 
+			}
 		}
 	}
 
@@ -72,12 +74,16 @@ public final class FollowTvSeriesService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: FollowTvSeriesFilter.FollowTvSeriesFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+		public var filter: FollowTvSeriesFilter.FollowTvSeriesFilterTokenizer {
+			get {
+				return FollowTvSeriesFilter.FollowTvSeriesFilterTokenizer(self.append("filter")) 
+			}
 		}
 		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
+		public var pager: FilterPager.FilterPagerTokenizer {
+			get {
+				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
+			}
 		}
 	}
 

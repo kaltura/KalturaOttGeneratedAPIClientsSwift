@@ -37,8 +37,10 @@ public final class AssetStatisticsService{
 
 	public class QueryTokenizer: ClientTokenizer  {
 		
-		public func query_<T: AssetStatisticsQuery.AssetStatisticsQueryTokenizer>() -> T {
-			return T(self.append("query_"))
+		public var query_: AssetStatisticsQuery.AssetStatisticsQueryTokenizer {
+			get {
+				return AssetStatisticsQuery.AssetStatisticsQueryTokenizer(self.append("query_")) 
+			}
 		}
 	}
 
