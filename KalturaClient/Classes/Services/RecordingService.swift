@@ -37,10 +37,8 @@ public final class RecordingService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var recording: Recording.RecordingTokenizer {
-			get {
-				return Recording.RecordingTokenizer(self.append("recording")) 
-			}
+		public func recording<T: Recording.RecordingTokenizer>() -> T {
+			return T(self.append("recording"))
 		}
 	}
 
@@ -107,16 +105,12 @@ public final class RecordingService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: RecordingFilter.RecordingFilterTokenizer {
-			get {
-				return RecordingFilter.RecordingFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: RecordingFilter.RecordingFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 

@@ -176,16 +176,12 @@ public final class EntitlementService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: EntitlementFilter.EntitlementFilterTokenizer {
-			get {
-				return EntitlementFilter.EntitlementFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: EntitlementFilter.EntitlementFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 
@@ -242,10 +238,8 @@ public final class EntitlementService{
 			}
 		}
 		
-		public var entitlement: Entitlement.EntitlementTokenizer {
-			get {
-				return Entitlement.EntitlementTokenizer(self.append("entitlement")) 
-			}
+		public func entitlement<T: Entitlement.EntitlementTokenizer>() -> T {
+			return T(self.append("entitlement"))
 		}
 	}
 

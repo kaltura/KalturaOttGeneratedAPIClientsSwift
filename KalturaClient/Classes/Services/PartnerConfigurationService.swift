@@ -37,10 +37,8 @@ public final class PartnerConfigurationService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var configuration: PartnerConfiguration.PartnerConfigurationTokenizer {
-			get {
-				return PartnerConfiguration.PartnerConfigurationTokenizer(self.append("configuration")) 
-			}
+		public func configuration<T: PartnerConfiguration.PartnerConfigurationTokenizer>() -> T {
+			return T(self.append("configuration"))
 		}
 	}
 

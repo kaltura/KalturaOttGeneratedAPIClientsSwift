@@ -37,10 +37,8 @@ public final class TransactionService{
 
 	public class DowngradeTokenizer: ClientTokenizer  {
 		
-		public var purchase: Purchase.PurchaseTokenizer {
-			get {
-				return Purchase.PurchaseTokenizer(self.append("purchase")) 
-			}
+		public func purchase<T: Purchase.PurchaseTokenizer>() -> T {
+			return T(self.append("purchase"))
 		}
 	}
 
@@ -55,10 +53,8 @@ public final class TransactionService{
 
 	public class GetPurchaseSessionIdTokenizer: ClientTokenizer  {
 		
-		public var purchaseSession: PurchaseSession.PurchaseSessionTokenizer {
-			get {
-				return PurchaseSession.PurchaseSessionTokenizer(self.append("purchaseSession")) 
-			}
+		public func purchaseSession<T: PurchaseSession.PurchaseSessionTokenizer>() -> T {
+			return T(self.append("purchaseSession"))
 		}
 	}
 
@@ -72,10 +68,8 @@ public final class TransactionService{
 
 	public class PurchaseTokenizer: ClientTokenizer  {
 		
-		public var purchase_: Purchase.PurchaseTokenizer {
-			get {
-				return Purchase.PurchaseTokenizer(self.append("purchase_")) 
-			}
+		public func purchase_<T: Purchase.PurchaseTokenizer>() -> T {
+			return T(self.append("purchase_"))
 		}
 	}
 
@@ -133,10 +127,8 @@ public final class TransactionService{
 			}
 		}
 		
-		public var status: TransactionStatus.TransactionStatusTokenizer {
-			get {
-				return TransactionStatus.TransactionStatusTokenizer(self.append("status")) 
-			}
+		public func status<T: TransactionStatus.TransactionStatusTokenizer>() -> T {
+			return T(self.append("status"))
 		}
 	}
 
@@ -153,10 +145,8 @@ public final class TransactionService{
 
 	public class UpgradeTokenizer: ClientTokenizer  {
 		
-		public var purchase: Purchase.PurchaseTokenizer {
-			get {
-				return Purchase.PurchaseTokenizer(self.append("purchase")) 
-			}
+		public func purchase<T: Purchase.PurchaseTokenizer>() -> T {
+			return T(self.append("purchase"))
 		}
 	}
 
@@ -171,10 +161,8 @@ public final class TransactionService{
 
 	public class ValidateReceiptTokenizer: ClientTokenizer  {
 		
-		public var externalReceipt: ExternalReceipt.ExternalReceiptTokenizer {
-			get {
-				return ExternalReceipt.ExternalReceiptTokenizer(self.append("externalReceipt")) 
-			}
+		public func externalReceipt<T: ExternalReceipt.ExternalReceiptTokenizer>() -> T {
+			return T(self.append("externalReceipt"))
 		}
 	}
 

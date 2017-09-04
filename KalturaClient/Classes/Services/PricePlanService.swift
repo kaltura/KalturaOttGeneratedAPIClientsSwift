@@ -37,10 +37,8 @@ public final class PricePlanService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: PricePlanFilter.PricePlanFilterTokenizer {
-			get {
-				return PricePlanFilter.PricePlanFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: PricePlanFilter.PricePlanFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -64,10 +62,8 @@ public final class PricePlanService{
 			}
 		}
 		
-		public var pricePlan: PricePlan.PricePlanTokenizer {
-			get {
-				return PricePlan.PricePlanTokenizer(self.append("pricePlan")) 
-			}
+		public func pricePlan<T: PricePlan.PricePlanTokenizer>() -> T {
+			return T(self.append("pricePlan"))
 		}
 	}
 

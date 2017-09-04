@@ -44,10 +44,8 @@ open class DetachedResponseProfile: BaseResponseProfile {
 			}
 		}
 		
-		public var filter: RelatedObjectFilter.RelatedObjectFilterTokenizer {
-			get {
-				return RelatedObjectFilter.RelatedObjectFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: RelatedObjectFilter.RelatedObjectFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
 		public var relatedProfiles: ArrayTokenizedObject<DetachedResponseProfile.DetachedResponseProfileTokenizer> {

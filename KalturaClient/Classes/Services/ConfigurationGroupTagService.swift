@@ -37,10 +37,8 @@ public final class ConfigurationGroupTagService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var configurationGroupTag: ConfigurationGroupTag.ConfigurationGroupTagTokenizer {
-			get {
-				return ConfigurationGroupTag.ConfigurationGroupTagTokenizer(self.append("configurationGroupTag")) 
-			}
+		public func configurationGroupTag<T: ConfigurationGroupTag.ConfigurationGroupTagTokenizer>() -> T {
+			return T(self.append("configurationGroupTag"))
 		}
 	}
 
@@ -89,10 +87,8 @@ public final class ConfigurationGroupTagService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: ConfigurationGroupTagFilter.ConfigurationGroupTagFilterTokenizer {
-			get {
-				return ConfigurationGroupTagFilter.ConfigurationGroupTagFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: ConfigurationGroupTagFilter.ConfigurationGroupTagFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 

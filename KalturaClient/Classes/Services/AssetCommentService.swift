@@ -37,10 +37,8 @@ public final class AssetCommentService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var comment: AssetComment.AssetCommentTokenizer {
-			get {
-				return AssetComment.AssetCommentTokenizer(self.append("comment")) 
-			}
+		public func comment<T: AssetComment.AssetCommentTokenizer>() -> T {
+			return T(self.append("comment"))
 		}
 	}
 
@@ -54,16 +52,12 @@ public final class AssetCommentService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: AssetCommentFilter.AssetCommentFilterTokenizer {
-			get {
-				return AssetCommentFilter.AssetCommentFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: AssetCommentFilter.AssetCommentFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 

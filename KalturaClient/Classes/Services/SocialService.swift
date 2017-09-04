@@ -239,10 +239,8 @@ public final class SocialService{
 
 	public class UpdateConfigurationTokenizer: ClientTokenizer  {
 		
-		public var configuration: SocialConfig.SocialConfigTokenizer {
-			get {
-				return SocialConfig.SocialConfigTokenizer(self.append("configuration")) 
-			}
+		public func configuration<T: SocialConfig.SocialConfigTokenizer>() -> T {
+			return T(self.append("configuration"))
 		}
 	}
 

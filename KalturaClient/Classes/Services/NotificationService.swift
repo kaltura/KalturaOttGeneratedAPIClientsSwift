@@ -67,10 +67,8 @@ public final class NotificationService{
 			}
 		}
 		
-		public var pushMessage: PushMessage.PushMessageTokenizer {
-			get {
-				return PushMessage.PushMessageTokenizer(self.append("pushMessage")) 
-			}
+		public func pushMessage<T: PushMessage.PushMessageTokenizer>() -> T {
+			return T(self.append("pushMessage"))
 		}
 	}
 

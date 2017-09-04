@@ -37,10 +37,8 @@ public final class RecommendationProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var recommendationEngine: RecommendationProfile.RecommendationProfileTokenizer {
-			get {
-				return RecommendationProfile.RecommendationProfileTokenizer(self.append("recommendationEngine")) 
-			}
+		public func recommendationEngine<T: RecommendationProfile.RecommendationProfileTokenizer>() -> T {
+			return T(self.append("recommendationEngine"))
 		}
 	}
 
@@ -104,10 +102,8 @@ public final class RecommendationProfileService{
 			}
 		}
 		
-		public var recommendationEngine: RecommendationProfile.RecommendationProfileTokenizer {
-			get {
-				return RecommendationProfile.RecommendationProfileTokenizer(self.append("recommendationEngine")) 
-			}
+		public func recommendationEngine<T: RecommendationProfile.RecommendationProfileTokenizer>() -> T {
+			return T(self.append("recommendationEngine"))
 		}
 	}
 

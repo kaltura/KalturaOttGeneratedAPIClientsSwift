@@ -110,10 +110,8 @@ open class MediaFile: ObjectBase {
 			}
 		}
 		
-		public var ppvModules: StringValueArray.StringValueArrayTokenizer {
-			get {
-				return StringValueArray.StringValueArrayTokenizer(self.append("ppvModules")) 
-			}
+		public func ppvModules<T: StringValueArray.StringValueArrayTokenizer>() -> T {
+			return T(self.append("ppvModules"))
 		}
 		
 		public var productCode: BaseTokenizedObject {

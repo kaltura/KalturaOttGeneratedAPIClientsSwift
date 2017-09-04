@@ -37,10 +37,8 @@ public final class EngagementService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public var engagement: Engagement.EngagementTokenizer {
-			get {
-				return Engagement.EngagementTokenizer(self.append("engagement")) 
-			}
+		public func engagement<T: Engagement.EngagementTokenizer>() -> T {
+			return T(self.append("engagement"))
 		}
 	}
 
@@ -88,10 +86,8 @@ public final class EngagementService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: EngagementFilter.EngagementFilterTokenizer {
-			get {
-				return EngagementFilter.EngagementFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: EngagementFilter.EngagementFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 

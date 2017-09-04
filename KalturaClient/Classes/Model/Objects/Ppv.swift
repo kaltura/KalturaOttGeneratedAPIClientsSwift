@@ -50,10 +50,8 @@ open class Ppv: ObjectBase {
 			}
 		}
 		
-		public var price: PriceDetails.PriceDetailsTokenizer {
-			get {
-				return PriceDetails.PriceDetailsTokenizer(self.append("price")) 
-			}
+		public func price<T: PriceDetails.PriceDetailsTokenizer>() -> T {
+			return T(self.append("price"))
 		}
 		
 		public var fileTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
@@ -62,16 +60,12 @@ open class Ppv: ObjectBase {
 			} 
 		}
 		
-		public var discountModule: DiscountModule.DiscountModuleTokenizer {
-			get {
-				return DiscountModule.DiscountModuleTokenizer(self.append("discountModule")) 
-			}
+		public func discountModule<T: DiscountModule.DiscountModuleTokenizer>() -> T {
+			return T(self.append("discountModule"))
 		}
 		
-		public var couponsGroup: CouponsGroup.CouponsGroupTokenizer {
-			get {
-				return CouponsGroup.CouponsGroupTokenizer(self.append("couponsGroup")) 
-			}
+		public func couponsGroup<T: CouponsGroup.CouponsGroupTokenizer>() -> T {
+			return T(self.append("couponsGroup"))
 		}
 		
 		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
@@ -98,10 +92,8 @@ open class Ppv: ObjectBase {
 			}
 		}
 		
-		public var usageModule: UsageModule.UsageModuleTokenizer {
-			get {
-				return UsageModule.UsageModuleTokenizer(self.append("usageModule")) 
-			}
+		public func usageModule<T: UsageModule.UsageModuleTokenizer>() -> T {
+			return T(self.append("usageModule"))
 		}
 	}
 

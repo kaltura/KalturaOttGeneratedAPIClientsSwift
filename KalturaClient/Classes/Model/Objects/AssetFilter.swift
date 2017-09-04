@@ -37,10 +37,8 @@ open class AssetFilter: PersistedFilter {
 
 	public class AssetFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
 		
-		public var dynamicOrderBy: DynamicOrderBy.DynamicOrderByTokenizer {
-			get {
-				return DynamicOrderBy.DynamicOrderByTokenizer(self.append("dynamicOrderBy")) 
-			}
+		public func dynamicOrderBy<T: DynamicOrderBy.DynamicOrderByTokenizer>() -> T {
+			return T(self.append("dynamicOrderBy"))
 		}
 	}
 

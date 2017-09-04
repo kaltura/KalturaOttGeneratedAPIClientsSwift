@@ -37,10 +37,8 @@ public final class MetaService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: MetaFilter.MetaFilterTokenizer {
-			get {
-				return MetaFilter.MetaFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: MetaFilter.MetaFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -64,10 +62,8 @@ public final class MetaService{
 			}
 		}
 		
-		public var meta: Meta.MetaTokenizer {
-			get {
-				return Meta.MetaTokenizer(self.append("meta")) 
-			}
+		public func meta<T: Meta.MetaTokenizer>() -> T {
+			return T(self.append("meta"))
 		}
 	}
 

@@ -37,10 +37,8 @@ public final class AssetService{
 
 	public class CountTokenizer: ClientTokenizer  {
 		
-		public var filter: SearchAssetFilter.SearchAssetFilterTokenizer {
-			get {
-				return SearchAssetFilter.SearchAssetFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: SearchAssetFilter.SearchAssetFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
@@ -95,10 +93,8 @@ public final class AssetService{
 			}
 		}
 		
-		public var contextDataParams: PlaybackContextOptions.PlaybackContextOptionsTokenizer {
-			get {
-				return PlaybackContextOptions.PlaybackContextOptionsTokenizer(self.append("contextDataParams")) 
-			}
+		public func contextDataParams<T: PlaybackContextOptions.PlaybackContextOptionsTokenizer>() -> T {
+			return T(self.append("contextDataParams"))
 		}
 	}
 
@@ -126,10 +122,8 @@ public final class AssetService{
 			}
 		}
 		
-		public var contextDataParams: PlaybackContextOptions.PlaybackContextOptionsTokenizer {
-			get {
-				return PlaybackContextOptions.PlaybackContextOptionsTokenizer(self.append("contextDataParams")) 
-			}
+		public func contextDataParams<T: PlaybackContextOptions.PlaybackContextOptionsTokenizer>() -> T {
+			return T(self.append("contextDataParams"))
 		}
 	}
 
@@ -145,16 +139,12 @@ public final class AssetService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public var filter: AssetFilter.AssetFilterTokenizer {
-			get {
-				return AssetFilter.AssetFilterTokenizer(self.append("filter")) 
-			}
+		public func filter<T: AssetFilter.AssetFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 		
-		public var pager: FilterPager.FilterPagerTokenizer {
-			get {
-				return FilterPager.FilterPagerTokenizer(self.append("pager")) 
-			}
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
 		}
 	}
 
