@@ -279,35 +279,6 @@ public final class OttUserService{
 		return request
 	}
 
-	public class RefreshSessionTokenizer: ClientTokenizer  {
-		
-		public var refreshToken: BaseTokenizedObject {
-			get {
-				return self.append("refreshToken") 
-			}
-		}
-		
-		public var udid: BaseTokenizedObject {
-			get {
-				return self.append("udid") 
-			}
-		}
-	}
-
-	public static func refreshSession(refreshToken: String) -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer> {
-		return refreshSession(refreshToken: refreshToken, udid: nil)
-	}
-
-	/**  Returns new Kaltura session (ks) for the user, using the supplied refresh_token
-	  (only if it&amp;#39;s valid and not expired)  */
-	public static func refreshSession(refreshToken: String, udid: String?) -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer> {
-		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer>(service: "ottuser", action: "refreshSession")
-			.setBody(key: "refreshToken", value: refreshToken)
-			.setBody(key: "udid", value: udid)
-
-		return request
-	}
-
 	public class RegisterTokenizer: ClientTokenizer  {
 		
 		public override var partnerId: BaseTokenizedObject {
@@ -490,8 +461,8 @@ public final class OttUserService{
 	}
 
 	/**  Update the user&amp;#39;s existing password.  */
-	public static func updatePassword(userId: Int, password: String) -> NullRequestBuilder {
-		let request: NullRequestBuilder = NullRequestBuilder(service: "ottuser", action: "updatePassword")
+	public static func updatePassword(userId: Int, password: String) -> NullRequestBuilder<UpdatePasswordTokenizer> {
+		let request: NullRequestBuilder<UpdatePasswordTokenizer> = NullRequestBuilder<UpdatePasswordTokenizer>(service: "ottuser", action: "updatePassword")
 			.setBody(key: "userId", value: userId)
 			.setBody(key: "password", value: password)
 

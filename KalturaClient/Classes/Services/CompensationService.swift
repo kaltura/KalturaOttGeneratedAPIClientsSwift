@@ -61,8 +61,8 @@ public final class CompensationService{
 	}
 
 	/**  Delete a compensation by identifier  */
-	public static func delete(id: Int64) -> NullRequestBuilder {
-		let request: NullRequestBuilder = NullRequestBuilder(service: "compensation", action: "delete")
+	public static func delete(id: Int64) -> NullRequestBuilder<DeleteTokenizer> {
+		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "compensation", action: "delete")
 			.setBody(key: "id", value: id)
 
 		return request

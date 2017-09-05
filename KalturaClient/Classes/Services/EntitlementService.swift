@@ -71,8 +71,8 @@ public final class EntitlementService{
 
 	/**  Cancel a household service subscription at the next renewal. The subscription
 	  stays valid till the next renewal.  */
-	public static func cancelRenewal(subscriptionId: String) -> NullRequestBuilder {
-		let request: NullRequestBuilder = NullRequestBuilder(service: "entitlement", action: "cancelRenewal")
+	public static func cancelRenewal(subscriptionId: String) -> NullRequestBuilder<CancelRenewalTokenizer> {
+		let request: NullRequestBuilder<CancelRenewalTokenizer> = NullRequestBuilder<CancelRenewalTokenizer>(service: "entitlement", action: "cancelRenewal")
 			.setBody(key: "subscriptionId", value: subscriptionId)
 
 		return request

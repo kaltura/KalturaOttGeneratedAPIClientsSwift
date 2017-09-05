@@ -44,8 +44,8 @@ public final class TransactionService{
 
 	/**  downgrade specific subscription for a household. entitlements will be updated on
 	  the existing subscription end date.  */
-	public static func downgrade(purchase: Purchase) -> NullRequestBuilder {
-		let request: NullRequestBuilder = NullRequestBuilder(service: "transaction", action: "downgrade")
+	public static func downgrade(purchase: Purchase) -> NullRequestBuilder<DowngradeTokenizer> {
+		let request: NullRequestBuilder<DowngradeTokenizer> = NullRequestBuilder<DowngradeTokenizer>(service: "transaction", action: "downgrade")
 			.setBody(key: "purchase", value: purchase)
 
 		return request
@@ -133,8 +133,8 @@ public final class TransactionService{
 	}
 
 	/**  Updates a pending purchase transaction state.  */
-	public static func updateStatus(paymentGatewayId: String, externalTransactionId: String, signature: String, status: TransactionStatus) -> NullRequestBuilder {
-		let request: NullRequestBuilder = NullRequestBuilder(service: "transaction", action: "updateStatus")
+	public static func updateStatus(paymentGatewayId: String, externalTransactionId: String, signature: String, status: TransactionStatus) -> NullRequestBuilder<UpdateStatusTokenizer> {
+		let request: NullRequestBuilder<UpdateStatusTokenizer> = NullRequestBuilder<UpdateStatusTokenizer>(service: "transaction", action: "updateStatus")
 			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
 			.setBody(key: "externalTransactionId", value: externalTransactionId)
 			.setBody(key: "signature", value: signature)
