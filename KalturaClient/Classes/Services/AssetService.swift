@@ -79,35 +79,6 @@ public final class AssetService{
 		return request
 	}
 
-	public class GetAdsContextTokenizer: ClientTokenizer  {
-		
-		public var assetId: BaseTokenizedObject {
-			get {
-				return self.append("assetId") 
-			}
-		}
-		
-		public var assetType: BaseTokenizedObject {
-			get {
-				return self.append("assetType") 
-			}
-		}
-		
-		public func contextDataParams<T: PlaybackContextOptions.PlaybackContextOptionsTokenizer>() -> T {
-			return T(self.append("contextDataParams"))
-		}
-	}
-
-	/**  Returns the data for ads control  */
-	public static func getAdsContext(assetId: String, assetType: AssetType, contextDataParams: PlaybackContextOptions) -> RequestBuilder<AdsContext, AdsContext.AdsContextTokenizer, GetAdsContextTokenizer> {
-		let request: RequestBuilder<AdsContext, AdsContext.AdsContextTokenizer, GetAdsContextTokenizer> = RequestBuilder<AdsContext, AdsContext.AdsContextTokenizer, GetAdsContextTokenizer>(service: "asset", action: "getAdsContext")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "assetType", value: assetType.rawValue)
-			.setBody(key: "contextDataParams", value: contextDataParams)
-
-		return request
-	}
-
 	public class GetPlaybackContextTokenizer: ClientTokenizer  {
 		
 		public var assetId: BaseTokenizedObject {
