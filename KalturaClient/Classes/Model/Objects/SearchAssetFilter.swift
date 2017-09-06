@@ -1,0 +1,128 @@
+// ===================================================================================================
+//                           _  __     _ _
+//                          | |/ /__ _| | |_ _  _ _ _ __ _
+//                          | ' </ _` | |  _| || | '_/ _` |
+//                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
+//
+// This file is part of the Kaltura Collaborative Media Suite which allows users
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// text.
+//
+// Copyright (C) 2006-2017  Kaltura Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @ignore
+// ===================================================================================================
+
+/**
+ * This class was generated using clients-generator\exec.php
+ * against an XML schema provided by Kaltura.
+ * 
+ * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
+ */
+
+open class SearchAssetFilter: AssetFilter {
+
+	public class SearchAssetFilterTokenizer: AssetFilter.AssetFilterTokenizer {
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
+		
+		public var typeIn: BaseTokenizedObject {
+			get {
+				return self.append("typeIn") 
+			}
+		}
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+	}
+
+	/**  Search assets using dynamic criteria. Provided collection of nested expressions
+	  with key, comparison operators, value, and logical conjunction.             
+	  Possible keys: any Tag or Meta defined in the system and the following reserved
+	  keys: start_date, end_date.               epg_id, media_id - for specific asset
+	  IDs.              geo_block - only valid value is &amp;quot;true&amp;quot;: When
+	  enabled, only assets that are not restriced to the user by geo-block rules will
+	  return.              parental_rules - only valid value is
+	  &amp;quot;true&amp;quot;: When enabled, only assets that the user
+	  doesn&amp;#39;t need to provide PIN code will return.             
+	  epg_channel_id – the channel identifier of the EPG program.             
+	  entitled_assets - valid values: &amp;quot;free&amp;quot;,
+	  &amp;quot;entitled&amp;quot;, &amp;quot;both&amp;quot;. free - gets only free to
+	  watch assets. entitled - only those that the user is implicitly entitled to
+	  watch.              Comparison operators: for numerical fields =, &amp;gt;,
+	  &amp;gt;=, &amp;lt;, &amp;lt;=, : (in). For alpha-numerical fields =, != (not),
+	  ~ (like), !~, ^ (starts with). Logical conjunction: and, or.              
+	  Search values are limited to 20 characters each.              (maximum length of
+	  entire filter is 2048 characters)  */
+	public var kSql: String? = nil
+	/**  Comma separated list of asset types to search within.               Possible
+	  values: 0 – EPG linear programs entries; 1 - Recordings; Any media type ID
+	  (according to media type IDs defined dynamically in the system).              If
+	  omitted – all types should be included.  */
+	public var typeIn: String? = nil
+	/**  Comma separated list of EPG channel ids to search within.  */
+	public var idIn: String? = nil
+
+
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(typeIn: String) {
+		self.dict["typeIn"] = typeIn
+	}
+	
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
+		}
+		if dict["typeIn"] != nil {
+			typeIn = dict["typeIn"] as? String
+		}
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
+		}
+
+	}
+
+	public override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
+		}
+		if(typeIn != nil) {
+			dict["typeIn"] = typeIn!
+		}
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
+		}
+		return dict
+	}
+}
+
