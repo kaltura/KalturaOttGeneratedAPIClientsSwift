@@ -57,7 +57,7 @@ open class AdsContext: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(sources != nil) {
 			dict["sources"] = sources!.map { value in value.toDictionary() }

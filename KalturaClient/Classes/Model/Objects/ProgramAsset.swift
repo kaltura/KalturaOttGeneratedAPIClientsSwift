@@ -122,7 +122,7 @@ open class ProgramAsset: Asset {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(epgChannelId != nil) {
 			dict["epgChannelId"] = epgChannelId!

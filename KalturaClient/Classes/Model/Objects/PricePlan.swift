@@ -108,7 +108,7 @@ open class PricePlan: UsageModule {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(priceDetailsId != nil) {
 			dict["priceDetailsId"] = priceDetailsId!

@@ -85,7 +85,7 @@ open class UserInterestTopic: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(metaId != nil) {
 			dict["metaId"] = metaId!

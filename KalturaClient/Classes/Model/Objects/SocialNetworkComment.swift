@@ -76,7 +76,7 @@ open class SocialNetworkComment: SocialComment {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(likeCounter != nil) {
 			dict["likeCounter"] = likeCounter!

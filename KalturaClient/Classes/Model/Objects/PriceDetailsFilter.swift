@@ -61,7 +61,7 @@ open class PriceDetailsFilter: Filter {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(idIn != nil) {
 			dict["idIn"] = idIn!

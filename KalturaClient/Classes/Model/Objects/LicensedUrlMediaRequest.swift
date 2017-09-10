@@ -76,7 +76,7 @@ open class LicensedUrlMediaRequest: LicensedUrlBaseRequest {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(contentId != nil) {
 			dict["contentId"] = contentId!

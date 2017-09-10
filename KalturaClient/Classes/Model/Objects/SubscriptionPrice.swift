@@ -63,7 +63,7 @@ open class SubscriptionPrice: ProductPrice {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
