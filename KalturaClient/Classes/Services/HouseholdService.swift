@@ -45,7 +45,7 @@ public final class HouseholdService{
 	/**  Creates a household for the user  */
 	public static func add(household: Household) -> RequestBuilder<Household, Household.HouseholdTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Household, Household.HouseholdTokenizer, AddTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, AddTokenizer>(service: "household", action: "add")
-			.setBody(key: "household", value: household)
+			.setParam(key: "household", value: household)
 
 		return request
 	}
@@ -67,7 +67,7 @@ public final class HouseholdService{
 	  users, devices, entitlements, payment methods and notification date.  */
 	public static func delete(id: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "household", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -88,7 +88,7 @@ public final class HouseholdService{
 	/**  Returns the household model  */
 	public static func get(id: Int?) -> RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, GetTokenizer>(service: "household", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -105,7 +105,7 @@ public final class HouseholdService{
 	/**  Reset a household’s time limitation for removing user or device  */
 	public static func resetFrequency(frequencyType: HouseholdFrequencyType) -> RequestBuilder<Household, Household.HouseholdTokenizer, ResetFrequencyTokenizer> {
 		let request: RequestBuilder<Household, Household.HouseholdTokenizer, ResetFrequencyTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, ResetFrequencyTokenizer>(service: "household", action: "resetFrequency")
-			.setBody(key: "frequencyType", value: frequencyType.rawValue)
+			.setParam(key: "frequencyType", value: frequencyType.rawValue)
 
 		return request
 	}
@@ -142,7 +142,7 @@ public final class HouseholdService{
 	/**  Update the household name and description  */
 	public static func update(household: Household) -> RequestBuilder<Household, Household.HouseholdTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Household, Household.HouseholdTokenizer, UpdateTokenizer> = RequestBuilder<Household, Household.HouseholdTokenizer, UpdateTokenizer>(service: "household", action: "update")
-			.setBody(key: "household", value: household)
+			.setParam(key: "household", value: household)
 
 		return request
 	}

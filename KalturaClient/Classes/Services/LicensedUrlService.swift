@@ -45,7 +45,7 @@ public final class LicensedUrlService{
 	/**  Get the URL for playing an asset - program, media or recording  */
 	public static func get(request: LicensedUrlBaseRequest) -> RequestBuilder<LicensedUrl, LicensedUrl.LicensedUrlTokenizer, GetTokenizer> {
 		let request: RequestBuilder<LicensedUrl, LicensedUrl.LicensedUrlTokenizer, GetTokenizer> = RequestBuilder<LicensedUrl, LicensedUrl.LicensedUrlTokenizer, GetTokenizer>(service: "licensedurl", action: "get")
-			.setBody(key: "request", value: request)
+			.setParam(key: "request", value: request)
 
 		return request
 	}

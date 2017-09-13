@@ -49,7 +49,7 @@ public final class PricePlanService{
 	/**  Returns a list of price plans by IDs  */
 	public static func list(filter: PricePlanFilter?) -> RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer> = RequestBuilder<PricePlanListResponse, PricePlanListResponse.PricePlanListResponseTokenizer, ListTokenizer>(service: "priceplan", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -70,8 +70,8 @@ public final class PricePlanService{
 	/**  Updates a price plan  */
 	public static func update(id: Int64, pricePlan: PricePlan) -> RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, UpdateTokenizer> = RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, UpdateTokenizer>(service: "priceplan", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "pricePlan", value: pricePlan)
+			.setParam(key: "id", value: id)
+			.setParam(key: "pricePlan", value: pricePlan)
 
 		return request
 	}

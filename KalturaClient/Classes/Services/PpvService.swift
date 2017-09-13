@@ -47,7 +47,7 @@ public final class PpvService{
 	/**  Returns ppv object by internal identifier  */
 	public static func get(id: Int64) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer>(service: "ppv", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}

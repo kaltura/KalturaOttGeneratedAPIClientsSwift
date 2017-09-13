@@ -45,7 +45,7 @@ public final class ConfigurationGroupService{
 	/**  Add a new configuration group  */
 	public static func add(configurationGroup: ConfigurationGroup) -> RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, AddTokenizer> {
 		let request: RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, AddTokenizer> = RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, AddTokenizer>(service: "configurationgroup", action: "add")
-			.setBody(key: "configurationGroup", value: configurationGroup)
+			.setParam(key: "configurationGroup", value: configurationGroup)
 
 		return request
 	}
@@ -63,7 +63,7 @@ public final class ConfigurationGroupService{
 	  devices associations  */
 	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "configurationgroup", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -81,7 +81,7 @@ public final class ConfigurationGroupService{
 	  number of associated devices, and list of device configuration  */
 	public static func get(id: String) -> RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, GetTokenizer> {
 		let request: RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, GetTokenizer> = RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, GetTokenizer>(service: "configurationgroup", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -112,8 +112,8 @@ public final class ConfigurationGroupService{
 	/**  Update configuration group name  */
 	public static func update(id: String, configurationGroup: ConfigurationGroup) -> RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, UpdateTokenizer> = RequestBuilder<ConfigurationGroup, ConfigurationGroup.ConfigurationGroupTokenizer, UpdateTokenizer>(service: "configurationgroup", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "configurationGroup", value: configurationGroup)
+			.setParam(key: "id", value: id)
+			.setParam(key: "configurationGroup", value: configurationGroup)
 
 		return request
 	}

@@ -53,8 +53,8 @@ public final class PersonalFeedService{
 	/**  List user&amp;#39;s feeds.              Possible status codes:  */
 	public static func list(filter: PersonalFeedFilter, pager: FilterPager?) -> RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer> = RequestBuilder<PersonalFeedListResponse, PersonalFeedListResponse.PersonalFeedListResponseTokenizer, ListTokenizer>(service: "personalfeed", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

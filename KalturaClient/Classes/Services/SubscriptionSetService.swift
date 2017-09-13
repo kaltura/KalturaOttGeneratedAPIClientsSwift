@@ -45,7 +45,7 @@ public final class SubscriptionSetService{
 	/**  Add a new subscriptionSet  */
 	public static func add(subscriptionSet: SubscriptionSet) -> RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, AddTokenizer> {
 		let request: RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, AddTokenizer> = RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, AddTokenizer>(service: "subscriptionset", action: "add")
-			.setBody(key: "subscriptionSet", value: subscriptionSet)
+			.setParam(key: "subscriptionSet", value: subscriptionSet)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class SubscriptionSetService{
 	/**  Delete a subscriptionSet  */
 	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "subscriptionset", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class SubscriptionSetService{
 	/**  Get the subscriptionSet according to the Identifier  */
 	public static func get(id: Int64) -> RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, GetTokenizer> {
 		let request: RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, GetTokenizer> = RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, GetTokenizer>(service: "subscriptionset", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -98,7 +98,7 @@ public final class SubscriptionSetService{
 	/**  Returns a list of subscriptionSets requested by ids or subscription ids  */
 	public static func list(filter: SubscriptionSetFilter?) -> RequestBuilder<SubscriptionSetListResponse, SubscriptionSetListResponse.SubscriptionSetListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SubscriptionSetListResponse, SubscriptionSetListResponse.SubscriptionSetListResponseTokenizer, ListTokenizer> = RequestBuilder<SubscriptionSetListResponse, SubscriptionSetListResponse.SubscriptionSetListResponseTokenizer, ListTokenizer>(service: "subscriptionset", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -119,8 +119,8 @@ public final class SubscriptionSetService{
 	/**  Update the subscriptionSet  */
 	public static func update(id: Int64, subscriptionSet: SubscriptionSet) -> RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, UpdateTokenizer> = RequestBuilder<SubscriptionSet, SubscriptionSet.SubscriptionSetTokenizer, UpdateTokenizer>(service: "subscriptionset", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "subscriptionSet", value: subscriptionSet)
+			.setParam(key: "id", value: id)
+			.setParam(key: "subscriptionSet", value: subscriptionSet)
 
 		return request
 	}

@@ -45,7 +45,7 @@ public final class EngagementService{
 	/**  Insert new Engagement for partner  */
 	public static func add(engagement: Engagement) -> RequestBuilder<Engagement, Engagement.EngagementTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Engagement, Engagement.EngagementTokenizer, AddTokenizer> = RequestBuilder<Engagement, Engagement.EngagementTokenizer, AddTokenizer>(service: "engagement", action: "add")
-			.setBody(key: "engagement", value: engagement)
+			.setParam(key: "engagement", value: engagement)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class EngagementService{
 	/**  Delete engagement by engagement adapter id  */
 	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "engagement", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class EngagementService{
 	/**  Return engagement  */
 	public static func get(id: Int) -> RequestBuilder<Engagement, Engagement.EngagementTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Engagement, Engagement.EngagementTokenizer, GetTokenizer> = RequestBuilder<Engagement, Engagement.EngagementTokenizer, GetTokenizer>(service: "engagement", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -94,7 +94,7 @@ public final class EngagementService{
 	/**  Returns all Engagement for partner  */
 	public static func list(filter: EngagementFilter) -> RequestBuilder<EngagementListResponse, EngagementListResponse.EngagementListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<EngagementListResponse, EngagementListResponse.EngagementListResponseTokenizer, ListTokenizer> = RequestBuilder<EngagementListResponse, EngagementListResponse.EngagementListResponseTokenizer, ListTokenizer>(service: "engagement", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

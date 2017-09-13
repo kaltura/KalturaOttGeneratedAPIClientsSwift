@@ -46,7 +46,7 @@ public final class BookmarkService{
 	  position is used to later allow resume watching.  */
 	public static func add(bookmark: Bookmark) -> RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer>(service: "bookmark", action: "add")
-			.setBody(key: "bookmark", value: bookmark)
+			.setParam(key: "bookmark", value: bookmark)
 
 		return request
 	}
@@ -65,7 +65,7 @@ public final class BookmarkService{
 	  the requesting user and the default user of the household.  */
 	public static func list(filter: BookmarkFilter) -> RequestBuilder<BookmarkListResponse, BookmarkListResponse.BookmarkListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<BookmarkListResponse, BookmarkListResponse.BookmarkListResponseTokenizer, ListTokenizer> = RequestBuilder<BookmarkListResponse, BookmarkListResponse.BookmarkListResponseTokenizer, ListTokenizer>(service: "bookmark", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

@@ -45,7 +45,7 @@ public final class SeriesRecordingService{
 	/**  Issue a record request for a complete season or series  */
 	public static func add(recording: SeriesRecording) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, AddTokenizer> {
 		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, AddTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, AddTokenizer>(service: "seriesrecording", action: "add")
-			.setBody(key: "recording", value: recording)
+			.setParam(key: "recording", value: recording)
 
 		return request
 	}
@@ -63,7 +63,7 @@ public final class SeriesRecordingService{
 	  called for recording in status Scheduled or Recording Only  */
 	public static func cancel(id: Int64) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelTokenizer> {
 		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelTokenizer>(service: "seriesrecording", action: "cancel")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -86,8 +86,8 @@ public final class SeriesRecordingService{
 	/**  Cancel EPG recording that was recorded as part of series  */
 	public static func cancelByEpgId(id: Int64, epgId: Int64) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelByEpgIdTokenizer> {
 		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelByEpgIdTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelByEpgIdTokenizer>(service: "seriesrecording", action: "cancelByEpgId")
-			.setBody(key: "id", value: id)
-			.setBody(key: "epgId", value: epgId)
+			.setParam(key: "id", value: id)
+			.setParam(key: "epgId", value: epgId)
 
 		return request
 	}
@@ -110,8 +110,8 @@ public final class SeriesRecordingService{
 	/**  Cancel Season recording epgs that was recorded as part of series  */
 	public static func cancelBySeasonNumber(id: Int64, seasonNumber: Int64) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelBySeasonNumberTokenizer> {
 		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelBySeasonNumberTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, CancelBySeasonNumberTokenizer>(service: "seriesrecording", action: "cancelBySeasonNumber")
-			.setBody(key: "id", value: id)
-			.setBody(key: "seasonNumber", value: seasonNumber)
+			.setParam(key: "id", value: id)
+			.setParam(key: "seasonNumber", value: seasonNumber)
 
 		return request
 	}
@@ -129,7 +129,7 @@ public final class SeriesRecordingService{
 	  any status  */
 	public static func delete(id: Int64) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, DeleteTokenizer> {
 		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, DeleteTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, DeleteTokenizer>(service: "seriesrecording", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -152,8 +152,8 @@ public final class SeriesRecordingService{
 	/**  Delete Season recording epgs that was recorded as part of series  */
 	public static func deleteBySeasonNumber(id: Int64, seasonNumber: Int) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, DeleteBySeasonNumberTokenizer> {
 		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, DeleteBySeasonNumberTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, DeleteBySeasonNumberTokenizer>(service: "seriesrecording", action: "deleteBySeasonNumber")
-			.setBody(key: "id", value: id)
-			.setBody(key: "seasonNumber", value: seasonNumber)
+			.setParam(key: "id", value: id)
+			.setParam(key: "seasonNumber", value: seasonNumber)
 
 		return request
 	}
@@ -173,7 +173,7 @@ public final class SeriesRecordingService{
 	  status and KSQL.  */
 	public static func list(filter: SeriesRecordingFilter?) -> RequestBuilder<SeriesRecordingListResponse, SeriesRecordingListResponse.SeriesRecordingListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SeriesRecordingListResponse, SeriesRecordingListResponse.SeriesRecordingListResponseTokenizer, ListTokenizer> = RequestBuilder<SeriesRecordingListResponse, SeriesRecordingListResponse.SeriesRecordingListResponseTokenizer, ListTokenizer>(service: "seriesrecording", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

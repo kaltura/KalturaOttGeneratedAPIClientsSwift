@@ -47,7 +47,7 @@ public final class InboxMessageService{
 	/**  TBD  */
 	public static func get(id: String) -> RequestBuilder<InboxMessage, InboxMessage.InboxMessageTokenizer, GetTokenizer> {
 		let request: RequestBuilder<InboxMessage, InboxMessage.InboxMessageTokenizer, GetTokenizer> = RequestBuilder<InboxMessage, InboxMessage.InboxMessageTokenizer, GetTokenizer>(service: "inboxmessage", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -74,8 +74,8 @@ public final class InboxMessageService{
 	/**  List inbox messages  */
 	public static func list(filter: InboxMessageFilter?, pager: FilterPager?) -> RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer> = RequestBuilder<InboxMessageListResponse, InboxMessageListResponse.InboxMessageListResponseTokenizer, ListTokenizer>(service: "inboxmessage", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
@@ -98,8 +98,8 @@ public final class InboxMessageService{
 	/**  Updates the message status.  */
 	public static func updateStatus(id: String, status: InboxMessageStatus) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "inboxmessage", action: "updateStatus")
-			.setBody(key: "id", value: id)
-			.setBody(key: "status", value: status.rawValue)
+			.setParam(key: "id", value: id)
+			.setParam(key: "status", value: status.rawValue)
 
 		return request
 	}

@@ -46,7 +46,7 @@ public final class TransactionService{
 	  the existing subscription end date.  */
 	public static func downgrade(purchase: Purchase) -> NullRequestBuilder<DowngradeTokenizer> {
 		let request: NullRequestBuilder<DowngradeTokenizer> = NullRequestBuilder<DowngradeTokenizer>(service: "transaction", action: "downgrade")
-			.setBody(key: "purchase", value: purchase)
+			.setParam(key: "purchase", value: purchase)
 
 		return request
 	}
@@ -61,7 +61,7 @@ public final class TransactionService{
 	/**  Retrieve the purchase session identifier  */
 	public static func getPurchaseSessionId(purchaseSession: PurchaseSession) -> RequestBuilder<Int64, BaseTokenizedObject, GetPurchaseSessionIdTokenizer> {
 		let request: RequestBuilder<Int64, BaseTokenizedObject, GetPurchaseSessionIdTokenizer> = RequestBuilder<Int64, BaseTokenizedObject, GetPurchaseSessionIdTokenizer>(service: "transaction", action: "getPurchaseSessionId")
-			.setBody(key: "purchaseSession", value: purchaseSession)
+			.setParam(key: "purchaseSession", value: purchaseSession)
 
 		return request
 	}
@@ -77,7 +77,7 @@ public final class TransactionService{
 	  charge entitlements to use the requested product or subscription are granted.  */
 	public static func purchase(purchase_: Purchase) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer> {
 		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer>(service: "transaction", action: "purchase")
-			.setBody(key: "purchase", value: purchase_)
+			.setParam(key: "purchase", value: purchase_)
 
 		return request
 	}
@@ -101,8 +101,8 @@ public final class TransactionService{
 	  waiver date field to the current date.  */
 	public static func setWaiver(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, SetWaiverTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SetWaiverTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetWaiverTokenizer>(service: "transaction", action: "setWaiver")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "transactionType", value: transactionType.rawValue)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "transactionType", value: transactionType.rawValue)
 
 		return request
 	}
@@ -135,10 +135,10 @@ public final class TransactionService{
 	/**  Updates a pending purchase transaction state.  */
 	public static func updateStatus(paymentGatewayId: String, externalTransactionId: String, signature: String, status: TransactionStatus) -> NullRequestBuilder<UpdateStatusTokenizer> {
 		let request: NullRequestBuilder<UpdateStatusTokenizer> = NullRequestBuilder<UpdateStatusTokenizer>(service: "transaction", action: "updateStatus")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
-			.setBody(key: "externalTransactionId", value: externalTransactionId)
-			.setBody(key: "signature", value: signature)
-			.setBody(key: "status", value: status)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "externalTransactionId", value: externalTransactionId)
+			.setParam(key: "signature", value: signature)
+			.setParam(key: "status", value: status)
 
 		return request
 	}
@@ -154,7 +154,7 @@ public final class TransactionService{
 	  entitlements to use the requested product or subscription are granted.  */
 	public static func upgrade(purchase: Purchase) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer> {
 		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, UpgradeTokenizer>(service: "transaction", action: "upgrade")
-			.setBody(key: "purchase", value: purchase)
+			.setParam(key: "purchase", value: purchase)
 
 		return request
 	}
@@ -170,7 +170,7 @@ public final class TransactionService{
 	  entitles the user.  */
 	public static func validateReceipt(externalReceipt: ExternalReceipt) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, ValidateReceiptTokenizer> {
 		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, ValidateReceiptTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, ValidateReceiptTokenizer>(service: "transaction", action: "validateReceipt")
-			.setBody(key: "externalReceipt", value: externalReceipt)
+			.setParam(key: "externalReceipt", value: externalReceipt)
 
 		return request
 	}

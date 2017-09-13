@@ -45,7 +45,7 @@ public final class UserAssetsListItemService{
 	/**  Adds a new item to user’s private asset list  */
 	public static func add(userAssetsListItem: UserAssetsListItem) -> RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, AddTokenizer> {
 		let request: RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, AddTokenizer> = RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, AddTokenizer>(service: "userassetslistitem", action: "add")
-			.setBody(key: "userAssetsListItem", value: userAssetsListItem)
+			.setParam(key: "userAssetsListItem", value: userAssetsListItem)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class UserAssetsListItemService{
 	/**  Deletes an item from user’s private asset list  */
 	public static func delete(assetId: String, listType: UserAssetsListType) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userassetslistitem", action: "delete")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "listType", value: listType.rawValue)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "listType", value: listType.rawValue)
 
 		return request
 	}
@@ -98,9 +98,9 @@ public final class UserAssetsListItemService{
 	/**  Get an item from user’s private asset list  */
 	public static func get(assetId: String, listType: UserAssetsListType, itemType: UserAssetsListItemType) -> RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, GetTokenizer> {
 		let request: RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, GetTokenizer> = RequestBuilder<UserAssetsListItem, UserAssetsListItem.UserAssetsListItemTokenizer, GetTokenizer>(service: "userassetslistitem", action: "get")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "listType", value: listType.rawValue)
-			.setBody(key: "itemType", value: itemType.rawValue)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "listType", value: listType.rawValue)
+			.setParam(key: "itemType", value: itemType.rawValue)
 
 		return request
 	}

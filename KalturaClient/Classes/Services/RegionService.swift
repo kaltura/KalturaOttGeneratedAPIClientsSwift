@@ -45,7 +45,7 @@ public final class RegionService{
 	/**  Returns all regions for the partner  */
 	public static func list(filter: RegionFilter) -> RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> = RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer>(service: "region", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

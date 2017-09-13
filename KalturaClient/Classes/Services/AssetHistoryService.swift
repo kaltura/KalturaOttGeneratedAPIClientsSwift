@@ -49,7 +49,7 @@ public final class AssetHistoryService{
 	/**  Clean the user’s viewing history  */
 	public static func clean(filter: AssetHistoryFilter?) -> NullRequestBuilder<CleanTokenizer> {
 		let request: NullRequestBuilder<CleanTokenizer> = NullRequestBuilder<CleanTokenizer>(service: "assethistory", action: "clean")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -76,8 +76,8 @@ public final class AssetHistoryService{
 	/**  Get recently watched media for user, ordered by recently watched first.  */
 	public static func list(filter: AssetHistoryFilter?, pager: FilterPager?) -> RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetHistoryListResponse, AssetHistoryListResponse.AssetHistoryListResponseTokenizer, ListTokenizer>(service: "assethistory", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

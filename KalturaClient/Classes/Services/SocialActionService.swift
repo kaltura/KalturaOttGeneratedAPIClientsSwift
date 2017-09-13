@@ -45,7 +45,7 @@ public final class SocialActionService{
 	/**  Insert new user social action  */
 	public static func add(socialAction: SocialAction) -> RequestBuilder<UserSocialActionResponse, UserSocialActionResponse.UserSocialActionResponseTokenizer, AddTokenizer> {
 		let request: RequestBuilder<UserSocialActionResponse, UserSocialActionResponse.UserSocialActionResponseTokenizer, AddTokenizer> = RequestBuilder<UserSocialActionResponse, UserSocialActionResponse.UserSocialActionResponseTokenizer, AddTokenizer>(service: "socialaction", action: "add")
-			.setBody(key: "socialAction", value: socialAction)
+			.setParam(key: "socialAction", value: socialAction)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class SocialActionService{
 	/**  delete user social action  */
 	public static func delete(id: String) -> ArrayRequestBuilder<NetworkActionStatus, ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer>, DeleteTokenizer> {
 		let request: ArrayRequestBuilder<NetworkActionStatus, ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer>, DeleteTokenizer> = ArrayRequestBuilder<NetworkActionStatus, ArrayTokenizedObject<NetworkActionStatus.NetworkActionStatusTokenizer>, DeleteTokenizer>(service: "socialaction", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -85,8 +85,8 @@ public final class SocialActionService{
 	/**  Get list of user social actions  */
 	public static func list(filter: SocialActionFilter, pager: FilterPager?) -> RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer> = RequestBuilder<SocialActionListResponse, SocialActionListResponse.SocialActionListResponseTokenizer, ListTokenizer>(service: "socialaction", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

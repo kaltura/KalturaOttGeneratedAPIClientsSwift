@@ -45,7 +45,7 @@ public final class ExternalChannelProfileService{
 	/**  Insert new External channel for partner  */
 	public static func add(externalChannel: ExternalChannelProfile) -> RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, AddTokenizer> = RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, AddTokenizer>(service: "externalchannelprofile", action: "add")
-			.setBody(key: "externalChannel", value: externalChannel)
+			.setParam(key: "externalChannel", value: externalChannel)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class ExternalChannelProfileService{
 	/**  Delete External channel by External channel id  */
 	public static func delete(externalChannelId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "externalchannelprofile", action: "delete")
-			.setBody(key: "externalChannelId", value: externalChannelId)
+			.setParam(key: "externalChannelId", value: externalChannelId)
 
 		return request
 	}
@@ -93,8 +93,8 @@ public final class ExternalChannelProfileService{
 	/**  Update External channel details  */
 	public static func update(externalChannelId: Int, externalChannel: ExternalChannelProfile) -> RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, UpdateTokenizer> = RequestBuilder<ExternalChannelProfile, ExternalChannelProfile.ExternalChannelProfileTokenizer, UpdateTokenizer>(service: "externalchannelprofile", action: "update")
-			.setBody(key: "externalChannelId", value: externalChannelId)
-			.setBody(key: "externalChannel", value: externalChannel)
+			.setParam(key: "externalChannelId", value: externalChannelId)
+			.setParam(key: "externalChannel", value: externalChannel)
 
 		return request
 	}

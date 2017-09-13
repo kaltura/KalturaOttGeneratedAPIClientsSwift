@@ -53,8 +53,8 @@ public final class SocialCommentService{
 	/**  Get a list of all social comments filtered by asset ID and social platform  */
 	public static func list(filter: SocialCommentFilter, pager: FilterPager?) -> RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer> = RequestBuilder<SocialCommentListResponse, SocialCommentListResponse.SocialCommentListResponseTokenizer, ListTokenizer>(service: "socialcomment", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

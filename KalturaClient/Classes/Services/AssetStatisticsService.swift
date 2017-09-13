@@ -45,7 +45,7 @@ public final class AssetStatisticsService{
 	/**  Returns statistics for given list of assets by type and / or time period  */
 	public static func query(query_: AssetStatisticsQuery) -> RequestBuilder<AssetStatisticsListResponse, AssetStatisticsListResponse.AssetStatisticsListResponseTokenizer, QueryTokenizer> {
 		let request: RequestBuilder<AssetStatisticsListResponse, AssetStatisticsListResponse.AssetStatisticsListResponseTokenizer, QueryTokenizer> = RequestBuilder<AssetStatisticsListResponse, AssetStatisticsListResponse.AssetStatisticsListResponseTokenizer, QueryTokenizer>(service: "assetstatistics", action: "query")
-			.setBody(key: "query", value: query_)
+			.setParam(key: "query", value: query_)
 
 		return request
 	}

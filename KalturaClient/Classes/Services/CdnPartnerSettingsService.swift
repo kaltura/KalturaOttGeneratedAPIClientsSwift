@@ -55,7 +55,7 @@ public final class CdnPartnerSettingsService{
 	/**  Configure the partner’s CDN settings (default adapters)  */
 	public static func update(settings: CDNPartnerSettings) -> RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, UpdateTokenizer> = RequestBuilder<CDNPartnerSettings, CDNPartnerSettings.CDNPartnerSettingsTokenizer, UpdateTokenizer>(service: "cdnpartnersettings", action: "update")
-			.setBody(key: "settings", value: settings)
+			.setParam(key: "settings", value: settings)
 
 		return request
 	}

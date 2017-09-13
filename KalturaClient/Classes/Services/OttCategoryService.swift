@@ -47,7 +47,7 @@ public final class OttCategoryService{
 	/**  Retrieve the list of categories (hierarchical) and their associated channels  */
 	public static func get(id: Int) -> RequestBuilder<OTTCategory, OTTCategory.OTTCategoryTokenizer, GetTokenizer> {
 		let request: RequestBuilder<OTTCategory, OTTCategory.OTTCategoryTokenizer, GetTokenizer> = RequestBuilder<OTTCategory, OTTCategory.OTTCategoryTokenizer, GetTokenizer>(service: "ottcategory", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}

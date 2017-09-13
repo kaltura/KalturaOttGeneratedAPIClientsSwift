@@ -45,7 +45,7 @@ public final class UserInterestService{
 	/**  Insert new user interest for partner user  */
 	public static func add(userInterest: UserInterest) -> RequestBuilder<UserInterest, UserInterest.UserInterestTokenizer, AddTokenizer> {
 		let request: RequestBuilder<UserInterest, UserInterest.UserInterestTokenizer, AddTokenizer> = RequestBuilder<UserInterest, UserInterest.UserInterestTokenizer, AddTokenizer>(service: "userinterest", action: "add")
-			.setBody(key: "userInterest", value: userInterest)
+			.setParam(key: "userInterest", value: userInterest)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class UserInterestService{
 	/**  Delete new user interest for partner user  */
 	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userinterest", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}

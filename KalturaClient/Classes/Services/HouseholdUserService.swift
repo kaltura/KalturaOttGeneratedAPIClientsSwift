@@ -45,7 +45,7 @@ public final class HouseholdUserService{
 	/**  Adds a user to household  */
 	public static func add(householdUser: HouseholdUser) -> RequestBuilder<HouseholdUser, HouseholdUser.HouseholdUserTokenizer, AddTokenizer> {
 		let request: RequestBuilder<HouseholdUser, HouseholdUser.HouseholdUserTokenizer, AddTokenizer> = RequestBuilder<HouseholdUser, HouseholdUser.HouseholdUserTokenizer, AddTokenizer>(service: "householduser", action: "add")
-			.setBody(key: "householdUser", value: householdUser)
+			.setParam(key: "householdUser", value: householdUser)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class HouseholdUserService{
 	/**  Removes a user from household  */
 	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "householduser", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -81,7 +81,7 @@ public final class HouseholdUserService{
 	/**  Returns the users within the household  */
 	public static func list(filter: HouseholdUserFilter?) -> RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdUserListResponse, HouseholdUserListResponse.HouseholdUserListResponseTokenizer, ListTokenizer>(service: "householduser", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

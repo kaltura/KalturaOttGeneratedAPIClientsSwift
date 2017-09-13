@@ -47,7 +47,7 @@ public final class MessageTemplateService{
 	/**  Retrieve a message template used in push notifications and inbox  */
 	public static func get(messageType: MessageTemplateType) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> {
 		let request: RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer> = RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, GetTokenizer>(service: "messagetemplate", action: "get")
-			.setBody(key: "messageType", value: messageType.rawValue)
+			.setParam(key: "messageType", value: messageType.rawValue)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class MessageTemplateService{
 	/**  Set the account’s push notifications and inbox messages templates  */
 	public static func update(messageType: MessageTemplateType, template: MessageTemplate) -> RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer> = RequestBuilder<MessageTemplate, MessageTemplate.MessageTemplateTokenizer, UpdateTokenizer>(service: "messagetemplate", action: "update")
-			.setBody(key: "messageType", value: messageType.rawValue)
-			.setBody(key: "template", value: template)
+			.setParam(key: "messageType", value: messageType.rawValue)
+			.setParam(key: "template", value: template)
 
 		return request
 	}

@@ -45,7 +45,7 @@ public final class SubscriptionService{
 	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
 	public static func list(filter: SubscriptionFilter) -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> = RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer>(service: "subscription", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class SubscriptionService{
 	/**  Returns information about a coupon for subscription  */
 	public static func validateCoupon(id: Int, code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer> {
 		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, ValidateCouponTokenizer>(service: "subscription", action: "validateCoupon")
-			.setBody(key: "id", value: id)
-			.setBody(key: "code", value: code)
+			.setParam(key: "id", value: id)
+			.setParam(key: "code", value: code)
 
 		return request
 	}

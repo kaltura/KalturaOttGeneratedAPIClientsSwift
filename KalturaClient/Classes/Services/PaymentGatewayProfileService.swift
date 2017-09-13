@@ -45,7 +45,7 @@ public final class PaymentGatewayProfileService{
 	/**  Insert new payment gateway for partner  */
 	public static func add(paymentGateway: PaymentGatewayProfile) -> RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, AddTokenizer> = RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, AddTokenizer>(service: "paymentgatewayprofile", action: "add")
-			.setBody(key: "paymentGateway", value: paymentGateway)
+			.setParam(key: "paymentGateway", value: paymentGateway)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class PaymentGatewayProfileService{
 	/**  Delete payment gateway by payment gateway id  */
 	public static func delete(paymentGatewayId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "paymentgatewayprofile", action: "delete")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class PaymentGatewayProfileService{
 	/**  Generate payment gateway shared secret  */
 	public static func generateSharedSecret(paymentGatewayId: Int) -> RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, GenerateSharedSecretTokenizer>(service: "paymentgatewayprofile", action: "generateSharedSecret")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
 
 		return request
 	}
@@ -108,9 +108,9 @@ public final class PaymentGatewayProfileService{
 	/**  Gets the Payment Gateway Configuration for the payment gateway identifier given  */
 	public static func getConfiguration(alias: String, intent: String, extraParameters: Array<KeyValue>) -> RequestBuilder<PaymentGatewayConfiguration, PaymentGatewayConfiguration.PaymentGatewayConfigurationTokenizer, GetConfigurationTokenizer> {
 		let request: RequestBuilder<PaymentGatewayConfiguration, PaymentGatewayConfiguration.PaymentGatewayConfigurationTokenizer, GetConfigurationTokenizer> = RequestBuilder<PaymentGatewayConfiguration, PaymentGatewayConfiguration.PaymentGatewayConfigurationTokenizer, GetConfigurationTokenizer>(service: "paymentgatewayprofile", action: "getConfiguration")
-			.setBody(key: "alias", value: alias)
-			.setBody(key: "intent", value: intent)
-			.setBody(key: "extraParameters", value: extraParameters)
+			.setParam(key: "alias", value: alias)
+			.setParam(key: "intent", value: intent)
+			.setParam(key: "extraParameters", value: extraParameters)
 
 		return request
 	}
@@ -141,8 +141,8 @@ public final class PaymentGatewayProfileService{
 	/**  Update payment gateway details  */
 	public static func update(paymentGatewayId: Int, paymentGateway: PaymentGatewayProfile) -> RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, UpdateTokenizer> = RequestBuilder<PaymentGatewayProfile, PaymentGatewayProfile.PaymentGatewayProfileTokenizer, UpdateTokenizer>(service: "paymentgatewayprofile", action: "update")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
-			.setBody(key: "paymentGateway", value: paymentGateway)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentGateway", value: paymentGateway)
 
 		return request
 	}

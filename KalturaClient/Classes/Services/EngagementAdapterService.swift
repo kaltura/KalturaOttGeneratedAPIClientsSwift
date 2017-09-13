@@ -45,7 +45,7 @@ public final class EngagementAdapterService{
 	/**  Insert new Engagement adapter for partner  */
 	public static func add(engagementAdapter: EngagementAdapter) -> RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, AddTokenizer> {
 		let request: RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, AddTokenizer> = RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, AddTokenizer>(service: "engagementadapter", action: "add")
-			.setBody(key: "engagementAdapter", value: engagementAdapter)
+			.setParam(key: "engagementAdapter", value: engagementAdapter)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class EngagementAdapterService{
 	/**  Delete Engagement adapter by Engagement adapter id  */
 	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "engagementadapter", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class EngagementAdapterService{
 	/**  Generate engagement adapter shared secret  */
 	public static func generateSharedSecret(id: Int) -> RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, GenerateSharedSecretTokenizer>(service: "engagementadapter", action: "generateSharedSecret")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -96,7 +96,7 @@ public final class EngagementAdapterService{
 	/**  Returns all Engagement adapters for partner : id + name  */
 	public static func get(id: Int) -> RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, GetTokenizer> {
 		let request: RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, GetTokenizer> = RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, GetTokenizer>(service: "engagementadapter", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -127,8 +127,8 @@ public final class EngagementAdapterService{
 	/**  Update Engagement adapter details  */
 	public static func update(id: Int, engagementAdapter: EngagementAdapter) -> RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, UpdateTokenizer> = RequestBuilder<EngagementAdapter, EngagementAdapter.EngagementAdapterTokenizer, UpdateTokenizer>(service: "engagementadapter", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "engagementAdapter", value: engagementAdapter)
+			.setParam(key: "id", value: id)
+			.setParam(key: "engagementAdapter", value: engagementAdapter)
 
 		return request
 	}

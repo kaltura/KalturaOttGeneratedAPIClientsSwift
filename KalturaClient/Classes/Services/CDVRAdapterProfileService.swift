@@ -45,7 +45,7 @@ public final class CDVRAdapterProfileService{
 	/**  Insert new C-DVR adapter for partner  */
 	public static func add(adapter: CDVRAdapterProfile) -> RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, AddTokenizer> = RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, AddTokenizer>(service: "cdvradapterprofile", action: "add")
-			.setBody(key: "adapter", value: adapter)
+			.setParam(key: "adapter", value: adapter)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class CDVRAdapterProfileService{
 	/**  Delete C-DVR adapter by C-DVR adapter id  */
 	public static func delete(adapterId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "cdvradapterprofile", action: "delete")
-			.setBody(key: "adapterId", value: adapterId)
+			.setParam(key: "adapterId", value: adapterId)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class CDVRAdapterProfileService{
 	/**  Generate C-DVR adapter shared secret  */
 	public static func generateSharedSecret(adapterId: Int) -> RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, GenerateSharedSecretTokenizer>(service: "cdvradapterprofile", action: "generateSharedSecret")
-			.setBody(key: "adapterId", value: adapterId)
+			.setParam(key: "adapterId", value: adapterId)
 
 		return request
 	}
@@ -110,8 +110,8 @@ public final class CDVRAdapterProfileService{
 	/**  Update C-DVR adapter details  */
 	public static func update(adapterId: Int, adapter: CDVRAdapterProfile) -> RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, UpdateTokenizer> = RequestBuilder<CDVRAdapterProfile, CDVRAdapterProfile.CDVRAdapterProfileTokenizer, UpdateTokenizer>(service: "cdvradapterprofile", action: "update")
-			.setBody(key: "adapterId", value: adapterId)
-			.setBody(key: "adapter", value: adapter)
+			.setParam(key: "adapterId", value: adapterId)
+			.setParam(key: "adapter", value: adapter)
 
 		return request
 	}
