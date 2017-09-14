@@ -12,7 +12,6 @@ s.source_files = 'KalturaClient/Classes/**/*'
  
 s.subspec 'Core' do |sp|
     sp.source_files = 'Classes/**/*'
-    sp.dependency 'SwiftyJSON', '3.1.4'
     sp.dependency 'Log', '1.0'
 end
 s.default_subspec = 'Core'
