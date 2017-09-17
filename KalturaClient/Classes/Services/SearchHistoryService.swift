@@ -49,7 +49,7 @@ public final class SearchHistoryService{
 	/**  Clean the user’s search history  */
 	public static func clean(filter: SearchHistoryFilter?) -> RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CleanTokenizer>(service: "searchhistory", action: "clean")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -67,7 +67,7 @@ public final class SearchHistoryService{
 	  ItemNotFound  */
 	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "searchhistory", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -94,8 +94,8 @@ public final class SearchHistoryService{
 	/**  Get user&amp;#39;s last search requests  */
 	public static func list(filter: SearchHistoryFilter?, pager: FilterPager?) -> RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer> = RequestBuilder<SearchHistoryListResponse, SearchHistoryListResponse.SearchHistoryListResponseTokenizer, ListTokenizer>(service: "searchhistory", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

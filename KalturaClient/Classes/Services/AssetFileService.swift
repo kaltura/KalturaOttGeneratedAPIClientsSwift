@@ -53,8 +53,8 @@ public final class AssetFileService{
 	/**  get KalturaAssetFileContext  */
 	public static func getContext(id: String, contextType: ContextType) -> RequestBuilder<AssetFileContext, AssetFileContext.AssetFileContextTokenizer, GetContextTokenizer> {
 		let request: RequestBuilder<AssetFileContext, AssetFileContext.AssetFileContextTokenizer, GetContextTokenizer> = RequestBuilder<AssetFileContext, AssetFileContext.AssetFileContextTokenizer, GetContextTokenizer>(service: "assetfile", action: "getContext")
-			.setBody(key: "id", value: id)
-			.setBody(key: "contextType", value: contextType.rawValue)
+			.setParam(key: "id", value: id)
+			.setParam(key: "contextType", value: contextType.rawValue)
 
 		return request
 	}
@@ -105,12 +105,12 @@ public final class AssetFileService{
 	/**  Redirects to play manifest  */
 	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?) -> NullRequestBuilder<PlayManifestTokenizer> {
 		let request: NullRequestBuilder<PlayManifestTokenizer> = NullRequestBuilder<PlayManifestTokenizer>(service: "assetfile", action: "playManifest")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "assetType", value: assetType.rawValue)
-			.setBody(key: "assetFileId", value: assetFileId)
-			.setBody(key: "contextType", value: contextType.rawValue)
-			.setBody(key: "ks", value: ks)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "assetType", value: assetType.rawValue)
+			.setParam(key: "assetFileId", value: assetFileId)
+			.setParam(key: "contextType", value: contextType.rawValue)
+			.setParam(key: "ks", value: ks)
 
 		return request
 	}

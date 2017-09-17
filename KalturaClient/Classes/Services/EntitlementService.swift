@@ -54,8 +54,8 @@ public final class EntitlementService{
 	  within cancellation window and content not already consumed  */
 	public static func cancel(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer>(service: "entitlement", action: "cancel")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "transactionType", value: transactionType.rawValue)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "transactionType", value: transactionType.rawValue)
 
 		return request
 	}
@@ -73,7 +73,7 @@ public final class EntitlementService{
 	  stays valid till the next renewal.  */
 	public static func cancelRenewal(subscriptionId: String) -> NullRequestBuilder<CancelRenewalTokenizer> {
 		let request: NullRequestBuilder<CancelRenewalTokenizer> = NullRequestBuilder<CancelRenewalTokenizer>(service: "entitlement", action: "cancelRenewal")
-			.setBody(key: "subscriptionId", value: subscriptionId)
+			.setParam(key: "subscriptionId", value: subscriptionId)
 
 		return request
 	}
@@ -90,7 +90,7 @@ public final class EntitlementService{
 	/**  Cancel Scheduled Subscription  */
 	public static func cancelScheduledSubscription(scheduledSubscriptionId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, CancelScheduledSubscriptionTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, CancelScheduledSubscriptionTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CancelScheduledSubscriptionTokenizer>(service: "entitlement", action: "cancelScheduledSubscription")
-			.setBody(key: "scheduledSubscriptionId", value: scheduledSubscriptionId)
+			.setParam(key: "scheduledSubscriptionId", value: scheduledSubscriptionId)
 
 		return request
 	}
@@ -126,8 +126,8 @@ public final class EntitlementService{
 	  of cancellation window and content consumption status  */
 	public static func forceCancel(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer>(service: "entitlement", action: "forceCancel")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "transactionType", value: transactionType.rawValue)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "transactionType", value: transactionType.rawValue)
 
 		return request
 	}
@@ -166,10 +166,10 @@ public final class EntitlementService{
 	/**  Grant household for an entitlement for a PPV or Subscription.  */
 	public static func grant(productId: Int, productType: TransactionType, history: Bool, contentId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, GrantTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, GrantTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, GrantTokenizer>(service: "entitlement", action: "grant")
-			.setBody(key: "productId", value: productId)
-			.setBody(key: "productType", value: productType.rawValue)
-			.setBody(key: "history", value: history)
-			.setBody(key: "contentId", value: contentId)
+			.setParam(key: "productId", value: productId)
+			.setParam(key: "productType", value: productType.rawValue)
+			.setParam(key: "history", value: history)
+			.setParam(key: "contentId", value: contentId)
 
 		return request
 	}
@@ -192,8 +192,8 @@ public final class EntitlementService{
 	/**  Gets all the entitled media items for a household  */
 	public static func list(filter: EntitlementFilter, pager: FilterPager?) -> RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> = RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer>(service: "entitlement", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
@@ -223,9 +223,9 @@ public final class EntitlementService{
 	  only Grant  */
 	public static func swap(currentProductId: Int, newProductId: Int, history: Bool) -> RequestBuilder<Bool, BaseTokenizedObject, SwapTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SwapTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SwapTokenizer>(service: "entitlement", action: "swap")
-			.setBody(key: "currentProductId", value: currentProductId)
-			.setBody(key: "newProductId", value: newProductId)
-			.setBody(key: "history", value: history)
+			.setParam(key: "currentProductId", value: currentProductId)
+			.setParam(key: "newProductId", value: newProductId)
+			.setParam(key: "history", value: history)
 
 		return request
 	}
@@ -246,8 +246,8 @@ public final class EntitlementService{
 	/**  Update Kaltura Entitelment by Purchase id  */
 	public static func update(id: Int, entitlement: Entitlement) -> RequestBuilder<Entitlement, Entitlement.EntitlementTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Entitlement, Entitlement.EntitlementTokenizer, UpdateTokenizer> = RequestBuilder<Entitlement, Entitlement.EntitlementTokenizer, UpdateTokenizer>(service: "entitlement", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "entitlement", value: entitlement)
+			.setParam(key: "id", value: id)
+			.setParam(key: "entitlement", value: entitlement)
 
 		return request
 	}

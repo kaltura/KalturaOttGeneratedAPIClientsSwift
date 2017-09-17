@@ -46,7 +46,7 @@ public final class UserAssetRuleService{
 	  this user and asset.  */
 	public static func list(filter: UserAssetRuleFilter) -> RequestBuilder<UserAssetRuleListResponse, UserAssetRuleListResponse.UserAssetRuleListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<UserAssetRuleListResponse, UserAssetRuleListResponse.UserAssetRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<UserAssetRuleListResponse, UserAssetRuleListResponse.UserAssetRuleListResponseTokenizer, ListTokenizer>(service: "userassetrule", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

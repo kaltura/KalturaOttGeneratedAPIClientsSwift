@@ -84,7 +84,7 @@ open class SocialFriendActivity: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(userFullName != nil) {
 			dict["userFullName"] = userFullName!

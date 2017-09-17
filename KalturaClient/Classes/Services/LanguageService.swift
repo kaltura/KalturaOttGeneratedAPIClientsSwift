@@ -46,7 +46,7 @@ public final class LanguageService{
 	  codes  */
 	public static func list(filter: LanguageFilter) -> RequestBuilder<LanguageListResponse, LanguageListResponse.LanguageListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<LanguageListResponse, LanguageListResponse.LanguageListResponseTokenizer, ListTokenizer> = RequestBuilder<LanguageListResponse, LanguageListResponse.LanguageListResponseTokenizer, ListTokenizer>(service: "language", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

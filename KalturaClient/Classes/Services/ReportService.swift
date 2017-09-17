@@ -47,7 +47,7 @@ public final class ReportService{
 	/**  Return a device configuration retrieval log request for a specific device.  */
 	public static func get(udid: String) -> RequestBuilder<Report, Report.ReportTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Report, Report.ReportTokenizer, GetTokenizer> = RequestBuilder<Report, Report.ReportTokenizer, GetTokenizer>(service: "report", action: "get")
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
@@ -71,8 +71,8 @@ public final class ReportService{
 	  with the parameter &amp;quot;FromData&amp;quot;.  */
 	public static func list(filter: ReportFilter, pager: FilterPager?) -> RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer> = RequestBuilder<ReportListResponse, ReportListResponse.ReportListResponseTokenizer, ListTokenizer>(service: "report", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

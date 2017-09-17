@@ -45,7 +45,7 @@ public final class CdnAdapterProfileService{
 	/**  Insert new CDN adapter for partner  */
 	public static func add(adapter: CDNAdapterProfile) -> RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, AddTokenizer> = RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, AddTokenizer>(service: "cdnadapterprofile", action: "add")
-			.setBody(key: "adapter", value: adapter)
+			.setParam(key: "adapter", value: adapter)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class CdnAdapterProfileService{
 	/**  Delete CDN adapter by CDN adapter id  */
 	public static func delete(adapterId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "cdnadapterprofile", action: "delete")
-			.setBody(key: "adapterId", value: adapterId)
+			.setParam(key: "adapterId", value: adapterId)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class CdnAdapterProfileService{
 	/**  Generate CDN adapter shared secret  */
 	public static func generateSharedSecret(adapterId: Int) -> RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, GenerateSharedSecretTokenizer>(service: "cdnadapterprofile", action: "generateSharedSecret")
-			.setBody(key: "adapterId", value: adapterId)
+			.setParam(key: "adapterId", value: adapterId)
 
 		return request
 	}
@@ -110,8 +110,8 @@ public final class CdnAdapterProfileService{
 	/**  Update CDN adapter details  */
 	public static func update(adapterId: Int, adapter: CDNAdapterProfile) -> RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, UpdateTokenizer> = RequestBuilder<CDNAdapterProfile, CDNAdapterProfile.CDNAdapterProfileTokenizer, UpdateTokenizer>(service: "cdnadapterprofile", action: "update")
-			.setBody(key: "adapterId", value: adapterId)
-			.setBody(key: "adapter", value: adapter)
+			.setParam(key: "adapterId", value: adapterId)
+			.setParam(key: "adapter", value: adapter)
 
 		return request
 	}

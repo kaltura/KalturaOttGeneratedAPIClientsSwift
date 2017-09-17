@@ -59,9 +59,9 @@ public final class OttUserService{
 	/**  Activate the account by activation token  */
 	public static func activate(partnerId: Int, username: String, activationToken: String) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, ActivateTokenizer> {
 		let request: RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, ActivateTokenizer> = RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, ActivateTokenizer>(service: "ottuser", action: "activate")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "username", value: username)
-			.setBody(key: "activationToken", value: activationToken)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "username", value: username)
+			.setParam(key: "activationToken", value: activationToken)
 
 		return request
 	}
@@ -78,7 +78,7 @@ public final class OttUserService{
 	/**  Edit user details.  */
 	public static func addRole(roleId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, AddRoleTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, AddRoleTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, AddRoleTokenizer>(service: "ottuser", action: "addRole")
-			.setBody(key: "roleId", value: roleId)
+			.setParam(key: "roleId", value: roleId)
 
 		return request
 	}
@@ -105,8 +105,8 @@ public final class OttUserService{
 	/**  Returns tokens (KS and refresh token) for anonymous access  */
 	public static func anonymousLogin(partnerId: Int, udid: String?) -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, AnonymousLoginTokenizer> {
 		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, AnonymousLoginTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, AnonymousLoginTokenizer>(service: "ottuser", action: "anonymousLogin")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
@@ -157,7 +157,7 @@ public final class OttUserService{
 	  in the master or the user itself  */
 	public static func list(filter: OTTUserFilter?) -> RequestBuilder<OTTUserListResponse, OTTUserListResponse.OTTUserListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<OTTUserListResponse, OTTUserListResponse.OTTUserListResponseTokenizer, ListTokenizer> = RequestBuilder<OTTUserListResponse, OTTUserListResponse.OTTUserListResponseTokenizer, ListTokenizer>(service: "ottuser", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -214,11 +214,11 @@ public final class OttUserService{
 	/**  login with user name and password.  */
 	public static func login(partnerId: Int, username: String?, password: String?, extraParams: Dictionary<String, StringValue>?, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer>(service: "ottuser", action: "login")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "username", value: username)
-			.setBody(key: "password", value: password)
-			.setBody(key: "extraParams", value: extraParams)
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "username", value: username)
+			.setParam(key: "password", value: password)
+			.setParam(key: "extraParams", value: extraParams)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
@@ -261,10 +261,10 @@ public final class OttUserService{
 	/**  User sign-in via a time-expired sign-in PIN.  */
 	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, secret: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "ottuser", action: "loginWithPin")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "pin", value: pin)
-			.setBody(key: "udid", value: udid)
-			.setBody(key: "secret", value: secret)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "pin", value: pin)
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "secret", value: secret)
 
 		return request
 	}
@@ -302,8 +302,8 @@ public final class OttUserService{
 	  (only if it&amp;#39;s valid and not expired)  */
 	public static func refreshSession(refreshToken: String, udid: String?) -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer> {
 		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, RefreshSessionTokenizer>(service: "ottuser", action: "refreshSession")
-			.setBody(key: "refreshToken", value: refreshToken)
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "refreshToken", value: refreshToken)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
@@ -330,9 +330,9 @@ public final class OttUserService{
 	/**  Sign up a new user.  */
 	public static func register(partnerId: Int, user: OTTUser, password: String) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, RegisterTokenizer> {
 		let request: RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, RegisterTokenizer> = RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, RegisterTokenizer>(service: "ottuser", action: "register")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "user", value: user)
-			.setBody(key: "password", value: password)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "user", value: user)
+			.setParam(key: "password", value: password)
 
 		return request
 	}
@@ -355,8 +355,8 @@ public final class OttUserService{
 	/**  Resend the activation token to a user  */
 	public static func resendActivationToken(partnerId: Int, username: String) -> RequestBuilder<Bool, BaseTokenizedObject, ResendActivationTokenTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ResendActivationTokenTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ResendActivationTokenTokenizer>(service: "ottuser", action: "resendActivationToken")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "username", value: username)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "username", value: username)
 
 		return request
 	}
@@ -379,8 +379,8 @@ public final class OttUserService{
 	/**  Send an e-mail with URL to enable the user to set new password.  */
 	public static func resetPassword(partnerId: Int, username: String) -> RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer>(service: "ottuser", action: "resetPassword")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "username", value: username)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "username", value: username)
 
 		return request
 	}
@@ -410,9 +410,9 @@ public final class OttUserService{
 	  of URL in e-mail.  */
 	public static func setInitialPassword(partnerId: Int, token: String, password: String) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, SetInitialPasswordTokenizer> {
 		let request: RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, SetInitialPasswordTokenizer> = RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, SetInitialPasswordTokenizer>(service: "ottuser", action: "setInitialPassword")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "token", value: token)
-			.setBody(key: "password", value: password)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "token", value: token)
+			.setParam(key: "password", value: password)
 
 		return request
 	}
@@ -437,8 +437,8 @@ public final class OttUserService{
 	/**  Update user information  */
 	public static func update(user: OTTUser, id: String?) -> RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer> = RequestBuilder<OTTUser, OTTUser.OTTUserTokenizer, UpdateTokenizer>(service: "ottuser", action: "update")
-			.setBody(key: "user", value: user)
-			.setBody(key: "id", value: id)
+			.setParam(key: "user", value: user)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -467,9 +467,9 @@ public final class OttUserService{
 	/**  Given a user name and existing password, change to a new password.  */
 	public static func updateLoginData(username: String, oldPassword: String, newPassword: String) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateLoginDataTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateLoginDataTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateLoginDataTokenizer>(service: "ottuser", action: "updateLoginData")
-			.setBody(key: "username", value: username)
-			.setBody(key: "oldPassword", value: oldPassword)
-			.setBody(key: "newPassword", value: newPassword)
+			.setParam(key: "username", value: username)
+			.setParam(key: "oldPassword", value: oldPassword)
+			.setParam(key: "newPassword", value: newPassword)
 
 		return request
 	}
@@ -492,8 +492,8 @@ public final class OttUserService{
 	/**  Update the user&amp;#39;s existing password.  */
 	public static func updatePassword(userId: Int, password: String) -> NullRequestBuilder<UpdatePasswordTokenizer> {
 		let request: NullRequestBuilder<UpdatePasswordTokenizer> = NullRequestBuilder<UpdatePasswordTokenizer>(service: "ottuser", action: "updatePassword")
-			.setBody(key: "userId", value: userId)
-			.setBody(key: "password", value: password)
+			.setParam(key: "userId", value: userId)
+			.setParam(key: "password", value: password)
 
 		return request
 	}

@@ -76,7 +76,7 @@ open class LicensedUrlEpgRequest: LicensedUrlMediaRequest {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(streamType != nil) {
 			dict["streamType"] = streamType!.rawValue

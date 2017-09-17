@@ -47,7 +47,7 @@ public final class TopicService{
 	/**  Deleted a topic  */
 	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "topic", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -64,7 +64,7 @@ public final class TopicService{
 	/**  Gets a topic  */
 	public static func get(id: Int) -> RequestBuilder<Topic, Topic.TopicTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Topic, Topic.TopicTokenizer, GetTokenizer> = RequestBuilder<Topic, Topic.TopicTokenizer, GetTokenizer>(service: "topic", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -91,8 +91,8 @@ public final class TopicService{
 	/**  Get list of topics  */
 	public static func list(filter: TopicFilter?, pager: FilterPager?) -> RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer> = RequestBuilder<TopicListResponse, TopicListResponse.TopicListResponseTokenizer, ListTokenizer>(service: "topic", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
@@ -115,8 +115,8 @@ public final class TopicService{
 	/**  Updates a topic &amp;quot;automatic issue notification&amp;quot; behavior.  */
 	public static func updateStatus(id: Int, automaticIssueNotification: TopicAutomaticIssueNotification) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "topic", action: "updateStatus")
-			.setBody(key: "id", value: id)
-			.setBody(key: "automaticIssueNotification", value: automaticIssueNotification.rawValue)
+			.setParam(key: "id", value: id)
+			.setParam(key: "automaticIssueNotification", value: automaticIssueNotification.rawValue)
 
 		return request
 	}

@@ -45,7 +45,7 @@ public final class AssetCommentService{
 	/**  Add asset comments by asset id  */
 	public static func add(comment: AssetComment) -> RequestBuilder<AssetComment, AssetComment.AssetCommentTokenizer, AddTokenizer> {
 		let request: RequestBuilder<AssetComment, AssetComment.AssetCommentTokenizer, AddTokenizer> = RequestBuilder<AssetComment, AssetComment.AssetCommentTokenizer, AddTokenizer>(service: "assetcomment", action: "add")
-			.setBody(key: "comment", value: comment)
+			.setParam(key: "comment", value: comment)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class AssetCommentService{
 	/**  Returns asset comments by asset id  */
 	public static func list(filter: AssetCommentFilter, pager: FilterPager?) -> RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetCommentListResponse, AssetCommentListResponse.AssetCommentListResponseTokenizer, ListTokenizer>(service: "assetcomment", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

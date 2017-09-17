@@ -51,7 +51,7 @@ public final class SessionService{
 	/**  Parses KS  */
 	public static func get(session: String?) -> RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer> = RequestBuilder<Session, Session.SessionTokenizer, GetTokenizer>(service: "session", action: "get")
-			.setBody(key: "session", value: session)
+			.setParam(key: "session", value: session)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class SessionService{
 	  within the same household  */
 	public static func switchUser(userIdToSwitch: String) -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, SwitchUserTokenizer> {
 		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, SwitchUserTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, SwitchUserTokenizer>(service: "session", action: "switchUser")
-			.setBody(key: "userIdToSwitch", value: userIdToSwitch)
+			.setParam(key: "userIdToSwitch", value: userIdToSwitch)
 
 		return request
 	}

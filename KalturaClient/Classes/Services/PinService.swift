@@ -65,9 +65,9 @@ public final class PinService{
 	  user  level  */
 	public static func get(by: EntityReferenceBy, type: PinType, ruleId: Int?) -> RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer> = RequestBuilder<Pin, Pin.PinTokenizer, GetTokenizer>(service: "pin", action: "get")
-			.setBody(key: "by", value: by.rawValue)
-			.setBody(key: "type", value: type.rawValue)
-			.setBody(key: "ruleId", value: ruleId)
+			.setParam(key: "by", value: by.rawValue)
+			.setParam(key: "type", value: type.rawValue)
+			.setParam(key: "ruleId", value: ruleId)
 
 		return request
 	}
@@ -104,10 +104,10 @@ public final class PinService{
 	/**  Set the parental or purchase PIN that applies for the user or the household.  */
 	public static func update(by: EntityReferenceBy, type: PinType, pin: Pin, ruleId: Int?) -> RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer> = RequestBuilder<Pin, Pin.PinTokenizer, UpdateTokenizer>(service: "pin", action: "update")
-			.setBody(key: "by", value: by.rawValue)
-			.setBody(key: "type", value: type.rawValue)
-			.setBody(key: "pin", value: pin)
-			.setBody(key: "ruleId", value: ruleId)
+			.setParam(key: "by", value: by.rawValue)
+			.setParam(key: "type", value: type.rawValue)
+			.setParam(key: "pin", value: pin)
+			.setParam(key: "ruleId", value: ruleId)
 
 		return request
 	}
@@ -140,9 +140,9 @@ public final class PinService{
 	/**  Validate a purchase or parental PIN for a user.  */
 	public static func validate(pin: String, type: PinType, ruleId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ValidateTokenizer>(service: "pin", action: "validate")
-			.setBody(key: "pin", value: pin)
-			.setBody(key: "type", value: type.rawValue)
-			.setBody(key: "ruleId", value: ruleId)
+			.setParam(key: "pin", value: pin)
+			.setParam(key: "type", value: type.rawValue)
+			.setParam(key: "ruleId", value: ruleId)
 
 		return request
 	}

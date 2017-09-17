@@ -48,7 +48,7 @@ public final class PurchaseSettingsService{
 	  these settings were defined – account, household or user  */
 	public static func get(by: EntityReferenceBy) -> RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, GetTokenizer> {
 		let request: RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, GetTokenizer> = RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, GetTokenizer>(service: "purchasesettings", action: "get")
-			.setBody(key: "by", value: by.rawValue)
+			.setParam(key: "by", value: by.rawValue)
 
 		return request
 	}
@@ -69,8 +69,8 @@ public final class PurchaseSettingsService{
 	/**  Set a purchase PIN for the household or user  */
 	public static func update(entityReference: EntityReferenceBy, settings: PurchaseSettings) -> RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, UpdateTokenizer> = RequestBuilder<PurchaseSettings, PurchaseSettings.PurchaseSettingsTokenizer, UpdateTokenizer>(service: "purchasesettings", action: "update")
-			.setBody(key: "entityReference", value: entityReference.rawValue)
-			.setBody(key: "settings", value: settings)
+			.setParam(key: "entityReference", value: entityReference.rawValue)
+			.setParam(key: "settings", value: settings)
 
 		return request
 	}

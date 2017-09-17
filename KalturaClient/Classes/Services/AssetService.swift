@@ -50,7 +50,7 @@ public final class AssetService{
 	  values of each field and their respective count.  */
 	public static func count(filter: SearchAssetFilter?) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
 		let request: RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> = RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer>(service: "asset", action: "count")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -73,8 +73,8 @@ public final class AssetService{
 	/**  Returns media or EPG asset by media / EPG internal or external identifier  */
 	public static func get(id: String, assetReferenceType: AssetReferenceType) -> RequestBuilder<Asset, Asset.AssetTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Asset, Asset.AssetTokenizer, GetTokenizer> = RequestBuilder<Asset, Asset.AssetTokenizer, GetTokenizer>(service: "asset", action: "get")
-			.setBody(key: "id", value: id)
-			.setBody(key: "assetReferenceType", value: assetReferenceType.rawValue)
+			.setParam(key: "id", value: id)
+			.setParam(key: "assetReferenceType", value: assetReferenceType.rawValue)
 
 		return request
 	}
@@ -101,9 +101,9 @@ public final class AssetService{
 	/**  This action delivers all data relevant for player  */
 	public static func getPlaybackContext(assetId: String, assetType: AssetType, contextDataParams: PlaybackContextOptions) -> RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer> {
 		let request: RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer> = RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer>(service: "asset", action: "getPlaybackContext")
-			.setBody(key: "assetId", value: assetId)
-			.setBody(key: "assetType", value: assetType.rawValue)
-			.setBody(key: "contextDataParams", value: contextDataParams)
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "assetType", value: assetType.rawValue)
+			.setParam(key: "contextDataParams", value: contextDataParams)
 
 		return request
 	}
@@ -131,8 +131,8 @@ public final class AssetService{
 	  external identifier.  */
 	public static func list(filter: AssetFilter?, pager: FilterPager?) -> RequestBuilder<AssetListResponse, AssetListResponse.AssetListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AssetListResponse, AssetListResponse.AssetListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetListResponse, AssetListResponse.AssetListResponseTokenizer, ListTokenizer>(service: "asset", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

@@ -47,7 +47,7 @@ public final class SocialService{
 	/**  List social accounts  */
 	public static func get(type: SocialNetwork) -> RequestBuilder<Social, Social.SocialTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Social, Social.SocialTokenizer, GetTokenizer> = RequestBuilder<Social, Social.SocialTokenizer, GetTokenizer>(service: "social", action: "get")
-			.setBody(key: "type", value: type.rawValue)
+			.setParam(key: "type", value: type.rawValue)
 
 		return request
 	}
@@ -77,9 +77,9 @@ public final class SocialService{
 	  social token  */
 	public static func getByToken(partnerId: Int, token: String, type: SocialNetwork) -> RequestBuilder<Social, Social.SocialTokenizer, GetByTokenTokenizer> {
 		let request: RequestBuilder<Social, Social.SocialTokenizer, GetByTokenTokenizer> = RequestBuilder<Social, Social.SocialTokenizer, GetByTokenTokenizer>(service: "social", action: "getByToken")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "token", value: token)
-			.setBody(key: "type", value: type.rawValue)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "token", value: token)
+			.setParam(key: "type", value: type.rawValue)
 
 		return request
 	}
@@ -106,8 +106,8 @@ public final class SocialService{
 	/**  Retrieve the social network’s configuration information  */
 	public static func getConfiguration(type: SocialNetwork, partnerId: Int?) -> RequestBuilder<SocialConfig, SocialConfig.SocialConfigTokenizer, GetConfigurationTokenizer> {
 		let request: RequestBuilder<SocialConfig, SocialConfig.SocialConfigTokenizer, GetConfigurationTokenizer> = RequestBuilder<SocialConfig, SocialConfig.SocialConfigTokenizer, GetConfigurationTokenizer>(service: "social", action: "getConfiguration")
-			.setBody(key: "type", value: type.rawValue)
-			.setBody(key: "partnerId", value: partnerId)
+			.setParam(key: "type", value: type.rawValue)
+			.setParam(key: "partnerId", value: partnerId)
 
 		return request
 	}
@@ -146,10 +146,10 @@ public final class SocialService{
 	/**  Login using social token  */
 	public static func login(partnerId: Int, token: String, type: SocialNetwork, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer>(service: "social", action: "login")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "token", value: token)
-			.setBody(key: "type", value: type.rawValue)
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "token", value: token)
+			.setParam(key: "type", value: type.rawValue)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
@@ -172,8 +172,8 @@ public final class SocialService{
 	/**  Connect an existing user in the system to an external social network user  */
 	public static func merge(token: String, type: SocialNetwork) -> RequestBuilder<Social, Social.SocialTokenizer, MergeTokenizer> {
 		let request: RequestBuilder<Social, Social.SocialTokenizer, MergeTokenizer> = RequestBuilder<Social, Social.SocialTokenizer, MergeTokenizer>(service: "social", action: "merge")
-			.setBody(key: "token", value: token)
-			.setBody(key: "type", value: type.rawValue)
+			.setParam(key: "token", value: token)
+			.setParam(key: "type", value: type.rawValue)
 
 		return request
 	}
@@ -212,10 +212,10 @@ public final class SocialService{
 	/**  Create a new user in the system using a provided external social token  */
 	public static func register(partnerId: Int, token: String, type: SocialNetwork, email: String?) -> RequestBuilder<Social, Social.SocialTokenizer, RegisterTokenizer> {
 		let request: RequestBuilder<Social, Social.SocialTokenizer, RegisterTokenizer> = RequestBuilder<Social, Social.SocialTokenizer, RegisterTokenizer>(service: "social", action: "register")
-			.setBody(key: "partnerId", value: partnerId)
-			.setBody(key: "token", value: token)
-			.setBody(key: "type", value: type.rawValue)
-			.setBody(key: "email", value: email)
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "token", value: token)
+			.setParam(key: "type", value: type.rawValue)
+			.setParam(key: "email", value: email)
 
 		return request
 	}
@@ -232,7 +232,7 @@ public final class SocialService{
 	/**  Disconnect an existing user in the system from its external social network user  */
 	public static func unmerge(type: SocialNetwork) -> RequestBuilder<Social, Social.SocialTokenizer, UnmergeTokenizer> {
 		let request: RequestBuilder<Social, Social.SocialTokenizer, UnmergeTokenizer> = RequestBuilder<Social, Social.SocialTokenizer, UnmergeTokenizer>(service: "social", action: "unmerge")
-			.setBody(key: "type", value: type.rawValue)
+			.setParam(key: "type", value: type.rawValue)
 
 		return request
 	}
@@ -247,7 +247,7 @@ public final class SocialService{
 	/**  Set the user social network’s configuration information  */
 	public static func UpdateConfiguration(configuration: SocialConfig) -> RequestBuilder<SocialConfig, SocialConfig.SocialConfigTokenizer, UpdateConfigurationTokenizer> {
 		let request: RequestBuilder<SocialConfig, SocialConfig.SocialConfigTokenizer, UpdateConfigurationTokenizer> = RequestBuilder<SocialConfig, SocialConfig.SocialConfigTokenizer, UpdateConfigurationTokenizer>(service: "social", action: "UpdateConfiguration")
-			.setBody(key: "configuration", value: configuration)
+			.setParam(key: "configuration", value: configuration)
 
 		return request
 	}

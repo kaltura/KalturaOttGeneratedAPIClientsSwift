@@ -107,7 +107,7 @@ open class Price: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(amount != nil) {
 			dict["amount"] = amount!

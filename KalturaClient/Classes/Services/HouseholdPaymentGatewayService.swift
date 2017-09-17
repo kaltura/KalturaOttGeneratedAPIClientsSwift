@@ -47,7 +47,7 @@ public final class HouseholdPaymentGatewayService{
 	/**  Disable payment-gateway on the household  */
 	public static func disable(paymentGatewayId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer>(service: "householdpaymentgateway", action: "disable")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
 
 		return request
 	}
@@ -64,7 +64,7 @@ public final class HouseholdPaymentGatewayService{
 	/**  Enable a payment-gateway provider for the household.  */
 	public static func enable(paymentGatewayId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer>(service: "householdpaymentgateway", action: "enable")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
 
 		return request
 	}
@@ -82,7 +82,7 @@ public final class HouseholdPaymentGatewayService{
 	  gateway  */
 	public static func getChargeID(paymentGatewayExternalId: String) -> RequestBuilder<String, BaseTokenizedObject, GetChargeIDTokenizer> {
 		let request: RequestBuilder<String, BaseTokenizedObject, GetChargeIDTokenizer> = RequestBuilder<String, BaseTokenizedObject, GetChargeIDTokenizer>(service: "householdpaymentgateway", action: "getChargeID")
-			.setBody(key: "paymentGatewayExternalId", value: paymentGatewayExternalId)
+			.setParam(key: "paymentGatewayExternalId", value: paymentGatewayExternalId)
 
 		return request
 	}
@@ -111,9 +111,9 @@ public final class HouseholdPaymentGatewayService{
 	/**  Gets the Payment Gateway Configuration for the payment gateway identifier given  */
 	public static func invoke(paymentGatewayId: Int, intent: String, extraParameters: Array<KeyValue>) -> RequestBuilder<PaymentGatewayConfiguration, PaymentGatewayConfiguration.PaymentGatewayConfigurationTokenizer, InvokeTokenizer> {
 		let request: RequestBuilder<PaymentGatewayConfiguration, PaymentGatewayConfiguration.PaymentGatewayConfigurationTokenizer, InvokeTokenizer> = RequestBuilder<PaymentGatewayConfiguration, PaymentGatewayConfiguration.PaymentGatewayConfigurationTokenizer, InvokeTokenizer>(service: "householdpaymentgateway", action: "invoke")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
-			.setBody(key: "intent", value: intent)
-			.setBody(key: "extraParameters", value: extraParameters)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "intent", value: intent)
+			.setParam(key: "extraParameters", value: extraParameters)
 
 		return request
 	}
@@ -149,8 +149,8 @@ public final class HouseholdPaymentGatewayService{
 	  specific payment gateway  */
 	public static func setChargeID(paymentGatewayExternalId: String, chargeId: String) -> RequestBuilder<Bool, BaseTokenizedObject, SetChargeIDTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SetChargeIDTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetChargeIDTokenizer>(service: "householdpaymentgateway", action: "setChargeID")
-			.setBody(key: "paymentGatewayExternalId", value: paymentGatewayExternalId)
-			.setBody(key: "chargeId", value: chargeId)
+			.setParam(key: "paymentGatewayExternalId", value: paymentGatewayExternalId)
+			.setParam(key: "chargeId", value: chargeId)
 
 		return request
 	}

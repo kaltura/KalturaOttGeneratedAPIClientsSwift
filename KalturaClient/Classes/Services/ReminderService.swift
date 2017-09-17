@@ -45,7 +45,7 @@ public final class ReminderService{
 	/**  Add a new future reminder  */
 	public static func add(reminder: Reminder) -> RequestBuilder<Reminder, Reminder.ReminderTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Reminder, Reminder.ReminderTokenizer, AddTokenizer> = RequestBuilder<Reminder, Reminder.ReminderTokenizer, AddTokenizer>(service: "reminder", action: "add")
-			.setBody(key: "reminder", value: reminder)
+			.setParam(key: "reminder", value: reminder)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class ReminderService{
 	/**  Delete a reminder. Reminder cannot be delete while being sent.  */
 	public static func delete(id: Int64, type: ReminderType) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "reminder", action: "delete")
-			.setBody(key: "id", value: id)
-			.setBody(key: "type", value: type.rawValue)
+			.setParam(key: "id", value: id)
+			.setParam(key: "type", value: type.rawValue)
 
 		return request
 	}
@@ -92,8 +92,8 @@ public final class ReminderService{
 	/**  Return a list of reminders with optional filter by KSQL.  */
 	public static func list(filter: ReminderFilter, pager: FilterPager?) -> RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer> = RequestBuilder<ReminderListResponse, ReminderListResponse.ReminderListResponseTokenizer, ListTokenizer>(service: "reminder", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

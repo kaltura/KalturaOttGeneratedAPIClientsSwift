@@ -45,7 +45,7 @@ public final class ExportTaskService{
 	/**  Adds a new bulk export task  */
 	public static func add(task: ExportTask) -> RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, AddTokenizer> {
 		let request: RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, AddTokenizer> = RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, AddTokenizer>(service: "exporttask", action: "add")
-			.setBody(key: "task", value: task)
+			.setParam(key: "task", value: task)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class ExportTaskService{
 	/**  Deletes an existing bulk export task by task identifier  */
 	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "exporttask", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class ExportTaskService{
 	/**  Gets an existing bulk export task by task identifier  */
 	public static func get(id: Int64) -> RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, GetTokenizer> {
 		let request: RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, GetTokenizer> = RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, GetTokenizer>(service: "exporttask", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -98,7 +98,7 @@ public final class ExportTaskService{
 	/**  Returns bulk export tasks by tasks identifiers  */
 	public static func list(filter: ExportTaskFilter?) -> RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer> = RequestBuilder<ExportTaskListResponse, ExportTaskListResponse.ExportTaskListResponseTokenizer, ListTokenizer>(service: "exporttask", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -119,8 +119,8 @@ public final class ExportTaskService{
 	/**  Updates an existing bulk export task by task identifier  */
 	public static func update(id: Int64, task: ExportTask) -> RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, UpdateTokenizer> = RequestBuilder<ExportTask, ExportTask.ExportTaskTokenizer, UpdateTokenizer>(service: "exporttask", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "task", value: task)
+			.setParam(key: "id", value: id)
+			.setParam(key: "task", value: task)
 
 		return request
 	}

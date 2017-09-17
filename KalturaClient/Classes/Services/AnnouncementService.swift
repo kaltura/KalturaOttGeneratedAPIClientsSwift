@@ -45,7 +45,7 @@ public final class AnnouncementService{
 	/**  Add a new future scheduled system announcement push notification  */
 	public static func add(announcement: Announcement) -> RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, AddTokenizer> = RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, AddTokenizer>(service: "announcement", action: "add")
-			.setBody(key: "announcement", value: announcement)
+			.setParam(key: "announcement", value: announcement)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class AnnouncementService{
 	/**  Delete an existing announcing. Announcement cannot be delete while being sent.  */
 	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "announcement", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -95,8 +95,8 @@ public final class AnnouncementService{
 	/**  Lists all announcements in the system.  */
 	public static func list(filter: AnnouncementFilter, pager: FilterPager?) -> RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer> = RequestBuilder<AnnouncementListResponse, AnnouncementListResponse.AnnouncementListResponseTokenizer, ListTokenizer>(service: "announcement", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
@@ -118,8 +118,8 @@ public final class AnnouncementService{
 	  can only be updated only before sending  */
 	public static func update(announcementId: Int, announcement: Announcement) -> RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, UpdateTokenizer> = RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, UpdateTokenizer>(service: "announcement", action: "update")
-			.setBody(key: "announcementId", value: announcementId)
-			.setBody(key: "announcement", value: announcement)
+			.setParam(key: "announcementId", value: announcementId)
+			.setParam(key: "announcement", value: announcement)
 
 		return request
 	}
@@ -142,8 +142,8 @@ public final class AnnouncementService{
 	/**  Update a system announcement status  */
 	public static func updateStatus(id: Int64, status: Bool) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "announcement", action: "updateStatus")
-			.setBody(key: "id", value: id)
-			.setBody(key: "status", value: status)
+			.setParam(key: "id", value: id)
+			.setParam(key: "status", value: status)
 
 		return request
 	}

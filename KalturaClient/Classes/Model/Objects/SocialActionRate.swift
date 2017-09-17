@@ -61,7 +61,7 @@ open class SocialActionRate: SocialAction {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(rate != nil) {
 			dict["rate"] = rate!

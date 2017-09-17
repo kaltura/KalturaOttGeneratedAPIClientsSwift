@@ -49,7 +49,7 @@ public final class PriceDetailsService{
 	/**  Returns the list of available prices, can be filtered by price IDs  */
 	public static func list(filter: PriceDetailsFilter?) -> RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> = RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer>(service: "pricedetails", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

@@ -45,7 +45,7 @@ public final class HouseholdPaymentMethodService{
 	/**  Add a new payment method for household  */
 	public static func add(householdPaymentMethod: HouseholdPaymentMethod) -> RequestBuilder<HouseholdPaymentMethod, HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer, AddTokenizer> {
 		let request: RequestBuilder<HouseholdPaymentMethod, HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer, AddTokenizer> = RequestBuilder<HouseholdPaymentMethod, HouseholdPaymentMethod.HouseholdPaymentMethodTokenizer, AddTokenizer>(service: "householdpaymentmethod", action: "add")
-			.setBody(key: "householdPaymentMethod", value: householdPaymentMethod)
+			.setParam(key: "householdPaymentMethod", value: householdPaymentMethod)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class HouseholdPaymentMethodService{
 	/**  Force remove of a payment method of the household.  */
 	public static func forceRemove(paymentGatewayId: Int, paymentMethodId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, ForceRemoveTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ForceRemoveTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ForceRemoveTokenizer>(service: "householdpaymentmethod", action: "forceRemove")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
-			.setBody(key: "paymentMethodId", value: paymentMethodId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentMethodId", value: paymentMethodId)
 
 		return request
 	}
@@ -102,8 +102,8 @@ public final class HouseholdPaymentMethodService{
 	/**  Removes a payment method of the household.  */
 	public static func remove(paymentGatewayId: Int, paymentMethodId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, RemoveTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, RemoveTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, RemoveTokenizer>(service: "householdpaymentmethod", action: "remove")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
-			.setBody(key: "paymentMethodId", value: paymentMethodId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentMethodId", value: paymentMethodId)
 
 		return request
 	}
@@ -126,8 +126,8 @@ public final class HouseholdPaymentMethodService{
 	/**  Set a payment method as default for the household.  */
 	public static func setAsDefault(paymentGatewayId: Int, paymentMethodId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, SetAsDefaultTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SetAsDefaultTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetAsDefaultTokenizer>(service: "householdpaymentmethod", action: "setAsDefault")
-			.setBody(key: "paymentGatewayId", value: paymentGatewayId)
-			.setBody(key: "paymentMethodId", value: paymentMethodId)
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "paymentMethodId", value: paymentMethodId)
 
 		return request
 	}

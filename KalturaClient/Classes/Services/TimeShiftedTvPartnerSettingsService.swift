@@ -57,7 +57,7 @@ public final class TimeShiftedTvPartnerSettingsService{
 	  Trick-play, Start-over)  */
 	public static func update(settings: TimeShiftedTvPartnerSettings) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "timeshiftedtvpartnersettings", action: "update")
-			.setBody(key: "settings", value: settings)
+			.setParam(key: "settings", value: settings)
 
 		return request
 	}

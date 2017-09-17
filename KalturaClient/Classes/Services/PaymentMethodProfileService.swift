@@ -45,7 +45,7 @@ public final class PaymentMethodProfileService{
 	/**  TBD  */
 	public static func add(paymentMethod: PaymentMethodProfile) -> RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, AddTokenizer> = RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, AddTokenizer>(service: "paymentmethodprofile", action: "add")
-			.setBody(key: "paymentMethod", value: paymentMethod)
+			.setParam(key: "paymentMethod", value: paymentMethod)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class PaymentMethodProfileService{
 	/**  Delete payment method profile  */
 	public static func delete(paymentMethodId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "paymentmethodprofile", action: "delete")
-			.setBody(key: "paymentMethodId", value: paymentMethodId)
+			.setParam(key: "paymentMethodId", value: paymentMethodId)
 
 		return request
 	}
@@ -77,7 +77,7 @@ public final class PaymentMethodProfileService{
 	/**  TBD  */
 	public static func list(filter: PaymentMethodProfileFilter) -> RequestBuilder<PaymentMethodProfileListResponse, PaymentMethodProfileListResponse.PaymentMethodProfileListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PaymentMethodProfileListResponse, PaymentMethodProfileListResponse.PaymentMethodProfileListResponseTokenizer, ListTokenizer> = RequestBuilder<PaymentMethodProfileListResponse, PaymentMethodProfileListResponse.PaymentMethodProfileListResponseTokenizer, ListTokenizer>(service: "paymentmethodprofile", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -98,8 +98,8 @@ public final class PaymentMethodProfileService{
 	/**  Update payment method  */
 	public static func update(paymentMethodId: Int, paymentMethod: PaymentMethodProfile) -> RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, UpdateTokenizer> = RequestBuilder<PaymentMethodProfile, PaymentMethodProfile.PaymentMethodProfileTokenizer, UpdateTokenizer>(service: "paymentmethodprofile", action: "update")
-			.setBody(key: "paymentMethodId", value: paymentMethodId)
-			.setBody(key: "paymentMethod", value: paymentMethod)
+			.setParam(key: "paymentMethodId", value: paymentMethodId)
+			.setParam(key: "paymentMethod", value: paymentMethod)
 
 		return request
 	}

@@ -45,7 +45,7 @@ public final class RecordingService{
 	/**  Issue a record request for a program  */
 	public static func add(recording: Recording) -> RequestBuilder<Recording, Recording.RecordingTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, AddTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, AddTokenizer>(service: "recording", action: "add")
-			.setBody(key: "recording", value: recording)
+			.setParam(key: "recording", value: recording)
 
 		return request
 	}
@@ -63,7 +63,7 @@ public final class RecordingService{
 	  recording in status Scheduled or Recording Only  */
 	public static func cancel(id: Int64) -> RequestBuilder<Recording, Recording.RecordingTokenizer, CancelTokenizer> {
 		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, CancelTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, CancelTokenizer>(service: "recording", action: "cancel")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -81,7 +81,7 @@ public final class RecordingService{
 	  recordings in status Recorded  */
 	public static func delete(id: Int64) -> RequestBuilder<Recording, Recording.RecordingTokenizer, DeleteTokenizer> {
 		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, DeleteTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, DeleteTokenizer>(service: "recording", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -98,7 +98,7 @@ public final class RecordingService{
 	/**  Returns recording object by internal identifier  */
 	public static func get(id: Int64) -> RequestBuilder<Recording, Recording.RecordingTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, GetTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, GetTokenizer>(service: "recording", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -126,8 +126,8 @@ public final class RecordingService{
 	  KSQL.  */
 	public static func list(filter: RecordingFilter?, pager: FilterPager?) -> RequestBuilder<RecordingListResponse, RecordingListResponse.RecordingListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<RecordingListResponse, RecordingListResponse.RecordingListResponseTokenizer, ListTokenizer> = RequestBuilder<RecordingListResponse, RecordingListResponse.RecordingListResponseTokenizer, ListTokenizer>(service: "recording", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
@@ -145,7 +145,7 @@ public final class RecordingService{
 	  protection period  */
 	public static func protect(id: Int64) -> RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer> {
 		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer>(service: "recording", action: "protect")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}

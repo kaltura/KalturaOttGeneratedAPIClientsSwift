@@ -49,7 +49,7 @@ public final class MetaService{
 	/**  Get the list of meta mappings for the partner  */
 	public static func list(filter: MetaFilter?) -> RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer> = RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer>(service: "meta", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -70,8 +70,8 @@ public final class MetaService{
 	/**  Update meta&amp;#39;s user interest  */
 	public static func update(id: String, meta: Meta) -> RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> = RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer>(service: "meta", action: "update")
-			.setBody(key: "id", value: id)
-			.setBody(key: "meta", value: meta)
+			.setParam(key: "id", value: id)
+			.setParam(key: "meta", value: meta)
 
 		return request
 	}

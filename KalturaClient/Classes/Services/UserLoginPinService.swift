@@ -53,7 +53,7 @@ public final class UserLoginPinService{
 	  will add another login-PIN  */
 	public static func add(secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
 		let request: RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> = RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer>(service: "userloginpin", action: "add")
-			.setBody(key: "secret", value: secret)
+			.setParam(key: "secret", value: secret)
 
 		return request
 	}
@@ -70,7 +70,7 @@ public final class UserLoginPinService{
 	/**  Immediately deletes a given pre set login pin code for the user.  */
 	public static func delete(pinCode: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userloginpin", action: "delete")
-			.setBody(key: "pinCode", value: pinCode)
+			.setParam(key: "pinCode", value: pinCode)
 
 		return request
 	}
@@ -109,8 +109,8 @@ public final class UserLoginPinService{
 	  add another login-PIN  */
 	public static func update(pinCode: String, secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> = RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer>(service: "userloginpin", action: "update")
-			.setBody(key: "pinCode", value: pinCode)
-			.setBody(key: "secret", value: secret)
+			.setParam(key: "pinCode", value: pinCode)
+			.setParam(key: "secret", value: secret)
 
 		return request
 	}

@@ -113,7 +113,7 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(kSql != nil) {
 			dict["kSql"] = kSql!

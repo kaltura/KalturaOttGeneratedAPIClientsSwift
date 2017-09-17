@@ -45,7 +45,7 @@ public final class OssAdapterProfileService{
 	/**  Insert new OSS adapter for partner  */
 	public static func add(ossAdapter: OSSAdapterProfile) -> RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, AddTokenizer> = RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, AddTokenizer>(service: "ossadapterprofile", action: "add")
-			.setBody(key: "ossAdapter", value: ossAdapter)
+			.setParam(key: "ossAdapter", value: ossAdapter)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class OssAdapterProfileService{
 	/**  Delete OSS adapter by OSS adapter id  */
 	public static func delete(ossAdapterId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "ossadapterprofile", action: "delete")
-			.setBody(key: "ossAdapterId", value: ossAdapterId)
+			.setParam(key: "ossAdapterId", value: ossAdapterId)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class OssAdapterProfileService{
 	/**  Generate oss adapter shared secret  */
 	public static func generateSharedSecret(ossAdapterId: Int) -> RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, GenerateSharedSecretTokenizer>(service: "ossadapterprofile", action: "generateSharedSecret")
-			.setBody(key: "ossAdapterId", value: ossAdapterId)
+			.setParam(key: "ossAdapterId", value: ossAdapterId)
 
 		return request
 	}
@@ -96,7 +96,7 @@ public final class OssAdapterProfileService{
 	/**  Returns all OSS adapters for partner : id + name  */
 	public static func get(id: Int) -> RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, GetTokenizer> {
 		let request: RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, GetTokenizer> = RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, GetTokenizer>(service: "ossadapterprofile", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -127,8 +127,8 @@ public final class OssAdapterProfileService{
 	/**  Update OSS adapter details  */
 	public static func update(ossAdapterId: Int, ossAdapter: OSSAdapterProfile) -> RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, UpdateTokenizer> = RequestBuilder<OSSAdapterProfile, OSSAdapterProfile.OSSAdapterProfileTokenizer, UpdateTokenizer>(service: "ossadapterprofile", action: "update")
-			.setBody(key: "ossAdapterId", value: ossAdapterId)
-			.setBody(key: "ossAdapter", value: ossAdapter)
+			.setParam(key: "ossAdapterId", value: ossAdapterId)
+			.setParam(key: "ossAdapter", value: ossAdapter)
 
 		return request
 	}

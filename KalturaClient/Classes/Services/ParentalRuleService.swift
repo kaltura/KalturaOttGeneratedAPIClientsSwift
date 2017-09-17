@@ -54,8 +54,8 @@ public final class ParentalRuleService{
 	  Disable can be at specific user or household level.  */
 	public static func disable(ruleId: Int64, entityReference: EntityReferenceBy) -> RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DisableTokenizer>(service: "parentalrule", action: "disable")
-			.setBody(key: "ruleId", value: ruleId)
-			.setBody(key: "entityReference", value: entityReference.rawValue)
+			.setParam(key: "ruleId", value: ruleId)
+			.setParam(key: "entityReference", value: entityReference.rawValue)
 
 		return request
 	}
@@ -73,7 +73,7 @@ public final class ParentalRuleService{
 	  specific user or household level.  */
 	public static func disableDefault(entityReference: EntityReferenceBy) -> RequestBuilder<Bool, BaseTokenizedObject, DisableDefaultTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DisableDefaultTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DisableDefaultTokenizer>(service: "parentalrule", action: "disableDefault")
-			.setBody(key: "entityReference", value: entityReference.rawValue)
+			.setParam(key: "entityReference", value: entityReference.rawValue)
 
 		return request
 	}
@@ -96,8 +96,8 @@ public final class ParentalRuleService{
 	/**  Enable a parental rules for a user  */
 	public static func enable(ruleId: Int64, entityReference: EntityReferenceBy) -> RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, EnableTokenizer>(service: "parentalrule", action: "enable")
-			.setBody(key: "ruleId", value: ruleId)
-			.setBody(key: "entityReference", value: entityReference.rawValue)
+			.setParam(key: "ruleId", value: ruleId)
+			.setParam(key: "entityReference", value: entityReference.rawValue)
 
 		return request
 	}
@@ -114,7 +114,7 @@ public final class ParentalRuleService{
 	    Association level is also specified in the response.  */
 	public static func list(filter: ParentalRuleFilter) -> RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer>(service: "parentalrule", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

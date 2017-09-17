@@ -47,7 +47,7 @@ public final class HouseholdLimitationsService{
 	/**  Get the limitation module by id  */
 	public static func get(id: Int) -> RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, GetTokenizer> {
 		let request: RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, GetTokenizer> = RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, GetTokenizer>(service: "householdlimitations", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}

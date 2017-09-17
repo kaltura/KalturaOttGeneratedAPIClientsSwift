@@ -55,7 +55,7 @@ public final class NotificationsPartnerSettingsService{
 	/**  Update the account notification settings  */
 	public static func update(settings: NotificationsPartnerSettings) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "notificationspartnersettings", action: "update")
-			.setBody(key: "settings", value: settings)
+			.setParam(key: "settings", value: settings)
 
 		return request
 	}

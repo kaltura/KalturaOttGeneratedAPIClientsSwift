@@ -57,7 +57,7 @@ open class SocialUserConfig: SocialConfig {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(actionPermissionItems != nil) {
 			dict["actionPermissionItems"] = actionPermissionItems!.map { value in value.toDictionary() }

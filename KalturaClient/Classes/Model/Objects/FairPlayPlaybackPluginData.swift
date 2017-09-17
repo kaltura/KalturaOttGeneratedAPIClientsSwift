@@ -61,7 +61,7 @@ open class FairPlayPlaybackPluginData: DrmPlaybackPluginData {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(certificate != nil) {
 			dict["certificate"] = certificate!
