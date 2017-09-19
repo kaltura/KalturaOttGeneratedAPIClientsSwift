@@ -104,7 +104,7 @@ open class DeviceReport: Report {
 
 	/**  Partner unique identifier  */
 	public var partnerId: Int? = nil
-	/**  Configuration group identifier which the version configuration the devices last
+	/**  Configuration group identifier which the version configuration the device last
 	  received belongs to  */
 	public var configurationGroupId: String? = nil
 	/**  Device unique identifier  */
