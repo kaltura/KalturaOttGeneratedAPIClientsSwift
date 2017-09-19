@@ -50,9 +50,10 @@ open class PushParams: ObjectBase {
 		}
 	}
 
-	/**  Token  */
+	/**  Device-Application push token  */
 	public var token: String? = nil
-	/**  External token  */
+	/**  External device token as received from external push provider in exchange for
+	  the device token  */
 	public var externalToken: String? = nil
 
 

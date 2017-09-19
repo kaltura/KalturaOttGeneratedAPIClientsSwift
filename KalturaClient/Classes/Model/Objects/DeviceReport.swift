@@ -102,27 +102,29 @@ open class DeviceReport: Report {
 		}
 	}
 
-	/**  Partner id  */
+	/**  Partner unique identifier  */
 	public var partnerId: Int? = nil
-	/**  Configuration group id  */
+	/**  Configuration group identifier which the version configuration the devices last
+	  received belongs to  */
 	public var configurationGroupId: String? = nil
-	/**  Device UDID  */
+	/**  Device unique identifier  */
 	public var udid: String? = nil
-	/**  Push parameters  */
+	/**  Device-Application push parameters  */
 	public var pushParameters: PushParams? = nil
-	/**  Version number  */
+	/**  Application version number  */
 	public var versionNumber: String? = nil
-	/**  Version platform  */
+	/**  Application version type  */
 	public var versionPlatform: Platform? = nil
-	/**  Version application name  */
+	/**  Application version name  */
 	public var versionAppName: String? = nil
 	/**  Last access IP  */
 	public var lastAccessIP: String? = nil
-	/**  Last access date  */
+	/**  Last device configuration request date  */
 	public var lastAccessDate: Int64? = nil
-	/**  User agent  */
+	/**  request header property  */
 	public var userAgent: String? = nil
-	/**  Operation system  */
+	/**  Request header property              Incase value cannot be found - returns
+	  &amp;quot;Unknown 0.0&amp;quot;  */
 	public var operationSystem: String? = nil
 
 
