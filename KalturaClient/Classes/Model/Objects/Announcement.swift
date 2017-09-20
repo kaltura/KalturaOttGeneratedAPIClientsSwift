@@ -84,6 +84,12 @@ open class Announcement: ObjectBase {
 				return self.append("id") 
 			}
 		}
+		
+		public var imageUrl: BaseTokenizedObject {
+			get {
+				return self.append("imageUrl") 
+			}
+		}
 	}
 
 	/**  Announcement name  */
@@ -102,6 +108,8 @@ open class Announcement: ObjectBase {
 	public var recipients: AnnouncementRecipientsType? = nil
 	/**  Announcement id  */
 	public var id: Int? = nil
+	/**  Announcement image URL, relevant for system announcements  */
+	public var imageUrl: String? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -136,6 +144,10 @@ open class Announcement: ObjectBase {
 		self.dict["id"] = id
 	}
 	
+	public func setMultiRequestToken(imageUrl: String) {
+		self.dict["imageUrl"] = imageUrl
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -163,6 +175,9 @@ open class Announcement: ObjectBase {
 		if dict["id"] != nil {
 			id = dict["id"] as? Int
 		}
+		if dict["imageUrl"] != nil {
+			imageUrl = dict["imageUrl"] as? String
+		}
 
 	}
 
@@ -185,6 +200,9 @@ open class Announcement: ObjectBase {
 		}
 		if(recipients != nil) {
 			dict["recipients"] = recipients!.rawValue
+		}
+		if(imageUrl != nil) {
+			dict["imageUrl"] = imageUrl!
 		}
 		return dict
 	}
