@@ -160,7 +160,7 @@ open class RecommendationProfile: ObjectBase {
 			dict["adapterUrl"] = adapterUrl!
 		}
 		if(recommendationEngineSettings != nil) {
-			dict["recommendationEngineSettings"] = recommendationEngineSettings!.map { key, value in (key, value.toDictionary()) }
+			dict["recommendationEngineSettings"] = recommendationEngineSettings!.toDictionary()
 		}
 		if(externalIdentifier != nil) {
 			dict["externalIdentifier"] = externalIdentifier!

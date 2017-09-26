@@ -130,7 +130,7 @@ open class EngagementAdapter: EngagementAdapterBase {
 			dict["providerUrl"] = providerUrl!
 		}
 		if(engagementAdapterSettings != nil) {
-			dict["engagementAdapterSettings"] = engagementAdapterSettings!.map { key, value in (key, value.toDictionary()) }
+			dict["engagementAdapterSettings"] = engagementAdapterSettings!.toDictionary()
 		}
 		return dict
 	}

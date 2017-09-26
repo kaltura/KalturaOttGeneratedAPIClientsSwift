@@ -178,7 +178,7 @@ open class CDNAdapterProfile: ObjectBase {
 			dict["baseUrl"] = baseUrl!
 		}
 		if(settings != nil) {
-			dict["settings"] = settings!.map { key, value in (key, value.toDictionary()) }
+			dict["settings"] = settings!.toDictionary()
 		}
 		if(systemName != nil) {
 			dict["systemName"] = systemName!

@@ -303,10 +303,10 @@ open class Asset: ObjectBase {
 			dict["mediaFiles"] = mediaFiles!.map { value in value.toDictionary() }
 		}
 		if(metas != nil) {
-			dict["metas"] = metas!.map { key, value in (key, value.toDictionary()) }
+			dict["metas"] = metas!.toDictionary()
 		}
 		if(tags != nil) {
-			dict["tags"] = tags!.map { key, value in (key, value.toDictionary()) }
+			dict["tags"] = tags!.toDictionary()
 		}
 		if(startDate != nil) {
 			dict["startDate"] = startDate!
