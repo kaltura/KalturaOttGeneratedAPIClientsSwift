@@ -175,7 +175,7 @@ open class CDVRAdapterProfile: ObjectBase {
 			dict["adapterUrl"] = adapterUrl!
 		}
 		if(settings != nil) {
-			dict["settings"] = settings!.map { key, value in (key, value.toDictionary()) }
+			dict["settings"] = settings!.toDictionary()
 		}
 		if(externalIdentifier != nil) {
 			dict["externalIdentifier"] = externalIdentifier!
