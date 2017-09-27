@@ -49,12 +49,21 @@ open class FavoriteFilter: Filter {
 				return self.append("mediaIdIn") 
 			}
 		}
+		
+		public var udidEqualCurrent: BaseTokenizedObject {
+			get {
+				return self.append("udidEqualCurrent") 
+			}
+		}
 	}
 
 	/**  Media type to filter by the favorite assets  */
 	public var mediaTypeEqual: Int? = nil
 	/**  Media identifiers from which to filter the favorite assets  */
 	public var mediaIdIn: String? = nil
+	/**  Indicates whether the results should be filtered by origin UDID using the
+	  current  */
+	public var udidEqualCurrent: Bool? = nil
 
 
 	public func setMultiRequestToken(mediaTypeEqual: String) {
@@ -63,6 +72,10 @@ open class FavoriteFilter: Filter {
 	
 	public func setMultiRequestToken(mediaIdIn: String) {
 		self.dict["mediaIdIn"] = mediaIdIn
+	}
+	
+	public func setMultiRequestToken(udidEqualCurrent: String) {
+		self.dict["udidEqualCurrent"] = udidEqualCurrent
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +87,9 @@ open class FavoriteFilter: Filter {
 		if dict["mediaIdIn"] != nil {
 			mediaIdIn = dict["mediaIdIn"] as? String
 		}
+		if dict["udidEqualCurrent"] != nil {
+			udidEqualCurrent = dict["udidEqualCurrent"] as? Bool
+		}
 
 	}
 
@@ -84,6 +100,9 @@ open class FavoriteFilter: Filter {
 		}
 		if(mediaIdIn != nil) {
 			dict["mediaIdIn"] = mediaIdIn!
+		}
+		if(udidEqualCurrent != nil) {
+			dict["udidEqualCurrent"] = udidEqualCurrent!
 		}
 		return dict
 	}
