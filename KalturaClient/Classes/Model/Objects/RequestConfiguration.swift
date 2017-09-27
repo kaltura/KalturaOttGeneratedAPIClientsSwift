@@ -56,6 +56,12 @@ open class RequestConfiguration: ObjectBase {
 			}
 		}
 		
+		public var currency: BaseTokenizedObject {
+			get {
+				return self.append("currency") 
+			}
+		}
+		
 		public var ks: BaseTokenizedObject {
 			get {
 				return self.append("ks") 
@@ -73,6 +79,8 @@ open class RequestConfiguration: ObjectBase {
 	public var userId: Int? = nil
 	/**  Content language  */
 	public var language: String? = nil
+	/**  Content currency  */
+	public var currency: String? = nil
 	/**  Kaltura API session  */
 	public var ks: String? = nil
 	/**  Kaltura response profile object  */
@@ -91,6 +99,10 @@ open class RequestConfiguration: ObjectBase {
 		self.dict["language"] = language
 	}
 	
+	public func setMultiRequestToken(currency: String) {
+		self.dict["currency"] = currency
+	}
+	
 	public func setMultiRequestToken(ks: String) {
 		self.dict["ks"] = ks
 	}
@@ -106,6 +118,9 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if dict["language"] != nil {
 			language = dict["language"] as? String
+		}
+		if dict["currency"] != nil {
+			currency = dict["currency"] as? String
 		}
 		if dict["ks"] != nil {
 			ks = dict["ks"] as? String
@@ -125,6 +140,9 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if(language != nil) {
 			dict["language"] = language!
+		}
+		if(currency != nil) {
+			dict["currency"] = currency!
 		}
 		if(ks != nil) {
 			dict["ks"] = ks!
