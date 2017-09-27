@@ -57,8 +57,8 @@ public final class SocialFriendActivityService{
 	/**  Get a list of the social friends activity for a user  */
 	public static func list(filter: SocialFriendActivityFilter?, pager: FilterPager?) -> RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer> = RequestBuilder<SocialFriendActivityListResponse, SocialFriendActivityListResponse.SocialFriendActivityListResponseTokenizer, ListTokenizer>(service: "socialfriendactivity", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

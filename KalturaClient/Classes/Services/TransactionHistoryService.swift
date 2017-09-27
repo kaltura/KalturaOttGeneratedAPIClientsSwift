@@ -57,8 +57,8 @@ public final class TransactionHistoryService{
 	/**  Gets user or household transaction history.  */
 	public static func list(filter: TransactionHistoryFilter?, pager: FilterPager?) -> RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer> = RequestBuilder<BillingTransactionListResponse, BillingTransactionListResponse.BillingTransactionListResponseTokenizer, ListTokenizer>(service: "transactionhistory", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

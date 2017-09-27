@@ -47,7 +47,7 @@ public final class CouponService{
 	/**  Returns information about a coupon  */
 	public static func get(code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer>(service: "coupon", action: "get")
-			.setBody(key: "code", value: code)
+			.setParam(key: "code", value: code)
 
 		return request
 	}

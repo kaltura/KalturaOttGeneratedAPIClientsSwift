@@ -46,7 +46,7 @@ public final class FollowTvSeriesService{
 	  UserAlreadyFollowing = 8013, NotFound = 500007, InvalidAssetId = 4024  */
 	public static func add(followTvSeries: FollowTvSeries) -> RequestBuilder<FollowTvSeries, FollowTvSeries.FollowTvSeriesTokenizer, AddTokenizer> {
 		let request: RequestBuilder<FollowTvSeries, FollowTvSeries.FollowTvSeriesTokenizer, AddTokenizer> = RequestBuilder<FollowTvSeries, FollowTvSeries.FollowTvSeriesTokenizer, AddTokenizer>(service: "followtvseries", action: "add")
-			.setBody(key: "followTvSeries", value: followTvSeries)
+			.setParam(key: "followTvSeries", value: followTvSeries)
 
 		return request
 	}
@@ -65,7 +65,7 @@ public final class FollowTvSeriesService{
 	  AnnouncementNotFound = 8006  */
 	public static func delete(assetId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "followtvseries", action: "delete")
-			.setBody(key: "assetId", value: assetId)
+			.setParam(key: "assetId", value: assetId)
 
 		return request
 	}
@@ -88,8 +88,8 @@ public final class FollowTvSeriesService{
 	/**  List user&amp;#39;s tv series follows.              Possible status codes:  */
 	public static func list(filter: FollowTvSeriesFilter, pager: FilterPager?) -> RequestBuilder<FollowTvSeriesListResponse, FollowTvSeriesListResponse.FollowTvSeriesListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<FollowTvSeriesListResponse, FollowTvSeriesListResponse.FollowTvSeriesListResponseTokenizer, ListTokenizer> = RequestBuilder<FollowTvSeriesListResponse, FollowTvSeriesListResponse.FollowTvSeriesListResponseTokenizer, ListTokenizer>(service: "followtvseries", action: "list")
-			.setBody(key: "filter", value: filter)
-			.setBody(key: "pager", value: pager)
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

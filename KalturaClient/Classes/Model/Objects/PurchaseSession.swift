@@ -61,7 +61,7 @@ open class PurchaseSession: Purchase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(previewModuleId != nil) {
 			dict["previewModuleId"] = previewModuleId!

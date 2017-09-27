@@ -118,7 +118,7 @@ open class OSSAdapterProfile: OSSAdapterBaseProfile {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
@@ -127,7 +127,7 @@ open class OSSAdapterProfile: OSSAdapterBaseProfile {
 			dict["adapterUrl"] = adapterUrl!
 		}
 		if(ossAdapterSettings != nil) {
-			dict["ossAdapterSettings"] = ossAdapterSettings!.map { key, value in (key, value.toDictionary()) }
+			dict["ossAdapterSettings"] = ossAdapterSettings!.toDictionary()
 		}
 		if(externalIdentifier != nil) {
 			dict["externalIdentifier"] = externalIdentifier!

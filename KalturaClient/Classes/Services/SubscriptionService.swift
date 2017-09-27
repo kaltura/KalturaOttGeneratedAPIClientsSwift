@@ -45,7 +45,7 @@ public final class SubscriptionService{
 	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
 	public static func list(filter: SubscriptionFilter) -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> = RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer>(service: "subscription", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

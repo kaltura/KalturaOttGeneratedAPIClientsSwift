@@ -46,7 +46,7 @@ public final class CompensationService{
 	  subscription renewal for a fixed amount / percentage of the renewal price.  */
 	public static func add(compensation: Compensation) -> RequestBuilder<Compensation, Compensation.CompensationTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Compensation, Compensation.CompensationTokenizer, AddTokenizer> = RequestBuilder<Compensation, Compensation.CompensationTokenizer, AddTokenizer>(service: "compensation", action: "add")
-			.setBody(key: "compensation", value: compensation)
+			.setParam(key: "compensation", value: compensation)
 
 		return request
 	}
@@ -63,7 +63,7 @@ public final class CompensationService{
 	/**  Delete a compensation by identifier  */
 	public static func delete(id: Int64) -> NullRequestBuilder<DeleteTokenizer> {
 		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "compensation", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -80,7 +80,7 @@ public final class CompensationService{
 	/**  Get a compensation by identifier  */
 	public static func get(id: Int64) -> RequestBuilder<Compensation, Compensation.CompensationTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Compensation, Compensation.CompensationTokenizer, GetTokenizer> = RequestBuilder<Compensation, Compensation.CompensationTokenizer, GetTokenizer>(service: "compensation", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}

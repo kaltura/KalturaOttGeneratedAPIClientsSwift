@@ -45,7 +45,7 @@ public final class ChannelService{
 	/**  Insert new channel for partner. Currently supports only KSQL channel  */
 	public static func add(channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer>(service: "channel", action: "add")
-			.setBody(key: "channel", value: channel)
+			.setParam(key: "channel", value: channel)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class ChannelService{
 	/**  Delete channel by its channel id  */
 	public static func delete(channelId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "channel", action: "delete")
-			.setBody(key: "channelId", value: channelId)
+			.setParam(key: "channelId", value: channelId)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class ChannelService{
 	/**  Returns channel info  */
 	public static func get(id: Int) -> RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer>(service: "channel", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -100,8 +100,8 @@ public final class ChannelService{
 	/**  Update channel details. Currently supports only KSQL channel  */
 	public static func update(channelId: Int, channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer>(service: "channel", action: "update")
-			.setBody(key: "channelId", value: channelId)
-			.setBody(key: "channel", value: channel)
+			.setParam(key: "channelId", value: channelId)
+			.setParam(key: "channel", value: channel)
 
 		return request
 	}

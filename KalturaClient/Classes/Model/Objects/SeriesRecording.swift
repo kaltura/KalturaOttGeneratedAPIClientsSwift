@@ -179,7 +179,7 @@ open class SeriesRecording: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(epgId != nil) {
 			dict["epgId"] = epgId!

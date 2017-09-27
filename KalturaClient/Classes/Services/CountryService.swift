@@ -46,7 +46,7 @@ public final class CountryService{
 	  identifiers  */
 	public static func list(filter: CountryFilter) -> RequestBuilder<CountryListResponse, CountryListResponse.CountryListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<CountryListResponse, CountryListResponse.CountryListResponseTokenizer, ListTokenizer> = RequestBuilder<CountryListResponse, CountryListResponse.CountryListResponseTokenizer, ListTokenizer>(service: "country", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

@@ -223,7 +223,7 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
@@ -241,7 +241,7 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 			dict["renewUrl"] = renewUrl!
 		}
 		if(paymentGatewaySettings != nil) {
-			dict["paymentGatewaySettings"] = paymentGatewaySettings!.map { key, value in (key, value.toDictionary()) }
+			dict["paymentGatewaySettings"] = paymentGatewaySettings!.toDictionary()
 		}
 		if(externalIdentifier != nil) {
 			dict["externalIdentifier"] = externalIdentifier!

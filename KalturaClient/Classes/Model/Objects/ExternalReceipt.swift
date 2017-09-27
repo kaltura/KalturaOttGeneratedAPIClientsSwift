@@ -78,7 +78,7 @@ open class ExternalReceipt: PurchaseBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(receiptId != nil) {
 			dict["receiptId"] = receiptId!

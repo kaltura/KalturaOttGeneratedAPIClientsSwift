@@ -45,7 +45,7 @@ public final class HouseholdDeviceService{
 	/**  Add device to household  */
 	public static func add(device: HouseholdDevice) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddTokenizer> {
 		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddTokenizer>(service: "householddevice", action: "add")
-			.setBody(key: "device", value: device)
+			.setParam(key: "device", value: device)
 
 		return request
 	}
@@ -68,8 +68,8 @@ public final class HouseholdDeviceService{
 	/**  Registers a device to a household using pin code  */
 	public static func addByPin(deviceName: String, pin: String) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddByPinTokenizer> {
 		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddByPinTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, AddByPinTokenizer>(service: "householddevice", action: "addByPin")
-			.setBody(key: "deviceName", value: deviceName)
-			.setBody(key: "pin", value: pin)
+			.setParam(key: "deviceName", value: deviceName)
+			.setParam(key: "pin", value: pin)
 
 		return request
 	}
@@ -86,7 +86,7 @@ public final class HouseholdDeviceService{
 	/**  Removes a device from household  */
 	public static func delete(udid: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "householddevice", action: "delete")
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
@@ -109,8 +109,8 @@ public final class HouseholdDeviceService{
 	/**  Generates device pin to use when adding a device to household by pin  */
 	public static func generatePin(udid: String, brandId: Int) -> RequestBuilder<DevicePin, DevicePin.DevicePinTokenizer, GeneratePinTokenizer> {
 		let request: RequestBuilder<DevicePin, DevicePin.DevicePinTokenizer, GeneratePinTokenizer> = RequestBuilder<DevicePin, DevicePin.DevicePinTokenizer, GeneratePinTokenizer>(service: "householddevice", action: "generatePin")
-			.setBody(key: "udid", value: udid)
-			.setBody(key: "brandId", value: brandId)
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "brandId", value: brandId)
 
 		return request
 	}
@@ -139,7 +139,7 @@ public final class HouseholdDeviceService{
 	/**  Returns the devices within the household  */
 	public static func list(filter: HouseholdDeviceFilter?) -> RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdDeviceListResponse, HouseholdDeviceListResponse.HouseholdDeviceListResponseTokenizer, ListTokenizer>(service: "householddevice", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
@@ -160,8 +160,8 @@ public final class HouseholdDeviceService{
 	/**  Update the name of the device by UDID  */
 	public static func update(udid: String, device: HouseholdDevice) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, UpdateTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, UpdateTokenizer>(service: "householddevice", action: "update")
-			.setBody(key: "udid", value: udid)
-			.setBody(key: "device", value: device)
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "device", value: device)
 
 		return request
 	}
@@ -184,8 +184,8 @@ public final class HouseholdDeviceService{
 	/**  Update the name of the device by UDID  */
 	public static func updateStatus(udid: String, status: DeviceStatus) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "householddevice", action: "updateStatus")
-			.setBody(key: "udid", value: udid)
-			.setBody(key: "status", value: status.rawValue)
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "status", value: status.rawValue)
 
 		return request
 	}

@@ -46,7 +46,7 @@ public final class ConfigurationGroupTagService{
 	  another group, request fails  */
 	public static func add(configurationGroupTag: ConfigurationGroupTag) -> RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, AddTokenizer> {
 		let request: RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, AddTokenizer> = RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, AddTokenizer>(service: "configurationgrouptag", action: "add")
-			.setBody(key: "configurationGroupTag", value: configurationGroupTag)
+			.setParam(key: "configurationGroupTag", value: configurationGroupTag)
 
 		return request
 	}
@@ -63,7 +63,7 @@ public final class ConfigurationGroupTagService{
 	/**  Remove a tag association from configuration group  */
 	public static func delete(tag: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "configurationgrouptag", action: "delete")
-			.setBody(key: "tag", value: tag)
+			.setParam(key: "tag", value: tag)
 
 		return request
 	}
@@ -80,7 +80,7 @@ public final class ConfigurationGroupTagService{
 	/**  Return the configuration group the tag is associated to  */
 	public static func get(tag: String) -> RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, GetTokenizer> {
 		let request: RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, GetTokenizer> = RequestBuilder<ConfigurationGroupTag, ConfigurationGroupTag.ConfigurationGroupTagTokenizer, GetTokenizer>(service: "configurationgrouptag", action: "get")
-			.setBody(key: "tag", value: tag)
+			.setParam(key: "tag", value: tag)
 
 		return request
 	}
@@ -95,7 +95,7 @@ public final class ConfigurationGroupTagService{
 	/**  Return list of tags for a configuration group  */
 	public static func list(filter: ConfigurationGroupTagFilter) -> RequestBuilder<ConfigurationGroupTagListResponse, ConfigurationGroupTagListResponse.ConfigurationGroupTagListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ConfigurationGroupTagListResponse, ConfigurationGroupTagListResponse.ConfigurationGroupTagListResponseTokenizer, ListTokenizer> = RequestBuilder<ConfigurationGroupTagListResponse, ConfigurationGroupTagListResponse.ConfigurationGroupTagListResponseTokenizer, ListTokenizer>(service: "configurationgrouptag", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

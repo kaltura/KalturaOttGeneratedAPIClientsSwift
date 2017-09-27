@@ -182,7 +182,7 @@ open class MediaAsset: Asset {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(externalIds != nil) {
 			dict["externalIds"] = externalIds!

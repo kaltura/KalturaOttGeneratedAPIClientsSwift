@@ -45,7 +45,7 @@ public final class HomeNetworkService{
 	/**  Add a new home network to a household  */
 	public static func add(homeNetwork: HomeNetwork) -> RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, AddTokenizer> {
 		let request: RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, AddTokenizer> = RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, AddTokenizer>(service: "homenetwork", action: "add")
-			.setBody(key: "homeNetwork", value: homeNetwork)
+			.setParam(key: "homeNetwork", value: homeNetwork)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class HomeNetworkService{
 	/**  Delete household’s existing home network  */
 	public static func delete(externalId: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "homenetwork", action: "delete")
-			.setBody(key: "externalId", value: externalId)
+			.setParam(key: "externalId", value: externalId)
 
 		return request
 	}
@@ -93,8 +93,8 @@ public final class HomeNetworkService{
 	/**  Update and existing home network for a household  */
 	public static func update(externalId: String, homeNetwork: HomeNetwork) -> RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, UpdateTokenizer> = RequestBuilder<HomeNetwork, HomeNetwork.HomeNetworkTokenizer, UpdateTokenizer>(service: "homenetwork", action: "update")
-			.setBody(key: "externalId", value: externalId)
-			.setBody(key: "homeNetwork", value: homeNetwork)
+			.setParam(key: "externalId", value: externalId)
+			.setParam(key: "homeNetwork", value: homeNetwork)
 
 		return request
 	}

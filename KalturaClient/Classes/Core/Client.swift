@@ -40,8 +40,8 @@
 		
 		super.init()
 		
-		clientTag = "swift:17-09-06"
-		apiVersion = "4.3.25.18217"
+		clientTag = "swift:17-09-27"
+		apiVersion = "4.3.25.17328"
 	}
 }
 
@@ -120,7 +120,7 @@ extension RequestBuilderData{
 			return params["clientTag"] as? String
 		}
 		set(value){
-			setBody(key: "clientTag", value: value)
+			setParam(key: "clientTag", value: value)
 		}
 	}
 	
@@ -129,7 +129,7 @@ extension RequestBuilderData{
 			return params["apiVersion"] as? String
 		}
 		set(value){
-			setBody(key: "apiVersion", value: value)
+			setParam(key: "apiVersion", value: value)
 		}
 	}
 	
@@ -141,7 +141,7 @@ extension RequestBuilderData{
 			return params["partnerId"] as? Int
 		}
 		set(value){
-			setBody(key: "partnerId", value: value)
+			setParam(key: "partnerId", value: value)
 		}
 	}
 	
@@ -153,7 +153,7 @@ extension RequestBuilderData{
 			return params["userId"] as? Int
 		}
 		set(value){
-			setBody(key: "userId", value: value)
+			setParam(key: "userId", value: value)
 		}
 	}
 	
@@ -165,7 +165,7 @@ extension RequestBuilderData{
 			return params["language"] as? String
 		}
 		set(value){
-			setBody(key: "language", value: value)
+			setParam(key: "language", value: value)
 		}
 	}
 	
@@ -177,7 +177,7 @@ extension RequestBuilderData{
 			return params["currency"] as? String
 		}
 		set(value){
-			setBody(key: "currency", value: value)
+			setParam(key: "currency", value: value)
 		}
 	}
 	
@@ -189,7 +189,7 @@ extension RequestBuilderData{
 			return params["ks"] as? String
 		}
 		set(value){
-			setBody(key: "ks", value: value)
+			setParam(key: "ks", value: value)
 		}
 	}
 	
@@ -201,7 +201,7 @@ extension RequestBuilderData{
 			return params["ks"] as? String
 		}
 		set(value){
-			setBody(key: "ks", value: value)
+			setParam(key: "ks", value: value)
 		}
 	}
 	

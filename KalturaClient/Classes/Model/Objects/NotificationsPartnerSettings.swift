@@ -211,7 +211,7 @@ open class NotificationsPartnerSettings: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(pushNotificationEnabled != nil) {
 			dict["pushNotificationEnabled"] = pushNotificationEnabled!

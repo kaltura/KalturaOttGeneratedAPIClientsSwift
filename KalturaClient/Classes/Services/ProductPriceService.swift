@@ -47,7 +47,7 @@ public final class ProductPriceService{
 	  passed).  */
 	public static func list(filter: ProductPriceFilter) -> RequestBuilder<ProductPriceListResponse, ProductPriceListResponse.ProductPriceListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ProductPriceListResponse, ProductPriceListResponse.ProductPriceListResponseTokenizer, ListTokenizer> = RequestBuilder<ProductPriceListResponse, ProductPriceListResponse.ProductPriceListResponseTokenizer, ListTokenizer>(service: "productprice", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

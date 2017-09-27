@@ -45,7 +45,7 @@ public final class RecommendationProfileService{
 	/**  Insert new recommendation engine for partner  */
 	public static func add(recommendationEngine: RecommendationProfile) -> RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, AddTokenizer> = RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, AddTokenizer>(service: "recommendationprofile", action: "add")
-			.setBody(key: "recommendationEngine", value: recommendationEngine)
+			.setParam(key: "recommendationEngine", value: recommendationEngine)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class RecommendationProfileService{
 	/**  Delete recommendation engine by recommendation engine id  */
 	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "recommendationprofile", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class RecommendationProfileService{
 	/**  Generate recommendation engine  shared secret  */
 	public static func generateSharedSecret(recommendationEngineId: Int) -> RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, GenerateSharedSecretTokenizer>(service: "recommendationprofile", action: "generateSharedSecret")
-			.setBody(key: "recommendationEngineId", value: recommendationEngineId)
+			.setParam(key: "recommendationEngineId", value: recommendationEngineId)
 
 		return request
 	}
@@ -110,8 +110,8 @@ public final class RecommendationProfileService{
 	/**  Update recommendation engine details  */
 	public static func update(recommendationEngineId: Int, recommendationEngine: RecommendationProfile) -> RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, UpdateTokenizer> = RequestBuilder<RecommendationProfile, RecommendationProfile.RecommendationProfileTokenizer, UpdateTokenizer>(service: "recommendationprofile", action: "update")
-			.setBody(key: "recommendationEngineId", value: recommendationEngineId)
-			.setBody(key: "recommendationEngine", value: recommendationEngine)
+			.setParam(key: "recommendationEngineId", value: recommendationEngineId)
+			.setParam(key: "recommendationEngine", value: recommendationEngine)
 
 		return request
 	}

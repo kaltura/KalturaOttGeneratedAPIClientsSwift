@@ -77,7 +77,7 @@ open class TranslationToken: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(language != nil) {
 			dict["language"] = language!

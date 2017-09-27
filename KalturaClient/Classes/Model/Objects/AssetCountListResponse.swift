@@ -73,7 +73,7 @@ open class AssetCountListResponse: ListResponse {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(assetsCount != nil) {
 			dict["assetsCount"] = assetsCount!

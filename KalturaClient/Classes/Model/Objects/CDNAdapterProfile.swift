@@ -163,7 +163,7 @@ open class CDNAdapterProfile: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(name != nil) {
 			dict["name"] = name!
@@ -178,7 +178,7 @@ open class CDNAdapterProfile: ObjectBase {
 			dict["baseUrl"] = baseUrl!
 		}
 		if(settings != nil) {
-			dict["settings"] = settings!.map { key, value in (key, value.toDictionary()) }
+			dict["settings"] = settings!.toDictionary()
 		}
 		if(systemName != nil) {
 			dict["systemName"] = systemName!

@@ -76,7 +76,7 @@ open class NetworkActionStatus: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(status != nil) {
 			dict["status"] = status!.rawValue

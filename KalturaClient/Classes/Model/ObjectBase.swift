@@ -56,13 +56,25 @@ open class ObjectBase {
         }
     }
     
-    public func toDictionary() -> [String: Any] {
+    internal func toDictionary() -> [String: Any] {
         dict["objectType"] = "Kaltura\(serverObjectType)"
         return dict
     }
     
     open var serverObjectType: String {
         return "\(type(of: self))"
+    }
+}
+
+extension Dictionary {
+    public func toDictionary() -> [String: [String: Any]] {
+        var results: [String: [String: Any]] = [:]
+        for key in self.keys {
+            if let stringKey = key as? String, let value = self[key] as? ObjectBase {
+                results.updateValue(value.toDictionary(), forKey: stringKey)
+            }
+        }
+        return results
     }
 }
 

@@ -65,7 +65,7 @@ open class UserSocialActionResponse: ObjectBase {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(socialAction != nil) {
 			dict["socialAction"] = socialAction!.toDictionary()

@@ -61,18 +61,14 @@ public protocol RequestBuilderProtocol {
     func add(headerKey:String, headerValue:String) -> Self
     
     @discardableResult
-    func setBody(key: String, value:Any?) -> Self
+    func setParam(key: String, value:Any?) -> Self
     
     @discardableResult
-    func setParam(key: String, value:String) -> Self
+    func setUrlParam(key: String, value:String) -> Self
     
     func build(_ client: Client) -> Request
     
-    func getUrlTail() -> String
-    
-    func onComplete(_ response: Response) -> Void
-    
-    func parse(_ response: Response) -> (data:Any?,exception: ApiException?)
+    func parse(_ response: Result<Any>) -> (data:Any?,exception: ApiException?)
     
     func complete(data:Any?, exception: ApiException?)
     
@@ -94,6 +90,7 @@ public class RequestBuilder<T: Any, U: BaseTokenizedObject, G:BaseTokenizedObjec
     public var service: String?
     public var action: String?
     public var index: Int = 0
+    
     public var responseTokenizer: U {
         get {
             return U.self.init(requestId:self.index)
@@ -177,7 +174,7 @@ public class RequestBuilder<T: Any, U: BaseTokenizedObject, G:BaseTokenizedObjec
     }
     
     @discardableResult
-    public func setParam(key: String, value:String) -> Self {
+    public func setUrlParam(key: String, value:String) -> Self {
         
         if self.urlParams != nil {
             self.urlParams![key] = value
@@ -211,11 +208,11 @@ public class RequestBuilder<T: Any, U: BaseTokenizedObject, G:BaseTokenizedObjec
         return RequestElement(requestId: self.requestId, method:self.method , url: url, dataBody: bodyData, files: files, headers: self.headers, timeout: self.timeout, completion: self.onComplete, configuration: client.configuration)
     }
     
-    public func getUrlTail() -> String {
+    internal func getUrlTail() -> String {
         return "/service/" + service! + "/action/" + action!
     }
     
-    public func onComplete(_ response: Response) -> Void {
+    internal func onComplete(_ response: Result<Any>) -> Void {
         
         let parsedResult = self.parse(response)
         
@@ -228,7 +225,7 @@ public class RequestBuilder<T: Any, U: BaseTokenizedObject, G:BaseTokenizedObjec
         }
     }
     
-    public func parse(_ response: Response) -> (data:Any?, exception: ApiException?)  {
+    public func parse(_ response: Result<Any>) -> (data:Any?, exception: ApiException?)  {
         
         var result: T? = nil
         var exception: ApiException? = nil
@@ -249,7 +246,7 @@ public class RequestBuilder<T: Any, U: BaseTokenizedObject, G:BaseTokenizedObjec
         return (result, exception)
     }
     
-    public func buildParamsAsData(params: [String:Any]) -> Data? {
+    internal func buildParamsAsData(params: [String:Any]) -> Data? {
     
         var bodyData: Data? = nil
         do{

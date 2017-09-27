@@ -49,7 +49,7 @@ public final class MetaService{
 	/**  Get the list of meta mappings for the partner  */
 	public static func list(filter: MetaFilter?) -> RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer> = RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer>(service: "meta", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

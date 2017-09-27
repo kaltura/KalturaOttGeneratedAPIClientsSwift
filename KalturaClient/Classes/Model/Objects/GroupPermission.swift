@@ -61,7 +61,7 @@ open class GroupPermission: Permission {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(group != nil) {
 			dict["group"] = group!

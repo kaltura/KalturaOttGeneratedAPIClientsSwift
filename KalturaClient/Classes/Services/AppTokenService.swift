@@ -45,7 +45,7 @@ public final class AppTokenService{
 	/**  Add new application authentication token  */
 	public static func add(appToken: AppToken) -> RequestBuilder<AppToken, AppToken.AppTokenTokenizer, AddTokenizer> {
 		let request: RequestBuilder<AppToken, AppToken.AppTokenTokenizer, AddTokenizer> = RequestBuilder<AppToken, AppToken.AppTokenTokenizer, AddTokenizer>(service: "apptoken", action: "add")
-			.setBody(key: "appToken", value: appToken)
+			.setParam(key: "appToken", value: appToken)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class AppTokenService{
 	/**  Delete application authentication token by id  */
 	public static func delete(id: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "apptoken", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -79,7 +79,7 @@ public final class AppTokenService{
 	/**  Get application authentication token by id  */
 	public static func get(id: String) -> RequestBuilder<AppToken, AppToken.AppTokenTokenizer, GetTokenizer> {
 		let request: RequestBuilder<AppToken, AppToken.AppTokenTokenizer, GetTokenizer> = RequestBuilder<AppToken, AppToken.AppTokenTokenizer, GetTokenizer>(service: "apptoken", action: "get")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -142,12 +142,12 @@ public final class AppTokenService{
 	/**  Starts a new KS (Kaltura Session) based on application authentication token id  */
 	public static func startSession(id: String, tokenHash: String, userId: String?, type: SessionType?, expiry: Int?, udid: String?) -> RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> {
 		let request: RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer> = RequestBuilder<SessionInfo, SessionInfo.SessionInfoTokenizer, StartSessionTokenizer>(service: "apptoken", action: "startSession")
-			.setBody(key: "id", value: id)
-			.setBody(key: "tokenHash", value: tokenHash)
-			.setBody(key: "userId", value: userId)
-			.setBody(key: "type", value: type?.rawValue)
-			.setBody(key: "expiry", value: expiry)
-			.setBody(key: "udid", value: udid)
+			.setParam(key: "id", value: id)
+			.setParam(key: "tokenHash", value: tokenHash)
+			.setParam(key: "userId", value: userId)
+			.setParam(key: "type", value: type?.rawValue)
+			.setParam(key: "expiry", value: expiry)
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}

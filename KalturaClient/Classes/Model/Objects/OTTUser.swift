@@ -246,7 +246,7 @@ open class OTTUser: BaseOTTUser {
 
 	}
 
-	public override func toDictionary() -> [String: Any] {
+	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(email != nil) {
 			dict["email"] = email!
@@ -276,7 +276,7 @@ open class OTTUser: BaseOTTUser {
 			dict["userType"] = userType!.toDictionary()
 		}
 		if(dynamicData != nil) {
-			dict["dynamicData"] = dynamicData!.map { key, value in (key, value.toDictionary()) }
+			dict["dynamicData"] = dynamicData!.toDictionary()
 		}
 		return dict
 	}

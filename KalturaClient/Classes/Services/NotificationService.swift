@@ -53,8 +53,8 @@ public final class NotificationService{
 	/**  TBD  */
 	public static func register(identifier: String, type: NotificationType) -> RequestBuilder<RegistryResponse, RegistryResponse.RegistryResponseTokenizer, RegisterTokenizer> {
 		let request: RequestBuilder<RegistryResponse, RegistryResponse.RegistryResponseTokenizer, RegisterTokenizer> = RequestBuilder<RegistryResponse, RegistryResponse.RegistryResponseTokenizer, RegisterTokenizer>(service: "notification", action: "register")
-			.setBody(key: "identifier", value: identifier)
-			.setBody(key: "type", value: type.rawValue)
+			.setParam(key: "identifier", value: identifier)
+			.setParam(key: "type", value: type.rawValue)
 
 		return request
 	}
@@ -71,7 +71,7 @@ public final class NotificationService{
 	/**  Registers the device push token to the push service  */
 	public static func setDevicePushToken(pushToken: String) -> RequestBuilder<Bool, BaseTokenizedObject, SetDevicePushTokenTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SetDevicePushTokenTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetDevicePushTokenTokenizer>(service: "notification", action: "setDevicePushToken")
-			.setBody(key: "pushToken", value: pushToken)
+			.setParam(key: "pushToken", value: pushToken)
 
 		return request
 	}

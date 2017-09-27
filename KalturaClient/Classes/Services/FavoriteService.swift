@@ -45,7 +45,7 @@ public final class FavoriteService{
 	/**  Add media to user&amp;#39;s favorite list  */
 	public static func add(favorite: Favorite) -> RequestBuilder<Favorite, Favorite.FavoriteTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Favorite, Favorite.FavoriteTokenizer, AddTokenizer> = RequestBuilder<Favorite, Favorite.FavoriteTokenizer, AddTokenizer>(service: "favorite", action: "add")
-			.setBody(key: "favorite", value: favorite)
+			.setParam(key: "favorite", value: favorite)
 
 		return request
 	}
@@ -62,7 +62,7 @@ public final class FavoriteService{
 	/**  Remove media from user&amp;#39;s favorite list  */
 	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "favorite", action: "delete")
-			.setBody(key: "id", value: id)
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -81,7 +81,7 @@ public final class FavoriteService{
 	/**  Retrieving users&amp;#39; favorites  */
 	public static func list(filter: FavoriteFilter?) -> RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer> = RequestBuilder<FavoriteListResponse, FavoriteListResponse.FavoriteListResponseTokenizer, ListTokenizer>(service: "favorite", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

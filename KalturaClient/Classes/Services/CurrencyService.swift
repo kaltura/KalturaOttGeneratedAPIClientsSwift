@@ -46,7 +46,7 @@ public final class CurrencyService{
 	  codes  */
 	public static func list(filter: CurrencyFilter) -> RequestBuilder<CurrencyListResponse, CurrencyListResponse.CurrencyListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<CurrencyListResponse, CurrencyListResponse.CurrencyListResponseTokenizer, ListTokenizer> = RequestBuilder<CurrencyListResponse, CurrencyListResponse.CurrencyListResponseTokenizer, ListTokenizer>(service: "currency", action: "list")
-			.setBody(key: "filter", value: filter)
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}
