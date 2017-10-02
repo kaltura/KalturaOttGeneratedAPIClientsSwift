@@ -116,7 +116,7 @@ open class Social: ObjectBase {
 	public var birthday: String? = nil
 	/**  User model status              Possible values: UNKNOWN, OK, ERROR, NOACTION,
 	  NOTEXIST, CONFLICT, MERGE, MERGEOK, NEWUSER, MINFRIENDS, INVITEOK, INVITEERROR,
-	  ACCESSDENIED, WRONGPASSWORDORUSERNAME, UNMERGEOK  */
+	  ACCESSDENIED, WRONGPASSWORDORUSERNAME, UNMERGEOK, USEREMAILISMISSING  */
 	public var status: String? = nil
 	/**  Profile picture URL  */
 	public var pictureUrl: String? = nil
