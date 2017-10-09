@@ -130,6 +130,23 @@ public final class HouseholdPaymentGatewayService{
 		return request
 	}
 
+	public class ResumeTokenizer: ClientTokenizer  {
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+	}
+
+	/**  Resumes all the entitlements of the given payment gateway  */
+	public static func resume(paymentGatewayId: Int) -> NullRequestBuilder<ResumeTokenizer> {
+		let request: NullRequestBuilder<ResumeTokenizer> = NullRequestBuilder<ResumeTokenizer>(service: "householdpaymentgateway", action: "resume")
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+
+		return request
+	}
+
 	public class SetChargeIDTokenizer: ClientTokenizer  {
 		
 		public var paymentGatewayExternalId: BaseTokenizedObject {
@@ -151,6 +168,23 @@ public final class HouseholdPaymentGatewayService{
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SetChargeIDTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetChargeIDTokenizer>(service: "householdpaymentgateway", action: "setChargeID")
 			.setParam(key: "paymentGatewayExternalId", value: paymentGatewayExternalId)
 			.setParam(key: "chargeId", value: chargeId)
+
+		return request
+	}
+
+	public class SuspendTokenizer: ClientTokenizer  {
+		
+		public var paymentGatewayId: BaseTokenizedObject {
+			get {
+				return self.append("paymentGatewayId") 
+			}
+		}
+	}
+
+	/**  Suspends all the entitlements of the given payment gateway  */
+	public static func suspend(paymentGatewayId: Int) -> NullRequestBuilder<SuspendTokenizer> {
+		let request: NullRequestBuilder<SuspendTokenizer> = NullRequestBuilder<SuspendTokenizer>(service: "householdpaymentgateway", action: "suspend")
+			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
 
 		return request
 	}

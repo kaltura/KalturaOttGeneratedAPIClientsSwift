@@ -79,6 +79,12 @@ open class SubscriptionEntitlement: Entitlement {
 				return self.append("scheduledSubscriptionId") 
 			}
 		}
+		
+		public var isSuspended: BaseTokenizedObject {
+			get {
+				return self.append("isSuspended") 
+			}
+		}
 	}
 
 	/**  The date of the next renewal (only for subscription)  */
@@ -96,6 +102,8 @@ open class SubscriptionEntitlement: Entitlement {
 	public var paymentMethodId: Int? = nil
 	/**  Scheduled Subscription Identifier  */
 	public var scheduledSubscriptionId: Int64? = nil
+	/**  Indicates if the subscription suspended  */
+	public var isSuspended: Bool? = nil
 
 
 	public func setMultiRequestToken(nextRenewalDate: String) {
@@ -126,6 +134,10 @@ open class SubscriptionEntitlement: Entitlement {
 		self.dict["scheduledSubscriptionId"] = scheduledSubscriptionId
 	}
 	
+	public func setMultiRequestToken(isSuspended: String) {
+		self.dict["isSuspended"] = isSuspended
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -149,6 +161,9 @@ open class SubscriptionEntitlement: Entitlement {
 		}
 		if dict["scheduledSubscriptionId"] != nil {
 			scheduledSubscriptionId = Int64("\(dict["scheduledSubscriptionId"]!)")
+		}
+		if dict["isSuspended"] != nil {
+			isSuspended = dict["isSuspended"] as? Bool
 		}
 
 	}
