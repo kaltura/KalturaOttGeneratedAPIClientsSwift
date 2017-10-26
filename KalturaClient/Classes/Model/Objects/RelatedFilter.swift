@@ -72,10 +72,11 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	  &amp;quot;entitled&amp;quot;, &amp;quot;both&amp;quot;. free - gets only free to
 	  watch assets. entitled - only those that the user is implicitly entitled to
 	  watch.              Comparison operators: for numerical fields =, &amp;gt;,
-	  &amp;gt;=, &amp;lt;, &amp;lt;=, : (in). For alpha-numerical fields =, != (not),
-	  ~ (like), !~, ^ (starts with), + (exists), !+ (not exists).              Logical
-	  conjunction: and, or.               Search values are limited to 20 characters
-	  each.              (maximum length of entire filter is 2048 characters)  */
+	  &amp;gt;=, &amp;lt;, &amp;lt;=, : (in).               For alpha-numerical fields
+	  =, != (not), ~ (like), !~, ^ (any word starts with), ^= (phrase starts with), +
+	  (exists), !+ (not exists).              Logical conjunction: and, or.           
+	     Search values are limited to 20 characters each.              (maximum length
+	  of entire filter is 2048 characters)  */
 	public var kSql: String? = nil
 	/**  the ID of the asset for which to return related assets  */
 	public var idEqual: Int? = nil
