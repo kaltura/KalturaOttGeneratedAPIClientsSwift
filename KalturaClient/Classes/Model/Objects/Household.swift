@@ -121,6 +121,12 @@ open class Household: ObjectBase {
 				return self.append("restriction") 
 			}
 		}
+		
+		public var roleId: BaseTokenizedObject {
+			get {
+				return self.append("roleId") 
+			}
+		}
 	}
 
 	/**  Household identifier  */
@@ -151,6 +157,8 @@ open class Household: ObjectBase {
 	public var frequencyNextUserAction: Int64? = nil
 	/**  Household restriction  */
 	public var restriction: HouseholdRestriction? = nil
+	/**  suspended roleId  */
+	public var roleId: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -209,6 +217,10 @@ open class Household: ObjectBase {
 		self.dict["restriction"] = restriction
 	}
 	
+	public func setMultiRequestToken(roleId: String) {
+		self.dict["roleId"] = roleId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -253,6 +265,9 @@ open class Household: ObjectBase {
 		}
 		if dict["restriction"] != nil {
 			restriction = HouseholdRestriction(rawValue: "\(dict["restriction"]!)")
+		}
+		if dict["roleId"] != nil {
+			roleId = dict["roleId"] as? Int
 		}
 
 	}

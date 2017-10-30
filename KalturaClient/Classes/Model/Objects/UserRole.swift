@@ -49,10 +49,16 @@ open class UserRole: ObjectBase {
 			}
 		}
 		
-		public var permissions: ArrayTokenizedObject<Permission.PermissionTokenizer> {
+		public var permissionNames: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<Permission.PermissionTokenizer>(self.append("permissions"))
-			} 
+				return self.append("permissionNames") 
+			}
+		}
+		
+		public var excludedPermissionNames: BaseTokenizedObject {
+			get {
+				return self.append("excludedPermissionNames") 
+			}
 		}
 	}
 
@@ -60,8 +66,10 @@ open class UserRole: ObjectBase {
 	public var id: Int64? = nil
 	/**  User role name  */
 	public var name: String? = nil
-	/**  List of permissions associated with the user role  */
-	public var permissions: Array<Permission>? = nil
+	/**  permissions associated with the user role  */
+	public var permissionNames: String? = nil
+	/**  permissions associated with the user role in is_exclueded = true  */
+	public var excludedPermissionNames: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -70,6 +78,14 @@ open class UserRole: ObjectBase {
 	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(permissionNames: String) {
+		self.dict["permissionNames"] = permissionNames
+	}
+	
+	public func setMultiRequestToken(excludedPermissionNames: String) {
+		self.dict["excludedPermissionNames"] = excludedPermissionNames
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -81,8 +97,11 @@ open class UserRole: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["permissions"] != nil {
-			permissions = try JSONParser.parse(array: dict["permissions"] as! [Any])
+		if dict["permissionNames"] != nil {
+			permissionNames = dict["permissionNames"] as? String
+		}
+		if dict["excludedPermissionNames"] != nil {
+			excludedPermissionNames = dict["excludedPermissionNames"] as? String
 		}
 
 	}
@@ -92,8 +111,11 @@ open class UserRole: ObjectBase {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(permissions != nil) {
-			dict["permissions"] = permissions!.map { value in value.toDictionary() }
+		if(permissionNames != nil) {
+			dict["permissionNames"] = permissionNames!
+		}
+		if(excludedPermissionNames != nil) {
+			dict["excludedPermissionNames"] = excludedPermissionNames!
 		}
 		return dict
 	}

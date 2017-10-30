@@ -43,14 +43,26 @@ open class UserRoleFilter: Filter {
 				return self.append("idIn") 
 			}
 		}
+		
+		public var currentUserRoleIdsContains: BaseTokenizedObject {
+			get {
+				return self.append("currentUserRoleIdsContains") 
+			}
+		}
 	}
 
 	/**  Comma separated roles identifiers  */
 	public var idIn: String? = nil
+	/**  Indicates whether the results should be filtered by userId using the current  */
+	public var currentUserRoleIdsContains: Bool? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
 		self.dict["idIn"] = idIn
+	}
+	
+	public func setMultiRequestToken(currentUserRoleIdsContains: String) {
+		self.dict["currentUserRoleIdsContains"] = currentUserRoleIdsContains
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -59,6 +71,9 @@ open class UserRoleFilter: Filter {
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
 		}
+		if dict["currentUserRoleIdsContains"] != nil {
+			currentUserRoleIdsContains = dict["currentUserRoleIdsContains"] as? Bool
+		}
 
 	}
 
@@ -66,6 +81,9 @@ open class UserRoleFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
+		}
+		if(currentUserRoleIdsContains != nil) {
+			dict["currentUserRoleIdsContains"] = currentUserRoleIdsContains!
 		}
 		return dict
 	}

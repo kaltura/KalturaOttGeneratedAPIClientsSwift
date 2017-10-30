@@ -35,6 +35,38 @@
 
 public final class UserRoleService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func role<T: UserRole.UserRoleTokenizer>() -> T {
+			return T(self.append("role"))
+		}
+	}
+
+	/**  Creates a new role  */
+	public static func add(role: UserRole) -> RequestBuilder<UserRole, UserRole.UserRoleTokenizer, AddTokenizer> {
+		let request: RequestBuilder<UserRole, UserRole.UserRoleTokenizer, AddTokenizer> = RequestBuilder<UserRole, UserRole.UserRoleTokenizer, AddTokenizer>(service: "userrole", action: "add")
+			.setParam(key: "role", value: role)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete role  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "userrole", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: UserRoleFilter.UserRoleFilterTokenizer>() -> T {
@@ -51,6 +83,28 @@ public final class UserRoleService{
 	public static func list(filter: UserRoleFilter?) -> RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer> = RequestBuilder<UserRoleListResponse, UserRoleListResponse.UserRoleListResponseTokenizer, ListTokenizer>(service: "userrole", action: "list")
 			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func role<T: UserRole.UserRoleTokenizer>() -> T {
+			return T(self.append("role"))
+		}
+	}
+
+	/**  Update role  */
+	public static func update(id: Int64, role: UserRole) -> RequestBuilder<UserRole, UserRole.UserRoleTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<UserRole, UserRole.UserRoleTokenizer, UpdateTokenizer> = RequestBuilder<UserRole, UserRole.UserRoleTokenizer, UpdateTokenizer>(service: "userrole", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "role", value: role)
 
 		return request
 	}

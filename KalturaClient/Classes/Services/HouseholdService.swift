@@ -121,13 +121,24 @@ public final class HouseholdService{
 	}
 
 	public class SuspendTokenizer: ClientTokenizer  {
+		
+		public var roleId: BaseTokenizedObject {
+			get {
+				return self.append("roleId") 
+			}
+		}
+	}
+
+	public static func suspend() -> RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer> {
+		return suspend(roleId: nil)
 	}
 
 	/**  Suspend a given household service. Sets the household status to
 	  “suspended&amp;quot;.The household service settings are maintained for later
 	  resume  */
-	public static func suspend() -> RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer> {
+	public static func suspend(roleId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SuspendTokenizer>(service: "household", action: "suspend")
+			.setParam(key: "roleId", value: roleId)
 
 		return request
 	}
