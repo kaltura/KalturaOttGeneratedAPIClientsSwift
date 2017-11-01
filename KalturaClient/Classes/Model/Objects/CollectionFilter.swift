@@ -33,110 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ProductPriceFilter: Filter {
+/**  Collection Filter  */
+open class CollectionFilter: Filter {
 
-	public class ProductPriceFilterTokenizer: Filter.FilterTokenizer {
-		
-		public var subscriptionIdIn: BaseTokenizedObject {
-			get {
-				return self.append("subscriptionIdIn") 
-			}
-		}
-		
-		public var fileIdIn: BaseTokenizedObject {
-			get {
-				return self.append("fileIdIn") 
-			}
-		}
+	public class CollectionFilterTokenizer: Filter.FilterTokenizer {
 		
 		public var collectionIdIn: BaseTokenizedObject {
 			get {
 				return self.append("collectionIdIn") 
 			}
 		}
-		
-		public var isLowest: BaseTokenizedObject {
-			get {
-				return self.append("isLowest") 
-			}
-		}
-		
-		public var couponCodeEqual: BaseTokenizedObject {
-			get {
-				return self.append("couponCodeEqual") 
-			}
-		}
 	}
 
-	/**  Comma separated subscriptions identifiers  */
-	public var subscriptionIdIn: String? = nil
-	/**  Comma separated media files identifiers  */
-	public var fileIdIn: String? = nil
-	/**  Comma separated collections identifiers  */
+	/**  Comma separated collection IDs  */
 	public var collectionIdIn: String? = nil
-	/**  A flag that indicates if only the lowest price of an item should return  */
-	public var isLowest: Bool? = nil
-	/**  Discount coupon code  */
-	public var couponCodeEqual: String? = nil
 
 
-	public func setMultiRequestToken(subscriptionIdIn: String) {
-		self.dict["subscriptionIdIn"] = subscriptionIdIn
-	}
-	
-	public func setMultiRequestToken(fileIdIn: String) {
-		self.dict["fileIdIn"] = fileIdIn
-	}
-	
 	public func setMultiRequestToken(collectionIdIn: String) {
 		self.dict["collectionIdIn"] = collectionIdIn
-	}
-	
-	public func setMultiRequestToken(isLowest: String) {
-		self.dict["isLowest"] = isLowest
-	}
-	
-	public func setMultiRequestToken(couponCodeEqual: String) {
-		self.dict["couponCodeEqual"] = couponCodeEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["subscriptionIdIn"] != nil {
-			subscriptionIdIn = dict["subscriptionIdIn"] as? String
-		}
-		if dict["fileIdIn"] != nil {
-			fileIdIn = dict["fileIdIn"] as? String
-		}
 		if dict["collectionIdIn"] != nil {
 			collectionIdIn = dict["collectionIdIn"] as? String
-		}
-		if dict["isLowest"] != nil {
-			isLowest = dict["isLowest"] as? Bool
-		}
-		if dict["couponCodeEqual"] != nil {
-			couponCodeEqual = dict["couponCodeEqual"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(subscriptionIdIn != nil) {
-			dict["subscriptionIdIn"] = subscriptionIdIn!
-		}
-		if(fileIdIn != nil) {
-			dict["fileIdIn"] = fileIdIn!
-		}
 		if(collectionIdIn != nil) {
 			dict["collectionIdIn"] = collectionIdIn!
-		}
-		if(isLowest != nil) {
-			dict["isLowest"] = isLowest!
-		}
-		if(couponCodeEqual != nil) {
-			dict["couponCodeEqual"] = couponCodeEqual!
 		}
 		return dict
 	}
