@@ -90,10 +90,8 @@ open class Collection: ObjectBase {
 			return T(self.append("multilingualDescription"))
 		}
 		
-		public var pricePlanIds: BaseTokenizedObject {
-			get {
-				return self.append("pricePlanIds") 
-			}
+		public func usageModule<T: UsageModule.UsageModuleTokenizer>() -> T {
+			return T(self.append("usageModule"))
 		}
 		
 		public var couponsGroups: ArrayTokenizedObject<CouponsGroup.CouponsGroupTokenizer> {
@@ -106,6 +104,12 @@ open class Collection: ObjectBase {
 			get {
 				return self.append("externalId") 
 			}
+		}
+		
+		public var productCodes: ArrayTokenizedObject<ProductCode.ProductCodeTokenizer> {
+			get {
+				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
+			} 
 		}
 	}
 
@@ -129,12 +133,14 @@ open class Collection: ObjectBase {
 	public var description: String? = nil
 	/**  description of the subscription  */
 	public var multilingualDescription: MultilingualString? = nil
-	/**  Comma separated subscription price plan IDs  */
-	public var pricePlanIds: String? = nil
+	/**  Collection usage module  */
+	public var usageModule: UsageModule? = nil
 	/**  List of Coupons group  */
 	public var couponsGroups: Array<CouponsGroup>? = nil
 	/**  External ID  */
 	public var externalId: String? = nil
+	/**  List of Collection product codes  */
+	public var productCodes: Array<ProductCode>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -155,10 +161,6 @@ open class Collection: ObjectBase {
 	
 	public func setMultiRequestToken(description: String) {
 		self.dict["description"] = description
-	}
-	
-	public func setMultiRequestToken(pricePlanIds: String) {
-		self.dict["pricePlanIds"] = pricePlanIds
 	}
 	
 	public func setMultiRequestToken(externalId: String) {
@@ -194,14 +196,16 @@ open class Collection: ObjectBase {
 		}
 		if dict["multilingualDescription"] != nil {
 		multilingualDescription = try JSONParser.parse(object: dict["multilingualDescription"] as! [String: Any])		}
-		if dict["pricePlanIds"] != nil {
-			pricePlanIds = dict["pricePlanIds"] as? String
-		}
+		if dict["usageModule"] != nil {
+		usageModule = try JSONParser.parse(object: dict["usageModule"] as! [String: Any])		}
 		if dict["couponsGroups"] != nil {
 			couponsGroups = try JSONParser.parse(array: dict["couponsGroups"] as! [Any])
 		}
 		if dict["externalId"] != nil {
 			externalId = dict["externalId"] as? String
+		}
+		if dict["productCodes"] != nil {
+			productCodes = try JSONParser.parse(array: dict["productCodes"] as! [Any])
 		}
 
 	}
@@ -238,14 +242,17 @@ open class Collection: ObjectBase {
 		if(multilingualDescription != nil) {
 			dict["multilingualDescription"] = multilingualDescription!.toDictionary()
 		}
-		if(pricePlanIds != nil) {
-			dict["pricePlanIds"] = pricePlanIds!
+		if(usageModule != nil) {
+			dict["usageModule"] = usageModule!.toDictionary()
 		}
 		if(couponsGroups != nil) {
 			dict["couponsGroups"] = couponsGroups!.map { value in value.toDictionary() }
 		}
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
+		}
+		if(productCodes != nil) {
+			dict["productCodes"] = productCodes!.map { value in value.toDictionary() }
 		}
 		return dict
 	}
