@@ -43,14 +43,26 @@ open class CollectionFilter: Filter {
 				return self.append("collectionIdIn") 
 			}
 		}
+		
+		public var mediaFileIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("mediaFileIdEqual") 
+			}
+		}
 	}
 
 	/**  Comma separated collection IDs  */
 	public var collectionIdIn: String? = nil
+	/**  Media-file ID to get the subscriptions by  */
+	public var mediaFileIdEqual: Int? = nil
 
 
 	public func setMultiRequestToken(collectionIdIn: String) {
 		self.dict["collectionIdIn"] = collectionIdIn
+	}
+	
+	public func setMultiRequestToken(mediaFileIdEqual: String) {
+		self.dict["mediaFileIdEqual"] = mediaFileIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -59,6 +71,9 @@ open class CollectionFilter: Filter {
 		if dict["collectionIdIn"] != nil {
 			collectionIdIn = dict["collectionIdIn"] as? String
 		}
+		if dict["mediaFileIdEqual"] != nil {
+			mediaFileIdEqual = dict["mediaFileIdEqual"] as? Int
+		}
 
 	}
 
@@ -66,6 +81,9 @@ open class CollectionFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(collectionIdIn != nil) {
 			dict["collectionIdIn"] = collectionIdIn!
+		}
+		if(mediaFileIdEqual != nil) {
+			dict["mediaFileIdEqual"] = mediaFileIdEqual!
 		}
 		return dict
 	}

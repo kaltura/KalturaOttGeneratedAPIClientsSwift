@@ -62,10 +62,6 @@ open class Collection: ObjectBase {
 			}
 		}
 		
-		public func price<T: PriceDetails.PriceDetailsTokenizer>() -> T {
-			return T(self.append("price"))
-		}
-		
 		public func discountModule<T: DiscountModule.DiscountModuleTokenizer>() -> T {
 			return T(self.append("discountModule"))
 		}
@@ -111,6 +107,12 @@ open class Collection: ObjectBase {
 				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
 			} 
 		}
+		
+		public var priceDetailsId: BaseTokenizedObject {
+			get {
+				return self.append("priceDetailsId") 
+			}
+		}
 	}
 
 	/**  Collection identifier  */
@@ -121,8 +123,6 @@ open class Collection: ObjectBase {
 	public var startDate: Int64? = nil
 	/**  The last date the collection is available for purchasing  */
 	public var endDate: Int64? = nil
-	/**  The price of the subscription  */
-	public var price: PriceDetails? = nil
 	/**  The internal discount module for the subscription  */
 	public var discountModule: DiscountModule? = nil
 	/**  Name of the subscription  */
@@ -141,6 +141,8 @@ open class Collection: ObjectBase {
 	public var externalId: String? = nil
 	/**  List of Collection product codes  */
 	public var productCodes: Array<ProductCode>? = nil
+	/**  The ID of the price details associated with this collection  */
+	public var priceDetailsId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -167,6 +169,10 @@ open class Collection: ObjectBase {
 		self.dict["externalId"] = externalId
 	}
 	
+	public func setMultiRequestToken(priceDetailsId: String) {
+		self.dict["priceDetailsId"] = priceDetailsId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -182,8 +188,6 @@ open class Collection: ObjectBase {
 		if dict["endDate"] != nil {
 			endDate = Int64("\(dict["endDate"]!)")
 		}
-		if dict["price"] != nil {
-		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
 		if dict["discountModule"] != nil {
 		discountModule = try JSONParser.parse(object: dict["discountModule"] as! [String: Any])		}
 		if dict["name"] != nil {
@@ -207,6 +211,9 @@ open class Collection: ObjectBase {
 		if dict["productCodes"] != nil {
 			productCodes = try JSONParser.parse(array: dict["productCodes"] as! [Any])
 		}
+		if dict["priceDetailsId"] != nil {
+			priceDetailsId = Int64("\(dict["priceDetailsId"]!)")
+		}
 
 	}
 
@@ -223,9 +230,6 @@ open class Collection: ObjectBase {
 		}
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
-		}
-		if(price != nil) {
-			dict["price"] = price!.toDictionary()
 		}
 		if(discountModule != nil) {
 			dict["discountModule"] = discountModule!.toDictionary()
@@ -253,6 +257,9 @@ open class Collection: ObjectBase {
 		}
 		if(productCodes != nil) {
 			dict["productCodes"] = productCodes!.map { value in value.toDictionary() }
+		}
+		if(priceDetailsId != nil) {
+			dict["priceDetailsId"] = priceDetailsId!
 		}
 		return dict
 	}
