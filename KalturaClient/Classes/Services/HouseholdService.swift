@@ -57,28 +57,17 @@ public final class HouseholdService{
 				return self.append("id") 
 			}
 		}
-		
-		public var purge: BaseTokenizedObject {
-			get {
-				return self.append("purge") 
-			}
-		}
 	}
 
 	public static func delete() -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		return delete(id: nil)
 	}
 
-	public static func delete(id: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
-		return delete(id: id, purge: False)
-	}
-
 	/**  Fully delete a household. Delete all of the household information, including
 	  users, devices, entitlements, payment methods and notification date.  */
-	public static func delete(id: Int?, purge: Bool?) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+	public static func delete(id: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "household", action: "delete")
 			.setParam(key: "id", value: id)
-			.setParam(key: "purge", value: purge)
 
 		return request
 	}
