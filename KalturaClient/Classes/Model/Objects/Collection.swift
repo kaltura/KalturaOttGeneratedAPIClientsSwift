@@ -72,8 +72,10 @@ open class Collection: ObjectBase {
 			}
 		}
 		
-		public func multilingualName<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualName"))
+		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
+			} 
 		}
 		
 		public var description: BaseTokenizedObject {
@@ -82,8 +84,10 @@ open class Collection: ObjectBase {
 			}
 		}
 		
-		public func multilingualDescription<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualDescription"))
+		public var multilingualDescription: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualDescription"))
+			} 
 		}
 		
 		public func usageModule<T: UsageModule.UsageModuleTokenizer>() -> T {
@@ -128,11 +132,11 @@ open class Collection: ObjectBase {
 	/**  Name of the subscription  */
 	public var name: String? = nil
 	/**  Name of the subscription  */
-	public var multilingualName: MultilingualString? = nil
+	public var multilingualName: Array<TranslationToken>? = nil
 	/**  description of the subscription  */
 	public var description: String? = nil
 	/**  description of the subscription  */
-	public var multilingualDescription: MultilingualString? = nil
+	public var multilingualDescription: Array<TranslationToken>? = nil
 	/**  Collection usage module  */
 	public var usageModule: UsageModule? = nil
 	/**  List of Coupons group  */
@@ -194,12 +198,14 @@ open class Collection: ObjectBase {
 			name = dict["name"] as? String
 		}
 		if dict["multilingualName"] != nil {
-		multilingualName = try JSONParser.parse(object: dict["multilingualName"] as! [String: Any])		}
+			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
+		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
 		}
 		if dict["multilingualDescription"] != nil {
-		multilingualDescription = try JSONParser.parse(object: dict["multilingualDescription"] as! [String: Any])		}
+			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
+		}
 		if dict["usageModule"] != nil {
 		usageModule = try JSONParser.parse(object: dict["usageModule"] as! [String: Any])		}
 		if dict["couponsGroups"] != nil {
@@ -238,13 +244,13 @@ open class Collection: ObjectBase {
 			dict["name"] = name!
 		}
 		if(multilingualName != nil) {
-			dict["multilingualName"] = multilingualName!.toDictionary()
+			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
 		if(description != nil) {
 			dict["description"] = description!
 		}
 		if(multilingualDescription != nil) {
-			dict["multilingualDescription"] = multilingualDescription!.toDictionary()
+			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
 		}
 		if(usageModule != nil) {
 			dict["usageModule"] = usageModule!.toDictionary()

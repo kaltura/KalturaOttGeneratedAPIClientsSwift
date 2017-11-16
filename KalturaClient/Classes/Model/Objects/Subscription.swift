@@ -100,8 +100,10 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public func multilingualName<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualName"))
+		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
+			} 
 		}
 		
 		public var description: BaseTokenizedObject {
@@ -110,8 +112,10 @@ open class Subscription: ObjectBase {
 			}
 		}
 		
-		public func multilingualDescription<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualDescription"))
+		public var multilingualDescription: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualDescription"))
+			} 
 		}
 		
 		public var mediaId: BaseTokenizedObject {
@@ -238,11 +242,11 @@ open class Subscription: ObjectBase {
 	/**  Name of the subscription  */
 	public var name: String? = nil
 	/**  Name of the subscription  */
-	public var multilingualName: MultilingualString? = nil
+	public var multilingualName: Array<TranslationToken>? = nil
 	/**  description of the subscription  */
 	public var description: String? = nil
 	/**  description of the subscription  */
-	public var multilingualDescription: MultilingualString? = nil
+	public var multilingualDescription: Array<TranslationToken>? = nil
 	/**  Identifier of the media associated with the subscription  */
 	public var mediaId: Int? = nil
 	/**  Subscription order (when returned in methods that retrieve subscriptions)  */
@@ -397,12 +401,14 @@ open class Subscription: ObjectBase {
 			name = dict["name"] as? String
 		}
 		if dict["multilingualName"] != nil {
-		multilingualName = try JSONParser.parse(object: dict["multilingualName"] as! [String: Any])		}
+			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
+		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
 		}
 		if dict["multilingualDescription"] != nil {
-		multilingualDescription = try JSONParser.parse(object: dict["multilingualDescription"] as! [String: Any])		}
+			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
+		}
 		if dict["mediaId"] != nil {
 			mediaId = dict["mediaId"] as? Int
 		}
@@ -492,13 +498,13 @@ open class Subscription: ObjectBase {
 			dict["name"] = name!
 		}
 		if(multilingualName != nil) {
-			dict["multilingualName"] = multilingualName!.toDictionary()
+			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
 		if(description != nil) {
 			dict["description"] = description!
 		}
 		if(multilingualDescription != nil) {
-			dict["multilingualDescription"] = multilingualDescription!.toDictionary()
+			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
 		}
 		if(mediaId != nil) {
 			dict["mediaId"] = mediaId!
