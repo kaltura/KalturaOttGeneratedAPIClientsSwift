@@ -44,15 +44,17 @@ open class MultilingualStringValue: Value {
 			}
 		}
 		
-		public func multilingualValue<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualValue"))
+		public var multilingualValue: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualValue"))
+			} 
 		}
 	}
 
 	/**  Value  */
 	public var value: String? = nil
 	/**  Value  */
-	public var multilingualValue: MultilingualString? = nil
+	public var multilingualValue: Array<TranslationToken>? = nil
 
 
 	public func setMultiRequestToken(value: String) {
@@ -66,7 +68,8 @@ open class MultilingualStringValue: Value {
 			value = dict["value"] as? String
 		}
 		if dict["multilingualValue"] != nil {
-		multilingualValue = try JSONParser.parse(object: dict["multilingualValue"] as! [String: Any])		}
+			multilingualValue = try JSONParser.parse(array: dict["multilingualValue"] as! [Any])
+		}
 
 	}
 
@@ -76,7 +79,7 @@ open class MultilingualStringValue: Value {
 			dict["value"] = value!
 		}
 		if(multilingualValue != nil) {
-			dict["multilingualValue"] = multilingualValue!.toDictionary()
+			dict["multilingualValue"] = multilingualValue!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

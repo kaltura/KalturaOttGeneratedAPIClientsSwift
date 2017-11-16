@@ -56,8 +56,10 @@ open class Asset: ObjectBase {
 			}
 		}
 		
-		public func multilingualName<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualName"))
+		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
+			} 
 		}
 		
 		public var description: BaseTokenizedObject {
@@ -66,8 +68,10 @@ open class Asset: ObjectBase {
 			}
 		}
 		
-		public func multilingualDescription<T: MultilingualString.MultilingualStringTokenizer>() -> T {
-			return T(self.append("multilingualDescription"))
+		public var multilingualDescription: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualDescription"))
+			} 
 		}
 		
 		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
@@ -146,11 +150,11 @@ open class Asset: ObjectBase {
 	/**  Asset name  */
 	public var name: String? = nil
 	/**  Asset name  */
-	public var multilingualName: MultilingualString? = nil
+	public var multilingualName: Array<TranslationToken>? = nil
 	/**  Asset description  */
 	public var description: String? = nil
 	/**  Asset description  */
-	public var multilingualDescription: MultilingualString? = nil
+	public var multilingualDescription: Array<TranslationToken>? = nil
 	/**  Collection of images details that can be used to represent this asset  */
 	public var images: Array<MediaImage>? = nil
 	/**  Files  */
@@ -237,12 +241,14 @@ open class Asset: ObjectBase {
 			name = dict["name"] as? String
 		}
 		if dict["multilingualName"] != nil {
-		multilingualName = try JSONParser.parse(object: dict["multilingualName"] as! [String: Any])		}
+			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
+		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
 		}
 		if dict["multilingualDescription"] != nil {
-		multilingualDescription = try JSONParser.parse(object: dict["multilingualDescription"] as! [String: Any])		}
+			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
+		}
 		if dict["images"] != nil {
 			images = try JSONParser.parse(array: dict["images"] as! [Any])
 		}
@@ -288,13 +294,13 @@ open class Asset: ObjectBase {
 			dict["name"] = name!
 		}
 		if(multilingualName != nil) {
-			dict["multilingualName"] = multilingualName!.toDictionary()
+			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
 		if(description != nil) {
 			dict["description"] = description!
 		}
 		if(multilingualDescription != nil) {
-			dict["multilingualDescription"] = multilingualDescription!.toDictionary()
+			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
 		}
 		if(images != nil) {
 			dict["images"] = images!.map { value in value.toDictionary() }
