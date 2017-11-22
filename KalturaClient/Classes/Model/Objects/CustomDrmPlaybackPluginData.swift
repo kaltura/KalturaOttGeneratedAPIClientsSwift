@@ -25,17 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum DrmSchemeName: String {
-	case PLAYREADY_CENC = "PLAYREADY_CENC"
-	case WIDEVINE_CENC = "WIDEVINE_CENC"
-	case FAIRPLAY = "FAIRPLAY"
-	case WIDEVINE = "WIDEVINE"
-	case PLAYREADY = "PLAYREADY"
-	case CUSTOM_DRM = "CUSTOM_DRM"
+
+open class CustomDrmPlaybackPluginData: DrmPlaybackPluginData {
+
+	public class CustomDrmPlaybackPluginDataTokenizer: DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer {
+		
+		public var data: BaseTokenizedObject {
+			get {
+				return self.append("data") 
+			}
+		}
+	}
+
+	/**  Custom DRM license data  */
+	public var data: String? = nil
+
+
+	public func setMultiRequestToken(data: String) {
+		self.dict["data"] = data
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["data"] != nil {
+			data = dict["data"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(data != nil) {
+			dict["data"] = data!
+		}
+		return dict
+	}
 }
+
