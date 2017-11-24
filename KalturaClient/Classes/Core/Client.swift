@@ -40,19 +40,25 @@
 		
 		super.init()
 		
-		clientTag = "swift:17-11-23"
-		apiVersion = "4.5.13.23383"
+		clientTag = "swift:17-11-24"
+		apiVersion = "4.5.14.28850"
 	}
 }
 
 public class ClientTokenizer: BaseTokenizedObject {
 	
+	/**
+	 * Client tag
+	 */
 	public var clientTag: BaseTokenizedObject {
 		get {
 			return self.append("clientTag")
 		}
 	}
 	
+	/**
+	 * API Version
+	 */
 	public var apiVersion: BaseTokenizedObject {
 		get {
 			return self.append("apiVersion")
@@ -124,6 +130,9 @@ public class ClientTokenizer: BaseTokenizedObject {
 }
 
 extension RequestBuilderData{
+	/**
+	 * Client tag
+	 */
 	public var clientTag: String?{
 		get{
 			return params["clientTag"] as? String
@@ -133,6 +142,9 @@ extension RequestBuilderData{
 		}
 	}
 	
+	/**
+	 * API Version
+	 */
 	public var apiVersion: String?{
 		get{
 			return params["apiVersion"] as? String
