@@ -44,21 +44,31 @@ open class OTTUserDynamicData: ObjectBase {
 			}
 		}
 		
-		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+		public var key: BaseTokenizedObject {
 			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
+				return self.append("key") 
 			}
+		}
+		
+		public func value<T: StringValue.StringValueTokenizer>() -> T {
+			return T(self.append("value"))
 		}
 	}
 
 	/**  User identifier  */
 	public var userId: String? = nil
-	/**  Dynamic data  */
-	public var dynamicData: Dictionary<String, StringValue>? = nil
+	/**  Key  */
+	public var key: String? = nil
+	/**  Value  */
+	public var value: StringValue? = nil
 
 
 	public func setMultiRequestToken(userId: String) {
 		self.dict["userId"] = userId
+	}
+	
+	public func setMultiRequestToken(key: String) {
+		self.dict["key"] = key
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -67,16 +77,21 @@ open class OTTUserDynamicData: ObjectBase {
 		if dict["userId"] != nil {
 			userId = dict["userId"] as? String
 		}
-		if dict["dynamicData"] != nil {
-			dynamicData = try JSONParser.parse(map: dict["dynamicData"] as! [String: Any])
+		if dict["key"] != nil {
+			key = dict["key"] as? String
 		}
+		if dict["value"] != nil {
+		value = try JSONParser.parse(object: dict["value"] as! [String: Any])		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(dynamicData != nil) {
-			dict["dynamicData"] = dynamicData!.toDictionary()
+		if(key != nil) {
+			dict["key"] = key!
+		}
+		if(value != nil) {
+			dict["value"] = value!.toDictionary()
 		}
 		return dict
 	}
