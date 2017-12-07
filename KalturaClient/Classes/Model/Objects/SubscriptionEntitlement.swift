@@ -74,9 +74,9 @@ open class SubscriptionEntitlement: Entitlement {
 			}
 		}
 		
-		public var scheduledSubscriptionId: BaseTokenizedObject {
+		public var unifiedPaymentId: BaseTokenizedObject {
 			get {
-				return self.append("scheduledSubscriptionId") 
+				return self.append("unifiedPaymentId") 
 			}
 		}
 		
@@ -100,8 +100,8 @@ open class SubscriptionEntitlement: Entitlement {
 	public var paymentGatewayId: Int? = nil
 	/**  Payment Method identifier  */
 	public var paymentMethodId: Int? = nil
-	/**  Scheduled Subscription Identifier  */
-	public var scheduledSubscriptionId: Int64? = nil
+	/**  Unified payment identifier  */
+	public var unifiedPaymentId: Int64? = nil
 	/**  Indicates if the subscription suspended  */
 	public var isSuspended: Bool? = nil
 
@@ -130,8 +130,8 @@ open class SubscriptionEntitlement: Entitlement {
 		self.dict["paymentMethodId"] = paymentMethodId
 	}
 	
-	public func setMultiRequestToken(scheduledSubscriptionId: String) {
-		self.dict["scheduledSubscriptionId"] = scheduledSubscriptionId
+	public func setMultiRequestToken(unifiedPaymentId: String) {
+		self.dict["unifiedPaymentId"] = unifiedPaymentId
 	}
 	
 	public func setMultiRequestToken(isSuspended: String) {
@@ -159,8 +159,8 @@ open class SubscriptionEntitlement: Entitlement {
 		if dict["paymentMethodId"] != nil {
 			paymentMethodId = dict["paymentMethodId"] as? Int
 		}
-		if dict["scheduledSubscriptionId"] != nil {
-			scheduledSubscriptionId = Int64("\(dict["scheduledSubscriptionId"]!)")
+		if dict["unifiedPaymentId"] != nil {
+			unifiedPaymentId = Int64("\(dict["unifiedPaymentId"]!)")
 		}
 		if dict["isSuspended"] != nil {
 			isSuspended = dict["isSuspended"] as? Bool
@@ -176,8 +176,8 @@ open class SubscriptionEntitlement: Entitlement {
 		if(paymentMethodId != nil) {
 			dict["paymentMethodId"] = paymentMethodId!
 		}
-		if(scheduledSubscriptionId != nil) {
-			dict["scheduledSubscriptionId"] = scheduledSubscriptionId!
+		if(unifiedPaymentId != nil) {
+			dict["unifiedPaymentId"] = unifiedPaymentId!
 		}
 		return dict
 	}

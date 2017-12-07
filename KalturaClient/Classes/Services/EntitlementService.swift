@@ -132,6 +132,23 @@ public final class EntitlementService{
 		return request
 	}
 
+	public class GetNextRenewalTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Returns the data about the next renewal  */
+	public static func getNextRenewal(id: Int) -> RequestBuilder<EntitlementRenewal, EntitlementRenewal.EntitlementRenewalTokenizer, GetNextRenewalTokenizer> {
+		let request: RequestBuilder<EntitlementRenewal, EntitlementRenewal.EntitlementRenewalTokenizer, GetNextRenewalTokenizer> = RequestBuilder<EntitlementRenewal, EntitlementRenewal.EntitlementRenewalTokenizer, GetNextRenewalTokenizer>(service: "entitlement", action: "getNextRenewal")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class GrantTokenizer: ClientTokenizer  {
 		
 		public var productId: BaseTokenizedObject {

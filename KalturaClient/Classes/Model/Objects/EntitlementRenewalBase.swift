@@ -33,75 +33,74 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Entitlements filter  */
-open class EntitlementFilter: Filter {
+open class EntitlementRenewalBase: ObjectBase {
 
-	public class EntitlementFilterTokenizer: Filter.FilterTokenizer {
+	public class EntitlementRenewalBaseTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var productTypeEqual: BaseTokenizedObject {
+		public var price: BaseTokenizedObject {
 			get {
-				return self.append("productTypeEqual") 
+				return self.append("price") 
 			}
 		}
 		
-		public var entityReferenceEqual: BaseTokenizedObject {
+		public var purchaseId: BaseTokenizedObject {
 			get {
-				return self.append("entityReferenceEqual") 
+				return self.append("purchaseId") 
 			}
 		}
 		
-		public var isExpiredEqual: BaseTokenizedObject {
+		public var subscriptionId: BaseTokenizedObject {
 			get {
-				return self.append("isExpiredEqual") 
+				return self.append("subscriptionId") 
 			}
 		}
 	}
 
-	/**  The type of the entitlements to return  */
-	public var productTypeEqual: TransactionType? = nil
-	/**  Reference type to filter by  */
-	public var entityReferenceEqual: EntityReferenceBy? = nil
-	/**  Is expired  */
-	public var isExpiredEqual: Bool? = nil
+	/**  Price that is going to be paid on the renewal  */
+	public var price: Double? = nil
+	/**  Puchase ID  */
+	public var purchaseId: Int64? = nil
+	/**  Subscription ID  */
+	public var subscriptionId: Int64? = nil
 
 
-	public func setMultiRequestToken(productTypeEqual: String) {
-		self.dict["productTypeEqual"] = productTypeEqual
-	}
-	
-	public func setMultiRequestToken(entityReferenceEqual: String) {
-		self.dict["entityReferenceEqual"] = entityReferenceEqual
+	public func setMultiRequestToken(price: String) {
+		self.dict["price"] = price
 	}
 	
-	public func setMultiRequestToken(isExpiredEqual: String) {
-		self.dict["isExpiredEqual"] = isExpiredEqual
+	public func setMultiRequestToken(purchaseId: String) {
+		self.dict["purchaseId"] = purchaseId
+	}
+	
+	public func setMultiRequestToken(subscriptionId: String) {
+		self.dict["subscriptionId"] = subscriptionId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["productTypeEqual"] != nil {
-			productTypeEqual = TransactionType(rawValue: "\(dict["productTypeEqual"]!)")
+		if dict["price"] != nil {
+			price = dict["price"] as? Double
 		}
-		if dict["entityReferenceEqual"] != nil {
-			entityReferenceEqual = EntityReferenceBy(rawValue: "\(dict["entityReferenceEqual"]!)")
+		if dict["purchaseId"] != nil {
+			purchaseId = Int64("\(dict["purchaseId"]!)")
 		}
-		if dict["isExpiredEqual"] != nil {
-			isExpiredEqual = dict["isExpiredEqual"] as? Bool
+		if dict["subscriptionId"] != nil {
+			subscriptionId = Int64("\(dict["subscriptionId"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(productTypeEqual != nil) {
-			dict["productTypeEqual"] = productTypeEqual!.rawValue
+		if(price != nil) {
+			dict["price"] = price!
 		}
-		if(entityReferenceEqual != nil) {
-			dict["entityReferenceEqual"] = entityReferenceEqual!.rawValue
+		if(purchaseId != nil) {
+			dict["purchaseId"] = purchaseId!
 		}
-		if(isExpiredEqual != nil) {
-			dict["isExpiredEqual"] = isExpiredEqual!
+		if(subscriptionId != nil) {
+			dict["subscriptionId"] = subscriptionId!
 		}
 		return dict
 	}
