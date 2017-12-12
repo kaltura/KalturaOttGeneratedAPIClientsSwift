@@ -74,6 +74,12 @@ open class SubscriptionEntitlement: Entitlement {
 			}
 		}
 		
+		public var scheduledSubscriptionId: BaseTokenizedObject {
+			get {
+				return self.append("scheduledSubscriptionId") 
+			}
+		}
+		
 		public var unifiedPaymentId: BaseTokenizedObject {
 			get {
 				return self.append("unifiedPaymentId") 
@@ -100,6 +106,8 @@ open class SubscriptionEntitlement: Entitlement {
 	public var paymentGatewayId: Int? = nil
 	/**  Payment Method identifier  */
 	public var paymentMethodId: Int? = nil
+	/**  Scheduled Subscription Identifier  */
+	public var scheduledSubscriptionId: Int64? = nil
 	/**  Unified payment identifier  */
 	public var unifiedPaymentId: Int64? = nil
 	/**  Indicates if the subscription suspended  */
@@ -128,6 +136,10 @@ open class SubscriptionEntitlement: Entitlement {
 	
 	public func setMultiRequestToken(paymentMethodId: String) {
 		self.dict["paymentMethodId"] = paymentMethodId
+	}
+	
+	public func setMultiRequestToken(scheduledSubscriptionId: String) {
+		self.dict["scheduledSubscriptionId"] = scheduledSubscriptionId
 	}
 	
 	public func setMultiRequestToken(unifiedPaymentId: String) {
@@ -159,6 +171,9 @@ open class SubscriptionEntitlement: Entitlement {
 		if dict["paymentMethodId"] != nil {
 			paymentMethodId = dict["paymentMethodId"] as? Int
 		}
+		if dict["scheduledSubscriptionId"] != nil {
+			scheduledSubscriptionId = Int64("\(dict["scheduledSubscriptionId"]!)")
+		}
 		if dict["unifiedPaymentId"] != nil {
 			unifiedPaymentId = Int64("\(dict["unifiedPaymentId"]!)")
 		}
@@ -175,6 +190,9 @@ open class SubscriptionEntitlement: Entitlement {
 		}
 		if(paymentMethodId != nil) {
 			dict["paymentMethodId"] = paymentMethodId!
+		}
+		if(scheduledSubscriptionId != nil) {
+			dict["scheduledSubscriptionId"] = scheduledSubscriptionId!
 		}
 		if(unifiedPaymentId != nil) {
 			dict["unifiedPaymentId"] = unifiedPaymentId!

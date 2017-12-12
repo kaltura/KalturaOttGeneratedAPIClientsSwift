@@ -43,19 +43,19 @@ public final class EntitlementService{
 			}
 		}
 		
-		public var transactionType: BaseTokenizedObject {
+		public var productType: BaseTokenizedObject {
 			get {
-				return self.append("transactionType") 
+				return self.append("productType") 
 			}
 		}
 	}
 
 	/**  Immediately cancel a subscription, PPV or collection. Cancel is possible only if
 	  within cancellation window and content not already consumed  */
-	public static func cancel(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> {
+	public static func cancel(assetId: Int, productType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer>(service: "entitlement", action: "cancel")
 			.setParam(key: "assetId", value: assetId)
-			.setParam(key: "transactionType", value: transactionType.rawValue)
+			.setParam(key: "productType", value: productType.rawValue)
 
 		return request
 	}
@@ -115,19 +115,19 @@ public final class EntitlementService{
 			}
 		}
 		
-		public var transactionType: BaseTokenizedObject {
+		public var productType: BaseTokenizedObject {
 			get {
-				return self.append("transactionType") 
+				return self.append("productType") 
 			}
 		}
 	}
 
 	/**  Immediately cancel a subscription, PPV or collection. Cancel applies regardless
 	  of cancellation window and content consumption status  */
-	public static func forceCancel(assetId: Int, transactionType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> {
+	public static func forceCancel(assetId: Int, productType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer>(service: "entitlement", action: "forceCancel")
 			.setParam(key: "assetId", value: assetId)
-			.setParam(key: "transactionType", value: transactionType.rawValue)
+			.setParam(key: "productType", value: productType.rawValue)
 
 		return request
 	}
