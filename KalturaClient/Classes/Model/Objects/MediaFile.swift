@@ -119,6 +119,12 @@ open class MediaFile: ObjectBase {
 				return self.append("productCode") 
 			}
 		}
+		
+		public var fileSize: BaseTokenizedObject {
+			get {
+				return self.append("fileSize") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the asset  */
@@ -149,6 +155,8 @@ open class MediaFile: ObjectBase {
 	public var ppvModules: StringValueArray? = nil
 	/**  Product code  */
 	public var productCode: String? = nil
+	/**  File size  */
+	public var fileSize: Int64? = nil
 
 
 	public func setMultiRequestToken(assetId: String) {
@@ -203,6 +211,10 @@ open class MediaFile: ObjectBase {
 		self.dict["productCode"] = productCode
 	}
 	
+	public func setMultiRequestToken(fileSize: String) {
+		self.dict["fileSize"] = fileSize
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -247,6 +259,9 @@ open class MediaFile: ObjectBase {
 		if dict["productCode"] != nil {
 			productCode = dict["productCode"] as? String
 		}
+		if dict["fileSize"] != nil {
+			fileSize = Int64("\(dict["fileSize"]!)")
+		}
 
 	}
 
@@ -290,6 +305,9 @@ open class MediaFile: ObjectBase {
 		}
 		if(productCode != nil) {
 			dict["productCode"] = productCode!
+		}
+		if(fileSize != nil) {
+			dict["fileSize"] = fileSize!
 		}
 		return dict
 	}
