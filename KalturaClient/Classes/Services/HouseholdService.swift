@@ -93,6 +93,24 @@ public final class HouseholdService{
 		return request
 	}
 
+	public class PurgeTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Purge a household. Delete all of the household information, including users,
+	  devices, entitlements, payment methods and notification date.  */
+	public static func purge(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, PurgeTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, PurgeTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, PurgeTokenizer>(service: "household", action: "purge")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ResetFrequencyTokenizer: ClientTokenizer  {
 		
 		public var frequencyType: BaseTokenizedObject {
