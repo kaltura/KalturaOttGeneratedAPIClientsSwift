@@ -80,6 +80,12 @@ open class SubscriptionEntitlement: Entitlement {
 			}
 		}
 		
+		public var unifiedPaymentId: BaseTokenizedObject {
+			get {
+				return self.append("unifiedPaymentId") 
+			}
+		}
+		
 		public var isSuspended: BaseTokenizedObject {
 			get {
 				return self.append("isSuspended") 
@@ -102,6 +108,8 @@ open class SubscriptionEntitlement: Entitlement {
 	public var paymentMethodId: Int? = nil
 	/**  Scheduled Subscription Identifier  */
 	public var scheduledSubscriptionId: Int64? = nil
+	/**  Unified payment identifier  */
+	public var unifiedPaymentId: Int64? = nil
 	/**  Indicates if the subscription suspended  */
 	public var isSuspended: Bool? = nil
 
@@ -134,6 +142,10 @@ open class SubscriptionEntitlement: Entitlement {
 		self.dict["scheduledSubscriptionId"] = scheduledSubscriptionId
 	}
 	
+	public func setMultiRequestToken(unifiedPaymentId: String) {
+		self.dict["unifiedPaymentId"] = unifiedPaymentId
+	}
+	
 	public func setMultiRequestToken(isSuspended: String) {
 		self.dict["isSuspended"] = isSuspended
 	}
@@ -162,6 +174,9 @@ open class SubscriptionEntitlement: Entitlement {
 		if dict["scheduledSubscriptionId"] != nil {
 			scheduledSubscriptionId = Int64("\(dict["scheduledSubscriptionId"]!)")
 		}
+		if dict["unifiedPaymentId"] != nil {
+			unifiedPaymentId = Int64("\(dict["unifiedPaymentId"]!)")
+		}
 		if dict["isSuspended"] != nil {
 			isSuspended = dict["isSuspended"] as? Bool
 		}
@@ -178,6 +193,9 @@ open class SubscriptionEntitlement: Entitlement {
 		}
 		if(scheduledSubscriptionId != nil) {
 			dict["scheduledSubscriptionId"] = scheduledSubscriptionId!
+		}
+		if(unifiedPaymentId != nil) {
+			dict["unifiedPaymentId"] = unifiedPaymentId!
 		}
 		return dict
 	}

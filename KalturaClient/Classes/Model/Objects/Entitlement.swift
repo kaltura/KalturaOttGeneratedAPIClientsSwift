@@ -44,9 +44,9 @@ open class Entitlement: ObjectBase {
 			}
 		}
 		
-		public var entitlementId: BaseTokenizedObject {
+		public var productId: BaseTokenizedObject {
 			get {
-				return self.append("entitlementId") 
+				return self.append("productId") 
 			}
 		}
 		
@@ -125,8 +125,8 @@ open class Entitlement: ObjectBase {
 
 	/**  Purchase identifier (for subscriptions and collections only)  */
 	public var id: Int? = nil
-	/**  Entitlement identifier  */
-	public var entitlementId: String? = nil
+	/**  Product identifier  */
+	public var productId: String? = nil
 	/**  The current number of uses  */
 	public var currentUses: Int? = nil
 	/**  The end date of the entitlement  */
@@ -158,8 +158,8 @@ open class Entitlement: ObjectBase {
 		self.dict["id"] = id
 	}
 	
-	public func setMultiRequestToken(entitlementId: String) {
-		self.dict["entitlementId"] = entitlementId
+	public func setMultiRequestToken(productId: String) {
+		self.dict["productId"] = productId
 	}
 	
 	public func setMultiRequestToken(currentUses: String) {
@@ -216,8 +216,8 @@ open class Entitlement: ObjectBase {
 		if dict["id"] != nil {
 			id = dict["id"] as? Int
 		}
-		if dict["entitlementId"] != nil {
-			entitlementId = dict["entitlementId"] as? String
+		if dict["productId"] != nil {
+			productId = dict["productId"] as? String
 		}
 		if dict["currentUses"] != nil {
 			currentUses = dict["currentUses"] as? Int

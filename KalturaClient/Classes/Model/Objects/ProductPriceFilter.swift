@@ -49,6 +49,12 @@ open class ProductPriceFilter: Filter {
 			}
 		}
 		
+		public var collectionIdIn: BaseTokenizedObject {
+			get {
+				return self.append("collectionIdIn") 
+			}
+		}
+		
 		public var isLowest: BaseTokenizedObject {
 			get {
 				return self.append("isLowest") 
@@ -66,6 +72,8 @@ open class ProductPriceFilter: Filter {
 	public var subscriptionIdIn: String? = nil
 	/**  Comma separated media files identifiers  */
 	public var fileIdIn: String? = nil
+	/**  Comma separated collections identifiers  */
+	public var collectionIdIn: String? = nil
 	/**  A flag that indicates if only the lowest price of an item should return  */
 	public var isLowest: Bool? = nil
 	/**  Discount coupon code  */
@@ -78,6 +86,10 @@ open class ProductPriceFilter: Filter {
 	
 	public func setMultiRequestToken(fileIdIn: String) {
 		self.dict["fileIdIn"] = fileIdIn
+	}
+	
+	public func setMultiRequestToken(collectionIdIn: String) {
+		self.dict["collectionIdIn"] = collectionIdIn
 	}
 	
 	public func setMultiRequestToken(isLowest: String) {
@@ -97,6 +109,9 @@ open class ProductPriceFilter: Filter {
 		if dict["fileIdIn"] != nil {
 			fileIdIn = dict["fileIdIn"] as? String
 		}
+		if dict["collectionIdIn"] != nil {
+			collectionIdIn = dict["collectionIdIn"] as? String
+		}
 		if dict["isLowest"] != nil {
 			isLowest = dict["isLowest"] as? Bool
 		}
@@ -113,6 +128,9 @@ open class ProductPriceFilter: Filter {
 		}
 		if(fileIdIn != nil) {
 			dict["fileIdIn"] = fileIdIn!
+		}
+		if(collectionIdIn != nil) {
+			dict["collectionIdIn"] = collectionIdIn!
 		}
 		if(isLowest != nil) {
 			dict["isLowest"] = isLowest!

@@ -84,6 +84,34 @@ public final class ChannelService{
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: ChannelsFilter.ChannelsFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	public static func list(filter: ChannelsFilter?) -> RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
+	}
+
+	/**  Get the list of tags for the partner  */
+	public static func list(filter: ChannelsFilter?, pager: FilterPager?) -> RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> = RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer>(service: "channel", action: "list")
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
 	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public var channelId: BaseTokenizedObject {

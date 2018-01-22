@@ -38,9 +38,9 @@ open class EntitlementFilter: Filter {
 
 	public class EntitlementFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var entitlementTypeEqual: BaseTokenizedObject {
+		public var productTypeEqual: BaseTokenizedObject {
 			get {
-				return self.append("entitlementTypeEqual") 
+				return self.append("productTypeEqual") 
 			}
 		}
 		
@@ -58,15 +58,15 @@ open class EntitlementFilter: Filter {
 	}
 
 	/**  The type of the entitlements to return  */
-	public var entitlementTypeEqual: TransactionType? = nil
+	public var productTypeEqual: TransactionType? = nil
 	/**  Reference type to filter by  */
 	public var entityReferenceEqual: EntityReferenceBy? = nil
 	/**  Is expired  */
 	public var isExpiredEqual: Bool? = nil
 
 
-	public func setMultiRequestToken(entitlementTypeEqual: String) {
-		self.dict["entitlementTypeEqual"] = entitlementTypeEqual
+	public func setMultiRequestToken(productTypeEqual: String) {
+		self.dict["productTypeEqual"] = productTypeEqual
 	}
 	
 	public func setMultiRequestToken(entityReferenceEqual: String) {
@@ -80,8 +80,8 @@ open class EntitlementFilter: Filter {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["entitlementTypeEqual"] != nil {
-			entitlementTypeEqual = TransactionType(rawValue: "\(dict["entitlementTypeEqual"]!)")
+		if dict["productTypeEqual"] != nil {
+			productTypeEqual = TransactionType(rawValue: "\(dict["productTypeEqual"]!)")
 		}
 		if dict["entityReferenceEqual"] != nil {
 			entityReferenceEqual = EntityReferenceBy(rawValue: "\(dict["entityReferenceEqual"]!)")
@@ -94,8 +94,8 @@ open class EntitlementFilter: Filter {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(entitlementTypeEqual != nil) {
-			dict["entitlementTypeEqual"] = entitlementTypeEqual!.rawValue
+		if(productTypeEqual != nil) {
+			dict["productTypeEqual"] = productTypeEqual!.rawValue
 		}
 		if(entityReferenceEqual != nil) {
 			dict["entityReferenceEqual"] = entityReferenceEqual!.rawValue

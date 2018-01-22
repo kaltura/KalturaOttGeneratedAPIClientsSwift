@@ -38,27 +38,51 @@ open class Meta: ObjectBase {
 
 	public class MetaTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
 		public var name: BaseTokenizedObject {
 			get {
 				return self.append("name") 
 			}
 		}
 		
-		public var fieldName: BaseTokenizedObject {
+		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
 			get {
-				return self.append("fieldName") 
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
+			} 
+		}
+		
+		public var systemName: BaseTokenizedObject {
+			get {
+				return self.append("systemName") 
 			}
 		}
 		
-		public var type: BaseTokenizedObject {
+		public var dataType: BaseTokenizedObject {
 			get {
-				return self.append("type") 
+				return self.append("dataType") 
 			}
 		}
 		
-		public var assetType: BaseTokenizedObject {
+		public var multipleValue: BaseTokenizedObject {
 			get {
-				return self.append("assetType") 
+				return self.append("multipleValue") 
+			}
+		}
+		
+		public var isProtected: BaseTokenizedObject {
+			get {
+				return self.append("isProtected") 
+			}
+		}
+		
+		public var helpText: BaseTokenizedObject {
+			get {
+				return self.append("helpText") 
 			}
 		}
 		
@@ -68,101 +92,133 @@ open class Meta: ObjectBase {
 			}
 		}
 		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
 		public var parentId: BaseTokenizedObject {
 			get {
 				return self.append("parentId") 
 			}
 		}
 		
-		public var partnerId: BaseTokenizedObject {
+		public var createDate: BaseTokenizedObject {
 			get {
-				return self.append("partnerId") 
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
 			}
 		}
 	}
 
-	/**  Meta name for the partner  */
-	public var name: String? = nil
-	/**  Meta system field name  */
-	public var fieldName: MetaFieldName? = nil
-	/**  Meta value type  */
-	public var type: MetaType? = nil
-	/**  Asset type this meta is related to  */
-	public var assetType: AssetType? = nil
-	/**  List of supported features  */
-	public var features: String? = nil
 	/**  Meta id  */
 	public var id: String? = nil
+	/**  Meta name for the partner  */
+	public var name: String? = nil
+	/**  Meta name for the partner  */
+	public var multilingualName: Array<TranslationToken>? = nil
+	/**  Meta system name for the partner  */
+	public var systemName: String? = nil
+	/**  Meta data type  */
+	public var dataType: MetaDataType? = nil
+	/**  Does the meta contain multiple values  */
+	public var multipleValue: Bool? = nil
+	/**  Is the meta protected by the system  */
+	public var isProtected: Bool? = nil
+	/**  The help text of the meta to be displayed on the UI.  */
+	public var helpText: String? = nil
+	/**  List of supported features  */
+	public var features: String? = nil
 	/**  Parent meta id  */
 	public var parentId: String? = nil
-	/**  Partner Id  */
-	public var partnerId: Int? = nil
+	/**  Specifies when was the meta was created. Date and time represented as epoch.  */
+	public var createDate: Int64? = nil
+	/**  Specifies when was the meta last updated. Date and time represented as epoch.  */
+	public var updateDate: Int64? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
 	}
 	
-	public func setMultiRequestToken(fieldName: String) {
-		self.dict["fieldName"] = fieldName
+	public func setMultiRequestToken(systemName: String) {
+		self.dict["systemName"] = systemName
 	}
 	
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(dataType: String) {
+		self.dict["dataType"] = dataType
 	}
 	
-	public func setMultiRequestToken(assetType: String) {
-		self.dict["assetType"] = assetType
+	public func setMultiRequestToken(multipleValue: String) {
+		self.dict["multipleValue"] = multipleValue
+	}
+	
+	public func setMultiRequestToken(isProtected: String) {
+		self.dict["isProtected"] = isProtected
+	}
+	
+	public func setMultiRequestToken(helpText: String) {
+		self.dict["helpText"] = helpText
 	}
 	
 	public func setMultiRequestToken(features: String) {
 		self.dict["features"] = features
 	}
 	
-	public func setMultiRequestToken(id: String) {
-		self.dict["id"] = id
-	}
-	
 	public func setMultiRequestToken(parentId: String) {
 		self.dict["parentId"] = parentId
 	}
 	
-	public func setMultiRequestToken(partnerId: String) {
-		self.dict["partnerId"] = partnerId
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["id"] != nil {
+			id = dict["id"] as? String
+		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["fieldName"] != nil {
-			fieldName = MetaFieldName(rawValue: "\(dict["fieldName"]!)")
+		if dict["multilingualName"] != nil {
+			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
 		}
-		if dict["type"] != nil {
-			type = MetaType(rawValue: "\(dict["type"]!)")
+		if dict["systemName"] != nil {
+			systemName = dict["systemName"] as? String
 		}
-		if dict["assetType"] != nil {
-			assetType = AssetType(rawValue: "\(dict["assetType"]!)")
+		if dict["dataType"] != nil {
+			dataType = MetaDataType(rawValue: "\(dict["dataType"]!)")
+		}
+		if dict["multipleValue"] != nil {
+			multipleValue = dict["multipleValue"] as? Bool
+		}
+		if dict["isProtected"] != nil {
+			isProtected = dict["isProtected"] as? Bool
+		}
+		if dict["helpText"] != nil {
+			helpText = dict["helpText"] as? String
 		}
 		if dict["features"] != nil {
 			features = dict["features"] as? String
 		}
-		if dict["id"] != nil {
-			id = dict["id"] as? String
-		}
 		if dict["parentId"] != nil {
 			parentId = dict["parentId"] as? String
 		}
-		if dict["partnerId"] != nil {
-			partnerId = dict["partnerId"] as? Int
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 
 	}
@@ -172,26 +228,29 @@ open class Meta: ObjectBase {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(fieldName != nil) {
-			dict["fieldName"] = fieldName!.rawValue
+		if(multilingualName != nil) {
+			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
-		if(type != nil) {
-			dict["type"] = type!.rawValue
+		if(systemName != nil) {
+			dict["systemName"] = systemName!
 		}
-		if(assetType != nil) {
-			dict["assetType"] = assetType!.rawValue
+		if(dataType != nil) {
+			dict["dataType"] = dataType!.rawValue
+		}
+		if(multipleValue != nil) {
+			dict["multipleValue"] = multipleValue!
+		}
+		if(isProtected != nil) {
+			dict["isProtected"] = isProtected!
+		}
+		if(helpText != nil) {
+			dict["helpText"] = helpText!
 		}
 		if(features != nil) {
 			dict["features"] = features!
 		}
-		if(id != nil) {
-			dict["id"] = id!
-		}
 		if(parentId != nil) {
 			dict["parentId"] = parentId!
-		}
-		if(partnerId != nil) {
-			dict["partnerId"] = partnerId!
 		}
 		return dict
 	}

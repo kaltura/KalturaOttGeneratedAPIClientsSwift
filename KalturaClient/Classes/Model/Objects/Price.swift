@@ -69,7 +69,7 @@ open class Price: ObjectBase {
 	public var currency: String? = nil
 	/**  Currency Sign  */
 	public var currencySign: String? = nil
-	/**  Currency  */
+	/**  Country ID  */
 	public var countryId: Int64? = nil
 
 

@@ -414,6 +414,28 @@ public final class OttUserService{
 		return request
 	}
 
+	public class UpdateDynamicDataTokenizer: ClientTokenizer  {
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+		
+		public func value<T: StringValue.StringValueTokenizer>() -> T {
+			return T(self.append("value"))
+		}
+	}
+
+	/**  Update user dynamic data  */
+	public static func updateDynamicData(key: String, value: StringValue) -> RequestBuilder<OTTUserDynamicData, OTTUserDynamicData.OTTUserDynamicDataTokenizer, UpdateDynamicDataTokenizer> {
+		let request: RequestBuilder<OTTUserDynamicData, OTTUserDynamicData.OTTUserDynamicDataTokenizer, UpdateDynamicDataTokenizer> = RequestBuilder<OTTUserDynamicData, OTTUserDynamicData.OTTUserDynamicDataTokenizer, UpdateDynamicDataTokenizer>(service: "ottuser", action: "updateDynamicData")
+			.setParam(key: "key", value: key)
+			.setParam(key: "value", value: value)
+
+		return request
+	}
+
 	public class UpdateLoginDataTokenizer: ClientTokenizer  {
 		
 		public var username: BaseTokenizedObject {

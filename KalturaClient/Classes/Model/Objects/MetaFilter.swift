@@ -38,106 +38,88 @@ open class MetaFilter: Filter {
 
 	public class MetaFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var fieldNameEqual: BaseTokenizedObject {
+		public var idIn: BaseTokenizedObject {
 			get {
-				return self.append("fieldNameEqual") 
+				return self.append("idIn") 
 			}
 		}
 		
-		public var fieldNameNotEqual: BaseTokenizedObject {
+		public var assetStructIdEqual: BaseTokenizedObject {
 			get {
-				return self.append("fieldNameNotEqual") 
+				return self.append("assetStructIdEqual") 
 			}
 		}
 		
-		public var typeEqual: BaseTokenizedObject {
+		public var dataTypeEqual: BaseTokenizedObject {
 			get {
-				return self.append("typeEqual") 
+				return self.append("dataTypeEqual") 
 			}
 		}
 		
-		public var assetTypeEqual: BaseTokenizedObject {
+		public var multipleValueEqual: BaseTokenizedObject {
 			get {
-				return self.append("assetTypeEqual") 
-			}
-		}
-		
-		public var featuresIn: BaseTokenizedObject {
-			get {
-				return self.append("featuresIn") 
+				return self.append("multipleValueEqual") 
 			}
 		}
 	}
 
-	/**  Meta system field name to filter by  */
-	public var fieldNameEqual: MetaFieldName? = nil
-	/**  Meta system field name to filter by  */
-	public var fieldNameNotEqual: MetaFieldName? = nil
-	/**  Meta type to filter by  */
-	public var typeEqual: MetaType? = nil
-	/**  Asset type to filter by  */
-	public var assetTypeEqual: AssetType? = nil
-	/**  Features  */
-	public var featuresIn: String? = nil
+	/**  Comma separated identifiers  */
+	public var idIn: String? = nil
+	/**  Filter Metas that are contained in a specific asset struct  */
+	public var assetStructIdEqual: Int64? = nil
+	/**  Meta data type to filter by  */
+	public var dataTypeEqual: MetaDataType? = nil
+	/**  Filter metas by multipleValueEqual value  */
+	public var multipleValueEqual: Bool? = nil
 
 
-	public func setMultiRequestToken(fieldNameEqual: String) {
-		self.dict["fieldNameEqual"] = fieldNameEqual
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
 	}
 	
-	public func setMultiRequestToken(fieldNameNotEqual: String) {
-		self.dict["fieldNameNotEqual"] = fieldNameNotEqual
+	public func setMultiRequestToken(assetStructIdEqual: String) {
+		self.dict["assetStructIdEqual"] = assetStructIdEqual
 	}
 	
-	public func setMultiRequestToken(typeEqual: String) {
-		self.dict["typeEqual"] = typeEqual
+	public func setMultiRequestToken(dataTypeEqual: String) {
+		self.dict["dataTypeEqual"] = dataTypeEqual
 	}
 	
-	public func setMultiRequestToken(assetTypeEqual: String) {
-		self.dict["assetTypeEqual"] = assetTypeEqual
-	}
-	
-	public func setMultiRequestToken(featuresIn: String) {
-		self.dict["featuresIn"] = featuresIn
+	public func setMultiRequestToken(multipleValueEqual: String) {
+		self.dict["multipleValueEqual"] = multipleValueEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["fieldNameEqual"] != nil {
-			fieldNameEqual = MetaFieldName(rawValue: "\(dict["fieldNameEqual"]!)")
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
 		}
-		if dict["fieldNameNotEqual"] != nil {
-			fieldNameNotEqual = MetaFieldName(rawValue: "\(dict["fieldNameNotEqual"]!)")
+		if dict["assetStructIdEqual"] != nil {
+			assetStructIdEqual = Int64("\(dict["assetStructIdEqual"]!)")
 		}
-		if dict["typeEqual"] != nil {
-			typeEqual = MetaType(rawValue: "\(dict["typeEqual"]!)")
+		if dict["dataTypeEqual"] != nil {
+			dataTypeEqual = MetaDataType(rawValue: "\(dict["dataTypeEqual"]!)")
 		}
-		if dict["assetTypeEqual"] != nil {
-			assetTypeEqual = AssetType(rawValue: "\(dict["assetTypeEqual"]!)")
-		}
-		if dict["featuresIn"] != nil {
-			featuresIn = dict["featuresIn"] as? String
+		if dict["multipleValueEqual"] != nil {
+			multipleValueEqual = dict["multipleValueEqual"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(fieldNameEqual != nil) {
-			dict["fieldNameEqual"] = fieldNameEqual!.rawValue
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
 		}
-		if(fieldNameNotEqual != nil) {
-			dict["fieldNameNotEqual"] = fieldNameNotEqual!.rawValue
+		if(assetStructIdEqual != nil) {
+			dict["assetStructIdEqual"] = assetStructIdEqual!
 		}
-		if(typeEqual != nil) {
-			dict["typeEqual"] = typeEqual!.rawValue
+		if(dataTypeEqual != nil) {
+			dict["dataTypeEqual"] = dataTypeEqual!.rawValue
 		}
-		if(assetTypeEqual != nil) {
-			dict["assetTypeEqual"] = assetTypeEqual!.rawValue
-		}
-		if(featuresIn != nil) {
-			dict["featuresIn"] = featuresIn!
+		if(multipleValueEqual != nil) {
+			dict["multipleValueEqual"] = multipleValueEqual!
 		}
 		return dict
 	}

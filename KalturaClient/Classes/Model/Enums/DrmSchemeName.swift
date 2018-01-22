@@ -37,4 +37,5 @@ public enum DrmSchemeName: String {
 	case FAIRPLAY = "FAIRPLAY"
 	case WIDEVINE = "WIDEVINE"
 	case PLAYREADY = "PLAYREADY"
+	case CUSTOM_DRM = "CUSTOM_DRM"
 }

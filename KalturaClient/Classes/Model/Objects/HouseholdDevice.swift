@@ -79,6 +79,10 @@ open class HouseholdDevice: ObjectBase {
 				return self.append("deviceFamilyId") 
 			}
 		}
+		
+		public func drm<T: CustomDrmPlaybackPluginData.CustomDrmPlaybackPluginDataTokenizer>() -> T {
+			return T(self.append("drm"))
+		}
 	}
 
 	/**  Household identifier  */
@@ -95,6 +99,8 @@ open class HouseholdDevice: ObjectBase {
 	public var status: DeviceStatus? = nil
 	/**  Device family id  */
 	public var deviceFamilyId: Int64? = nil
+	/**  Device DRM data  */
+	public var drm: CustomDrmPlaybackPluginData? = nil
 
 
 	public func setMultiRequestToken(householdId: String) {
@@ -149,6 +155,8 @@ open class HouseholdDevice: ObjectBase {
 		if dict["deviceFamilyId"] != nil {
 			deviceFamilyId = Int64("\(dict["deviceFamilyId"]!)")
 		}
+		if dict["drm"] != nil {
+		drm = try JSONParser.parse(object: dict["drm"] as! [String: Any])		}
 
 	}
 

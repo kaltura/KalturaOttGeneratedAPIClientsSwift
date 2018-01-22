@@ -109,6 +109,12 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 				return self.append("renewStartMinutes") 
 			}
 		}
+		
+		public var externalVerification: BaseTokenizedObject {
+			get {
+				return self.append("externalVerification") 
+			}
+		}
 	}
 
 	/**  Payment gateway is active status  */
@@ -135,6 +141,8 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 	public var renewIntervalMinutes: Int? = nil
 	/**  Renew Start Minutes  */
 	public var renewStartMinutes: Int? = nil
+	/**  Payment gateway external verification  */
+	public var externalVerification: Bool? = nil
 
 
 	public func setMultiRequestToken(isActive: String) {
@@ -181,6 +189,10 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 		self.dict["renewStartMinutes"] = renewStartMinutes
 	}
 	
+	public func setMultiRequestToken(externalVerification: String) {
+		self.dict["externalVerification"] = externalVerification
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -219,6 +231,9 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 		}
 		if dict["renewStartMinutes"] != nil {
 			renewStartMinutes = dict["renewStartMinutes"] as? Int
+		}
+		if dict["externalVerification"] != nil {
+			externalVerification = dict["externalVerification"] as? Bool
 		}
 
 	}
@@ -260,6 +275,9 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 		}
 		if(renewStartMinutes != nil) {
 			dict["renewStartMinutes"] = renewStartMinutes!
+		}
+		if(externalVerification != nil) {
+			dict["externalVerification"] = externalVerification!
 		}
 		return dict
 	}

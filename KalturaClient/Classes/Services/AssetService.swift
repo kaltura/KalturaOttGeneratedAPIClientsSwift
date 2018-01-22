@@ -35,6 +35,21 @@
 
 public final class AssetService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func asset<T: Asset.AssetTokenizer>() -> T {
+			return T(self.append("asset"))
+		}
+	}
+
+	/**  Add a new asset  */
+	public static func add(asset: Asset) -> RequestBuilder<Asset, Asset.AssetTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Asset, Asset.AssetTokenizer, AddTokenizer> = RequestBuilder<Asset, Asset.AssetTokenizer, AddTokenizer>(service: "asset", action: "add")
+			.setParam(key: "asset", value: asset)
+
+		return request
+	}
+
 	public class CountTokenizer: ClientTokenizer  {
 		
 		public func filter<T: SearchAssetFilter.SearchAssetFilterTokenizer>() -> T {
@@ -51,6 +66,30 @@ public final class AssetService{
 	public static func count(filter: SearchAssetFilter?) -> RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> {
 		let request: RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer> = RequestBuilder<AssetCount, AssetCount.AssetCountTokenizer, CountTokenizer>(service: "asset", action: "count")
 			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var assetReferenceType: BaseTokenizedObject {
+			get {
+				return self.append("assetReferenceType") 
+			}
+		}
+	}
+
+	/**  Delete an existing asset  */
+	public static func delete(id: Int64, assetReferenceType: AssetReferenceType) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "asset", action: "delete")
+			.setParam(key: "id", value: id)
+			.setParam(key: "assetReferenceType", value: assetReferenceType.rawValue)
 
 		return request
 	}
@@ -162,6 +201,59 @@ public final class AssetService{
 		let request: RequestBuilder<AssetListResponse, AssetListResponse.AssetListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetListResponse, AssetListResponse.AssetListResponseTokenizer, ListTokenizer>(service: "asset", action: "list")
 			.setParam(key: "filter", value: filter)
 			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
+	public class RemoveMetasAndTagsTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var assetReferenceType: BaseTokenizedObject {
+			get {
+				return self.append("assetReferenceType") 
+			}
+		}
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+	}
+
+	/**  remove metas and tags from asset  */
+	public static func removeMetasAndTags(id: Int64, assetReferenceType: AssetReferenceType, idIn: String) -> RequestBuilder<Bool, BaseTokenizedObject, RemoveMetasAndTagsTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, RemoveMetasAndTagsTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, RemoveMetasAndTagsTokenizer>(service: "asset", action: "removeMetasAndTags")
+			.setParam(key: "id", value: id)
+			.setParam(key: "assetReferenceType", value: assetReferenceType.rawValue)
+			.setParam(key: "idIn", value: idIn)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func asset<T: Asset.AssetTokenizer>() -> T {
+			return T(self.append("asset"))
+		}
+	}
+
+	/**  update an existing asset  */
+	public static func update(id: Int64, asset: Asset) -> RequestBuilder<Asset, Asset.AssetTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Asset, Asset.AssetTokenizer, UpdateTokenizer> = RequestBuilder<Asset, Asset.AssetTokenizer, UpdateTokenizer>(service: "asset", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "asset", value: asset)
 
 		return request
 	}

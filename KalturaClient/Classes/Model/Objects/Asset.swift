@@ -110,27 +110,15 @@ open class Asset: ObjectBase {
 			}
 		}
 		
-		public var enableCdvr: BaseTokenizedObject {
+		public var createDate: BaseTokenizedObject {
 			get {
-				return self.append("enableCdvr") 
+				return self.append("createDate") 
 			}
 		}
 		
-		public var enableCatchUp: BaseTokenizedObject {
+		public var updateDate: BaseTokenizedObject {
 			get {
-				return self.append("enableCatchUp") 
-			}
-		}
-		
-		public var enableStartOver: BaseTokenizedObject {
-			get {
-				return self.append("enableStartOver") 
-			}
-		}
-		
-		public var enableTrickPlay: BaseTokenizedObject {
-			get {
-				return self.append("enableTrickPlay") 
+				return self.append("updateDate") 
 			}
 		}
 		
@@ -172,14 +160,10 @@ open class Asset: ObjectBase {
 	/**  Date and time represented as epoch. For VOD – till when the asset be available
 	  in the catalog. For EPG/Linear – program end time and date  */
 	public var endDate: Int64? = nil
-	/**  Enable cDVR  */
-	public var enableCdvr: Bool? = nil
-	/**  Enable catch-up  */
-	public var enableCatchUp: Bool? = nil
-	/**  Enable start over  */
-	public var enableStartOver: Bool? = nil
-	/**  Enable trick-play  */
-	public var enableTrickPlay: Bool? = nil
+	/**  Specifies when was the Asset was created. Date and time represented as epoch.  */
+	public var createDate: Int64? = nil
+	/**  Specifies when was the Asset last updated. Date and time represented as epoch.  */
+	public var updateDate: Int64? = nil
 	/**  External identifier for the media file  */
 	public var externalId: String? = nil
 
@@ -208,20 +192,12 @@ open class Asset: ObjectBase {
 		self.dict["endDate"] = endDate
 	}
 	
-	public func setMultiRequestToken(enableCdvr: String) {
-		self.dict["enableCdvr"] = enableCdvr
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
 	}
 	
-	public func setMultiRequestToken(enableCatchUp: String) {
-		self.dict["enableCatchUp"] = enableCatchUp
-	}
-	
-	public func setMultiRequestToken(enableStartOver: String) {
-		self.dict["enableStartOver"] = enableStartOver
-	}
-	
-	public func setMultiRequestToken(enableTrickPlay: String) {
-		self.dict["enableTrickPlay"] = enableTrickPlay
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
 	}
 	
 	public func setMultiRequestToken(externalId: String) {
@@ -267,17 +243,11 @@ open class Asset: ObjectBase {
 		if dict["endDate"] != nil {
 			endDate = Int64("\(dict["endDate"]!)")
 		}
-		if dict["enableCdvr"] != nil {
-			enableCdvr = dict["enableCdvr"] as? Bool
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
 		}
-		if dict["enableCatchUp"] != nil {
-			enableCatchUp = dict["enableCatchUp"] as? Bool
-		}
-		if dict["enableStartOver"] != nil {
-			enableStartOver = dict["enableStartOver"] as? Bool
-		}
-		if dict["enableTrickPlay"] != nil {
-			enableTrickPlay = dict["enableTrickPlay"] as? Bool
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 		if dict["externalId"] != nil {
 			externalId = dict["externalId"] as? String
@@ -302,12 +272,6 @@ open class Asset: ObjectBase {
 		if(multilingualDescription != nil) {
 			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
 		}
-		if(images != nil) {
-			dict["images"] = images!.map { value in value.toDictionary() }
-		}
-		if(mediaFiles != nil) {
-			dict["mediaFiles"] = mediaFiles!.map { value in value.toDictionary() }
-		}
 		if(metas != nil) {
 			dict["metas"] = metas!.toDictionary()
 		}
@@ -319,18 +283,6 @@ open class Asset: ObjectBase {
 		}
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
-		}
-		if(enableCdvr != nil) {
-			dict["enableCdvr"] = enableCdvr!
-		}
-		if(enableCatchUp != nil) {
-			dict["enableCatchUp"] = enableCatchUp!
-		}
-		if(enableStartOver != nil) {
-			dict["enableStartOver"] = enableStartOver!
-		}
-		if(enableTrickPlay != nil) {
-			dict["enableTrickPlay"] = enableTrickPlay!
 		}
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
