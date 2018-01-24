@@ -97,6 +97,18 @@ open class MediaFileType: ObjectBase {
 				return self.append("quality") 
 			}
 		}
+		
+		public var videoCodecs: BaseTokenizedObject {
+			get {
+				return self.append("videoCodecs") 
+			}
+		}
+		
+		public var audioCodecs: BaseTokenizedObject {
+			get {
+				return self.append("audioCodecs") 
+			}
+		}
 	}
 
 	/**  Unique identifier  */
@@ -119,6 +131,10 @@ open class MediaFileType: ObjectBase {
 	public var drmProfileId: Int? = nil
 	/**  Media file type quality  */
 	public var quality: MediaFileTypeQuality? = nil
+	/**  List of comma separated video codecs  */
+	public var videoCodecs: String? = nil
+	/**  List of comma separated audio codecs  */
+	public var audioCodecs: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -161,6 +177,14 @@ open class MediaFileType: ObjectBase {
 		self.dict["quality"] = quality
 	}
 	
+	public func setMultiRequestToken(videoCodecs: String) {
+		self.dict["videoCodecs"] = videoCodecs
+	}
+	
+	public func setMultiRequestToken(audioCodecs: String) {
+		self.dict["audioCodecs"] = audioCodecs
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -194,6 +218,12 @@ open class MediaFileType: ObjectBase {
 		if dict["quality"] != nil {
 			quality = MediaFileTypeQuality(rawValue: "\(dict["quality"]!)")
 		}
+		if dict["videoCodecs"] != nil {
+			videoCodecs = dict["videoCodecs"] as? String
+		}
+		if dict["audioCodecs"] != nil {
+			audioCodecs = dict["audioCodecs"] as? String
+		}
 
 	}
 
@@ -219,6 +249,12 @@ open class MediaFileType: ObjectBase {
 		}
 		if(quality != nil) {
 			dict["quality"] = quality!.rawValue
+		}
+		if(videoCodecs != nil) {
+			dict["videoCodecs"] = videoCodecs!
+		}
+		if(audioCodecs != nil) {
+			dict["audioCodecs"] = audioCodecs!
 		}
 		return dict
 	}
