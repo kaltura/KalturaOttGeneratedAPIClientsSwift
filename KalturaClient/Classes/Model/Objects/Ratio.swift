@@ -48,12 +48,37 @@ open class Ratio: ObjectBase {
 				return self.append("name") 
 			}
 		}
+		
+		public var height: BaseTokenizedObject {
+			get {
+				return self.append("height") 
+			}
+		}
+		
+		public var width: BaseTokenizedObject {
+			get {
+				return self.append("width") 
+			}
+		}
+		
+		public var acceptedErrorMarginPrecentage: BaseTokenizedObject {
+			get {
+				return self.append("acceptedErrorMarginPrecentage") 
+			}
+		}
 	}
 
 	/**  ID  */
 	public var id: Int64? = nil
 	/**  Name  */
 	public var name: String? = nil
+	/**  Height  */
+	public var height: Int? = nil
+	/**  Width  */
+	public var width: Int? = nil
+	/**  Accepted error margin precentage of an image uploaded for this ratio            
+	   0 - no validation, everything accepted  */
+	public var acceptedErrorMarginPrecentage: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -62,6 +87,18 @@ open class Ratio: ObjectBase {
 	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(height: String) {
+		self.dict["height"] = height
+	}
+	
+	public func setMultiRequestToken(width: String) {
+		self.dict["width"] = width
+	}
+	
+	public func setMultiRequestToken(acceptedErrorMarginPrecentage: String) {
+		self.dict["acceptedErrorMarginPrecentage"] = acceptedErrorMarginPrecentage
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -73,6 +110,15 @@ open class Ratio: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
+		if dict["height"] != nil {
+			height = dict["height"] as? Int
+		}
+		if dict["width"] != nil {
+			width = dict["width"] as? Int
+		}
+		if dict["acceptedErrorMarginPrecentage"] != nil {
+			acceptedErrorMarginPrecentage = dict["acceptedErrorMarginPrecentage"] as? Int
+		}
 
 	}
 
@@ -80,6 +126,15 @@ open class Ratio: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(name != nil) {
 			dict["name"] = name!
+		}
+		if(height != nil) {
+			dict["height"] = height!
+		}
+		if(width != nil) {
+			dict["width"] = width!
+		}
+		if(acceptedErrorMarginPrecentage != nil) {
+			dict["acceptedErrorMarginPrecentage"] = acceptedErrorMarginPrecentage!
 		}
 		return dict
 	}
