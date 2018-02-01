@@ -72,6 +72,18 @@ open class MessageTemplate: ObjectBase {
 				return self.append("url") 
 			}
 		}
+		
+		public var mailTemplate: BaseTokenizedObject {
+			get {
+				return self.append("mailTemplate") 
+			}
+		}
+		
+		public var mailSubject: BaseTokenizedObject {
+			get {
+				return self.append("mailSubject") 
+			}
+		}
 	}
 
 	/**  The message template with placeholders  */
@@ -87,6 +99,10 @@ open class MessageTemplate: ObjectBase {
 	public var action: String? = nil
 	/**  URL template for deep linking. Example - /app/location/{mediaId}  */
 	public var url: String? = nil
+	/**  Mail template name  */
+	public var mailTemplate: String? = nil
+	/**  Mail subject  */
+	public var mailSubject: String? = nil
 
 
 	public func setMultiRequestToken(message: String) {
@@ -113,6 +129,14 @@ open class MessageTemplate: ObjectBase {
 		self.dict["url"] = url
 	}
 	
+	public func setMultiRequestToken(mailTemplate: String) {
+		self.dict["mailTemplate"] = mailTemplate
+	}
+	
+	public func setMultiRequestToken(mailSubject: String) {
+		self.dict["mailSubject"] = mailSubject
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -133,6 +157,12 @@ open class MessageTemplate: ObjectBase {
 		}
 		if dict["url"] != nil {
 			url = dict["url"] as? String
+		}
+		if dict["mailTemplate"] != nil {
+			mailTemplate = dict["mailTemplate"] as? String
+		}
+		if dict["mailSubject"] != nil {
+			mailSubject = dict["mailSubject"] as? String
 		}
 
 	}
@@ -156,6 +186,12 @@ open class MessageTemplate: ObjectBase {
 		}
 		if(url != nil) {
 			dict["url"] = url!
+		}
+		if(mailTemplate != nil) {
+			dict["mailTemplate"] = mailTemplate!
+		}
+		if(mailSubject != nil) {
+			dict["mailSubject"] = mailSubject!
 		}
 		return dict
 	}
