@@ -96,6 +96,18 @@ open class Announcement: ObjectBase {
 				return self.append("includeMail") 
 			}
 		}
+		
+		public var mailTemplate: BaseTokenizedObject {
+			get {
+				return self.append("mailTemplate") 
+			}
+		}
+		
+		public var mailSubject: BaseTokenizedObject {
+			get {
+				return self.append("mailSubject") 
+			}
+		}
 	}
 
 	/**  Announcement name  */
@@ -118,6 +130,10 @@ open class Announcement: ObjectBase {
 	public var imageUrl: String? = nil
 	/**  Include Mail  */
 	public var includeMail: Bool? = nil
+	/**  Mail Template  */
+	public var mailTemplate: String? = nil
+	/**  Mail Subject  */
+	public var mailSubject: String? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -160,6 +176,14 @@ open class Announcement: ObjectBase {
 		self.dict["includeMail"] = includeMail
 	}
 	
+	public func setMultiRequestToken(mailTemplate: String) {
+		self.dict["mailTemplate"] = mailTemplate
+	}
+	
+	public func setMultiRequestToken(mailSubject: String) {
+		self.dict["mailSubject"] = mailSubject
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -193,6 +217,12 @@ open class Announcement: ObjectBase {
 		if dict["includeMail"] != nil {
 			includeMail = dict["includeMail"] as? Bool
 		}
+		if dict["mailTemplate"] != nil {
+			mailTemplate = dict["mailTemplate"] as? String
+		}
+		if dict["mailSubject"] != nil {
+			mailSubject = dict["mailSubject"] as? String
+		}
 
 	}
 
@@ -221,6 +251,12 @@ open class Announcement: ObjectBase {
 		}
 		if(includeMail != nil) {
 			dict["includeMail"] = includeMail!
+		}
+		if(mailTemplate != nil) {
+			dict["mailTemplate"] = mailTemplate!
+		}
+		if(mailSubject != nil) {
+			dict["mailSubject"] = mailSubject!
 		}
 		return dict
 	}
