@@ -48,6 +48,12 @@ open class NotificationsSettings: ObjectBase {
 				return self.append("pushFollowEnabled") 
 			}
 		}
+		
+		public var mailEnabled: BaseTokenizedObject {
+			get {
+				return self.append("mailEnabled") 
+			}
+		}
 	}
 
 	/**  Specify if the user want to receive push notifications or not  */
@@ -55,6 +61,8 @@ open class NotificationsSettings: ObjectBase {
 	/**  Specify if the user will be notified for followed content via push. (requires
 	  push_notification_enabled to be enabled)  */
 	public var pushFollowEnabled: Bool? = nil
+	/**  Specify if the user want to receive mail notifications or not  */
+	public var mailEnabled: Bool? = nil
 
 
 	public func setMultiRequestToken(pushNotificationEnabled: String) {
@@ -63,6 +71,10 @@ open class NotificationsSettings: ObjectBase {
 	
 	public func setMultiRequestToken(pushFollowEnabled: String) {
 		self.dict["pushFollowEnabled"] = pushFollowEnabled
+	}
+	
+	public func setMultiRequestToken(mailEnabled: String) {
+		self.dict["mailEnabled"] = mailEnabled
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +86,9 @@ open class NotificationsSettings: ObjectBase {
 		if dict["pushFollowEnabled"] != nil {
 			pushFollowEnabled = dict["pushFollowEnabled"] as? Bool
 		}
+		if dict["mailEnabled"] != nil {
+			mailEnabled = dict["mailEnabled"] as? Bool
+		}
 
 	}
 
@@ -84,6 +99,9 @@ open class NotificationsSettings: ObjectBase {
 		}
 		if(pushFollowEnabled != nil) {
 			dict["pushFollowEnabled"] = pushFollowEnabled!
+		}
+		if(mailEnabled != nil) {
+			dict["mailEnabled"] = mailEnabled!
 		}
 		return dict
 	}
