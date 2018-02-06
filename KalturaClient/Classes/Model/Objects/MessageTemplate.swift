@@ -84,6 +84,12 @@ open class MessageTemplate: ObjectBase {
 				return self.append("mailSubject") 
 			}
 		}
+		
+		public var ratioId: BaseTokenizedObject {
+			get {
+				return self.append("ratioId") 
+			}
+		}
 	}
 
 	/**  The message template with placeholders  */
@@ -103,6 +109,8 @@ open class MessageTemplate: ObjectBase {
 	public var mailTemplate: String? = nil
 	/**  Mail subject  */
 	public var mailSubject: String? = nil
+	/**  Ratio identifier  */
+	public var ratioId: String? = nil
 
 
 	public func setMultiRequestToken(message: String) {
@@ -137,6 +145,10 @@ open class MessageTemplate: ObjectBase {
 		self.dict["mailSubject"] = mailSubject
 	}
 	
+	public func setMultiRequestToken(ratioId: String) {
+		self.dict["ratioId"] = ratioId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -163,6 +175,9 @@ open class MessageTemplate: ObjectBase {
 		}
 		if dict["mailSubject"] != nil {
 			mailSubject = dict["mailSubject"] as? String
+		}
+		if dict["ratioId"] != nil {
+			ratioId = dict["ratioId"] as? String
 		}
 
 	}
@@ -192,6 +207,9 @@ open class MessageTemplate: ObjectBase {
 		}
 		if(mailSubject != nil) {
 			dict["mailSubject"] = mailSubject!
+		}
+		if(ratioId != nil) {
+			dict["ratioId"] = ratioId!
 		}
 		return dict
 	}
