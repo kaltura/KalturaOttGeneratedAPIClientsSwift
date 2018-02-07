@@ -100,8 +100,8 @@ public final class ImageService{
 	}
 
 	/**  Sets the content of an existing image  */
-	public static func setContent(id: Int64, content: ContentResource) -> NullRequestBuilder<SetContentTokenizer> {
-		let request: NullRequestBuilder<SetContentTokenizer> = NullRequestBuilder<SetContentTokenizer>(service: "image", action: "setContent")
+	public static func setContent(id: Int64, content: ContentResource) -> RequestBuilder<Bool, BaseTokenizedObject, SetContentTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, SetContentTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetContentTokenizer>(service: "image", action: "setContent")
 			.setParam(key: "id", value: id)
 			.setParam(key: "content", value: content)
 
