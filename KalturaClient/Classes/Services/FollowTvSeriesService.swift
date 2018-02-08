@@ -70,6 +70,37 @@ public final class FollowTvSeriesService{
 		return request
 	}
 
+	public class DeleteWithTokenTokenizer: ClientTokenizer  {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+		
+		public var token: BaseTokenizedObject {
+			get {
+				return self.append("token") 
+			}
+		}
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+	}
+
+	/**  Delete a user&amp;#39;s tv series follow.  */
+	public static func deleteWithToken(assetId: Int, token: String, partnerId: Int) -> NullRequestBuilder<DeleteWithTokenTokenizer> {
+		let request: NullRequestBuilder<DeleteWithTokenTokenizer> = NullRequestBuilder<DeleteWithTokenTokenizer>(service: "followtvseries", action: "deleteWithToken")
+			.setParam(key: "assetId", value: assetId)
+			.setParam(key: "token", value: token)
+			.setParam(key: "partnerId", value: partnerId)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: FollowTvSeriesFilter.FollowTvSeriesFilterTokenizer>() -> T {
