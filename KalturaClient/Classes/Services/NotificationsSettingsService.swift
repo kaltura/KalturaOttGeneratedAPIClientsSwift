@@ -60,7 +60,7 @@ public final class NotificationsSettingsService{
 		return request
 	}
 
-	public class UpdateTokenizer: ClientTokenizer  {
+	public class UpdateWithTokenTokenizer: ClientTokenizer  {
 		
 		public func settings<T: NotificationsSettings.NotificationsSettingsTokenizer>() -> T {
 			return T(self.append("settings"))
@@ -80,8 +80,8 @@ public final class NotificationsSettingsService{
 	}
 
 	/**  Update the user’s notification settings.  */
-	public static func update(settings: NotificationsSettings, token: String, partnerId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "notificationssettings", action: "update")
+	public static func updateWithToken(settings: NotificationsSettings, token: String, partnerId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateWithTokenTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateWithTokenTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateWithTokenTokenizer>(service: "notificationssettings", action: "updateWithToken")
 			.setParam(key: "settings", value: settings)
 			.setParam(key: "token", value: token)
 			.setParam(key: "partnerId", value: partnerId)
