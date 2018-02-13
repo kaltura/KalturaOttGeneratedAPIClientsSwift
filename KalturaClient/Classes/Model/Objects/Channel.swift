@@ -85,6 +85,10 @@ open class Channel: ObjectBase {
 				return self.append("isActive") 
 			}
 		}
+		
+		public func orderBy<T: ChannelOrder.ChannelOrderTokenizer>() -> T {
+			return T(self.append("orderBy"))
+		}
 	}
 
 	/**  Unique identifier for the channel  */
@@ -103,6 +107,8 @@ open class Channel: ObjectBase {
 	public var images: Array<MediaImage>? = nil
 	/**  active status  */
 	public var isActive: Bool? = nil
+	/**  Channel order by  */
+	public var orderBy: ChannelOrder? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -152,6 +158,8 @@ open class Channel: ObjectBase {
 		if dict["isActive"] != nil {
 			isActive = dict["isActive"] as? Bool
 		}
+		if dict["orderBy"] != nil {
+		orderBy = try JSONParser.parse(object: dict["orderBy"] as! [String: Any])		}
 
 	}
 
@@ -177,6 +185,9 @@ open class Channel: ObjectBase {
 		}
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
+		}
+		if(orderBy != nil) {
+			dict["orderBy"] = orderBy!.toDictionary()
 		}
 		return dict
 	}

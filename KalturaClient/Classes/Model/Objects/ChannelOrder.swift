@@ -33,39 +33,50 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ManualChannel: Channel {
+/**  Channel order details  */
+open class ChannelOrder: ObjectBase {
 
-	public class ManualChannelTokenizer: Channel.ChannelTokenizer {
+	public class ChannelOrderTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var mediaIds: BaseTokenizedObject {
+		public func dynamicOrderBy<T: DynamicOrderBy.DynamicOrderByTokenizer>() -> T {
+			return T(self.append("dynamicOrderBy"))
+		}
+		
+		public var orderBy: BaseTokenizedObject {
 			get {
-				return self.append("mediaIds") 
+				return self.append("orderBy") 
 			}
 		}
 	}
 
-	/**  A list of comma separated media ids associated with this channel, according to
-	  the order of the medias in the channel.  */
-	public var mediaIds: String? = nil
+	/**  Channel dynamic order by (meta)  */
+	public var dynamicOrderBy: DynamicOrderBy? = nil
+	/**  Channel order by  */
+	public var orderBy: ChannelOrderBy? = nil
 
 
-	public func setMultiRequestToken(mediaIds: String) {
-		self.dict["mediaIds"] = mediaIds
+	public func setMultiRequestToken(orderBy: String) {
+		self.dict["orderBy"] = orderBy
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["mediaIds"] != nil {
-			mediaIds = dict["mediaIds"] as? String
+		if dict["dynamicOrderBy"] != nil {
+		dynamicOrderBy = try JSONParser.parse(object: dict["dynamicOrderBy"] as! [String: Any])		}
+		if dict["orderBy"] != nil {
+			orderBy = ChannelOrderBy(rawValue: "\(dict["orderBy"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(mediaIds != nil) {
-			dict["mediaIds"] = mediaIds!
+		if(dynamicOrderBy != nil) {
+			dict["dynamicOrderBy"] = dynamicOrderBy!.toDictionary()
+		}
+		if(orderBy != nil) {
+			dict["orderBy"] = orderBy!.rawValue
 		}
 		return dict
 	}

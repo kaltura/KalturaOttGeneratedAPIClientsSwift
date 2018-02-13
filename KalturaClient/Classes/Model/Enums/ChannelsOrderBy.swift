@@ -25,49 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-open class ManualChannel: Channel {
-
-	public class ManualChannelTokenizer: Channel.ChannelTokenizer {
-		
-		public var mediaIds: BaseTokenizedObject {
-			get {
-				return self.append("mediaIds") 
-			}
-		}
-	}
-
-	/**  A list of comma separated media ids associated with this channel, according to
-	  the order of the medias in the channel.  */
-	public var mediaIds: String? = nil
-
-
-	public func setMultiRequestToken(mediaIds: String) {
-		self.dict["mediaIds"] = mediaIds
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["mediaIds"] != nil {
-			mediaIds = dict["mediaIds"] as? String
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(mediaIds != nil) {
-			dict["mediaIds"] = mediaIds!
-		}
-		return dict
-	}
+public enum ChannelsOrderBy: String {
+	case NONE = "NONE"
+	case NAME_ASC = "NAME_ASC"
+	case NAME_DESC = "NAME_DESC"
+	case CREATE_DATE_ASC = "CREATE_DATE_ASC"
+	case CREATE_DATE_DESC = "CREATE_DATE_DESC"
 }
-
