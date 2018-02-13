@@ -42,7 +42,8 @@ public final class ChannelService{
 		}
 	}
 
-	/**  Insert new channel for partner. Currently supports only KSQL channel  */
+	/**  Insert new channel for partner. Supports KalturaDynamicChannel or
+	  KalturaManualChannel  */
 	public static func add(channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer>(service: "channel", action: "add")
 			.setParam(key: "channel", value: channel)
@@ -125,7 +126,7 @@ public final class ChannelService{
 		}
 	}
 
-	/**  Update channel details. Currently supports only KSQL channel  */
+	/**  Update channel details. Supports KalturaDynamicChannel or KalturaManualChannel  */
 	public static func update(channelId: Int, channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer>(service: "channel", action: "update")
 			.setParam(key: "channelId", value: channelId)

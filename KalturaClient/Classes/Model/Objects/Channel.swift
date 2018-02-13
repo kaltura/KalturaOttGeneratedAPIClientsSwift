@@ -89,6 +89,18 @@ open class Channel: ObjectBase {
 		public func orderBy<T: ChannelOrder.ChannelOrderTokenizer>() -> T {
 			return T(self.append("orderBy"))
 		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the channel  */
@@ -109,6 +121,10 @@ open class Channel: ObjectBase {
 	public var isActive: Bool? = nil
 	/**  Channel order by  */
 	public var orderBy: ChannelOrder? = nil
+	/**  Specifies when was the Channel was created. Date and time represented as epoch.  */
+	public var createDate: Int64? = nil
+	/**  Specifies when was the Channel last updated. Date and time represented as epoch.  */
+	public var updateDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -129,6 +145,14 @@ open class Channel: ObjectBase {
 	
 	public func setMultiRequestToken(isActive: String) {
 		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -160,6 +184,12 @@ open class Channel: ObjectBase {
 		}
 		if dict["orderBy"] != nil {
 		orderBy = try JSONParser.parse(object: dict["orderBy"] as! [String: Any])		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
+		}
 
 	}
 
