@@ -47,16 +47,28 @@ open class ChannelOrder: ObjectBase {
 				return self.append("orderBy") 
 			}
 		}
+		
+		public var slidingWindowPeriod: BaseTokenizedObject {
+			get {
+				return self.append("slidingWindowPeriod") 
+			}
+		}
 	}
 
 	/**  Channel dynamic order by (meta)  */
 	public var dynamicOrderBy: DynamicOrderBy? = nil
 	/**  Channel order by  */
 	public var orderBy: ChannelOrderBy? = nil
+	/**  Sliding window period in minutes  */
+	public var slidingWindowPeriod: Int? = nil
 
 
 	public func setMultiRequestToken(orderBy: String) {
 		self.dict["orderBy"] = orderBy
+	}
+	
+	public func setMultiRequestToken(slidingWindowPeriod: String) {
+		self.dict["slidingWindowPeriod"] = slidingWindowPeriod
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -66,6 +78,9 @@ open class ChannelOrder: ObjectBase {
 		dynamicOrderBy = try JSONParser.parse(object: dict["dynamicOrderBy"] as! [String: Any])		}
 		if dict["orderBy"] != nil {
 			orderBy = ChannelOrderBy(rawValue: "\(dict["orderBy"]!)")
+		}
+		if dict["slidingWindowPeriod"] != nil {
+			slidingWindowPeriod = dict["slidingWindowPeriod"] as? Int
 		}
 
 	}
@@ -77,6 +92,9 @@ open class ChannelOrder: ObjectBase {
 		}
 		if(orderBy != nil) {
 			dict["orderBy"] = orderBy!.rawValue
+		}
+		if(slidingWindowPeriod != nil) {
+			dict["slidingWindowPeriod"] = slidingWindowPeriod!
 		}
 		return dict
 	}
