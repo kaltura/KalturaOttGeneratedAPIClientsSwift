@@ -98,9 +98,9 @@ open class MediaFile: ObjectBase {
 			}
 		}
 		
-		public var altStreamingSuplierId: BaseTokenizedObject {
+		public var altStreamingSupplierId: BaseTokenizedObject {
 			get {
-				return self.append("altStreamingSuplierId") 
+				return self.append("altStreamingSupplierId") 
 			}
 		}
 		
@@ -146,9 +146,9 @@ open class MediaFile: ObjectBase {
 			}
 		}
 		
-		public var streamingSuplierId: BaseTokenizedObject {
+		public var streamingSupplierId: BaseTokenizedObject {
 			get {
-				return self.append("streamingSuplierId") 
+				return self.append("streamingSupplierId") 
 			}
 		}
 		
@@ -180,7 +180,7 @@ open class MediaFile: ObjectBase {
 	/**  Alternative streaming code  */
 	public var altStreamingCode: String? = nil
 	/**  Alternative streaming supplier identifier  */
-	public var altStreamingSuplierId: Int64? = nil
+	public var altStreamingSupplierId: Int64? = nil
 	/**  EndDate  */
 	public var endDate: Int64? = nil
 	/**  StartDate  */
@@ -195,8 +195,8 @@ open class MediaFile: ObjectBase {
 	public var orderNum: Int? = nil
 	/**  OutputProtecationLevel  */
 	public var outputProtecationLevel: String? = nil
-	/**  StreamingSuplierId  */
-	public var streamingSuplierId: String? = nil
+	/**  StreamingSupplierId  */
+	public var streamingSupplierId: Int64? = nil
 	/**  The media file status  */
 	public var status: Bool? = nil
 
@@ -241,8 +241,8 @@ open class MediaFile: ObjectBase {
 		self.dict["altStreamingCode"] = altStreamingCode
 	}
 	
-	public func setMultiRequestToken(altStreamingSuplierId: String) {
-		self.dict["altStreamingSuplierId"] = altStreamingSuplierId
+	public func setMultiRequestToken(altStreamingSupplierId: String) {
+		self.dict["altStreamingSupplierId"] = altStreamingSupplierId
 	}
 	
 	public func setMultiRequestToken(endDate: String) {
@@ -273,8 +273,8 @@ open class MediaFile: ObjectBase {
 		self.dict["outputProtecationLevel"] = outputProtecationLevel
 	}
 	
-	public func setMultiRequestToken(streamingSuplierId: String) {
-		self.dict["streamingSuplierId"] = streamingSuplierId
+	public func setMultiRequestToken(streamingSupplierId: String) {
+		self.dict["streamingSupplierId"] = streamingSupplierId
 	}
 	
 	public func setMultiRequestToken(status: String) {
@@ -314,8 +314,8 @@ open class MediaFile: ObjectBase {
 		if dict["altStreamingCode"] != nil {
 			altStreamingCode = dict["altStreamingCode"] as? String
 		}
-		if dict["altStreamingSuplierId"] != nil {
-			altStreamingSuplierId = Int64("\(dict["altStreamingSuplierId"]!)")
+		if dict["altStreamingSupplierId"] != nil {
+			altStreamingSupplierId = Int64("\(dict["altStreamingSupplierId"]!)")
 		}
 		if dict["endDate"] != nil {
 			endDate = Int64("\(dict["endDate"]!)")
@@ -338,8 +338,8 @@ open class MediaFile: ObjectBase {
 		if dict["outputProtecationLevel"] != nil {
 			outputProtecationLevel = dict["outputProtecationLevel"] as? String
 		}
-		if dict["streamingSuplierId"] != nil {
-			streamingSuplierId = dict["streamingSuplierId"] as? String
+		if dict["streamingSupplierId"] != nil {
+			streamingSupplierId = Int64("\(dict["streamingSupplierId"]!)")
 		}
 		if dict["status"] != nil {
 			status = dict["status"] as? Bool
@@ -376,8 +376,8 @@ open class MediaFile: ObjectBase {
 		if(altStreamingCode != nil) {
 			dict["altStreamingCode"] = altStreamingCode!
 		}
-		if(altStreamingSuplierId != nil) {
-			dict["altStreamingSuplierId"] = altStreamingSuplierId!
+		if(altStreamingSupplierId != nil) {
+			dict["altStreamingSupplierId"] = altStreamingSupplierId!
 		}
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
@@ -400,8 +400,8 @@ open class MediaFile: ObjectBase {
 		if(outputProtecationLevel != nil) {
 			dict["outputProtecationLevel"] = outputProtecationLevel!
 		}
-		if(streamingSuplierId != nil) {
-			dict["streamingSuplierId"] = streamingSuplierId!
+		if(streamingSupplierId != nil) {
+			dict["streamingSupplierId"] = streamingSupplierId!
 		}
 		if(status != nil) {
 			dict["status"] = status!
