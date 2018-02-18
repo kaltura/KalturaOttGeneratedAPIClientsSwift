@@ -77,7 +77,7 @@ public final class ChannelService{
 		}
 	}
 
-	/**  Returns channel info  */
+	/**  Returns channel  */
 	public static func get(id: Int) -> RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer>(service: "channel", action: "get")
 			.setParam(key: "id", value: id)
