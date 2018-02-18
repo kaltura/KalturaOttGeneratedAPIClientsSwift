@@ -37,6 +37,12 @@ open class ChannelsFilter: Filter {
 
 	public class ChannelsFilterTokenizer: Filter.FilterTokenizer {
 		
+		public var idEqual: BaseTokenizedObject {
+			get {
+				return self.append("idEqual") 
+			}
+		}
+		
 		public var nameEqual: BaseTokenizedObject {
 			get {
 				return self.append("nameEqual") 
@@ -50,12 +56,18 @@ open class ChannelsFilter: Filter {
 		}
 	}
 
+	/**  channel identifier to filter by  */
+	public var idEqual: Int? = nil
 	/**  Exact channel name to filter by  */
 	public var nameEqual: String? = nil
 	/**  Channel name starts with (autocomplete)  */
 	public var nameStartsWith: String? = nil
 
 
+	public func setMultiRequestToken(idEqual: String) {
+		self.dict["idEqual"] = idEqual
+	}
+	
 	public func setMultiRequestToken(nameEqual: String) {
 		self.dict["nameEqual"] = nameEqual
 	}
@@ -67,6 +79,9 @@ open class ChannelsFilter: Filter {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["idEqual"] != nil {
+			idEqual = dict["idEqual"] as? Int
+		}
 		if dict["nameEqual"] != nil {
 			nameEqual = dict["nameEqual"] as? String
 		}
@@ -78,6 +93,9 @@ open class ChannelsFilter: Filter {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(idEqual != nil) {
+			dict["idEqual"] = idEqual!
+		}
 		if(nameEqual != nil) {
 			dict["nameEqual"] = nameEqual!
 		}
