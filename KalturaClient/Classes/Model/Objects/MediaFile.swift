@@ -98,9 +98,9 @@ open class MediaFile: ObjectBase {
 			}
 		}
 		
-		public var altStreamingSupplierId: BaseTokenizedObject {
+		public var alternativecdnAdapaterProfileId : BaseTokenizedObject {
 			get {
-				return self.append("altStreamingSupplierId") 
+				return self.append("alternativecdnAdapaterProfileId ") 
 			}
 		}
 		
@@ -146,9 +146,9 @@ open class MediaFile: ObjectBase {
 			}
 		}
 		
-		public var streamingSupplierId: BaseTokenizedObject {
+		public var cdnAdapaterProfileId: BaseTokenizedObject {
 			get {
-				return self.append("streamingSupplierId") 
+				return self.append("cdnAdapaterProfileId") 
 			}
 		}
 		
@@ -179,14 +179,14 @@ open class MediaFile: ObjectBase {
 	public var additionalData: String? = nil
 	/**  Alternative streaming code  */
 	public var altStreamingCode: String? = nil
-	/**  Alternative streaming supplier identifier  */
-	public var altStreamingSupplierId: Int64? = nil
+	/**  Alternative cdn adapter profile identifier  */
+	public var alternativecdnAdapaterProfileId : Int64? = nil
 	/**  EndDate  */
 	public var endDate: Int64? = nil
 	/**  StartDate  */
 	public var startDate: Int64? = nil
 	/**  ExternalStoreId  */
-	public var externalStoreId: Int64? = nil
+	public var externalStoreId: String? = nil
 	/**  IsDefaultLanguage  */
 	public var isDefaultLanguage: Bool? = nil
 	/**  Language  */
@@ -195,8 +195,8 @@ open class MediaFile: ObjectBase {
 	public var orderNum: Int? = nil
 	/**  OutputProtecationLevel  */
 	public var outputProtecationLevel: String? = nil
-	/**  StreamingSupplierId  */
-	public var streamingSupplierId: Int64? = nil
+	/**  cdn adapter profile identifier  */
+	public var cdnAdapaterProfileId: Int64? = nil
 	/**  The media file status  */
 	public var status: Bool? = nil
 
@@ -241,8 +241,8 @@ open class MediaFile: ObjectBase {
 		self.dict["altStreamingCode"] = altStreamingCode
 	}
 	
-	public func setMultiRequestToken(altStreamingSupplierId: String) {
-		self.dict["altStreamingSupplierId"] = altStreamingSupplierId
+	public func setMultiRequestToken(alternativecdnAdapaterProfileId : String) {
+		self.dict["alternativecdnAdapaterProfileId "] = alternativecdnAdapaterProfileId 
 	}
 	
 	public func setMultiRequestToken(endDate: String) {
@@ -273,8 +273,8 @@ open class MediaFile: ObjectBase {
 		self.dict["outputProtecationLevel"] = outputProtecationLevel
 	}
 	
-	public func setMultiRequestToken(streamingSupplierId: String) {
-		self.dict["streamingSupplierId"] = streamingSupplierId
+	public func setMultiRequestToken(cdnAdapaterProfileId: String) {
+		self.dict["cdnAdapaterProfileId"] = cdnAdapaterProfileId
 	}
 	
 	public func setMultiRequestToken(status: String) {
@@ -314,8 +314,8 @@ open class MediaFile: ObjectBase {
 		if dict["altStreamingCode"] != nil {
 			altStreamingCode = dict["altStreamingCode"] as? String
 		}
-		if dict["altStreamingSupplierId"] != nil {
-			altStreamingSupplierId = Int64("\(dict["altStreamingSupplierId"]!)")
+		if dict["alternativecdnAdapaterProfileId "] != nil {
+			alternativecdnAdapaterProfileId  = Int64("\(dict["alternativecdnAdapaterProfileId "]!)")
 		}
 		if dict["endDate"] != nil {
 			endDate = Int64("\(dict["endDate"]!)")
@@ -324,7 +324,7 @@ open class MediaFile: ObjectBase {
 			startDate = Int64("\(dict["startDate"]!)")
 		}
 		if dict["externalStoreId"] != nil {
-			externalStoreId = Int64("\(dict["externalStoreId"]!)")
+			externalStoreId = dict["externalStoreId"] as? String
 		}
 		if dict["isDefaultLanguage"] != nil {
 			isDefaultLanguage = dict["isDefaultLanguage"] as? Bool
@@ -338,8 +338,8 @@ open class MediaFile: ObjectBase {
 		if dict["outputProtecationLevel"] != nil {
 			outputProtecationLevel = dict["outputProtecationLevel"] as? String
 		}
-		if dict["streamingSupplierId"] != nil {
-			streamingSupplierId = Int64("\(dict["streamingSupplierId"]!)")
+		if dict["cdnAdapaterProfileId"] != nil {
+			cdnAdapaterProfileId = Int64("\(dict["cdnAdapaterProfileId"]!)")
 		}
 		if dict["status"] != nil {
 			status = dict["status"] as? Bool
@@ -376,8 +376,8 @@ open class MediaFile: ObjectBase {
 		if(altStreamingCode != nil) {
 			dict["altStreamingCode"] = altStreamingCode!
 		}
-		if(altStreamingSupplierId != nil) {
-			dict["altStreamingSupplierId"] = altStreamingSupplierId!
+		if(alternativecdnAdapaterProfileId  != nil) {
+			dict["alternativecdnAdapaterProfileId "] = alternativecdnAdapaterProfileId !
 		}
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
@@ -400,8 +400,8 @@ open class MediaFile: ObjectBase {
 		if(outputProtecationLevel != nil) {
 			dict["outputProtecationLevel"] = outputProtecationLevel!
 		}
-		if(streamingSupplierId != nil) {
-			dict["streamingSupplierId"] = streamingSupplierId!
+		if(cdnAdapaterProfileId != nil) {
+			dict["cdnAdapaterProfileId"] = cdnAdapaterProfileId!
 		}
 		if(status != nil) {
 			dict["status"] = status!

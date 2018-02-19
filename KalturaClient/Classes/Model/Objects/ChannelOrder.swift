@@ -48,9 +48,9 @@ open class ChannelOrder: ObjectBase {
 			}
 		}
 		
-		public var slidingWindowPeriod: BaseTokenizedObject {
+		public var period: BaseTokenizedObject {
 			get {
-				return self.append("slidingWindowPeriod") 
+				return self.append("period") 
 			}
 		}
 	}
@@ -59,16 +59,17 @@ open class ChannelOrder: ObjectBase {
 	public var dynamicOrderBy: DynamicOrderBy? = nil
 	/**  Channel order by  */
 	public var orderBy: ChannelOrderBy? = nil
-	/**  Sliding window period in minutes  */
-	public var slidingWindowPeriod: Int? = nil
+	/**  Sliding window period in minutes, used only when ordering by LIKES_DESC /
+	  VOTES_DESC / RATINGS_DESC / VIEWS_DESC  */
+	public var period: Int? = nil
 
 
 	public func setMultiRequestToken(orderBy: String) {
 		self.dict["orderBy"] = orderBy
 	}
 	
-	public func setMultiRequestToken(slidingWindowPeriod: String) {
-		self.dict["slidingWindowPeriod"] = slidingWindowPeriod
+	public func setMultiRequestToken(period: String) {
+		self.dict["period"] = period
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -79,8 +80,8 @@ open class ChannelOrder: ObjectBase {
 		if dict["orderBy"] != nil {
 			orderBy = ChannelOrderBy(rawValue: "\(dict["orderBy"]!)")
 		}
-		if dict["slidingWindowPeriod"] != nil {
-			slidingWindowPeriod = dict["slidingWindowPeriod"] as? Int
+		if dict["period"] != nil {
+			period = dict["period"] as? Int
 		}
 
 	}
@@ -93,8 +94,8 @@ open class ChannelOrder: ObjectBase {
 		if(orderBy != nil) {
 			dict["orderBy"] = orderBy!.rawValue
 		}
-		if(slidingWindowPeriod != nil) {
-			dict["slidingWindowPeriod"] = slidingWindowPeriod!
+		if(period != nil) {
+			dict["period"] = period!
 		}
 		return dict
 	}
