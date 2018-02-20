@@ -98,9 +98,9 @@ open class MediaFile: ObjectBase {
 			}
 		}
 		
-		public var alternativecdnAdapaterProfileId : BaseTokenizedObject {
+		public var alternativecdnAdapaterProfileId: BaseTokenizedObject {
 			get {
-				return self.append("alternativecdnAdapaterProfileId ") 
+				return self.append("alternativecdnAdapaterProfileId") 
 			}
 		}
 		
@@ -180,7 +180,7 @@ open class MediaFile: ObjectBase {
 	/**  Alternative streaming code  */
 	public var altStreamingCode: String? = nil
 	/**  Alternative cdn adapter profile identifier  */
-	public var alternativecdnAdapaterProfileId : Int64? = nil
+	public var alternativecdnAdapaterProfileId: Int64? = nil
 	/**  EndDate  */
 	public var endDate: Int64? = nil
 	/**  StartDate  */
@@ -241,8 +241,8 @@ open class MediaFile: ObjectBase {
 		self.dict["altStreamingCode"] = altStreamingCode
 	}
 	
-	public func setMultiRequestToken(alternativecdnAdapaterProfileId : String) {
-		self.dict["alternativecdnAdapaterProfileId "] = alternativecdnAdapaterProfileId 
+	public func setMultiRequestToken(alternativecdnAdapaterProfileId: String) {
+		self.dict["alternativecdnAdapaterProfileId"] = alternativecdnAdapaterProfileId
 	}
 	
 	public func setMultiRequestToken(endDate: String) {
@@ -314,8 +314,8 @@ open class MediaFile: ObjectBase {
 		if dict["altStreamingCode"] != nil {
 			altStreamingCode = dict["altStreamingCode"] as? String
 		}
-		if dict["alternativecdnAdapaterProfileId "] != nil {
-			alternativecdnAdapaterProfileId  = Int64("\(dict["alternativecdnAdapaterProfileId "]!)")
+		if dict["alternativecdnAdapaterProfileId"] != nil {
+			alternativecdnAdapaterProfileId = Int64("\(dict["alternativecdnAdapaterProfileId"]!)")
 		}
 		if dict["endDate"] != nil {
 			endDate = Int64("\(dict["endDate"]!)")
@@ -376,8 +376,8 @@ open class MediaFile: ObjectBase {
 		if(altStreamingCode != nil) {
 			dict["altStreamingCode"] = altStreamingCode!
 		}
-		if(alternativecdnAdapaterProfileId  != nil) {
-			dict["alternativecdnAdapaterProfileId "] = alternativecdnAdapaterProfileId !
+		if(alternativecdnAdapaterProfileId != nil) {
+			dict["alternativecdnAdapaterProfileId"] = alternativecdnAdapaterProfileId!
 		}
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
