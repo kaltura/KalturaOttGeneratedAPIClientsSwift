@@ -61,9 +61,9 @@ open class Ratio: ObjectBase {
 			}
 		}
 		
-		public var acceptedErrorMarginPrecentage: BaseTokenizedObject {
+		public var precisionPrecentage: BaseTokenizedObject {
 			get {
-				return self.append("acceptedErrorMarginPrecentage") 
+				return self.append("precisionPrecentage") 
 			}
 		}
 	}
@@ -78,7 +78,7 @@ open class Ratio: ObjectBase {
 	public var width: Int? = nil
 	/**  Accepted error margin precentage of an image uploaded for this ratio            
 	   0 - no validation, everything accepted  */
-	public var acceptedErrorMarginPrecentage: Int? = nil
+	public var precisionPrecentage: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -97,8 +97,8 @@ open class Ratio: ObjectBase {
 		self.dict["width"] = width
 	}
 	
-	public func setMultiRequestToken(acceptedErrorMarginPrecentage: String) {
-		self.dict["acceptedErrorMarginPrecentage"] = acceptedErrorMarginPrecentage
+	public func setMultiRequestToken(precisionPrecentage: String) {
+		self.dict["precisionPrecentage"] = precisionPrecentage
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -116,8 +116,8 @@ open class Ratio: ObjectBase {
 		if dict["width"] != nil {
 			width = dict["width"] as? Int
 		}
-		if dict["acceptedErrorMarginPrecentage"] != nil {
-			acceptedErrorMarginPrecentage = dict["acceptedErrorMarginPrecentage"] as? Int
+		if dict["precisionPrecentage"] != nil {
+			precisionPrecentage = dict["precisionPrecentage"] as? Int
 		}
 
 	}
@@ -133,8 +133,8 @@ open class Ratio: ObjectBase {
 		if(width != nil) {
 			dict["width"] = width!
 		}
-		if(acceptedErrorMarginPrecentage != nil) {
-			dict["acceptedErrorMarginPrecentage"] = acceptedErrorMarginPrecentage!
+		if(precisionPrecentage != nil) {
+			dict["precisionPrecentage"] = precisionPrecentage!
 		}
 		return dict
 	}
