@@ -210,9 +210,6 @@ open class Channel: ObjectBase {
 		if(multilingualDescription != nil) {
 			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
 		}
-		if(images != nil) {
-			dict["images"] = images!.map { value in value.toDictionary() }
-		}
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
 		}
