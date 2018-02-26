@@ -74,12 +74,6 @@ open class Channel: ObjectBase {
 			} 
 		}
 		
-		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
-			get {
-				return ArrayTokenizedObject<MediaImage.MediaImageTokenizer>(self.append("images"))
-			} 
-		}
-		
 		public var isActive: BaseTokenizedObject {
 			get {
 				return self.append("isActive") 
@@ -115,8 +109,6 @@ open class Channel: ObjectBase {
 	public var description: String? = nil
 	/**  Channel description  */
 	public var multilingualDescription: Array<TranslationToken>? = nil
-	/**  Channel images  */
-	public var images: Array<MediaImage>? = nil
 	/**  active status  */
 	public var isActive: Bool? = nil
 	/**  Channel order by  */
@@ -175,9 +167,6 @@ open class Channel: ObjectBase {
 		}
 		if dict["multilingualDescription"] != nil {
 			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
-		}
-		if dict["images"] != nil {
-			images = try JSONParser.parse(array: dict["images"] as! [Any])
 		}
 		if dict["isActive"] != nil {
 			isActive = dict["isActive"] as? Bool
