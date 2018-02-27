@@ -59,4 +59,33 @@ public final class NotificationsSettingsService{
 
 		return request
 	}
+
+	public class UpdateWithTokenTokenizer: ClientTokenizer  {
+		
+		public func settings<T: NotificationsSettings.NotificationsSettingsTokenizer>() -> T {
+			return T(self.append("settings"))
+		}
+		
+		public var token: BaseTokenizedObject {
+			get {
+				return self.append("token") 
+			}
+		}
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+	}
+
+	/**  Update the user’s notification settings.  */
+	public static func updateWithToken(settings: NotificationsSettings, token: String, partnerId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateWithTokenTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateWithTokenTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateWithTokenTokenizer>(service: "notificationssettings", action: "updateWithToken")
+			.setParam(key: "settings", value: settings)
+			.setParam(key: "token", value: token)
+			.setParam(key: "partnerId", value: partnerId)
+
+		return request
+	}
 }

@@ -67,6 +67,37 @@ public final class UserInterestService{
 		return request
 	}
 
+	public class DeleteWithTokenTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var token: BaseTokenizedObject {
+			get {
+				return self.append("token") 
+			}
+		}
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+	}
+
+	/**  Delete new user interest for partner user  */
+	public static func deleteWithToken(id: String, token: String, partnerId: Int) -> NullRequestBuilder<DeleteWithTokenTokenizer> {
+		let request: NullRequestBuilder<DeleteWithTokenTokenizer> = NullRequestBuilder<DeleteWithTokenTokenizer>(service: "userinterest", action: "deleteWithToken")
+			.setParam(key: "id", value: id)
+			.setParam(key: "token", value: token)
+			.setParam(key: "partnerId", value: partnerId)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 	}
 
