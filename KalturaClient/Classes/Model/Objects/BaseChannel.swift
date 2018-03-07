@@ -43,26 +43,14 @@ open class BaseChannel: ObjectBase {
 				return self.append("id") 
 			}
 		}
-		
-		public var name: BaseTokenizedObject {
-			get {
-				return self.append("name") 
-			}
-		}
 	}
 
 	/**  Unique identifier for the channel  */
 	public var id: Int64? = nil
-	/**  Channel name  */
-	public var name: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
-	}
-	
-	public func setMultiRequestToken(name: String) {
-		self.dict["name"] = name
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -71,18 +59,8 @@ open class BaseChannel: ObjectBase {
 		if dict["id"] != nil {
 			id = Int64("\(dict["id"]!)")
 		}
-		if dict["name"] != nil {
-			name = dict["name"] as? String
-		}
 
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(name != nil) {
-			dict["name"] = name!
-		}
-		return dict
-	}
 }
 

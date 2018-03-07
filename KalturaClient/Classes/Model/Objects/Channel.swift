@@ -38,6 +38,12 @@ open class Channel: BaseChannel {
 
 	public class ChannelTokenizer: BaseChannel.BaseChannelTokenizer {
 		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
 		public var description: BaseTokenizedObject {
 			get {
 				return self.append("description") 
@@ -79,6 +85,8 @@ open class Channel: BaseChannel {
 		}
 	}
 
+	/**  Channel name  */
+	public var name: String? = nil
 	/**  Cannel description  */
 	public var description: String? = nil
 	/**  Channel images  */
@@ -95,6 +103,10 @@ open class Channel: BaseChannel {
 	public var groupBy: AssetGroupBy? = nil
 
 
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
 	public func setMultiRequestToken(description: String) {
 		self.dict["description"] = description
 	}
@@ -114,6 +126,9 @@ open class Channel: BaseChannel {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["name"] != nil {
+			name = dict["name"] as? String
+		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
 		}
@@ -139,6 +154,9 @@ open class Channel: BaseChannel {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(name != nil) {
+			dict["name"] = name!
+		}
 		if(description != nil) {
 			dict["description"] = description!
 		}
