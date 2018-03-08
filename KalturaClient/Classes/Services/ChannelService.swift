@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2017  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -115,9 +115,9 @@ public final class ChannelService{
 
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var channelId: BaseTokenizedObject {
+		public var id: BaseTokenizedObject {
 			get {
-				return self.append("channelId") 
+				return self.append("id") 
 			}
 		}
 		
@@ -127,9 +127,9 @@ public final class ChannelService{
 	}
 
 	/**  Update channel details. Supports KalturaDynamicChannel or KalturaManualChannel  */
-	public static func update(channelId: Int, channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> {
+	public static func update(id: Int, channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer>(service: "channel", action: "update")
-			.setParam(key: "channelId", value: channelId)
+			.setParam(key: "id", value: id)
 			.setParam(key: "channel", value: channel)
 
 		return request
