@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2017  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:18-03-11"
-		apiVersion = "4.72.216.14183"
+		apiVersion = "4.72.216.19056"
 	}
 }
 
