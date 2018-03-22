@@ -48,18 +48,6 @@ open class NotificationsSettings: ObjectBase {
 				return self.append("pushFollowEnabled") 
 			}
 		}
-		
-		public var mailEnabled: BaseTokenizedObject {
-			get {
-				return self.append("mailEnabled") 
-			}
-		}
-		
-		public var smsEnabled: BaseTokenizedObject {
-			get {
-				return self.append("smsEnabled") 
-			}
-		}
 	}
 
 	/**  Specify if the user want to receive push notifications or not  */
@@ -67,10 +55,6 @@ open class NotificationsSettings: ObjectBase {
 	/**  Specify if the user will be notified for followed content via push. (requires
 	  push_notification_enabled to be enabled)  */
 	public var pushFollowEnabled: Bool? = nil
-	/**  Specify if the user wants to receive mail notifications or not  */
-	public var mailEnabled: Bool? = nil
-	/**  Specify if the user wants to receive SMS notifications or not  */
-	public var smsEnabled: Bool? = nil
 
 
 	public func setMultiRequestToken(pushNotificationEnabled: String) {
@@ -79,14 +63,6 @@ open class NotificationsSettings: ObjectBase {
 	
 	public func setMultiRequestToken(pushFollowEnabled: String) {
 		self.dict["pushFollowEnabled"] = pushFollowEnabled
-	}
-	
-	public func setMultiRequestToken(mailEnabled: String) {
-		self.dict["mailEnabled"] = mailEnabled
-	}
-	
-	public func setMultiRequestToken(smsEnabled: String) {
-		self.dict["smsEnabled"] = smsEnabled
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -98,12 +74,6 @@ open class NotificationsSettings: ObjectBase {
 		if dict["pushFollowEnabled"] != nil {
 			pushFollowEnabled = dict["pushFollowEnabled"] as? Bool
 		}
-		if dict["mailEnabled"] != nil {
-			mailEnabled = dict["mailEnabled"] as? Bool
-		}
-		if dict["smsEnabled"] != nil {
-			smsEnabled = dict["smsEnabled"] as? Bool
-		}
 
 	}
 
@@ -114,12 +84,6 @@ open class NotificationsSettings: ObjectBase {
 		}
 		if(pushFollowEnabled != nil) {
 			dict["pushFollowEnabled"] = pushFollowEnabled!
-		}
-		if(mailEnabled != nil) {
-			dict["mailEnabled"] = mailEnabled!
-		}
-		if(smsEnabled != nil) {
-			dict["smsEnabled"] = smsEnabled!
 		}
 		return dict
 	}

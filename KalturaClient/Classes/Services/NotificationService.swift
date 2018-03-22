@@ -81,23 +81,6 @@ public final class NotificationService{
 		return request
 	}
 
-	public class SendSmsTokenizer: ClientTokenizer  {
-		
-		public var message: BaseTokenizedObject {
-			get {
-				return self.append("message") 
-			}
-		}
-	}
-
-	/**  Sends SMS notification to user  */
-	public static func sendSms(message: String) -> RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer>(service: "notification", action: "sendSms")
-			.setParam(key: "message", value: message)
-
-		return request
-	}
-
 	public class SetDevicePushTokenTokenizer: ClientTokenizer  {
 		
 		public var pushToken: BaseTokenizedObject {

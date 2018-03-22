@@ -74,44 +74,6 @@ public final class ReminderService{
 		return request
 	}
 
-	public class DeleteWithTokenTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
-			}
-		}
-		
-		public var token: BaseTokenizedObject {
-			get {
-				return self.append("token") 
-			}
-		}
-		
-		public override var partnerId: BaseTokenizedObject {
-			get {
-				return self.append("partnerId") 
-			}
-		}
-	}
-
-	/**  Delete a reminder. Reminder cannot be delete while being sent.  */
-	public static func deleteWithToken(id: Int64, type: ReminderType, token: String, partnerId: Int) -> NullRequestBuilder<DeleteWithTokenTokenizer> {
-		let request: NullRequestBuilder<DeleteWithTokenTokenizer> = NullRequestBuilder<DeleteWithTokenTokenizer>(service: "reminder", action: "deleteWithToken")
-			.setParam(key: "id", value: id)
-			.setParam(key: "type", value: type.rawValue)
-			.setParam(key: "token", value: token)
-			.setParam(key: "partnerId", value: partnerId)
-
-		return request
-	}
-
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: ReminderFilter.ReminderFilterTokenizer>() -> T {

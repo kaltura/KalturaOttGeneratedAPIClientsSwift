@@ -126,18 +126,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 				return self.append("mailSenderName") 
 			}
 		}
-		
-		public var mailNotificationAdapterId: BaseTokenizedObject {
-			get {
-				return self.append("mailNotificationAdapterId") 
-			}
-		}
-		
-		public var smsEnabled: BaseTokenizedObject {
-			get {
-				return self.append("smsEnabled") 
-			}
-		}
 	}
 
 	/**  Push notification capability is enabled for the account  */
@@ -170,10 +158,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 	public var senderEmail: String? = nil
 	/**  Mail sender name  */
 	public var mailSenderName: String? = nil
-	/**  Mail notification adapter identifier  */
-	public var mailNotificationAdapterId: Int64? = nil
-	/**  SMS capability is enabled for the account  */
-	public var smsEnabled: Bool? = nil
 
 
 	public func setMultiRequestToken(pushNotificationEnabled: String) {
@@ -236,14 +220,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 		self.dict["mailSenderName"] = mailSenderName
 	}
 	
-	public func setMultiRequestToken(mailNotificationAdapterId: String) {
-		self.dict["mailNotificationAdapterId"] = mailNotificationAdapterId
-	}
-	
-	public func setMultiRequestToken(smsEnabled: String) {
-		self.dict["smsEnabled"] = smsEnabled
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -291,12 +267,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 		}
 		if dict["mailSenderName"] != nil {
 			mailSenderName = dict["mailSenderName"] as? String
-		}
-		if dict["mailNotificationAdapterId"] != nil {
-			mailNotificationAdapterId = Int64("\(dict["mailNotificationAdapterId"]!)")
-		}
-		if dict["smsEnabled"] != nil {
-			smsEnabled = dict["smsEnabled"] as? Bool
 		}
 
 	}
@@ -347,12 +317,6 @@ open class NotificationsPartnerSettings: ObjectBase {
 		}
 		if(mailSenderName != nil) {
 			dict["mailSenderName"] = mailSenderName!
-		}
-		if(mailNotificationAdapterId != nil) {
-			dict["mailNotificationAdapterId"] = mailNotificationAdapterId!
-		}
-		if(smsEnabled != nil) {
-			dict["smsEnabled"] = smsEnabled!
 		}
 		return dict
 	}

@@ -90,30 +90,6 @@ open class Announcement: ObjectBase {
 				return self.append("imageUrl") 
 			}
 		}
-		
-		public var includeMail: BaseTokenizedObject {
-			get {
-				return self.append("includeMail") 
-			}
-		}
-		
-		public var mailTemplate: BaseTokenizedObject {
-			get {
-				return self.append("mailTemplate") 
-			}
-		}
-		
-		public var mailSubject: BaseTokenizedObject {
-			get {
-				return self.append("mailSubject") 
-			}
-		}
-		
-		public var includeSms: BaseTokenizedObject {
-			get {
-				return self.append("includeSms") 
-			}
-		}
 	}
 
 	/**  Announcement name  */
@@ -134,14 +110,6 @@ open class Announcement: ObjectBase {
 	public var id: Int? = nil
 	/**  Announcement image URL, relevant for system announcements  */
 	public var imageUrl: String? = nil
-	/**  Include Mail  */
-	public var includeMail: Bool? = nil
-	/**  Mail Template  */
-	public var mailTemplate: String? = nil
-	/**  Mail Subject  */
-	public var mailSubject: String? = nil
-	/**  Include SMS  */
-	public var includeSms: Bool? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -180,22 +148,6 @@ open class Announcement: ObjectBase {
 		self.dict["imageUrl"] = imageUrl
 	}
 	
-	public func setMultiRequestToken(includeMail: String) {
-		self.dict["includeMail"] = includeMail
-	}
-	
-	public func setMultiRequestToken(mailTemplate: String) {
-		self.dict["mailTemplate"] = mailTemplate
-	}
-	
-	public func setMultiRequestToken(mailSubject: String) {
-		self.dict["mailSubject"] = mailSubject
-	}
-	
-	public func setMultiRequestToken(includeSms: String) {
-		self.dict["includeSms"] = includeSms
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -226,18 +178,6 @@ open class Announcement: ObjectBase {
 		if dict["imageUrl"] != nil {
 			imageUrl = dict["imageUrl"] as? String
 		}
-		if dict["includeMail"] != nil {
-			includeMail = dict["includeMail"] as? Bool
-		}
-		if dict["mailTemplate"] != nil {
-			mailTemplate = dict["mailTemplate"] as? String
-		}
-		if dict["mailSubject"] != nil {
-			mailSubject = dict["mailSubject"] as? String
-		}
-		if dict["includeSms"] != nil {
-			includeSms = dict["includeSms"] as? Bool
-		}
 
 	}
 
@@ -263,18 +203,6 @@ open class Announcement: ObjectBase {
 		}
 		if(imageUrl != nil) {
 			dict["imageUrl"] = imageUrl!
-		}
-		if(includeMail != nil) {
-			dict["includeMail"] = includeMail!
-		}
-		if(mailTemplate != nil) {
-			dict["mailTemplate"] = mailTemplate!
-		}
-		if(mailSubject != nil) {
-			dict["mailSubject"] = mailSubject!
-		}
-		if(includeSms != nil) {
-			dict["includeSms"] = includeSms!
 		}
 		return dict
 	}
