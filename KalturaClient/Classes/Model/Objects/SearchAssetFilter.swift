@@ -54,6 +54,12 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 				return self.append("idIn") 
 			}
 		}
+		
+		public var excludeWatched: BaseTokenizedObject {
+			get {
+				return self.append("excludeWatched") 
+			}
+		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -86,6 +92,8 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 	public var typeIn: String? = nil
 	/**  Comma separated list of EPG channel ids to search within.  */
 	public var idIn: String? = nil
+	/**  Exclude watched asset.  */
+	public var excludeWatched: Bool? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -100,6 +108,10 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 		self.dict["idIn"] = idIn
 	}
 	
+	public func setMultiRequestToken(excludeWatched: String) {
+		self.dict["excludeWatched"] = excludeWatched
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -111,6 +123,9 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 		}
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
+		}
+		if dict["excludeWatched"] != nil {
+			excludeWatched = dict["excludeWatched"] as? Bool
 		}
 
 	}
@@ -125,6 +140,9 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 		}
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
+		}
+		if(excludeWatched != nil) {
+			dict["excludeWatched"] = excludeWatched!
 		}
 		return dict
 	}

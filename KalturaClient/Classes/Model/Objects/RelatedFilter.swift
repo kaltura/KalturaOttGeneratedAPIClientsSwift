@@ -54,6 +54,12 @@ open class RelatedFilter: BaseSearchAssetFilter {
 				return self.append("typeIn") 
 			}
 		}
+		
+		public var excludeWatched: BaseTokenizedObject {
+			get {
+				return self.append("excludeWatched") 
+			}
+		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -85,6 +91,8 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	  values: any media type ID (according to media type IDs defined dynamically in
 	  the system).              If omitted –   same type as the provided asset.  */
 	public var typeIn: String? = nil
+	/**  Exclude watched asset.  */
+	public var excludeWatched: Bool? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -99,6 +107,10 @@ open class RelatedFilter: BaseSearchAssetFilter {
 		self.dict["typeIn"] = typeIn
 	}
 	
+	public func setMultiRequestToken(excludeWatched: String) {
+		self.dict["excludeWatched"] = excludeWatched
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -110,6 +122,9 @@ open class RelatedFilter: BaseSearchAssetFilter {
 		}
 		if dict["typeIn"] != nil {
 			typeIn = dict["typeIn"] as? String
+		}
+		if dict["excludeWatched"] != nil {
+			excludeWatched = dict["excludeWatched"] as? Bool
 		}
 
 	}
@@ -124,6 +139,9 @@ open class RelatedFilter: BaseSearchAssetFilter {
 		}
 		if(typeIn != nil) {
 			dict["typeIn"] = typeIn!
+		}
+		if(excludeWatched != nil) {
+			dict["excludeWatched"] = excludeWatched!
 		}
 		return dict
 	}

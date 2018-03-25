@@ -48,6 +48,12 @@ open class ChannelFilter: AssetFilter {
 				return self.append("kSql") 
 			}
 		}
+		
+		public var excludeWatched: BaseTokenizedObject {
+			get {
+				return self.append("excludeWatched") 
+			}
+		}
 	}
 
 	/**  Channel Id  */
@@ -75,6 +81,8 @@ open class ChannelFilter: AssetFilter {
 	  characters each.              (maximum length of entire filter is 2048
 	  characters)  */
 	public var kSql: String? = nil
+	/**  Exclude watched asset.  */
+	public var excludeWatched: Bool? = nil
 
 
 	public func setMultiRequestToken(idEqual: String) {
@@ -83,6 +91,10 @@ open class ChannelFilter: AssetFilter {
 	
 	public func setMultiRequestToken(kSql: String) {
 		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(excludeWatched: String) {
+		self.dict["excludeWatched"] = excludeWatched
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -94,6 +106,9 @@ open class ChannelFilter: AssetFilter {
 		if dict["kSql"] != nil {
 			kSql = dict["kSql"] as? String
 		}
+		if dict["excludeWatched"] != nil {
+			excludeWatched = dict["excludeWatched"] as? Bool
+		}
 
 	}
 
@@ -104,6 +119,9 @@ open class ChannelFilter: AssetFilter {
 		}
 		if(kSql != nil) {
 			dict["kSql"] = kSql!
+		}
+		if(excludeWatched != nil) {
+			dict["excludeWatched"] = excludeWatched!
 		}
 		return dict
 	}
