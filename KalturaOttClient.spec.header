@@ -8,11 +8,3 @@ s.author           = { 'Kaltura' => 'community@kaltura.com' }
 s.source           = { :git => 'https://github.com/kaltura/KalturaOttGeneratedAPIClientsSwift.git', :tag => s.version.to_s }
 s.ios.deployment_target = '8.0'
 s.source_files = 'KalturaClient/Classes/**/*'
-
- 
-s.subspec 'Core' do |sp|
-    sp.source_files = 'KalturaClient/Classes/**/*'
-    sp.dependency 'Log', '1.0'
-end
-s.default_subspec = 'Core'
-end
