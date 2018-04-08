@@ -33,72 +33,40 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Coupon details container  */
-open class Coupon: ObjectBase {
+open class PublicCouponGenerationOptions: CouponGenerationOptions {
 
-	public class CouponTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class PublicCouponGenerationOptionsTokenizer: CouponGenerationOptions.CouponGenerationOptionsTokenizer {
 		
-		public func couponsGroup<T: CouponsGroup.CouponsGroupTokenizer>() -> T {
-			return T(self.append("couponsGroup"))
-		}
-		
-		public var status: BaseTokenizedObject {
+		public var code: BaseTokenizedObject {
 			get {
-				return self.append("status") 
-			}
-		}
-		
-		public var totalUses: BaseTokenizedObject {
-			get {
-				return self.append("totalUses") 
-			}
-		}
-		
-		public var leftUses: BaseTokenizedObject {
-			get {
-				return self.append("leftUses") 
+				return self.append("code") 
 			}
 		}
 	}
 
-	/**  Coupons group details  */
-	public var couponsGroup: CouponsGroup? = nil
-	/**  Coupon status  */
-	public var status: CouponStatus? = nil
-	/**  Total available coupon uses  */
-	public var totalUses: Int? = nil
-	/**  Left coupon uses  */
-	public var leftUses: Int? = nil
+	/**  Coupon code (name)  */
+	public var code: String? = nil
 
 
-	public func setMultiRequestToken(status: String) {
-		self.dict["status"] = status
-	}
-	
-	public func setMultiRequestToken(totalUses: String) {
-		self.dict["totalUses"] = totalUses
-	}
-	
-	public func setMultiRequestToken(leftUses: String) {
-		self.dict["leftUses"] = leftUses
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["couponsGroup"] != nil {
-		couponsGroup = try JSONParser.parse(object: dict["couponsGroup"] as! [String: Any])		}
-		if dict["status"] != nil {
-			status = CouponStatus(rawValue: "\(dict["status"]!)")
-		}
-		if dict["totalUses"] != nil {
-			totalUses = dict["totalUses"] as? Int
-		}
-		if dict["leftUses"] != nil {
-			leftUses = dict["leftUses"] as? Int
+		if dict["code"] != nil {
+			code = dict["code"] as? String
 		}
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(code != nil) {
+			dict["code"] = code!
+		}
+		return dict
+	}
 }
 

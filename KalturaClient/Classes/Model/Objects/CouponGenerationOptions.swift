@@ -33,71 +33,16 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Coupon details container  */
-open class Coupon: ObjectBase {
+/**  Coupon generation options  */
+open class CouponGenerationOptions: ObjectBase {
 
-	public class CouponTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public func couponsGroup<T: CouponsGroup.CouponsGroupTokenizer>() -> T {
-			return T(self.append("couponsGroup"))
-		}
-		
-		public var status: BaseTokenizedObject {
-			get {
-				return self.append("status") 
-			}
-		}
-		
-		public var totalUses: BaseTokenizedObject {
-			get {
-				return self.append("totalUses") 
-			}
-		}
-		
-		public var leftUses: BaseTokenizedObject {
-			get {
-				return self.append("leftUses") 
-			}
-		}
+	public class CouponGenerationOptionsTokenizer: ObjectBase.ObjectBaseTokenizer {
 	}
 
-	/**  Coupons group details  */
-	public var couponsGroup: CouponsGroup? = nil
-	/**  Coupon status  */
-	public var status: CouponStatus? = nil
-	/**  Total available coupon uses  */
-	public var totalUses: Int? = nil
-	/**  Left coupon uses  */
-	public var leftUses: Int? = nil
 
 
-	public func setMultiRequestToken(status: String) {
-		self.dict["status"] = status
-	}
-	
-	public func setMultiRequestToken(totalUses: String) {
-		self.dict["totalUses"] = totalUses
-	}
-	
-	public func setMultiRequestToken(leftUses: String) {
-		self.dict["leftUses"] = leftUses
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["couponsGroup"] != nil {
-		couponsGroup = try JSONParser.parse(object: dict["couponsGroup"] as! [String: Any])		}
-		if dict["status"] != nil {
-			status = CouponStatus(rawValue: "\(dict["status"]!)")
-		}
-		if dict["totalUses"] != nil {
-			totalUses = dict["totalUses"] as? Int
-		}
-		if dict["leftUses"] != nil {
-			leftUses = dict["leftUses"] as? Int
-		}
-
 	}
 
 }

@@ -85,6 +85,12 @@ open class CouponsGroup: ObjectBase {
 				return self.append("couponGroupType") 
 			}
 		}
+		
+		public var maxHouseholdUses: BaseTokenizedObject {
+			get {
+				return self.append("maxHouseholdUses") 
+			}
+		}
 	}
 
 	/**  Coupon group identifier  */
@@ -104,6 +110,8 @@ open class CouponsGroup: ObjectBase {
 	public var maxUsesNumberOnRenewableSub: Int? = nil
 	/**  Type of the coupon group  */
 	public var couponGroupType: CouponGroupType? = nil
+	/**  Maximum number of uses per household for each coupon in the group  */
+	public var maxHouseholdUses: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -134,6 +142,10 @@ open class CouponsGroup: ObjectBase {
 		self.dict["couponGroupType"] = couponGroupType
 	}
 	
+	public func setMultiRequestToken(maxHouseholdUses: String) {
+		self.dict["maxHouseholdUses"] = maxHouseholdUses
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -161,6 +173,9 @@ open class CouponsGroup: ObjectBase {
 		if dict["couponGroupType"] != nil {
 			couponGroupType = CouponGroupType(rawValue: "\(dict["couponGroupType"]!)")
 		}
+		if dict["maxHouseholdUses"] != nil {
+			maxHouseholdUses = dict["maxHouseholdUses"] as? Int
+		}
 
 	}
 
@@ -186,6 +201,9 @@ open class CouponsGroup: ObjectBase {
 		}
 		if(couponGroupType != nil) {
 			dict["couponGroupType"] = couponGroupType!.rawValue
+		}
+		if(maxHouseholdUses != nil) {
+			dict["maxHouseholdUses"] = maxHouseholdUses!
 		}
 		return dict
 	}
