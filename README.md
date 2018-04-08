@@ -1,9 +1,9 @@
-# KalturaClient
+# KalturaOttClient
 
 [![CI Status](http://img.shields.io/travis/kaltura/KalturaGeneratedAPIClientsSwift.svg?style=flat)](https://travis-ci.org/kaltura/KalturaGeneratedAPIClientsSwift)
-[![Version](https://img.shields.io/cocoapods/v/KalturaClient.svg?style=flat)](http://cocoapods.org/pods/KalturaClient)
-[![License](https://img.shields.io/cocoapods/l/KalturaClient.svg?style=flat)](http://cocoapods.org/pods/KalturaClient)
-[![Platform](https://img.shields.io/cocoapods/p/KalturaClient.svg?style=flat)](http://cocoapods.org/pods/KalturaClient)
+[![Version](https://img.shields.io/cocoapods/v/KalturaOttClient.svg?style=flat)](http://cocoapods.org/pods/KalturaOttClient)
+[![License](https://img.shields.io/cocoapods/l/KalturaOttClient.svg?style=flat)](http://cocoapods.org/pods/KalturaOttClient)
+[![Platform](https://img.shields.io/cocoapods/p/KalturaOttClient.svg?style=flat)](http://cocoapods.org/pods/KalturaOttClient)
 
 ## Example
 
@@ -13,11 +13,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-KalturaClient is available through [CocoaPods](http://cocoapods.org). To install
+KalturaOttClient is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "KalturaClient"
+pod "KalturaOttClient"
 ```
 
 ## Author
