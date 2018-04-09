@@ -56,4 +56,21 @@ public final class CouponsGroupService{
 
 		return request
 	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Returns information about coupons group  */
+	public static func get(id: Int64) -> RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, GetTokenizer> {
+		let request: RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, GetTokenizer> = RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, GetTokenizer>(service: "couponsgroup", action: "get")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
 }
