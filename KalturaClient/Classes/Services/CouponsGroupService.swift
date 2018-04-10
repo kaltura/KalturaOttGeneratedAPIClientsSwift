@@ -73,4 +73,26 @@ public final class CouponsGroupService{
 
 		return request
 	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func couponsGroup<T: CouponsGroup.CouponsGroupTokenizer>() -> T {
+			return T(self.append("couponsGroup"))
+		}
+	}
+
+	/**  Update coupons group  */
+	public static func update(id: Int, couponsGroup: CouponsGroup) -> RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer> = RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer>(service: "couponsgroup", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "couponsGroup", value: couponsGroup)
+
+		return request
+	}
 }
