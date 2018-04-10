@@ -74,6 +74,16 @@ public final class CouponsGroupService{
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
+	/**  Returns information about partner coupons groups  */
+	public static func list() -> RequestBuilder<CouponsGroupListResponse, CouponsGroupListResponse.CouponsGroupListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<CouponsGroupListResponse, CouponsGroupListResponse.CouponsGroupListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponsGroupListResponse, CouponsGroupListResponse.CouponsGroupListResponseTokenizer, ListTokenizer>(service: "couponsgroup", action: "list")
+
+		return request
+	}
+
 	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
