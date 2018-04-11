@@ -35,6 +35,23 @@
 
 public final class CouponsGroupService{
 
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete a coupons group  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "couponsgroup", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class GenerateTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
