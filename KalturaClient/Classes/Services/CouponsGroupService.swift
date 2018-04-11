@@ -98,7 +98,7 @@ public final class CouponsGroupService{
 	}
 
 	/**  Update coupons group  */
-	public static func update(id: Int, couponsGroup: CouponsGroup) -> RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer> {
+	public static func update(id: Int64, couponsGroup: CouponsGroup) -> RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer> = RequestBuilder<CouponsGroup, CouponsGroup.CouponsGroupTokenizer, UpdateTokenizer>(service: "couponsgroup", action: "update")
 			.setParam(key: "id", value: id)
 			.setParam(key: "couponsGroup", value: couponsGroup)
