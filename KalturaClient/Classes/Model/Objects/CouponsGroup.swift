@@ -50,12 +50,6 @@ open class CouponsGroup: ObjectBase {
 			}
 		}
 		
-		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("descriptions"))
-			} 
-		}
-		
 		public var startDate: BaseTokenizedObject {
 			get {
 				return self.append("startDate") 
@@ -97,9 +91,6 @@ open class CouponsGroup: ObjectBase {
 	public var id: String? = nil
 	/**  Coupon group name  */
 	public var name: String? = nil
-	/**  A list of the descriptions of the coupon group on different languages (language
-	  code and translation)  */
-	public var descriptions: Array<TranslationToken>? = nil
 	/**  The first date the coupons in this coupons group are valid  */
 	public var startDate: Int64? = nil
 	/**  The last date the coupons in this coupons group are valid  */
@@ -155,9 +146,6 @@ open class CouponsGroup: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["descriptions"] != nil {
-			descriptions = try JSONParser.parse(array: dict["descriptions"] as! [Any])
-		}
 		if dict["startDate"] != nil {
 			startDate = Int64("\(dict["startDate"]!)")
 		}
@@ -183,9 +171,6 @@ open class CouponsGroup: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(name != nil) {
 			dict["name"] = name!
-		}
-		if(descriptions != nil) {
-			dict["descriptions"] = descriptions!.map { value in value.toDictionary() }
 		}
 		if(startDate != nil) {
 			dict["startDate"] = startDate!
