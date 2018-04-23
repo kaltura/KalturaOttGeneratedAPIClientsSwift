@@ -59,4 +59,26 @@ public final class RatioService{
 
 		return request
 	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func ratio<T: Ratio.RatioTokenizer>() -> T {
+			return T(self.append("ratio"))
+		}
+	}
+
+	/**  Update group ratio&amp;#39;s PrecisionPrecentage  */
+	public static func update(id: Int64, ratio: Ratio) -> RequestBuilder<Ratio, Ratio.RatioTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Ratio, Ratio.RatioTokenizer, UpdateTokenizer> = RequestBuilder<Ratio, Ratio.RatioTokenizer, UpdateTokenizer>(service: "ratio", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "ratio", value: ratio)
+
+		return request
+	}
 }
