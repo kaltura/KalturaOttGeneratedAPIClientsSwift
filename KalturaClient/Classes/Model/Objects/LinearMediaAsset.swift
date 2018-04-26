@@ -38,34 +38,247 @@ open class LinearMediaAsset: MediaAsset {
 
 	public class LinearMediaAssetTokenizer: MediaAsset.MediaAssetTokenizer {
 		
-		public var epgChannelId: BaseTokenizedObject {
+		public var enableCdvrState: BaseTokenizedObject {
 			get {
-				return self.append("epgChannelId") 
+				return self.append("enableCdvrState") 
+			}
+		}
+		
+		public var enableCatchUpState: BaseTokenizedObject {
+			get {
+				return self.append("enableCatchUpState") 
+			}
+		}
+		
+		public var enableStartOverState: BaseTokenizedObject {
+			get {
+				return self.append("enableStartOverState") 
+			}
+		}
+		
+		public var enableRecordingPlaybackNonEntitledChannelState: BaseTokenizedObject {
+			get {
+				return self.append("enableRecordingPlaybackNonEntitledChannelState") 
+			}
+		}
+		
+		public var enableTrickPlayState: BaseTokenizedObject {
+			get {
+				return self.append("enableTrickPlayState") 
+			}
+		}
+		
+		public var externalIngestId: BaseTokenizedObject {
+			get {
+				return self.append("externalIngestId") 
+			}
+		}
+		
+		public var externalCdvrId: BaseTokenizedObject {
+			get {
+				return self.append("externalCdvrId") 
+			}
+		}
+		
+		public var cdvrEnabaled: BaseTokenizedObject {
+			get {
+				return self.append("cdvrEnabaled") 
+			}
+		}
+		
+		public var catchUpEnabled: BaseTokenizedObject {
+			get {
+				return self.append("catchUpEnabled") 
+			}
+		}
+		
+		public var startOverEnabled: BaseTokenizedObject {
+			get {
+				return self.append("startOverEnabled") 
+			}
+		}
+		
+		public var bufferCatchUp: BaseTokenizedObject {
+			get {
+				return self.append("bufferCatchUp") 
+			}
+		}
+		
+		public var bufferTrickPlay: BaseTokenizedObject {
+			get {
+				return self.append("bufferTrickPlay") 
+			}
+		}
+		
+		public var recordingPlaybackNonEntitledChannelEnabled: BaseTokenizedObject {
+			get {
+				return self.append("recordingPlaybackNonEntitledChannelEnabled") 
+			}
+		}
+		
+		public var trickPlayEnabled: BaseTokenizedObject {
+			get {
+				return self.append("trickPlayEnabled") 
 			}
 		}
 	}
 
-	/**  Id of epg channel  */
-	public var epgChannelId: Int64? = nil
+	/**  Enable CDVR, configuration only  */
+	public var enableCdvrState: TimeShiftedTvState? = nil
+	/**  Enable catch-up, configuration only  */
+	public var enableCatchUpState: TimeShiftedTvState? = nil
+	/**  Enable start over, configuration only  */
+	public var enableStartOverState: TimeShiftedTvState? = nil
+	/**  Enable Recording playback for non entitled channel, configuration only  */
+	public var enableRecordingPlaybackNonEntitledChannelState: TimeShiftedTvState? = nil
+	/**  Enable trick-play, configuration only  */
+	public var enableTrickPlayState: TimeShiftedTvState? = nil
+	/**  External identifier used when ingesting programs for this linear media asset  */
+	public var externalIngestId: String? = nil
+	/**  External identifier for the CDVR  */
+	public var externalCdvrId: String? = nil
+	/**  Is CDVR enabled for this asset  */
+	public var cdvrEnabaled: Bool? = nil
+	/**  Is catch-up enabled for this asset  */
+	public var catchUpEnabled: Bool? = nil
+	/**  Is start over enabled for this asset  */
+	public var startOverEnabled: Bool? = nil
+	/**  buffer Catch-up  */
+	public var bufferCatchUp: Int64? = nil
+	/**  buffer Trick-play  */
+	public var bufferTrickPlay: Int64? = nil
+	/**  Is recording playback for non entitled channel enabled for this asset  */
+	public var recordingPlaybackNonEntitledChannelEnabled: Bool? = nil
+	/**  Is trick-play enabled for this asset  */
+	public var trickPlayEnabled: Bool? = nil
 
 
-	public func setMultiRequestToken(epgChannelId: String) {
-		self.dict["epgChannelId"] = epgChannelId
+	public func setMultiRequestToken(enableCdvrState: String) {
+		self.dict["enableCdvrState"] = enableCdvrState
+	}
+	
+	public func setMultiRequestToken(enableCatchUpState: String) {
+		self.dict["enableCatchUpState"] = enableCatchUpState
+	}
+	
+	public func setMultiRequestToken(enableStartOverState: String) {
+		self.dict["enableStartOverState"] = enableStartOverState
+	}
+	
+	public func setMultiRequestToken(enableRecordingPlaybackNonEntitledChannelState: String) {
+		self.dict["enableRecordingPlaybackNonEntitledChannelState"] = enableRecordingPlaybackNonEntitledChannelState
+	}
+	
+	public func setMultiRequestToken(enableTrickPlayState: String) {
+		self.dict["enableTrickPlayState"] = enableTrickPlayState
+	}
+	
+	public func setMultiRequestToken(externalIngestId: String) {
+		self.dict["externalIngestId"] = externalIngestId
+	}
+	
+	public func setMultiRequestToken(externalCdvrId: String) {
+		self.dict["externalCdvrId"] = externalCdvrId
+	}
+	
+	public func setMultiRequestToken(cdvrEnabaled: String) {
+		self.dict["cdvrEnabaled"] = cdvrEnabaled
+	}
+	
+	public func setMultiRequestToken(catchUpEnabled: String) {
+		self.dict["catchUpEnabled"] = catchUpEnabled
+	}
+	
+	public func setMultiRequestToken(startOverEnabled: String) {
+		self.dict["startOverEnabled"] = startOverEnabled
+	}
+	
+	public func setMultiRequestToken(bufferCatchUp: String) {
+		self.dict["bufferCatchUp"] = bufferCatchUp
+	}
+	
+	public func setMultiRequestToken(bufferTrickPlay: String) {
+		self.dict["bufferTrickPlay"] = bufferTrickPlay
+	}
+	
+	public func setMultiRequestToken(recordingPlaybackNonEntitledChannelEnabled: String) {
+		self.dict["recordingPlaybackNonEntitledChannelEnabled"] = recordingPlaybackNonEntitledChannelEnabled
+	}
+	
+	public func setMultiRequestToken(trickPlayEnabled: String) {
+		self.dict["trickPlayEnabled"] = trickPlayEnabled
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["epgChannelId"] != nil {
-			epgChannelId = Int64("\(dict["epgChannelId"]!)")
+		if dict["enableCdvrState"] != nil {
+			enableCdvrState = TimeShiftedTvState(rawValue: "\(dict["enableCdvrState"]!)")
+		}
+		if dict["enableCatchUpState"] != nil {
+			enableCatchUpState = TimeShiftedTvState(rawValue: "\(dict["enableCatchUpState"]!)")
+		}
+		if dict["enableStartOverState"] != nil {
+			enableStartOverState = TimeShiftedTvState(rawValue: "\(dict["enableStartOverState"]!)")
+		}
+		if dict["enableRecordingPlaybackNonEntitledChannelState"] != nil {
+			enableRecordingPlaybackNonEntitledChannelState = TimeShiftedTvState(rawValue: "\(dict["enableRecordingPlaybackNonEntitledChannelState"]!)")
+		}
+		if dict["enableTrickPlayState"] != nil {
+			enableTrickPlayState = TimeShiftedTvState(rawValue: "\(dict["enableTrickPlayState"]!)")
+		}
+		if dict["externalIngestId"] != nil {
+			externalIngestId = dict["externalIngestId"] as? String
+		}
+		if dict["externalCdvrId"] != nil {
+			externalCdvrId = dict["externalCdvrId"] as? String
+		}
+		if dict["cdvrEnabaled"] != nil {
+			cdvrEnabaled = dict["cdvrEnabaled"] as? Bool
+		}
+		if dict["catchUpEnabled"] != nil {
+			catchUpEnabled = dict["catchUpEnabled"] as? Bool
+		}
+		if dict["startOverEnabled"] != nil {
+			startOverEnabled = dict["startOverEnabled"] as? Bool
+		}
+		if dict["bufferCatchUp"] != nil {
+			bufferCatchUp = Int64("\(dict["bufferCatchUp"]!)")
+		}
+		if dict["bufferTrickPlay"] != nil {
+			bufferTrickPlay = Int64("\(dict["bufferTrickPlay"]!)")
+		}
+		if dict["recordingPlaybackNonEntitledChannelEnabled"] != nil {
+			recordingPlaybackNonEntitledChannelEnabled = dict["recordingPlaybackNonEntitledChannelEnabled"] as? Bool
+		}
+		if dict["trickPlayEnabled"] != nil {
+			trickPlayEnabled = dict["trickPlayEnabled"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(epgChannelId != nil) {
-			dict["epgChannelId"] = epgChannelId!
+		if(enableCdvrState != nil) {
+			dict["enableCdvrState"] = enableCdvrState!.rawValue
+		}
+		if(enableCatchUpState != nil) {
+			dict["enableCatchUpState"] = enableCatchUpState!.rawValue
+		}
+		if(enableStartOverState != nil) {
+			dict["enableStartOverState"] = enableStartOverState!.rawValue
+		}
+		if(enableRecordingPlaybackNonEntitledChannelState != nil) {
+			dict["enableRecordingPlaybackNonEntitledChannelState"] = enableRecordingPlaybackNonEntitledChannelState!.rawValue
+		}
+		if(enableTrickPlayState != nil) {
+			dict["enableTrickPlayState"] = enableTrickPlayState!.rawValue
+		}
+		if(externalIngestId != nil) {
+			dict["externalIngestId"] = externalIngestId!
+		}
+		if(externalCdvrId != nil) {
+			dict["externalCdvrId"] = externalCdvrId!
 		}
 		return dict
 	}

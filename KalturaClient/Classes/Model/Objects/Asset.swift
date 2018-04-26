@@ -164,7 +164,7 @@ open class Asset: ObjectBase {
 	public var createDate: Int64? = nil
 	/**  Specifies when was the Asset last updated. Date and time represented as epoch.  */
 	public var updateDate: Int64? = nil
-	/**  External identifier for the media file  */
+	/**  External identifier for the asset  */
 	public var externalId: String? = nil
 
 
