@@ -43,6 +43,12 @@ open class ChannelsFilter: Filter {
 			}
 		}
 		
+		public var mediaIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("mediaIdEqual") 
+			}
+		}
+		
 		public var nameEqual: BaseTokenizedObject {
 			get {
 				return self.append("nameEqual") 
@@ -58,14 +64,20 @@ open class ChannelsFilter: Filter {
 
 	/**  channel identifier to filter by  */
 	public var idEqual: Int? = nil
+	/**  media identifier to filter by  */
+	public var mediaIdEqual: Int64? = nil
 	/**  Exact channel name to filter by  */
 	public var nameEqual: String? = nil
-	/**  Channel name starts with (autocomplete)  */
+	/**  Channel name starts with (auto-complete)  */
 	public var nameStartsWith: String? = nil
 
 
 	public func setMultiRequestToken(idEqual: String) {
 		self.dict["idEqual"] = idEqual
+	}
+	
+	public func setMultiRequestToken(mediaIdEqual: String) {
+		self.dict["mediaIdEqual"] = mediaIdEqual
 	}
 	
 	public func setMultiRequestToken(nameEqual: String) {
@@ -82,6 +94,9 @@ open class ChannelsFilter: Filter {
 		if dict["idEqual"] != nil {
 			idEqual = dict["idEqual"] as? Int
 		}
+		if dict["mediaIdEqual"] != nil {
+			mediaIdEqual = Int64("\(dict["mediaIdEqual"]!)")
+		}
 		if dict["nameEqual"] != nil {
 			nameEqual = dict["nameEqual"] as? String
 		}
@@ -95,6 +110,9 @@ open class ChannelsFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(idEqual != nil) {
 			dict["idEqual"] = idEqual!
+		}
+		if(mediaIdEqual != nil) {
+			dict["mediaIdEqual"] = mediaIdEqual!
 		}
 		if(nameEqual != nil) {
 			dict["nameEqual"] = nameEqual!
