@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'KalturaOttClient'
-s.version          = '4.72.235.25218'
+s.version          = '4.72.237.26064'
 s.summary          = 'KalturaOttClient.'
 s.homepage         = 'https://github.com/kaltura/clients-generator/tree/master/sources/swift'
 s.license          = { :type => 'AGPLv3', :text => 'AGPLv3' }
