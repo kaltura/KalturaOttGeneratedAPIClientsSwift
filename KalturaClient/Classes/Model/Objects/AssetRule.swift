@@ -33,13 +33,20 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RuleAction: ObjectBase {
+/**  Asset rule  */
+open class AssetRule: ObjectBase {
 
-	public class RuleActionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class AssetRuleTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var id: BaseTokenizedObject {
 			get {
-				return self.append("type") 
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
 			}
 		}
 		
@@ -48,16 +55,38 @@ open class RuleAction: ObjectBase {
 				return self.append("description") 
 			}
 		}
+		
+		public var conditions: ArrayTokenizedObject<Condition.ConditionTokenizer> {
+			get {
+				return ArrayTokenizedObject<Condition.ConditionTokenizer>(self.append("conditions"))
+			} 
+		}
+		
+		public var actions: ArrayTokenizedObject<RuleAction.RuleActionTokenizer> {
+			get {
+				return ArrayTokenizedObject<RuleAction.RuleActionTokenizer>(self.append("actions"))
+			} 
+		}
 	}
 
-	/**  The type of the action  */
-	public var type: RuleActionType? = nil
+	/**  ID  */
+	public var id: Int64? = nil
+	/**  Name  */
+	public var name: String? = nil
 	/**  Description  */
 	public var description: String? = nil
+	/**  List of conditions for the rule  */
+	public var conditions: Array<Condition>? = nil
+	/**  List of actions for the rule  */
+	public var actions: Array<RuleAction>? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
 	}
 	
 	public func setMultiRequestToken(description: String) {
@@ -67,22 +96,37 @@ open class RuleAction: ObjectBase {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleActionType(rawValue: "\(dict["type"]!)")
+		if dict["id"] != nil {
+			id = Int64("\(dict["id"]!)")
+		}
+		if dict["name"] != nil {
+			name = dict["name"] as? String
 		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
+		}
+		if dict["conditions"] != nil {
+			conditions = try JSONParser.parse(array: dict["conditions"] as! [Any])
+		}
+		if dict["actions"] != nil {
+			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!.rawValue
+		if(name != nil) {
+			dict["name"] = name!
 		}
 		if(description != nil) {
 			dict["description"] = description!
+		}
+		if(conditions != nil) {
+			dict["conditions"] = conditions!.map { value in value.toDictionary() }
+		}
+		if(actions != nil) {
+			dict["actions"] = actions!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

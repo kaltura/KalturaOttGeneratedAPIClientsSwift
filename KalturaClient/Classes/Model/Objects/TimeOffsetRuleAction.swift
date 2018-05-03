@@ -33,56 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RuleAction: ObjectBase {
+/**  Time offset action  */
+open class TimeOffsetRuleAction: RuleAction {
 
-	public class RuleActionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class TimeOffsetRuleActionTokenizer: RuleAction.RuleActionTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var offset: BaseTokenizedObject {
 			get {
-				return self.append("type") 
+				return self.append("offset") 
 			}
 		}
 		
-		public var description: BaseTokenizedObject {
+		public var timeZone: BaseTokenizedObject {
 			get {
-				return self.append("description") 
+				return self.append("timeZone") 
 			}
 		}
 	}
 
-	/**  The type of the action  */
-	public var type: RuleActionType? = nil
-	/**  Description  */
-	public var description: String? = nil
+	/**  Offset in seconds  */
+	public var offset: Int? = nil
+	/**  Indicates whether to add time zone offset to the time  */
+	public var timeZone: Bool? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(offset: String) {
+		self.dict["offset"] = offset
 	}
 	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
+	public func setMultiRequestToken(timeZone: String) {
+		self.dict["timeZone"] = timeZone
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleActionType(rawValue: "\(dict["type"]!)")
+		if dict["offset"] != nil {
+			offset = dict["offset"] as? Int
 		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
+		if dict["timeZone"] != nil {
+			timeZone = dict["timeZone"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!.rawValue
+		if(offset != nil) {
+			dict["offset"] = offset!
 		}
-		if(description != nil) {
-			dict["description"] = description!
+		if(timeZone != nil) {
+			dict["timeZone"] = timeZone!
 		}
 		return dict
 	}

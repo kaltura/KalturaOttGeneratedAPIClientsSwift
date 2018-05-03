@@ -33,56 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RuleAction: ObjectBase {
+/**  Country condition  */
+open class CountryCondition: Condition {
 
-	public class RuleActionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class CountryConditionTokenizer: Condition.ConditionTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var not: BaseTokenizedObject {
 			get {
-				return self.append("type") 
+				return self.append("not") 
 			}
 		}
 		
-		public var description: BaseTokenizedObject {
+		public var countries: BaseTokenizedObject {
 			get {
-				return self.append("description") 
+				return self.append("countries") 
 			}
 		}
 	}
 
-	/**  The type of the action  */
-	public var type: RuleActionType? = nil
-	/**  Description  */
-	public var description: String? = nil
+	/**  Indicates whether to apply not on the other properties in the condition  */
+	public var not: Bool? = nil
+	/**  Comma separated countries IDs list  */
+	public var countries: String? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(not: String) {
+		self.dict["not"] = not
 	}
 	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
+	public func setMultiRequestToken(countries: String) {
+		self.dict["countries"] = countries
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleActionType(rawValue: "\(dict["type"]!)")
+		if dict["not"] != nil {
+			not = dict["not"] as? Bool
 		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
+		if dict["countries"] != nil {
+			countries = dict["countries"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!.rawValue
+		if(not != nil) {
+			dict["not"] = not!
 		}
-		if(description != nil) {
-			dict["description"] = description!
+		if(countries != nil) {
+			dict["countries"] = countries!
 		}
 		return dict
 	}

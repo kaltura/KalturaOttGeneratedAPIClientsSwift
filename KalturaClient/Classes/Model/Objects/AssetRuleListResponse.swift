@@ -33,56 +33,34 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RuleAction: ObjectBase {
+open class AssetRuleListResponse: ListResponse {
 
-	public class RuleActionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class AssetRuleListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<AssetRule.AssetRuleTokenizer> {
 			get {
-				return self.append("type") 
-			}
-		}
-		
-		public var description: BaseTokenizedObject {
-			get {
-				return self.append("description") 
-			}
+				return ArrayTokenizedObject<AssetRule.AssetRuleTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  The type of the action  */
-	public var type: RuleActionType? = nil
-	/**  Description  */
-	public var description: String? = nil
+	/**  Asset rules  */
+	public var objects: Array<AssetRule>? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
-	}
-	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleActionType(rawValue: "\(dict["type"]!)")
-		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!.rawValue
-		}
-		if(description != nil) {
-			dict["description"] = description!
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

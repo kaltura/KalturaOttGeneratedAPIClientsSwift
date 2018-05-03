@@ -33,56 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RuleAction: ObjectBase {
+/**  Asset Condition  */
+open class AssetCondition: Condition {
 
-	public class RuleActionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class AssetConditionTokenizer: Condition.ConditionTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var ksql: BaseTokenizedObject {
 			get {
-				return self.append("type") 
-			}
-		}
-		
-		public var description: BaseTokenizedObject {
-			get {
-				return self.append("description") 
+				return self.append("ksql") 
 			}
 		}
 	}
 
-	/**  The type of the action  */
-	public var type: RuleActionType? = nil
-	/**  Description  */
-	public var description: String? = nil
+	/**  KSQL  */
+	public var ksql: String? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
-	}
-	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
+	public func setMultiRequestToken(ksql: String) {
+		self.dict["ksql"] = ksql
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleActionType(rawValue: "\(dict["type"]!)")
-		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
+		if dict["ksql"] != nil {
+			ksql = dict["ksql"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!.rawValue
-		}
-		if(description != nil) {
-			dict["description"] = description!
+		if(ksql != nil) {
+			dict["ksql"] = ksql!
 		}
 		return dict
 	}
