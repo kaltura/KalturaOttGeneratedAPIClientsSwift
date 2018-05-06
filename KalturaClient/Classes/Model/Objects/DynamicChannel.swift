@@ -42,6 +42,16 @@ open class DynamicChannel: Channel {
 				return self.append("kSql") 
 			}
 		}
+		
+		public var channelAssetTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("channelAssetTypes"))
+			} 
+		}
+		
+		public func channelGroupBy<T: AssetGroupBy.AssetGroupByTokenizer>() -> T {
+			return T(self.append("channelGroupBy"))
+		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -66,6 +76,10 @@ open class DynamicChannel: Channel {
 	     Search values are limited to 20 characters each.              (maximum length
 	  of entire filter is 2048 characters)  */
 	public var kSql: String? = nil
+	/**  Asset types in the channel.              -26 is EPG  */
+	public var channelAssetTypes: Array<IntegerValue>? = nil
+	/**  Channel group by  */
+	public var channelGroupBy: AssetGroupBy? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -78,6 +92,11 @@ open class DynamicChannel: Channel {
 		if dict["kSql"] != nil {
 			kSql = dict["kSql"] as? String
 		}
+		if dict["channelAssetTypes"] != nil {
+			channelAssetTypes = try JSONParser.parse(array: dict["channelAssetTypes"] as! [Any])
+		}
+		if dict["channelGroupBy"] != nil {
+		channelGroupBy = try JSONParser.parse(object: dict["channelGroupBy"] as! [String: Any])		}
 
 	}
 
@@ -85,6 +104,12 @@ open class DynamicChannel: Channel {
 		var dict: [String: Any] = super.toDictionary()
 		if(kSql != nil) {
 			dict["kSql"] = kSql!
+		}
+		if(channelAssetTypes != nil) {
+			dict["channelAssetTypes"] = channelAssetTypes!.map { value in value.toDictionary() }
+		}
+		if(channelGroupBy != nil) {
+			dict["channelGroupBy"] = channelGroupBy!.toDictionary()
 		}
 		return dict
 	}

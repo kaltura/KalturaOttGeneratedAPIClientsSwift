@@ -43,8 +43,8 @@ public final class AssetStructMetaService{
 	}
 
 	/**  Return a list of asset struct metas for the account with optional filter  */
-	public static func list(filter: AssetStructMetaFilter) -> RequestBuilder<AssetStructMetaListResponse, AssetStructMetaListResponse.AssetStructMetaListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<AssetStructMetaListResponse, AssetStructMetaListResponse.AssetStructMetaListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetStructMetaListResponse, AssetStructMetaListResponse.AssetStructMetaListResponseTokenizer, ListTokenizer>(service: "assetstructmeta", action: "list")
+	public static func list(filter: AssetStructMetaFilter) -> RequestBuilder<GenericListResponse, GenericListResponse.GenericListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<GenericListResponse, GenericListResponse.GenericListResponseTokenizer, ListTokenizer> = RequestBuilder<GenericListResponse, GenericListResponse.GenericListResponseTokenizer, ListTokenizer>(service: "assetstructmeta", action: "list")
 			.setParam(key: "filter", value: filter)
 
 		return request
