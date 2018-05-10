@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AccessControlBlockAction: AssetRuleAction {
+open class AssetUserBlockRuleAction: AssetUserRuleAction {
 
-	public class AccessControlBlockActionTokenizer: AssetRuleAction.AssetRuleActionTokenizer {
+	public class AssetUserBlockRuleActionTokenizer: AssetUserRuleAction.AssetUserRuleActionTokenizer {
 	}
 
 

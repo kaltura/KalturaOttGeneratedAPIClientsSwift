@@ -34,27 +34,9 @@
  */
 
 /**  Asset rule  */
-open class AssetRule: ObjectBase {
+open class AssetRule: AssetRuleBase {
 
-	public class AssetRuleTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
-		public var name: BaseTokenizedObject {
-			get {
-				return self.append("name") 
-			}
-		}
-		
-		public var description: BaseTokenizedObject {
-			get {
-				return self.append("description") 
-			}
-		}
+	public class AssetRuleTokenizer: AssetRuleBase.AssetRuleBaseTokenizer {
 		
 		public var conditions: ArrayTokenizedObject<Condition.ConditionTokenizer> {
 			get {
@@ -62,49 +44,22 @@ open class AssetRule: ObjectBase {
 			} 
 		}
 		
-		public var actions: ArrayTokenizedObject<RuleAction.RuleActionTokenizer> {
+		public var actions: ArrayTokenizedObject<AssetRuleAction.AssetRuleActionTokenizer> {
 			get {
-				return ArrayTokenizedObject<RuleAction.RuleActionTokenizer>(self.append("actions"))
+				return ArrayTokenizedObject<AssetRuleAction.AssetRuleActionTokenizer>(self.append("actions"))
 			} 
 		}
 	}
 
-	/**  ID  */
-	public var id: Int64? = nil
-	/**  Name  */
-	public var name: String? = nil
-	/**  Description  */
-	public var description: String? = nil
 	/**  List of conditions for the rule  */
 	public var conditions: Array<Condition>? = nil
 	/**  List of actions for the rule  */
-	public var actions: Array<RuleAction>? = nil
+	public var actions: Array<AssetRuleAction>? = nil
 
 
-	public func setMultiRequestToken(id: String) {
-		self.dict["id"] = id
-	}
-	
-	public func setMultiRequestToken(name: String) {
-		self.dict["name"] = name
-	}
-	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["id"] != nil {
-			id = Int64("\(dict["id"]!)")
-		}
-		if dict["name"] != nil {
-			name = dict["name"] as? String
-		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
-		}
 		if dict["conditions"] != nil {
 			conditions = try JSONParser.parse(array: dict["conditions"] as! [Any])
 		}
@@ -116,12 +71,6 @@ open class AssetRule: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(name != nil) {
-			dict["name"] = name!
-		}
-		if(description != nil) {
-			dict["description"] = description!
-		}
 		if(conditions != nil) {
 			dict["conditions"] = conditions!.map { value in value.toDictionary() }
 		}

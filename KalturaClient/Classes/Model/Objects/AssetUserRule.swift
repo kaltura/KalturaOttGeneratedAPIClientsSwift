@@ -33,16 +33,51 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AccessControlBlockAction: AssetRuleAction {
+/**  Asset user rule  */
+open class AssetUserRule: AssetRuleBase {
 
-	public class AccessControlBlockActionTokenizer: AssetRuleAction.AssetRuleActionTokenizer {
+	public class AssetUserRuleTokenizer: AssetRuleBase.AssetRuleBaseTokenizer {
+		
+		public var conditions: ArrayTokenizedObject<AssetCondition.AssetConditionTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetCondition.AssetConditionTokenizer>(self.append("conditions"))
+			} 
+		}
+		
+		public var actions: ArrayTokenizedObject<AssetUserRuleAction.AssetUserRuleActionTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetUserRuleAction.AssetUserRuleActionTokenizer>(self.append("actions"))
+			} 
+		}
 	}
 
+	/**  List of Ksql conditions for the user rule  */
+	public var conditions: Array<AssetCondition>? = nil
+	/**  List of actions for the user rule  */
+	public var actions: Array<AssetUserRuleAction>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["conditions"] != nil {
+			conditions = try JSONParser.parse(array: dict["conditions"] as! [Any])
+		}
+		if dict["actions"] != nil {
+			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(conditions != nil) {
+			dict["conditions"] = conditions!.map { value in value.toDictionary() }
+		}
+		if(actions != nil) {
+			dict["actions"] = actions!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
 

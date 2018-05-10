@@ -33,16 +33,36 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AccessControlBlockAction: AssetRuleAction {
+open class AssetUserRuleListResponse: ListResponse {
 
-	public class AccessControlBlockActionTokenizer: AssetRuleAction.AssetRuleActionTokenizer {
+	public class AssetUserRuleListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<AssetUserRule.AssetUserRuleTokenizer> {
+			get {
+				return ArrayTokenizedObject<AssetUserRule.AssetUserRuleTokenizer>(self.append("objects"))
+			} 
+		}
 	}
 
+	/**  Asset rules  */
+	public var objects: Array<AssetUserRule>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
 

@@ -34,9 +34,9 @@
  */
 
 /**  Time offset action  */
-open class TimeOffsetRuleAction: RuleAction {
+open class TimeOffsetRuleAction: AssetRuleAction {
 
-	public class TimeOffsetRuleActionTokenizer: RuleAction.RuleActionTokenizer {
+	public class TimeOffsetRuleActionTokenizer: AssetRuleAction.AssetRuleActionTokenizer {
 		
 		public var offset: BaseTokenizedObject {
 			get {

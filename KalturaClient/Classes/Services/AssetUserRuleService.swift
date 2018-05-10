@@ -33,16 +33,20 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AccessControlBlockAction: AssetRuleAction {
+public final class AssetUserRuleService{
 
-	public class AccessControlBlockActionTokenizer: AssetRuleAction.AssetRuleActionTokenizer {
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func assetUserRule<T: AssetUserRule.AssetUserRuleTokenizer>() -> T {
+			return T(self.append("assetUserRule"))
+		}
 	}
 
+	/**  Add asset user rule  */
+	public static func add(assetUserRule: AssetUserRule) -> RequestBuilder<AssetUserRule, AssetUserRule.AssetUserRuleTokenizer, AddTokenizer> {
+		let request: RequestBuilder<AssetUserRule, AssetUserRule.AssetUserRuleTokenizer, AddTokenizer> = RequestBuilder<AssetUserRule, AssetUserRule.AssetUserRuleTokenizer, AddTokenizer>(service: "assetuserrule", action: "add")
+			.setParam(key: "assetUserRule", value: assetUserRule)
 
-
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
+		return request
 	}
-
 }
-
