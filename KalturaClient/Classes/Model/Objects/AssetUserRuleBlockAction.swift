@@ -25,15 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
+
+open class AssetUserRuleBlockAction: AssetUserRuleAction {
+
+	public class AssetUserRuleBlockActionTokenizer: AssetUserRuleAction.AssetUserRuleActionTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+
