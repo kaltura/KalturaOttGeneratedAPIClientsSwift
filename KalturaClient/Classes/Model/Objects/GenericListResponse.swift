@@ -33,19 +33,20 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AssetUserRuleListResponse: ListResponse {
+/**  Generic response list  */
+open class GenericListResponse: ListResponse {
 
-	public class AssetUserRuleListResponseTokenizer: ListResponse.ListResponseTokenizer {
+	public class GenericListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var objects: ArrayTokenizedObject<AssetUserRule.AssetUserRuleTokenizer> {
+		public var objects: ArrayTokenizedObject<T.TTokenizer> {
 			get {
-				return ArrayTokenizedObject<AssetUserRule.AssetUserRuleTokenizer>(self.append("objects"))
+				return ArrayTokenizedObject<T.TTokenizer>(self.append("objects"))
 			} 
 		}
 	}
 
-	/**  Asset user rules  */
-	public var objects: Array<AssetUserRule>? = nil
+	/**  A list of objects  */
+	public var objects: Array<T>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
