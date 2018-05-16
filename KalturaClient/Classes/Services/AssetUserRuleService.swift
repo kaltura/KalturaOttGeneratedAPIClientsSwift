@@ -50,6 +50,23 @@ public final class AssetUserRuleService{
 		return request
 	}
 
+	public class AddRuleToUserTokenizer: ClientTokenizer  {
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+	}
+
+	/**  Add Asset User Rule To User  */
+	public static func addRuleToUser(ruleId: Int64) -> NullRequestBuilder<AddRuleToUserTokenizer> {
+		let request: NullRequestBuilder<AddRuleToUserTokenizer> = NullRequestBuilder<AddRuleToUserTokenizer>(service: "assetuserrule", action: "addRuleToUser")
+			.setParam(key: "ruleId", value: ruleId)
+
+		return request
+	}
+
 	public class DeleteTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
@@ -60,19 +77,45 @@ public final class AssetUserRuleService{
 	}
 
 	/**  Delete asset user rule  */
-	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "assetuserrule", action: "delete")
+	public static func delete(id: Int64) -> NullRequestBuilder<DeleteTokenizer> {
+		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "assetuserrule", action: "delete")
 			.setParam(key: "id", value: id)
 
 		return request
 	}
 
 	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: AssetUserRuleFilter.AssetUserRuleFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<AssetUserRuleListResponse, AssetUserRuleListResponse.AssetUserRuleListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
 	}
 
 	/**  Get the list of asset user rules for the partner  */
-	public static func list() -> RequestBuilder<AssetUserRuleListResponse, AssetUserRuleListResponse.AssetUserRuleListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: AssetUserRuleFilter?) -> RequestBuilder<AssetUserRuleListResponse, AssetUserRuleListResponse.AssetUserRuleListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AssetUserRuleListResponse, AssetUserRuleListResponse.AssetUserRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetUserRuleListResponse, AssetUserRuleListResponse.AssetUserRuleListResponseTokenizer, ListTokenizer>(service: "assetuserrule", action: "list")
+			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class RemoveRuleToUserTokenizer: ClientTokenizer  {
+		
+		public var ruleId: BaseTokenizedObject {
+			get {
+				return self.append("ruleId") 
+			}
+		}
+	}
+
+	/**  Remove asset user rule from user  */
+	public static func removeRuleToUser(ruleId: Int64) -> NullRequestBuilder<RemoveRuleToUserTokenizer> {
+		let request: NullRequestBuilder<RemoveRuleToUserTokenizer> = NullRequestBuilder<RemoveRuleToUserTokenizer>(service: "assetuserrule", action: "removeRuleToUser")
+			.setParam(key: "ruleId", value: ruleId)
 
 		return request
 	}
