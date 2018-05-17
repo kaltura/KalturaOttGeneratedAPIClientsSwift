@@ -38,35 +38,35 @@ open class AssetUserRuleFilter: Filter {
 
 	public class AssetUserRuleFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var associatedUserIdEqualCurrent: BaseTokenizedObject {
+		public var attachedUserIdEqualCurrent: BaseTokenizedObject {
 			get {
-				return self.append("associatedUserIdEqualCurrent") 
+				return self.append("attachedUserIdEqualCurrent") 
 			}
 		}
 	}
 
-	/**  Indicates if to get the asset user rule list for the associated user or for the
+	/**  Indicates if to get the asset user rule list for the attached user or for the
 	  entire group  */
-	public var associatedUserIdEqualCurrent: Bool? = nil
+	public var attachedUserIdEqualCurrent: Bool? = nil
 
 
-	public func setMultiRequestToken(associatedUserIdEqualCurrent: String) {
-		self.dict["associatedUserIdEqualCurrent"] = associatedUserIdEqualCurrent
+	public func setMultiRequestToken(attachedUserIdEqualCurrent: String) {
+		self.dict["attachedUserIdEqualCurrent"] = attachedUserIdEqualCurrent
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["associatedUserIdEqualCurrent"] != nil {
-			associatedUserIdEqualCurrent = dict["associatedUserIdEqualCurrent"] as? Bool
+		if dict["attachedUserIdEqualCurrent"] != nil {
+			attachedUserIdEqualCurrent = dict["attachedUserIdEqualCurrent"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(associatedUserIdEqualCurrent != nil) {
-			dict["associatedUserIdEqualCurrent"] = associatedUserIdEqualCurrent!
+		if(attachedUserIdEqualCurrent != nil) {
+			dict["attachedUserIdEqualCurrent"] = attachedUserIdEqualCurrent!
 		}
 		return dict
 	}
