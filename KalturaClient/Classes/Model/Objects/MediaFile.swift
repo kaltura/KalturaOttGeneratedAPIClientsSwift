@@ -34,9 +34,9 @@
  */
 
 /**  Media file details  */
-open class MediaFile: ObjectBase {
+open class MediaFile: AssetFile {
 
-	public class MediaFileTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class MediaFileTokenizer: AssetFile.AssetFileTokenizer {
 		
 		public var assetId: BaseTokenizedObject {
 			get {
@@ -53,12 +53,6 @@ open class MediaFile: ObjectBase {
 		public var type: BaseTokenizedObject {
 			get {
 				return self.append("type") 
-			}
-		}
-		
-		public var url: BaseTokenizedObject {
-			get {
-				return self.append("url") 
 			}
 		}
 		
@@ -133,8 +127,6 @@ open class MediaFile: ObjectBase {
 	public var id: Int? = nil
 	/**  Device types as defined in the system  */
 	public var type: String? = nil
-	/**  URL of the media file to be played  */
-	public var url: String? = nil
 	/**  Duration of the media file  */
 	public var duration: Int64? = nil
 	/**  External identifier for the media file  */
@@ -169,10 +161,6 @@ open class MediaFile: ObjectBase {
 	
 	public func setMultiRequestToken(type: String) {
 		self.dict["type"] = type
-	}
-	
-	public func setMultiRequestToken(url: String) {
-		self.dict["url"] = url
 	}
 	
 	public func setMultiRequestToken(duration: String) {
@@ -227,9 +215,6 @@ open class MediaFile: ObjectBase {
 		if dict["type"] != nil {
 			type = dict["type"] as? String
 		}
-		if dict["url"] != nil {
-			url = dict["url"] as? String
-		}
 		if dict["duration"] != nil {
 			duration = Int64("\(dict["duration"]!)")
 		}
@@ -272,9 +257,6 @@ open class MediaFile: ObjectBase {
 		}
 		if(type != nil) {
 			dict["type"] = type!
-		}
-		if(url != nil) {
-			dict["url"] = url!
 		}
 		if(duration != nil) {
 			dict["duration"] = duration!
