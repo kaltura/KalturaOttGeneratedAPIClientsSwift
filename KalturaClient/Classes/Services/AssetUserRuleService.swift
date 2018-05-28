@@ -50,7 +50,7 @@ public final class AssetUserRuleService{
 		return request
 	}
 
-	public class AttachUser Tokenizer: ClientTokenizer  {
+	public class AttachUserTokenizer: ClientTokenizer  {
 		
 		public var ruleId: BaseTokenizedObject {
 			get {
@@ -60,8 +60,8 @@ public final class AssetUserRuleService{
 	}
 
 	/**  Attach AssetUserRule To User  */
-	public static func attachUser (ruleId: Int64) -> NullRequestBuilder<AttachUser Tokenizer> {
-		let request: NullRequestBuilder<AttachUser Tokenizer> = NullRequestBuilder<AttachUser Tokenizer>(service: "assetuserrule", action: "attachUser ")
+	public static func attachUser(ruleId: Int64) -> NullRequestBuilder<AttachUserTokenizer> {
+		let request: NullRequestBuilder<AttachUserTokenizer> = NullRequestBuilder<AttachUserTokenizer>(service: "assetuserrule", action: "attachUser")
 			.setParam(key: "ruleId", value: ruleId)
 
 		return request
