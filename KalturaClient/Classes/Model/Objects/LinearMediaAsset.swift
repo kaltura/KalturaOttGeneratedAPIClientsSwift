@@ -133,6 +133,12 @@ open class LinearMediaAsset: MediaAsset {
 				return self.append("trickPlayEnabled") 
 			}
 		}
+		
+		public var channelType: BaseTokenizedObject {
+			get {
+				return self.append("channelType") 
+			}
+		}
 	}
 
 	/**  Enable CDVR, configuration only  */
@@ -169,6 +175,8 @@ open class LinearMediaAsset: MediaAsset {
 	public var recordingPlaybackNonEntitledChannelEnabled: Bool? = nil
 	/**  Is trick-play enabled for this asset  */
 	public var trickPlayEnabled: Bool? = nil
+	/**  channel type, possible values: UNKNOWN, DTT, OTT, DTT_AND_OTT  */
+	public var channelType: LinearChannelType? = nil
 
 
 	public func setMultiRequestToken(enableCdvrState: String) {
@@ -235,6 +243,10 @@ open class LinearMediaAsset: MediaAsset {
 		self.dict["trickPlayEnabled"] = trickPlayEnabled
 	}
 	
+	public func setMultiRequestToken(channelType: String) {
+		self.dict["channelType"] = channelType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -286,6 +298,9 @@ open class LinearMediaAsset: MediaAsset {
 		if dict["trickPlayEnabled"] != nil {
 			trickPlayEnabled = dict["trickPlayEnabled"] as? Bool
 		}
+		if dict["channelType"] != nil {
+			channelType = LinearChannelType(rawValue: "\(dict["channelType"]!)")
+		}
 
 	}
 
@@ -317,6 +332,9 @@ open class LinearMediaAsset: MediaAsset {
 		}
 		if(externalCdvrId != nil) {
 			dict["externalCdvrId"] = externalCdvrId!
+		}
+		if(channelType != nil) {
+			dict["channelType"] = channelType!.rawValue
 		}
 		return dict
 	}
