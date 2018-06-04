@@ -33,21 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RelatedFilter: BaseSearchAssetFilter {
+open class PersonalListSearchFilter: BaseSearchAssetFilter {
 
-	public class RelatedFilterTokenizer: BaseSearchAssetFilter.BaseSearchAssetFilterTokenizer {
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
-		}
-		
-		public var idEqual: BaseTokenizedObject {
-			get {
-				return self.append("idEqual") 
-			}
-		}
+	public class PersonalListSearchFilterTokenizer: BaseSearchAssetFilter.BaseSearchAssetFilterTokenizer {
 		
 		public var typeIn: BaseTokenizedObject {
 			get {
@@ -55,13 +43,24 @@ open class RelatedFilter: BaseSearchAssetFilter {
 			}
 		}
 		
-		public var excludeWatched: BaseTokenizedObject {
+		public var kSql: BaseTokenizedObject {
 			get {
-				return self.append("excludeWatched") 
+				return self.append("kSql") 
+			}
+		}
+		
+		public var partnerListTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("partnerListTypeEqual") 
 			}
 		}
 	}
 
+	/**  Comma separated list of asset types to search within.               Possible
+	  values: 0 – EPG linear programs entries, any media type ID (according to media
+	  type IDs defined dynamically in the system).              If omitted – all
+	  types should be included.  */
+	public var typeIn: String? = nil
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
 	  with key, comparison operators, value, and logical conjunction.             
 	  Possible keys: any Tag or Meta defined in the system and the following reserved
@@ -85,63 +84,47 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	  characters each for the next operators: ~, !~, ^, ^=              (maximum
 	  length of entire filter is 2048 characters)  */
 	public var kSql: String? = nil
-	/**  the ID of the asset for which to return related assets  */
-	public var idEqual: Int? = nil
-	/**  Comma separated list of asset types to search within.               Possible
-	  values: any media type ID (according to media type IDs defined dynamically in
-	  the system).              If omitted –   same type as the provided asset.  */
-	public var typeIn: String? = nil
-	/**  Exclude watched asset.  */
-	public var excludeWatched: Bool? = nil
+	/**  partnerListType  */
+	public var partnerListTypeEqual: Int? = nil
 
 
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
-	public func setMultiRequestToken(idEqual: String) {
-		self.dict["idEqual"] = idEqual
-	}
-	
 	public func setMultiRequestToken(typeIn: String) {
 		self.dict["typeIn"] = typeIn
 	}
 	
-	public func setMultiRequestToken(excludeWatched: String) {
-		self.dict["excludeWatched"] = excludeWatched
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(partnerListTypeEqual: String) {
+		self.dict["partnerListTypeEqual"] = partnerListTypeEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
-		}
-		if dict["idEqual"] != nil {
-			idEqual = dict["idEqual"] as? Int
-		}
 		if dict["typeIn"] != nil {
 			typeIn = dict["typeIn"] as? String
 		}
-		if dict["excludeWatched"] != nil {
-			excludeWatched = dict["excludeWatched"] as? Bool
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
+		}
+		if dict["partnerListTypeEqual"] != nil {
+			partnerListTypeEqual = dict["partnerListTypeEqual"] as? Int
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
-		}
-		if(idEqual != nil) {
-			dict["idEqual"] = idEqual!
-		}
 		if(typeIn != nil) {
 			dict["typeIn"] = typeIn!
 		}
-		if(excludeWatched != nil) {
-			dict["excludeWatched"] = excludeWatched!
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
+		}
+		if(partnerListTypeEqual != nil) {
+			dict["partnerListTypeEqual"] = partnerListTypeEqual!
 		}
 		return dict
 	}
