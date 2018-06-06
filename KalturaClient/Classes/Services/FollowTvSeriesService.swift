@@ -42,8 +42,9 @@ public final class FollowTvSeriesService{
 		}
 	}
 
-	/**  Add a user&amp;#39;s tv series follow.              Possible status codes:
-	  UserAlreadyFollowing = 8013, NotFound = 500007, InvalidAssetId = 4024  */
+	/**  (Deprecated - use personalList.add)              Add a user&amp;#39;s tv series
+	  follow.              Possible status codes: UserAlreadyFollowing = 8013,
+	  NotFound = 500007, InvalidAssetId = 4024  */
 	public static func add(followTvSeries: FollowTvSeries) -> RequestBuilder<FollowTvSeries, FollowTvSeries.FollowTvSeriesTokenizer, AddTokenizer> {
 		let request: RequestBuilder<FollowTvSeries, FollowTvSeries.FollowTvSeriesTokenizer, AddTokenizer> = RequestBuilder<FollowTvSeries, FollowTvSeries.FollowTvSeriesTokenizer, AddTokenizer>(service: "followtvseries", action: "add")
 			.setParam(key: "followTvSeries", value: followTvSeries)
@@ -60,9 +61,9 @@ public final class FollowTvSeriesService{
 		}
 	}
 
-	/**  Delete a user&amp;#39;s tv series follow.              Possible status codes:
-	  UserNotFollowing = 8012, NotFound = 500007, InvalidAssetId = 4024,
-	  AnnouncementNotFound = 8006  */
+	/**  (Deprecated - use personalList.delete)              Delete a user&amp;#39;s tv
+	  series follow.              Possible status codes: UserNotFollowing = 8012,
+	  NotFound = 500007, InvalidAssetId = 4024, AnnouncementNotFound = 8006  */
 	public static func delete(assetId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "followtvseries", action: "delete")
 			.setParam(key: "assetId", value: assetId)
@@ -116,7 +117,8 @@ public final class FollowTvSeriesService{
 		return list(filter: filter, pager: nil)
 	}
 
-	/**  List user&amp;#39;s tv series follows.              Possible status codes:  */
+	/**  (Deprecated - use personalList.list)              List user&amp;#39;s tv series
+	  follows.              Possible status codes:  */
 	public static func list(filter: FollowTvSeriesFilter, pager: FilterPager?) -> RequestBuilder<FollowTvSeriesListResponse, FollowTvSeriesListResponse.FollowTvSeriesListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<FollowTvSeriesListResponse, FollowTvSeriesListResponse.FollowTvSeriesListResponseTokenizer, ListTokenizer> = RequestBuilder<FollowTvSeriesListResponse, FollowTvSeriesListResponse.FollowTvSeriesListResponseTokenizer, ListTokenizer>(service: "followtvseries", action: "list")
 			.setParam(key: "filter", value: filter)

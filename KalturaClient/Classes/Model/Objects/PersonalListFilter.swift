@@ -37,34 +37,35 @@ open class PersonalListFilter: Filter {
 
 	public class PersonalListFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var partnerListTypeEqual: BaseTokenizedObject {
+		public var partnerListTypeIn: BaseTokenizedObject {
 			get {
-				return self.append("partnerListTypeEqual") 
+				return self.append("partnerListTypeIn") 
 			}
 		}
 	}
 
-	/**  partnerListType  */
-	public var partnerListTypeEqual: Int? = nil
+	/**  Comma separated list of partner list types to search within.               If
+	  omitted – all types should be included.  */
+	public var partnerListTypeIn: String? = nil
 
 
-	public func setMultiRequestToken(partnerListTypeEqual: String) {
-		self.dict["partnerListTypeEqual"] = partnerListTypeEqual
+	public func setMultiRequestToken(partnerListTypeIn: String) {
+		self.dict["partnerListTypeIn"] = partnerListTypeIn
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["partnerListTypeEqual"] != nil {
-			partnerListTypeEqual = dict["partnerListTypeEqual"] as? Int
+		if dict["partnerListTypeIn"] != nil {
+			partnerListTypeIn = dict["partnerListTypeIn"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(partnerListTypeEqual != nil) {
-			dict["partnerListTypeEqual"] = partnerListTypeEqual!
+		if(partnerListTypeIn != nil) {
+			dict["partnerListTypeIn"] = partnerListTypeIn!
 		}
 		return dict
 	}
