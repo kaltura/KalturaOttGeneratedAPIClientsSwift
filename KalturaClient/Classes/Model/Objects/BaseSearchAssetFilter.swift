@@ -37,9 +37,9 @@ open class BaseSearchAssetFilter: AssetFilter {
 
 	public class BaseSearchAssetFilterTokenizer: AssetFilter.AssetFilterTokenizer {
 		
-		public var ksql: BaseTokenizedObject {
+		public var kSql: BaseTokenizedObject {
 			get {
-				return self.append("ksql") 
+				return self.append("kSql") 
 			}
 		}
 		
@@ -74,20 +74,20 @@ open class BaseSearchAssetFilter: AssetFilter {
 	  (exists), !+ (not exists).              Logical conjunction: and, or.           
 	     Search values are limited to 20 characters each for the next operators: ~,
 	  !~, ^, ^=              (maximum length of entire filter is 2048 characters)  */
-	public var ksql: String? = nil
+	public var kSql: String? = nil
 	/**  groupBy  */
 	public var groupBy: Array<AssetGroupBy>? = nil
 
 
-	public func setMultiRequestToken(ksql: String) {
-		self.dict["ksql"] = ksql
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["ksql"] != nil {
-			ksql = dict["ksql"] as? String
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
 		}
 		if dict["groupBy"] != nil {
 			groupBy = try JSONParser.parse(array: dict["groupBy"] as! [Any])
@@ -97,8 +97,8 @@ open class BaseSearchAssetFilter: AssetFilter {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(ksql != nil) {
-			dict["ksql"] = ksql!
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
 		}
 		if(groupBy != nil) {
 			dict["groupBy"] = groupBy!.map { value in value.toDictionary() }
