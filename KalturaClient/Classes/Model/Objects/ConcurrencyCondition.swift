@@ -33,54 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Condition  */
-open class Condition: ObjectBase {
+/**  Asset Condition  */
+open class ConcurrencyCondition: AssetCondition {
 
-	public class ConditionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class ConcurrencyConditionTokenizer: AssetCondition.AssetConditionTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var limit: BaseTokenizedObject {
 			get {
-				return self.append("type") 
+				return self.append("limit") 
 			}
 		}
 		
-		public var description: BaseTokenizedObject {
+		public var concurrencyLimitationType: BaseTokenizedObject {
 			get {
-				return self.append("description") 
+				return self.append("concurrencyLimitationType") 
 			}
 		}
 	}
 
-	/**  The type of the condition  */
-	public var type: RuleConditionType? = nil
-	/**  Description  */
-	public var description: String? = nil
+	/**  Concurrency limitation  */
+	public var limit: Int? = nil
+	/**  Concurrency limitation type  */
+	public var concurrencyLimitationType: ConcurrencyLimitationType? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(limit: String) {
+		self.dict["limit"] = limit
 	}
 	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
+	public func setMultiRequestToken(concurrencyLimitationType: String) {
+		self.dict["concurrencyLimitationType"] = concurrencyLimitationType
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleConditionType(rawValue: "\(dict["type"]!)")
+		if dict["limit"] != nil {
+			limit = dict["limit"] as? Int
 		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
+		if dict["concurrencyLimitationType"] != nil {
+			concurrencyLimitationType = ConcurrencyLimitationType(rawValue: "\(dict["concurrencyLimitationType"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(description != nil) {
-			dict["description"] = description!
+		if(limit != nil) {
+			dict["limit"] = limit!
+		}
+		if(concurrencyLimitationType != nil) {
+			dict["concurrencyLimitationType"] = concurrencyLimitationType!.rawValue
 		}
 		return dict
 	}

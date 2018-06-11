@@ -25,64 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  Condition  */
-open class Condition: ObjectBase {
-
-	public class ConditionTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
-			}
-		}
-		
-		public var description: BaseTokenizedObject {
-			get {
-				return self.append("description") 
-			}
-		}
-	}
-
-	/**  The type of the condition  */
-	public var type: RuleConditionType? = nil
-	/**  Description  */
-	public var description: String? = nil
-
-
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
-	}
-	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["type"] != nil {
-			type = RuleConditionType(rawValue: "\(dict["type"]!)")
-		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(description != nil) {
-			dict["description"] = description!
-		}
-		return dict
-	}
+public enum AssetRuleOrderBy: String {
+	case NONE = "NONE"
 }
-

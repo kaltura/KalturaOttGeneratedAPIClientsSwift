@@ -33,54 +33,40 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Condition  */
-open class Condition: ObjectBase {
+/**  Asset rule filter  */
+open class AssetRuleFilter: Filter {
 
-	public class ConditionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class AssetRuleFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var type: BaseTokenizedObject {
+		public var conditionsContainType: BaseTokenizedObject {
 			get {
-				return self.append("type") 
-			}
-		}
-		
-		public var description: BaseTokenizedObject {
-			get {
-				return self.append("description") 
+				return self.append("conditionsContainType") 
 			}
 		}
 	}
 
-	/**  The type of the condition  */
-	public var type: RuleConditionType? = nil
-	/**  Description  */
-	public var description: String? = nil
+	/**  Indicates if to get the asset user rule list for the attached user or for the
+	  entire group  */
+	public var conditionsContainType: RuleConditionType? = nil
 
 
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
-	}
-	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
+	public func setMultiRequestToken(conditionsContainType: String) {
+		self.dict["conditionsContainType"] = conditionsContainType
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["type"] != nil {
-			type = RuleConditionType(rawValue: "\(dict["type"]!)")
-		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
+		if dict["conditionsContainType"] != nil {
+			conditionsContainType = RuleConditionType(rawValue: "\(dict["conditionsContainType"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(description != nil) {
-			dict["description"] = description!
+		if(conditionsContainType != nil) {
+			dict["conditionsContainType"] = conditionsContainType!.rawValue
 		}
 		return dict
 	}
