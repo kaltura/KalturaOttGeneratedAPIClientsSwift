@@ -43,11 +43,16 @@ open class AssetRuleFilter: Filter {
 				return self.append("conditionsContainType") 
 			}
 		}
+		
+		public func assetApplied<T: SlimAsset.SlimAssetTokenizer>() -> T {
+			return T(self.append("assetApplied"))
+		}
 	}
 
-	/**  Indicates if to get the asset user rule list for the attached user or for the
-	  entire group  */
+	/**  Indicates which asset rule list to return by it KalturaRuleConditionType  */
 	public var conditionsContainType: RuleConditionType? = nil
+	/**  Indicates if to return an asset rule list that related to specific asset  */
+	public var assetApplied: SlimAsset? = nil
 
 
 	public func setMultiRequestToken(conditionsContainType: String) {
@@ -60,6 +65,8 @@ open class AssetRuleFilter: Filter {
 		if dict["conditionsContainType"] != nil {
 			conditionsContainType = RuleConditionType(rawValue: "\(dict["conditionsContainType"]!)")
 		}
+		if dict["assetApplied"] != nil {
+		assetApplied = try JSONParser.parse(object: dict["assetApplied"] as! [String: Any])		}
 
 	}
 
@@ -67,6 +74,9 @@ open class AssetRuleFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(conditionsContainType != nil) {
 			dict["conditionsContainType"] = conditionsContainType!.rawValue
+		}
+		if(assetApplied != nil) {
+			dict["assetApplied"] = assetApplied!.toDictionary()
 		}
 		return dict
 	}
