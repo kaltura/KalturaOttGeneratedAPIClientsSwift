@@ -68,20 +68,11 @@ public final class AssetRuleService{
 	}
 
 	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: AssetRuleFilter.AssetRuleFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	public static func list() -> RequestBuilder<AssetRuleListResponse, AssetRuleListResponse.AssetRuleListResponseTokenizer, ListTokenizer> {
-		return list(filter: nil)
 	}
 
 	/**  Get the list of asset rules for the partner  */
-	public static func list(filter: AssetRuleFilter?) -> RequestBuilder<AssetRuleListResponse, AssetRuleListResponse.AssetRuleListResponseTokenizer, ListTokenizer> {
+	public static func list() -> RequestBuilder<AssetRuleListResponse, AssetRuleListResponse.AssetRuleListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AssetRuleListResponse, AssetRuleListResponse.AssetRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetRuleListResponse, AssetRuleListResponse.AssetRuleListResponseTokenizer, ListTokenizer>(service: "assetrule", action: "list")
-			.setParam(key: "filter", value: filter)
 
 		return request
 	}
