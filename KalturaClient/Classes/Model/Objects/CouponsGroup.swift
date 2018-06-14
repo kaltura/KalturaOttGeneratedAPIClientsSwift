@@ -86,9 +86,9 @@ open class CouponsGroup: ObjectBase {
 			}
 		}
 		
-		public var discountId: BaseTokenizedObject {
+		public var discountCode: BaseTokenizedObject {
 			get {
-				return self.append("discountId") 
+				return self.append("discountCode") 
 			}
 		}
 	}
@@ -109,8 +109,8 @@ open class CouponsGroup: ObjectBase {
 	public var couponGroupType: CouponGroupType? = nil
 	/**  Maximum number of uses per household for each coupon in the group  */
 	public var maxHouseholdUses: Int? = nil
-	/**  Discount ID  */
-	public var discountId: Int64? = nil
+	/**  Discount code  */
+	public var discountCode: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -145,8 +145,8 @@ open class CouponsGroup: ObjectBase {
 		self.dict["maxHouseholdUses"] = maxHouseholdUses
 	}
 	
-	public func setMultiRequestToken(discountId: String) {
-		self.dict["discountId"] = discountId
+	public func setMultiRequestToken(discountCode: String) {
+		self.dict["discountCode"] = discountCode
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -176,8 +176,8 @@ open class CouponsGroup: ObjectBase {
 		if dict["maxHouseholdUses"] != nil {
 			maxHouseholdUses = dict["maxHouseholdUses"] as? Int
 		}
-		if dict["discountId"] != nil {
-			discountId = Int64("\(dict["discountId"]!)")
+		if dict["discountCode"] != nil {
+			discountCode = Int64("\(dict["discountCode"]!)")
 		}
 
 	}
@@ -205,8 +205,8 @@ open class CouponsGroup: ObjectBase {
 		if(maxHouseholdUses != nil) {
 			dict["maxHouseholdUses"] = maxHouseholdUses!
 		}
-		if(discountId != nil) {
-			dict["discountId"] = discountId!
+		if(discountCode != nil) {
+			dict["discountCode"] = discountCode!
 		}
 		return dict
 	}

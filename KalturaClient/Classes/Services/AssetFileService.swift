@@ -98,13 +98,13 @@ public final class AssetFileService{
 		}
 	}
 
-	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType) -> RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> {
+	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType) -> NullRequestBuilder<PlayManifestTokenizer> {
 		return playManifest(partnerId: partnerId, assetId: assetId, assetType: assetType, assetFileId: assetFileId, contextType: contextType, ks: nil)
 	}
 
 	/**  Redirects to play manifest  */
-	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?) -> RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> {
-		let request: RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> = RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer>(service: "assetfile", action: "playManifest")
+	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?) -> NullRequestBuilder<PlayManifestTokenizer> {
+		let request: NullRequestBuilder<PlayManifestTokenizer> = NullRequestBuilder<PlayManifestTokenizer>(service: "assetfile", action: "playManifest")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "assetId", value: assetId)
 			.setParam(key: "assetType", value: assetType.rawValue)
