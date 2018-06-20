@@ -62,9 +62,9 @@ open class SSOAdapterProfile: ObjectBase {
 			}
 		}
 		
-		public var ssoAdapterSettings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+		public var settings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
 			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("ssoAdapterSettings"))
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("settings"))
 			}
 		}
 		
@@ -90,7 +90,7 @@ open class SSOAdapterProfile: ObjectBase {
 	/**  SSO Adapter URL  */
 	public var adapterUrl: String? = nil
 	/**  SSO Adapter extra parameters  */
-	public var ssoAdapterSettings: Dictionary<String, StringValue>? = nil
+	public var settings: Dictionary<String, StringValue>? = nil
 	/**  SSO Adapter external identifier  */
 	public var externalIdentifier: String? = nil
 	/**  Shared Secret  */
@@ -136,8 +136,8 @@ open class SSOAdapterProfile: ObjectBase {
 		if dict["adapterUrl"] != nil {
 			adapterUrl = dict["adapterUrl"] as? String
 		}
-		if dict["ssoAdapterSettings"] != nil {
-			ssoAdapterSettings = try JSONParser.parse(map: dict["ssoAdapterSettings"] as! [String: Any])
+		if dict["settings"] != nil {
+			settings = try JSONParser.parse(map: dict["settings"] as! [String: Any])
 		}
 		if dict["externalIdentifier"] != nil {
 			externalIdentifier = dict["externalIdentifier"] as? String
@@ -159,8 +159,8 @@ open class SSOAdapterProfile: ObjectBase {
 		if(adapterUrl != nil) {
 			dict["adapterUrl"] = adapterUrl!
 		}
-		if(ssoAdapterSettings != nil) {
-			dict["ssoAdapterSettings"] = ssoAdapterSettings!.toDictionary()
+		if(settings != nil) {
+			dict["settings"] = settings!.toDictionary()
 		}
 		if(externalIdentifier != nil) {
 			dict["externalIdentifier"] = externalIdentifier!
