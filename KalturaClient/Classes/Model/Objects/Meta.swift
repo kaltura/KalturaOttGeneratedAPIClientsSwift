@@ -131,7 +131,7 @@ open class Meta: ObjectBase {
 	public var features: String? = nil
 	/**  Parent meta id  */
 	public var parentId: String? = nil
-	/**  Specifies when was the meta was created. Date and time represented as epoch.  */
+	/**  Specifies when was the meta created. Date and time represented as epoch.  */
 	public var createDate: Int64? = nil
 	/**  Specifies when was the meta last updated. Date and time represented as epoch.  */
 	public var updateDate: Int64? = nil
