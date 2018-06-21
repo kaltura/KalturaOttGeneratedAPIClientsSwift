@@ -31,10 +31,7 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PlaybackContextType: String {
-	case TRAILER = "TRAILER"
-	case CATCHUP = "CATCHUP"
-	case START_OVER = "START_OVER"
-	case PLAYBACK = "PLAYBACK"
-	case DOWNLOAD = "DOWNLOAD"
+public enum UrlType: String {
+	case PLAYMANIFEST = "PLAYMANIFEST"
+	case DIRECT = "DIRECT"
 }
