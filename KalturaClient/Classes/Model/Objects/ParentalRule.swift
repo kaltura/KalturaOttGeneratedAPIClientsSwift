@@ -295,9 +295,6 @@ open class ParentalRule: ObjectBase {
 		if(epgTagValues != nil) {
 			dict["epgTagValues"] = epgTagValues!.map { value in value.toDictionary() }
 		}
-		if(isDefault != nil) {
-			dict["isDefault"] = isDefault!
-		}
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
 		}
