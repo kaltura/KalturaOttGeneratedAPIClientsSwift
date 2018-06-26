@@ -33,51 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Asset rule filter  */
-open class AssetRuleFilter: Filter {
+/**  Partner concurrency configuration  */
+open class ConcurrencyPartnerConfig: PartnerConfiguration {
 
-	public class AssetRuleFilterTokenizer: Filter.FilterTokenizer {
+	public class ConcurrencyPartnerConfigTokenizer: PartnerConfiguration.PartnerConfigurationTokenizer {
 		
-		public var conditionsContainType: BaseTokenizedObject {
+		public var deviceFamilyIds: BaseTokenizedObject {
 			get {
-				return self.append("conditionsContainType") 
+				return self.append("deviceFamilyIds") 
 			}
 		}
 		
-		public func assetApplied<T: SlimAsset.SlimAssetTokenizer>() -> T {
-			return T(self.append("assetApplied"))
+		public var evictionPolicy: BaseTokenizedObject {
+			get {
+				return self.append("evictionPolicy") 
+			}
 		}
 	}
 
-	/**  Indicates which asset rule list to return by it KalturaRuleConditionType.       
-	        Default value: KalturaRuleConditionType.COUNTRY  */
-	public var conditionsContainType: RuleConditionType? = nil
-	/**  Indicates if to return an asset rule list that related to specific asset  */
-	public var assetApplied: SlimAsset? = nil
+	/**  Comma separated list of device Family Ids order by their priority.  */
+	public var deviceFamilyIds: String? = nil
+	/**  Policy of eviction devices  */
+	public var evictionPolicy: EvictionPolicyType? = nil
 
 
-	public func setMultiRequestToken(conditionsContainType: String) {
-		self.dict["conditionsContainType"] = conditionsContainType
+	public func setMultiRequestToken(deviceFamilyIds: String) {
+		self.dict["deviceFamilyIds"] = deviceFamilyIds
+	}
+	
+	public func setMultiRequestToken(evictionPolicy: String) {
+		self.dict["evictionPolicy"] = evictionPolicy
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["conditionsContainType"] != nil {
-			conditionsContainType = RuleConditionType(rawValue: "\(dict["conditionsContainType"]!)")
+		if dict["deviceFamilyIds"] != nil {
+			deviceFamilyIds = dict["deviceFamilyIds"] as? String
 		}
-		if dict["assetApplied"] != nil {
-		assetApplied = try JSONParser.parse(object: dict["assetApplied"] as! [String: Any])		}
+		if dict["evictionPolicy"] != nil {
+			evictionPolicy = EvictionPolicyType(rawValue: "\(dict["evictionPolicy"]!)")
+		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(conditionsContainType != nil) {
-			dict["conditionsContainType"] = conditionsContainType!.rawValue
+		if(deviceFamilyIds != nil) {
+			dict["deviceFamilyIds"] = deviceFamilyIds!
 		}
-		if(assetApplied != nil) {
-			dict["assetApplied"] = assetApplied!.toDictionary()
+		if(evictionPolicy != nil) {
+			dict["evictionPolicy"] = evictionPolicy!.rawValue
 		}
 		return dict
 	}

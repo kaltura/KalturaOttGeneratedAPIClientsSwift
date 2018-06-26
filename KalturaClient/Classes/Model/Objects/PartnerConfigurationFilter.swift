@@ -25,15 +25,49 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
+
+/**  Partner configuration filter  */
+open class PartnerConfigurationFilter: Filter {
+
+	public class PartnerConfigurationFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var partnerConfigurationTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("partnerConfigurationTypeEqual") 
+			}
+		}
+	}
+
+	/**  Indicates which partner configuration list to return  */
+	public var partnerConfigurationTypeEqual: PartnerConfigurationType? = nil
+
+
+	public func setMultiRequestToken(partnerConfigurationTypeEqual: String) {
+		self.dict["partnerConfigurationTypeEqual"] = partnerConfigurationTypeEqual
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["partnerConfigurationTypeEqual"] != nil {
+			partnerConfigurationTypeEqual = PartnerConfigurationType(rawValue: "\(dict["partnerConfigurationTypeEqual"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(partnerConfigurationTypeEqual != nil) {
+			dict["partnerConfigurationTypeEqual"] = partnerConfigurationTypeEqual!.rawValue
+		}
+		return dict
+	}
 }
+

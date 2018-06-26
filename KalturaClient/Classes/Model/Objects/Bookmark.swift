@@ -64,6 +64,12 @@ open class Bookmark: SlimAsset {
 		public func playerData<T: BookmarkPlayerData.BookmarkPlayerDataTokenizer>() -> T {
 			return T(self.append("playerData"))
 		}
+		
+		public var programId: BaseTokenizedObject {
+			get {
+				return self.append("programId") 
+			}
+		}
 	}
 
 	/**  User identifier  */
@@ -77,6 +83,8 @@ open class Bookmark: SlimAsset {
 	public var finishedWatching: Bool? = nil
 	/**  Insert only player data  */
 	public var playerData: BookmarkPlayerData? = nil
+	/**  Program Id  */
+	public var programId: Int64? = nil
 
 
 	public func setMultiRequestToken(userId: String) {
@@ -93,6 +101,10 @@ open class Bookmark: SlimAsset {
 	
 	public func setMultiRequestToken(finishedWatching: String) {
 		self.dict["finishedWatching"] = finishedWatching
+	}
+	
+	public func setMultiRequestToken(programId: String) {
+		self.dict["programId"] = programId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -112,6 +124,9 @@ open class Bookmark: SlimAsset {
 		}
 		if dict["playerData"] != nil {
 		playerData = try JSONParser.parse(object: dict["playerData"] as! [String: Any])		}
+		if dict["programId"] != nil {
+			programId = Int64("\(dict["programId"]!)")
+		}
 
 	}
 
@@ -122,6 +137,9 @@ open class Bookmark: SlimAsset {
 		}
 		if(playerData != nil) {
 			dict["playerData"] = playerData!.toDictionary()
+		}
+		if(programId != nil) {
+			dict["programId"] = programId!
 		}
 		return dict
 	}
