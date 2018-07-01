@@ -35,4 +35,5 @@ public enum PartnerConfigurationType: String {
 	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
 	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
 	case OSSADAPTER = "OSSAdapter"
+	case CONCURRENCY = "Concurrency"
 }

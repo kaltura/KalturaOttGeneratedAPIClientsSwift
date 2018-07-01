@@ -105,9 +105,9 @@ open class Channel: ObjectBase {
 	public var multilingualName: Array<TranslationToken>? = nil
 	/**  Channel system name  */
 	public var systemName: String? = nil
-	/**  Channel description  */
+	/**  Cannel description  */
 	public var description: String? = nil
-	/**  Channel description  */
+	/**  Cannel description  */
 	public var multilingualDescription: Array<TranslationToken>? = nil
 	/**  active status  */
 	public var isActive: Bool? = nil

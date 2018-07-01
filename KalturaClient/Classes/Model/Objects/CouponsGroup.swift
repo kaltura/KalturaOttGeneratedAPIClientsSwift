@@ -50,12 +50,6 @@ open class CouponsGroup: ObjectBase {
 			}
 		}
 		
-		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("descriptions"))
-			} 
-		}
-		
 		public var startDate: BaseTokenizedObject {
 			get {
 				return self.append("startDate") 
@@ -85,15 +79,24 @@ open class CouponsGroup: ObjectBase {
 				return self.append("couponGroupType") 
 			}
 		}
+		
+		public var maxHouseholdUses: BaseTokenizedObject {
+			get {
+				return self.append("maxHouseholdUses") 
+			}
+		}
+		
+		public var discountId: BaseTokenizedObject {
+			get {
+				return self.append("discountId") 
+			}
+		}
 	}
 
 	/**  Coupon group identifier  */
 	public var id: String? = nil
 	/**  Coupon group name  */
 	public var name: String? = nil
-	/**  A list of the descriptions of the coupon group on different languages (language
-	  code and translation)  */
-	public var descriptions: Array<TranslationToken>? = nil
 	/**  The first date the coupons in this coupons group are valid  */
 	public var startDate: Int64? = nil
 	/**  The last date the coupons in this coupons group are valid  */
@@ -104,6 +107,10 @@ open class CouponsGroup: ObjectBase {
 	public var maxUsesNumberOnRenewableSub: Int? = nil
 	/**  Type of the coupon group  */
 	public var couponGroupType: CouponGroupType? = nil
+	/**  Maximum number of uses per household for each coupon in the group  */
+	public var maxHouseholdUses: Int? = nil
+	/**  Discount ID  */
+	public var discountId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -134,6 +141,14 @@ open class CouponsGroup: ObjectBase {
 		self.dict["couponGroupType"] = couponGroupType
 	}
 	
+	public func setMultiRequestToken(maxHouseholdUses: String) {
+		self.dict["maxHouseholdUses"] = maxHouseholdUses
+	}
+	
+	public func setMultiRequestToken(discountId: String) {
+		self.dict["discountId"] = discountId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -142,9 +157,6 @@ open class CouponsGroup: ObjectBase {
 		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
-		}
-		if dict["descriptions"] != nil {
-			descriptions = try JSONParser.parse(array: dict["descriptions"] as! [Any])
 		}
 		if dict["startDate"] != nil {
 			startDate = Int64("\(dict["startDate"]!)")
@@ -161,6 +173,12 @@ open class CouponsGroup: ObjectBase {
 		if dict["couponGroupType"] != nil {
 			couponGroupType = CouponGroupType(rawValue: "\(dict["couponGroupType"]!)")
 		}
+		if dict["maxHouseholdUses"] != nil {
+			maxHouseholdUses = dict["maxHouseholdUses"] as? Int
+		}
+		if dict["discountId"] != nil {
+			discountId = Int64("\(dict["discountId"]!)")
+		}
 
 	}
 
@@ -168,9 +186,6 @@ open class CouponsGroup: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(name != nil) {
 			dict["name"] = name!
-		}
-		if(descriptions != nil) {
-			dict["descriptions"] = descriptions!.map { value in value.toDictionary() }
 		}
 		if(startDate != nil) {
 			dict["startDate"] = startDate!
@@ -186,6 +201,12 @@ open class CouponsGroup: ObjectBase {
 		}
 		if(couponGroupType != nil) {
 			dict["couponGroupType"] = couponGroupType!.rawValue
+		}
+		if(maxHouseholdUses != nil) {
+			dict["maxHouseholdUses"] = maxHouseholdUses!
+		}
+		if(discountId != nil) {
+			dict["discountId"] = discountId!
 		}
 		return dict
 	}

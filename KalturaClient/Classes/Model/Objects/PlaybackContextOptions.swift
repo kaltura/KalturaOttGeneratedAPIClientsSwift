@@ -60,6 +60,12 @@ open class PlaybackContextOptions: ObjectBase {
 				return self.append("context") 
 			}
 		}
+		
+		public var urlType: BaseTokenizedObject {
+			get {
+				return self.append("urlType") 
+			}
+		}
 	}
 
 	/**  Protocol of the specific media object (http / https).  */
@@ -70,6 +76,8 @@ open class PlaybackContextOptions: ObjectBase {
 	public var assetFileIds: String? = nil
 	/**  Playback context type  */
 	public var context: PlaybackContextType? = nil
+	/**  Url type  */
+	public var urlType: UrlType? = nil
 
 
 	public func setMultiRequestToken(mediaProtocol: String) {
@@ -88,6 +96,10 @@ open class PlaybackContextOptions: ObjectBase {
 		self.dict["context"] = context
 	}
 	
+	public func setMultiRequestToken(urlType: String) {
+		self.dict["urlType"] = urlType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -102,6 +114,9 @@ open class PlaybackContextOptions: ObjectBase {
 		}
 		if dict["context"] != nil {
 			context = PlaybackContextType(rawValue: "\(dict["context"]!)")
+		}
+		if dict["urlType"] != nil {
+			urlType = UrlType(rawValue: "\(dict["urlType"]!)")
 		}
 
 	}
@@ -119,6 +134,9 @@ open class PlaybackContextOptions: ObjectBase {
 		}
 		if(context != nil) {
 			dict["context"] = context!.rawValue
+		}
+		if(urlType != nil) {
+			dict["urlType"] = urlType!.rawValue
 		}
 		return dict
 	}

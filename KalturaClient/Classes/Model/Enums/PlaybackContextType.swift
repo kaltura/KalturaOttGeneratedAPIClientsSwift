@@ -36,4 +36,5 @@ public enum PlaybackContextType: String {
 	case CATCHUP = "CATCHUP"
 	case START_OVER = "START_OVER"
 	case PLAYBACK = "PLAYBACK"
+	case DOWNLOAD = "DOWNLOAD"
 }

@@ -85,6 +85,18 @@ open class AppToken: ObjectBase {
 				return self.append("sessionUserId") 
 			}
 		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  The id of the application token  */
@@ -105,6 +117,10 @@ open class AppToken: ObjectBase {
 	public var token: String? = nil
 	/**  User id of KS (Kaltura Session) that created using the current token  */
 	public var sessionUserId: String? = nil
+	/**  Create date  */
+	public var createDate: Int64? = nil
+	/**  Update date  */
+	public var updateDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -139,6 +155,14 @@ open class AppToken: ObjectBase {
 		self.dict["sessionUserId"] = sessionUserId
 	}
 	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -165,6 +189,12 @@ open class AppToken: ObjectBase {
 		}
 		if dict["sessionUserId"] != nil {
 			sessionUserId = dict["sessionUserId"] as? String
+		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 
 	}

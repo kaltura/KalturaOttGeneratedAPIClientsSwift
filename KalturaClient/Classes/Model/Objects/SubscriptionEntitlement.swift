@@ -191,12 +191,6 @@ open class SubscriptionEntitlement: Entitlement {
 		if(paymentMethodId != nil) {
 			dict["paymentMethodId"] = paymentMethodId!
 		}
-		if(scheduledSubscriptionId != nil) {
-			dict["scheduledSubscriptionId"] = scheduledSubscriptionId!
-		}
-		if(unifiedPaymentId != nil) {
-			dict["unifiedPaymentId"] = unifiedPaymentId!
-		}
 		return dict
 	}
 }
