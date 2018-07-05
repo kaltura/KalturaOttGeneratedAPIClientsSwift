@@ -109,6 +109,24 @@ open class ParentalRule: ObjectBase {
 				return self.append("origin") 
 			}
 		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  Unique parental rule identifier  */
@@ -135,6 +153,14 @@ open class ParentalRule: ObjectBase {
 	public var isDefault: Bool? = nil
 	/**  Where was this rule defined account, household or user  */
 	public var origin: RuleLevel? = nil
+	/**  active status  */
+	public var isActive: Bool? = nil
+	/**  Specifies when was the parental rule created. Date and time represented as
+	  epoch.  */
+	public var createDate: Int64? = nil
+	/**  Specifies when was the parental rule last updated. Date and time represented as
+	  epoch.  */
+	public var updateDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -177,6 +203,18 @@ open class ParentalRule: ObjectBase {
 		self.dict["origin"] = origin
 	}
 	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -216,6 +254,15 @@ open class ParentalRule: ObjectBase {
 		if dict["origin"] != nil {
 			origin = RuleLevel(rawValue: "\(dict["origin"]!)")
 		}
+		if dict["isActive"] != nil {
+			isActive = dict["isActive"] as? Bool
+		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
+		}
 
 	}
 
@@ -248,11 +295,8 @@ open class ParentalRule: ObjectBase {
 		if(epgTagValues != nil) {
 			dict["epgTagValues"] = epgTagValues!.map { value in value.toDictionary() }
 		}
-		if(isDefault != nil) {
-			dict["isDefault"] = isDefault!
-		}
-		if(origin != nil) {
-			dict["origin"] = origin!.rawValue
+		if(isActive != nil) {
+			dict["isActive"] = isActive!
 		}
 		return dict
 	}

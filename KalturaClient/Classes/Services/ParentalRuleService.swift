@@ -35,6 +35,38 @@
 
 public final class ParentalRuleService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func parentalRule<T: ParentalRule.ParentalRuleTokenizer>() -> T {
+			return T(self.append("parentalRule"))
+		}
+	}
+
+	/**  Add a new parentalRule  */
+	public static func add(parentalRule: ParentalRule) -> RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, AddTokenizer> {
+		let request: RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, AddTokenizer> = RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, AddTokenizer>(service: "parentalrule", action: "add")
+			.setParam(key: "parentalRule", value: parentalRule)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete an existing parentalRule  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "parentalrule", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class DisableTokenizer: ClientTokenizer  {
 		
 		public var ruleId: BaseTokenizedObject {
@@ -102,6 +134,23 @@ public final class ParentalRuleService{
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Get an existing parentalRule by identifier  */
+	public static func get(id: Int64) -> RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, GetTokenizer> {
+		let request: RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, GetTokenizer> = RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, GetTokenizer>(service: "parentalrule", action: "get")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: ParentalRuleFilter.ParentalRuleFilterTokenizer>() -> T {
@@ -115,6 +164,28 @@ public final class ParentalRuleService{
 	public static func list(filter: ParentalRuleFilter) -> RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer> = RequestBuilder<ParentalRuleListResponse, ParentalRuleListResponse.ParentalRuleListResponseTokenizer, ListTokenizer>(service: "parentalrule", action: "list")
 			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func parentalRule<T: ParentalRule.ParentalRuleTokenizer>() -> T {
+			return T(self.append("parentalRule"))
+		}
+	}
+
+	/**  Update an existing parentalRule  */
+	public static func update(id: Int64, parentalRule: ParentalRule) -> RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, UpdateTokenizer> = RequestBuilder<ParentalRule, ParentalRule.ParentalRuleTokenizer, UpdateTokenizer>(service: "parentalrule", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "parentalRule", value: parentalRule)
 
 		return request
 	}
