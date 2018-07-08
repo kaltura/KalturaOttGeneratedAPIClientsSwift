@@ -63,7 +63,7 @@ public final class BulkService{
 		return request
 	}
 
-	public class ServeLog Tokenizer: ClientTokenizer  {
+	public class ServeLogTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -73,8 +73,8 @@ public final class BulkService{
 	}
 
 	/**  ServeLog action returns the log file for the bulk action  */
-	public static func serveLog (id: Int64) -> RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLog Tokenizer> {
-		let request: RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLog Tokenizer> = RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLog Tokenizer>(service: "bulk", action: "serveLog ")
+	public static func serveLog(id: Int64) -> RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLogTokenizer> {
+		let request: RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLogTokenizer> = RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLogTokenizer>(service: "bulk", action: "serveLog")
 			.setParam(key: "id", value: id)
 
 		return request
