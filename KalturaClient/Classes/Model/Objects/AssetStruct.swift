@@ -84,6 +84,36 @@ open class AssetStruct: ObjectBase {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var features: BaseTokenizedObject {
+			get {
+				return self.append("features") 
+			}
+		}
+		
+		public var pluralName: BaseTokenizedObject {
+			get {
+				return self.append("pluralName") 
+			}
+		}
+		
+		public var parentId: BaseTokenizedObject {
+			get {
+				return self.append("parentId") 
+			}
+		}
+		
+		public var connectingMetaId: BaseTokenizedObject {
+			get {
+				return self.append("connectingMetaId") 
+			}
+		}
+		
+		public var connectedParentMetaId: BaseTokenizedObject {
+			get {
+				return self.append("connectedParentMetaId") 
+			}
+		}
 	}
 
 	/**  Asset Struct id  */
@@ -105,6 +135,16 @@ open class AssetStruct: ObjectBase {
 	/**  Specifies when was the Asset Struct last updated. Date and time represented as
 	  epoch.  */
 	public var updateDate: Int64? = nil
+	/**  List of supported features  */
+	public var features: String? = nil
+	/**  Plural Name  */
+	public var pluralName: String? = nil
+	/**  AssetStruct parent Id  */
+	public var parentId: Int64? = nil
+	/**  connectingMetaId  */
+	public var connectingMetaId: Int64? = nil
+	/**  connectedParentMetaId  */
+	public var connectedParentMetaId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -135,6 +175,26 @@ open class AssetStruct: ObjectBase {
 		self.dict["updateDate"] = updateDate
 	}
 	
+	public func setMultiRequestToken(features: String) {
+		self.dict["features"] = features
+	}
+	
+	public func setMultiRequestToken(pluralName: String) {
+		self.dict["pluralName"] = pluralName
+	}
+	
+	public func setMultiRequestToken(parentId: String) {
+		self.dict["parentId"] = parentId
+	}
+	
+	public func setMultiRequestToken(connectingMetaId: String) {
+		self.dict["connectingMetaId"] = connectingMetaId
+	}
+	
+	public func setMultiRequestToken(connectedParentMetaId: String) {
+		self.dict["connectedParentMetaId"] = connectedParentMetaId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -162,6 +222,21 @@ open class AssetStruct: ObjectBase {
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
 		}
+		if dict["features"] != nil {
+			features = dict["features"] as? String
+		}
+		if dict["pluralName"] != nil {
+			pluralName = dict["pluralName"] as? String
+		}
+		if dict["parentId"] != nil {
+			parentId = Int64("\(dict["parentId"]!)")
+		}
+		if dict["connectingMetaId"] != nil {
+			connectingMetaId = Int64("\(dict["connectingMetaId"]!)")
+		}
+		if dict["connectedParentMetaId"] != nil {
+			connectedParentMetaId = Int64("\(dict["connectedParentMetaId"]!)")
+		}
 
 	}
 
@@ -181,6 +256,21 @@ open class AssetStruct: ObjectBase {
 		}
 		if(metaIds != nil) {
 			dict["metaIds"] = metaIds!
+		}
+		if(features != nil) {
+			dict["features"] = features!
+		}
+		if(pluralName != nil) {
+			dict["pluralName"] = pluralName!
+		}
+		if(parentId != nil) {
+			dict["parentId"] = parentId!
+		}
+		if(connectingMetaId != nil) {
+			dict["connectingMetaId"] = connectingMetaId!
+		}
+		if(connectedParentMetaId != nil) {
+			dict["connectedParentMetaId"] = connectedParentMetaId!
 		}
 		return dict
 	}

@@ -70,6 +70,12 @@ open class Bookmark: SlimAsset {
 				return self.append("programId") 
 			}
 		}
+		
+		public var isReportingMode: BaseTokenizedObject {
+			get {
+				return self.append("isReportingMode") 
+			}
+		}
 	}
 
 	/**  User identifier  */
@@ -85,6 +91,8 @@ open class Bookmark: SlimAsset {
 	public var playerData: BookmarkPlayerData? = nil
 	/**  Program Id  */
 	public var programId: Int64? = nil
+	/**  Indicates if the current request is in reporting mode (hit)  */
+	public var isReportingMode: Bool? = nil
 
 
 	public func setMultiRequestToken(userId: String) {
@@ -107,6 +115,10 @@ open class Bookmark: SlimAsset {
 		self.dict["programId"] = programId
 	}
 	
+	public func setMultiRequestToken(isReportingMode: String) {
+		self.dict["isReportingMode"] = isReportingMode
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -127,6 +139,9 @@ open class Bookmark: SlimAsset {
 		if dict["programId"] != nil {
 			programId = Int64("\(dict["programId"]!)")
 		}
+		if dict["isReportingMode"] != nil {
+			isReportingMode = dict["isReportingMode"] as? Bool
+		}
 
 	}
 
@@ -140,6 +155,9 @@ open class Bookmark: SlimAsset {
 		}
 		if(programId != nil) {
 			dict["programId"] = programId!
+		}
+		if(isReportingMode != nil) {
+			dict["isReportingMode"] = isReportingMode!
 		}
 		return dict
 	}
