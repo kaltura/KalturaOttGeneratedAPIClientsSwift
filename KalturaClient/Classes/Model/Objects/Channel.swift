@@ -34,15 +34,9 @@
  */
 
 /**  Channel details  */
-open class Channel: ObjectBase {
+open class Channel: BaseChannel {
 
-	public class ChannelTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
+	public class ChannelTokenizer: BaseChannel.BaseChannelTokenizer {
 		
 		public var name: BaseTokenizedObject {
 			get {
@@ -97,8 +91,6 @@ open class Channel: ObjectBase {
 		}
 	}
 
-	/**  Unique identifier for the channel  */
-	public var id: Int64? = nil
 	/**  Channel name  */
 	public var name: String? = nil
 	/**  Channel name  */
@@ -119,10 +111,6 @@ open class Channel: ObjectBase {
 	public var updateDate: Int64? = nil
 
 
-	public func setMultiRequestToken(id: String) {
-		self.dict["id"] = id
-	}
-	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
 	}
@@ -150,9 +138,6 @@ open class Channel: ObjectBase {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["id"] != nil {
-			id = Int64("\(dict["id"]!)")
-		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
