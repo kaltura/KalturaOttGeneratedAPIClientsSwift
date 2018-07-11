@@ -225,9 +225,6 @@ open class Meta: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(name != nil) {
-			dict["name"] = name!
-		}
 		if(multilingualName != nil) {
 			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}

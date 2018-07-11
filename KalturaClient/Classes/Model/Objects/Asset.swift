@@ -260,14 +260,8 @@ open class Asset: ObjectBase {
 		if(type != nil) {
 			dict["type"] = type!
 		}
-		if(name != nil) {
-			dict["name"] = name!
-		}
 		if(multilingualName != nil) {
 			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
-		}
-		if(description != nil) {
-			dict["description"] = description!
 		}
 		if(multilingualDescription != nil) {
 			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }

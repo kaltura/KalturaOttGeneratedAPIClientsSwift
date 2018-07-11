@@ -44,9 +44,9 @@ open class RecordingFilter: Filter {
 			}
 		}
 		
-		public var filterExpression: BaseTokenizedObject {
+		public var kSql: BaseTokenizedObject {
 			get {
-				return self.append("filterExpression") 
+				return self.append("kSql") 
 			}
 		}
 	}
@@ -54,15 +54,15 @@ open class RecordingFilter: Filter {
 	/**  Recording Statuses  */
 	public var statusIn: String? = nil
 	/**  KSQL expression  */
-	public var filterExpression: String? = nil
+	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(statusIn: String) {
 		self.dict["statusIn"] = statusIn
 	}
 	
-	public func setMultiRequestToken(filterExpression: String) {
-		self.dict["filterExpression"] = filterExpression
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -71,8 +71,8 @@ open class RecordingFilter: Filter {
 		if dict["statusIn"] != nil {
 			statusIn = dict["statusIn"] as? String
 		}
-		if dict["filterExpression"] != nil {
-			filterExpression = dict["filterExpression"] as? String
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
 		}
 
 	}
@@ -82,8 +82,8 @@ open class RecordingFilter: Filter {
 		if(statusIn != nil) {
 			dict["statusIn"] = statusIn!
 		}
-		if(filterExpression != nil) {
-			dict["filterExpression"] = filterExpression!
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
 		}
 		return dict
 	}

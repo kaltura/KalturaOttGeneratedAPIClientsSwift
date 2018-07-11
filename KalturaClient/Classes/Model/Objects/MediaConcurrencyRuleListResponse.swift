@@ -33,82 +33,34 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class Tag: ObjectBase {
+open class MediaConcurrencyRuleListResponse: ListResponse {
 
-	public class TagTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class MediaConcurrencyRuleListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var id: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<MediaConcurrencyRule.MediaConcurrencyRuleTokenizer> {
 			get {
-				return self.append("id") 
-			}
-		}
-		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
-			}
-		}
-		
-		public var tag: BaseTokenizedObject {
-			get {
-				return self.append("tag") 
-			}
-		}
-		
-		public var multilingualTag: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualTag"))
+				return ArrayTokenizedObject<MediaConcurrencyRule.MediaConcurrencyRuleTokenizer>(self.append("objects"))
 			} 
 		}
 	}
 
-	/**  Tag id  */
-	public var id: Int64? = nil
-	/**  Tag Type  */
-	public var type: Int? = nil
-	/**  Tag  */
-	public var tag: String? = nil
-	/**  Tag  */
-	public var multilingualTag: Array<TranslationToken>? = nil
+	/**  Media CONCURRENCY RULES  */
+	public var objects: Array<MediaConcurrencyRule>? = nil
 
 
-	public func setMultiRequestToken(id: String) {
-		self.dict["id"] = id
-	}
-	
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
-	}
-	
-	public func setMultiRequestToken(tag: String) {
-		self.dict["tag"] = tag
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["id"] != nil {
-			id = Int64("\(dict["id"]!)")
-		}
-		if dict["type"] != nil {
-			type = dict["type"] as? Int
-		}
-		if dict["tag"] != nil {
-			tag = dict["tag"] as? String
-		}
-		if dict["multilingualTag"] != nil {
-			multilingualTag = try JSONParser.parse(array: dict["multilingualTag"] as! [Any])
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!
-		}
-		if(multilingualTag != nil) {
-			dict["multilingualTag"] = multilingualTag!.map { value in value.toDictionary() }
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class Tag: ObjectBase {
+/**  Media concurrency rule  */
+open class MediaConcurrencyRule: ObjectBase {
 
-	public class TagTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class MediaConcurrencyRuleTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -43,72 +44,82 @@ open class Tag: ObjectBase {
 			}
 		}
 		
-		public var type: BaseTokenizedObject {
+		public var name: BaseTokenizedObject {
 			get {
-				return self.append("type") 
+				return self.append("name") 
 			}
 		}
 		
-		public var tag: BaseTokenizedObject {
+		public var concurrencyLimitationType: BaseTokenizedObject {
 			get {
-				return self.append("tag") 
+				return self.append("concurrencyLimitationType") 
 			}
 		}
 		
-		public var multilingualTag: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+		public var limitation: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualTag"))
-			} 
+				return self.append("limitation") 
+			}
 		}
 	}
 
-	/**  Tag id  */
-	public var id: Int64? = nil
-	/**  Tag Type  */
-	public var type: Int? = nil
-	/**  Tag  */
-	public var tag: String? = nil
-	/**  Tag  */
-	public var multilingualTag: Array<TranslationToken>? = nil
+	/**  Media concurrency rule  identifier  */
+	public var id: String? = nil
+	/**  Media concurrency rule  name  */
+	public var name: String? = nil
+	/**  Concurrency limitation type  */
+	public var concurrencyLimitationType: ConcurrencyLimitationType? = nil
+	/**  Limitation  */
+	public var limitation: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
 	}
 	
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
 	}
 	
-	public func setMultiRequestToken(tag: String) {
-		self.dict["tag"] = tag
+	public func setMultiRequestToken(concurrencyLimitationType: String) {
+		self.dict["concurrencyLimitationType"] = concurrencyLimitationType
+	}
+	
+	public func setMultiRequestToken(limitation: String) {
+		self.dict["limitation"] = limitation
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
-			id = Int64("\(dict["id"]!)")
+			id = dict["id"] as? String
 		}
-		if dict["type"] != nil {
-			type = dict["type"] as? Int
+		if dict["name"] != nil {
+			name = dict["name"] as? String
 		}
-		if dict["tag"] != nil {
-			tag = dict["tag"] as? String
+		if dict["concurrencyLimitationType"] != nil {
+			concurrencyLimitationType = ConcurrencyLimitationType(rawValue: "\(dict["concurrencyLimitationType"]!)")
 		}
-		if dict["multilingualTag"] != nil {
-			multilingualTag = try JSONParser.parse(array: dict["multilingualTag"] as! [Any])
+		if dict["limitation"] != nil {
+			limitation = dict["limitation"] as? Int
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(type != nil) {
-			dict["type"] = type!
+		if(id != nil) {
+			dict["id"] = id!
 		}
-		if(multilingualTag != nil) {
-			dict["multilingualTag"] = multilingualTag!.map { value in value.toDictionary() }
+		if(name != nil) {
+			dict["name"] = name!
+		}
+		if(concurrencyLimitationType != nil) {
+			dict["concurrencyLimitationType"] = concurrencyLimitationType!.rawValue
+		}
+		if(limitation != nil) {
+			dict["limitation"] = limitation!
 		}
 		return dict
 	}
