@@ -42,8 +42,7 @@ public final class ChannelService{
 		}
 	}
 
-	/**  Insert new channel for partner. Supports KalturaDynamicChannel or
-	  KalturaManualChannel  */
+	/**  Insert new channel for partner. Currently supports only KSQL channel  */
 	public static func add(channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, AddTokenizer>(service: "channel", action: "add")
 			.setParam(key: "channel", value: channel)
@@ -77,7 +76,7 @@ public final class ChannelService{
 		}
 	}
 
-	/**  Returns channel  */
+	/**  Returns channel info  */
 	public static func get(id: Int) -> RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, GetTokenizer>(service: "channel", action: "get")
 			.setParam(key: "id", value: id)
@@ -85,39 +84,11 @@ public final class ChannelService{
 		return request
 	}
 
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: ChannelsFilter.ChannelsFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
-		}
-	}
-
-	public static func list() -> RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> {
-		return list(filter: nil)
-	}
-
-	public static func list(filter: ChannelsFilter?) -> RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> {
-		return list(filter: filter, pager: nil)
-	}
-
-	/**  Get the list of tags for the partner  */
-	public static func list(filter: ChannelsFilter?, pager: FilterPager?) -> RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer> = RequestBuilder<ChannelListResponse, ChannelListResponse.ChannelListResponseTokenizer, ListTokenizer>(service: "channel", action: "list")
-			.setParam(key: "filter", value: filter)
-			.setParam(key: "pager", value: pager)
-
-		return request
-	}
-
 	public class UpdateTokenizer: ClientTokenizer  {
 		
-		public var id: BaseTokenizedObject {
+		public var channelId: BaseTokenizedObject {
 			get {
-				return self.append("id") 
+				return self.append("channelId") 
 			}
 		}
 		
@@ -126,10 +97,10 @@ public final class ChannelService{
 		}
 	}
 
-	/**  Update channel details. Supports KalturaDynamicChannel or KalturaManualChannel  */
-	public static func update(id: Int, channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> {
+	/**  Update channel details. Currently supports only KSQL channel  */
+	public static func update(channelId: Int, channel: Channel) -> RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer> = RequestBuilder<Channel, Channel.ChannelTokenizer, UpdateTokenizer>(service: "channel", action: "update")
-			.setParam(key: "id", value: id)
+			.setParam(key: "channelId", value: channelId)
 			.setParam(key: "channel", value: channel)
 
 		return request

@@ -35,38 +35,6 @@
 
 public final class MetaService{
 
-	public class AddTokenizer: ClientTokenizer  {
-		
-		public func meta<T: Meta.MetaTokenizer>() -> T {
-			return T(self.append("meta"))
-		}
-	}
-
-	/**  Add a new meta  */
-	public static func add(meta: Meta) -> RequestBuilder<Meta, Meta.MetaTokenizer, AddTokenizer> {
-		let request: RequestBuilder<Meta, Meta.MetaTokenizer, AddTokenizer> = RequestBuilder<Meta, Meta.MetaTokenizer, AddTokenizer>(service: "meta", action: "add")
-			.setParam(key: "meta", value: meta)
-
-		return request
-	}
-
-	public class DeleteTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-	}
-
-	/**  Delete an existing meta  */
-	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "meta", action: "delete")
-			.setParam(key: "id", value: id)
-
-		return request
-	}
-
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: MetaFilter.MetaFilterTokenizer>() -> T {
@@ -78,7 +46,7 @@ public final class MetaService{
 		return list(filter: nil)
 	}
 
-	/**  Return a list of metas for the account with optional filter  */
+	/**  Get the list of meta mappings for the partner  */
 	public static func list(filter: MetaFilter?) -> RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer> = RequestBuilder<MetaListResponse, MetaListResponse.MetaListResponseTokenizer, ListTokenizer>(service: "meta", action: "list")
 			.setParam(key: "filter", value: filter)
@@ -99,8 +67,8 @@ public final class MetaService{
 		}
 	}
 
-	/**  Update an existing meta  */
-	public static func update(id: Int64, meta: Meta) -> RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> {
+	/**  Update meta&amp;#39;s user interest  */
+	public static func update(id: String, meta: Meta) -> RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer> = RequestBuilder<Meta, Meta.MetaTokenizer, UpdateTokenizer>(service: "meta", action: "update")
 			.setParam(key: "id", value: id)
 			.setParam(key: "meta", value: meta)
