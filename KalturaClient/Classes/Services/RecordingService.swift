@@ -180,7 +180,7 @@ public final class RecordingService{
 	}
 
 	public static func notify(externalDomainRecordingId: String, recordingStatus: RecordingStatus, domainId: Int, externalEpgId: String?, recordingType: RecordingType?) -> RequestBuilder<Bool, BaseTokenizedObject, NotifyTokenizer> {
-		return notify(externalDomainRecordingId: externalDomainRecordingId, recordingStatus: recordingStatus, domainId: domainId, externalEpgId: externalEpgId, recordingType: recordingType, isProtected: False)
+		return notify(externalDomainRecordingId: externalDomainRecordingId, recordingStatus: recordingStatus, domainId: domainId, externalEpgId: externalEpgId, recordingType: recordingType, isProtected: false)
 	}
 
 	/**  Notify on an external recording  */
