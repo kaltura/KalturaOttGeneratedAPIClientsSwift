@@ -188,6 +188,12 @@ open class Recording: ObjectBase {
 		if(assetId != nil) {
 			dict["assetId"] = assetId!
 		}
+		if(type != nil) {
+			dict["type"] = type!.rawValue
+		}
+		if(isProtected != nil) {
+			dict["isProtected"] = isProtected!
+		}
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
 		}

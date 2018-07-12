@@ -44,6 +44,12 @@ open class RecordingFilter: Filter {
 			}
 		}
 		
+		public var externalRecordingIdIn: BaseTokenizedObject {
+			get {
+				return self.append("externalRecordingIdIn") 
+			}
+		}
+		
 		public var kSql: BaseTokenizedObject {
 			get {
 				return self.append("kSql") 
@@ -53,12 +59,18 @@ open class RecordingFilter: Filter {
 
 	/**  Recording Statuses  */
 	public var statusIn: String? = nil
+	/**  Comma separated external identifiers  */
+	public var externalRecordingIdIn: String? = nil
 	/**  KSQL expression  */
 	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(statusIn: String) {
 		self.dict["statusIn"] = statusIn
+	}
+	
+	public func setMultiRequestToken(externalRecordingIdIn: String) {
+		self.dict["externalRecordingIdIn"] = externalRecordingIdIn
 	}
 	
 	public func setMultiRequestToken(kSql: String) {
@@ -71,6 +83,9 @@ open class RecordingFilter: Filter {
 		if dict["statusIn"] != nil {
 			statusIn = dict["statusIn"] as? String
 		}
+		if dict["externalRecordingIdIn"] != nil {
+			externalRecordingIdIn = dict["externalRecordingIdIn"] as? String
+		}
 		if dict["kSql"] != nil {
 			kSql = dict["kSql"] as? String
 		}
@@ -81,6 +96,9 @@ open class RecordingFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(statusIn != nil) {
 			dict["statusIn"] = statusIn!
+		}
+		if(externalRecordingIdIn != nil) {
+			dict["externalRecordingIdIn"] = externalRecordingIdIn!
 		}
 		if(kSql != nil) {
 			dict["kSql"] = kSql!
