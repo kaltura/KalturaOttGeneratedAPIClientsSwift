@@ -73,12 +73,6 @@ open class Recording: ObjectBase {
 			}
 		}
 		
-		public var externalId: BaseTokenizedObject {
-			get {
-				return self.append("externalId") 
-			}
-		}
-		
 		public var createDate: BaseTokenizedObject {
 			get {
 				return self.append("createDate") 
@@ -105,8 +99,6 @@ open class Recording: ObjectBase {
 	public var viewableUntilDate: Int64? = nil
 	/**  Specifies whether or not the recording is protected  */
 	public var isProtected: Bool? = nil
-	/**  External identifier for the recording  */
-	public var externalId: String? = nil
 	/**  Specifies when was the recording created. Date and time represented as epoch.  */
 	public var createDate: Int64? = nil
 	/**  Specifies when was the recording last updated. Date and time represented as
@@ -138,10 +130,6 @@ open class Recording: ObjectBase {
 		self.dict["isProtected"] = isProtected
 	}
 	
-	public func setMultiRequestToken(externalId: String) {
-		self.dict["externalId"] = externalId
-	}
-	
 	public func setMultiRequestToken(createDate: String) {
 		self.dict["createDate"] = createDate
 	}
@@ -171,9 +159,6 @@ open class Recording: ObjectBase {
 		if dict["isProtected"] != nil {
 			isProtected = dict["isProtected"] as? Bool
 		}
-		if dict["externalId"] != nil {
-			externalId = dict["externalId"] as? String
-		}
 		if dict["createDate"] != nil {
 			createDate = Int64("\(dict["createDate"]!)")
 		}
@@ -193,9 +178,6 @@ open class Recording: ObjectBase {
 		}
 		if(isProtected != nil) {
 			dict["isProtected"] = isProtected!
-		}
-		if(externalId != nil) {
-			dict["externalId"] = externalId!
 		}
 		return dict
 	}
