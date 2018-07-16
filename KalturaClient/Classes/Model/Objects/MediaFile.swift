@@ -50,6 +50,12 @@ open class MediaFile: AssetFile {
 			}
 		}
 		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
 		public var typeId: BaseTokenizedObject {
 			get {
 				return self.append("typeId") 
@@ -157,6 +163,8 @@ open class MediaFile: AssetFile {
 	public var assetId: Int? = nil
 	/**  File unique identifier  */
 	public var id: Int? = nil
+	/**  Deprecated - Device types as defined in the system  */
+	public var type: String? = nil
 	/**  Device types identifier as defined in the system  */
 	public var typeId: Int? = nil
 	/**  Duration of the media file  */
@@ -199,6 +207,10 @@ open class MediaFile: AssetFile {
 	
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
 	}
 	
 	public func setMultiRequestToken(typeId: String) {
@@ -277,6 +289,9 @@ open class MediaFile: AssetFile {
 		}
 		if dict["id"] != nil {
 			id = dict["id"] as? Int
+		}
+		if dict["type"] != nil {
+			type = dict["type"] as? String
 		}
 		if dict["typeId"] != nil {
 			typeId = dict["typeId"] as? Int
