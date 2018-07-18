@@ -25,17 +25,67 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
+
+/**  IP range condition  */
+open class IpRangeCondition: Condition {
+
+	public class IpRangeConditionTokenizer: Condition.ConditionTokenizer {
+		
+		public var fromIP: BaseTokenizedObject {
+			get {
+				return self.append("fromIP") 
+			}
+		}
+		
+		public var toIP: BaseTokenizedObject {
+			get {
+				return self.append("toIP") 
+			}
+		}
+	}
+
+	/**  From IP address range  */
+	public var fromIP: String? = nil
+	/**  TO IP address range  */
+	public var toIP: String? = nil
+
+
+	public func setMultiRequestToken(fromIP: String) {
+		self.dict["fromIP"] = fromIP
+	}
+	
+	public func setMultiRequestToken(toIP: String) {
+		self.dict["toIP"] = toIP
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["fromIP"] != nil {
+			fromIP = dict["fromIP"] as? String
+		}
+		if dict["toIP"] != nil {
+			toIP = dict["toIP"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(fromIP != nil) {
+			dict["fromIP"] = fromIP!
+		}
+		if(toIP != nil) {
+			dict["toIP"] = toIP!
+		}
+		return dict
+	}
 }
+

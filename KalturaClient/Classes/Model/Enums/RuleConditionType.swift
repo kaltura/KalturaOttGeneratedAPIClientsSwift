@@ -35,4 +35,5 @@ public enum RuleConditionType: String {
 	case ASSET = "ASSET"
 	case COUNTRY = "COUNTRY"
 	case CONCURRENCY = "CONCURRENCY"
+	case IP_RANGE = "IP_RANGE"
 }
