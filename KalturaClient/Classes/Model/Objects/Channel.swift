@@ -50,6 +50,12 @@ open class Channel: BaseChannel {
 			} 
 		}
 		
+		public var oldName: BaseTokenizedObject {
+			get {
+				return self.append("oldName") 
+			}
+		}
+		
 		public var systemName: BaseTokenizedObject {
 			get {
 				return self.append("systemName") 
@@ -66,6 +72,12 @@ open class Channel: BaseChannel {
 			get {
 				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualDescription"))
 			} 
+		}
+		
+		public var oldDescription: BaseTokenizedObject {
+			get {
+				return self.append("oldDescription") 
+			}
 		}
 		
 		public var isActive: BaseTokenizedObject {
@@ -95,12 +107,16 @@ open class Channel: BaseChannel {
 	public var name: String? = nil
 	/**  Channel name  */
 	public var multilingualName: Array<TranslationToken>? = nil
+	/**  Channel name  */
+	public var oldName: String? = nil
 	/**  Channel system name  */
 	public var systemName: String? = nil
 	/**  Cannel description  */
 	public var description: String? = nil
 	/**  Cannel description  */
 	public var multilingualDescription: Array<TranslationToken>? = nil
+	/**  Cannel description  */
+	public var oldDescription: String? = nil
 	/**  active status  */
 	public var isActive: Bool? = nil
 	/**  Channel order by  */
@@ -115,12 +131,20 @@ open class Channel: BaseChannel {
 		self.dict["name"] = name
 	}
 	
+	public func setMultiRequestToken(oldName: String) {
+		self.dict["oldName"] = oldName
+	}
+	
 	public func setMultiRequestToken(systemName: String) {
 		self.dict["systemName"] = systemName
 	}
 	
 	public func setMultiRequestToken(description: String) {
 		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(oldDescription: String) {
+		self.dict["oldDescription"] = oldDescription
 	}
 	
 	public func setMultiRequestToken(isActive: String) {
@@ -144,6 +168,9 @@ open class Channel: BaseChannel {
 		if dict["multilingualName"] != nil {
 			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
 		}
+		if dict["oldName"] != nil {
+			oldName = dict["oldName"] as? String
+		}
 		if dict["systemName"] != nil {
 			systemName = dict["systemName"] as? String
 		}
@@ -152,6 +179,9 @@ open class Channel: BaseChannel {
 		}
 		if dict["multilingualDescription"] != nil {
 			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
+		}
+		if dict["oldDescription"] != nil {
+			oldDescription = dict["oldDescription"] as? String
 		}
 		if dict["isActive"] != nil {
 			isActive = dict["isActive"] as? Bool
@@ -172,11 +202,17 @@ open class Channel: BaseChannel {
 		if(multilingualName != nil) {
 			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
+		if(oldName != nil) {
+			dict["oldName"] = oldName!
+		}
 		if(systemName != nil) {
 			dict["systemName"] = systemName!
 		}
 		if(multilingualDescription != nil) {
 			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
+		}
+		if(oldDescription != nil) {
+			dict["oldDescription"] = oldDescription!
 		}
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
