@@ -56,15 +56,15 @@ open class LiveAsset: MediaAsset {
 			}
 		}
 		
-		public var bufferCatchUp: BaseTokenizedObject {
+		public var bufferCatchUpSetting: BaseTokenizedObject {
 			get {
-				return self.append("bufferCatchUp") 
+				return self.append("bufferCatchUpSetting") 
 			}
 		}
 		
-		public var bufferTrickPlay: BaseTokenizedObject {
+		public var bufferTrickPlaySetting: BaseTokenizedObject {
 			get {
-				return self.append("bufferTrickPlay") 
+				return self.append("bufferTrickPlaySetting") 
 			}
 		}
 		
@@ -92,45 +92,45 @@ open class LiveAsset: MediaAsset {
 			}
 		}
 		
-		public var cdvrEnabled: BaseTokenizedObject {
+		public var enableCdvr: BaseTokenizedObject {
 			get {
-				return self.append("cdvrEnabled") 
+				return self.append("enableCdvr") 
 			}
 		}
 		
-		public var catchUpEnabled: BaseTokenizedObject {
+		public var enableCatchUp: BaseTokenizedObject {
 			get {
-				return self.append("catchUpEnabled") 
+				return self.append("enableCatchUp") 
 			}
 		}
 		
-		public var startOverEnabled: BaseTokenizedObject {
+		public var enableStartOver: BaseTokenizedObject {
 			get {
-				return self.append("startOverEnabled") 
+				return self.append("enableStartOver") 
 			}
 		}
 		
-		public var summedCatchUpBuffer: BaseTokenizedObject {
+		public var catchUpBuffer: BaseTokenizedObject {
 			get {
-				return self.append("summedCatchUpBuffer") 
+				return self.append("catchUpBuffer") 
 			}
 		}
 		
-		public var summedTrickPlayBuffer: BaseTokenizedObject {
+		public var trickPlayBuffer: BaseTokenizedObject {
 			get {
-				return self.append("summedTrickPlayBuffer") 
+				return self.append("trickPlayBuffer") 
 			}
 		}
 		
-		public var recordingPlaybackNonEntitledChannelEnabled: BaseTokenizedObject {
+		public var enableRecordingPlaybackNonEntitledChannel: BaseTokenizedObject {
 			get {
-				return self.append("recordingPlaybackNonEntitledChannelEnabled") 
+				return self.append("enableRecordingPlaybackNonEntitledChannel") 
 			}
 		}
 		
-		public var trickPlayEnabled: BaseTokenizedObject {
+		public var enableTrickPlay: BaseTokenizedObject {
 			get {
-				return self.append("trickPlayEnabled") 
+				return self.append("enableTrickPlay") 
 			}
 		}
 		
@@ -148,9 +148,9 @@ open class LiveAsset: MediaAsset {
 	/**  Enable start over, configuration only  */
 	public var enableStartOverState: TimeShiftedTvState? = nil
 	/**  buffer Catch-up, configuration only  */
-	public var bufferCatchUp: Int64? = nil
+	public var bufferCatchUpSetting: Int64? = nil
 	/**  buffer Trick-play, configuration only  */
-	public var bufferTrickPlay: Int64? = nil
+	public var bufferTrickPlaySetting: Int64? = nil
 	/**  Enable Recording playback for non entitled channel, configuration only  */
 	public var enableRecordingPlaybackNonEntitledChannelState: TimeShiftedTvState? = nil
 	/**  Enable trick-play, configuration only  */
@@ -160,21 +160,21 @@ open class LiveAsset: MediaAsset {
 	/**  External identifier for the CDVR  */
 	public var externalCdvrId: String? = nil
 	/**  Is CDVR enabled for this asset  */
-	public var cdvrEnabled: Bool? = nil
+	public var enableCdvr: Bool? = nil
 	/**  Is catch-up enabled for this asset  */
-	public var catchUpEnabled: Bool? = nil
+	public var enableCatchUp: Bool? = nil
 	/**  Is start over enabled for this asset  */
-	public var startOverEnabled: Bool? = nil
+	public var enableStartOver: Bool? = nil
 	/**  summed Catch-up buffer, the TimeShiftedTvPartnerSettings are also taken into
 	  consideration  */
-	public var summedCatchUpBuffer: Int64? = nil
+	public var catchUpBuffer: Int64? = nil
 	/**  summed Trick-play buffer, the TimeShiftedTvPartnerSettings are also taken into
 	  consideration  */
-	public var summedTrickPlayBuffer: Int64? = nil
+	public var trickPlayBuffer: Int64? = nil
 	/**  Is recording playback for non entitled channel enabled for this asset  */
-	public var recordingPlaybackNonEntitledChannelEnabled: Bool? = nil
+	public var enableRecordingPlaybackNonEntitledChannel: Bool? = nil
 	/**  Is trick-play enabled for this asset  */
-	public var trickPlayEnabled: Bool? = nil
+	public var enableTrickPlay: Bool? = nil
 	/**  channel type, possible values: UNKNOWN, DTT, OTT, DTT_AND_OTT  */
 	public var channelType: LinearChannelType? = nil
 
@@ -191,12 +191,12 @@ open class LiveAsset: MediaAsset {
 		self.dict["enableStartOverState"] = enableStartOverState
 	}
 	
-	public func setMultiRequestToken(bufferCatchUp: String) {
-		self.dict["bufferCatchUp"] = bufferCatchUp
+	public func setMultiRequestToken(bufferCatchUpSetting: String) {
+		self.dict["bufferCatchUpSetting"] = bufferCatchUpSetting
 	}
 	
-	public func setMultiRequestToken(bufferTrickPlay: String) {
-		self.dict["bufferTrickPlay"] = bufferTrickPlay
+	public func setMultiRequestToken(bufferTrickPlaySetting: String) {
+		self.dict["bufferTrickPlaySetting"] = bufferTrickPlaySetting
 	}
 	
 	public func setMultiRequestToken(enableRecordingPlaybackNonEntitledChannelState: String) {
@@ -215,32 +215,32 @@ open class LiveAsset: MediaAsset {
 		self.dict["externalCdvrId"] = externalCdvrId
 	}
 	
-	public func setMultiRequestToken(cdvrEnabled: String) {
-		self.dict["cdvrEnabled"] = cdvrEnabled
+	public func setMultiRequestToken(enableCdvr: String) {
+		self.dict["enableCdvr"] = enableCdvr
 	}
 	
-	public func setMultiRequestToken(catchUpEnabled: String) {
-		self.dict["catchUpEnabled"] = catchUpEnabled
+	public func setMultiRequestToken(enableCatchUp: String) {
+		self.dict["enableCatchUp"] = enableCatchUp
 	}
 	
-	public func setMultiRequestToken(startOverEnabled: String) {
-		self.dict["startOverEnabled"] = startOverEnabled
+	public func setMultiRequestToken(enableStartOver: String) {
+		self.dict["enableStartOver"] = enableStartOver
 	}
 	
-	public func setMultiRequestToken(summedCatchUpBuffer: String) {
-		self.dict["summedCatchUpBuffer"] = summedCatchUpBuffer
+	public func setMultiRequestToken(catchUpBuffer: String) {
+		self.dict["catchUpBuffer"] = catchUpBuffer
 	}
 	
-	public func setMultiRequestToken(summedTrickPlayBuffer: String) {
-		self.dict["summedTrickPlayBuffer"] = summedTrickPlayBuffer
+	public func setMultiRequestToken(trickPlayBuffer: String) {
+		self.dict["trickPlayBuffer"] = trickPlayBuffer
 	}
 	
-	public func setMultiRequestToken(recordingPlaybackNonEntitledChannelEnabled: String) {
-		self.dict["recordingPlaybackNonEntitledChannelEnabled"] = recordingPlaybackNonEntitledChannelEnabled
+	public func setMultiRequestToken(enableRecordingPlaybackNonEntitledChannel: String) {
+		self.dict["enableRecordingPlaybackNonEntitledChannel"] = enableRecordingPlaybackNonEntitledChannel
 	}
 	
-	public func setMultiRequestToken(trickPlayEnabled: String) {
-		self.dict["trickPlayEnabled"] = trickPlayEnabled
+	public func setMultiRequestToken(enableTrickPlay: String) {
+		self.dict["enableTrickPlay"] = enableTrickPlay
 	}
 	
 	public func setMultiRequestToken(channelType: String) {
@@ -259,11 +259,11 @@ open class LiveAsset: MediaAsset {
 		if dict["enableStartOverState"] != nil {
 			enableStartOverState = TimeShiftedTvState(rawValue: "\(dict["enableStartOverState"]!)")
 		}
-		if dict["bufferCatchUp"] != nil {
-			bufferCatchUp = Int64("\(dict["bufferCatchUp"]!)")
+		if dict["bufferCatchUpSetting"] != nil {
+			bufferCatchUpSetting = Int64("\(dict["bufferCatchUpSetting"]!)")
 		}
-		if dict["bufferTrickPlay"] != nil {
-			bufferTrickPlay = Int64("\(dict["bufferTrickPlay"]!)")
+		if dict["bufferTrickPlaySetting"] != nil {
+			bufferTrickPlaySetting = Int64("\(dict["bufferTrickPlaySetting"]!)")
 		}
 		if dict["enableRecordingPlaybackNonEntitledChannelState"] != nil {
 			enableRecordingPlaybackNonEntitledChannelState = TimeShiftedTvState(rawValue: "\(dict["enableRecordingPlaybackNonEntitledChannelState"]!)")
@@ -277,26 +277,26 @@ open class LiveAsset: MediaAsset {
 		if dict["externalCdvrId"] != nil {
 			externalCdvrId = dict["externalCdvrId"] as? String
 		}
-		if dict["cdvrEnabled"] != nil {
-			cdvrEnabled = dict["cdvrEnabled"] as? Bool
+		if dict["enableCdvr"] != nil {
+			enableCdvr = dict["enableCdvr"] as? Bool
 		}
-		if dict["catchUpEnabled"] != nil {
-			catchUpEnabled = dict["catchUpEnabled"] as? Bool
+		if dict["enableCatchUp"] != nil {
+			enableCatchUp = dict["enableCatchUp"] as? Bool
 		}
-		if dict["startOverEnabled"] != nil {
-			startOverEnabled = dict["startOverEnabled"] as? Bool
+		if dict["enableStartOver"] != nil {
+			enableStartOver = dict["enableStartOver"] as? Bool
 		}
-		if dict["summedCatchUpBuffer"] != nil {
-			summedCatchUpBuffer = Int64("\(dict["summedCatchUpBuffer"]!)")
+		if dict["catchUpBuffer"] != nil {
+			catchUpBuffer = Int64("\(dict["catchUpBuffer"]!)")
 		}
-		if dict["summedTrickPlayBuffer"] != nil {
-			summedTrickPlayBuffer = Int64("\(dict["summedTrickPlayBuffer"]!)")
+		if dict["trickPlayBuffer"] != nil {
+			trickPlayBuffer = Int64("\(dict["trickPlayBuffer"]!)")
 		}
-		if dict["recordingPlaybackNonEntitledChannelEnabled"] != nil {
-			recordingPlaybackNonEntitledChannelEnabled = dict["recordingPlaybackNonEntitledChannelEnabled"] as? Bool
+		if dict["enableRecordingPlaybackNonEntitledChannel"] != nil {
+			enableRecordingPlaybackNonEntitledChannel = dict["enableRecordingPlaybackNonEntitledChannel"] as? Bool
 		}
-		if dict["trickPlayEnabled"] != nil {
-			trickPlayEnabled = dict["trickPlayEnabled"] as? Bool
+		if dict["enableTrickPlay"] != nil {
+			enableTrickPlay = dict["enableTrickPlay"] as? Bool
 		}
 		if dict["channelType"] != nil {
 			channelType = LinearChannelType(rawValue: "\(dict["channelType"]!)")
@@ -315,11 +315,11 @@ open class LiveAsset: MediaAsset {
 		if(enableStartOverState != nil) {
 			dict["enableStartOverState"] = enableStartOverState!.rawValue
 		}
-		if(bufferCatchUp != nil) {
-			dict["bufferCatchUp"] = bufferCatchUp!
+		if(bufferCatchUpSetting != nil) {
+			dict["bufferCatchUpSetting"] = bufferCatchUpSetting!
 		}
-		if(bufferTrickPlay != nil) {
-			dict["bufferTrickPlay"] = bufferTrickPlay!
+		if(bufferTrickPlaySetting != nil) {
+			dict["bufferTrickPlaySetting"] = bufferTrickPlaySetting!
 		}
 		if(enableRecordingPlaybackNonEntitledChannelState != nil) {
 			dict["enableRecordingPlaybackNonEntitledChannelState"] = enableRecordingPlaybackNonEntitledChannelState!.rawValue
