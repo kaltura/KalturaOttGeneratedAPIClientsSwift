@@ -48,12 +48,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 				return self.append("typeIn") 
 			}
 		}
-		
-		public var idIn: BaseTokenizedObject {
-			get {
-				return self.append("idIn") 
-			}
-		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -88,9 +82,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 	  media type IDs defined dynamically in the system).              If omitted –
 	  all types should be included.  */
 	public var typeIn: String? = nil
-	/**  Comma separated list of EPG channel ids to search within. *****Deprecated,
-	  please use linear_media_id inside kSql instead*****  */
-	public var idIn: String? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -99,10 +90,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 	
 	public func setMultiRequestToken(typeIn: String) {
 		self.dict["typeIn"] = typeIn
-	}
-	
-	public func setMultiRequestToken(idIn: String) {
-		self.dict["idIn"] = idIn
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -114,9 +101,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 		if dict["typeIn"] != nil {
 			typeIn = dict["typeIn"] as? String
 		}
-		if dict["idIn"] != nil {
-			idIn = dict["idIn"] as? String
-		}
 
 	}
 
@@ -127,9 +111,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 		}
 		if(typeIn != nil) {
 			dict["typeIn"] = typeIn!
-		}
-		if(idIn != nil) {
-			dict["idIn"] = idIn!
 		}
 		return dict
 	}
