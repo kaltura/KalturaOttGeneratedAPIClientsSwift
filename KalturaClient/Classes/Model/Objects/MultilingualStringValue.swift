@@ -75,6 +75,9 @@ open class MultilingualStringValue: Value {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(value != nil) {
+			dict["value"] = value!
+		}
 		if(multilingualValue != nil) {
 			dict["multilingualValue"] = multilingualValue!.map { value in value.toDictionary() }
 		}

@@ -64,18 +64,6 @@ open class Bookmark: SlimAsset {
 		public func playerData<T: BookmarkPlayerData.BookmarkPlayerDataTokenizer>() -> T {
 			return T(self.append("playerData"))
 		}
-		
-		public var programId: BaseTokenizedObject {
-			get {
-				return self.append("programId") 
-			}
-		}
-		
-		public var isReportingMode: BaseTokenizedObject {
-			get {
-				return self.append("isReportingMode") 
-			}
-		}
 	}
 
 	/**  User identifier  */
@@ -89,10 +77,6 @@ open class Bookmark: SlimAsset {
 	public var finishedWatching: Bool? = nil
 	/**  Insert only player data  */
 	public var playerData: BookmarkPlayerData? = nil
-	/**  Program Id  */
-	public var programId: Int64? = nil
-	/**  Indicates if the current request is in reporting mode (hit)  */
-	public var isReportingMode: Bool? = nil
 
 
 	public func setMultiRequestToken(userId: String) {
@@ -109,14 +93,6 @@ open class Bookmark: SlimAsset {
 	
 	public func setMultiRequestToken(finishedWatching: String) {
 		self.dict["finishedWatching"] = finishedWatching
-	}
-	
-	public func setMultiRequestToken(programId: String) {
-		self.dict["programId"] = programId
-	}
-	
-	public func setMultiRequestToken(isReportingMode: String) {
-		self.dict["isReportingMode"] = isReportingMode
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -136,12 +112,6 @@ open class Bookmark: SlimAsset {
 		}
 		if dict["playerData"] != nil {
 		playerData = try JSONParser.parse(object: dict["playerData"] as! [String: Any])		}
-		if dict["programId"] != nil {
-			programId = Int64("\(dict["programId"]!)")
-		}
-		if dict["isReportingMode"] != nil {
-			isReportingMode = dict["isReportingMode"] as? Bool
-		}
 
 	}
 
@@ -152,12 +122,6 @@ open class Bookmark: SlimAsset {
 		}
 		if(playerData != nil) {
 			dict["playerData"] = playerData!.toDictionary()
-		}
-		if(programId != nil) {
-			dict["programId"] = programId!
-		}
-		if(isReportingMode != nil) {
-			dict["isReportingMode"] = isReportingMode!
 		}
 		return dict
 	}

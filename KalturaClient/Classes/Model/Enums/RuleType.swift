@@ -36,5 +36,4 @@ public enum RuleType: String {
 	case GEO = "geo"
 	case USER_TYPE = "user_type"
 	case DEVICE = "device"
-	case ASSETUSER = "assetUser"
 }

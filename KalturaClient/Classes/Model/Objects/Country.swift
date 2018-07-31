@@ -85,12 +85,6 @@ open class Country: ObjectBase {
 				return self.append("vatPercent") 
 			}
 		}
-		
-		public var timeZoneId: BaseTokenizedObject {
-			get {
-				return self.append("timeZoneId") 
-			}
-		}
 	}
 
 	/**  Country identifier  */
@@ -109,8 +103,6 @@ open class Country: ObjectBase {
 	public var currencySign: String? = nil
 	/**  Vat Percent in the country  */
 	public var vatPercent: Double? = nil
-	/**  Time zone ID  */
-	public var timeZoneId: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -145,10 +137,6 @@ open class Country: ObjectBase {
 		self.dict["vatPercent"] = vatPercent
 	}
 	
-	public func setMultiRequestToken(timeZoneId: String) {
-		self.dict["timeZoneId"] = timeZoneId
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -176,9 +164,6 @@ open class Country: ObjectBase {
 		if dict["vatPercent"] != nil {
 			vatPercent = dict["vatPercent"] as? Double
 		}
-		if dict["timeZoneId"] != nil {
-			timeZoneId = dict["timeZoneId"] as? String
-		}
 
 	}
 
@@ -204,9 +189,6 @@ open class Country: ObjectBase {
 		}
 		if(vatPercent != nil) {
 			dict["vatPercent"] = vatPercent!
-		}
-		if(timeZoneId != nil) {
-			dict["timeZoneId"] = timeZoneId!
 		}
 		return dict
 	}

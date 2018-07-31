@@ -33,9 +33,4 @@
  */
 public enum RuleActionType: String {
 	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
 }

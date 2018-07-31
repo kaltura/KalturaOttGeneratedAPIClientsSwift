@@ -47,40 +47,16 @@ open class Coupon: ObjectBase {
 				return self.append("status") 
 			}
 		}
-		
-		public var totalUses: BaseTokenizedObject {
-			get {
-				return self.append("totalUses") 
-			}
-		}
-		
-		public var leftUses: BaseTokenizedObject {
-			get {
-				return self.append("leftUses") 
-			}
-		}
 	}
 
 	/**  Coupons group details  */
 	public var couponsGroup: CouponsGroup? = nil
 	/**  Coupon status  */
 	public var status: CouponStatus? = nil
-	/**  Total available coupon uses  */
-	public var totalUses: Int? = nil
-	/**  Left coupon uses  */
-	public var leftUses: Int? = nil
 
 
 	public func setMultiRequestToken(status: String) {
 		self.dict["status"] = status
-	}
-	
-	public func setMultiRequestToken(totalUses: String) {
-		self.dict["totalUses"] = totalUses
-	}
-	
-	public func setMultiRequestToken(leftUses: String) {
-		self.dict["leftUses"] = leftUses
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -90,12 +66,6 @@ open class Coupon: ObjectBase {
 		couponsGroup = try JSONParser.parse(object: dict["couponsGroup"] as! [String: Any])		}
 		if dict["status"] != nil {
 			status = CouponStatus(rawValue: "\(dict["status"]!)")
-		}
-		if dict["totalUses"] != nil {
-			totalUses = dict["totalUses"] as? Int
-		}
-		if dict["leftUses"] != nil {
-			leftUses = dict["leftUses"] as? Int
 		}
 
 	}

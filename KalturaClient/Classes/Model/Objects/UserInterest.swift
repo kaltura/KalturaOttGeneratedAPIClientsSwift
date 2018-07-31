@@ -72,6 +72,9 @@ open class UserInterest: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
 		if(topic != nil) {
 			dict["topic"] = topic!.toDictionary()
 		}

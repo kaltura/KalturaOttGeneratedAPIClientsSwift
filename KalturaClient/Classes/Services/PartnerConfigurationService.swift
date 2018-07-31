@@ -35,21 +35,6 @@
 
 public final class PartnerConfigurationService{
 
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: PartnerConfigurationFilter.PartnerConfigurationFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	/**  Get the list of PartnerConfiguration  */
-	public static func list(filter: PartnerConfigurationFilter) -> RequestBuilder<PartnerConfigurationListResponse, PartnerConfigurationListResponse.PartnerConfigurationListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<PartnerConfigurationListResponse, PartnerConfigurationListResponse.PartnerConfigurationListResponseTokenizer, ListTokenizer> = RequestBuilder<PartnerConfigurationListResponse, PartnerConfigurationListResponse.PartnerConfigurationListResponseTokenizer, ListTokenizer>(service: "partnerconfiguration", action: "list")
-			.setParam(key: "filter", value: filter)
-
-		return request
-	}
-
 	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public func configuration<T: PartnerConfiguration.PartnerConfigurationTokenizer>() -> T {

@@ -88,7 +88,8 @@ open class Recording: ObjectBase {
 
 	/**  Kaltura unique ID representing the recording identifier  */
 	public var id: Int64? = nil
-	/**  Recording state: scheduled/recording/recorded/canceled/failed/deleted  */
+	/**  Recording state:
+	  scheduled/recording/recorded/canceled/failed/does_not_exists/deleted  */
 	public var status: RecordingStatus? = nil
 	/**  Kaltura unique ID representing the program identifier  */
 	public var assetId: Int64? = nil
@@ -172,12 +173,6 @@ open class Recording: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(assetId != nil) {
 			dict["assetId"] = assetId!
-		}
-		if(type != nil) {
-			dict["type"] = type!.rawValue
-		}
-		if(isProtected != nil) {
-			dict["isProtected"] = isProtected!
 		}
 		return dict
 	}

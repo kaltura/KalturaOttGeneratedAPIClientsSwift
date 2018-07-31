@@ -34,9 +34,9 @@
  */
 
 /**  Media file details  */
-open class MediaFile: AssetFile {
+open class MediaFile: ObjectBase {
 
-	public class MediaFileTokenizer: AssetFile.AssetFileTokenizer {
+	public class MediaFileTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var assetId: BaseTokenizedObject {
 			get {
@@ -56,9 +56,9 @@ open class MediaFile: AssetFile {
 			}
 		}
 		
-		public var typeId: BaseTokenizedObject {
+		public var url: BaseTokenizedObject {
 			get {
-				return self.append("typeId") 
+				return self.append("url") 
 			}
 		}
 		
@@ -74,9 +74,49 @@ open class MediaFile: AssetFile {
 			}
 		}
 		
-		public var altExternalId: BaseTokenizedObject {
+		public var billingType: BaseTokenizedObject {
 			get {
-				return self.append("altExternalId") 
+				return self.append("billingType") 
+			}
+		}
+		
+		public var quality: BaseTokenizedObject {
+			get {
+				return self.append("quality") 
+			}
+		}
+		
+		public var handlingType: BaseTokenizedObject {
+			get {
+				return self.append("handlingType") 
+			}
+		}
+		
+		public var cdnName: BaseTokenizedObject {
+			get {
+				return self.append("cdnName") 
+			}
+		}
+		
+		public var cdnCode: BaseTokenizedObject {
+			get {
+				return self.append("cdnCode") 
+			}
+		}
+		
+		public var altCdnCode: BaseTokenizedObject {
+			get {
+				return self.append("altCdnCode") 
+			}
+		}
+		
+		public func ppvModules<T: StringValueArray.StringValueArrayTokenizer>() -> T {
+			return T(self.append("ppvModules"))
+		}
+		
+		public var productCode: BaseTokenizedObject {
+			get {
+				return self.append("productCode") 
 			}
 		}
 		
@@ -85,120 +125,38 @@ open class MediaFile: AssetFile {
 				return self.append("fileSize") 
 			}
 		}
-		
-		public var additionalData: BaseTokenizedObject {
-			get {
-				return self.append("additionalData") 
-			}
-		}
-		
-		public var altStreamingCode: BaseTokenizedObject {
-			get {
-				return self.append("altStreamingCode") 
-			}
-		}
-		
-		public var alternativeCdnAdapaterProfileId: BaseTokenizedObject {
-			get {
-				return self.append("alternativeCdnAdapaterProfileId") 
-			}
-		}
-		
-		public var endDate: BaseTokenizedObject {
-			get {
-				return self.append("endDate") 
-			}
-		}
-		
-		public var startDate: BaseTokenizedObject {
-			get {
-				return self.append("startDate") 
-			}
-		}
-		
-		public var externalStoreId: BaseTokenizedObject {
-			get {
-				return self.append("externalStoreId") 
-			}
-		}
-		
-		public var isDefaultLanguage: BaseTokenizedObject {
-			get {
-				return self.append("isDefaultLanguage") 
-			}
-		}
-		
-		public var language: BaseTokenizedObject {
-			get {
-				return self.append("language") 
-			}
-		}
-		
-		public var orderNum: BaseTokenizedObject {
-			get {
-				return self.append("orderNum") 
-			}
-		}
-		
-		public var outputProtecationLevel: BaseTokenizedObject {
-			get {
-				return self.append("outputProtecationLevel") 
-			}
-		}
-		
-		public var cdnAdapaterProfileId: BaseTokenizedObject {
-			get {
-				return self.append("cdnAdapaterProfileId") 
-			}
-		}
-		
-		public var status: BaseTokenizedObject {
-			get {
-				return self.append("status") 
-			}
-		}
 	}
 
 	/**  Unique identifier for the asset  */
 	public var assetId: Int? = nil
 	/**  File unique identifier  */
 	public var id: Int? = nil
-	/**  Deprecated - Device types as defined in the system  */
+	/**  Device types as defined in the system  */
 	public var type: String? = nil
-	/**  Device types identifier as defined in the system  */
-	public var typeId: Int? = nil
+	/**  URL of the media file to be played  */
+	public var url: String? = nil
 	/**  Duration of the media file  */
 	public var duration: Int64? = nil
 	/**  External identifier for the media file  */
 	public var externalId: String? = nil
-	/**  Alternative external identifier for the media file  */
-	public var altExternalId: String? = nil
+	/**  Billing type  */
+	public var billingType: String? = nil
+	/**  Quality  */
+	public var quality: String? = nil
+	/**  Handling type  */
+	public var handlingType: String? = nil
+	/**  CDN name  */
+	public var cdnName: String? = nil
+	/**  CDN code  */
+	public var cdnCode: String? = nil
+	/**  Alt CDN code  */
+	public var altCdnCode: String? = nil
+	/**  PPV Module  */
+	public var ppvModules: StringValueArray? = nil
+	/**  Product code  */
+	public var productCode: String? = nil
 	/**  File size  */
 	public var fileSize: Int64? = nil
-	/**  Additional Data  */
-	public var additionalData: String? = nil
-	/**  Alternative streaming code  */
-	public var altStreamingCode: String? = nil
-	/**  Alternative cdn adapter profile identifier  */
-	public var alternativeCdnAdapaterProfileId: Int64? = nil
-	/**  EndDate  */
-	public var endDate: Int64? = nil
-	/**  StartDate  */
-	public var startDate: Int64? = nil
-	/**  ExternalStoreId  */
-	public var externalStoreId: String? = nil
-	/**  IsDefaultLanguage  */
-	public var isDefaultLanguage: Bool? = nil
-	/**  Language  */
-	public var language: String? = nil
-	/**  OrderNum  */
-	public var orderNum: Int? = nil
-	/**  OutputProtecationLevel  */
-	public var outputProtecationLevel: String? = nil
-	/**  cdn adapter profile identifier  */
-	public var cdnAdapaterProfileId: Int64? = nil
-	/**  The media file status  */
-	public var status: Bool? = nil
 
 
 	public func setMultiRequestToken(assetId: String) {
@@ -213,8 +171,8 @@ open class MediaFile: AssetFile {
 		self.dict["type"] = type
 	}
 	
-	public func setMultiRequestToken(typeId: String) {
-		self.dict["typeId"] = typeId
+	public func setMultiRequestToken(url: String) {
+		self.dict["url"] = url
 	}
 	
 	public func setMultiRequestToken(duration: String) {
@@ -225,60 +183,36 @@ open class MediaFile: AssetFile {
 		self.dict["externalId"] = externalId
 	}
 	
-	public func setMultiRequestToken(altExternalId: String) {
-		self.dict["altExternalId"] = altExternalId
+	public func setMultiRequestToken(billingType: String) {
+		self.dict["billingType"] = billingType
+	}
+	
+	public func setMultiRequestToken(quality: String) {
+		self.dict["quality"] = quality
+	}
+	
+	public func setMultiRequestToken(handlingType: String) {
+		self.dict["handlingType"] = handlingType
+	}
+	
+	public func setMultiRequestToken(cdnName: String) {
+		self.dict["cdnName"] = cdnName
+	}
+	
+	public func setMultiRequestToken(cdnCode: String) {
+		self.dict["cdnCode"] = cdnCode
+	}
+	
+	public func setMultiRequestToken(altCdnCode: String) {
+		self.dict["altCdnCode"] = altCdnCode
+	}
+	
+	public func setMultiRequestToken(productCode: String) {
+		self.dict["productCode"] = productCode
 	}
 	
 	public func setMultiRequestToken(fileSize: String) {
 		self.dict["fileSize"] = fileSize
-	}
-	
-	public func setMultiRequestToken(additionalData: String) {
-		self.dict["additionalData"] = additionalData
-	}
-	
-	public func setMultiRequestToken(altStreamingCode: String) {
-		self.dict["altStreamingCode"] = altStreamingCode
-	}
-	
-	public func setMultiRequestToken(alternativeCdnAdapaterProfileId: String) {
-		self.dict["alternativeCdnAdapaterProfileId"] = alternativeCdnAdapaterProfileId
-	}
-	
-	public func setMultiRequestToken(endDate: String) {
-		self.dict["endDate"] = endDate
-	}
-	
-	public func setMultiRequestToken(startDate: String) {
-		self.dict["startDate"] = startDate
-	}
-	
-	public func setMultiRequestToken(externalStoreId: String) {
-		self.dict["externalStoreId"] = externalStoreId
-	}
-	
-	public func setMultiRequestToken(isDefaultLanguage: String) {
-		self.dict["isDefaultLanguage"] = isDefaultLanguage
-	}
-	
-	public func setMultiRequestToken(language: String) {
-		self.dict["language"] = language
-	}
-	
-	public func setMultiRequestToken(orderNum: String) {
-		self.dict["orderNum"] = orderNum
-	}
-	
-	public func setMultiRequestToken(outputProtecationLevel: String) {
-		self.dict["outputProtecationLevel"] = outputProtecationLevel
-	}
-	
-	public func setMultiRequestToken(cdnAdapaterProfileId: String) {
-		self.dict["cdnAdapaterProfileId"] = cdnAdapaterProfileId
-	}
-	
-	public func setMultiRequestToken(status: String) {
-		self.dict["status"] = status
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -293,8 +227,8 @@ open class MediaFile: AssetFile {
 		if dict["type"] != nil {
 			type = dict["type"] as? String
 		}
-		if dict["typeId"] != nil {
-			typeId = dict["typeId"] as? Int
+		if dict["url"] != nil {
+			url = dict["url"] as? String
 		}
 		if dict["duration"] != nil {
 			duration = Int64("\(dict["duration"]!)")
@@ -302,47 +236,31 @@ open class MediaFile: AssetFile {
 		if dict["externalId"] != nil {
 			externalId = dict["externalId"] as? String
 		}
-		if dict["altExternalId"] != nil {
-			altExternalId = dict["altExternalId"] as? String
+		if dict["billingType"] != nil {
+			billingType = dict["billingType"] as? String
+		}
+		if dict["quality"] != nil {
+			quality = dict["quality"] as? String
+		}
+		if dict["handlingType"] != nil {
+			handlingType = dict["handlingType"] as? String
+		}
+		if dict["cdnName"] != nil {
+			cdnName = dict["cdnName"] as? String
+		}
+		if dict["cdnCode"] != nil {
+			cdnCode = dict["cdnCode"] as? String
+		}
+		if dict["altCdnCode"] != nil {
+			altCdnCode = dict["altCdnCode"] as? String
+		}
+		if dict["ppvModules"] != nil {
+		ppvModules = try JSONParser.parse(object: dict["ppvModules"] as! [String: Any])		}
+		if dict["productCode"] != nil {
+			productCode = dict["productCode"] as? String
 		}
 		if dict["fileSize"] != nil {
 			fileSize = Int64("\(dict["fileSize"]!)")
-		}
-		if dict["additionalData"] != nil {
-			additionalData = dict["additionalData"] as? String
-		}
-		if dict["altStreamingCode"] != nil {
-			altStreamingCode = dict["altStreamingCode"] as? String
-		}
-		if dict["alternativeCdnAdapaterProfileId"] != nil {
-			alternativeCdnAdapaterProfileId = Int64("\(dict["alternativeCdnAdapaterProfileId"]!)")
-		}
-		if dict["endDate"] != nil {
-			endDate = Int64("\(dict["endDate"]!)")
-		}
-		if dict["startDate"] != nil {
-			startDate = Int64("\(dict["startDate"]!)")
-		}
-		if dict["externalStoreId"] != nil {
-			externalStoreId = dict["externalStoreId"] as? String
-		}
-		if dict["isDefaultLanguage"] != nil {
-			isDefaultLanguage = dict["isDefaultLanguage"] as? Bool
-		}
-		if dict["language"] != nil {
-			language = dict["language"] as? String
-		}
-		if dict["orderNum"] != nil {
-			orderNum = dict["orderNum"] as? Int
-		}
-		if dict["outputProtecationLevel"] != nil {
-			outputProtecationLevel = dict["outputProtecationLevel"] as? String
-		}
-		if dict["cdnAdapaterProfileId"] != nil {
-			cdnAdapaterProfileId = Int64("\(dict["cdnAdapaterProfileId"]!)")
-		}
-		if dict["status"] != nil {
-			status = dict["status"] as? Bool
 		}
 
 	}
@@ -352,8 +270,11 @@ open class MediaFile: AssetFile {
 		if(assetId != nil) {
 			dict["assetId"] = assetId!
 		}
-		if(typeId != nil) {
-			dict["typeId"] = typeId!
+		if(type != nil) {
+			dict["type"] = type!
+		}
+		if(url != nil) {
+			dict["url"] = url!
 		}
 		if(duration != nil) {
 			dict["duration"] = duration!
@@ -361,47 +282,32 @@ open class MediaFile: AssetFile {
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
 		}
-		if(altExternalId != nil) {
-			dict["altExternalId"] = altExternalId!
+		if(billingType != nil) {
+			dict["billingType"] = billingType!
+		}
+		if(quality != nil) {
+			dict["quality"] = quality!
+		}
+		if(handlingType != nil) {
+			dict["handlingType"] = handlingType!
+		}
+		if(cdnName != nil) {
+			dict["cdnName"] = cdnName!
+		}
+		if(cdnCode != nil) {
+			dict["cdnCode"] = cdnCode!
+		}
+		if(altCdnCode != nil) {
+			dict["altCdnCode"] = altCdnCode!
+		}
+		if(ppvModules != nil) {
+			dict["ppvModules"] = ppvModules!.toDictionary()
+		}
+		if(productCode != nil) {
+			dict["productCode"] = productCode!
 		}
 		if(fileSize != nil) {
 			dict["fileSize"] = fileSize!
-		}
-		if(additionalData != nil) {
-			dict["additionalData"] = additionalData!
-		}
-		if(altStreamingCode != nil) {
-			dict["altStreamingCode"] = altStreamingCode!
-		}
-		if(alternativeCdnAdapaterProfileId != nil) {
-			dict["alternativeCdnAdapaterProfileId"] = alternativeCdnAdapaterProfileId!
-		}
-		if(endDate != nil) {
-			dict["endDate"] = endDate!
-		}
-		if(startDate != nil) {
-			dict["startDate"] = startDate!
-		}
-		if(externalStoreId != nil) {
-			dict["externalStoreId"] = externalStoreId!
-		}
-		if(isDefaultLanguage != nil) {
-			dict["isDefaultLanguage"] = isDefaultLanguage!
-		}
-		if(language != nil) {
-			dict["language"] = language!
-		}
-		if(orderNum != nil) {
-			dict["orderNum"] = orderNum!
-		}
-		if(outputProtecationLevel != nil) {
-			dict["outputProtecationLevel"] = outputProtecationLevel!
-		}
-		if(cdnAdapaterProfileId != nil) {
-			dict["cdnAdapaterProfileId"] = cdnAdapaterProfileId!
-		}
-		if(status != nil) {
-			dict["status"] = status!
 		}
 		return dict
 	}

@@ -54,12 +54,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 				return self.append("typeIn") 
 			}
 		}
-		
-		public var excludeWatched: BaseTokenizedObject {
-			get {
-				return self.append("excludeWatched") 
-			}
-		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -74,9 +68,7 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	  user_interests - only valid value is &amp;quot;true&amp;quot;. When enabled,
 	  only assets that the user defined as his interests (by tags and metas) will
 	  return.              epg_channel_id – the channel identifier of the EPG
-	  program. *****Deprecated, please use linear_media_id instead*****             
-	  linear_media_id – the linear media identifier of the EPG program.             
-	  entitled_assets - valid values: &amp;quot;free&amp;quot;,
+	  program.              entitled_assets - valid values: &amp;quot;free&amp;quot;,
 	  &amp;quot;entitled&amp;quot;, &amp;quot;both&amp;quot;. free - gets only free to
 	  watch assets. entitled - only those that the user is implicitly entitled to
 	  watch.              Comparison operators: for numerical fields =, &amp;gt;,
@@ -88,13 +80,10 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	public var kSql: String? = nil
 	/**  the ID of the asset for which to return related assets  */
 	public var idEqual: Int? = nil
-	/**  (Deprecated - use KalturaBaseSearchAssetFilter.kSql)              Comma
-	  separated list of asset types to search within.               Possible values:
-	  any media type ID (according to media type IDs defined dynamically in the
-	  system).              If omitted –   same type as the provided asset.  */
+	/**  Comma separated list of asset types to search within.               Possible
+	  values: any media type ID (according to media type IDs defined dynamically in
+	  the system).              If omitted –   same type as the provided asset.  */
 	public var typeIn: String? = nil
-	/**  Exclude watched asset.  */
-	public var excludeWatched: Bool? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -109,10 +98,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 		self.dict["typeIn"] = typeIn
 	}
 	
-	public func setMultiRequestToken(excludeWatched: String) {
-		self.dict["excludeWatched"] = excludeWatched
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -124,9 +109,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 		}
 		if dict["typeIn"] != nil {
 			typeIn = dict["typeIn"] as? String
-		}
-		if dict["excludeWatched"] != nil {
-			excludeWatched = dict["excludeWatched"] as? Bool
 		}
 
 	}
@@ -141,9 +123,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 		}
 		if(typeIn != nil) {
 			dict["typeIn"] = typeIn!
-		}
-		if(excludeWatched != nil) {
-			dict["excludeWatched"] = excludeWatched!
 		}
 		return dict
 	}

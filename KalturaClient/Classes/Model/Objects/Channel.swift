@@ -44,39 +44,27 @@ open class Channel: BaseChannel {
 			}
 		}
 		
-		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
-			} 
-		}
-		
-		public var oldName: BaseTokenizedObject {
-			get {
-				return self.append("oldName") 
-			}
-		}
-		
-		public var systemName: BaseTokenizedObject {
-			get {
-				return self.append("systemName") 
-			}
-		}
-		
 		public var description: BaseTokenizedObject {
 			get {
 				return self.append("description") 
 			}
 		}
 		
-		public var multilingualDescription: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
 			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualDescription"))
+				return ArrayTokenizedObject<MediaImage.MediaImageTokenizer>(self.append("images"))
 			} 
 		}
 		
-		public var oldDescription: BaseTokenizedObject {
+		public var assetTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
 			get {
-				return self.append("oldDescription") 
+				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("assetTypes"))
+			} 
+		}
+		
+		public var filterExpression: BaseTokenizedObject {
+			get {
+				return self.append("filterExpression") 
 			}
 		}
 		
@@ -86,77 +74,53 @@ open class Channel: BaseChannel {
 			}
 		}
 		
-		public func orderBy<T: ChannelOrder.ChannelOrderTokenizer>() -> T {
-			return T(self.append("orderBy"))
-		}
-		
-		public var createDate: BaseTokenizedObject {
+		public var order: BaseTokenizedObject {
 			get {
-				return self.append("createDate") 
+				return self.append("order") 
 			}
 		}
 		
-		public var updateDate: BaseTokenizedObject {
-			get {
-				return self.append("updateDate") 
-			}
+		public func groupBy<T: AssetGroupBy.AssetGroupByTokenizer>() -> T {
+			return T(self.append("groupBy"))
 		}
 	}
 
 	/**  Channel name  */
 	public var name: String? = nil
-	/**  Channel name  */
-	public var multilingualName: Array<TranslationToken>? = nil
-	/**  Channel name  */
-	public var oldName: String? = nil
-	/**  Channel system name  */
-	public var systemName: String? = nil
 	/**  Cannel description  */
 	public var description: String? = nil
-	/**  Cannel description  */
-	public var multilingualDescription: Array<TranslationToken>? = nil
-	/**  Cannel description  */
-	public var oldDescription: String? = nil
+	/**  Channel images  */
+	public var images: Array<MediaImage>? = nil
+	/**  Asset types in the channel.              -26 is EPG  */
+	public var assetTypes: Array<IntegerValue>? = nil
+	/**  Filter expression  */
+	public var filterExpression: String? = nil
 	/**  active status  */
 	public var isActive: Bool? = nil
-	/**  Channel order by  */
-	public var orderBy: ChannelOrder? = nil
-	/**  Specifies when was the Channel was created. Date and time represented as epoch.  */
-	public var createDate: Int64? = nil
-	/**  Specifies when was the Channel last updated. Date and time represented as epoch.  */
-	public var updateDate: Int64? = nil
+	/**  Channel order  */
+	public var order: AssetOrderBy? = nil
+	/**  Channel group by  */
+	public var groupBy: AssetGroupBy? = nil
 
 
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
 	}
 	
-	public func setMultiRequestToken(oldName: String) {
-		self.dict["oldName"] = oldName
-	}
-	
-	public func setMultiRequestToken(systemName: String) {
-		self.dict["systemName"] = systemName
-	}
-	
 	public func setMultiRequestToken(description: String) {
 		self.dict["description"] = description
 	}
 	
-	public func setMultiRequestToken(oldDescription: String) {
-		self.dict["oldDescription"] = oldDescription
+	public func setMultiRequestToken(filterExpression: String) {
+		self.dict["filterExpression"] = filterExpression
 	}
 	
 	public func setMultiRequestToken(isActive: String) {
 		self.dict["isActive"] = isActive
 	}
 	
-	public func setMultiRequestToken(createDate: String) {
-		self.dict["createDate"] = createDate
-	}
-	
-	public func setMultiRequestToken(updateDate: String) {
-		self.dict["updateDate"] = updateDate
+	public func setMultiRequestToken(order: String) {
+		self.dict["order"] = order
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -165,60 +129,54 @@ open class Channel: BaseChannel {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["multilingualName"] != nil {
-			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
-		}
-		if dict["oldName"] != nil {
-			oldName = dict["oldName"] as? String
-		}
-		if dict["systemName"] != nil {
-			systemName = dict["systemName"] as? String
-		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
 		}
-		if dict["multilingualDescription"] != nil {
-			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
+		if dict["images"] != nil {
+			images = try JSONParser.parse(array: dict["images"] as! [Any])
 		}
-		if dict["oldDescription"] != nil {
-			oldDescription = dict["oldDescription"] as? String
+		if dict["assetTypes"] != nil {
+			assetTypes = try JSONParser.parse(array: dict["assetTypes"] as! [Any])
+		}
+		if dict["filterExpression"] != nil {
+			filterExpression = dict["filterExpression"] as? String
 		}
 		if dict["isActive"] != nil {
 			isActive = dict["isActive"] as? Bool
 		}
-		if dict["orderBy"] != nil {
-		orderBy = try JSONParser.parse(object: dict["orderBy"] as! [String: Any])		}
-		if dict["createDate"] != nil {
-			createDate = Int64("\(dict["createDate"]!)")
+		if dict["order"] != nil {
+			order = AssetOrderBy(rawValue: "\(dict["order"]!)")
 		}
-		if dict["updateDate"] != nil {
-			updateDate = Int64("\(dict["updateDate"]!)")
-		}
+		if dict["groupBy"] != nil {
+		groupBy = try JSONParser.parse(object: dict["groupBy"] as! [String: Any])		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(multilingualName != nil) {
-			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
+		if(name != nil) {
+			dict["name"] = name!
 		}
-		if(oldName != nil) {
-			dict["oldName"] = oldName!
+		if(description != nil) {
+			dict["description"] = description!
 		}
-		if(systemName != nil) {
-			dict["systemName"] = systemName!
+		if(images != nil) {
+			dict["images"] = images!.map { value in value.toDictionary() }
 		}
-		if(multilingualDescription != nil) {
-			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
+		if(assetTypes != nil) {
+			dict["assetTypes"] = assetTypes!.map { value in value.toDictionary() }
 		}
-		if(oldDescription != nil) {
-			dict["oldDescription"] = oldDescription!
+		if(filterExpression != nil) {
+			dict["filterExpression"] = filterExpression!
 		}
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
 		}
-		if(orderBy != nil) {
-			dict["orderBy"] = orderBy!.toDictionary()
+		if(order != nil) {
+			dict["order"] = order!.rawValue
+		}
+		if(groupBy != nil) {
+			dict["groupBy"] = groupBy!.toDictionary()
 		}
 		return dict
 	}

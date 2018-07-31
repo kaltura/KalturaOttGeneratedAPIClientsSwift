@@ -44,37 +44,25 @@ open class RecordingFilter: Filter {
 			}
 		}
 		
-		public var externalRecordingIdIn: BaseTokenizedObject {
+		public var filterExpression: BaseTokenizedObject {
 			get {
-				return self.append("externalRecordingIdIn") 
-			}
-		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
+				return self.append("filterExpression") 
 			}
 		}
 	}
 
 	/**  Recording Statuses  */
 	public var statusIn: String? = nil
-	/**  Comma separated external identifiers  */
-	public var externalRecordingIdIn: String? = nil
 	/**  KSQL expression  */
-	public var kSql: String? = nil
+	public var filterExpression: String? = nil
 
 
 	public func setMultiRequestToken(statusIn: String) {
 		self.dict["statusIn"] = statusIn
 	}
 	
-	public func setMultiRequestToken(externalRecordingIdIn: String) {
-		self.dict["externalRecordingIdIn"] = externalRecordingIdIn
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
+	public func setMultiRequestToken(filterExpression: String) {
+		self.dict["filterExpression"] = filterExpression
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -83,11 +71,8 @@ open class RecordingFilter: Filter {
 		if dict["statusIn"] != nil {
 			statusIn = dict["statusIn"] as? String
 		}
-		if dict["externalRecordingIdIn"] != nil {
-			externalRecordingIdIn = dict["externalRecordingIdIn"] as? String
-		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["filterExpression"] != nil {
+			filterExpression = dict["filterExpression"] as? String
 		}
 
 	}
@@ -97,11 +82,8 @@ open class RecordingFilter: Filter {
 		if(statusIn != nil) {
 			dict["statusIn"] = statusIn!
 		}
-		if(externalRecordingIdIn != nil) {
-			dict["externalRecordingIdIn"] = externalRecordingIdIn!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(filterExpression != nil) {
+			dict["filterExpression"] = filterExpression!
 		}
 		return dict
 	}
