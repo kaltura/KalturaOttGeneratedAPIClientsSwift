@@ -119,6 +119,24 @@ open class OTTUser: BaseOTTUser {
 				return self.append("userState") 
 			}
 		}
+		
+		public var roleIds: BaseTokenizedObject {
+			get {
+				return self.append("roleIds") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  Household identifier  */
@@ -149,6 +167,12 @@ open class OTTUser: BaseOTTUser {
 	public var suspensionState: HouseholdSuspensionState? = nil
 	/**  User state  */
 	public var userState: UserState? = nil
+	/**  Comma separated list of role Ids.  */
+	public var roleIds: String? = nil
+	/**  User create date  */
+	public var createDate: Int64? = nil
+	/**  User last update date  */
+	public var updateDate: Int64? = nil
 
 
 	public func setMultiRequestToken(householdId: String) {
@@ -199,6 +223,18 @@ open class OTTUser: BaseOTTUser {
 		self.dict["userState"] = userState
 	}
 	
+	public func setMultiRequestToken(roleIds: String) {
+		self.dict["roleIds"] = roleIds
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -243,6 +279,15 @@ open class OTTUser: BaseOTTUser {
 		if dict["userState"] != nil {
 			userState = UserState(rawValue: "\(dict["userState"]!)")
 		}
+		if dict["roleIds"] != nil {
+			roleIds = dict["roleIds"] as? String
+		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
+		}
 
 	}
 
@@ -277,6 +322,9 @@ open class OTTUser: BaseOTTUser {
 		}
 		if(dynamicData != nil) {
 			dict["dynamicData"] = dynamicData!.toDictionary()
+		}
+		if(roleIds != nil) {
+			dict["roleIds"] = roleIds!
 		}
 		return dict
 	}

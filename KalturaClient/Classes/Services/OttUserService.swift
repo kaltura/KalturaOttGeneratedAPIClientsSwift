@@ -75,7 +75,8 @@ public final class OttUserService{
 		}
 	}
 
-	/**  Edit user details.  */
+	/**  Deprecate - use Register or Update actions instead by setting user.roleIds
+	  parameter  */
 	public static func addRole(roleId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, AddRoleTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, AddRoleTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, AddRoleTokenizer>(service: "ottuser", action: "addRole")
 			.setParam(key: "roleId", value: roleId)

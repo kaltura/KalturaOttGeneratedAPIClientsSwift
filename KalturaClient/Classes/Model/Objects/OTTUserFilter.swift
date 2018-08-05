@@ -55,6 +55,12 @@ open class OTTUserFilter: Filter {
 				return self.append("idIn") 
 			}
 		}
+		
+		public var roleIdsIn: BaseTokenizedObject {
+			get {
+				return self.append("roleIdsIn") 
+			}
+		}
 	}
 
 	/**  Username  */
@@ -63,6 +69,8 @@ open class OTTUserFilter: Filter {
 	public var externalIdEqual: String? = nil
 	/**  List of user identifiers separated by &amp;#39;,&amp;#39;  */
 	public var idIn: String? = nil
+	/**  Comma separated list of role Ids.  */
+	public var roleIdsIn: String? = nil
 
 
 	public func setMultiRequestToken(usernameEqual: String) {
@@ -77,6 +85,10 @@ open class OTTUserFilter: Filter {
 		self.dict["idIn"] = idIn
 	}
 	
+	public func setMultiRequestToken(roleIdsIn: String) {
+		self.dict["roleIdsIn"] = roleIdsIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +100,9 @@ open class OTTUserFilter: Filter {
 		}
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
+		}
+		if dict["roleIdsIn"] != nil {
+			roleIdsIn = dict["roleIdsIn"] as? String
 		}
 
 	}
@@ -102,6 +117,9 @@ open class OTTUserFilter: Filter {
 		}
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
+		}
+		if(roleIdsIn != nil) {
+			dict["roleIdsIn"] = roleIdsIn!
 		}
 		return dict
 	}
