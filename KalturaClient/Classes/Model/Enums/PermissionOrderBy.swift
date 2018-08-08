@@ -25,48 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-open class GroupPermission: Permission {
-
-	public class GroupPermissionTokenizer: Permission.PermissionTokenizer {
-		
-		public var group: BaseTokenizedObject {
-			get {
-				return self.append("group") 
-			}
-		}
-	}
-
-	/**  Permission identifier  */
-	public var group: String? = nil
-
-
-	public func setMultiRequestToken(group: String) {
-		self.dict["group"] = group
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["group"] != nil {
-			group = dict["group"] as? String
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(group != nil) {
-			dict["group"] = group!
-		}
-		return dict
-	}
+public enum PermissionOrderBy: String {
+	case NONE = "NONE"
 }
-

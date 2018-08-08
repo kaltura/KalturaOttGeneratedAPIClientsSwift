@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2017  Kaltura Inc.
+// Copyright (C) 2006-2018  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -49,10 +49,10 @@ open class Permission: ObjectBase {
 			}
 		}
 		
-		public var permissionItems: ArrayTokenizedObject<PermissionItem.PermissionItemTokenizer> {
+		public var friendlyName: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<PermissionItem.PermissionItemTokenizer>(self.append("permissionItems"))
-			} 
+				return self.append("friendlyName") 
+			}
 		}
 	}
 
@@ -60,8 +60,8 @@ open class Permission: ObjectBase {
 	public var id: Int64? = nil
 	/**  Permission name  */
 	public var name: String? = nil
-	/**  List of permission items associated with the permission  */
-	public var permissionItems: Array<PermissionItem>? = nil
+	/**  Permission friendly name  */
+	public var friendlyName: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -70,6 +70,10 @@ open class Permission: ObjectBase {
 	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(friendlyName: String) {
+		self.dict["friendlyName"] = friendlyName
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -81,8 +85,8 @@ open class Permission: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["permissionItems"] != nil {
-			permissionItems = try JSONParser.parse(array: dict["permissionItems"] as! [Any])
+		if dict["friendlyName"] != nil {
+			friendlyName = dict["friendlyName"] as? String
 		}
 
 	}
@@ -92,8 +96,8 @@ open class Permission: ObjectBase {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(permissionItems != nil) {
-			dict["permissionItems"] = permissionItems!.map { value in value.toDictionary() }
+		if(friendlyName != nil) {
+			dict["friendlyName"] = friendlyName!
 		}
 		return dict
 	}

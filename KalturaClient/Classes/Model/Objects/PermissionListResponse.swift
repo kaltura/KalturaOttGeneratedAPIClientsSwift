@@ -33,38 +33,35 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class GroupPermission: Permission {
+/**  Permissions list  */
+open class PermissionListResponse: ListResponse {
 
-	public class GroupPermissionTokenizer: Permission.PermissionTokenizer {
+	public class PermissionListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var group: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<Permission.PermissionTokenizer> {
 			get {
-				return self.append("group") 
-			}
+				return ArrayTokenizedObject<Permission.PermissionTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  Permission identifier  */
-	public var group: String? = nil
+	/**  A list of permissions  */
+	public var objects: Array<Permission>? = nil
 
 
-	public func setMultiRequestToken(group: String) {
-		self.dict["group"] = group
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["group"] != nil {
-			group = dict["group"] as? String
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(group != nil) {
-			dict["group"] = group!
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

@@ -33,38 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class GroupPermission: Permission {
+/**  Permissions filter  */
+open class PermissionFilter: Filter {
 
-	public class GroupPermissionTokenizer: Permission.PermissionTokenizer {
+	public class PermissionFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var group: BaseTokenizedObject {
+		public var currentUserPermissionsContains: BaseTokenizedObject {
 			get {
-				return self.append("group") 
+				return self.append("currentUserPermissionsContains") 
 			}
 		}
 	}
 
-	/**  Permission identifier  */
-	public var group: String? = nil
+	/**  Indicates whether the results should be filtered by userId using the current  */
+	public var currentUserPermissionsContains: Bool? = nil
 
 
-	public func setMultiRequestToken(group: String) {
-		self.dict["group"] = group
+	public func setMultiRequestToken(currentUserPermissionsContains: String) {
+		self.dict["currentUserPermissionsContains"] = currentUserPermissionsContains
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["group"] != nil {
-			group = dict["group"] as? String
+		if dict["currentUserPermissionsContains"] != nil {
+			currentUserPermissionsContains = dict["currentUserPermissionsContains"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(group != nil) {
-			dict["group"] = group!
+		if(currentUserPermissionsContains != nil) {
+			dict["currentUserPermissionsContains"] = currentUserPermissionsContains!
 		}
 		return dict
 	}

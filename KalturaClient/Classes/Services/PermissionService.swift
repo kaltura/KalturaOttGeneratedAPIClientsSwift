@@ -33,40 +33,35 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class GroupPermission: Permission {
+public final class PermissionService{
 
-	public class GroupPermissionTokenizer: Permission.PermissionTokenizer {
+	public class GetCurrentPermissionsTokenizer: ClientTokenizer  {
+	}
+
+	/**  Returns permission names as comma separated string  */
+	public static func getCurrentPermissions() -> RequestBuilder<String, BaseTokenizedObject, GetCurrentPermissionsTokenizer> {
+		let request: RequestBuilder<String, BaseTokenizedObject, GetCurrentPermissionsTokenizer> = RequestBuilder<String, BaseTokenizedObject, GetCurrentPermissionsTokenizer>(service: "permission", action: "getCurrentPermissions")
+
+		return request
+	}
+
+	public class ListTokenizer: ClientTokenizer  {
 		
-		public var group: BaseTokenizedObject {
-			get {
-				return self.append("group") 
-			}
+		public func filter<T: PermissionFilter.PermissionFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
-	/**  Permission identifier  */
-	public var group: String? = nil
-
-
-	public func setMultiRequestToken(group: String) {
-		self.dict["group"] = group
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["group"] != nil {
-			group = dict["group"] as? String
-		}
-
+	public static func list() -> RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(group != nil) {
-			dict["group"] = group!
-		}
-		return dict
+	/**  Retrieving permissions by identifiers, if filter is empty, returns all partner
+	  permissions  */
+	public static func list(filter: PermissionFilter?) -> RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer> = RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer>(service: "permission", action: "list")
+			.setParam(key: "filter", value: filter)
+
+		return request
 	}
 }
-
