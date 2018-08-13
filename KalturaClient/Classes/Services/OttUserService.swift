@@ -346,13 +346,24 @@ public final class OttUserService{
 				return self.append("username") 
 			}
 		}
+		
+		public var templateName: BaseTokenizedObject {
+			get {
+				return self.append("templateName") 
+			}
+		}
+	}
+
+	public static func resetPassword(partnerId: Int, username: String) -> RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer> {
+		return resetPassword(partnerId: partnerId, username: username, templateName: nil)
 	}
 
 	/**  Send an e-mail with URL to enable the user to set new password.  */
-	public static func resetPassword(partnerId: Int, username: String) -> RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer> {
+	public static func resetPassword(partnerId: Int, username: String, templateName: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ResetPasswordTokenizer>(service: "ottuser", action: "resetPassword")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "username", value: username)
+			.setParam(key: "templateName", value: templateName)
 
 		return request
 	}
