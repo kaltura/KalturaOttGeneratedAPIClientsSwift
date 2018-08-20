@@ -37,12 +37,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 
 	public class SearchAssetFilterTokenizer: BaseSearchAssetFilter.BaseSearchAssetFilterTokenizer {
 		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
-		}
-		
 		public var typeIn: BaseTokenizedObject {
 			get {
 				return self.append("typeIn") 
@@ -75,7 +69,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 	  (phrase starts with), + (exists), !+ (not exists).              Logical
 	  conjunction: and, or.               Search values are limited to 20 characters
 	  each.              (maximum length of entire filter is 2048 characters)  */
-	public var kSql: String? = nil
 	/**  (Deprecated - use KalturaBaseSearchAssetFilter.kSql)              Comma
 	  separated list of asset types to search within.               Possible values: 0
 	  – EPG linear programs entries; 1 - Recordings; Any media type ID (according to
@@ -84,10 +77,6 @@ open class SearchAssetFilter: BaseSearchAssetFilter {
 	public var typeIn: String? = nil
 
 
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
 	public func setMultiRequestToken(typeIn: String) {
 		self.dict["typeIn"] = typeIn
 	}

@@ -37,12 +37,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 
 	public class RelatedFilterTokenizer: BaseSearchAssetFilter.BaseSearchAssetFilterTokenizer {
 		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
-		}
-		
 		public var idEqual: BaseTokenizedObject {
 			get {
 				return self.append("idEqual") 
@@ -85,7 +79,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	  (exists), !+ (not exists).              Logical conjunction: and, or.           
 	     Search values are limited to 20 characters each.              (maximum length
 	  of entire filter is 2048 characters)  */
-	public var kSql: String? = nil
 	/**  the ID of the asset for which to return related assets  */
 	public var idEqual: Int? = nil
 	/**  (Deprecated - use KalturaBaseSearchAssetFilter.kSql)              Comma
@@ -97,10 +90,6 @@ open class RelatedFilter: BaseSearchAssetFilter {
 	public var excludeWatched: Bool? = nil
 
 
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
 	public func setMultiRequestToken(idEqual: String) {
 		self.dict["idEqual"] = idEqual
 	}
