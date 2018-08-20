@@ -3,7 +3,7 @@ osx_image: xcode8.3
 before_script:
   - pod repo update
 script:
-  - pod lib lint 
+  - pod lib lint --fail-fast --verbose
 notifications:
   email:
     recipients:
