@@ -1,0 +1,12 @@
+language: objective-c
+osx_image: xcode8.3
+before_script:
+  - pod repo update
+script:
+  - pod lib lint 
+notifications:
+  email:
+    recipients:
+      - noam.tamim@kaltura.com
+    on_success: change
+    on_failure: always
