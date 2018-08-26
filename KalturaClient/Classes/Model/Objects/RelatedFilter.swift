@@ -58,10 +58,9 @@ open class RelatedFilter: BaseSearchAssetFilter {
 
 	/**  the ID of the asset for which to return related assets  */
 	public var idEqual: Int? = nil
-	/**  (Deprecated - use KalturaBaseSearchAssetFilter.kSql)              Comma
-	  separated list of asset types to search within.               Possible values:
-	  any media type ID (according to media type IDs defined dynamically in the
-	  system).              If omitted –   same type as the provided asset.  */
+	/**  Comma separated list of asset types to search within.               Possible
+	  values: any media type ID (according to media type IDs defined dynamically in
+	  the system).              If omitted – same type as the provided asset.  */
 	public var typeIn: String? = nil
 	/**  Exclude watched asset.  */
 	public var excludeWatched: Bool? = nil
