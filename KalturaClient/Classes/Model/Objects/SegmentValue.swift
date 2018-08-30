@@ -77,7 +77,7 @@ open class SegmentValue: ObjectBase {
 	public var multilingualName: Array<TranslationToken>? = nil
 	/**  The value of the segment  */
 	public var value: String? = nil
-	/**  Threshold - minimuim score to be met for this specific value  */
+	/**  Threshold - minimum score to be met for this specific value  */
 	public var threshold: Int? = nil
 
 
