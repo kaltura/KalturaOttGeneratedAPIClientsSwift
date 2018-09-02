@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:18-09-02"
-		apiVersion = "5.0.2.42010"
+		apiVersion = "5.0.2.43131"
 	}
 }
 
