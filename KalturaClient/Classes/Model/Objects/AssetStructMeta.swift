@@ -79,12 +79,6 @@ open class AssetStructMeta: ObjectBase {
 				return self.append("updateDate") 
 			}
 		}
-		
-		public var isInherited: BaseTokenizedObject {
-			get {
-				return self.append("isInherited") 
-			}
-		}
 	}
 
 	/**  Asset Struct id (template_id)  */
@@ -103,8 +97,6 @@ open class AssetStructMeta: ObjectBase {
 	/**  Specifies when was the Asset Struct Meta last updated. Date and time represented
 	  as epoch.  */
 	public var updateDate: Int64? = nil
-	/**  Is inherited  */
-	public var isInherited: Bool? = nil
 
 
 	public func setMultiRequestToken(assetStructId: String) {
@@ -135,10 +127,6 @@ open class AssetStructMeta: ObjectBase {
 		self.dict["updateDate"] = updateDate
 	}
 	
-	public func setMultiRequestToken(isInherited: String) {
-		self.dict["isInherited"] = isInherited
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -163,9 +151,6 @@ open class AssetStructMeta: ObjectBase {
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
 		}
-		if dict["isInherited"] != nil {
-			isInherited = dict["isInherited"] as? Bool
-		}
 
 	}
 
@@ -179,9 +164,6 @@ open class AssetStructMeta: ObjectBase {
 		}
 		if(defaultIngestValue != nil) {
 			dict["defaultIngestValue"] = defaultIngestValue!
-		}
-		if(isInherited != nil) {
-			dict["isInherited"] = isInherited!
 		}
 		return dict
 	}

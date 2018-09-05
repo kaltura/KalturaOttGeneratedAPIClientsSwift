@@ -76,7 +76,7 @@ open class DynamicChannel: Channel {
 	  =, != (not), ~ (like), !~, ^ (any word starts with), ^= (phrase starts with), +
 	  (exists), !+ (not exists).              Logical conjunction: and, or.           
 	     Search values are limited to 20 characters each.              (maximum length
-	  of entire filter is 4096 characters)  */
+	  of entire filter is 2048 characters)  */
 	public var kSql: String? = nil
 	/**  Asset types in the channel.              -26 is EPG  */
 	public var assetTypes: Array<IntegerValue>? = nil
