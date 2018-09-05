@@ -67,6 +67,30 @@ open class ProgramAsset: Asset {
 				return self.append("linearAssetId") 
 			}
 		}
+		
+		public var enableCdvr: BaseTokenizedObject {
+			get {
+				return self.append("enableCdvr") 
+			}
+		}
+		
+		public var enableCatchUp: BaseTokenizedObject {
+			get {
+				return self.append("enableCatchUp") 
+			}
+		}
+		
+		public var enableStartOver: BaseTokenizedObject {
+			get {
+				return self.append("enableStartOver") 
+			}
+		}
+		
+		public var enableTrickPlay: BaseTokenizedObject {
+			get {
+				return self.append("enableTrickPlay") 
+			}
+		}
 	}
 
 	/**  EPG channel identifier  */
@@ -79,6 +103,14 @@ open class ProgramAsset: Asset {
 	public var crid: String? = nil
 	/**  Id of linear media asset  */
 	public var linearAssetId: Int64? = nil
+	/**  Is CDVR enabled for this asset  */
+	public var enableCdvr: Bool? = nil
+	/**  Is catch-up enabled for this asset  */
+	public var enableCatchUp: Bool? = nil
+	/**  Is start over enabled for this asset  */
+	public var enableStartOver: Bool? = nil
+	/**  Is trick-play enabled for this asset  */
+	public var enableTrickPlay: Bool? = nil
 
 
 	public func setMultiRequestToken(epgChannelId: String) {
@@ -101,6 +133,22 @@ open class ProgramAsset: Asset {
 		self.dict["linearAssetId"] = linearAssetId
 	}
 	
+	public func setMultiRequestToken(enableCdvr: String) {
+		self.dict["enableCdvr"] = enableCdvr
+	}
+	
+	public func setMultiRequestToken(enableCatchUp: String) {
+		self.dict["enableCatchUp"] = enableCatchUp
+	}
+	
+	public func setMultiRequestToken(enableStartOver: String) {
+		self.dict["enableStartOver"] = enableStartOver
+	}
+	
+	public func setMultiRequestToken(enableTrickPlay: String) {
+		self.dict["enableTrickPlay"] = enableTrickPlay
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -118,6 +166,18 @@ open class ProgramAsset: Asset {
 		}
 		if dict["linearAssetId"] != nil {
 			linearAssetId = Int64("\(dict["linearAssetId"]!)")
+		}
+		if dict["enableCdvr"] != nil {
+			enableCdvr = dict["enableCdvr"] as? Bool
+		}
+		if dict["enableCatchUp"] != nil {
+			enableCatchUp = dict["enableCatchUp"] as? Bool
+		}
+		if dict["enableStartOver"] != nil {
+			enableStartOver = dict["enableStartOver"] as? Bool
+		}
+		if dict["enableTrickPlay"] != nil {
+			enableTrickPlay = dict["enableTrickPlay"] as? Bool
 		}
 
 	}
