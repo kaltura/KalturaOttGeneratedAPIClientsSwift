@@ -59,7 +59,7 @@ public final class SegmentationTypeService{
 		}
 	}
 
-	/**  ...  */
+	/**  Delete a segmentation type from the system  */
 	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "segmentationtype", action: "delete")
 			.setParam(key: "id", value: id)

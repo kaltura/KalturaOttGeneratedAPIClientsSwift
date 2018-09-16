@@ -33,39 +33,75 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Content based source (meta, tag etc.)  */
-open class ContentSource: SegmentSource {
+/**  Indicates a segment of a user  */
+open class UserSegment: ObjectBase {
 
-	public class ContentSourceTokenizer: SegmentSource.SegmentSourceTokenizer {
+	public class UserSegmentTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var field: BaseTokenizedObject {
+		public var segmentId: BaseTokenizedObject {
 			get {
-				return self.append("field") 
+				return self.append("segmentId") 
+			}
+		}
+		
+		public var segmentationTypeId: BaseTokenizedObject {
+			get {
+				return self.append("segmentationTypeId") 
+			}
+		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
 			}
 		}
 	}
 
-	/**  Topic (meta or tag) name  */
-	public var field: String? = nil
+	/**  Segment Id  */
+	public var segmentId: Int64? = nil
+	/**  Segmentation type Id  */
+	public var segmentationTypeId: Int64? = nil
+	/**  User Id of segment  */
+	public var userId: String? = nil
 
 
-	public func setMultiRequestToken(field: String) {
-		self.dict["field"] = field
+	public func setMultiRequestToken(segmentId: String) {
+		self.dict["segmentId"] = segmentId
+	}
+	
+	public func setMultiRequestToken(segmentationTypeId: String) {
+		self.dict["segmentationTypeId"] = segmentationTypeId
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["field"] != nil {
-			field = dict["field"] as? String
+		if dict["segmentId"] != nil {
+			segmentId = Int64("\(dict["segmentId"]!)")
+		}
+		if dict["segmentationTypeId"] != nil {
+			segmentationTypeId = Int64("\(dict["segmentationTypeId"]!)")
+		}
+		if dict["userId"] != nil {
+			userId = dict["userId"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(field != nil) {
-			dict["field"] = field!
+		if(segmentId != nil) {
+			dict["segmentId"] = segmentId!
+		}
+		if(segmentationTypeId != nil) {
+			dict["segmentationTypeId"] = segmentationTypeId!
+		}
+		if(userId != nil) {
+			dict["userId"] = userId!
 		}
 		return dict
 	}

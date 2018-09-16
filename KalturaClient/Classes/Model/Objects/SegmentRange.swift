@@ -38,6 +38,18 @@ open class SegmentRange: ObjectBase {
 
 	public class SegmentRangeTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var systematicName: BaseTokenizedObject {
+			get {
+				return self.append("systematicName") 
+			}
+		}
+		
 		public var name: BaseTokenizedObject {
 			get {
 				return self.append("name") 
@@ -73,8 +85,18 @@ open class SegmentRange: ObjectBase {
 				return self.append("lt") 
 			}
 		}
+		
+		public var equals: BaseTokenizedObject {
+			get {
+				return self.append("equals") 
+			}
+		}
 	}
 
+	/**  Id of segment  */
+	public var id: Int64? = nil
+	/**  Systematic name of segment  */
+	public var systematicName: String? = nil
 	/**  Specific segment name  */
 	public var name: String? = nil
 	/**  Specific segment name  */
@@ -87,8 +109,18 @@ open class SegmentRange: ObjectBase {
 	public var lte: Double? = nil
 	/**  Less than  */
 	public var lt: Double? = nil
+	/**  Equals  */
+	public var equals: Double? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(systematicName: String) {
+		self.dict["systematicName"] = systematicName
+	}
+	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
 	}
@@ -109,9 +141,19 @@ open class SegmentRange: ObjectBase {
 		self.dict["lt"] = lt
 	}
 	
+	public func setMultiRequestToken(equals: String) {
+		self.dict["equals"] = equals
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["id"] != nil {
+			id = Int64("\(dict["id"]!)")
+		}
+		if dict["systematicName"] != nil {
+			systematicName = dict["systematicName"] as? String
+		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
@@ -130,11 +172,17 @@ open class SegmentRange: ObjectBase {
 		if dict["lt"] != nil {
 			lt = dict["lt"] as? Double
 		}
+		if dict["equals"] != nil {
+			equals = dict["equals"] as? Double
+		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(systematicName != nil) {
+			dict["systematicName"] = systematicName!
+		}
 		if(multilingualName != nil) {
 			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
@@ -149,6 +197,9 @@ open class SegmentRange: ObjectBase {
 		}
 		if(lt != nil) {
 			dict["lt"] = lt!
+		}
+		if(equals != nil) {
+			dict["equals"] = equals!
 		}
 		return dict
 	}

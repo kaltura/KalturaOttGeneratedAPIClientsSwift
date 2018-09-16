@@ -34,4 +34,5 @@
 public enum MonetizationType: String {
 	case PPV = "ppv"
 	case SUBSCRIPTION = "subscription"
+	case BOXSET = "boxset"
 }

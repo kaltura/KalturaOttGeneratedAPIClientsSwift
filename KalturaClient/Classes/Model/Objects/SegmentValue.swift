@@ -44,6 +44,12 @@ open class SegmentValue: ObjectBase {
 			}
 		}
 		
+		public var systematicName: BaseTokenizedObject {
+			get {
+				return self.append("systematicName") 
+			}
+		}
+		
 		public var name: BaseTokenizedObject {
 			get {
 				return self.append("name") 
@@ -71,6 +77,8 @@ open class SegmentValue: ObjectBase {
 
 	/**  Id of segment  */
 	public var id: Int64? = nil
+	/**  Systematic name of segment  */
+	public var systematicName: String? = nil
 	/**  Name of segment  */
 	public var name: String? = nil
 	/**  Name of segment  */
@@ -83,6 +91,10 @@ open class SegmentValue: ObjectBase {
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(systematicName: String) {
+		self.dict["systematicName"] = systematicName
 	}
 	
 	public func setMultiRequestToken(name: String) {
@@ -103,6 +115,9 @@ open class SegmentValue: ObjectBase {
 		if dict["id"] != nil {
 			id = Int64("\(dict["id"]!)")
 		}
+		if dict["systematicName"] != nil {
+			systematicName = dict["systematicName"] as? String
+		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
@@ -120,8 +135,8 @@ open class SegmentValue: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(id != nil) {
-			dict["id"] = id!
+		if(systematicName != nil) {
+			dict["systematicName"] = systematicName!
 		}
 		if(multilingualName != nil) {
 			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }

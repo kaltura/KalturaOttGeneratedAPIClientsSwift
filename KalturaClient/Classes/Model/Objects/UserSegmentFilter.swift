@@ -33,39 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Content based source (meta, tag etc.)  */
-open class ContentSource: SegmentSource {
+/**  Filter for user segments  */
+open class UserSegmentFilter: Filter {
 
-	public class ContentSourceTokenizer: SegmentSource.SegmentSourceTokenizer {
+	public class UserSegmentFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var field: BaseTokenizedObject {
+		public var userIdEqual: BaseTokenizedObject {
 			get {
-				return self.append("field") 
+				return self.append("userIdEqual") 
 			}
 		}
 	}
 
-	/**  Topic (meta or tag) name  */
-	public var field: String? = nil
+	/**  User ID  */
+	public var userIdEqual: String? = nil
 
 
-	public func setMultiRequestToken(field: String) {
-		self.dict["field"] = field
+	public func setMultiRequestToken(userIdEqual: String) {
+		self.dict["userIdEqual"] = userIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["field"] != nil {
-			field = dict["field"] as? String
+		if dict["userIdEqual"] != nil {
+			userIdEqual = dict["userIdEqual"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(field != nil) {
-			dict["field"] = field!
+		if(userIdEqual != nil) {
+			dict["userIdEqual"] = userIdEqual!
 		}
 		return dict
 	}

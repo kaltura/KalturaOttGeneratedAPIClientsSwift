@@ -33,39 +33,35 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Content based source (meta, tag etc.)  */
-open class ContentSource: SegmentSource {
+/**  List of user segments  */
+open class UserSegmentListResponse: ListResponse {
 
-	public class ContentSourceTokenizer: SegmentSource.SegmentSourceTokenizer {
+	public class UserSegmentListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var field: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<UserSegment.UserSegmentTokenizer> {
 			get {
-				return self.append("field") 
-			}
+				return ArrayTokenizedObject<UserSegment.UserSegmentTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  Topic (meta or tag) name  */
-	public var field: String? = nil
+	/**  Segmentation Types  */
+	public var objects: Array<UserSegment>? = nil
 
 
-	public func setMultiRequestToken(field: String) {
-		self.dict["field"] = field
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["field"] != nil {
-			field = dict["field"] as? String
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(field != nil) {
-			dict["field"] = field!
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

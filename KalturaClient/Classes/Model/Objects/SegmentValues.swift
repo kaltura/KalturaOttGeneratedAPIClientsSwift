@@ -42,12 +42,6 @@ open class SegmentValues: BaseSegmentValue {
 			return T(self.append("source"))
 		}
 		
-		public var threshold: BaseTokenizedObject {
-			get {
-				return self.append("threshold") 
-			}
-		}
-		
 		public var values: ArrayTokenizedObject<SegmentValue.SegmentValueTokenizer> {
 			get {
 				return ArrayTokenizedObject<SegmentValue.SegmentValueTokenizer>(self.append("values"))
@@ -57,24 +51,15 @@ open class SegmentValues: BaseSegmentValue {
 
 	/**  Segment values source  */
 	public var source: SegmentSource? = nil
-	/**  Threshold - minimum score to be met for all values in general (can be overriden)  */
-	public var threshold: Int? = nil
 	/**  List of segment values  */
 	public var values: Array<SegmentValue>? = nil
 
 
-	public func setMultiRequestToken(threshold: String) {
-		self.dict["threshold"] = threshold
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["source"] != nil {
 		source = try JSONParser.parse(object: dict["source"] as! [String: Any])		}
-		if dict["threshold"] != nil {
-			threshold = dict["threshold"] as? Int
-		}
 		if dict["values"] != nil {
 			values = try JSONParser.parse(array: dict["values"] as! [Any])
 		}
@@ -85,9 +70,6 @@ open class SegmentValues: BaseSegmentValue {
 		var dict: [String: Any] = super.toDictionary()
 		if(source != nil) {
 			dict["source"] = source!.toDictionary()
-		}
-		if(threshold != nil) {
-			dict["threshold"] = threshold!
 		}
 		if(values != nil) {
 			dict["values"] = values!.map { value in value.toDictionary() }
