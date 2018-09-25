@@ -67,6 +67,12 @@ open class MediaAsset: Asset {
 				return self.append("status") 
 			}
 		}
+		
+		public var inheritancePolicy: BaseTokenizedObject {
+			get {
+				return self.append("inheritancePolicy") 
+			}
+		}
 	}
 
 	/**  External identifiers  */
@@ -79,6 +85,8 @@ open class MediaAsset: Asset {
 	public var geoBlockRuleId: Int? = nil
 	/**  The media asset status  */
 	public var status: Bool? = nil
+	/**  The media asset inheritance policy  */
+	public var inheritancePolicy: AssetInheritancePolicy? = nil
 
 
 	public func setMultiRequestToken(externalIds: String) {
@@ -101,6 +109,10 @@ open class MediaAsset: Asset {
 		self.dict["status"] = status
 	}
 	
+	public func setMultiRequestToken(inheritancePolicy: String) {
+		self.dict["inheritancePolicy"] = inheritancePolicy
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -118,6 +130,9 @@ open class MediaAsset: Asset {
 		}
 		if dict["status"] != nil {
 			status = dict["status"] as? Bool
+		}
+		if dict["inheritancePolicy"] != nil {
+			inheritancePolicy = AssetInheritancePolicy(rawValue: "\(dict["inheritancePolicy"]!)")
 		}
 
 	}
@@ -138,6 +153,9 @@ open class MediaAsset: Asset {
 		}
 		if(status != nil) {
 			dict["status"] = status!
+		}
+		if(inheritancePolicy != nil) {
+			dict["inheritancePolicy"] = inheritancePolicy!.rawValue
 		}
 		return dict
 	}
