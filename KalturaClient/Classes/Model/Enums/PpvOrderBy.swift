@@ -25,49 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-public final class PpvService{
-
-	public class GetTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-	}
-
-	/**  Returns ppv object by internal identifier  */
-	public static func get(id: Int64) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer>(service: "ppv", action: "get")
-			.setParam(key: "id", value: id)
-
-		return request
-	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: PpvFilter.PpvFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	public static func list() -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
-		return list(filter: nil)
-	}
-
-	/**  Returns all ppv objects  */
-	public static func list(filter: PpvFilter?) -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> = RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer>(service: "ppv", action: "list")
-			.setParam(key: "filter", value: filter)
-
-		return request
-	}
+public enum PpvOrderBy: String {
+	case NONE = "NONE"
 }
