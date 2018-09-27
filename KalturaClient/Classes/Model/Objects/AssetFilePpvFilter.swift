@@ -33,32 +33,59 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class PpvService{
+/**  Filtering Asset Struct Metas  */
+open class AssetFilePpvFilter: Filter {
 
-	public class GetTokenizer: ClientTokenizer  {
+	public class AssetFilePpvFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var id: BaseTokenizedObject {
+		public var assetIdEqual: BaseTokenizedObject {
 			get {
-				return self.append("id") 
+				return self.append("assetIdEqual") 
+			}
+		}
+		
+		public var assetFileIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetFileIdEqual") 
 			}
 		}
 	}
 
-	/**  Returns ppv object by internal identifier  */
-	public static func get(id: Int64) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer>(service: "ppv", action: "get")
-			.setParam(key: "id", value: id)
+	/**  Filter Asset file ppvs that contain a specific asset id  */
+	public var assetIdEqual: Int64? = nil
+	/**  Filter Asset file ppvs that contain a specific asset file id  */
+	public var assetFileIdEqual: Int64? = nil
 
-		return request
+
+	public func setMultiRequestToken(assetIdEqual: String) {
+		self.dict["assetIdEqual"] = assetIdEqual
+	}
+	
+	public func setMultiRequestToken(assetFileIdEqual: String) {
+		self.dict["assetFileIdEqual"] = assetFileIdEqual
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["assetIdEqual"] != nil {
+			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
+		}
+		if dict["assetFileIdEqual"] != nil {
+			assetFileIdEqual = Int64("\(dict["assetFileIdEqual"]!)")
+		}
+
 	}
 
-	public class ListTokenizer: ClientTokenizer  {
-	}
-
-	/**  Returns all ppv objects  */
-	public static func list() -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> = RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer>(service: "ppv", action: "list")
-
-		return request
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(assetIdEqual != nil) {
+			dict["assetIdEqual"] = assetIdEqual!
+		}
+		if(assetFileIdEqual != nil) {
+			dict["assetFileIdEqual"] = assetFileIdEqual!
+		}
+		return dict
 	}
 }
+

@@ -33,31 +33,19 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class PpvService{
+public final class AssetFilePpvService{
 
-	public class GetTokenizer: ClientTokenizer  {
+	public class ListTokenizer: ClientTokenizer  {
 		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
+		public func filter<T: AssetFilePpvFilter.AssetFilePpvFilterTokenizer>() -> T {
+			return T(self.append("filter"))
 		}
 	}
 
-	/**  Returns ppv object by internal identifier  */
-	public static func get(id: Int64) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer>(service: "ppv", action: "get")
-			.setParam(key: "id", value: id)
-
-		return request
-	}
-
-	public class ListTokenizer: ClientTokenizer  {
-	}
-
-	/**  Returns all ppv objects  */
-	public static func list() -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> = RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer>(service: "ppv", action: "list")
+	/**  Return a list of asset files ppvs for the account with optional filter  */
+	public static func list(filter: AssetFilePpvFilter) -> RequestBuilder<AssetFilePpvListResponse, AssetFilePpvListResponse.AssetFilePpvListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<AssetFilePpvListResponse, AssetFilePpvListResponse.AssetFilePpvListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetFilePpvListResponse, AssetFilePpvListResponse.AssetFilePpvListResponseTokenizer, ListTokenizer>(service: "assetfileppv", action: "list")
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

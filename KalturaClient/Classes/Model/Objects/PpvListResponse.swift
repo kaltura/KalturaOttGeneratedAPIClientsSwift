@@ -33,32 +33,37 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class PpvService{
+/**  Prices list  */
+open class PpvListResponse: ListResponse {
 
-	public class GetTokenizer: ClientTokenizer  {
+	public class PpvListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var id: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<Ppv.PpvTokenizer> {
 			get {
-				return self.append("id") 
-			}
+				return ArrayTokenizedObject<Ppv.PpvTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  Returns ppv object by internal identifier  */
-	public static func get(id: Int64) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, GetTokenizer>(service: "ppv", action: "get")
-			.setParam(key: "id", value: id)
+	/**  A list of PPV  */
+	public var objects: Array<Ppv>? = nil
 
-		return request
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
 	}
 
-	public class ListTokenizer: ClientTokenizer  {
-	}
-
-	/**  Returns all ppv objects  */
-	public static func list() -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> = RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer>(service: "ppv", action: "list")
-
-		return request
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
 	}
 }
+
