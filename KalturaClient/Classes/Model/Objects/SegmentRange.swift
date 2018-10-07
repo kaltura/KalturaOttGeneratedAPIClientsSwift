@@ -56,12 +56,6 @@ open class SegmentRange: ObjectBase {
 			}
 		}
 		
-		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
-			} 
-		}
-		
 		public var gte: BaseTokenizedObject {
 			get {
 				return self.append("gte") 
@@ -99,8 +93,6 @@ open class SegmentRange: ObjectBase {
 	public var systematicName: String? = nil
 	/**  Specific segment name  */
 	public var name: String? = nil
-	/**  Specific segment name  */
-	public var multilingualName: Array<TranslationToken>? = nil
 	/**  Greater than or equals &amp;gt;=  */
 	public var gte: Double? = nil
 	/**  Greater than &amp;gt;  */
@@ -157,9 +149,6 @@ open class SegmentRange: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["multilingualName"] != nil {
-			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
-		}
 		if dict["gte"] != nil {
 			gte = dict["gte"] as? Double
 		}
@@ -183,8 +172,8 @@ open class SegmentRange: ObjectBase {
 		if(systematicName != nil) {
 			dict["systematicName"] = systematicName!
 		}
-		if(multilingualName != nil) {
-			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
+		if(name != nil) {
+			dict["name"] = name!
 		}
 		if(gte != nil) {
 			dict["gte"] = gte!

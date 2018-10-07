@@ -50,22 +50,10 @@ open class SegmentationType: ObjectBase {
 			}
 		}
 		
-		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
-			} 
-		}
-		
 		public var description: BaseTokenizedObject {
 			get {
 				return self.append("description") 
 			}
-		}
-		
-		public var multilingualDescription: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
-			get {
-				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualDescription"))
-			} 
 		}
 		
 		public var conditions: ArrayTokenizedObject<BaseSegmentCondition.BaseSegmentConditionTokenizer> {
@@ -83,12 +71,8 @@ open class SegmentationType: ObjectBase {
 	public var id: Int64? = nil
 	/**  Name of segmentation type  */
 	public var name: String? = nil
-	/**  Name of segmentation type  */
-	public var multilingualName: Array<TranslationToken>? = nil
 	/**  Description of segmentation type  */
 	public var description: String? = nil
-	/**  Description of segmentation type  */
-	public var multilingualDescription: Array<TranslationToken>? = nil
 	/**  Segmentation conditions - can be empty  */
 	public var conditions: Array<BaseSegmentCondition>? = nil
 	/**  Segmentation values - can be empty (so only one segment will be created)  */
@@ -116,14 +100,8 @@ open class SegmentationType: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["multilingualName"] != nil {
-			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
-		}
 		if dict["description"] != nil {
 			description = dict["description"] as? String
-		}
-		if dict["multilingualDescription"] != nil {
-			multilingualDescription = try JSONParser.parse(array: dict["multilingualDescription"] as! [Any])
 		}
 		if dict["conditions"] != nil {
 			conditions = try JSONParser.parse(array: dict["conditions"] as! [Any])
@@ -138,11 +116,11 @@ open class SegmentationType: ObjectBase {
 		if(id != nil) {
 			dict["id"] = id!
 		}
-		if(multilingualName != nil) {
-			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
+		if(name != nil) {
+			dict["name"] = name!
 		}
-		if(multilingualDescription != nil) {
-			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
+		if(description != nil) {
+			dict["description"] = description!
 		}
 		if(conditions != nil) {
 			dict["conditions"] = conditions!.map { value in value.toDictionary() }

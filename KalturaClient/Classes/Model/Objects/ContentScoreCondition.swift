@@ -39,15 +39,33 @@ open class ContentScoreCondition: BaseSegmentCondition {
 
 	public class ContentScoreConditionTokenizer: BaseSegmentCondition.BaseSegmentConditionTokenizer {
 		
-		public var score: BaseTokenizedObject {
+		public var minScore: BaseTokenizedObject {
 			get {
-				return self.append("score") 
+				return self.append("minScore") 
+			}
+		}
+		
+		public var maxScore: BaseTokenizedObject {
+			get {
+				return self.append("maxScore") 
 			}
 		}
 		
 		public var days: BaseTokenizedObject {
 			get {
 				return self.append("days") 
+			}
+		}
+		
+		public var field: BaseTokenizedObject {
+			get {
+				return self.append("field") 
+			}
+		}
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
 			}
 		}
 		
@@ -59,29 +77,58 @@ open class ContentScoreCondition: BaseSegmentCondition {
 	}
 
 	/**  The minimum score to be met  */
-	public var score: Int? = nil
+	public var minScore: Int? = nil
+	/**  The maximum score to be met  */
+	public var maxScore: Int? = nil
 	/**  How many days back should the actions be considered  */
 	public var days: Int? = nil
+	/**  If condition should be applied on specific field (and not the one of the segment
+	  value)  */
+	public var field: String? = nil
+	/**  If condition should be applied on specific field (and not the one of the segment
+	  value) -  */
+	public var value: String? = nil
 	/**  List of the actions that consist the condition  */
 	public var actions: Array<ContentActionCondition>? = nil
 
 
-	public func setMultiRequestToken(score: String) {
-		self.dict["score"] = score
+	public func setMultiRequestToken(minScore: String) {
+		self.dict["minScore"] = minScore
+	}
+	
+	public func setMultiRequestToken(maxScore: String) {
+		self.dict["maxScore"] = maxScore
 	}
 	
 	public func setMultiRequestToken(days: String) {
 		self.dict["days"] = days
 	}
 	
+	public func setMultiRequestToken(field: String) {
+		self.dict["field"] = field
+	}
+	
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["score"] != nil {
-			score = dict["score"] as? Int
+		if dict["minScore"] != nil {
+			minScore = dict["minScore"] as? Int
+		}
+		if dict["maxScore"] != nil {
+			maxScore = dict["maxScore"] as? Int
 		}
 		if dict["days"] != nil {
 			days = dict["days"] as? Int
+		}
+		if dict["field"] != nil {
+			field = dict["field"] as? String
+		}
+		if dict["value"] != nil {
+			value = dict["value"] as? String
 		}
 		if dict["actions"] != nil {
 			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
@@ -91,11 +138,20 @@ open class ContentScoreCondition: BaseSegmentCondition {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(score != nil) {
-			dict["score"] = score!
+		if(minScore != nil) {
+			dict["minScore"] = minScore!
+		}
+		if(maxScore != nil) {
+			dict["maxScore"] = maxScore!
 		}
 		if(days != nil) {
 			dict["days"] = days!
+		}
+		if(field != nil) {
+			dict["field"] = field!
+		}
+		if(value != nil) {
+			dict["value"] = value!
 		}
 		if(actions != nil) {
 			dict["actions"] = actions!.map { value in value.toDictionary() }
