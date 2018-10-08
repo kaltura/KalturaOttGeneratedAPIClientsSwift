@@ -39,15 +39,9 @@ open class ScoredMonetizationCondition: BaseSegmentCondition {
 
 	public class ScoredMonetizationConditionTokenizer: BaseSegmentCondition.BaseSegmentConditionTokenizer {
 		
-		public var minScore: BaseTokenizedObject {
+		public var score: BaseTokenizedObject {
 			get {
-				return self.append("minScore") 
-			}
-		}
-		
-		public var maxScore: BaseTokenizedObject {
-			get {
-				return self.append("maxScore") 
+				return self.append("score") 
 			}
 		}
 		
@@ -65,21 +59,15 @@ open class ScoredMonetizationCondition: BaseSegmentCondition {
 	}
 
 	/**  The minimum score to be met  */
-	public var minScore: Int? = nil
-	/**  The maximum score to be met  */
-	public var maxScore: Int? = nil
+	public var score: Int? = nil
 	/**  How many days back should the actions be considered  */
 	public var days: Int? = nil
 	/**  List of the actions that consist the condition  */
 	public var actions: Array<MonetizationCondition>? = nil
 
 
-	public func setMultiRequestToken(minScore: String) {
-		self.dict["minScore"] = minScore
-	}
-	
-	public func setMultiRequestToken(maxScore: String) {
-		self.dict["maxScore"] = maxScore
+	public func setMultiRequestToken(score: String) {
+		self.dict["score"] = score
 	}
 	
 	public func setMultiRequestToken(days: String) {
@@ -89,11 +77,8 @@ open class ScoredMonetizationCondition: BaseSegmentCondition {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["minScore"] != nil {
-			minScore = dict["minScore"] as? Int
-		}
-		if dict["maxScore"] != nil {
-			maxScore = dict["maxScore"] as? Int
+		if dict["score"] != nil {
+			score = dict["score"] as? Int
 		}
 		if dict["days"] != nil {
 			days = dict["days"] as? Int
@@ -106,11 +91,8 @@ open class ScoredMonetizationCondition: BaseSegmentCondition {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(minScore != nil) {
-			dict["minScore"] = minScore!
-		}
-		if(maxScore != nil) {
-			dict["maxScore"] = maxScore!
+		if(score != nil) {
+			dict["score"] = score!
 		}
 		if(days != nil) {
 			dict["days"] = days!

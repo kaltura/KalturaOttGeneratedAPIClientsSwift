@@ -50,12 +50,6 @@ open class ContentActionCondition: ObjectBase {
 			}
 		}
 		
-		public var lengthType: BaseTokenizedObject {
-			get {
-				return self.append("lengthType") 
-			}
-		}
-		
 		public var multiplier: BaseTokenizedObject {
 			get {
 				return self.append("multiplier") 
@@ -65,12 +59,8 @@ open class ContentActionCondition: ObjectBase {
 
 	/**  The relevant action to be examined  */
 	public var action: ContentAction? = nil
-	/**  Optional - if action required specific length to be considered (in percentage or
-	  minutes)  */
+	/**  Optional - if action required specific length to be considered  */
 	public var length: Int? = nil
-	/**  Optional - if action required specific length to be considered (in percentage or
-	  minutes)  */
-	public var lengthType: ContentActionConditionLengthType? = nil
 	/**  Score multiplier - how much is a single action worth when considering the action  */
 	public var multiplier: Int? = nil
 
@@ -81,10 +71,6 @@ open class ContentActionCondition: ObjectBase {
 	
 	public func setMultiRequestToken(length: String) {
 		self.dict["length"] = length
-	}
-	
-	public func setMultiRequestToken(lengthType: String) {
-		self.dict["lengthType"] = lengthType
 	}
 	
 	public func setMultiRequestToken(multiplier: String) {
@@ -100,9 +86,6 @@ open class ContentActionCondition: ObjectBase {
 		if dict["length"] != nil {
 			length = dict["length"] as? Int
 		}
-		if dict["lengthType"] != nil {
-			lengthType = ContentActionConditionLengthType(rawValue: "\(dict["lengthType"]!)")
-		}
 		if dict["multiplier"] != nil {
 			multiplier = dict["multiplier"] as? Int
 		}
@@ -116,9 +99,6 @@ open class ContentActionCondition: ObjectBase {
 		}
 		if(length != nil) {
 			dict["length"] = length!
-		}
-		if(lengthType != nil) {
-			dict["lengthType"] = lengthType!.rawValue
 		}
 		if(multiplier != nil) {
 			dict["multiplier"] = multiplier!
