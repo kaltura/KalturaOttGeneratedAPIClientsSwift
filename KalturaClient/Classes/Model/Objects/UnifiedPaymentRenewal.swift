@@ -58,6 +58,12 @@ open class UnifiedPaymentRenewal: ObjectBase {
 				return ArrayTokenizedObject<EntitlementRenewalBase.EntitlementRenewalBaseTokenizer>(self.append("entitlements"))
 			} 
 		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
 	}
 
 	/**  Price that is going to be paid on the renewal  */
@@ -68,6 +74,8 @@ open class UnifiedPaymentRenewal: ObjectBase {
 	public var unifiedPaymentId: Int64? = nil
 	/**  List of entitlements in this unified payment renewal  */
 	public var entitlements: Array<EntitlementRenewalBase>? = nil
+	/**  User ID  */
+	public var userId: Int64? = nil
 
 
 	public func setMultiRequestToken(date: String) {
@@ -76,6 +84,10 @@ open class UnifiedPaymentRenewal: ObjectBase {
 	
 	public func setMultiRequestToken(unifiedPaymentId: String) {
 		self.dict["unifiedPaymentId"] = unifiedPaymentId
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -91,6 +103,9 @@ open class UnifiedPaymentRenewal: ObjectBase {
 		}
 		if dict["entitlements"] != nil {
 			entitlements = try JSONParser.parse(array: dict["entitlements"] as! [Any])
+		}
+		if dict["userId"] != nil {
+			userId = Int64("\(dict["userId"]!)")
 		}
 
 	}
@@ -108,6 +123,9 @@ open class UnifiedPaymentRenewal: ObjectBase {
 		}
 		if(entitlements != nil) {
 			dict["entitlements"] = entitlements!.map { value in value.toDictionary() }
+		}
+		if(userId != nil) {
+			dict["userId"] = userId!
 		}
 		return dict
 	}

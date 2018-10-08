@@ -58,6 +58,12 @@ open class EntitlementRenewal: ObjectBase {
 				return self.append("subscriptionId") 
 			}
 		}
+		
+		public var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
 	}
 
 	/**  Price that is going to be paid on the renewal  */
@@ -68,6 +74,8 @@ open class EntitlementRenewal: ObjectBase {
 	public var purchaseId: Int64? = nil
 	/**  Subscription ID  */
 	public var subscriptionId: Int64? = nil
+	/**  User ID  */
+	public var userId: Int64? = nil
 
 
 	public func setMultiRequestToken(date: String) {
@@ -80,6 +88,10 @@ open class EntitlementRenewal: ObjectBase {
 	
 	public func setMultiRequestToken(subscriptionId: String) {
 		self.dict["subscriptionId"] = subscriptionId
+	}
+	
+	public func setMultiRequestToken(userId: String) {
+		self.dict["userId"] = userId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -95,6 +107,9 @@ open class EntitlementRenewal: ObjectBase {
 		}
 		if dict["subscriptionId"] != nil {
 			subscriptionId = Int64("\(dict["subscriptionId"]!)")
+		}
+		if dict["userId"] != nil {
+			userId = Int64("\(dict["userId"]!)")
 		}
 
 	}
@@ -112,6 +127,9 @@ open class EntitlementRenewal: ObjectBase {
 		}
 		if(subscriptionId != nil) {
 			dict["subscriptionId"] = subscriptionId!
+		}
+		if(userId != nil) {
+			dict["userId"] = userId!
 		}
 		return dict
 	}
