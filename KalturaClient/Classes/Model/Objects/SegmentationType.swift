@@ -113,9 +113,6 @@ open class SegmentationType: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(id != nil) {
-			dict["id"] = id!
-		}
 		if(name != nil) {
 			dict["name"] = name!
 		}

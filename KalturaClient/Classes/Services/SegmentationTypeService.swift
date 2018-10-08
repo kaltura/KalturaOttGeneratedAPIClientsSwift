@@ -42,7 +42,7 @@ public final class SegmentationTypeService{
 		}
 	}
 
-	/**  ...  */
+	/**  Adds a new segmentation type to the system  */
 	public static func add(segmentationType: SegmentationType) -> RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, AddTokenizer> {
 		let request: RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, AddTokenizer> = RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, AddTokenizer>(service: "segmentationtype", action: "add")
 			.setParam(key: "segmentationType", value: segmentationType)
@@ -82,7 +82,7 @@ public final class SegmentationTypeService{
 		return list(filter: filter, pager: nil)
 	}
 
-	/**  ...  */
+	/**  Lists all segmentation types in group  */
 	public static func list(filter: SegmentationTypeFilter, pager: FilterPager?) -> RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> = RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer>(service: "segmentationtype", action: "list")
 			.setParam(key: "filter", value: filter)
@@ -104,8 +104,8 @@ public final class SegmentationTypeService{
 		}
 	}
 
-	/**  ...  */
-	public static func update(segmentationTypeId: Int, segmentationType: SegmentationType) -> RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, UpdateTokenizer> {
+	/**  Updates an existing segmentation type  */
+	public static func update(segmentationTypeId: Int64, segmentationType: SegmentationType) -> RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, UpdateTokenizer> = RequestBuilder<SegmentationType, SegmentationType.SegmentationTypeTokenizer, UpdateTokenizer>(service: "segmentationtype", action: "update")
 			.setParam(key: "segmentationTypeId", value: segmentationTypeId)
 			.setParam(key: "segmentationType", value: segmentationType)
