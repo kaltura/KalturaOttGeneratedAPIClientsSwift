@@ -32,5 +32,6 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum PpvOrderBy: String {
-	case NONE = "NONE"
+	case NAME_ASC = "NAME_ASC"
+	case NAME_DESC = "NAME_DESC"
 }
