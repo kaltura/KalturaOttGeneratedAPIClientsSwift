@@ -58,6 +58,12 @@ public final class UserSegmentService{
 			}
 		}
 		
+		public var segmentationTypeId: BaseTokenizedObject {
+			get {
+				return self.append("segmentationTypeId") 
+			}
+		}
+		
 		public var segmentId: BaseTokenizedObject {
 			get {
 				return self.append("segmentId") 
@@ -66,9 +72,10 @@ public final class UserSegmentService{
 	}
 
 	/**  Deletes a segment from a user  */
-	public static func delete(userId: String, segmentId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+	public static func delete(userId: String, segmentationTypeId: Int64, segmentId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "usersegment", action: "delete")
 			.setParam(key: "userId", value: userId)
+			.setParam(key: "segmentationTypeId", value: segmentationTypeId)
 			.setParam(key: "segmentId", value: segmentId)
 
 		return request
