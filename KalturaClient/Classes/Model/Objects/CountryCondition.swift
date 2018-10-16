@@ -34,15 +34,9 @@
  */
 
 /**  Country condition  */
-open class CountryCondition: Condition {
+open class CountryCondition: NotCondition {
 
-	public class CountryConditionTokenizer: Condition.ConditionTokenizer {
-		
-		public var not: BaseTokenizedObject {
-			get {
-				return self.append("not") 
-			}
-		}
+	public class CountryConditionTokenizer: NotCondition.NotConditionTokenizer {
 		
 		public var countries: BaseTokenizedObject {
 			get {
@@ -51,16 +45,10 @@ open class CountryCondition: Condition {
 		}
 	}
 
-	/**  Indicates whether to apply not on the other properties in the condition  */
-	public var not: Bool? = nil
 	/**  Comma separated countries IDs list  */
 	public var countries: String? = nil
 
 
-	public func setMultiRequestToken(not: String) {
-		self.dict["not"] = not
-	}
-	
 	public func setMultiRequestToken(countries: String) {
 		self.dict["countries"] = countries
 	}
@@ -68,9 +56,6 @@ open class CountryCondition: Condition {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["not"] != nil {
-			not = dict["not"] as? Bool
-		}
 		if dict["countries"] != nil {
 			countries = dict["countries"] as? String
 		}
@@ -79,9 +64,6 @@ open class CountryCondition: Condition {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(not != nil) {
-			dict["not"] = not!
-		}
 		if(countries != nil) {
 			dict["countries"] = countries!
 		}

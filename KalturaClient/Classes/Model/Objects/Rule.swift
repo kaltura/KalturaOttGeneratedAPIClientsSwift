@@ -25,19 +25,82 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+/**  Rule base  */
+open class Rule: ObjectBase {
+
+	public class RuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+	}
+
+	/**  ID  */
+	public var id: Int64? = nil
+	/**  Name  */
+	public var name: String? = nil
+	/**  Description  */
+	public var description: String? = nil
+
+
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["id"] != nil {
+			id = Int64("\(dict["id"]!)")
+		}
+		if dict["name"] != nil {
+			name = dict["name"] as? String
+		}
+		if dict["description"] != nil {
+			description = dict["description"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(name != nil) {
+			dict["name"] = name!
+		}
+		if(description != nil) {
+			dict["description"] = description!
+		}
+		return dict
+	}
 }
+

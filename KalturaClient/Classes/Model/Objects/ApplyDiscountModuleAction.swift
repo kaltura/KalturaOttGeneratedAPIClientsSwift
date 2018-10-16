@@ -25,19 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+open class ApplyDiscountModuleAction: RuleAction {
+
+	public class ApplyDiscountModuleActionTokenizer: RuleAction.RuleActionTokenizer {
+		
+		public var discountModuleId: BaseTokenizedObject {
+			get {
+				return self.append("discountModuleId") 
+			}
+		}
+	}
+
+	/**  Discount module ID  */
+	public var discountModuleId: Int64? = nil
+
+
+	public func setMultiRequestToken(discountModuleId: String) {
+		self.dict["discountModuleId"] = discountModuleId
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["discountModuleId"] != nil {
+			discountModuleId = Int64("\(dict["discountModuleId"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(discountModuleId != nil) {
+			dict["discountModuleId"] = discountModuleId!
+		}
+		return dict
+	}
 }
+

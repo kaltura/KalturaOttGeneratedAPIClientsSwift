@@ -25,19 +25,67 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+/**  Business module condition  */
+open class BusinessModuleCondition: Condition {
+
+	public class BusinessModuleConditionTokenizer: Condition.ConditionTokenizer {
+		
+		public var businessModuleType: BaseTokenizedObject {
+			get {
+				return self.append("businessModuleType") 
+			}
+		}
+		
+		public var businessModuleId: BaseTokenizedObject {
+			get {
+				return self.append("businessModuleId") 
+			}
+		}
+	}
+
+	/**  Business module type  */
+	public var businessModuleType: TransactionType? = nil
+	/**  Business module ID  */
+	public var businessModuleId: Int64? = nil
+
+
+	public func setMultiRequestToken(businessModuleType: String) {
+		self.dict["businessModuleType"] = businessModuleType
+	}
+	
+	public func setMultiRequestToken(businessModuleId: String) {
+		self.dict["businessModuleId"] = businessModuleId
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["businessModuleType"] != nil {
+			businessModuleType = TransactionType(rawValue: "\(dict["businessModuleType"]!)")
+		}
+		if dict["businessModuleId"] != nil {
+			businessModuleId = Int64("\(dict["businessModuleId"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(businessModuleType != nil) {
+			dict["businessModuleType"] = businessModuleType!.rawValue
+		}
+		if(businessModuleId != nil) {
+			dict["businessModuleId"] = businessModuleId!
+		}
+		return dict
+	}
 }
+

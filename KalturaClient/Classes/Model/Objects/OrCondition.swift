@@ -25,19 +25,44 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+open class OrCondition: Condition {
+
+	public class OrConditionTokenizer: Condition.ConditionTokenizer {
+		
+		public var conditions: ArrayTokenizedObject<Condition.ConditionTokenizer> {
+			get {
+				return ArrayTokenizedObject<Condition.ConditionTokenizer>(self.append("conditions"))
+			} 
+		}
+	}
+
+	/**  List of conditions with or between them  */
+	public var conditions: Array<Condition>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["conditions"] != nil {
+			conditions = try JSONParser.parse(array: dict["conditions"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(conditions != nil) {
+			dict["conditions"] = conditions!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+

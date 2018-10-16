@@ -25,19 +25,49 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+/**  Not condition  */
+open class NotCondition: Condition {
+
+	public class NotConditionTokenizer: Condition.ConditionTokenizer {
+		
+		public var not: BaseTokenizedObject {
+			get {
+				return self.append("not") 
+			}
+		}
+	}
+
+	/**  Indicates whether to apply not on the other properties in the condition  */
+	public var not: Bool? = nil
+
+
+	public func setMultiRequestToken(not: String) {
+		self.dict["not"] = not
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["not"] != nil {
+			not = dict["not"] as? Bool
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(not != nil) {
+			dict["not"] = not!
+		}
+		return dict
+	}
 }
+

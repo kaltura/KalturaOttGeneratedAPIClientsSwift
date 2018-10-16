@@ -96,7 +96,7 @@ public final class UserSegmentService{
 		return list(filter: filter, pager: nil)
 	}
 
-	/**  Retrieve all the segments that apply for this user  */
+	/**  Retrieve all the segments that apply for given user  */
 	public static func list(filter: UserSegmentFilter, pager: FilterPager?) -> RequestBuilder<UserSegmentListResponse, UserSegmentListResponse.UserSegmentListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<UserSegmentListResponse, UserSegmentListResponse.UserSegmentListResponseTokenizer, ListTokenizer> = RequestBuilder<UserSegmentListResponse, UserSegmentListResponse.UserSegmentListResponseTokenizer, ListTokenizer>(service: "usersegment", action: "list")
 			.setParam(key: "filter", value: filter)

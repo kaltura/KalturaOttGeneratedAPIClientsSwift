@@ -25,19 +25,67 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+/**  Date condition  */
+open class DateCondition: NotCondition {
+
+	public class DateConditionTokenizer: NotCondition.NotConditionTokenizer {
+		
+		public var startDate: BaseTokenizedObject {
+			get {
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
+			}
+		}
+	}
+
+	/**  Start date  */
+	public var startDate: Int64? = nil
+	/**  End date  */
+	public var endDate: Int64? = nil
+
+
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["startDate"] != nil {
+			startDate = Int64("\(dict["startDate"]!)")
+		}
+		if dict["endDate"] != nil {
+			endDate = Int64("\(dict["endDate"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(startDate != nil) {
+			dict["startDate"] = startDate!
+		}
+		if(endDate != nil) {
+			dict["endDate"] = endDate!
+		}
+		return dict
+	}
 }
+

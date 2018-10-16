@@ -25,19 +25,49 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
+
+/**  Segments condition  */
+open class SegmentsCondition: Condition {
+
+	public class SegmentsConditionTokenizer: Condition.ConditionTokenizer {
+		
+		public var segmentsIds: BaseTokenizedObject {
+			get {
+				return self.append("segmentsIds") 
+			}
+		}
+	}
+
+	/**  Comma separated segments IDs list  */
+	public var segmentsIds: String? = nil
+
+
+	public func setMultiRequestToken(segmentsIds: String) {
+		self.dict["segmentsIds"] = segmentsIds
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["segmentsIds"] != nil {
+			segmentsIds = dict["segmentsIds"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(segmentsIds != nil) {
+			dict["segmentsIds"] = segmentsIds!
+		}
+		return dict
+	}
 }
+
