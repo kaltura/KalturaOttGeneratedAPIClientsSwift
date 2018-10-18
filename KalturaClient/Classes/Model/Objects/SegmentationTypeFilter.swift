@@ -37,13 +37,37 @@
 open class SegmentationTypeFilter: Filter {
 
 	public class SegmentationTypeFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
 	}
 
+	/**  Comma separated segmentation types identifieridentifiers  */
+	public var idIn: String? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
+		}
+		return dict
+	}
 }
 

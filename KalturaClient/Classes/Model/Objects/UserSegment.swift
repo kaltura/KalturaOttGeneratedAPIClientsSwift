@@ -44,12 +44,6 @@ open class UserSegment: ObjectBase {
 			}
 		}
 		
-		public var segmentationTypeId: BaseTokenizedObject {
-			get {
-				return self.append("segmentationTypeId") 
-			}
-		}
-		
 		public var userId: BaseTokenizedObject {
 			get {
 				return self.append("userId") 
@@ -59,18 +53,12 @@ open class UserSegment: ObjectBase {
 
 	/**  Segment Id  */
 	public var segmentId: Int64? = nil
-	/**  Segmentation type Id  */
-	public var segmentationTypeId: Int64? = nil
 	/**  User Id of segment  */
 	public var userId: String? = nil
 
 
 	public func setMultiRequestToken(segmentId: String) {
 		self.dict["segmentId"] = segmentId
-	}
-	
-	public func setMultiRequestToken(segmentationTypeId: String) {
-		self.dict["segmentationTypeId"] = segmentationTypeId
 	}
 	
 	public func setMultiRequestToken(userId: String) {
@@ -83,9 +71,6 @@ open class UserSegment: ObjectBase {
 		if dict["segmentId"] != nil {
 			segmentId = Int64("\(dict["segmentId"]!)")
 		}
-		if dict["segmentationTypeId"] != nil {
-			segmentationTypeId = Int64("\(dict["segmentationTypeId"]!)")
-		}
 		if dict["userId"] != nil {
 			userId = dict["userId"] as? String
 		}
@@ -96,9 +81,6 @@ open class UserSegment: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(segmentId != nil) {
 			dict["segmentId"] = segmentId!
-		}
-		if(segmentationTypeId != nil) {
-			dict["segmentationTypeId"] = segmentationTypeId!
 		}
 		if(userId != nil) {
 			dict["userId"] = userId!
