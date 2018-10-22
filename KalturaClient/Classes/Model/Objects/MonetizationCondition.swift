@@ -33,10 +33,29 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Defines a singular monetization condition  */
-open class MonetizationCondition: ObjectBase {
+/**  Defines a condition which is essentially a combination of several
+  monetization-based actions, each has their own score multiplier  */
+open class MonetizationCondition: BaseSegmentCondition {
 
-	public class MonetizationConditionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class MonetizationConditionTokenizer: BaseSegmentCondition.BaseSegmentConditionTokenizer {
+		
+		public var minValue: BaseTokenizedObject {
+			get {
+				return self.append("minValue") 
+			}
+		}
+		
+		public var maxValue: BaseTokenizedObject {
+			get {
+				return self.append("maxValue") 
+			}
+		}
+		
+		public var days: BaseTokenizedObject {
+			get {
+				return self.append("days") 
+			}
+		}
 		
 		public var type: BaseTokenizedObject {
 			get {
@@ -44,64 +63,82 @@ open class MonetizationCondition: ObjectBase {
 			}
 		}
 		
-		public var minimumPrice: BaseTokenizedObject {
+		public var operator_: BaseTokenizedObject {
 			get {
-				return self.append("minimumPrice") 
-			}
-		}
-		
-		public var multiplier: BaseTokenizedObject {
-			get {
-				return self.append("multiplier") 
+				return self.append("operator_") 
 			}
 		}
 	}
 
+	/**  The minimum value to be met  */
+	public var minValue: Int? = nil
+	/**  The maximum value to be met  */
+	public var maxValue: Int? = nil
+	/**  How many days back should the actions be considered  */
+	public var days: Int? = nil
 	/**  Purchase type  */
 	public var type: MonetizationType? = nil
-	/**  Minimum price of purchase  */
-	public var minimumPrice: Int? = nil
-	/**  Score multiplier  */
-	public var multiplier: Int? = nil
+	/**  Mathermtical operator to calculate  */
+	public var operator_: MathemticalOperatorType? = nil
 
 
+	public func setMultiRequestToken(minValue: String) {
+		self.dict["minValue"] = minValue
+	}
+	
+	public func setMultiRequestToken(maxValue: String) {
+		self.dict["maxValue"] = maxValue
+	}
+	
+	public func setMultiRequestToken(days: String) {
+		self.dict["days"] = days
+	}
+	
 	public func setMultiRequestToken(type: String) {
 		self.dict["type"] = type
 	}
 	
-	public func setMultiRequestToken(minimumPrice: String) {
-		self.dict["minimumPrice"] = minimumPrice
-	}
-	
-	public func setMultiRequestToken(multiplier: String) {
-		self.dict["multiplier"] = multiplier
+	public func setMultiRequestToken(operator_: String) {
+		self.dict["operator"] = operator_
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["minValue"] != nil {
+			minValue = dict["minValue"] as? Int
+		}
+		if dict["maxValue"] != nil {
+			maxValue = dict["maxValue"] as? Int
+		}
+		if dict["days"] != nil {
+			days = dict["days"] as? Int
+		}
 		if dict["type"] != nil {
 			type = MonetizationType(rawValue: "\(dict["type"]!)")
 		}
-		if dict["minimumPrice"] != nil {
-			minimumPrice = dict["minimumPrice"] as? Int
-		}
-		if dict["multiplier"] != nil {
-			multiplier = dict["multiplier"] as? Int
+		if dict["operator"] != nil {
+			operator_ = MathemticalOperatorType(rawValue: "\(dict["operator"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(minValue != nil) {
+			dict["minValue"] = minValue!
+		}
+		if(maxValue != nil) {
+			dict["maxValue"] = maxValue!
+		}
+		if(days != nil) {
+			dict["days"] = days!
+		}
 		if(type != nil) {
 			dict["type"] = type!.rawValue
 		}
-		if(minimumPrice != nil) {
-			dict["minimumPrice"] = minimumPrice!
-		}
-		if(multiplier != nil) {
-			dict["multiplier"] = multiplier!
+		if(operator_ != nil) {
+			dict["operator"] = operator_!.rawValue
 		}
 		return dict
 	}
