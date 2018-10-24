@@ -157,6 +157,12 @@ open class MediaFile: AssetFile {
 				return self.append("status") 
 			}
 		}
+		
+		public var catalogEndDate: BaseTokenizedObject {
+			get {
+				return self.append("catalogEndDate") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the asset  */
@@ -199,6 +205,8 @@ open class MediaFile: AssetFile {
 	public var cdnAdapaterProfileId: Int64? = nil
 	/**  The media file status  */
 	public var status: Bool? = nil
+	/**  Catalog end date  */
+	public var catalogEndDate: Int64? = nil
 
 
 	public func setMultiRequestToken(assetId: String) {
@@ -281,6 +289,10 @@ open class MediaFile: AssetFile {
 		self.dict["status"] = status
 	}
 	
+	public func setMultiRequestToken(catalogEndDate: String) {
+		self.dict["catalogEndDate"] = catalogEndDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -344,6 +356,9 @@ open class MediaFile: AssetFile {
 		if dict["status"] != nil {
 			status = dict["status"] as? Bool
 		}
+		if dict["catalogEndDate"] != nil {
+			catalogEndDate = Int64("\(dict["catalogEndDate"]!)")
+		}
 
 	}
 
@@ -402,6 +417,9 @@ open class MediaFile: AssetFile {
 		}
 		if(status != nil) {
 			dict["status"] = status!
+		}
+		if(catalogEndDate != nil) {
+			dict["catalogEndDate"] = catalogEndDate!
 		}
 		return dict
 	}

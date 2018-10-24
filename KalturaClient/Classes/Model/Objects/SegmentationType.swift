@@ -71,12 +71,6 @@ open class SegmentationType: ObjectBase {
 				return self.append("createDate") 
 			}
 		}
-		
-		public var affectsContentOrdering: BaseTokenizedObject {
-			get {
-				return self.append("affectsContentOrdering") 
-			}
-		}
 	}
 
 	/**  Id of segmentation type  */
@@ -91,8 +85,6 @@ open class SegmentationType: ObjectBase {
 	public var value: BaseSegmentValue? = nil
 	/**  Create date of segmentation type  */
 	public var createDate: Int64? = nil
-	/**  Do the segments of this type affect content ordering of channels and searches  */
-	public var affectsContentOrdering: Bool? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -109,10 +101,6 @@ open class SegmentationType: ObjectBase {
 	
 	public func setMultiRequestToken(createDate: String) {
 		self.dict["createDate"] = createDate
-	}
-	
-	public func setMultiRequestToken(affectsContentOrdering: String) {
-		self.dict["affectsContentOrdering"] = affectsContentOrdering
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -135,9 +123,6 @@ open class SegmentationType: ObjectBase {
 		if dict["createDate"] != nil {
 			createDate = Int64("\(dict["createDate"]!)")
 		}
-		if dict["affectsContentOrdering"] != nil {
-			affectsContentOrdering = dict["affectsContentOrdering"] as? Bool
-		}
 
 	}
 
@@ -154,9 +139,6 @@ open class SegmentationType: ObjectBase {
 		}
 		if(value != nil) {
 			dict["value"] = value!.toDictionary()
-		}
-		if(affectsContentOrdering != nil) {
-			dict["affectsContentOrdering"] = affectsContentOrdering!
 		}
 		return dict
 	}
