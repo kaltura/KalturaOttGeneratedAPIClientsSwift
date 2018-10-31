@@ -71,6 +71,18 @@ open class RequestConfiguration: ObjectBase {
 		public func responseProfile<T: BaseResponseProfile.BaseResponseProfileTokenizer>() -> T {
 			return T(self.append("responseProfile"))
 		}
+		
+		public var abortAllOnError: BaseTokenizedObject {
+			get {
+				return self.append("abortAllOnError") 
+			}
+		}
+		
+		public var skipOnOrror: BaseTokenizedObject {
+			get {
+				return self.append("skipOnOrror") 
+			}
+		}
 	}
 
 	/**  Impersonated partner id  */
@@ -85,6 +97,10 @@ open class RequestConfiguration: ObjectBase {
 	public var ks: String? = nil
 	/**  Kaltura response profile object  */
 	public var responseProfile: BaseResponseProfile? = nil
+	/**  Abort all following requests if current request has an error  */
+	public var abortAllOnError: Bool? = nil
+	/**  Skip current request according to skip option  */
+	public var skipOnOrror: SkipOptions? = nil
 
 
 	public func setMultiRequestToken(partnerId: String) {
@@ -107,6 +123,14 @@ open class RequestConfiguration: ObjectBase {
 		self.dict["ks"] = ks
 	}
 	
+	public func setMultiRequestToken(abortAllOnError: String) {
+		self.dict["abortAllOnError"] = abortAllOnError
+	}
+	
+	public func setMultiRequestToken(skipOnOrror: String) {
+		self.dict["skipOnOrror"] = skipOnOrror
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -127,6 +151,12 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if dict["responseProfile"] != nil {
 		responseProfile = try JSONParser.parse(object: dict["responseProfile"] as! [String: Any])		}
+		if dict["abortAllOnError"] != nil {
+			abortAllOnError = dict["abortAllOnError"] as? Bool
+		}
+		if dict["skipOnOrror"] != nil {
+			skipOnOrror = SkipOptions(rawValue: "\(dict["skipOnOrror"]!)")
+		}
 
 	}
 
@@ -149,6 +179,12 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if(responseProfile != nil) {
 			dict["responseProfile"] = responseProfile!.toDictionary()
+		}
+		if(abortAllOnError != nil) {
+			dict["abortAllOnError"] = abortAllOnError!
+		}
+		if(skipOnOrror != nil) {
+			dict["skipOnOrror"] = skipOnOrror!.rawValue
 		}
 		return dict
 	}
