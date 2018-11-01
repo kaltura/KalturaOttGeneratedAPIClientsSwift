@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:18-11-01"
-		apiVersion = "5.0.3.14494"
+		apiVersion = "5.0.3.18941"
 	}
 }
 
@@ -125,6 +125,24 @@ public class ClientTokenizer: BaseTokenizedObject {
 	public var responseProfile: BaseTokenizedObject {
 		get {
 			return self.append("responseProfile")
+		}
+	}
+	
+	/**
+	 * Abort all following requests if current request has an error
+	 */
+	public var abortAllOnError: BaseTokenizedObject {
+		get {
+			return self.append("abortAllOnError")
+		}
+	}
+	
+	/**
+	 * Skip current request according to skip option
+	 */
+	public var skipOnOrror: BaseTokenizedObject {
+		get {
+			return self.append("skipOnOrror")
 		}
 	}
 }
@@ -238,6 +256,30 @@ extension RequestBuilderData{
 		}
 	}
 	
+	/**
+	 * Abort all following requests if current request has an error
+	 */
+	public var abortAllOnError: Bool?{
+		get{
+			return params["abortAllOnError"] as? Bool
+		}
+		set(value){
+			setParam(key: "abortAllOnError", value: value)
+		}
+	}
+	
+	/**
+	 * Skip current request according to skip option
+	 */
+	public var skipOnOrror: SkipOptions?{
+		get{
+			return params["skipOnOrror"] as? SkipOptions
+		}
+		set(value){
+			setParam(key: "skipOnOrror", value: value)
+		}
+	}
+	
 	public func applyParams(_ requestBuilder: RequestBuilderData) {
 		if requestBuilder.clientTag == nil {
 			requestBuilder.clientTag = clientTag
@@ -259,6 +301,12 @@ extension RequestBuilderData{
 		}
 		if requestBuilder.ks == nil {
 			requestBuilder.ks = ks
+		}
+		if requestBuilder.abortAllOnError == nil {
+			requestBuilder.abortAllOnError = abortAllOnError
+		}
+		if requestBuilder.skipOnOrror == nil {
+			requestBuilder.skipOnOrror = skipOnOrror
 		}
 	}
 }
