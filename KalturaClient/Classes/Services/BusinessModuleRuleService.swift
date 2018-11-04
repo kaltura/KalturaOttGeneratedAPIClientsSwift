@@ -67,6 +67,23 @@ public final class BusinessModuleRuleService{
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Get business module rule by ID  */
+	public static func get(id: Int64) -> RequestBuilder<BusinessModuleRule, BusinessModuleRule.BusinessModuleRuleTokenizer, GetTokenizer> {
+		let request: RequestBuilder<BusinessModuleRule, BusinessModuleRule.BusinessModuleRuleTokenizer, GetTokenizer> = RequestBuilder<BusinessModuleRule, BusinessModuleRule.BusinessModuleRuleTokenizer, GetTokenizer>(service: "businessmodulerule", action: "get")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: BusinessModuleRuleFilter.BusinessModuleRuleFilterTokenizer>() -> T {

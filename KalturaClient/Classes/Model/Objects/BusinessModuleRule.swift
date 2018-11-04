@@ -49,14 +49,38 @@ open class BusinessModuleRule: Rule {
 				return ArrayTokenizedObject<ApplyDiscountModuleAction.ApplyDiscountModuleActionTokenizer>(self.append("actions"))
 			} 
 		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  List of conditions for the rule  */
 	public var conditions: Array<Condition>? = nil
 	/**  List of actions for the rule  */
 	public var actions: Array<ApplyDiscountModuleAction>? = nil
+	/**  Create date of the rule  */
+	public var createDate: Int64? = nil
+	/**  Update date of the rule  */
+	public var updateDate: Int64? = nil
 
 
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -65,6 +89,12 @@ open class BusinessModuleRule: Rule {
 		}
 		if dict["actions"] != nil {
 			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
+		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 
 	}
