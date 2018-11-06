@@ -78,9 +78,9 @@ open class RequestConfiguration: ObjectBase {
 			}
 		}
 		
-		public var skipOnOrror: BaseTokenizedObject {
+		public var skipOnError: BaseTokenizedObject {
 			get {
-				return self.append("skipOnOrror") 
+				return self.append("skipOnError") 
 			}
 		}
 	}
@@ -100,7 +100,7 @@ open class RequestConfiguration: ObjectBase {
 	/**  Abort all following requests if current request has an error  */
 	public var abortAllOnError: Bool? = nil
 	/**  Skip current request according to skip option  */
-	public var skipOnOrror: SkipOptions? = nil
+	public var skipOnError: SkipOptions? = nil
 
 
 	public func setMultiRequestToken(partnerId: String) {
@@ -127,8 +127,8 @@ open class RequestConfiguration: ObjectBase {
 		self.dict["abortAllOnError"] = abortAllOnError
 	}
 	
-	public func setMultiRequestToken(skipOnOrror: String) {
-		self.dict["skipOnOrror"] = skipOnOrror
+	public func setMultiRequestToken(skipOnError: String) {
+		self.dict["skipOnError"] = skipOnError
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -154,8 +154,8 @@ open class RequestConfiguration: ObjectBase {
 		if dict["abortAllOnError"] != nil {
 			abortAllOnError = dict["abortAllOnError"] as? Bool
 		}
-		if dict["skipOnOrror"] != nil {
-			skipOnOrror = SkipOptions(rawValue: "\(dict["skipOnOrror"]!)")
+		if dict["skipOnError"] != nil {
+			skipOnError = SkipOptions(rawValue: "\(dict["skipOnError"]!)")
 		}
 
 	}
@@ -183,8 +183,8 @@ open class RequestConfiguration: ObjectBase {
 		if(abortAllOnError != nil) {
 			dict["abortAllOnError"] = abortAllOnError!
 		}
-		if(skipOnOrror != nil) {
-			dict["skipOnOrror"] = skipOnOrror!.rawValue
+		if(skipOnError != nil) {
+			dict["skipOnError"] = skipOnError!.rawValue
 		}
 		return dict
 	}

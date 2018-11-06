@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:18-11-06"
-		apiVersion = "5.0.3.17592"
+		apiVersion = "5.0.3.25438"
 	}
 }
 
@@ -140,9 +140,9 @@ public class ClientTokenizer: BaseTokenizedObject {
 	/**
 	 * Skip current request according to skip option
 	 */
-	public var skipOnOrror: BaseTokenizedObject {
+	public var skipOnError: BaseTokenizedObject {
 		get {
-			return self.append("skipOnOrror")
+			return self.append("skipOnError")
 		}
 	}
 }
@@ -271,12 +271,12 @@ extension RequestBuilderData{
 	/**
 	 * Skip current request according to skip option
 	 */
-	public var skipOnOrror: SkipOptions?{
+	public var skipOnError: SkipOptions?{
 		get{
-			return params["skipOnOrror"] as? SkipOptions
+			return params["skipOnError"] as? SkipOptions
 		}
 		set(value){
-			setParam(key: "skipOnOrror", value: value)
+			setParam(key: "skipOnError", value: value)
 		}
 	}
 	
@@ -305,8 +305,8 @@ extension RequestBuilderData{
 		if requestBuilder.abortAllOnError == nil {
 			requestBuilder.abortAllOnError = abortAllOnError
 		}
-		if requestBuilder.skipOnOrror == nil {
-			requestBuilder.skipOnOrror = skipOnOrror
+		if requestBuilder.skipOnError == nil {
+			requestBuilder.skipOnError = skipOnError
 		}
 	}
 }
