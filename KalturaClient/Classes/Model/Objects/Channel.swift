@@ -101,6 +101,12 @@ open class Channel: BaseChannel {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var supportSegmentBasedOrdering: BaseTokenizedObject {
+			get {
+				return self.append("supportSegmentBasedOrdering") 
+			}
+		}
 	}
 
 	/**  Channel name  */
@@ -125,6 +131,9 @@ open class Channel: BaseChannel {
 	public var createDate: Int64? = nil
 	/**  Specifies when was the Channel last updated. Date and time represented as epoch.  */
 	public var updateDate: Int64? = nil
+	/**  Specifies whether the assets in this channel will be ordered based on their
+	  match to the user&amp;#39;s segments (see BEO-5524)  */
+	public var supportSegmentBasedOrdering: Bool? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -157,6 +166,10 @@ open class Channel: BaseChannel {
 	
 	public func setMultiRequestToken(updateDate: String) {
 		self.dict["updateDate"] = updateDate
+	}
+	
+	public func setMultiRequestToken(supportSegmentBasedOrdering: String) {
+		self.dict["supportSegmentBasedOrdering"] = supportSegmentBasedOrdering
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -194,6 +207,9 @@ open class Channel: BaseChannel {
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
 		}
+		if dict["supportSegmentBasedOrdering"] != nil {
+			supportSegmentBasedOrdering = dict["supportSegmentBasedOrdering"] as? Bool
+		}
 
 	}
 
@@ -219,6 +235,9 @@ open class Channel: BaseChannel {
 		}
 		if(orderBy != nil) {
 			dict["orderBy"] = orderBy!.toDictionary()
+		}
+		if(supportSegmentBasedOrdering != nil) {
+			dict["supportSegmentBasedOrdering"] = supportSegmentBasedOrdering!
 		}
 		return dict
 	}
