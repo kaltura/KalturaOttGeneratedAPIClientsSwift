@@ -71,6 +71,12 @@ open class SegmentationType: ObjectBase {
 				return self.append("createDate") 
 			}
 		}
+		
+		public var version: BaseTokenizedObject {
+			get {
+				return self.append("version") 
+			}
+		}
 	}
 
 	/**  Id of segmentation type  */
@@ -85,6 +91,8 @@ open class SegmentationType: ObjectBase {
 	public var value: BaseSegmentValue? = nil
 	/**  Create date of segmentation type  */
 	public var createDate: Int64? = nil
+	/**  Segmentation type version  */
+	public var version: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -101,6 +109,10 @@ open class SegmentationType: ObjectBase {
 	
 	public func setMultiRequestToken(createDate: String) {
 		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(version: String) {
+		self.dict["version"] = version
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -122,6 +134,9 @@ open class SegmentationType: ObjectBase {
 		value = try JSONParser.parse(object: dict["value"] as! [String: Any])		}
 		if dict["createDate"] != nil {
 			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["version"] != nil {
+			version = Int64("\(dict["version"]!)")
 		}
 
 	}
