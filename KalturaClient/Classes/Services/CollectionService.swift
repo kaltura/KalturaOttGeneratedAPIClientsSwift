@@ -42,8 +42,12 @@ public final class CollectionService{
 		}
 	}
 
+	public static func list() -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
 	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
-	public static func list(filter: CollectionFilter) -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: CollectionFilter?) -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> = RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer>(service: "collection", action: "list")
 			.setParam(key: "filter", value: filter)
 
