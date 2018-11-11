@@ -40,16 +40,25 @@ public final class CollectionService{
 		public func filter<T: CollectionFilter.CollectionFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
 	}
 
 	public static func list() -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
 	public static func list(filter: CollectionFilter?) -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
+	}
+
+	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
+	public static func list(filter: CollectionFilter?, pager: FilterPager?) -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> = RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer>(service: "collection", action: "list")
 			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

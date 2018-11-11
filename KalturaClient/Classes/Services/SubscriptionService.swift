@@ -40,12 +40,25 @@ public final class SubscriptionService{
 		public func filter<T: SubscriptionFilter.SubscriptionFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	public static func list(filter: SubscriptionFilter?) -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
 	}
 
 	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
-	public static func list(filter: SubscriptionFilter) -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: SubscriptionFilter?, pager: FilterPager?) -> RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer> = RequestBuilder<SubscriptionListResponse, SubscriptionListResponse.SubscriptionListResponseTokenizer, ListTokenizer>(service: "subscription", action: "list")
 			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
