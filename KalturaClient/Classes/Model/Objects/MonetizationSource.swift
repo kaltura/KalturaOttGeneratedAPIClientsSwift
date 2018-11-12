@@ -49,12 +49,20 @@ open class MonetizationSource: SegmentSource {
 				return self.append("operator_") 
 			}
 		}
+		
+		public var days: BaseTokenizedObject {
+			get {
+				return self.append("days") 
+			}
+		}
 	}
 
 	/**  Purchase type  */
 	public var type: MonetizationType? = nil
 	/**  Mathermtical operator to calculate  */
 	public var operator_: MathemticalOperatorType? = nil
+	/**  Days to consider when checking the users&amp;#39; purchaes  */
+	public var days: Int? = nil
 
 
 	public func setMultiRequestToken(type: String) {
@@ -63,6 +71,10 @@ open class MonetizationSource: SegmentSource {
 	
 	public func setMultiRequestToken(operator_: String) {
 		self.dict["operator"] = operator_
+	}
+	
+	public func setMultiRequestToken(days: String) {
+		self.dict["days"] = days
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +86,9 @@ open class MonetizationSource: SegmentSource {
 		if dict["operator"] != nil {
 			operator_ = MathemticalOperatorType(rawValue: "\(dict["operator"]!)")
 		}
+		if dict["days"] != nil {
+			days = dict["days"] as? Int
+		}
 
 	}
 
@@ -84,6 +99,9 @@ open class MonetizationSource: SegmentSource {
 		}
 		if(operator_ != nil) {
 			dict["operator"] = operator_!.rawValue
+		}
+		if(days != nil) {
+			dict["days"] = days!
 		}
 		return dict
 	}
