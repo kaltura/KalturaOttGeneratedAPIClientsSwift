@@ -48,6 +48,12 @@ open class BaseSearchAssetFilter: AssetFilter {
 				return ArrayTokenizedObject<AssetGroupBy.AssetGroupByTokenizer>(self.append("groupBy"))
 			} 
 		}
+		
+		public var groupOrderBy: BaseTokenizedObject {
+			get {
+				return self.append("groupOrderBy") 
+			}
+		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -77,10 +83,16 @@ open class BaseSearchAssetFilter: AssetFilter {
 	public var kSql: String? = nil
 	/**  groupBy  */
 	public var groupBy: Array<AssetGroupBy>? = nil
+	/**  order by of grouping  */
+	public var groupOrderBy: GroupByOrder? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
 		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(groupOrderBy: String) {
+		self.dict["groupOrderBy"] = groupOrderBy
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -92,6 +104,9 @@ open class BaseSearchAssetFilter: AssetFilter {
 		if dict["groupBy"] != nil {
 			groupBy = try JSONParser.parse(array: dict["groupBy"] as! [Any])
 		}
+		if dict["groupOrderBy"] != nil {
+			groupOrderBy = GroupByOrder(rawValue: "\(dict["groupOrderBy"]!)")
+		}
 
 	}
 
@@ -102,6 +117,9 @@ open class BaseSearchAssetFilter: AssetFilter {
 		}
 		if(groupBy != nil) {
 			dict["groupBy"] = groupBy!.map { value in value.toDictionary() }
+		}
+		if(groupOrderBy != nil) {
+			dict["groupOrderBy"] = groupOrderBy!.rawValue
 		}
 		return dict
 	}
