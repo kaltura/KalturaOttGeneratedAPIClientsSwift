@@ -63,10 +63,10 @@ open class ContentScoreCondition: BaseSegmentCondition {
 			}
 		}
 		
-		public var value: BaseTokenizedObject {
+		public var values: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
 			get {
-				return self.append("value") 
-			}
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("values"))
+			} 
 		}
 		
 		public var actions: ArrayTokenizedObject<ContentActionCondition.ContentActionConditionTokenizer> {
@@ -86,8 +86,8 @@ open class ContentScoreCondition: BaseSegmentCondition {
 	  value)  */
 	public var field: String? = nil
 	/**  If condition should be applied on specific field (and not the one of the segment
-	  value) -  */
-	public var value: String? = nil
+	  value) -               list of values to be considered together  */
+	public var values: Array<StringValue>? = nil
 	/**  List of the actions that consist the condition  */
 	public var actions: Array<ContentActionCondition>? = nil
 
@@ -108,10 +108,6 @@ open class ContentScoreCondition: BaseSegmentCondition {
 		self.dict["field"] = field
 	}
 	
-	public func setMultiRequestToken(value: String) {
-		self.dict["value"] = value
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -127,8 +123,8 @@ open class ContentScoreCondition: BaseSegmentCondition {
 		if dict["field"] != nil {
 			field = dict["field"] as? String
 		}
-		if dict["value"] != nil {
-			value = dict["value"] as? String
+		if dict["values"] != nil {
+			values = try JSONParser.parse(array: dict["values"] as! [Any])
 		}
 		if dict["actions"] != nil {
 			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
@@ -150,8 +146,8 @@ open class ContentScoreCondition: BaseSegmentCondition {
 		if(field != nil) {
 			dict["field"] = field!
 		}
-		if(value != nil) {
-			dict["value"] = value!
+		if(values != nil) {
+			dict["values"] = values!.map { value in value.toDictionary() }
 		}
 		if(actions != nil) {
 			dict["actions"] = actions!.map { value in value.toDictionary() }

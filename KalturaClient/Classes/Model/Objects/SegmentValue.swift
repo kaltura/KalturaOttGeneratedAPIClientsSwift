@@ -61,12 +61,6 @@ open class SegmentValue: ObjectBase {
 				return self.append("value") 
 			}
 		}
-		
-		public var threshold: BaseTokenizedObject {
-			get {
-				return self.append("threshold") 
-			}
-		}
 	}
 
 	/**  Id of segment  */
@@ -77,8 +71,6 @@ open class SegmentValue: ObjectBase {
 	public var name: String? = nil
 	/**  The value of the segment  */
 	public var value: String? = nil
-	/**  Threshold - minimum score to be met for this specific value  */
-	public var threshold: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -97,10 +89,6 @@ open class SegmentValue: ObjectBase {
 		self.dict["value"] = value
 	}
 	
-	public func setMultiRequestToken(threshold: String) {
-		self.dict["threshold"] = threshold
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -116,9 +104,6 @@ open class SegmentValue: ObjectBase {
 		if dict["value"] != nil {
 			value = dict["value"] as? String
 		}
-		if dict["threshold"] != nil {
-			threshold = dict["threshold"] as? Int
-		}
 
 	}
 
@@ -132,9 +117,6 @@ open class SegmentValue: ObjectBase {
 		}
 		if(value != nil) {
 			dict["value"] = value!
-		}
-		if(threshold != nil) {
-			dict["threshold"] = threshold!
 		}
 		return dict
 	}
