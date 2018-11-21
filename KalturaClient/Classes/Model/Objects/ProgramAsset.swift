@@ -187,17 +187,23 @@ open class ProgramAsset: Asset {
 		if(epgChannelId != nil) {
 			dict["epgChannelId"] = epgChannelId!
 		}
-		if(epgId != nil) {
-			dict["epgId"] = epgId!
-		}
 		if(relatedMediaId != nil) {
 			dict["relatedMediaId"] = relatedMediaId!
 		}
 		if(crid != nil) {
 			dict["crid"] = crid!
 		}
-		if(linearAssetId != nil) {
-			dict["linearAssetId"] = linearAssetId!
+		if(enableCdvr != nil) {
+			dict["enableCdvr"] = enableCdvr!
+		}
+		if(enableCatchUp != nil) {
+			dict["enableCatchUp"] = enableCatchUp!
+		}
+		if(enableStartOver != nil) {
+			dict["enableStartOver"] = enableStartOver!
+		}
+		if(enableTrickPlay != nil) {
+			dict["enableTrickPlay"] = enableTrickPlay!
 		}
 		return dict
 	}
