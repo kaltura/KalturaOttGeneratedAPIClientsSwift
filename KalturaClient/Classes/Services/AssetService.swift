@@ -42,7 +42,9 @@ public final class AssetService{
 		}
 	}
 
-	/**  Add a new asset  */
+	/**  Add a new asset.              For metas of type bool-&amp;gt; use
+	  kalturaBoolValue, type number-&amp;gt; KalturaDoubleValue, type date -&amp;gt;
+	  KalturaLongValue, type string -&amp;gt; KalturaStringValue  */
 	public static func add(asset: Asset) -> RequestBuilder<Asset, Asset.AssetTokenizer, AddTokenizer> {
 		let request: RequestBuilder<Asset, Asset.AssetTokenizer, AddTokenizer> = RequestBuilder<Asset, Asset.AssetTokenizer, AddTokenizer>(service: "asset", action: "add")
 			.setParam(key: "asset", value: asset)
@@ -249,7 +251,9 @@ public final class AssetService{
 		}
 	}
 
-	/**  update an existing asset  */
+	/**  update an existing asset.              For metas of type bool-&amp;gt; use
+	  kalturaBoolValue, type number-&amp;gt; KalturaDoubleValue, type date -&amp;gt;
+	  KalturaLongValue, type string -&amp;gt; KalturaStringValue  */
 	public static func update(id: Int64, asset: Asset) -> RequestBuilder<Asset, Asset.AssetTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<Asset, Asset.AssetTokenizer, UpdateTokenizer> = RequestBuilder<Asset, Asset.AssetTokenizer, UpdateTokenizer>(service: "asset", action: "update")
 			.setParam(key: "id", value: id)
