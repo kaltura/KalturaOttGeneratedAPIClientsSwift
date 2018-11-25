@@ -78,10 +78,8 @@ open class RequestConfiguration: ObjectBase {
 			}
 		}
 		
-		public var skipOnError: BaseTokenizedObject {
-			get {
-				return self.append("skipOnError") 
-			}
+		public func skipCondition<T: SkipCondition.SkipConditionTokenizer>() -> T {
+			return T(self.append("skipCondition"))
 		}
 	}
 
@@ -99,8 +97,8 @@ open class RequestConfiguration: ObjectBase {
 	public var responseProfile: BaseResponseProfile? = nil
 	/**  Abort all following requests if current request has an error  */
 	public var abortAllOnError: Bool? = nil
-	/**  Skip current request according to skip option  */
-	public var skipOnError: SkipOptions? = nil
+	/**  Skip current request according to skip condition  */
+	public var skipCondition: SkipCondition? = nil
 
 
 	public func setMultiRequestToken(partnerId: String) {
@@ -127,10 +125,6 @@ open class RequestConfiguration: ObjectBase {
 		self.dict["abortAllOnError"] = abortAllOnError
 	}
 	
-	public func setMultiRequestToken(skipOnError: String) {
-		self.dict["skipOnError"] = skipOnError
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -154,9 +148,8 @@ open class RequestConfiguration: ObjectBase {
 		if dict["abortAllOnError"] != nil {
 			abortAllOnError = dict["abortAllOnError"] as? Bool
 		}
-		if dict["skipOnError"] != nil {
-			skipOnError = SkipOptions(rawValue: "\(dict["skipOnError"]!)")
-		}
+		if dict["skipCondition"] != nil {
+		skipCondition = try JSONParser.parse(object: dict["skipCondition"] as! [String: Any])		}
 
 	}
 
@@ -183,8 +176,8 @@ open class RequestConfiguration: ObjectBase {
 		if(abortAllOnError != nil) {
 			dict["abortAllOnError"] = abortAllOnError!
 		}
-		if(skipOnError != nil) {
-			dict["skipOnError"] = skipOnError!.rawValue
+		if(skipCondition != nil) {
+			dict["skipCondition"] = skipCondition!.toDictionary()
 		}
 		return dict
 	}
