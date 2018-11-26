@@ -40,8 +40,8 @@
 		
 		super.init()
 		
-		clientTag = "swift:18-11-25"
-		apiVersion = "5.0.3.42010"
+		clientTag = "swift:18-11-26"
+		apiVersion = "5.0.3.22718"
 	}
 }
 
@@ -138,11 +138,11 @@ public class ClientTokenizer: BaseTokenizedObject {
 	}
 	
 	/**
-	 * Skip current request according to skip option
+	 * Skip current request according to skip condition
 	 */
-	public var skipOnError: BaseTokenizedObject {
+	public var skipCondition: BaseTokenizedObject {
 		get {
-			return self.append("skipOnError")
+			return self.append("skipCondition")
 		}
 	}
 }
@@ -269,14 +269,14 @@ extension RequestBuilderData{
 	}
 	
 	/**
-	 * Skip current request according to skip option
+	 * Skip current request according to skip condition
 	 */
-	public var skipOnError: SkipOptions?{
+	public var skipCondition: SkipCondition?{
 		get{
-			return params["skipOnError"] as? SkipOptions
+			return params["skipCondition"] as? SkipCondition
 		}
 		set(value){
-			setParam(key: "skipOnError", value: value)
+			setParam(key: "skipCondition", value: value)
 		}
 	}
 	
@@ -305,8 +305,8 @@ extension RequestBuilderData{
 		if requestBuilder.abortAllOnError == nil {
 			requestBuilder.abortAllOnError = abortAllOnError
 		}
-		if requestBuilder.skipOnError == nil {
-			requestBuilder.skipOnError = skipOnError
+		if requestBuilder.skipCondition == nil {
+			requestBuilder.skipCondition = skipCondition
 		}
 	}
 }
