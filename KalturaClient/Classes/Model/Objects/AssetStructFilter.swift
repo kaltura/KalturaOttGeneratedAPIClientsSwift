@@ -57,7 +57,7 @@ open class AssetStructFilter: Filter {
 		}
 	}
 
-	/**  Comma separated identifiers  */
+	/**  Comma separated identifiers, id = 0 is identified as program AssetStruct  */
 	public var idIn: String? = nil
 	/**  Filter Asset Structs that contain a specific meta id  */
 	public var metaIdEqual: Int64? = nil
