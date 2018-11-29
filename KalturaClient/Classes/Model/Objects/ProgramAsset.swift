@@ -184,14 +184,14 @@ open class ProgramAsset: Asset {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(epgChannelId != nil) {
-			dict["epgChannelId"] = epgChannelId!
-		}
 		if(relatedMediaId != nil) {
 			dict["relatedMediaId"] = relatedMediaId!
 		}
 		if(crid != nil) {
 			dict["crid"] = crid!
+		}
+		if(linearAssetId != nil) {
+			dict["linearAssetId"] = linearAssetId!
 		}
 		if(enableCdvr != nil) {
 			dict["enableCdvr"] = enableCdvr!
