@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:18-12-02"
-		apiVersion = "5.0.3.15726"
+		apiVersion = "5.0.3.17321"
 	}
 }
 
@@ -62,6 +62,15 @@ public class ClientTokenizer: BaseTokenizedObject {
 	public var apiVersion: BaseTokenizedObject {
 		get {
 			return self.append("apiVersion")
+		}
+	}
+	
+	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 */
+	public var abortOnError: BaseTokenizedObject {
+		get {
+			return self.append("abortOnError")
 		}
 	}
 	
@@ -169,6 +178,18 @@ extension RequestBuilderData{
 		}
 		set(value){
 			setParam(key: "apiVersion", value: value)
+		}
+	}
+	
+	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 */
+	public var abortOnError: Bool?{
+		get{
+			return params["abortOnError"] as? Bool
+		}
+		set(value){
+			setParam(key: "abortOnError", value: value)
 		}
 	}
 	
@@ -286,6 +307,9 @@ extension RequestBuilderData{
 		}
 		if requestBuilder.apiVersion == nil {
 			requestBuilder.apiVersion = apiVersion
+		}
+		if requestBuilder.abortOnError == nil {
+			requestBuilder.abortOnError = abortOnError
 		}
 		if requestBuilder.partnerId == nil {
 			requestBuilder.partnerId = partnerId
