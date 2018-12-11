@@ -98,6 +98,14 @@ public class KalturaLogger {
     public func error(_ message: Any, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function){
         logger.log(.error, message: message, file: file, line: line, column: column, function: function)
     }
+    
+    public func isLoggerEnabled(isEnabled:Bool){
+        logger.enabled = isEnabled
+    }
+    
+    public func setloggerMinLevel(minLevel: LogLevel){
+        logger.minLevel = minLevel
+    }
 
 }
 
