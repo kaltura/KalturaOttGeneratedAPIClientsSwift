@@ -25,17 +25,67 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleType: String {
-	case PARENTAL = "parental"
-	case GEO = "geo"
-	case USER_TYPE = "user_type"
-	case DEVICE = "device"
-	case ASSETUSER = "assetUser"
-	case NETWORK = "network"
+
+/**  Header condition  */
+open class HeaderCondition: NotCondition {
+
+	public class HeaderConditionTokenizer: NotCondition.NotConditionTokenizer {
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
+	/**  Header key  */
+	public var key: String? = nil
+	/**  Header value  */
+	public var value: String? = nil
+
+
+	public func setMultiRequestToken(key: String) {
+		self.dict["key"] = key
+	}
+	
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["key"] != nil {
+			key = dict["key"] as? String
+		}
+		if dict["value"] != nil {
+			value = dict["value"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(key != nil) {
+			dict["key"] = key!
+		}
+		if(value != nil) {
+			dict["value"] = value!
+		}
+		return dict
+	}
 }
+

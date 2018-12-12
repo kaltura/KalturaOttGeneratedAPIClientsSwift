@@ -40,4 +40,5 @@ public enum RuleConditionType: String {
 	case SEGMENTS = "SEGMENTS"
 	case DATE = "DATE"
 	case OR = "OR"
+	case HEADER = "HEADER"
 }

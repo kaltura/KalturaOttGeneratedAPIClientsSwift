@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class OrCondition: Condition {
+open class OrCondition: NotCondition {
 
-	public class OrConditionTokenizer: Condition.ConditionTokenizer {
+	public class OrConditionTokenizer: NotCondition.NotConditionTokenizer {
 		
 		public var conditions: ArrayTokenizedObject<Condition.ConditionTokenizer> {
 			get {
