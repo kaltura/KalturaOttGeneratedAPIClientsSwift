@@ -54,6 +54,12 @@ open class PlaybackSource: MediaFile {
 				return ArrayTokenizedObject<DrmPlaybackPluginData.DrmPlaybackPluginDataTokenizer>(self.append("drm"))
 			} 
 		}
+		
+		public var isTokenized: BaseTokenizedObject {
+			get {
+				return self.append("isTokenized") 
+			}
+		}
 	}
 
 	/**  Source format according to delivery profile streamer type (applehttp, mpegdash
@@ -64,6 +70,8 @@ open class PlaybackSource: MediaFile {
 	public var protocols: String? = nil
 	/**  DRM data object containing relevant license URL ,scheme name and certificate  */
 	public var drm: Array<DrmPlaybackPluginData>? = nil
+	/**  Is Tokenized  */
+	public var isTokenized: Bool? = nil
 
 
 	public func setMultiRequestToken(format: String) {
@@ -72,6 +80,10 @@ open class PlaybackSource: MediaFile {
 	
 	public func setMultiRequestToken(protocols: String) {
 		self.dict["protocols"] = protocols
+	}
+	
+	public func setMultiRequestToken(isTokenized: String) {
+		self.dict["isTokenized"] = isTokenized
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -86,6 +98,9 @@ open class PlaybackSource: MediaFile {
 		if dict["drm"] != nil {
 			drm = try JSONParser.parse(array: dict["drm"] as! [Any])
 		}
+		if dict["isTokenized"] != nil {
+			isTokenized = dict["isTokenized"] as? Bool
+		}
 
 	}
 
@@ -99,6 +114,9 @@ open class PlaybackSource: MediaFile {
 		}
 		if(drm != nil) {
 			dict["drm"] = drm!.map { value in value.toDictionary() }
+		}
+		if(isTokenized != nil) {
+			dict["isTokenized"] = isTokenized!
 		}
 		return dict
 	}
