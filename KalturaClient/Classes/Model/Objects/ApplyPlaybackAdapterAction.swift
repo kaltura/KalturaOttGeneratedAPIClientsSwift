@@ -25,19 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
-	case APPLY_DISCOUNT_MODULE = "APPLY_DISCOUNT_MODULE"
-	case APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER"
+
+open class ApplyPlaybackAdapterAction: AssetRuleAction {
+
+	public class ApplyPlaybackAdapterActionTokenizer: AssetRuleAction.AssetRuleActionTokenizer {
+		
+		public var adapterId: BaseTokenizedObject {
+			get {
+				return self.append("adapterId") 
+			}
+		}
+	}
+
+	/**  Playback Adapter Identifier  */
+	public var adapterId: Int64? = nil
+
+
+	public func setMultiRequestToken(adapterId: String) {
+		self.dict["adapterId"] = adapterId
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["adapterId"] != nil {
+			adapterId = Int64("\(dict["adapterId"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(adapterId != nil) {
+			dict["adapterId"] = adapterId!
+		}
+		return dict
+	}
 }
+

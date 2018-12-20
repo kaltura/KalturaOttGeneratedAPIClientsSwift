@@ -25,19 +25,49 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
-	case APPLY_DISCOUNT_MODULE = "APPLY_DISCOUNT_MODULE"
-	case APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER"
+
+/**  User asset rule filter  */
+open class PlaybackProfileFilter: Filter {
+
+	public class PlaybackProfileFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var playbackProfileEqual: BaseTokenizedObject {
+			get {
+				return self.append("playbackProfileEqual") 
+			}
+		}
+	}
+
+	/**  Playback profile to filter by  */
+	public var playbackProfileEqual: Int64? = nil
+
+
+	public func setMultiRequestToken(playbackProfileEqual: String) {
+		self.dict["playbackProfileEqual"] = playbackProfileEqual
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["playbackProfileEqual"] != nil {
+			playbackProfileEqual = Int64("\(dict["playbackProfileEqual"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(playbackProfileEqual != nil) {
+			dict["playbackProfileEqual"] = playbackProfileEqual!
+		}
+		return dict
+	}
 }
+

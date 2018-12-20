@@ -25,19 +25,44 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
-	case APPLY_DISCOUNT_MODULE = "APPLY_DISCOUNT_MODULE"
-	case APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER"
+
+open class PlaybackProfileListResponse: ListResponse {
+
+	public class PlaybackProfileListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<PlaybackProfile.PlaybackProfileTokenizer> {
+			get {
+				return ArrayTokenizedObject<PlaybackProfile.PlaybackProfileTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
+	/**  A list of Engagement adapter  */
+	public var objects: Array<PlaybackProfile>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+
