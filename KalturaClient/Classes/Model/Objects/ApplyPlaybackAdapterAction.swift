@@ -45,7 +45,7 @@ open class ApplyPlaybackAdapterAction: AssetRuleAction {
 	}
 
 	/**  Playback Adapter Identifier  */
-	public var adapterId: Int64? = nil
+	public var adapterId: Int? = nil
 
 
 	public func setMultiRequestToken(adapterId: String) {
@@ -56,7 +56,7 @@ open class ApplyPlaybackAdapterAction: AssetRuleAction {
 		try super.populate(dict);
 		// set members values:
 		if dict["adapterId"] != nil {
-			adapterId = Int64("\(dict["adapterId"]!)")
+			adapterId = dict["adapterId"] as? Int
 		}
 
 	}

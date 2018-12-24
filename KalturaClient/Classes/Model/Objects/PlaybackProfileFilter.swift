@@ -46,7 +46,7 @@ open class PlaybackProfileFilter: Filter {
 	}
 
 	/**  Playback profile to filter by  */
-	public var playbackProfileEqual: Int64? = nil
+	public var playbackProfileEqual: Int? = nil
 
 
 	public func setMultiRequestToken(playbackProfileEqual: String) {
@@ -57,7 +57,7 @@ open class PlaybackProfileFilter: Filter {
 		try super.populate(dict);
 		// set members values:
 		if dict["playbackProfileEqual"] != nil {
-			playbackProfileEqual = Int64("\(dict["playbackProfileEqual"]!)")
+			playbackProfileEqual = dict["playbackProfileEqual"] as? Int
 		}
 
 	}
