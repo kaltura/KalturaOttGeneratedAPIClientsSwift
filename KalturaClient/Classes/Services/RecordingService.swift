@@ -132,20 +132,24 @@ public final class RecordingService{
 		return request
 	}
 
-	public class ProtectTokenizer: ClientTokenizer  {
+	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
 			get {
 				return self.append("id") 
 			}
 		}
+		
+		public func recording<T: Recording.RecordingTokenizer>() -> T {
+			return T(self.append("recording"))
+		}
 	}
 
-	/**  Protects an existing recording from the cleanup process for the defined
-	  protection period  */
-	public static func protect(id: Int64) -> RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer> {
-		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer>(service: "recording", action: "protect")
+	/**  Update an existing recording with is protected field  */
+	public static func update(id: Int64, recording: Recording) -> RequestBuilder<Recording, Recording.RecordingTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, UpdateTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, UpdateTokenizer>(service: "recording", action: "update")
 			.setParam(key: "id", value: id)
+			.setParam(key: "recording", value: recording)
 
 		return request
 	}
