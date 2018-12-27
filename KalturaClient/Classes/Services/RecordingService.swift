@@ -132,6 +132,24 @@ public final class RecordingService{
 		return request
 	}
 
+	public class ProtectTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Deprecated, please use recording.update instead              Protects an
+	  existing recording from the cleanup process for the defined protection period  */
+	public static func protect(id: Int64) -> RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer> {
+		let request: RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer> = RequestBuilder<Recording, Recording.RecordingTokenizer, ProtectTokenizer>(service: "recording", action: "protect")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
