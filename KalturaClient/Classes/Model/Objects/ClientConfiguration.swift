@@ -62,7 +62,7 @@ open class ClientConfiguration: ObjectBase {
 	/**  API client version  */
 	public var apiVersion: String? = nil
 	/**  Abort the Multireuqset call if any error occurs in one of the requests  */
-	public var abortOnError: String? = nil
+	public var abortOnError: Bool? = nil
 
 
 	public func setMultiRequestToken(clientTag: String) {
@@ -87,7 +87,7 @@ open class ClientConfiguration: ObjectBase {
 			apiVersion = dict["apiVersion"] as? String
 		}
 		if dict["abortOnError"] != nil {
-			abortOnError = dict["abortOnError"] as? String
+			abortOnError = dict["abortOnError"] as? Bool
 		}
 
 	}
