@@ -25,13 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum CompensationType: String {
-	case PERCENTAGE = "PERCENTAGE"
-	case FIXED_AMOUNT = "FIXED_AMOUNT"
+
+open class OTTObjectSupportNullable: ObjectBase {
+
+	public class OTTObjectSupportNullableTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

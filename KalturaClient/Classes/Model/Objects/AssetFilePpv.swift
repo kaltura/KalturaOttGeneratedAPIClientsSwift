@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -34,9 +34,9 @@
  */
 
 /**  Asset file ppv  */
-open class AssetFilePpv: ObjectBase {
+open class AssetFilePpv: OTTObjectSupportNullable {
 
-	public class AssetFilePpvTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class AssetFilePpvTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var assetFileId: BaseTokenizedObject {
 			get {
