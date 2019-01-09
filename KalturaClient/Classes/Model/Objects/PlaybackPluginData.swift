@@ -33,58 +33,16 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class BumpersPlaybackPluginData: PlaybackPluginData {
+open class PlaybackPluginData: ObjectBase {
 
-	public class BumpersPlaybackPluginDataTokenizer: PlaybackPluginData.PlaybackPluginDataTokenizer {
-		
-		public var url: BaseTokenizedObject {
-			get {
-				return self.append("url") 
-			}
-		}
-		
-		public var streamertype: BaseTokenizedObject {
-			get {
-				return self.append("streamertype") 
-			}
-		}
+	public class PlaybackPluginDataTokenizer: ObjectBase.ObjectBaseTokenizer {
 	}
 
-	/**  url  */
-	public var url: String? = nil
-	/**  Streamer type: hls, dash, progressive.  */
-	public var streamertype: String? = nil
 
 
-	public func setMultiRequestToken(url: String) {
-		self.dict["url"] = url
-	}
-	
-	public func setMultiRequestToken(streamertype: String) {
-		self.dict["streamertype"] = streamertype
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["url"] != nil {
-			url = dict["url"] as? String
-		}
-		if dict["streamertype"] != nil {
-			streamertype = dict["streamertype"] as? String
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(url != nil) {
-			dict["url"] = url!
-		}
-		if(streamertype != nil) {
-			dict["streamertype"] = streamertype!
-		}
-		return dict
-	}
 }
 

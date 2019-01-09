@@ -61,9 +61,9 @@ open class PlaybackContext: ObjectBase {
 			} 
 		}
 		
-		public var playbackBumpers: ArrayTokenizedObject<BumpersPlaybackPluginData.BumpersPlaybackPluginDataTokenizer> {
+		public var plugins: ArrayTokenizedObject<PlaybackPluginData.PlaybackPluginDataTokenizer> {
 			get {
-				return ArrayTokenizedObject<BumpersPlaybackPluginData.BumpersPlaybackPluginDataTokenizer>(self.append("playbackBumpers"))
+				return ArrayTokenizedObject<PlaybackPluginData.PlaybackPluginDataTokenizer>(self.append("plugins"))
 			} 
 		}
 	}
@@ -76,8 +76,8 @@ open class PlaybackContext: ObjectBase {
 	public var messages: Array<AccessControlMessage>? = nil
 	/**  Playback captions  */
 	public var playbackCaptions: Array<CaptionPlaybackPluginData>? = nil
-	/**  Playback bumpers  */
-	public var playbackBumpers: Array<BumpersPlaybackPluginData>? = nil
+	/**  Plugins  */
+	public var plugins: Array<PlaybackPluginData>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -95,8 +95,8 @@ open class PlaybackContext: ObjectBase {
 		if dict["playbackCaptions"] != nil {
 			playbackCaptions = try JSONParser.parse(array: dict["playbackCaptions"] as! [Any])
 		}
-		if dict["playbackBumpers"] != nil {
-			playbackBumpers = try JSONParser.parse(array: dict["playbackBumpers"] as! [Any])
+		if dict["plugins"] != nil {
+			plugins = try JSONParser.parse(array: dict["plugins"] as! [Any])
 		}
 
 	}
@@ -115,8 +115,8 @@ open class PlaybackContext: ObjectBase {
 		if(playbackCaptions != nil) {
 			dict["playbackCaptions"] = playbackCaptions!.map { value in value.toDictionary() }
 		}
-		if(playbackBumpers != nil) {
-			dict["playbackBumpers"] = playbackBumpers!.map { value in value.toDictionary() }
+		if(plugins != nil) {
+			dict["plugins"] = plugins!.map { value in value.toDictionary() }
 		}
 		return dict
 	}
