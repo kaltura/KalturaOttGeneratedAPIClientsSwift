@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2018  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -54,6 +54,18 @@ open class PlaybackContext: ObjectBase {
 				return ArrayTokenizedObject<AccessControlMessage.AccessControlMessageTokenizer>(self.append("messages"))
 			} 
 		}
+		
+		public var playbackCaptions: ArrayTokenizedObject<CaptionPlaybackPluginData.CaptionPlaybackPluginDataTokenizer> {
+			get {
+				return ArrayTokenizedObject<CaptionPlaybackPluginData.CaptionPlaybackPluginDataTokenizer>(self.append("playbackCaptions"))
+			} 
+		}
+		
+		public var playbackBumpers: ArrayTokenizedObject<BumpersPlaybackPluginData.BumpersPlaybackPluginDataTokenizer> {
+			get {
+				return ArrayTokenizedObject<BumpersPlaybackPluginData.BumpersPlaybackPluginDataTokenizer>(self.append("playbackBumpers"))
+			} 
+		}
 	}
 
 	/**  Sources  */
@@ -62,6 +74,10 @@ open class PlaybackContext: ObjectBase {
 	public var actions: Array<RuleAction>? = nil
 	/**  Messages  */
 	public var messages: Array<AccessControlMessage>? = nil
+	/**  Playback captions  */
+	public var playbackCaptions: Array<CaptionPlaybackPluginData>? = nil
+	/**  Playback bumpers  */
+	public var playbackBumpers: Array<BumpersPlaybackPluginData>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -76,6 +92,12 @@ open class PlaybackContext: ObjectBase {
 		if dict["messages"] != nil {
 			messages = try JSONParser.parse(array: dict["messages"] as! [Any])
 		}
+		if dict["playbackCaptions"] != nil {
+			playbackCaptions = try JSONParser.parse(array: dict["playbackCaptions"] as! [Any])
+		}
+		if dict["playbackBumpers"] != nil {
+			playbackBumpers = try JSONParser.parse(array: dict["playbackBumpers"] as! [Any])
+		}
 
 	}
 
@@ -89,6 +111,12 @@ open class PlaybackContext: ObjectBase {
 		}
 		if(messages != nil) {
 			dict["messages"] = messages!.map { value in value.toDictionary() }
+		}
+		if(playbackCaptions != nil) {
+			dict["playbackCaptions"] = playbackCaptions!.map { value in value.toDictionary() }
+		}
+		if(playbackBumpers != nil) {
+			dict["playbackBumpers"] = playbackBumpers!.map { value in value.toDictionary() }
 		}
 		return dict
 	}
