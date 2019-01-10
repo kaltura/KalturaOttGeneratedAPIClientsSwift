@@ -86,12 +86,6 @@ open class ExportTask: ObjectBase {
 			}
 		}
 		
-		public var vodTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
-			get {
-				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("vodTypes"))
-			} 
-		}
-		
 		public var isActive: BaseTokenizedObject {
 			get {
 				return self.append("isActive") 
@@ -118,9 +112,6 @@ open class ExportTask: ObjectBase {
 	/**  The URL for sending a notification when the task&amp;#39;s export process is
 	  done  */
 	public var notificationUrl: String? = nil
-	/**  List of media type identifiers (as configured in TVM) to export. used only in
-	  case data_type = vod  */
-	public var vodTypes: Array<IntegerValue>? = nil
 	/**  Indicates if the task is active or not  */
 	public var isActive: Bool? = nil
 
@@ -188,9 +179,6 @@ open class ExportTask: ObjectBase {
 		if dict["notificationUrl"] != nil {
 			notificationUrl = dict["notificationUrl"] as? String
 		}
-		if dict["vodTypes"] != nil {
-			vodTypes = try JSONParser.parse(array: dict["vodTypes"] as! [Any])
-		}
 		if dict["isActive"] != nil {
 			isActive = dict["isActive"] as? Bool
 		}
@@ -219,9 +207,6 @@ open class ExportTask: ObjectBase {
 		}
 		if(notificationUrl != nil) {
 			dict["notificationUrl"] = notificationUrl!
-		}
-		if(vodTypes != nil) {
-			dict["vodTypes"] = vodTypes!.map { value in value.toDictionary() }
 		}
 		if(isActive != nil) {
 			dict["isActive"] = isActive!
