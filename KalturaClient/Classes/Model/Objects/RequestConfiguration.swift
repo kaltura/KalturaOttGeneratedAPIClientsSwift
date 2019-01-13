@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2018  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -72,6 +72,12 @@ open class RequestConfiguration: ObjectBase {
 			return T(self.append("responseProfile"))
 		}
 		
+		public var abortOnError: BaseTokenizedObject {
+			get {
+				return self.append("abortOnError") 
+			}
+		}
+		
 		public var abortAllOnError: BaseTokenizedObject {
 			get {
 				return self.append("abortAllOnError") 
@@ -95,7 +101,9 @@ open class RequestConfiguration: ObjectBase {
 	public var ks: String? = nil
 	/**  Kaltura response profile object  */
 	public var responseProfile: BaseResponseProfile? = nil
-	/**  Abort all following requests if current request has an error  */
+	/**  Abort the Multireuqset call if any error occurs in one of the requests  */
+	public var abortOnError: Bool? = nil
+	/**  Abort all following requests in Multireuqset if current request has an error  */
 	public var abortAllOnError: Bool? = nil
 	/**  Skip current request according to skip condition  */
 	public var skipCondition: SkipCondition? = nil
@@ -119,6 +127,10 @@ open class RequestConfiguration: ObjectBase {
 	
 	public func setMultiRequestToken(ks: String) {
 		self.dict["ks"] = ks
+	}
+	
+	public func setMultiRequestToken(abortOnError: String) {
+		self.dict["abortOnError"] = abortOnError
 	}
 	
 	public func setMultiRequestToken(abortAllOnError: String) {
@@ -145,6 +157,9 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if dict["responseProfile"] != nil {
 		responseProfile = try JSONParser.parse(object: dict["responseProfile"] as! [String: Any])		}
+		if dict["abortOnError"] != nil {
+			abortOnError = dict["abortOnError"] as? Bool
+		}
 		if dict["abortAllOnError"] != nil {
 			abortAllOnError = dict["abortAllOnError"] as? Bool
 		}
@@ -172,6 +187,9 @@ open class RequestConfiguration: ObjectBase {
 		}
 		if(responseProfile != nil) {
 			dict["responseProfile"] = responseProfile!.toDictionary()
+		}
+		if(abortOnError != nil) {
+			dict["abortOnError"] = abortOnError!
 		}
 		if(abortAllOnError != nil) {
 			dict["abortAllOnError"] = abortAllOnError!

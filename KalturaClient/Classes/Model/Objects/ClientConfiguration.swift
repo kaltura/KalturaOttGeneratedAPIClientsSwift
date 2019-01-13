@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2018  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -49,20 +49,12 @@ open class ClientConfiguration: ObjectBase {
 				return self.append("apiVersion") 
 			}
 		}
-		
-		public var abortOnError: BaseTokenizedObject {
-			get {
-				return self.append("abortOnError") 
-			}
-		}
 	}
 
 	/**  Client Tag  */
 	public var clientTag: String? = nil
 	/**  API client version  */
 	public var apiVersion: String? = nil
-	/**  Abort the Multireuqset call if any error occurs in one of the requests  */
-	public var abortOnError: Bool? = nil
 
 
 	public func setMultiRequestToken(clientTag: String) {
@@ -71,10 +63,6 @@ open class ClientConfiguration: ObjectBase {
 	
 	public func setMultiRequestToken(apiVersion: String) {
 		self.dict["apiVersion"] = apiVersion
-	}
-	
-	public func setMultiRequestToken(abortOnError: String) {
-		self.dict["abortOnError"] = abortOnError
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -86,9 +74,6 @@ open class ClientConfiguration: ObjectBase {
 		if dict["apiVersion"] != nil {
 			apiVersion = dict["apiVersion"] as? String
 		}
-		if dict["abortOnError"] != nil {
-			abortOnError = dict["abortOnError"] as? Bool
-		}
 
 	}
 
@@ -99,9 +84,6 @@ open class ClientConfiguration: ObjectBase {
 		}
 		if(apiVersion != nil) {
 			dict["apiVersion"] = apiVersion!
-		}
-		if(abortOnError != nil) {
-			dict["abortOnError"] = abortOnError!
 		}
 		return dict
 	}
