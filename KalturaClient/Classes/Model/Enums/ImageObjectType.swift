@@ -38,4 +38,5 @@ public enum ImageObjectType: String {
 	case CATEGORY = "CATEGORY"
 	case PARTNER = "PARTNER"
 	case IMAGE_TYPE = "IMAGE_TYPE"
+	case PROGRAM_GROUP = "PROGRAM_GROUP"
 }

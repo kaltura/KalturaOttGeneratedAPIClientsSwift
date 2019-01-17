@@ -68,7 +68,7 @@ open class ImageFilter: Filter {
 	public var imageObjectIdEqual: Int64? = nil
 	/**  Type of the object the image is related to, to filter by  */
 	public var imageObjectTypeEqual: ImageObjectType? = nil
-	/**  Filter images that are default on atleast on image type or not default at any  */
+	/**  Filter images that are default on at least on image type or not default at any  */
 	public var isDefaultEqual: Bool? = nil
 
 

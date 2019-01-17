@@ -74,12 +74,8 @@ public final class ImageService{
 		}
 	}
 
-	public static func list() -> RequestBuilder<ImageListResponse, ImageListResponse.ImageListResponseTokenizer, ListTokenizer> {
-		return list(filter: nil)
-	}
-
 	/**  Get the list of images by different filtering  */
-	public static func list(filter: ImageFilter?) -> RequestBuilder<ImageListResponse, ImageListResponse.ImageListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: ImageFilter) -> RequestBuilder<ImageListResponse, ImageListResponse.ImageListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ImageListResponse, ImageListResponse.ImageListResponseTokenizer, ListTokenizer> = RequestBuilder<ImageListResponse, ImageListResponse.ImageListResponseTokenizer, ListTokenizer>(service: "image", action: "list")
 			.setParam(key: "filter", value: filter)
 

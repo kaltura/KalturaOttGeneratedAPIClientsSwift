@@ -60,7 +60,7 @@ public final class FavoriteService{
 	}
 
 	/**  Remove media from user&amp;#39;s favorite list  */
-	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "favorite", action: "delete")
 			.setParam(key: "id", value: id)
 
