@@ -50,28 +50,44 @@ open class TvmGeoRule: TvmRule {
 			}
 		}
 		
-		public var proxyRule: BaseTokenizedObject {
+		public var proxyRuleId: BaseTokenizedObject {
 			get {
-				return self.append("proxyRule") 
+				return self.append("proxyRuleId") 
 			}
 		}
 		
-		public var proxyLevel: BaseTokenizedObject {
+		public var proxyRuleName: BaseTokenizedObject {
 			get {
-				return self.append("proxyLevel") 
+				return self.append("proxyRuleName") 
+			}
+		}
+		
+		public var proxyLevelId: BaseTokenizedObject {
+			get {
+				return self.append("proxyLevelId") 
+			}
+		}
+		
+		public var proxyLevelName: BaseTokenizedObject {
+			get {
+				return self.append("proxyLevelName") 
 			}
 		}
 	}
 
 	/**  Indicates if the rule is relevent ONLY for the country ids or except country ids
-	  here.  */
+	  here. - is that true?  */
 	public var onlyOrBut: Bool? = nil
 	/**  Comma separated list of country Ids.  */
 	public var countryIds: String? = nil
-	/**  proxyRule - what is that?  */
-	public var proxyRule: Int? = nil
-	/**  proxyLevel - what is that?  */
-	public var proxyLevel: Int? = nil
+	/**  proxyRuleId - what is that?  */
+	public var proxyRuleId: Int? = nil
+	/**  proxyRuleName - what is that?  */
+	public var proxyRuleName: String? = nil
+	/**  proxyLevelId - what is that?  */
+	public var proxyLevelId: Int? = nil
+	/**  proxyLevelName - what is that?  */
+	public var proxyLevelName: String? = nil
 
 
 	public func setMultiRequestToken(onlyOrBut: String) {
@@ -82,12 +98,20 @@ open class TvmGeoRule: TvmRule {
 		self.dict["countryIds"] = countryIds
 	}
 	
-	public func setMultiRequestToken(proxyRule: String) {
-		self.dict["proxyRule"] = proxyRule
+	public func setMultiRequestToken(proxyRuleId: String) {
+		self.dict["proxyRuleId"] = proxyRuleId
 	}
 	
-	public func setMultiRequestToken(proxyLevel: String) {
-		self.dict["proxyLevel"] = proxyLevel
+	public func setMultiRequestToken(proxyRuleName: String) {
+		self.dict["proxyRuleName"] = proxyRuleName
+	}
+	
+	public func setMultiRequestToken(proxyLevelId: String) {
+		self.dict["proxyLevelId"] = proxyLevelId
+	}
+	
+	public func setMultiRequestToken(proxyLevelName: String) {
+		self.dict["proxyLevelName"] = proxyLevelName
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -99,11 +123,17 @@ open class TvmGeoRule: TvmRule {
 		if dict["countryIds"] != nil {
 			countryIds = dict["countryIds"] as? String
 		}
-		if dict["proxyRule"] != nil {
-			proxyRule = dict["proxyRule"] as? Int
+		if dict["proxyRuleId"] != nil {
+			proxyRuleId = dict["proxyRuleId"] as? Int
 		}
-		if dict["proxyLevel"] != nil {
-			proxyLevel = dict["proxyLevel"] as? Int
+		if dict["proxyRuleName"] != nil {
+			proxyRuleName = dict["proxyRuleName"] as? String
+		}
+		if dict["proxyLevelId"] != nil {
+			proxyLevelId = dict["proxyLevelId"] as? Int
+		}
+		if dict["proxyLevelName"] != nil {
+			proxyLevelName = dict["proxyLevelName"] as? String
 		}
 
 	}
@@ -116,11 +146,17 @@ open class TvmGeoRule: TvmRule {
 		if(countryIds != nil) {
 			dict["countryIds"] = countryIds!
 		}
-		if(proxyRule != nil) {
-			dict["proxyRule"] = proxyRule!
+		if(proxyRuleId != nil) {
+			dict["proxyRuleId"] = proxyRuleId!
 		}
-		if(proxyLevel != nil) {
-			dict["proxyLevel"] = proxyLevel!
+		if(proxyRuleName != nil) {
+			dict["proxyRuleName"] = proxyRuleName!
+		}
+		if(proxyLevelId != nil) {
+			dict["proxyLevelId"] = proxyLevelId!
+		}
+		if(proxyLevelName != nil) {
+			dict["proxyLevelName"] = proxyLevelName!
 		}
 		return dict
 	}
