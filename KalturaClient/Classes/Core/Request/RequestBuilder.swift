@@ -192,7 +192,6 @@ public class RequestBuilder<T: Any, U: BaseTokenizedObject, G:BaseTokenizedObjec
         var url: URL = client.configuration.endPoint
         let urlComponents = NSURLComponents()
         urlComponents.host = url.host
-        urlComponents.port = url.port! as NSNumber
         urlComponents.scheme = url.scheme
         urlComponents.path = url.path + "/api_v3" + self.getUrlTail()
         
