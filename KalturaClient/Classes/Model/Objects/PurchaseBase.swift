@@ -54,6 +54,12 @@ open class PurchaseBase: ObjectBase {
 				return self.append("productType") 
 			}
 		}
+		
+		public var adapterData: BaseTokenizedObject {
+			get {
+				return self.append("adapterData") 
+			}
+		}
 	}
 
 	/**  Identifier for the package from which this content is offered  */
@@ -62,6 +68,8 @@ open class PurchaseBase: ObjectBase {
 	public var contentId: Int? = nil
 	/**  Package type. Possible values: PPV, Subscription, Collection  */
 	public var productType: TransactionType? = nil
+	/**  Additional data for the adapter  */
+	public var adapterData: String? = nil
 
 
 	public func setMultiRequestToken(productId: String) {
@@ -76,6 +84,10 @@ open class PurchaseBase: ObjectBase {
 		self.dict["productType"] = productType
 	}
 	
+	public func setMultiRequestToken(adapterData: String) {
+		self.dict["adapterData"] = adapterData
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -87,6 +99,9 @@ open class PurchaseBase: ObjectBase {
 		}
 		if dict["productType"] != nil {
 			productType = TransactionType(rawValue: "\(dict["productType"]!)")
+		}
+		if dict["adapterData"] != nil {
+			adapterData = dict["adapterData"] as? String
 		}
 
 	}
@@ -101,6 +116,9 @@ open class PurchaseBase: ObjectBase {
 		}
 		if(productType != nil) {
 			dict["productType"] = productType!.rawValue
+		}
+		if(adapterData != nil) {
+			dict["adapterData"] = adapterData!
 		}
 		return dict
 	}

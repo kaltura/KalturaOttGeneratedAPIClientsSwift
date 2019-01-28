@@ -66,12 +66,6 @@ open class Purchase: PurchaseBase {
 				return self.append("coupon") 
 			}
 		}
-		
-		public var adapterData: BaseTokenizedObject {
-			get {
-				return self.append("adapterData") 
-			}
-		}
 	}
 
 	/**  Identifier for paying currency, according to ISO 4217  */
@@ -87,8 +81,6 @@ open class Purchase: PurchaseBase {
 	public var paymentGatewayId: Int? = nil
 	/**  Coupon code  */
 	public var coupon: String? = nil
-	/**  Additional data for the adapter  */
-	public var adapterData: String? = nil
 
 
 	public func setMultiRequestToken(currency: String) {
@@ -111,10 +103,6 @@ open class Purchase: PurchaseBase {
 		self.dict["coupon"] = coupon
 	}
 	
-	public func setMultiRequestToken(adapterData: String) {
-		self.dict["adapterData"] = adapterData
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -132,9 +120,6 @@ open class Purchase: PurchaseBase {
 		}
 		if dict["coupon"] != nil {
 			coupon = dict["coupon"] as? String
-		}
-		if dict["adapterData"] != nil {
-			adapterData = dict["adapterData"] as? String
 		}
 
 	}
@@ -155,9 +140,6 @@ open class Purchase: PurchaseBase {
 		}
 		if(coupon != nil) {
 			dict["coupon"] = coupon!
-		}
-		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!
 		}
 		return dict
 	}

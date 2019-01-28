@@ -52,7 +52,7 @@ open class TvmRuleFilter: Filter {
 	}
 
 	/**  Indicates which tvm rule list to return by their type.  */
-	public var ruleTypeEqual: RuleType? = nil
+	public var ruleTypeEqual: TvmRuleType? = nil
 	/**  Indicates which tvm rule list to return by their name.  */
 	public var nameEqual: String? = nil
 
@@ -69,7 +69,7 @@ open class TvmRuleFilter: Filter {
 		try super.populate(dict);
 		// set members values:
 		if dict["ruleTypeEqual"] != nil {
-			ruleTypeEqual = RuleType(rawValue: "\(dict["ruleTypeEqual"]!)")
+			ruleTypeEqual = TvmRuleType(rawValue: "\(dict["ruleTypeEqual"]!)")
 		}
 		if dict["nameEqual"] != nil {
 			nameEqual = dict["nameEqual"] as? String
