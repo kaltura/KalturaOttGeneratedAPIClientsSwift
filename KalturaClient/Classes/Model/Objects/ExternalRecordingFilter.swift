@@ -33,15 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ExternalRecording: Recording {
+/**  Filtering external recordings  */
+open class ExternalRecordingFilter: RecordingFilter {
 
-	public class ExternalRecordingTokenizer: Recording.RecordingTokenizer {
-		
-		public var externalId: BaseTokenizedObject {
-			get {
-				return self.append("externalId") 
-			}
-		}
+	public class ExternalRecordingFilterTokenizer: RecordingFilter.RecordingFilterTokenizer {
 		
 		public var metaData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
 			get {
@@ -50,22 +45,13 @@ open class ExternalRecording: Recording {
 		}
 	}
 
-	/**  External identifier for the recording  */
-	public var externalId: String? = nil
-	/**  key/value map field for extra data  */
+	/**  MetaData filtering  */
 	public var metaData: Dictionary<String, StringValue>? = nil
 
 
-	public func setMultiRequestToken(externalId: String) {
-		self.dict["externalId"] = externalId
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["externalId"] != nil {
-			externalId = dict["externalId"] as? String
-		}
 		if dict["metaData"] != nil {
 			metaData = try JSONParser.parse(map: dict["metaData"] as! [String: Any])
 		}
@@ -74,9 +60,6 @@ open class ExternalRecording: Recording {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(externalId != nil) {
-			dict["externalId"] = externalId!
-		}
 		if(metaData != nil) {
 			dict["metaData"] = metaData!.toDictionary()
 		}

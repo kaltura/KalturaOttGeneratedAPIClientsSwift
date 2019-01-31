@@ -154,8 +154,8 @@ public final class OttUserService{
 		return list(filter: nil)
 	}
 
-	/**  Retrieve user by external identifier or username or if filter is null all user
-	  in the master or the user itself  */
+	/**  Returns list of OTTUser (limited to 500 items). Filters by username/external
+	  identifier/idIn or roleIdIn  */
 	public static func list(filter: OTTUserFilter?) -> RequestBuilder<OTTUserListResponse, OTTUserListResponse.OTTUserListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<OTTUserListResponse, OTTUserListResponse.OTTUserListResponseTokenizer, ListTokenizer> = RequestBuilder<OTTUserListResponse, OTTUserListResponse.OTTUserListResponseTokenizer, ListTokenizer>(service: "ottuser", action: "list")
 			.setParam(key: "filter", value: filter)

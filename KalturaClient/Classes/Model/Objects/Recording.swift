@@ -84,12 +84,6 @@ open class Recording: ObjectBase {
 				return self.append("updateDate") 
 			}
 		}
-		
-		public var metaData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
-			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("metaData"))
-			}
-		}
 	}
 
 	/**  Kaltura unique ID representing the recording identifier  */
@@ -110,8 +104,6 @@ open class Recording: ObjectBase {
 	/**  Specifies when was the recording last updated. Date and time represented as
 	  epoch.  */
 	public var updateDate: Int64? = nil
-	/**  key/value map field for extra data  */
-	public var metaData: Dictionary<String, StringValue>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -173,9 +165,6 @@ open class Recording: ObjectBase {
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
 		}
-		if dict["metaData"] != nil {
-			metaData = try JSONParser.parse(map: dict["metaData"] as! [String: Any])
-		}
 
 	}
 
@@ -189,9 +178,6 @@ open class Recording: ObjectBase {
 		}
 		if(isProtected != nil) {
 			dict["isProtected"] = isProtected!
-		}
-		if(metaData != nil) {
-			dict["metaData"] = metaData!.toDictionary()
 		}
 		return dict
 	}
