@@ -25,16 +25,45 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using clients-generator\exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
+
+/**  Household limitations details  */
+open class HouseholdLimitationsListResponse: ListResponse {
+
+	public class HouseholdLimitationsListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<HouseholdLimitations.HouseholdLimitationsTokenizer> {
+			get {
+				return ArrayTokenizedObject<HouseholdLimitations.HouseholdLimitationsTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
+	/**  Household limitations  */
+	public var objects: Array<HouseholdLimitations>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+

@@ -31,10 +31,7 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
+public enum DowngradePolicy: String {
+	case LIFO = "LIFO"
+	case FIFO = "FIFO"
 }

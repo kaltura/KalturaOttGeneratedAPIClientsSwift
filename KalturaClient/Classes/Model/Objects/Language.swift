@@ -38,6 +38,12 @@ open class Language: ObjectBase {
 
 	public class LanguageTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
 		public var name: BaseTokenizedObject {
 			get {
 				return self.append("name") 
@@ -69,6 +75,8 @@ open class Language: ObjectBase {
 		}
 	}
 
+	/**  Identifier  */
+	public var id: Int? = nil
 	/**  Language name  */
 	public var name: String? = nil
 	/**  Language system name  */
@@ -81,6 +89,10 @@ open class Language: ObjectBase {
 	public var isDefault: Bool? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
 	}
@@ -104,6 +116,9 @@ open class Language: ObjectBase {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["id"] != nil {
+			id = dict["id"] as? Int
+		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
@@ -124,6 +139,9 @@ open class Language: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
 		if(name != nil) {
 			dict["name"] = name!
 		}

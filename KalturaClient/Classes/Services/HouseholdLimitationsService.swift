@@ -51,4 +51,14 @@ public final class HouseholdLimitationsService{
 
 		return request
 	}
+
+	public class ListTokenizer: ClientTokenizer  {
+	}
+
+	/**  Get the list of PartnerConfiguration  */
+	public static func list() -> RequestBuilder<HouseholdLimitationsListResponse, HouseholdLimitationsListResponse.HouseholdLimitationsListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<HouseholdLimitationsListResponse, HouseholdLimitationsListResponse.HouseholdLimitationsListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdLimitationsListResponse, HouseholdLimitationsListResponse.HouseholdLimitationsListResponseTokenizer, ListTokenizer>(service: "householdlimitations", action: "list")
+
+		return request
+	}
 }
