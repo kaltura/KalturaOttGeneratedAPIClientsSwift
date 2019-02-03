@@ -50,10 +50,10 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			}
 		}
 		
-		public var secondaryLanguages: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+		public var secondaryLanguages: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("secondaryLanguages"))
-			} 
+				return self.append("secondaryLanguages") 
+			}
 		}
 		
 		public var deleteMediaPolicy: BaseTokenizedObject {
@@ -68,10 +68,10 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			}
 		}
 		
-		public var secondaryCurrencys: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
+		public var secondaryCurrencys: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("secondaryCurrencys"))
-			} 
+				return self.append("secondaryCurrencys") 
+			}
 		}
 		
 		public var downgradePolicy: BaseTokenizedObject {
@@ -103,14 +103,14 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var partnerName: String? = nil
 	/**  Main metadata language  */
 	public var mainLanguage: Int? = nil
-	/**  More languages  */
-	public var secondaryLanguages: Array<IntegerValue>? = nil
+	/**  A list of comma separated languages ids.  */
+	public var secondaryLanguages: String? = nil
 	/**  Delete media policy  */
 	public var deleteMediaPolicy: DeleteMediaPolicy? = nil
 	/**  Main currency  */
 	public var mainCurrency: Int? = nil
-	/**  More currencys  */
-	public var secondaryCurrencys: Array<IntegerValue>? = nil
+	/**  A list of comma separated currencys ids.  */
+	public var secondaryCurrencys: String? = nil
 	/**  Downgrade policy  */
 	public var downgradePolicy: DowngradePolicy? = nil
 	/**  Mail settings  */
@@ -129,12 +129,20 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		self.dict["mainLanguage"] = mainLanguage
 	}
 	
+	public func setMultiRequestToken(secondaryLanguages: String) {
+		self.dict["secondaryLanguages"] = secondaryLanguages
+	}
+	
 	public func setMultiRequestToken(deleteMediaPolicy: String) {
 		self.dict["deleteMediaPolicy"] = deleteMediaPolicy
 	}
 	
 	public func setMultiRequestToken(mainCurrency: String) {
 		self.dict["mainCurrency"] = mainCurrency
+	}
+	
+	public func setMultiRequestToken(secondaryCurrencys: String) {
+		self.dict["secondaryCurrencys"] = secondaryCurrencys
 	}
 	
 	public func setMultiRequestToken(downgradePolicy: String) {
@@ -163,7 +171,7 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			mainLanguage = dict["mainLanguage"] as? Int
 		}
 		if dict["secondaryLanguages"] != nil {
-			secondaryLanguages = try JSONParser.parse(array: dict["secondaryLanguages"] as! [Any])
+			secondaryLanguages = dict["secondaryLanguages"] as? String
 		}
 		if dict["deleteMediaPolicy"] != nil {
 			deleteMediaPolicy = DeleteMediaPolicy(rawValue: "\(dict["deleteMediaPolicy"]!)")
@@ -172,7 +180,7 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			mainCurrency = dict["mainCurrency"] as? Int
 		}
 		if dict["secondaryCurrencys"] != nil {
-			secondaryCurrencys = try JSONParser.parse(array: dict["secondaryCurrencys"] as! [Any])
+			secondaryCurrencys = dict["secondaryCurrencys"] as? String
 		}
 		if dict["downgradePolicy"] != nil {
 			downgradePolicy = DowngradePolicy(rawValue: "\(dict["downgradePolicy"]!)")
@@ -198,7 +206,7 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			dict["mainLanguage"] = mainLanguage!
 		}
 		if(secondaryLanguages != nil) {
-			dict["secondaryLanguages"] = secondaryLanguages!.map { value in value.toDictionary() }
+			dict["secondaryLanguages"] = secondaryLanguages!
 		}
 		if(deleteMediaPolicy != nil) {
 			dict["deleteMediaPolicy"] = deleteMediaPolicy!.rawValue
@@ -207,7 +215,7 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			dict["mainCurrency"] = mainCurrency!
 		}
 		if(secondaryCurrencys != nil) {
-			dict["secondaryCurrencys"] = secondaryCurrencys!.map { value in value.toDictionary() }
+			dict["secondaryCurrencys"] = secondaryCurrencys!
 		}
 		if(downgradePolicy != nil) {
 			dict["downgradePolicy"] = downgradePolicy!.rawValue
