@@ -116,11 +116,22 @@ public final class HouseholdDeviceService{
 	}
 
 	public class GetTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
+	public static func get() -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer> {
+		return get(udid: nil)
 	}
 
 	/**  Returns device registration status to the supplied household  */
-	public static func get() -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer> {
+	public static func get(udid: String?) -> RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer> {
 		let request: RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer> = RequestBuilder<HouseholdDevice, HouseholdDevice.HouseholdDeviceTokenizer, GetTokenizer>(service: "householddevice", action: "get")
+			.setParam(key: "udid", value: udid)
 
 		return request
 	}
