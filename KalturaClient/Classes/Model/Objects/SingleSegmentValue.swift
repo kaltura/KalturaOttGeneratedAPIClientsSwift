@@ -42,26 +42,14 @@ open class SingleSegmentValue: BaseSegmentValue {
 				return self.append("id") 
 			}
 		}
-		
-		public var affectedUsers: BaseTokenizedObject {
-			get {
-				return self.append("affectedUsers") 
-			}
-		}
 	}
 
 	/**  Id of segment  */
 	public var id: Int64? = nil
-	/**  The amount of users that are being affected by this Segmentation type  */
-	public var affectedUsers: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
-	}
-	
-	public func setMultiRequestToken(affectedUsers: String) {
-		self.dict["affectedUsers"] = affectedUsers
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -69,9 +57,6 @@ open class SingleSegmentValue: BaseSegmentValue {
 		// set members values:
 		if dict["id"] != nil {
 			id = Int64("\(dict["id"]!)")
-		}
-		if dict["affectedUsers"] != nil {
-			affectedUsers = dict["affectedUsers"] as? Int
 		}
 
 	}
