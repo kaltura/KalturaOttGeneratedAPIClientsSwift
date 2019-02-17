@@ -176,6 +176,9 @@ open class Recording: ObjectBase {
 		if(type != nil) {
 			dict["type"] = type!.rawValue
 		}
+		if(viewableUntilDate != nil) {
+			dict["viewableUntilDate"] = viewableUntilDate!
+		}
 		if(isProtected != nil) {
 			dict["isProtected"] = isProtected!
 		}

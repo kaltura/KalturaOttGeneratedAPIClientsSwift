@@ -48,16 +48,29 @@ open class ExternalRecording: Recording {
 				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("metaData"))
 			}
 		}
+		
+		public var expiryDate: BaseTokenizedObject {
+			get {
+				return self.append("expiryDate") 
+			}
+		}
 	}
 
 	/**  External identifier for the recording  */
 	public var externalId: String? = nil
 	/**  key/value map field for extra data  */
 	public var metaData: Dictionary<String, StringValue>? = nil
+	/**  Specifies until when the recording is available. Date and time represented as
+	  epoch.  */
+	public var expiryDate: Int64? = nil
 
 
 	public func setMultiRequestToken(externalId: String) {
 		self.dict["externalId"] = externalId
+	}
+	
+	public func setMultiRequestToken(expiryDate: String) {
+		self.dict["expiryDate"] = expiryDate
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -68,6 +81,9 @@ open class ExternalRecording: Recording {
 		}
 		if dict["metaData"] != nil {
 			metaData = try JSONParser.parse(map: dict["metaData"] as! [String: Any])
+		}
+		if dict["expiryDate"] != nil {
+			expiryDate = Int64("\(dict["expiryDate"]!)")
 		}
 
 	}
