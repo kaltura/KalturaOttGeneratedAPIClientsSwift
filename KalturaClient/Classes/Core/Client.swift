@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:19-02-18"
-		apiVersion = "5.1.2.19212"
+		apiVersion = "5.1.2.25382"
 	}
 }
 
@@ -62,15 +62,6 @@ public class ClientTokenizer: BaseTokenizedObject {
 	public var apiVersion: BaseTokenizedObject {
 		get {
 			return self.append("apiVersion")
-		}
-	}
-	
-	/**
-	 * Abort the Multireuqset call if any error occurs in one of the requests
-	 */
-	public var abortOnError: BaseTokenizedObject {
-		get {
-			return self.append("abortOnError")
 		}
 	}
 	
@@ -138,6 +129,15 @@ public class ClientTokenizer: BaseTokenizedObject {
 	}
 	
 	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 */
+	public var abortOnError: BaseTokenizedObject {
+		get {
+			return self.append("abortOnError")
+		}
+	}
+	
+	/**
 	 * Abort all following requests if current request has an error
 	 */
 	public var abortAllOnError: BaseTokenizedObject {
@@ -178,18 +178,6 @@ extension RequestBuilderData{
 		}
 		set(value){
 			setParam(key: "apiVersion", value: value)
-		}
-	}
-	
-	/**
-	 * Abort the Multireuqset call if any error occurs in one of the requests
-	 */
-	public var abortOnError: Bool?{
-		get{
-			return params["abortOnError"] as? Bool
-		}
-		set(value){
-			setParam(key: "abortOnError", value: value)
 		}
 	}
 	
@@ -278,6 +266,18 @@ extension RequestBuilderData{
 	}
 	
 	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 */
+	public var abortOnError: Bool?{
+		get{
+			return params["abortOnError"] as? Bool
+		}
+		set(value){
+			setParam(key: "abortOnError", value: value)
+		}
+	}
+	
+	/**
 	 * Abort all following requests if current request has an error
 	 */
 	public var abortAllOnError: Bool?{
@@ -308,9 +308,6 @@ extension RequestBuilderData{
 		if requestBuilder.apiVersion == nil {
 			requestBuilder.apiVersion = apiVersion
 		}
-		if requestBuilder.abortOnError == nil {
-			requestBuilder.abortOnError = abortOnError
-		}
 		if requestBuilder.partnerId == nil {
 			requestBuilder.partnerId = partnerId
 		}
@@ -325,6 +322,9 @@ extension RequestBuilderData{
 		}
 		if requestBuilder.ks == nil {
 			requestBuilder.ks = ks
+		}
+		if requestBuilder.abortOnError == nil {
+			requestBuilder.abortOnError = abortOnError
 		}
 		if requestBuilder.abortAllOnError == nil {
 			requestBuilder.abortAllOnError = abortAllOnError
