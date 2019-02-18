@@ -36,13 +36,37 @@
 open class AssetUserRuleFilterAction: AssetUserRuleAction {
 
 	public class AssetUserRuleFilterActionTokenizer: AssetUserRuleAction.AssetUserRuleActionTokenizer {
+		
+		public var applyOnChannel: BaseTokenizedObject {
+			get {
+				return self.append("applyOnChannel") 
+			}
+		}
 	}
 
+	/**  Indicates whether to apply on channel  */
+	public var applyOnChannel: Bool? = nil
 
 
+	public func setMultiRequestToken(applyOnChannel: String) {
+		self.dict["applyOnChannel"] = applyOnChannel
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["applyOnChannel"] != nil {
+			applyOnChannel = dict["applyOnChannel"] as? Bool
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(applyOnChannel != nil) {
+			dict["applyOnChannel"] = applyOnChannel!
+		}
+		return dict
+	}
 }
 
