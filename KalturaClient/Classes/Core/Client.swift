@@ -41,7 +41,7 @@
 		super.init()
 		
 		clientTag = "swift:19-02-18"
-		apiVersion = "5.1.2.25382"
+		apiVersion = "5.1.2.28271"
 	}
 }
 
@@ -152,6 +152,15 @@ public class ClientTokenizer: BaseTokenizedObject {
 	public var skipCondition: BaseTokenizedObject {
 		get {
 			return self.append("skipCondition")
+		}
+	}
+	
+	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 */
+	public var abortOnError: BaseTokenizedObject {
+		get {
+			return self.append("abortOnError")
 		}
 	}
 }
@@ -301,6 +310,18 @@ extension RequestBuilderData{
 		}
 	}
 	
+	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 */
+	public var abortOnError: Bool?{
+		get{
+			return params["abortOnError"] as? Bool
+		}
+		set(value){
+			setParam(key: "abortOnError", value: value)
+		}
+	}
+	
 	public func applyParams(_ requestBuilder: RequestBuilderData) {
 		if requestBuilder.clientTag == nil {
 			requestBuilder.clientTag = clientTag
@@ -331,6 +352,9 @@ extension RequestBuilderData{
 		}
 		if requestBuilder.skipCondition == nil {
 			requestBuilder.skipCondition = skipCondition
+		}
+		if requestBuilder.abortOnError == nil {
+			requestBuilder.abortOnError = abortOnError
 		}
 	}
 }
