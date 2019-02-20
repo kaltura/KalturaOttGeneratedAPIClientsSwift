@@ -68,9 +68,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			}
 		}
 		
-		public var secondaryCurrencys: BaseTokenizedObject {
+		public var secondaryCurrencies: BaseTokenizedObject {
 			get {
-				return self.append("secondaryCurrencys") 
+				return self.append("secondaryCurrencies") 
 			}
 		}
 		
@@ -109,8 +109,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var deleteMediaPolicy: DeleteMediaPolicy? = nil
 	/**  Main currency  */
 	public var mainCurrency: Int? = nil
-	/**  A list of comma separated currencys ids.  */
-	public var secondaryCurrencys: String? = nil
+	/**  A list of comma separated currency ids.  */
+	public var secondaryCurrencies: String? = nil
 	/**  Downgrade policy  */
 	public var downgradePolicy: DowngradePolicy? = nil
 	/**  Mail settings  */
@@ -141,8 +141,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		self.dict["mainCurrency"] = mainCurrency
 	}
 	
-	public func setMultiRequestToken(secondaryCurrencys: String) {
-		self.dict["secondaryCurrencys"] = secondaryCurrencys
+	public func setMultiRequestToken(secondaryCurrencies: String) {
+		self.dict["secondaryCurrencies"] = secondaryCurrencies
 	}
 	
 	public func setMultiRequestToken(downgradePolicy: String) {
@@ -179,8 +179,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		if dict["mainCurrency"] != nil {
 			mainCurrency = dict["mainCurrency"] as? Int
 		}
-		if dict["secondaryCurrencys"] != nil {
-			secondaryCurrencys = dict["secondaryCurrencys"] as? String
+		if dict["secondaryCurrencies"] != nil {
+			secondaryCurrencies = dict["secondaryCurrencies"] as? String
 		}
 		if dict["downgradePolicy"] != nil {
 			downgradePolicy = DowngradePolicy(rawValue: "\(dict["downgradePolicy"]!)")
@@ -214,8 +214,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		if(mainCurrency != nil) {
 			dict["mainCurrency"] = mainCurrency!
 		}
-		if(secondaryCurrencys != nil) {
-			dict["secondaryCurrencys"] = secondaryCurrencys!
+		if(secondaryCurrencies != nil) {
+			dict["secondaryCurrencies"] = secondaryCurrencies!
 		}
 		if(downgradePolicy != nil) {
 			dict["downgradePolicy"] = downgradePolicy!.rawValue
