@@ -36,4 +36,5 @@ public enum MediaFileStreamerType: String {
 	case MPEG_DASH = "MPEG_DASH"
 	case URL = "URL"
 	case SMOOTH_STREAMING = "SMOOTH_STREAMING"
+	case NONE = "NONE"
 }
