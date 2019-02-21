@@ -43,26 +43,14 @@ open class CurrencyFilter: Filter {
 				return self.append("codeIn") 
 			}
 		}
-		
-		public var excludePartner: BaseTokenizedObject {
-			get {
-				return self.append("excludePartner") 
-			}
-		}
 	}
 
 	/**  Currency codes  */
 	public var codeIn: String? = nil
-	/**  Exclude partner  */
-	public var excludePartner: Bool? = nil
 
 
 	public func setMultiRequestToken(codeIn: String) {
 		self.dict["codeIn"] = codeIn
-	}
-	
-	public func setMultiRequestToken(excludePartner: String) {
-		self.dict["excludePartner"] = excludePartner
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -71,9 +59,6 @@ open class CurrencyFilter: Filter {
 		if dict["codeIn"] != nil {
 			codeIn = dict["codeIn"] as? String
 		}
-		if dict["excludePartner"] != nil {
-			excludePartner = dict["excludePartner"] as? Bool
-		}
 
 	}
 
@@ -81,9 +66,6 @@ open class CurrencyFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(codeIn != nil) {
 			dict["codeIn"] = codeIn!
-		}
-		if(excludePartner != nil) {
-			dict["excludePartner"] = excludePartner!
 		}
 		return dict
 	}
