@@ -33,59 +33,72 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  User asset rule filter  */
-open class UserAssetRuleFilter: Filter {
+/**  Bulk Upload Result  */
+open class BulkUploadResult: ObjectBase {
 
-	public class UserAssetRuleFilterTokenizer: Filter.FilterTokenizer {
+	public class BulkUploadResultTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var assetIdEqual: BaseTokenizedObject {
+		public var objectId: BaseTokenizedObject {
 			get {
-				return self.append("assetIdEqual") 
+				return self.append("objectId") 
 			}
 		}
 		
-		public var assetTypeEqual: BaseTokenizedObject {
+		public var index: BaseTokenizedObject {
 			get {
-				return self.append("assetTypeEqual") 
+				return self.append("index") 
 			}
+		}
+		
+		public var bulkUploadId: BaseTokenizedObject {
+			get {
+				return self.append("bulkUploadId") 
+			}
+		}
+		
+		public func status<T: ResponseStatus.ResponseStatusTokenizer>() -> T {
+			return T(self.append("status"))
 		}
 	}
 
-	/**  Asset identifier to filter by  */
-	public var assetIdEqual: Int64? = nil
-	/**  Asset type to filter by - 0 = EPG, 1 = media, 2 = npvr  */
-	public var assetTypeEqual: Int? = nil
+	/**  the result ObjectId (assetId, userId etc)  */
+	public var objectId: Int64? = nil
+	/**  result index  */
+	public var index: Int? = nil
+	/**  Bulk upload identifier  */
+	public var bulkUploadId: Int64? = nil
+	/**  status  */
+	public var status: ResponseStatus? = nil
 
 
-	public func setMultiRequestToken(assetIdEqual: String) {
-		self.dict["assetIdEqual"] = assetIdEqual
+	public func setMultiRequestToken(objectId: String) {
+		self.dict["objectId"] = objectId
 	}
 	
-	public func setMultiRequestToken(assetTypeEqual: String) {
-		self.dict["assetTypeEqual"] = assetTypeEqual
+	public func setMultiRequestToken(index: String) {
+		self.dict["index"] = index
+	}
+	
+	public func setMultiRequestToken(bulkUploadId: String) {
+		self.dict["bulkUploadId"] = bulkUploadId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
+		if dict["objectId"] != nil {
+			objectId = Int64("\(dict["objectId"]!)")
 		}
-		if dict["assetTypeEqual"] != nil {
-			assetTypeEqual = dict["assetTypeEqual"] as? Int
+		if dict["index"] != nil {
+			index = dict["index"] as? Int
 		}
+		if dict["bulkUploadId"] != nil {
+			bulkUploadId = Int64("\(dict["bulkUploadId"]!)")
+		}
+		if dict["status"] != nil {
+		status = try JSONParser.parse(object: dict["status"] as! [String: Any])		}
 
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(assetIdEqual != nil) {
-			dict["assetIdEqual"] = assetIdEqual!
-		}
-		if(assetTypeEqual != nil) {
-			dict["assetTypeEqual"] = assetTypeEqual!
-		}
-		return dict
-	}
 }
 

@@ -33,37 +33,17 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Asset wrapper  */
-open class BulkListResponse: ListResponse {
+/**  instractions for upload media asset values  */
+open class BulkUploadMediaEntryData: BulkUploadAssetEntryData {
 
-	public class BulkListResponseTokenizer: ListResponse.ListResponseTokenizer {
-		
-		public var objects: ArrayTokenizedObject<Bulk.BulkTokenizer> {
-			get {
-				return ArrayTokenizedObject<Bulk.BulkTokenizer>(self.append("objects"))
-			} 
-		}
+	public class BulkUploadMediaEntryDataTokenizer: BulkUploadAssetEntryData.BulkUploadAssetEntryDataTokenizer {
 	}
 
-	/**  bulk items  */
-	public var objects: Array<Bulk>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["objects"] != nil {
-			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(objects != nil) {
-			dict["objects"] = objects!.map { value in value.toDictionary() }
-		}
-		return dict
-	}
 }
 

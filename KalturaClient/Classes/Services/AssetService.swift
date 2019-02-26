@@ -52,6 +52,22 @@ public final class AssetService{
 		return request
 	}
 
+	public class AddFromBulkUploadTokenizer: ClientTokenizer  {
+		
+		public func bulkUploadJobData<T: BulkUploadJobData.BulkUploadJobDataTokenizer>() -> T {
+			return T(self.append("bulkUploadJobData"))
+		}
+	}
+
+	/**  Add new bulk upload batch job Conversion profile id can be specified in the API.  */
+	public static func addFromBulkUpload(fileData: RequestFile, bulkUploadJobData: BulkUploadJobData) -> RequestBuilder<Int64, BaseTokenizedObject, AddFromBulkUploadTokenizer> {
+		let request: RequestBuilder<Int64, BaseTokenizedObject, AddFromBulkUploadTokenizer> = RequestBuilder<Int64, BaseTokenizedObject, AddFromBulkUploadTokenizer>(service: "asset", action: "addFromBulkUpload")
+			.setFile(key: "fileData", value: fileData)
+			.setParam(key: "bulkUploadJobData", value: bulkUploadJobData)
+
+		return request
+	}
+
 	public class CountTokenizer: ClientTokenizer  {
 		
 		public func filter<T: SearchAssetFilter.SearchAssetFilterTokenizer>() -> T {

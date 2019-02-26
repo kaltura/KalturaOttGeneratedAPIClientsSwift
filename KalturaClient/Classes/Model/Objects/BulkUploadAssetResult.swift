@@ -33,59 +33,50 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  User asset rule filter  */
-open class UserAssetRuleFilter: Filter {
+open class BulkUploadAssetResult: BulkUploadResult {
 
-	public class UserAssetRuleFilterTokenizer: Filter.FilterTokenizer {
+	public class BulkUploadAssetResultTokenizer: BulkUploadResult.BulkUploadResultTokenizer {
 		
-		public var assetIdEqual: BaseTokenizedObject {
+		public var type: BaseTokenizedObject {
 			get {
-				return self.append("assetIdEqual") 
+				return self.append("type") 
 			}
 		}
 		
-		public var assetTypeEqual: BaseTokenizedObject {
+		public var externalId: BaseTokenizedObject {
 			get {
-				return self.append("assetTypeEqual") 
+				return self.append("externalId") 
 			}
 		}
 	}
 
-	/**  Asset identifier to filter by  */
-	public var assetIdEqual: Int64? = nil
-	/**  Asset type to filter by - 0 = EPG, 1 = media, 2 = npvr  */
-	public var assetTypeEqual: Int? = nil
+	/**  Identifies the asset type (EPG, Recording, Movie, TV Series, etc).              
+	  Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID
+	  according to the asset types IDs defined in the system.  */
+	public var type: Int? = nil
+	/**  External identifier for the asset  */
+	public var externalId: String? = nil
 
 
-	public func setMultiRequestToken(assetIdEqual: String) {
-		self.dict["assetIdEqual"] = assetIdEqual
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
 	}
 	
-	public func setMultiRequestToken(assetTypeEqual: String) {
-		self.dict["assetTypeEqual"] = assetTypeEqual
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
+		if dict["type"] != nil {
+			type = dict["type"] as? Int
 		}
-		if dict["assetTypeEqual"] != nil {
-			assetTypeEqual = dict["assetTypeEqual"] as? Int
+		if dict["externalId"] != nil {
+			externalId = dict["externalId"] as? String
 		}
 
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(assetIdEqual != nil) {
-			dict["assetIdEqual"] = assetIdEqual!
-		}
-		if(assetTypeEqual != nil) {
-			dict["assetTypeEqual"] = assetTypeEqual!
-		}
-		return dict
-	}
 }
 

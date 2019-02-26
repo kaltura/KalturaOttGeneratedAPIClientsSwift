@@ -33,59 +33,49 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  User asset rule filter  */
-open class UserAssetRuleFilter: Filter {
+/**  Response Status  */
+open class ResponseStatus: ObjectBase {
 
-	public class UserAssetRuleFilterTokenizer: Filter.FilterTokenizer {
+	public class ResponseStatusTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var assetIdEqual: BaseTokenizedObject {
+		public var code: BaseTokenizedObject {
 			get {
-				return self.append("assetIdEqual") 
+				return self.append("code") 
 			}
 		}
 		
-		public var assetTypeEqual: BaseTokenizedObject {
+		public var message: BaseTokenizedObject {
 			get {
-				return self.append("assetTypeEqual") 
+				return self.append("message") 
 			}
 		}
 	}
 
-	/**  Asset identifier to filter by  */
-	public var assetIdEqual: Int64? = nil
-	/**  Asset type to filter by - 0 = EPG, 1 = media, 2 = npvr  */
-	public var assetTypeEqual: Int? = nil
+	/**  Code  */
+	public var code: Int? = nil
+	/**  Message  */
+	public var message: String? = nil
 
 
-	public func setMultiRequestToken(assetIdEqual: String) {
-		self.dict["assetIdEqual"] = assetIdEqual
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
 	}
 	
-	public func setMultiRequestToken(assetTypeEqual: String) {
-		self.dict["assetTypeEqual"] = assetTypeEqual
+	public func setMultiRequestToken(message: String) {
+		self.dict["message"] = message
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
+		if dict["code"] != nil {
+			code = dict["code"] as? Int
 		}
-		if dict["assetTypeEqual"] != nil {
-			assetTypeEqual = dict["assetTypeEqual"] as? Int
+		if dict["message"] != nil {
+			message = dict["message"] as? String
 		}
 
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(assetIdEqual != nil) {
-			dict["assetIdEqual"] = assetIdEqual!
-		}
-		if(assetTypeEqual != nil) {
-			dict["assetTypeEqual"] = assetTypeEqual!
-		}
-		return dict
-	}
 }
 

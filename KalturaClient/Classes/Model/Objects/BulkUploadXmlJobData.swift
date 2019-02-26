@@ -33,59 +33,17 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  User asset rule filter  */
-open class UserAssetRuleFilter: Filter {
+/**  instractions for upload data type with xml  */
+open class BulkUploadXmlJobData: BulkUploadJobData {
 
-	public class UserAssetRuleFilterTokenizer: Filter.FilterTokenizer {
-		
-		public var assetIdEqual: BaseTokenizedObject {
-			get {
-				return self.append("assetIdEqual") 
-			}
-		}
-		
-		public var assetTypeEqual: BaseTokenizedObject {
-			get {
-				return self.append("assetTypeEqual") 
-			}
-		}
+	public class BulkUploadXmlJobDataTokenizer: BulkUploadJobData.BulkUploadJobDataTokenizer {
 	}
 
-	/**  Asset identifier to filter by  */
-	public var assetIdEqual: Int64? = nil
-	/**  Asset type to filter by - 0 = EPG, 1 = media, 2 = npvr  */
-	public var assetTypeEqual: Int? = nil
 
 
-	public func setMultiRequestToken(assetIdEqual: String) {
-		self.dict["assetIdEqual"] = assetIdEqual
-	}
-	
-	public func setMultiRequestToken(assetTypeEqual: String) {
-		self.dict["assetTypeEqual"] = assetTypeEqual
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
-		}
-		if dict["assetTypeEqual"] != nil {
-			assetTypeEqual = dict["assetTypeEqual"] as? Int
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(assetIdEqual != nil) {
-			dict["assetIdEqual"] = assetIdEqual!
-		}
-		if(assetTypeEqual != nil) {
-			dict["assetTypeEqual"] = assetTypeEqual!
-		}
-		return dict
-	}
 }
 

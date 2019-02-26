@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class Bulk: ObjectBase {
+/**  Bulk Upload  */
+open class BulkUpload: ObjectBase {
 
-	public class BulkTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class BulkUploadTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -60,17 +61,41 @@ open class Bulk: ObjectBase {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var uploadTokenId: BaseTokenizedObject {
+			get {
+				return self.append("uploadTokenId") 
+			}
+		}
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var results: ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer> {
+			get {
+				return ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer>(self.append("results"))
+			} 
+		}
 	}
 
 	/**  Bulk identifier  */
 	public var id: Int64? = nil
 	/**  Status  */
-	public var status: BatchJobStatus? = nil
+	public var status: BatchUploadJobStatus? = nil
 	/**  Specifies when was the bulk action created. Date and time represented as epoch  */
 	public var createDate: Int64? = nil
 	/**  Specifies when was the bulk action last updated. Date and time represented as
 	  epoch  */
 	public var updateDate: Int64? = nil
+	/**  Upload Token Id  */
+	public var uploadTokenId: String? = nil
+	/**  Action  */
+	public var action: BatchUploadJobAction? = nil
+	/**  A list of results  */
+	public var results: Array<BulkUploadResult>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -89,6 +114,14 @@ open class Bulk: ObjectBase {
 		self.dict["updateDate"] = updateDate
 	}
 	
+	public func setMultiRequestToken(uploadTokenId: String) {
+		self.dict["uploadTokenId"] = uploadTokenId
+	}
+	
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -96,13 +129,22 @@ open class Bulk: ObjectBase {
 			id = Int64("\(dict["id"]!)")
 		}
 		if dict["status"] != nil {
-			status = BatchJobStatus(rawValue: "\(dict["status"]!)")
+			status = BatchUploadJobStatus(rawValue: "\(dict["status"]!)")
 		}
 		if dict["createDate"] != nil {
 			createDate = Int64("\(dict["createDate"]!)")
 		}
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
+		}
+		if dict["uploadTokenId"] != nil {
+			uploadTokenId = dict["uploadTokenId"] as? String
+		}
+		if dict["action"] != nil {
+			action = BatchUploadJobAction(rawValue: "\(dict["action"]!)")
+		}
+		if dict["results"] != nil {
+			results = try JSONParser.parse(array: dict["results"] as! [Any])
 		}
 
 	}

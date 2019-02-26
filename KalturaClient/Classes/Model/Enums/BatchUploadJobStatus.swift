@@ -25,67 +25,23 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  User asset rule filter  */
-open class UserAssetRuleFilter: Filter {
-
-	public class UserAssetRuleFilterTokenizer: Filter.FilterTokenizer {
-		
-		public var assetIdEqual: BaseTokenizedObject {
-			get {
-				return self.append("assetIdEqual") 
-			}
-		}
-		
-		public var assetTypeEqual: BaseTokenizedObject {
-			get {
-				return self.append("assetTypeEqual") 
-			}
-		}
-	}
-
-	/**  Asset identifier to filter by  */
-	public var assetIdEqual: Int64? = nil
-	/**  Asset type to filter by - 0 = EPG, 1 = media, 2 = npvr  */
-	public var assetTypeEqual: Int? = nil
-
-
-	public func setMultiRequestToken(assetIdEqual: String) {
-		self.dict["assetIdEqual"] = assetIdEqual
-	}
-	
-	public func setMultiRequestToken(assetTypeEqual: String) {
-		self.dict["assetTypeEqual"] = assetTypeEqual
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["assetIdEqual"] != nil {
-			assetIdEqual = Int64("\(dict["assetIdEqual"]!)")
-		}
-		if dict["assetTypeEqual"] != nil {
-			assetTypeEqual = dict["assetTypeEqual"] as? Int
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(assetIdEqual != nil) {
-			dict["assetIdEqual"] = assetIdEqual!
-		}
-		if(assetTypeEqual != nil) {
-			dict["assetTypeEqual"] = assetTypeEqual!
-		}
-		return dict
-	}
+public enum BatchUploadJobStatus: String {
+	case PENDING = "PENDING"
+	case QUEUED = "QUEUED"
+	case PROCESSING = "PROCESSING"
+	case PROCESSED = "PROCESSED"
+	case MOVEFILE = "MOVEFILE"
+	case FINISHED = "FINISHED"
+	case FAILED = "FAILED"
+	case ABORTED = "ABORTED"
+	case RETRY = "RETRY"
+	case FATAL = "FATAL"
+	case DONT_PROCESS = "DONT_PROCESS"
+	case FINISHED_PARTIALLY = "FINISHED_PARTIALLY"
 }
-

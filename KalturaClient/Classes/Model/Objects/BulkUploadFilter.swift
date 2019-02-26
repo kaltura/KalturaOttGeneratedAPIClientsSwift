@@ -25,24 +25,49 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum BatchJobStatus: String {
-	case PENDING = "PENDING"
-	case QUEUED = "QUEUED"
-	case PROCESSING = "PROCESSING"
-	case PROCESSED = "PROCESSED"
-	case MOVEFILE = "MOVEFILE"
-	case FINISHED = "FINISHED"
-	case FAILED = "FAILED"
-	case ABORTED = "ABORTED"
-	case ALMOST_DONE = "ALMOST_DONE"
-	case RETRY = "RETRY"
-	case FATAL = "FATAL"
-	case DONT_PROCESS = "DONT_PROCESS"
-	case FINISHED_PARTIALLY = "FINISHED_PARTIALLY"
+
+/**  Bulk Upload Filter  */
+open class BulkUploadFilter: PersistedFilter {
+
+	public class BulkUploadFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
+		
+		public var statusEqual: BaseTokenizedObject {
+			get {
+				return self.append("statusEqual") 
+			}
+		}
+	}
+
+	/**  Indicates which Bulk Upload list to return by this KalturaBatchUploadJobStatus.  */
+	public var statusEqual: BatchUploadJobStatus? = nil
+
+
+	public func setMultiRequestToken(statusEqual: String) {
+		self.dict["statusEqual"] = statusEqual
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["statusEqual"] != nil {
+			statusEqual = BatchUploadJobStatus(rawValue: "\(dict["statusEqual"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(statusEqual != nil) {
+			dict["statusEqual"] = statusEqual!.rawValue
+		}
+		return dict
+	}
 }
+

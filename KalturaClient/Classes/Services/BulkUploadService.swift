@@ -33,49 +33,23 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class BulkService{
+public final class BulkUploadService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: BulkFilter.BulkFilterTokenizer>() -> T {
+		public func filter<T: BulkUploadFilter.BulkUploadFilterTokenizer>() -> T {
 			return T(self.append("filter"))
-		}
-		
-		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
-			return T(self.append("pager"))
 		}
 	}
 
-	public static func list() -> RequestBuilder<BulkListResponse, BulkListResponse.BulkListResponseTokenizer, ListTokenizer> {
+	public static func list() -> RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	public static func list(filter: BulkFilter?) -> RequestBuilder<BulkListResponse, BulkListResponse.BulkListResponseTokenizer, ListTokenizer> {
-		return list(filter: filter, pager: nil)
-	}
-
-	/**  List bulk actions  */
-	public static func list(filter: BulkFilter?, pager: FilterPager?) -> RequestBuilder<BulkListResponse, BulkListResponse.BulkListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<BulkListResponse, BulkListResponse.BulkListResponseTokenizer, ListTokenizer> = RequestBuilder<BulkListResponse, BulkListResponse.BulkListResponseTokenizer, ListTokenizer>(service: "bulk", action: "list")
+	/**  Get list of KalturaBulkUpload by filter  */
+	public static func list(filter: BulkUploadFilter?) -> RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> = RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer>(service: "bulkupload", action: "list")
 			.setParam(key: "filter", value: filter)
-			.setParam(key: "pager", value: pager)
-
-		return request
-	}
-
-	public class ServeLogTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-	}
-
-	/**  ServeLog action returns the log file for the bulk action  */
-	public static func serveLog(id: Int64) -> RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLogTokenizer> {
-		let request: RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLogTokenizer> = RequestBuilder<Bulk, Bulk.BulkTokenizer, ServeLogTokenizer>(service: "bulk", action: "serveLog")
-			.setParam(key: "id", value: id)
 
 		return request
 	}

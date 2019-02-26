@@ -33,38 +33,35 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class BulkFilter: PersistedFilter {
+/**  Asset wrapper  */
+open class BulkUploadListResponse: ListResponse {
 
-	public class BulkFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
+	public class BulkUploadListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var statusEqual: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<BulkUpload.BulkUploadTokenizer> {
 			get {
-				return self.append("statusEqual") 
-			}
+				return ArrayTokenizedObject<BulkUpload.BulkUploadTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  dynamicOrderBy - order by Meta  */
-	public var statusEqual: BatchJobStatus? = nil
+	/**  bulk upload items  */
+	public var objects: Array<BulkUpload>? = nil
 
 
-	public func setMultiRequestToken(statusEqual: String) {
-		self.dict["statusEqual"] = statusEqual
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["statusEqual"] != nil {
-			statusEqual = BatchJobStatus(rawValue: "\(dict["statusEqual"]!)")
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(statusEqual != nil) {
-			dict["statusEqual"] = statusEqual!.rawValue
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}
