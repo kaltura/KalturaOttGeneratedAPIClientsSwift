@@ -46,7 +46,7 @@ open class BulkUploadFilter: PersistedFilter {
 	}
 
 	/**  Indicates which Bulk Upload list to return by this KalturaBatchUploadJobStatus.  */
-	public var statusEqual: BatchUploadJobStatus? = nil
+	public var statusEqual: BulkUploadJobStatus? = nil
 
 
 	public func setMultiRequestToken(statusEqual: String) {
@@ -57,7 +57,7 @@ open class BulkUploadFilter: PersistedFilter {
 		try super.populate(dict);
 		// set members values:
 		if dict["statusEqual"] != nil {
-			statusEqual = BatchUploadJobStatus(rawValue: "\(dict["statusEqual"]!)")
+			statusEqual = BulkUploadJobStatus(rawValue: "\(dict["statusEqual"]!)")
 		}
 
 	}

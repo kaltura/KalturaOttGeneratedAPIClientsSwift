@@ -37,30 +37,13 @@
 open class BulkUploadJobData: ObjectBase {
 
 	public class BulkUploadJobDataTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public func entryData<T: BulkUploadEntryData.BulkUploadEntryDataTokenizer>() -> T {
-			return T(self.append("entryData"))
-		}
 	}
 
-	/**  EntryData  */
-	public var entryData: BulkUploadEntryData? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["entryData"] != nil {
-		entryData = try JSONParser.parse(object: dict["entryData"] as! [String: Any])		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(entryData != nil) {
-			dict["entryData"] = entryData!.toDictionary()
-		}
-		return dict
-	}
 }
 

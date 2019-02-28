@@ -56,8 +56,22 @@ open class BulkUploadResult: ObjectBase {
 			}
 		}
 		
-		public func status<T: ResponseStatus.ResponseStatusTokenizer>() -> T {
-			return T(self.append("status"))
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var errorCode: BaseTokenizedObject {
+			get {
+				return self.append("errorCode") 
+			}
+		}
+		
+		public var errorMessage: BaseTokenizedObject {
+			get {
+				return self.append("errorMessage") 
+			}
 		}
 	}
 
@@ -68,7 +82,11 @@ open class BulkUploadResult: ObjectBase {
 	/**  Bulk upload identifier  */
 	public var bulkUploadId: Int64? = nil
 	/**  status  */
-	public var status: ResponseStatus? = nil
+	public var status: BulkUploadResultStatus? = nil
+	/**  Error Code  */
+	public var errorCode: Int? = nil
+	/**  Error Message  */
+	public var errorMessage: String? = nil
 
 
 	public func setMultiRequestToken(objectId: String) {
@@ -81,6 +99,18 @@ open class BulkUploadResult: ObjectBase {
 	
 	public func setMultiRequestToken(bulkUploadId: String) {
 		self.dict["bulkUploadId"] = bulkUploadId
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(errorCode: String) {
+		self.dict["errorCode"] = errorCode
+	}
+	
+	public func setMultiRequestToken(errorMessage: String) {
+		self.dict["errorMessage"] = errorMessage
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -96,7 +126,14 @@ open class BulkUploadResult: ObjectBase {
 			bulkUploadId = Int64("\(dict["bulkUploadId"]!)")
 		}
 		if dict["status"] != nil {
-		status = try JSONParser.parse(object: dict["status"] as! [String: Any])		}
+			status = BulkUploadResultStatus(rawValue: "\(dict["status"]!)")
+		}
+		if dict["errorCode"] != nil {
+			errorCode = dict["errorCode"] as? Int
+		}
+		if dict["errorMessage"] != nil {
+			errorMessage = dict["errorMessage"] as? String
+		}
 
 	}
 

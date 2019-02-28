@@ -25,23 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum BatchUploadJobStatus: String {
-	case PENDING = "PENDING"
-	case QUEUED = "QUEUED"
-	case PROCESSING = "PROCESSING"
-	case PROCESSED = "PROCESSED"
-	case MOVEFILE = "MOVEFILE"
-	case FINISHED = "FINISHED"
-	case FAILED = "FAILED"
-	case ABORTED = "ABORTED"
-	case RETRY = "RETRY"
-	case FATAL = "FATAL"
-	case DONT_PROCESS = "DONT_PROCESS"
-	case FINISHED_PARTIALLY = "FINISHED_PARTIALLY"
+
+open class BulkUploadMediaAssetResult: BulkUploadAssetResult {
+
+	public class BulkUploadMediaAssetResultTokenizer: BulkUploadAssetResult.BulkUploadAssetResultTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

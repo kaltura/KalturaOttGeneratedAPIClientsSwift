@@ -25,57 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  Response Status  */
-open class ResponseStatus: ObjectBase {
-
-	public class ResponseStatusTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public var code: BaseTokenizedObject {
-			get {
-				return self.append("code") 
-			}
-		}
-		
-		public var message: BaseTokenizedObject {
-			get {
-				return self.append("message") 
-			}
-		}
-	}
-
-	/**  Code  */
-	public var code: Int? = nil
-	/**  Message  */
-	public var message: String? = nil
-
-
-	public func setMultiRequestToken(code: String) {
-		self.dict["code"] = code
-	}
-	
-	public func setMultiRequestToken(message: String) {
-		self.dict["message"] = message
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["code"] != nil {
-			code = dict["code"] as? Int
-		}
-		if dict["message"] != nil {
-			message = dict["message"] as? String
-		}
-
-	}
-
+public enum BulkUploadJobStatus: String {
+	case PENDING = "PENDING"
+	case UPLOADED = "UPLOADED"
+	case QUEUED = "QUEUED"
 }
-

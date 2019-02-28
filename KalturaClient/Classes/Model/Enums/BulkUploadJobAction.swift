@@ -25,25 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  instractions for upload data values  */
-open class BulkUploadEntryData: ObjectBase {
-
-	public class BulkUploadEntryDataTokenizer: ObjectBase.ObjectBaseTokenizer {
-	}
-
-
-
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-	}
-
+public enum BulkUploadJobAction: String {
+	case UPSERT = "Upsert"
+	case DELETE = "Delete"
 }
-

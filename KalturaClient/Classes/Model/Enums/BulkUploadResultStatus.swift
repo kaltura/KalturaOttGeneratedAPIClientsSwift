@@ -25,25 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  instractions for upload media asset values  */
-open class BulkUploadMediaEntryData: BulkUploadAssetEntryData {
-
-	public class BulkUploadMediaEntryDataTokenizer: BulkUploadAssetEntryData.BulkUploadAssetEntryDataTokenizer {
-	}
-
-
-
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-	}
-
+public enum BulkUploadResultStatus: String {
+	case ERROR = "ERROR"
+	case OK = "OK"
+	case IN_PROGRESS = "IN_PROGRESS"
 }
-
