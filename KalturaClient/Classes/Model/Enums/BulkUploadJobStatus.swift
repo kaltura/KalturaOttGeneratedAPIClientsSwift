@@ -32,7 +32,14 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum BulkUploadJobStatus: String {
-	case PENDING = "PENDING"
-	case UPLOADED = "UPLOADED"
-	case QUEUED = "QUEUED"
+	case PENDING = "Pending"
+	case UPLOADED = "Uploaded"
+	case QUEUED = "Queued"
+	case PARSING = "Parsing"
+	case PROCESSING = "Processing"
+	case PROCESSED = "Processed"
+	case SUCCESS = "Success"
+	case PARTIAL = "Partial"
+	case FAILED = "Failed"
+	case FATAL = "Fatal"
 }

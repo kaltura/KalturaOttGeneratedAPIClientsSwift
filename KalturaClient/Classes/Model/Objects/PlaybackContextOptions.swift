@@ -55,6 +55,12 @@ open class PlaybackContextOptions: ObjectBase {
 			}
 		}
 		
+		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
+			}
+		}
+		
 		public var context: BaseTokenizedObject {
 			get {
 				return self.append("context") 
@@ -74,6 +80,8 @@ open class PlaybackContextOptions: ObjectBase {
 	public var streamerType: String? = nil
 	/**  List of comma separated media file IDs  */
 	public var assetFileIds: String? = nil
+	/**  key/value map field for extra data  */
+	public var adapterData: Dictionary<String, StringValue>? = nil
 	/**  Playback context type  */
 	public var context: PlaybackContextType? = nil
 	/**  Url type  */
@@ -112,6 +120,9 @@ open class PlaybackContextOptions: ObjectBase {
 		if dict["assetFileIds"] != nil {
 			assetFileIds = dict["assetFileIds"] as? String
 		}
+		if dict["adapterData"] != nil {
+			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
+		}
 		if dict["context"] != nil {
 			context = PlaybackContextType(rawValue: "\(dict["context"]!)")
 		}
@@ -131,6 +142,9 @@ open class PlaybackContextOptions: ObjectBase {
 		}
 		if(assetFileIds != nil) {
 			dict["assetFileIds"] = assetFileIds!
+		}
+		if(adapterData != nil) {
+			dict["adapterData"] = adapterData!.toDictionary()
 		}
 		if(context != nil) {
 			dict["context"] = context!.rawValue

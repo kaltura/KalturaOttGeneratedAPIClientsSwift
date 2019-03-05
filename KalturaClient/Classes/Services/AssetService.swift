@@ -54,23 +54,21 @@ public final class AssetService{
 
 	public class AddFromBulkUploadTokenizer: ClientTokenizer  {
 		
-		public var assetType: BaseTokenizedObject {
-			get {
-				return self.append("assetType") 
-			}
-		}
-		
 		public func bulkUploadJobData<T: BulkUploadJobData.BulkUploadJobDataTokenizer>() -> T {
 			return T(self.append("bulkUploadJobData"))
+		}
+		
+		public func bulkUploadAssetData<T: BulkUploadAssetData.BulkUploadAssetDataTokenizer>() -> T {
+			return T(self.append("bulkUploadAssetData"))
 		}
 	}
 
 	/**  Add new bulk upload batch job Conversion profile id can be specified in the API.  */
-	public static func addFromBulkUpload(fileData: RequestFile, assetType: AssetType, bulkUploadJobData: BulkUploadJobData) -> RequestBuilder<BulkUpload, BulkUpload.BulkUploadTokenizer, AddFromBulkUploadTokenizer> {
+	public static func addFromBulkUpload(fileData: RequestFile, bulkUploadJobData: BulkUploadJobData, bulkUploadAssetData: BulkUploadAssetData) -> RequestBuilder<BulkUpload, BulkUpload.BulkUploadTokenizer, AddFromBulkUploadTokenizer> {
 		let request: RequestBuilder<BulkUpload, BulkUpload.BulkUploadTokenizer, AddFromBulkUploadTokenizer> = RequestBuilder<BulkUpload, BulkUpload.BulkUploadTokenizer, AddFromBulkUploadTokenizer>(service: "asset", action: "addFromBulkUpload")
 			.setFile(key: "fileData", value: fileData)
-			.setParam(key: "assetType", value: assetType.rawValue)
 			.setParam(key: "bulkUploadJobData", value: bulkUploadJobData)
+			.setParam(key: "bulkUploadAssetData", value: bulkUploadAssetData)
 
 		return request
 	}

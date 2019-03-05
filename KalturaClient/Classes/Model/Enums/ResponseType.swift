@@ -31,8 +31,10 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum BulkUploadResultStatus: String {
-	case ERROR = "Error"
-	case OK = "Ok"
-	case INPROGRESS = "InProgress"
+public enum ResponseType: Int {
+	case JSON = 1
+	case XML = 2
+	case JSONP = 9
+	case ASSET_XML = 30
+	case EXCEL = 31
 }
