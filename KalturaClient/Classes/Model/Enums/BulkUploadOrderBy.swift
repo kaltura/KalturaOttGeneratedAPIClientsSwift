@@ -34,5 +34,4 @@
 public enum BulkUploadOrderBy: String {
 	case NONE = "NONE"
 	case UPDATE_DATE = "UPDATE_DATE"
-	case STATUS = "STATUS"
 }

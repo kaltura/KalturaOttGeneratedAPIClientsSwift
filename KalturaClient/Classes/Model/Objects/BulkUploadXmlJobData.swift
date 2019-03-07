@@ -33,7 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  instractions for upload data type with xml  */
+/**  instructions for upload data type with xml  */
 open class BulkUploadXmlJobData: BulkUploadJobData {
 
 	public class BulkUploadXmlJobDataTokenizer: BulkUploadJobData.BulkUploadJobDataTokenizer {

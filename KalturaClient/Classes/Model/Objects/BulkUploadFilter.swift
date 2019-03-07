@@ -34,38 +34,93 @@
  */
 
 /**  Bulk Upload Filter  */
-open class BulkUploadFilter: PersistedFilter {
+open class BulkUploadFilter: Filter {
 
-	public class BulkUploadFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
+	public class BulkUploadFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var statusEqual: BaseTokenizedObject {
+		public var uploadedOnEqual: BaseTokenizedObject {
 			get {
-				return self.append("statusEqual") 
+				return self.append("uploadedOnEqual") 
+			}
+		}
+		
+		public var dateComparisonType: BaseTokenizedObject {
+			get {
+				return self.append("dateComparisonType") 
+			}
+		}
+		
+		public var statusIn: BaseTokenizedObject {
+			get {
+				return self.append("statusIn") 
+			}
+		}
+		
+		public var userIdEqualCurrent: BaseTokenizedObject {
+			get {
+				return self.append("userIdEqualCurrent") 
 			}
 		}
 	}
 
-	/**  Indicates which Bulk Upload list to return by this KalturaBatchUploadJobStatus.  */
-	public var statusEqual: BulkUploadJobStatus? = nil
+	/**  upload date to search within.  */
+	public var uploadedOnEqual: Int64? = nil
+	/**  Date Comparison Type.  */
+	public var dateComparisonType: DateComparisonType? = nil
+	/**  List of KalturaBulkUploadJobStatus to search within.  */
+	public var statusIn: String? = nil
+	/**  Indicates if to get the BulkUpload list that created by current user or by the
+	  entire group.  */
+	public var userIdEqualCurrent: Bool? = nil
 
 
-	public func setMultiRequestToken(statusEqual: String) {
-		self.dict["statusEqual"] = statusEqual
+	public func setMultiRequestToken(uploadedOnEqual: String) {
+		self.dict["uploadedOnEqual"] = uploadedOnEqual
+	}
+	
+	public func setMultiRequestToken(dateComparisonType: String) {
+		self.dict["dateComparisonType"] = dateComparisonType
+	}
+	
+	public func setMultiRequestToken(statusIn: String) {
+		self.dict["statusIn"] = statusIn
+	}
+	
+	public func setMultiRequestToken(userIdEqualCurrent: String) {
+		self.dict["userIdEqualCurrent"] = userIdEqualCurrent
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["statusEqual"] != nil {
-			statusEqual = BulkUploadJobStatus(rawValue: "\(dict["statusEqual"]!)")
+		if dict["uploadedOnEqual"] != nil {
+			uploadedOnEqual = Int64("\(dict["uploadedOnEqual"]!)")
+		}
+		if dict["dateComparisonType"] != nil {
+			dateComparisonType = DateComparisonType(rawValue: "\(dict["dateComparisonType"]!)")
+		}
+		if dict["statusIn"] != nil {
+			statusIn = dict["statusIn"] as? String
+		}
+		if dict["userIdEqualCurrent"] != nil {
+			userIdEqualCurrent = dict["userIdEqualCurrent"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(statusEqual != nil) {
-			dict["statusEqual"] = statusEqual!.rawValue
+		if(uploadedOnEqual != nil) {
+			dict["uploadedOnEqual"] = uploadedOnEqual!
+		}
+		if(dateComparisonType != nil) {
+			dict["dateComparisonType"] = dateComparisonType!.rawValue
+		}
+		if(statusIn != nil) {
+			dict["statusIn"] = statusIn!
+		}
+		if(userIdEqualCurrent != nil) {
+			dict["userIdEqualCurrent"] = userIdEqualCurrent!
 		}
 		return dict
 	}

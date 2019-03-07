@@ -33,7 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  instractions for upload data type  */
+/**  instructions for upload data (the data file type, how to read the file, etc)  */
 open class BulkUploadJobData: ObjectBase {
 
 	public class BulkUploadJobDataTokenizer: ObjectBase.ObjectBaseTokenizer {

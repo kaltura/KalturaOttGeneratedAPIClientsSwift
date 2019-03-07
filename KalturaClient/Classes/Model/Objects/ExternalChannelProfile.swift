@@ -79,6 +79,12 @@ open class ExternalChannelProfile: ObjectBase {
 				return ArrayTokenizedObject<ChannelEnrichmentHolder.ChannelEnrichmentHolderTokenizer>(self.append("enrichments"))
 			} 
 		}
+		
+		public var assetUserRuleId: BaseTokenizedObject {
+			get {
+				return self.append("assetUserRuleId") 
+			}
+		}
 	}
 
 	/**  External channel id  */
@@ -95,6 +101,8 @@ open class ExternalChannelProfile: ObjectBase {
 	public var recommendationEngineId: Int? = nil
 	/**  Enrichments  */
 	public var enrichments: Array<ChannelEnrichmentHolder>? = nil
+	/**  Asset user rule identifier  */
+	public var assetUserRuleId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -121,6 +129,10 @@ open class ExternalChannelProfile: ObjectBase {
 		self.dict["recommendationEngineId"] = recommendationEngineId
 	}
 	
+	public func setMultiRequestToken(assetUserRuleId: String) {
+		self.dict["assetUserRuleId"] = assetUserRuleId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -145,6 +157,9 @@ open class ExternalChannelProfile: ObjectBase {
 		if dict["enrichments"] != nil {
 			enrichments = try JSONParser.parse(array: dict["enrichments"] as! [Any])
 		}
+		if dict["assetUserRuleId"] != nil {
+			assetUserRuleId = Int64("\(dict["assetUserRuleId"]!)")
+		}
 
 	}
 
@@ -167,6 +182,9 @@ open class ExternalChannelProfile: ObjectBase {
 		}
 		if(enrichments != nil) {
 			dict["enrichments"] = enrichments!.map { value in value.toDictionary() }
+		}
+		if(assetUserRuleId != nil) {
+			dict["assetUserRuleId"] = assetUserRuleId!
 		}
 		return dict
 	}

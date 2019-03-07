@@ -57,16 +57,25 @@ public final class BulkUploadService{
 		public func filter<T: BulkUploadFilter.BulkUploadFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
 	}
 
 	public static func list() -> RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	/**  Get list of KalturaBulkUpload by filter  */
 	public static func list(filter: BulkUploadFilter?) -> RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
+	}
+
+	/**  Get list of KalturaBulkUpload by filter  */
+	public static func list(filter: BulkUploadFilter?, pager: FilterPager?) -> RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer> = RequestBuilder<BulkUploadListResponse, BulkUploadListResponse.BulkUploadListResponseTokenizer, ListTokenizer>(service: "bulkupload", action: "list")
 			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}

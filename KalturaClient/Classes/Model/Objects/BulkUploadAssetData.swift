@@ -33,6 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
+/**  indicates the asset object type in the bulk file  */
 open class BulkUploadAssetData: BulkUploadObjectData {
 
 	public class BulkUploadAssetDataTokenizer: BulkUploadObjectData.BulkUploadObjectDataTokenizer {

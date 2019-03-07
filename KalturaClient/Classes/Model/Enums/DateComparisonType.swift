@@ -25,25 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  indicates the object type in the bulk file  */
-open class BulkUploadObjectData: ObjectBase {
-
-	public class BulkUploadObjectDataTokenizer: ObjectBase.ObjectBaseTokenizer {
-	}
-
-
-
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-	}
-
+public enum DateComparisonType: String {
+	case GREATERTHANOREQUAL = "GreaterThanOrEqual"
+	case LESSTHANOREQUAL = "LessThanOrEqual"
+	case EQUAL = "Equal"
 }
-
