@@ -39,9 +39,5 @@ public enum ChannelEnrichment: String {
 	case DEVICETYPE = "DeviceType"
 	case UTCOFFSET = "UTCOffset"
 	case LANGUAGE = "Language"
-	case NPVRSUPPORT = "NPVRSupport"
-	case CATCHUP = "Catchup"
-	case PARENTAL = "Parental"
 	case DTTREGION = "DTTRegion"
-	case ATHOME = "AtHome"
 }

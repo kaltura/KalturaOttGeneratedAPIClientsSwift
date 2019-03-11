@@ -131,6 +131,12 @@ open class BillingTransaction: ObjectBase {
 				return self.append("billingPriceType") 
 			}
 		}
+		
+		public var externalTransactionId: BaseTokenizedObject {
+			get {
+				return self.append("externalTransactionId") 
+			}
+		}
 	}
 
 	/**  Reciept Code  */
@@ -165,6 +171,8 @@ open class BillingTransaction: ObjectBase {
 	public var remarks: String? = nil
 	/**  Billing Price Info  */
 	public var billingPriceType: BillingPriceType? = nil
+	/**  External Transaction Id  */
+	public var externalTransactionId: String? = nil
 
 
 	public func setMultiRequestToken(recieptCode: String) {
@@ -227,6 +235,10 @@ open class BillingTransaction: ObjectBase {
 		self.dict["billingPriceType"] = billingPriceType
 	}
 	
+	public func setMultiRequestToken(externalTransactionId: String) {
+		self.dict["externalTransactionId"] = externalTransactionId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -276,6 +288,9 @@ open class BillingTransaction: ObjectBase {
 		}
 		if dict["billingPriceType"] != nil {
 			billingPriceType = BillingPriceType(rawValue: "\(dict["billingPriceType"]!)")
+		}
+		if dict["externalTransactionId"] != nil {
+			externalTransactionId = dict["externalTransactionId"] as? String
 		}
 
 	}
