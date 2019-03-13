@@ -73,6 +73,12 @@ open class BulkUploadResult: ObjectBase {
 				return self.append("errorMessage") 
 			}
 		}
+		
+		public var warnings: ArrayTokenizedObject<Message.MessageTokenizer> {
+			get {
+				return ArrayTokenizedObject<Message.MessageTokenizer>(self.append("warnings"))
+			} 
+		}
 	}
 
 	/**  the result ObjectId (assetId, userId etc)  */
@@ -87,6 +93,8 @@ open class BulkUploadResult: ObjectBase {
 	public var errorCode: Int? = nil
 	/**  Error Message  */
 	public var errorMessage: String? = nil
+	/**  A list of warnings  */
+	public var warnings: Array<Message>? = nil
 
 
 	public func setMultiRequestToken(objectId: String) {
@@ -133,6 +141,9 @@ open class BulkUploadResult: ObjectBase {
 		}
 		if dict["errorMessage"] != nil {
 			errorMessage = dict["errorMessage"] as? String
+		}
+		if dict["warnings"] != nil {
+			warnings = try JSONParser.parse(array: dict["warnings"] as! [Any])
 		}
 
 	}

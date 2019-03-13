@@ -38,9 +38,9 @@ open class BulkUploadFilter: Filter {
 
 	public class BulkUploadFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var fileObjectNameEqual: BaseTokenizedObject {
+		public var bulkObjectNameEqual: BaseTokenizedObject {
 			get {
-				return self.append("fileObjectNameEqual") 
+				return self.append("bulkObjectNameEqual") 
 			}
 		}
 		
@@ -50,78 +50,77 @@ open class BulkUploadFilter: Filter {
 			}
 		}
 		
-		public var userIdEqualCurrent: BaseTokenizedObject {
+		public var uploadedByUserIdEqualCurrent: BaseTokenizedObject {
 			get {
-				return self.append("userIdEqualCurrent") 
+				return self.append("uploadedByUserIdEqualCurrent") 
 			}
 		}
 		
-		public var shouldGetOnGoingBulkUploads: BaseTokenizedObject {
+		public var statusIn: BaseTokenizedObject {
 			get {
-				return self.append("shouldGetOnGoingBulkUploads") 
+				return self.append("statusIn") 
 			}
 		}
 	}
 
-	/**  File&amp;#39;s objectType name (must be type of KalturaOTTObject)  */
-	public var fileObjectNameEqual: String? = nil
+	/**  bulk objects Type name (must be type of KalturaOTTObject)  */
+	public var bulkObjectNameEqual: String? = nil
 	/**  upload date to search within (search in the last 60 days)  */
 	public var createDateGreaterThanOrEqual: Int64? = nil
 	/**  Indicates if to get the BulkUpload list that created by current user or by the
 	  entire group.  */
-	public var userIdEqualCurrent: Bool? = nil
-	/**  Indicates if to get the BulkUpload list that are stil in OnGoing process or
-	  finished.  */
-	public var shouldGetOnGoingBulkUploads: Bool? = nil
+	public var uploadedByUserIdEqualCurrent: Bool? = nil
+	/**  Comma separated list of BulkUpload Statuses to search\filter  */
+	public var statusIn: String? = nil
 
 
-	public func setMultiRequestToken(fileObjectNameEqual: String) {
-		self.dict["fileObjectNameEqual"] = fileObjectNameEqual
+	public func setMultiRequestToken(bulkObjectNameEqual: String) {
+		self.dict["bulkObjectNameEqual"] = bulkObjectNameEqual
 	}
 	
 	public func setMultiRequestToken(createDateGreaterThanOrEqual: String) {
 		self.dict["createDateGreaterThanOrEqual"] = createDateGreaterThanOrEqual
 	}
 	
-	public func setMultiRequestToken(userIdEqualCurrent: String) {
-		self.dict["userIdEqualCurrent"] = userIdEqualCurrent
+	public func setMultiRequestToken(uploadedByUserIdEqualCurrent: String) {
+		self.dict["uploadedByUserIdEqualCurrent"] = uploadedByUserIdEqualCurrent
 	}
 	
-	public func setMultiRequestToken(shouldGetOnGoingBulkUploads: String) {
-		self.dict["shouldGetOnGoingBulkUploads"] = shouldGetOnGoingBulkUploads
+	public func setMultiRequestToken(statusIn: String) {
+		self.dict["statusIn"] = statusIn
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["fileObjectNameEqual"] != nil {
-			fileObjectNameEqual = dict["fileObjectNameEqual"] as? String
+		if dict["bulkObjectNameEqual"] != nil {
+			bulkObjectNameEqual = dict["bulkObjectNameEqual"] as? String
 		}
 		if dict["createDateGreaterThanOrEqual"] != nil {
 			createDateGreaterThanOrEqual = Int64("\(dict["createDateGreaterThanOrEqual"]!)")
 		}
-		if dict["userIdEqualCurrent"] != nil {
-			userIdEqualCurrent = dict["userIdEqualCurrent"] as? Bool
+		if dict["uploadedByUserIdEqualCurrent"] != nil {
+			uploadedByUserIdEqualCurrent = dict["uploadedByUserIdEqualCurrent"] as? Bool
 		}
-		if dict["shouldGetOnGoingBulkUploads"] != nil {
-			shouldGetOnGoingBulkUploads = dict["shouldGetOnGoingBulkUploads"] as? Bool
+		if dict["statusIn"] != nil {
+			statusIn = dict["statusIn"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(fileObjectNameEqual != nil) {
-			dict["fileObjectNameEqual"] = fileObjectNameEqual!
+		if(bulkObjectNameEqual != nil) {
+			dict["bulkObjectNameEqual"] = bulkObjectNameEqual!
 		}
 		if(createDateGreaterThanOrEqual != nil) {
 			dict["createDateGreaterThanOrEqual"] = createDateGreaterThanOrEqual!
 		}
-		if(userIdEqualCurrent != nil) {
-			dict["userIdEqualCurrent"] = userIdEqualCurrent!
+		if(uploadedByUserIdEqualCurrent != nil) {
+			dict["uploadedByUserIdEqualCurrent"] = uploadedByUserIdEqualCurrent!
 		}
-		if(shouldGetOnGoingBulkUploads != nil) {
-			dict["shouldGetOnGoingBulkUploads"] = shouldGetOnGoingBulkUploads!
+		if(statusIn != nil) {
+			dict["statusIn"] = statusIn!
 		}
 		return dict
 	}

@@ -80,6 +80,12 @@ open class BulkUpload: ObjectBase {
 			}
 		}
 		
+		public var uploadedByUserId: BaseTokenizedObject {
+			get {
+				return self.append("uploadedByUserId") 
+			}
+		}
+		
 		public var results: ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer> {
 			get {
 				return ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer>(self.append("results"))
@@ -102,6 +108,8 @@ open class BulkUpload: ObjectBase {
 	/**  Specifies when was the bulk action last updated. Date and time represented as
 	  epoch  */
 	public var updateDate: Int64? = nil
+	/**  The user who uploaded this bulk  */
+	public var uploadedByUserId: Int64? = nil
 	/**  A list of results  */
 	public var results: Array<BulkUploadResult>? = nil
 
@@ -134,6 +142,10 @@ open class BulkUpload: ObjectBase {
 		self.dict["updateDate"] = updateDate
 	}
 	
+	public func setMultiRequestToken(uploadedByUserId: String) {
+		self.dict["uploadedByUserId"] = uploadedByUserId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -157,6 +169,9 @@ open class BulkUpload: ObjectBase {
 		}
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
+		}
+		if dict["uploadedByUserId"] != nil {
+			uploadedByUserId = Int64("\(dict["uploadedByUserId"]!)")
 		}
 		if dict["results"] != nil {
 			results = try JSONParser.parse(array: dict["results"] as! [Any])
