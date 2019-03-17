@@ -62,16 +62,8 @@ open class BulkUploadResult: ObjectBase {
 			}
 		}
 		
-		public var errorCode: BaseTokenizedObject {
-			get {
-				return self.append("errorCode") 
-			}
-		}
-		
-		public var errorMessage: BaseTokenizedObject {
-			get {
-				return self.append("errorMessage") 
-			}
+		public func error<T: Message.MessageTokenizer>() -> T {
+			return T(self.append("error"))
 		}
 		
 		public var warnings: ArrayTokenizedObject<Message.MessageTokenizer> {
@@ -89,10 +81,8 @@ open class BulkUploadResult: ObjectBase {
 	public var bulkUploadId: Int64? = nil
 	/**  status  */
 	public var status: BulkUploadResultStatus? = nil
-	/**  Error Code  */
-	public var errorCode: Int? = nil
-	/**  Error Message  */
-	public var errorMessage: String? = nil
+	/**  Error details  */
+	public var error: Message? = nil
 	/**  A list of warnings  */
 	public var warnings: Array<Message>? = nil
 
@@ -113,14 +103,6 @@ open class BulkUploadResult: ObjectBase {
 		self.dict["status"] = status
 	}
 	
-	public func setMultiRequestToken(errorCode: String) {
-		self.dict["errorCode"] = errorCode
-	}
-	
-	public func setMultiRequestToken(errorMessage: String) {
-		self.dict["errorMessage"] = errorMessage
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -136,12 +118,8 @@ open class BulkUploadResult: ObjectBase {
 		if dict["status"] != nil {
 			status = BulkUploadResultStatus(rawValue: "\(dict["status"]!)")
 		}
-		if dict["errorCode"] != nil {
-			errorCode = dict["errorCode"] as? Int
-		}
-		if dict["errorMessage"] != nil {
-			errorMessage = dict["errorMessage"] as? String
-		}
+		if dict["error"] != nil {
+		error = try JSONParser.parse(object: dict["error"] as! [String: Any])		}
 		if dict["warnings"] != nil {
 			warnings = try JSONParser.parse(array: dict["warnings"] as! [Any])
 		}

@@ -38,9 +38,9 @@ open class BulkUploadFilter: Filter {
 
 	public class BulkUploadFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var bulkObjectNameEqual: BaseTokenizedObject {
+		public var bulkObjectTypeEqual: BaseTokenizedObject {
 			get {
-				return self.append("bulkObjectNameEqual") 
+				return self.append("bulkObjectTypeEqual") 
 			}
 		}
 		
@@ -64,7 +64,7 @@ open class BulkUploadFilter: Filter {
 	}
 
 	/**  bulk objects Type name (must be type of KalturaOTTObject)  */
-	public var bulkObjectNameEqual: String? = nil
+	public var bulkObjectTypeEqual: String? = nil
 	/**  upload date to search within (search in the last 60 days)  */
 	public var createDateGreaterThanOrEqual: Int64? = nil
 	/**  Indicates if to get the BulkUpload list that created by current user or by the
@@ -74,8 +74,8 @@ open class BulkUploadFilter: Filter {
 	public var statusIn: String? = nil
 
 
-	public func setMultiRequestToken(bulkObjectNameEqual: String) {
-		self.dict["bulkObjectNameEqual"] = bulkObjectNameEqual
+	public func setMultiRequestToken(bulkObjectTypeEqual: String) {
+		self.dict["bulkObjectTypeEqual"] = bulkObjectTypeEqual
 	}
 	
 	public func setMultiRequestToken(createDateGreaterThanOrEqual: String) {
@@ -93,8 +93,8 @@ open class BulkUploadFilter: Filter {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["bulkObjectNameEqual"] != nil {
-			bulkObjectNameEqual = dict["bulkObjectNameEqual"] as? String
+		if dict["bulkObjectTypeEqual"] != nil {
+			bulkObjectTypeEqual = dict["bulkObjectTypeEqual"] as? String
 		}
 		if dict["createDateGreaterThanOrEqual"] != nil {
 			createDateGreaterThanOrEqual = Int64("\(dict["createDateGreaterThanOrEqual"]!)")
@@ -110,8 +110,8 @@ open class BulkUploadFilter: Filter {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(bulkObjectNameEqual != nil) {
-			dict["bulkObjectNameEqual"] = bulkObjectNameEqual!
+		if(bulkObjectTypeEqual != nil) {
+			dict["bulkObjectTypeEqual"] = bulkObjectTypeEqual!
 		}
 		if(createDateGreaterThanOrEqual != nil) {
 			dict["createDateGreaterThanOrEqual"] = createDateGreaterThanOrEqual!
