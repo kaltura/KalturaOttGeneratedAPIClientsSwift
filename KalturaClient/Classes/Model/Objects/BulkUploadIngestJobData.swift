@@ -34,16 +34,41 @@
  */
 
 /**  instructions for upload data type with xml  */
-open class BulkUploadXmlJobData: BulkUploadJobData {
+open class BulkUploadIngestJobData: BulkUploadJobData {
 
-	public class BulkUploadXmlJobDataTokenizer: BulkUploadJobData.BulkUploadJobDataTokenizer {
+	public class BulkUploadIngestJobDataTokenizer: BulkUploadJobData.BulkUploadJobDataTokenizer {
+		
+		public var ingestProfileId: BaseTokenizedObject {
+			get {
+				return self.append("ingestProfileId") 
+			}
+		}
 	}
 
+	/**  Identifies the ingest profile that will handle the ingest of programs           
+	    Ingest profiles are created separately using the ingest profile service  */
+	public var ingestProfileId: Int? = nil
 
 
+	public func setMultiRequestToken(ingestProfileId: String) {
+		self.dict["ingestProfileId"] = ingestProfileId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["ingestProfileId"] != nil {
+			ingestProfileId = dict["ingestProfileId"] as? Int
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(ingestProfileId != nil) {
+			dict["ingestProfileId"] = ingestProfileId!
+		}
+		return dict
+	}
 }
 
