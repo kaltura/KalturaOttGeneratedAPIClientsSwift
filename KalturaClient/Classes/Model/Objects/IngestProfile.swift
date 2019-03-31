@@ -68,9 +68,9 @@ open class IngestProfile: ObjectBase {
 			}
 		}
 		
-		public var transformationAdapterSettings: BaseTokenizedObject {
+		public var transformationAdapterSettings: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
 			get {
-				return self.append("transformationAdapterSettings") 
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("transformationAdapterSettings"))
 			}
 		}
 		
@@ -104,7 +104,7 @@ open class IngestProfile: ObjectBase {
 	/**  Transformation Adapter URL  */
 	public var transformationAdapterUrl: String? = nil
 	/**  Transformation Adapter settings  */
-	public var transformationAdapterSettings: String? = nil
+	public var transformationAdapterSettings: Dictionary<String, StringValue>? = nil
 	/**  Transformation Adapter shared secret  */
 	public var transformationAdapterSharedSecret: String? = nil
 	/**  Ingest profile default Auto-fill policy  */
@@ -131,10 +131,6 @@ open class IngestProfile: ObjectBase {
 	
 	public func setMultiRequestToken(transformationAdapterUrl: String) {
 		self.dict["transformationAdapterUrl"] = transformationAdapterUrl
-	}
-	
-	public func setMultiRequestToken(transformationAdapterSettings: String) {
-		self.dict["transformationAdapterSettings"] = transformationAdapterSettings
 	}
 	
 	public func setMultiRequestToken(transformationAdapterSharedSecret: String) {
@@ -168,7 +164,7 @@ open class IngestProfile: ObjectBase {
 			transformationAdapterUrl = dict["transformationAdapterUrl"] as? String
 		}
 		if dict["transformationAdapterSettings"] != nil {
-			transformationAdapterSettings = dict["transformationAdapterSettings"] as? String
+			transformationAdapterSettings = try JSONParser.parse(map: dict["transformationAdapterSettings"] as! [String: Any])
 		}
 		if dict["transformationAdapterSharedSecret"] != nil {
 			transformationAdapterSharedSecret = dict["transformationAdapterSharedSecret"] as? String
@@ -197,7 +193,7 @@ open class IngestProfile: ObjectBase {
 			dict["transformationAdapterUrl"] = transformationAdapterUrl!
 		}
 		if(transformationAdapterSettings != nil) {
-			dict["transformationAdapterSettings"] = transformationAdapterSettings!
+			dict["transformationAdapterSettings"] = transformationAdapterSettings!.toDictionary()
 		}
 		if(transformationAdapterSharedSecret != nil) {
 			dict["transformationAdapterSharedSecret"] = transformationAdapterSharedSecret!

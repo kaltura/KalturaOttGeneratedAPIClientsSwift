@@ -33,44 +33,17 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  indicates the asset object type in the bulk file (this class is not abstract for
-  backward-compatibility)  */
-open class BulkUploadAssetData: BulkUploadObjectData {
+/**  indicates the media asset object type in the bulk file  */
+open class BulkUploadMediaAssetData: BulkUploadAssetData {
 
-	public class BulkUploadAssetDataTokenizer: BulkUploadObjectData.BulkUploadObjectDataTokenizer {
-		
-		public var typeId: BaseTokenizedObject {
-			get {
-				return self.append("typeId") 
-			}
-		}
+	public class BulkUploadMediaAssetDataTokenizer: BulkUploadAssetData.BulkUploadAssetDataTokenizer {
 	}
 
-	/**  Identifies the asset type (EPG, Recording, Movie, TV Series, etc).              
-	  Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID
-	  according to the asset types IDs defined in the system.  */
-	public var typeId: Int64? = nil
 
 
-	public func setMultiRequestToken(typeId: String) {
-		self.dict["typeId"] = typeId
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["typeId"] != nil {
-			typeId = Int64("\(dict["typeId"]!)")
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(typeId != nil) {
-			dict["typeId"] = typeId!
-		}
-		return dict
-	}
 }
 
