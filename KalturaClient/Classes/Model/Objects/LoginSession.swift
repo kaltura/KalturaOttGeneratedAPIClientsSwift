@@ -43,14 +43,26 @@ open class LoginSession: ObjectBase {
 				return self.append("ks") 
 			}
 		}
+		
+		public var expiration: BaseTokenizedObject {
+			get {
+				return self.append("expiration") 
+			}
+		}
 	}
 
 	/**  Access token in a KS format  */
 	public var ks: String? = nil
+	/**  Expiration  */
+	public var expiration: Int64? = nil
 
 
 	public func setMultiRequestToken(ks: String) {
 		self.dict["ks"] = ks
+	}
+	
+	public func setMultiRequestToken(expiration: String) {
+		self.dict["expiration"] = expiration
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -59,6 +71,9 @@ open class LoginSession: ObjectBase {
 		if dict["ks"] != nil {
 			ks = dict["ks"] as? String
 		}
+		if dict["expiration"] != nil {
+			expiration = Int64("\(dict["expiration"]!)")
+		}
 
 	}
 
@@ -66,6 +81,9 @@ open class LoginSession: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(ks != nil) {
 			dict["ks"] = ks!
+		}
+		if(expiration != nil) {
+			dict["expiration"] = expiration!
 		}
 		return dict
 	}
