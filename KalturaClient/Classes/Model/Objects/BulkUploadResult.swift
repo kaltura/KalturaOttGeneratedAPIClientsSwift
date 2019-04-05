@@ -62,8 +62,10 @@ open class BulkUploadResult: ObjectBase {
 			}
 		}
 		
-		public func error<T: Message.MessageTokenizer>() -> T {
-			return T(self.append("error"))
+		public var errors: ArrayTokenizedObject<Message.MessageTokenizer> {
+			get {
+				return ArrayTokenizedObject<Message.MessageTokenizer>(self.append("errors"))
+			} 
 		}
 		
 		public var warnings: ArrayTokenizedObject<Message.MessageTokenizer> {
@@ -81,8 +83,8 @@ open class BulkUploadResult: ObjectBase {
 	public var bulkUploadId: Int64? = nil
 	/**  status  */
 	public var status: BulkUploadResultStatus? = nil
-	/**  Error details  */
-	public var error: Message? = nil
+	/**  A list of errors  */
+	public var errors: Array<Message>? = nil
 	/**  A list of warnings  */
 	public var warnings: Array<Message>? = nil
 
@@ -118,8 +120,9 @@ open class BulkUploadResult: ObjectBase {
 		if dict["status"] != nil {
 			status = BulkUploadResultStatus(rawValue: "\(dict["status"]!)")
 		}
-		if dict["error"] != nil {
-		error = try JSONParser.parse(object: dict["error"] as! [String: Any])		}
+		if dict["errors"] != nil {
+			errors = try JSONParser.parse(array: dict["errors"] as! [Any])
+		}
 		if dict["warnings"] != nil {
 			warnings = try JSONParser.parse(array: dict["warnings"] as! [Any])
 		}

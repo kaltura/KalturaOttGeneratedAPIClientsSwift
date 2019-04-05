@@ -34,9 +34,9 @@
  */
 
 /**  indicates the epg asset object type in the bulk file  */
-open class BulkUploadEpgAssetData: BulkUploadAssetData {
+open class BulkUploadProgramAssetData: BulkUploadAssetData {
 
-	public class BulkUploadEpgAssetDataTokenizer: BulkUploadAssetData.BulkUploadAssetDataTokenizer {
+	public class BulkUploadProgramAssetDataTokenizer: BulkUploadAssetData.BulkUploadAssetDataTokenizer {
 	}
 
 
