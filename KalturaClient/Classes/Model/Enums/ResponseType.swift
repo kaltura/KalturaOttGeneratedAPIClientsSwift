@@ -31,13 +31,10 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ChannelEnrichment: String {
-	case CLIENTLOCATION = "ClientLocation"
-	case USERID = "UserId"
-	case HOUSEHOLDID = "HouseholdId"
-	case DEVICEID = "DeviceId"
-	case DEVICETYPE = "DeviceType"
-	case UTCOFFSET = "UTCOffset"
-	case LANGUAGE = "Language"
-	case DTTREGION = "DTTRegion"
+public enum ResponseType: Int {
+	case JSON = 1
+	case XML = 2
+	case JSONP = 9
+	case ASSET_XML = 30
+	case EXCEL = 31
 }

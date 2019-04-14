@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class Bulk: ObjectBase {
+/**  Bulk Upload  */
+open class BulkUpload: ObjectBase {
 
-	public class BulkTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class BulkUploadTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -43,9 +44,27 @@ open class Bulk: ObjectBase {
 			}
 		}
 		
+		public var fileName: BaseTokenizedObject {
+			get {
+				return self.append("fileName") 
+			}
+		}
+		
 		public var status: BaseTokenizedObject {
 			get {
 				return self.append("status") 
+			}
+		}
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var numOfObjects: BaseTokenizedObject {
+			get {
+				return self.append("numOfObjects") 
 			}
 		}
 		
@@ -60,25 +79,59 @@ open class Bulk: ObjectBase {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var uploadedByUserId: BaseTokenizedObject {
+			get {
+				return self.append("uploadedByUserId") 
+			}
+		}
+		
+		public var results: ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer> {
+			get {
+				return ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer>(self.append("results"))
+			} 
+		}
 	}
 
 	/**  Bulk identifier  */
 	public var id: Int64? = nil
+	/**  File Name  */
+	public var fileName: String? = nil
 	/**  Status  */
-	public var status: BatchJobStatus? = nil
+	public var status: BulkUploadJobStatus? = nil
+	/**  Action  */
+	public var action: BulkUploadJobAction? = nil
+	/**  Total number of objects in file  */
+	public var numOfObjects: Int? = nil
 	/**  Specifies when was the bulk action created. Date and time represented as epoch  */
 	public var createDate: Int64? = nil
 	/**  Specifies when was the bulk action last updated. Date and time represented as
 	  epoch  */
 	public var updateDate: Int64? = nil
+	/**  The user who uploaded this bulk  */
+	public var uploadedByUserId: Int64? = nil
+	/**  A list of results  */
+	public var results: Array<BulkUploadResult>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
 	}
 	
+	public func setMultiRequestToken(fileName: String) {
+		self.dict["fileName"] = fileName
+	}
+	
 	public func setMultiRequestToken(status: String) {
 		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(action: String) {
+		self.dict["action"] = action
+	}
+	
+	public func setMultiRequestToken(numOfObjects: String) {
+		self.dict["numOfObjects"] = numOfObjects
 	}
 	
 	public func setMultiRequestToken(createDate: String) {
@@ -89,20 +142,39 @@ open class Bulk: ObjectBase {
 		self.dict["updateDate"] = updateDate
 	}
 	
+	public func setMultiRequestToken(uploadedByUserId: String) {
+		self.dict["uploadedByUserId"] = uploadedByUserId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {
 			id = Int64("\(dict["id"]!)")
 		}
+		if dict["fileName"] != nil {
+			fileName = dict["fileName"] as? String
+		}
 		if dict["status"] != nil {
-			status = BatchJobStatus(rawValue: "\(dict["status"]!)")
+			status = BulkUploadJobStatus(rawValue: "\(dict["status"]!)")
+		}
+		if dict["action"] != nil {
+			action = BulkUploadJobAction(rawValue: "\(dict["action"]!)")
+		}
+		if dict["numOfObjects"] != nil {
+			numOfObjects = dict["numOfObjects"] as? Int
 		}
 		if dict["createDate"] != nil {
 			createDate = Int64("\(dict["createDate"]!)")
 		}
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
+		}
+		if dict["uploadedByUserId"] != nil {
+			uploadedByUserId = Int64("\(dict["uploadedByUserId"]!)")
+		}
+		if dict["results"] != nil {
+			results = try JSONParser.parse(array: dict["results"] as! [Any])
 		}
 
 	}

@@ -31,13 +31,15 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ChannelEnrichment: String {
-	case CLIENTLOCATION = "ClientLocation"
-	case USERID = "UserId"
-	case HOUSEHOLDID = "HouseholdId"
-	case DEVICEID = "DeviceId"
-	case DEVICETYPE = "DeviceType"
-	case UTCOFFSET = "UTCOffset"
-	case LANGUAGE = "Language"
-	case DTTREGION = "DTTRegion"
+public enum BulkUploadJobStatus: String {
+	case PENDING = "Pending"
+	case UPLOADED = "Uploaded"
+	case QUEUED = "Queued"
+	case PARSING = "Parsing"
+	case PROCESSING = "Processing"
+	case PROCESSED = "Processed"
+	case SUCCESS = "Success"
+	case PARTIAL = "Partial"
+	case FAILED = "Failed"
+	case FATAL = "Fatal"
 }

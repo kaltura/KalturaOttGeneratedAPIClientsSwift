@@ -25,19 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ChannelEnrichment: String {
-	case CLIENTLOCATION = "ClientLocation"
-	case USERID = "UserId"
-	case HOUSEHOLDID = "HouseholdId"
-	case DEVICEID = "DeviceId"
-	case DEVICETYPE = "DeviceType"
-	case UTCOFFSET = "UTCOffset"
-	case LANGUAGE = "Language"
-	case DTTREGION = "DTTRegion"
+
+/**  instructions for upload data (the data file type, how to read the file, etc)  */
+open class BulkUploadJobData: ObjectBase {
+
+	public class BulkUploadJobDataTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

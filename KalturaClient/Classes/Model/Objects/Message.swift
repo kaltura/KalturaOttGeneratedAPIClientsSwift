@@ -33,35 +33,71 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Asset wrapper  */
-open class BulkListResponse: ListResponse {
+/**  Message  */
+open class Message: ObjectBase {
 
-	public class BulkListResponseTokenizer: ListResponse.ListResponseTokenizer {
+	public class MessageTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var objects: ArrayTokenizedObject<Bulk.BulkTokenizer> {
+		public var code: BaseTokenizedObject {
 			get {
-				return ArrayTokenizedObject<Bulk.BulkTokenizer>(self.append("objects"))
-			} 
+				return self.append("code") 
+			}
+		}
+		
+		public var message: BaseTokenizedObject {
+			get {
+				return self.append("message") 
+			}
+		}
+		
+		public var args: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("args"))
+			}
 		}
 	}
 
-	/**  bulk items  */
-	public var objects: Array<Bulk>? = nil
+	/**  Massage code  */
+	public var code: Int? = nil
+	/**  Message details  */
+	public var message: String? = nil
+	/**  Message args  */
+	public var args: Dictionary<String, StringValue>? = nil
 
 
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
+	public func setMultiRequestToken(message: String) {
+		self.dict["message"] = message
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["objects"] != nil {
-			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		if dict["code"] != nil {
+			code = dict["code"] as? Int
+		}
+		if dict["message"] != nil {
+			message = dict["message"] as? String
+		}
+		if dict["args"] != nil {
+			args = try JSONParser.parse(map: dict["args"] as! [String: Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(objects != nil) {
-			dict["objects"] = objects!.map { value in value.toDictionary() }
+		if(code != nil) {
+			dict["code"] = code!
+		}
+		if(message != nil) {
+			dict["message"] = message!
+		}
+		if(args != nil) {
+			dict["args"] = args!.toDictionary()
 		}
 		return dict
 	}

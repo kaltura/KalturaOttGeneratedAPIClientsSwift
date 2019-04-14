@@ -25,19 +25,58 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ChannelEnrichment: String {
-	case CLIENTLOCATION = "ClientLocation"
-	case USERID = "UserId"
-	case HOUSEHOLDID = "HouseholdId"
-	case DEVICEID = "DeviceId"
-	case DEVICETYPE = "DeviceType"
-	case UTCOFFSET = "UTCOffset"
-	case LANGUAGE = "Language"
-	case DTTREGION = "DTTRegion"
+
+open class BulkUploadAssetResult: BulkUploadResult {
+
+	public class BulkUploadAssetResultTokenizer: BulkUploadResult.BulkUploadResultTokenizer {
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
+	}
+
+	/**  Identifies the asset type (EPG, Recording, Movie, TV Series, etc).              
+	  Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID
+	  according to the asset types IDs defined in the system.  */
+	public var type: Int? = nil
+	/**  External identifier for the asset  */
+	public var externalId: String? = nil
+
+
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["type"] != nil {
+			type = dict["type"] as? Int
+		}
+		if dict["externalId"] != nil {
+			externalId = dict["externalId"] as? String
+		}
+
+	}
+
 }
+

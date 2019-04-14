@@ -53,7 +53,7 @@ open class UserAssetRuleFilter: Filter {
 
 	/**  Asset identifier to filter by  */
 	public var assetIdEqual: Int64? = nil
-	/**  Asset type to filter by - 0 = EPG, 1 = media  */
+	/**  Asset type to filter by - 0 = EPG, 1 = media, 2 = npvr  */
 	public var assetTypeEqual: Int? = nil
 
 

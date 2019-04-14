@@ -67,6 +67,23 @@ public final class AssetStructService{
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Get AssetStruct by ID  */
+	public static func get(id: Int64) -> RequestBuilder<AssetStruct, AssetStruct.AssetStructTokenizer, GetTokenizer> {
+		let request: RequestBuilder<AssetStruct, AssetStruct.AssetStructTokenizer, GetTokenizer> = RequestBuilder<AssetStruct, AssetStruct.AssetStructTokenizer, GetTokenizer>(service: "assetstruct", action: "get")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: AssetStructFilter.AssetStructFilterTokenizer>() -> T {

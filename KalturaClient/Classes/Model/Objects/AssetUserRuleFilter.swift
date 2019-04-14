@@ -43,15 +43,27 @@ open class AssetUserRuleFilter: Filter {
 				return self.append("attachedUserIdEqualCurrent") 
 			}
 		}
+		
+		public var actionsContainType: BaseTokenizedObject {
+			get {
+				return self.append("actionsContainType") 
+			}
+		}
 	}
 
 	/**  Indicates if to get the asset user rule list for the attached user or for the
 	  entire group  */
 	public var attachedUserIdEqualCurrent: Bool? = nil
+	/**  Indicates which asset rule list to return by this KalturaRuleActionType.  */
+	public var actionsContainType: RuleActionType? = nil
 
 
 	public func setMultiRequestToken(attachedUserIdEqualCurrent: String) {
 		self.dict["attachedUserIdEqualCurrent"] = attachedUserIdEqualCurrent
+	}
+	
+	public func setMultiRequestToken(actionsContainType: String) {
+		self.dict["actionsContainType"] = actionsContainType
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -60,6 +72,9 @@ open class AssetUserRuleFilter: Filter {
 		if dict["attachedUserIdEqualCurrent"] != nil {
 			attachedUserIdEqualCurrent = dict["attachedUserIdEqualCurrent"] as? Bool
 		}
+		if dict["actionsContainType"] != nil {
+			actionsContainType = RuleActionType(rawValue: "\(dict["actionsContainType"]!)")
+		}
 
 	}
 
@@ -67,6 +82,9 @@ open class AssetUserRuleFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(attachedUserIdEqualCurrent != nil) {
 			dict["attachedUserIdEqualCurrent"] = attachedUserIdEqualCurrent!
+		}
+		if(actionsContainType != nil) {
+			dict["actionsContainType"] = actionsContainType!.rawValue
 		}
 		return dict
 	}

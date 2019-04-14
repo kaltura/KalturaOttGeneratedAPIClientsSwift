@@ -25,19 +25,45 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ChannelEnrichment: String {
-	case CLIENTLOCATION = "ClientLocation"
-	case USERID = "UserId"
-	case HOUSEHOLDID = "HouseholdId"
-	case DEVICEID = "DeviceId"
-	case DEVICETYPE = "DeviceType"
-	case UTCOFFSET = "UTCOffset"
-	case LANGUAGE = "Language"
-	case DTTREGION = "DTTRegion"
+
+/**  Asset wrapper  */
+open class BulkUploadListResponse: ListResponse {
+
+	public class BulkUploadListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<BulkUpload.BulkUploadTokenizer> {
+			get {
+				return ArrayTokenizedObject<BulkUpload.BulkUploadTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
+	/**  bulk upload items  */
+	public var objects: Array<BulkUpload>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+

@@ -25,48 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-open class BulkFilter: PersistedFilter {
-
-	public class BulkFilterTokenizer: PersistedFilter.PersistedFilterTokenizer {
-		
-		public var statusEqual: BaseTokenizedObject {
-			get {
-				return self.append("statusEqual") 
-			}
-		}
-	}
-
-	/**  dynamicOrderBy - order by Meta  */
-	public var statusEqual: BatchJobStatus? = nil
-
-
-	public func setMultiRequestToken(statusEqual: String) {
-		self.dict["statusEqual"] = statusEqual
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["statusEqual"] != nil {
-			statusEqual = BatchJobStatus(rawValue: "\(dict["statusEqual"]!)")
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(statusEqual != nil) {
-			dict["statusEqual"] = statusEqual!.rawValue
-		}
-		return dict
-	}
+public enum BulkUploadJobAction: String {
+	case UPSERT = "Upsert"
+	case DELETE = "Delete"
 }
-

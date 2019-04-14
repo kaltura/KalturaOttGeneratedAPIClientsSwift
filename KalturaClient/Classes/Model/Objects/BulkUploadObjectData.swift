@@ -25,24 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum BatchJobStatus: String {
-	case PENDING = "PENDING"
-	case QUEUED = "QUEUED"
-	case PROCESSING = "PROCESSING"
-	case PROCESSED = "PROCESSED"
-	case MOVEFILE = "MOVEFILE"
-	case FINISHED = "FINISHED"
-	case FAILED = "FAILED"
-	case ABORTED = "ABORTED"
-	case ALMOST_DONE = "ALMOST_DONE"
-	case RETRY = "RETRY"
-	case FATAL = "FATAL"
-	case DONT_PROCESS = "DONT_PROCESS"
-	case FINISHED_PARTIALLY = "FINISHED_PARTIALLY"
+
+/**  indicates the object type in the bulk file  */
+open class BulkUploadObjectData: ObjectBase {
+
+	public class BulkUploadObjectDataTokenizer: ObjectBase.ObjectBaseTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

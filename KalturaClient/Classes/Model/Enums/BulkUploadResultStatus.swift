@@ -31,6 +31,8 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum BulkOrderBy: String {
-	case NONE = "NONE"
+public enum BulkUploadResultStatus: String {
+	case ERROR = "Error"
+	case OK = "Ok"
+	case INPROGRESS = "InProgress"
 }

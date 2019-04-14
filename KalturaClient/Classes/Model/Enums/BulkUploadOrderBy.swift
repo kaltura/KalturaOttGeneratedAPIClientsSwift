@@ -31,13 +31,8 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ChannelEnrichment: String {
-	case CLIENTLOCATION = "ClientLocation"
-	case USERID = "UserId"
-	case HOUSEHOLDID = "HouseholdId"
-	case DEVICEID = "DeviceId"
-	case DEVICETYPE = "DeviceType"
-	case UTCOFFSET = "UTCOffset"
-	case LANGUAGE = "Language"
-	case DTTREGION = "DTTRegion"
+public enum BulkUploadOrderBy: String {
+	case NONE = "NONE"
+	case UPDATE_DATE_ASC = "UPDATE_DATE_ASC"
+	case UPDATE_DATE_DESC = "UPDATE_DATE_DESC"
 }

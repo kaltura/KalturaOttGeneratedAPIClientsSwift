@@ -107,6 +107,12 @@ open class Channel: BaseChannel {
 				return self.append("supportSegmentBasedOrdering") 
 			}
 		}
+		
+		public var assetUserRuleId: BaseTokenizedObject {
+			get {
+				return self.append("assetUserRuleId") 
+			}
+		}
 	}
 
 	/**  Channel name  */
@@ -134,6 +140,8 @@ open class Channel: BaseChannel {
 	/**  Specifies whether the assets in this channel will be ordered based on their
 	  match to the user&amp;#39;s segments (see BEO-5524)  */
 	public var supportSegmentBasedOrdering: Bool? = nil
+	/**  Asset user rule identifier  */
+	public var assetUserRuleId: Int64? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -170,6 +178,10 @@ open class Channel: BaseChannel {
 	
 	public func setMultiRequestToken(supportSegmentBasedOrdering: String) {
 		self.dict["supportSegmentBasedOrdering"] = supportSegmentBasedOrdering
+	}
+	
+	public func setMultiRequestToken(assetUserRuleId: String) {
+		self.dict["assetUserRuleId"] = assetUserRuleId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -210,6 +222,9 @@ open class Channel: BaseChannel {
 		if dict["supportSegmentBasedOrdering"] != nil {
 			supportSegmentBasedOrdering = dict["supportSegmentBasedOrdering"] as? Bool
 		}
+		if dict["assetUserRuleId"] != nil {
+			assetUserRuleId = Int64("\(dict["assetUserRuleId"]!)")
+		}
 
 	}
 
@@ -238,6 +253,9 @@ open class Channel: BaseChannel {
 		}
 		if(supportSegmentBasedOrdering != nil) {
 			dict["supportSegmentBasedOrdering"] = supportSegmentBasedOrdering!
+		}
+		if(assetUserRuleId != nil) {
+			dict["assetUserRuleId"] = assetUserRuleId!
 		}
 		return dict
 	}
