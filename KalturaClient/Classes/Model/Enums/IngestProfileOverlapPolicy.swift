@@ -25,67 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  Login response  */
-open class LoginSession: ObjectBase {
-
-	public class LoginSessionTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public var ks: BaseTokenizedObject {
-			get {
-				return self.append("ks") 
-			}
-		}
-		
-		public var expiry: BaseTokenizedObject {
-			get {
-				return self.append("expiry") 
-			}
-		}
-	}
-
-	/**  Access token in a KS format  */
-	public var ks: String? = nil
-	/**  Expiration  */
-	public var expiry: Int64? = nil
-
-
-	public func setMultiRequestToken(ks: String) {
-		self.dict["ks"] = ks
-	}
-	
-	public func setMultiRequestToken(expiry: String) {
-		self.dict["expiry"] = expiry
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["ks"] != nil {
-			ks = dict["ks"] as? String
-		}
-		if dict["expiry"] != nil {
-			expiry = Int64("\(dict["expiry"]!)")
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(ks != nil) {
-			dict["ks"] = ks!
-		}
-		if(expiry != nil) {
-			dict["expiry"] = expiry!
-		}
-		return dict
-	}
+public enum IngestProfileOverlapPolicy: String {
+	case REJECT = "REJECT"
+	case CUT_SOURCE = "CUT_SOURCE"
+	case CUT_TARGET = "CUT_TARGET"
 }
-

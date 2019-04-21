@@ -113,6 +113,12 @@ open class Channel: BaseChannel {
 				return self.append("assetUserRuleId") 
 			}
 		}
+		
+		public var metaData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("metaData"))
+			}
+		}
 	}
 
 	/**  Channel name  */
@@ -142,6 +148,8 @@ open class Channel: BaseChannel {
 	public var supportSegmentBasedOrdering: Bool? = nil
 	/**  Asset user rule identifier  */
 	public var assetUserRuleId: Int64? = nil
+	/**  key/value map field for extra data  */
+	public var metaData: Dictionary<String, StringValue>? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -225,6 +233,9 @@ open class Channel: BaseChannel {
 		if dict["assetUserRuleId"] != nil {
 			assetUserRuleId = Int64("\(dict["assetUserRuleId"]!)")
 		}
+		if dict["metaData"] != nil {
+			metaData = try JSONParser.parse(map: dict["metaData"] as! [String: Any])
+		}
 
 	}
 
@@ -256,6 +267,9 @@ open class Channel: BaseChannel {
 		}
 		if(assetUserRuleId != nil) {
 			dict["assetUserRuleId"] = assetUserRuleId!
+		}
+		if(metaData != nil) {
+			dict["metaData"] = metaData!.toDictionary()
 		}
 		return dict
 	}

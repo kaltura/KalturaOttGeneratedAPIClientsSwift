@@ -85,6 +85,12 @@ open class ExternalChannelProfile: ObjectBase {
 				return self.append("assetUserRuleId") 
 			}
 		}
+		
+		public var metaData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("metaData"))
+			}
+		}
 	}
 
 	/**  External channel id  */
@@ -103,6 +109,8 @@ open class ExternalChannelProfile: ObjectBase {
 	public var enrichments: Array<ChannelEnrichmentHolder>? = nil
 	/**  Asset user rule identifier  */
 	public var assetUserRuleId: Int64? = nil
+	/**  key/value map field for extra data  */
+	public var metaData: Dictionary<String, StringValue>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -160,6 +168,9 @@ open class ExternalChannelProfile: ObjectBase {
 		if dict["assetUserRuleId"] != nil {
 			assetUserRuleId = Int64("\(dict["assetUserRuleId"]!)")
 		}
+		if dict["metaData"] != nil {
+			metaData = try JSONParser.parse(map: dict["metaData"] as! [String: Any])
+		}
 
 	}
 
@@ -185,6 +196,9 @@ open class ExternalChannelProfile: ObjectBase {
 		}
 		if(assetUserRuleId != nil) {
 			dict["assetUserRuleId"] = assetUserRuleId!
+		}
+		if(metaData != nil) {
+			dict["metaData"] = metaData!.toDictionary()
 		}
 		return dict
 	}

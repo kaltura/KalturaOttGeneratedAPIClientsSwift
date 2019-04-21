@@ -108,9 +108,9 @@ open class IngestProfile: ObjectBase {
 	/**  Transformation Adapter shared secret  */
 	public var transformationAdapterSharedSecret: String? = nil
 	/**  Ingest profile default Auto-fill policy  */
-	public var defaultAutoFillPolicy: Int? = nil
+	public var defaultAutoFillPolicy: IngestProfileAutofillPolicy? = nil
 	/**  Ingest profile default Overlap policy  */
-	public var defaultOverlapPolicy: Int? = nil
+	public var defaultOverlapPolicy: IngestProfileOverlapPolicy? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -170,10 +170,10 @@ open class IngestProfile: ObjectBase {
 			transformationAdapterSharedSecret = dict["transformationAdapterSharedSecret"] as? String
 		}
 		if dict["defaultAutoFillPolicy"] != nil {
-			defaultAutoFillPolicy = dict["defaultAutoFillPolicy"] as? Int
+			defaultAutoFillPolicy = IngestProfileAutofillPolicy(rawValue: "\(dict["defaultAutoFillPolicy"]!)")
 		}
 		if dict["defaultOverlapPolicy"] != nil {
-			defaultOverlapPolicy = dict["defaultOverlapPolicy"] as? Int
+			defaultOverlapPolicy = IngestProfileOverlapPolicy(rawValue: "\(dict["defaultOverlapPolicy"]!)")
 		}
 
 	}
@@ -199,10 +199,10 @@ open class IngestProfile: ObjectBase {
 			dict["transformationAdapterSharedSecret"] = transformationAdapterSharedSecret!
 		}
 		if(defaultAutoFillPolicy != nil) {
-			dict["defaultAutoFillPolicy"] = defaultAutoFillPolicy!
+			dict["defaultAutoFillPolicy"] = defaultAutoFillPolicy!.rawValue
 		}
 		if(defaultOverlapPolicy != nil) {
-			dict["defaultOverlapPolicy"] = defaultOverlapPolicy!
+			dict["defaultOverlapPolicy"] = defaultOverlapPolicy!.rawValue
 		}
 		return dict
 	}
