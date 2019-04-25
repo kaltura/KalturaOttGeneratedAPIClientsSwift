@@ -43,14 +43,26 @@ open class PermissionFilter: Filter {
 				return self.append("currentUserPermissionsContains") 
 			}
 		}
+		
+		public var roleIdIn: BaseTokenizedObject {
+			get {
+				return self.append("roleIdIn") 
+			}
+		}
 	}
 
 	/**  Indicates whether the results should be filtered by userId using the current  */
 	public var currentUserPermissionsContains: Bool? = nil
+	/**  Return permissions by role ID  */
+	public var roleIdIn: Int64? = nil
 
 
 	public func setMultiRequestToken(currentUserPermissionsContains: String) {
 		self.dict["currentUserPermissionsContains"] = currentUserPermissionsContains
+	}
+	
+	public func setMultiRequestToken(roleIdIn: String) {
+		self.dict["roleIdIn"] = roleIdIn
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -59,6 +71,9 @@ open class PermissionFilter: Filter {
 		if dict["currentUserPermissionsContains"] != nil {
 			currentUserPermissionsContains = dict["currentUserPermissionsContains"] as? Bool
 		}
+		if dict["roleIdIn"] != nil {
+			roleIdIn = Int64("\(dict["roleIdIn"]!)")
+		}
 
 	}
 
@@ -66,6 +81,9 @@ open class PermissionFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(currentUserPermissionsContains != nil) {
 			dict["currentUserPermissionsContains"] = currentUserPermissionsContains!
+		}
+		if(roleIdIn != nil) {
+			dict["roleIdIn"] = roleIdIn!
 		}
 		return dict
 	}
