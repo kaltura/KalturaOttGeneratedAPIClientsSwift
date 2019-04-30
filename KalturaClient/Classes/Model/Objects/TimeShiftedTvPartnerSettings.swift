@@ -162,6 +162,12 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 				return self.append("recoveryGracePeriod") 
 			}
 		}
+		
+		public var privateCopyEnabled: BaseTokenizedObject {
+			get {
+				return self.append("privateCopyEnabled") 
+			}
+		}
 	}
 
 	/**  Is catch-up enabled  */
@@ -211,6 +217,8 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 	public var protectionPolicy: ProtectionPolicy? = nil
 	/**  The time in days for recovery recording that was delete by Auto Delete .  */
 	public var recoveryGracePeriod: Int? = nil
+	/**  Is private copy enabled for the account  */
+	public var privateCopyEnabled: Bool? = nil
 
 
 	public func setMultiRequestToken(catchUpEnabled: String) {
@@ -297,6 +305,10 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 		self.dict["recoveryGracePeriod"] = recoveryGracePeriod
 	}
 	
+	public func setMultiRequestToken(privateCopyEnabled: String) {
+		self.dict["privateCopyEnabled"] = privateCopyEnabled
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -362,6 +374,9 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 		}
 		if dict["recoveryGracePeriod"] != nil {
 			recoveryGracePeriod = dict["recoveryGracePeriod"] as? Int
+		}
+		if dict["privateCopyEnabled"] != nil {
+			privateCopyEnabled = dict["privateCopyEnabled"] as? Bool
 		}
 
 	}
@@ -430,6 +445,9 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 		}
 		if(recoveryGracePeriod != nil) {
 			dict["recoveryGracePeriod"] = recoveryGracePeriod!
+		}
+		if(privateCopyEnabled != nil) {
+			dict["privateCopyEnabled"] = privateCopyEnabled!
 		}
 		return dict
 	}

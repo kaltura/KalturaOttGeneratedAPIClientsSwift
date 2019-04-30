@@ -54,12 +54,6 @@ open class BulkUploadProgramAssetResult: BulkUploadResult {
 				return self.append("liveAssetId") 
 			}
 		}
-		
-		public var liveAssetExternalId: BaseTokenizedObject {
-			get {
-				return self.append("liveAssetExternalId") 
-			}
-		}
 	}
 
 	/**  The programID that was created  */
@@ -69,8 +63,6 @@ open class BulkUploadProgramAssetResult: BulkUploadResult {
 	/**  The  live asset Id that was identified according liveAssetExternalId that was
 	  sent in bulk xml file  */
 	public var liveAssetId: Int? = nil
-	/**  The external live asset Id as was sent in bulk xml file  */
-	public var liveAssetExternalId: String? = nil
 
 
 	public func setMultiRequestToken(programId: String) {
@@ -85,10 +77,6 @@ open class BulkUploadProgramAssetResult: BulkUploadResult {
 		self.dict["liveAssetId"] = liveAssetId
 	}
 	
-	public func setMultiRequestToken(liveAssetExternalId: String) {
-		self.dict["liveAssetExternalId"] = liveAssetExternalId
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -100,9 +88,6 @@ open class BulkUploadProgramAssetResult: BulkUploadResult {
 		}
 		if dict["liveAssetId"] != nil {
 			liveAssetId = dict["liveAssetId"] as? Int
-		}
-		if dict["liveAssetExternalId"] != nil {
-			liveAssetExternalId = dict["liveAssetExternalId"] as? String
 		}
 
 	}
