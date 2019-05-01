@@ -49,14 +49,26 @@ open class AssetRule: AssetRuleBase {
 				return ArrayTokenizedObject<AssetRuleAction.AssetRuleActionTokenizer>(self.append("actions"))
 			} 
 		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
 	}
 
 	/**  List of conditions for the rule  */
 	public var conditions: Array<Condition>? = nil
 	/**  List of actions for the rule  */
 	public var actions: Array<AssetRuleAction>? = nil
+	/**  List of actions for the rule  */
+	public var status: AssetRuleStatus? = nil
 
 
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -65,6 +77,9 @@ open class AssetRule: AssetRuleBase {
 		}
 		if dict["actions"] != nil {
 			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
+		}
+		if dict["status"] != nil {
+			status = AssetRuleStatus(rawValue: "\(dict["status"]!)")
 		}
 
 	}
