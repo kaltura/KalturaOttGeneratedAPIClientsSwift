@@ -25,17 +25,66 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum MetaDataType: String {
-	case STRING = "STRING"
-	case MULTILINGUAL_STRING = "MULTILINGUAL_STRING"
-	case NUMBER = "NUMBER"
-	case BOOLEAN = "BOOLEAN"
-	case DATE = "DATE"
-	case RELEATED_ENTITY = "RELEATED_ENTITY"
+
+open class RelatedEntity: ObjectBase {
+
+	public class RelatedEntityTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
+	/**  Unique identifier for the related entry  */
+	public var id: String? = nil
+	/**  Defines related entry type  */
+	public var type: RelatedEntityType? = nil
+
+
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["id"] != nil {
+			id = dict["id"] as? String
+		}
+		if dict["type"] != nil {
+			type = RelatedEntityType(rawValue: "\(dict["type"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
+		if(type != nil) {
+			dict["type"] = type!.rawValue
+		}
+		return dict
+	}
 }
+

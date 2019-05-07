@@ -31,11 +31,9 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum MetaDataType: String {
-	case STRING = "STRING"
-	case MULTILINGUAL_STRING = "MULTILINGUAL_STRING"
-	case NUMBER = "NUMBER"
-	case BOOLEAN = "BOOLEAN"
-	case DATE = "DATE"
-	case RELEATED_ENTITY = "RELEATED_ENTITY"
+public enum RelatedEntityType: String {
+	case CHANNEL = "CHANNEL"
+	case EXTERNAL_CHANNEL = "EXTERNAL_CHANNEL"
+	case MEDIA = "MEDIA"
+	case PROGRAM = "PROGRAM"
 }

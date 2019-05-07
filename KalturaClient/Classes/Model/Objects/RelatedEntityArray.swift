@@ -25,17 +25,44 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum MetaDataType: String {
-	case STRING = "STRING"
-	case MULTILINGUAL_STRING = "MULTILINGUAL_STRING"
-	case NUMBER = "NUMBER"
-	case BOOLEAN = "BOOLEAN"
-	case DATE = "DATE"
-	case RELEATED_ENTITY = "RELEATED_ENTITY"
+
+open class RelatedEntityArray: ObjectBase {
+
+	public class RelatedEntityArrayTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<RelatedEntity.RelatedEntityTokenizer> {
+			get {
+				return ArrayTokenizedObject<RelatedEntity.RelatedEntityTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
+	/**  List of related entities  */
+	public var objects: Array<RelatedEntity>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+

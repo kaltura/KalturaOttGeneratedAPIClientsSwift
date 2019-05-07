@@ -98,6 +98,12 @@ open class Asset: ObjectBase {
 			}
 		}
 		
+		public var relatedEntities: DictionaryTokenizedObject<RelatedEntityArray.RelatedEntityArrayTokenizer> {
+			get {
+				return DictionaryTokenizedObject<RelatedEntityArray.RelatedEntityArrayTokenizer>(self.append("relatedEntities"))
+			}
+		}
+		
 		public var startDate: BaseTokenizedObject {
 			get {
 				return self.append("startDate") 
@@ -153,6 +159,9 @@ open class Asset: ObjectBase {
 	/**  Dynamic collection of key-value pairs according to the Tag Types defined in the
 	  system  */
 	public var tags: Dictionary<String, MultilingualStringValueArray>? = nil
+	/**  Dynamic collection of key-value pairs according to the related entity defined in
+	  the system  */
+	public var relatedEntities: Dictionary<String, RelatedEntityArray>? = nil
 	/**  Date and time represented as epoch. For VOD – since when the asset is
 	  available in the catalog. For EPG/Linear – when the program is aired (can be
 	  in the future).  */
@@ -237,6 +246,9 @@ open class Asset: ObjectBase {
 		if dict["tags"] != nil {
 			tags = try JSONParser.parse(map: dict["tags"] as! [String: Any])
 		}
+		if dict["relatedEntities"] != nil {
+			relatedEntities = try JSONParser.parse(map: dict["relatedEntities"] as! [String: Any])
+		}
 		if dict["startDate"] != nil {
 			startDate = Int64("\(dict["startDate"]!)")
 		}
@@ -271,6 +283,9 @@ open class Asset: ObjectBase {
 		}
 		if(tags != nil) {
 			dict["tags"] = tags!.toDictionary()
+		}
+		if(relatedEntities != nil) {
+			dict["relatedEntities"] = relatedEntities!.toDictionary()
 		}
 		if(startDate != nil) {
 			dict["startDate"] = startDate!
