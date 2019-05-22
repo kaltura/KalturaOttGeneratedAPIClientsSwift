@@ -25,21 +25,66 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
-	case APPLY_DISCOUNT_MODULE = "APPLY_DISCOUNT_MODULE"
-	case APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER"
-	case FILTER = "FILTER"
-	case ASSET_LIFE_CYCLE_TRANSITION = "ASSET_LIFE_CYCLE_TRANSITION"
+
+open class SubscriptionTrigger: Trigger {
+
+	public class SubscriptionTriggerTokenizer: Trigger.TriggerTokenizer {
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var offset: BaseTokenizedObject {
+			get {
+				return self.append("offset") 
+			}
+		}
+	}
+
+	/**  Subscription trigger type  */
+	public var type: SubscriptionTriggerType? = nil
+	/**  Subscription trigger offset  */
+	public var offset: Int64? = nil
+
+
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(offset: String) {
+		self.dict["offset"] = offset
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["type"] != nil {
+			type = SubscriptionTriggerType(rawValue: "\(dict["type"]!)")
+		}
+		if dict["offset"] != nil {
+			offset = Int64("\(dict["offset"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(type != nil) {
+			dict["type"] = type!.rawValue
+		}
+		if(offset != nil) {
+			dict["offset"] = offset!
+		}
+		return dict
+	}
 }
+

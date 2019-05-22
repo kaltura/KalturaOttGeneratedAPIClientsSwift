@@ -25,21 +25,41 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
-	case APPLY_DISCOUNT_MODULE = "APPLY_DISCOUNT_MODULE"
-	case APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER"
-	case FILTER = "FILTER"
-	case ASSET_LIFE_CYCLE_TRANSITION = "ASSET_LIFE_CYCLE_TRANSITION"
+
+open class TopicNotificationFilter: Filter {
+
+	public class TopicNotificationFilterTokenizer: Filter.FilterTokenizer {
+		
+		public func subscribeReference<T: SubscribeReference.SubscribeReferenceTokenizer>() -> T {
+			return T(self.append("subscribeReference"))
+		}
+	}
+
+	/**  Subscribe rreference  */
+	public var subscribeReference: SubscribeReference? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["subscribeReference"] != nil {
+		subscribeReference = try JSONParser.parse(object: dict["subscribeReference"] as! [String: Any])		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(subscribeReference != nil) {
+			dict["subscribeReference"] = subscribeReference!.toDictionary()
+		}
+		return dict
+	}
 }
+

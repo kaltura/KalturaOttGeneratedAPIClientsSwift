@@ -25,21 +25,66 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleActionType: String {
-	case BLOCK = "BLOCK"
-	case START_DATE_OFFSET = "START_DATE_OFFSET"
-	case END_DATE_OFFSET = "END_DATE_OFFSET"
-	case USER_BLOCK = "USER_BLOCK"
-	case ALLOW_PLAYBACK = "ALLOW_PLAYBACK"
-	case BLOCK_PLAYBACK = "BLOCK_PLAYBACK"
-	case APPLY_DISCOUNT_MODULE = "APPLY_DISCOUNT_MODULE"
-	case APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER"
-	case FILTER = "FILTER"
-	case ASSET_LIFE_CYCLE_TRANSITION = "ASSET_LIFE_CYCLE_TRANSITION"
+
+open class MailDispatcher: Dispatcher {
+
+	public class MailDispatcherTokenizer: Dispatcher.DispatcherTokenizer {
+		
+		public var bodyTemplate: BaseTokenizedObject {
+			get {
+				return self.append("bodyTemplate") 
+			}
+		}
+		
+		public var subjectTemplate: BaseTokenizedObject {
+			get {
+				return self.append("subjectTemplate") 
+			}
+		}
+	}
+
+	/**  Mail body template  */
+	public var bodyTemplate: String? = nil
+	/**  Mail subjsct template  */
+	public var subjectTemplate: String? = nil
+
+
+	public func setMultiRequestToken(bodyTemplate: String) {
+		self.dict["bodyTemplate"] = bodyTemplate
+	}
+	
+	public func setMultiRequestToken(subjectTemplate: String) {
+		self.dict["subjectTemplate"] = subjectTemplate
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["bodyTemplate"] != nil {
+			bodyTemplate = dict["bodyTemplate"] as? String
+		}
+		if dict["subjectTemplate"] != nil {
+			subjectTemplate = dict["subjectTemplate"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(bodyTemplate != nil) {
+			dict["bodyTemplate"] = bodyTemplate!
+		}
+		if(subjectTemplate != nil) {
+			dict["subjectTemplate"] = subjectTemplate!
+		}
+		return dict
+	}
 }
+

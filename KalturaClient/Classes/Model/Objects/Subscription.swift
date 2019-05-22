@@ -217,6 +217,12 @@ open class Subscription: ObjectBase {
 				return self.append("isCancellationBlocked") 
 			}
 		}
+		
+		public var preSaleDate: BaseTokenizedObject {
+			get {
+				return self.append("preSaleDate") 
+			}
+		}
 	}
 
 	/**  Subscription identifier  */
@@ -284,6 +290,8 @@ open class Subscription: ObjectBase {
 	public var externalId: String? = nil
 	/**  Is cancellation blocked for the subscription  */
 	public var isCancellationBlocked: Bool? = nil
+	/**  The Pre-Sale date the subscription is available for purchasing  */
+	public var preSaleDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -364,6 +372,10 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(isCancellationBlocked: String) {
 		self.dict["isCancellationBlocked"] = isCancellationBlocked
+	}
+	
+	public func setMultiRequestToken(preSaleDate: String) {
+		self.dict["preSaleDate"] = preSaleDate
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -459,6 +471,9 @@ open class Subscription: ObjectBase {
 		if dict["isCancellationBlocked"] != nil {
 			isCancellationBlocked = dict["isCancellationBlocked"] as? Bool
 		}
+		if dict["preSaleDate"] != nil {
+			preSaleDate = Int64("\(dict["preSaleDate"]!)")
+		}
 
 	}
 
@@ -550,6 +565,9 @@ open class Subscription: ObjectBase {
 		}
 		if(isCancellationBlocked != nil) {
 			dict["isCancellationBlocked"] = isCancellationBlocked!
+		}
+		if(preSaleDate != nil) {
+			dict["preSaleDate"] = preSaleDate!
 		}
 		return dict
 	}
