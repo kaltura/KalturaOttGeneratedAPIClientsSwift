@@ -55,6 +55,12 @@ open class Rule: ObjectBase {
 				return self.append("description") 
 			}
 		}
+		
+		public var label: BaseTokenizedObject {
+			get {
+				return self.append("label") 
+			}
+		}
 	}
 
 	/**  ID  */
@@ -63,6 +69,8 @@ open class Rule: ObjectBase {
 	public var name: String? = nil
 	/**  Description  */
 	public var description: String? = nil
+	/**  Label  */
+	public var label: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -77,6 +85,10 @@ open class Rule: ObjectBase {
 		self.dict["description"] = description
 	}
 	
+	public func setMultiRequestToken(label: String) {
+		self.dict["label"] = label
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -89,6 +101,9 @@ open class Rule: ObjectBase {
 		if dict["description"] != nil {
 			description = dict["description"] as? String
 		}
+		if dict["label"] != nil {
+			label = dict["label"] as? String
+		}
 
 	}
 
@@ -99,6 +114,9 @@ open class Rule: ObjectBase {
 		}
 		if(description != nil) {
 			dict["description"] = description!
+		}
+		if(label != nil) {
+			dict["label"] = label!
 		}
 		return dict
 	}

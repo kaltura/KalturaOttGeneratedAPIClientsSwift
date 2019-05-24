@@ -49,6 +49,12 @@ open class TopicNotificationMessage: ObjectBase {
 			}
 		}
 		
+		public var imageUrl: BaseTokenizedObject {
+			get {
+				return self.append("imageUrl") 
+			}
+		}
+		
 		public var topicNotificationId: BaseTokenizedObject {
 			get {
 				return self.append("topicNotificationId") 
@@ -70,6 +76,8 @@ open class TopicNotificationMessage: ObjectBase {
 	public var id: Int64? = nil
 	/**  Topic notification message  */
 	public var message: String? = nil
+	/**  Topic notification message image URL  */
+	public var imageUrl: String? = nil
 	/**  Topic notification ID  */
 	public var topicNotificationId: Int64? = nil
 	/**  Topic notification message trigger  */
@@ -86,6 +94,10 @@ open class TopicNotificationMessage: ObjectBase {
 		self.dict["message"] = message
 	}
 	
+	public func setMultiRequestToken(imageUrl: String) {
+		self.dict["imageUrl"] = imageUrl
+	}
+	
 	public func setMultiRequestToken(topicNotificationId: String) {
 		self.dict["topicNotificationId"] = topicNotificationId
 	}
@@ -98,6 +110,9 @@ open class TopicNotificationMessage: ObjectBase {
 		}
 		if dict["message"] != nil {
 			message = dict["message"] as? String
+		}
+		if dict["imageUrl"] != nil {
+			imageUrl = dict["imageUrl"] as? String
 		}
 		if dict["topicNotificationId"] != nil {
 			topicNotificationId = Int64("\(dict["topicNotificationId"]!)")
@@ -114,6 +129,9 @@ open class TopicNotificationMessage: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(message != nil) {
 			dict["message"] = message!
+		}
+		if(imageUrl != nil) {
+			dict["imageUrl"] = imageUrl!
 		}
 		if(topicNotificationId != nil) {
 			dict["topicNotificationId"] = topicNotificationId!
