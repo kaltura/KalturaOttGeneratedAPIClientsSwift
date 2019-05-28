@@ -72,16 +72,25 @@ public final class TopicNotificationMessageService{
 		public func filter<T: TopicNotificationMessageFilter.TopicNotificationMessageFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
 	}
 
 	public static func list() -> RequestBuilder<TopicNotificationMessageListResponse, TopicNotificationMessageListResponse.TopicNotificationMessageListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	/**  Lists all topic notifications in the system.  */
 	public static func list(filter: TopicNotificationMessageFilter?) -> RequestBuilder<TopicNotificationMessageListResponse, TopicNotificationMessageListResponse.TopicNotificationMessageListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
+	}
+
+	/**  Lists all topic notifications in the system.  */
+	public static func list(filter: TopicNotificationMessageFilter?, pager: FilterPager?) -> RequestBuilder<TopicNotificationMessageListResponse, TopicNotificationMessageListResponse.TopicNotificationMessageListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<TopicNotificationMessageListResponse, TopicNotificationMessageListResponse.TopicNotificationMessageListResponseTokenizer, ListTokenizer> = RequestBuilder<TopicNotificationMessageListResponse, TopicNotificationMessageListResponse.TopicNotificationMessageListResponseTokenizer, ListTokenizer>(service: "topicnotificationmessage", action: "list")
 			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
