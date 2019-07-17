@@ -35,6 +35,38 @@
 
 public final class PermissionService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func permission<T: Permission.PermissionTokenizer>() -> T {
+			return T(self.append("permission"))
+		}
+	}
+
+	/**  Adds new permission  */
+	public static func add(permission: Permission) -> RequestBuilder<Permission, Permission.PermissionTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Permission, Permission.PermissionTokenizer, AddTokenizer> = RequestBuilder<Permission, Permission.PermissionTokenizer, AddTokenizer>(service: "permission", action: "add")
+			.setParam(key: "permission", value: permission)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Deletes an existing permission  */
+	public static func delete(id: Int64) -> NullRequestBuilder<DeleteTokenizer> {
+		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "permission", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class GetCurrentPermissionsTokenizer: ClientTokenizer  {
 	}
 
