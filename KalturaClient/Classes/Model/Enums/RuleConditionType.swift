@@ -41,7 +41,4 @@ public enum RuleConditionType: String {
 	case DATE = "DATE"
 	case OR = "OR"
 	case HEADER = "HEADER"
-	case USER_SUBSCRIPTION = "USER_SUBSCRIPTION"
-	case ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION"
-	case USER_ROLE = "USER_ROLE"
 }

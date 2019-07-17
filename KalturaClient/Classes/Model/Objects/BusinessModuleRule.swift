@@ -44,9 +44,9 @@ open class BusinessModuleRule: Rule {
 			} 
 		}
 		
-		public var actions: ArrayTokenizedObject<BusinessModuleRuleAction.BusinessModuleRuleActionTokenizer> {
+		public var actions: ArrayTokenizedObject<ApplyDiscountModuleAction.ApplyDiscountModuleActionTokenizer> {
 			get {
-				return ArrayTokenizedObject<BusinessModuleRuleAction.BusinessModuleRuleActionTokenizer>(self.append("actions"))
+				return ArrayTokenizedObject<ApplyDiscountModuleAction.ApplyDiscountModuleActionTokenizer>(self.append("actions"))
 			} 
 		}
 		
@@ -66,7 +66,7 @@ open class BusinessModuleRule: Rule {
 	/**  List of conditions for the rule  */
 	public var conditions: Array<Condition>? = nil
 	/**  List of actions for the rule  */
-	public var actions: Array<BusinessModuleRuleAction>? = nil
+	public var actions: Array<ApplyDiscountModuleAction>? = nil
 	/**  Create date of the rule  */
 	public var createDate: Int64? = nil
 	/**  Update date of the rule  */
