@@ -25,45 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-public final class CouponService{
-
-	public class GetTokenizer: ClientTokenizer  {
-		
-		public var code: BaseTokenizedObject {
-			get {
-				return self.append("code") 
-			}
-		}
-	}
-
-	/**  Returns information about a coupon  */
-	public static func get(code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer>(service: "coupon", action: "get")
-			.setParam(key: "code", value: code)
-
-		return request
-	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: CouponFilter.CouponFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	/**  Lists coupon codes.  */
-	public static func list(filter: CouponFilter) -> RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer>(service: "coupon", action: "list")
-			.setParam(key: "filter", value: filter)
-
-		return request
-	}
+public enum HouseholdCouponOrderBy: String {
+	case NONE = "NONE"
 }

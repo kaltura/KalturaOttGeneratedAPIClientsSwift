@@ -33,36 +33,14 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class CouponService{
+public final class PartnerService{
 
-	public class GetTokenizer: ClientTokenizer  {
-		
-		public var code: BaseTokenizedObject {
-			get {
-				return self.append("code") 
-			}
-		}
+	public class ExternalLoginTokenizer: ClientTokenizer  {
 	}
 
-	/**  Returns information about a coupon  */
-	public static func get(code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer>(service: "coupon", action: "get")
-			.setParam(key: "code", value: code)
-
-		return request
-	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: CouponFilter.CouponFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	/**  Lists coupon codes.  */
-	public static func list(filter: CouponFilter) -> RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer>(service: "coupon", action: "list")
-			.setParam(key: "filter", value: filter)
+	/**  Returns a login session for external system (like OVP)  */
+	public static func externalLogin() -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer> {
+		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer>(service: "partner", action: "externalLogin")
 
 		return request
 	}
