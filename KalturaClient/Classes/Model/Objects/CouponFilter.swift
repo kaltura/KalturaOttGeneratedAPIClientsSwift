@@ -33,37 +33,40 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class CouponService{
+open class CouponFilter: Filter {
 
-	public class GetTokenizer: ClientTokenizer  {
+	public class CouponFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var code: BaseTokenizedObject {
+		public var couponCodesIn: BaseTokenizedObject {
 			get {
-				return self.append("code") 
+				return self.append("couponCodesIn") 
 			}
 		}
 	}
 
-	/**  Returns information about a coupon  */
-	public static func get(code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer>(service: "coupon", action: "get")
-			.setParam(key: "code", value: code)
+	/**  Comma separated list of coupon codes.  */
+	public var couponCodesIn: String? = nil
 
-		return request
+
+	public func setMultiRequestToken(couponCodesIn: String) {
+		self.dict["couponCodesIn"] = couponCodesIn
 	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: CouponFilter.CouponFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["couponCodesIn"] != nil {
+			couponCodesIn = dict["couponCodesIn"] as? String
 		}
+
 	}
 
-	/**  Lists coupon codes.  */
-	public static func list(filter: CouponFilter) -> RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer>(service: "coupon", action: "list")
-			.setParam(key: "filter", value: filter)
-
-		return request
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(couponCodesIn != nil) {
+			dict["couponCodesIn"] = couponCodesIn!
+		}
+		return dict
 	}
 }
+

@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public final class CouponService{
+/**  Household Coupon details  */
+open class HouseholdCoupon: CrudObject {
 
-	public class GetTokenizer: ClientTokenizer  {
+	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
 		
 		public var code: BaseTokenizedObject {
 			get {
@@ -44,26 +45,29 @@ public final class CouponService{
 		}
 	}
 
-	/**  Returns information about a coupon  */
-	public static func get(code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> {
-		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer>(service: "coupon", action: "get")
-			.setParam(key: "code", value: code)
+	/**  Coupon code  */
+	public var code: String? = nil
 
-		return request
+
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
 	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: CouponFilter.CouponFilterTokenizer>() -> T {
-			return T(self.append("filter"))
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["code"] != nil {
+			code = dict["code"] as? String
 		}
+
 	}
 
-	/**  Lists coupon codes.  */
-	public static func list(filter: CouponFilter) -> RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer>(service: "coupon", action: "list")
-			.setParam(key: "filter", value: filter)
-
-		return request
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(code != nil) {
+			dict["code"] = code!
+		}
+		return dict
 	}
 }
+
