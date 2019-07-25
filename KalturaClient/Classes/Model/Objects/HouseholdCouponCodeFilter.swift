@@ -34,9 +34,9 @@
  */
 
 /**  Kaltura Houseold CouponCode Filter  */
-open class HouseoldCouponCodeFilter: RelatedObjectFilter {
+open class HouseholdCouponCodeFilter: RelatedObjectFilter {
 
-	public class HouseoldCouponCodeFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
+	public class HouseholdCouponCodeFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
 	}
 
 
