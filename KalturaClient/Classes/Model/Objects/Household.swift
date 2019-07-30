@@ -283,9 +283,6 @@ open class Household: ObjectBase {
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
 		}
-		if(regionId != nil) {
-			dict["regionId"] = regionId!
-		}
 		return dict
 	}
 }
