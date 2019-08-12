@@ -33,37 +33,16 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filtering cloud external recordings  */
-open class CloudRecordingFilter: ExternalRecordingFilter {
+open class CrudObject: ObjectBase {
 
-	public class CloudRecordingFilterTokenizer: ExternalRecordingFilter.ExternalRecordingFilterTokenizer {
-		
-		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
-			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
-			}
-		}
+	public class CrudObjectTokenizer: ObjectBase.ObjectBaseTokenizer {
 	}
 
-	/**  Adapter Data  */
-	public var adapterData: Dictionary<String, StringValue>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["adapterData"] != nil {
-			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!.toDictionary()
-		}
-		return dict
-	}
 }
 

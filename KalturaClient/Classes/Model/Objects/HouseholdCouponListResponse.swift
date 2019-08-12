@@ -33,35 +33,34 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filtering cloud external recordings  */
-open class CloudRecordingFilter: ExternalRecordingFilter {
+open class HouseholdCouponListResponse: ListResponse {
 
-	public class CloudRecordingFilterTokenizer: ExternalRecordingFilter.ExternalRecordingFilterTokenizer {
+	public class HouseholdCouponListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+		public var objects: ArrayTokenizedObject<HouseholdCoupon.HouseholdCouponTokenizer> {
 			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
-			}
+				return ArrayTokenizedObject<HouseholdCoupon.HouseholdCouponTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  Adapter Data  */
-	public var adapterData: Dictionary<String, StringValue>? = nil
+	/**  A list of objects  */
+	public var objects: Array<HouseholdCoupon>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["adapterData"] != nil {
-			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

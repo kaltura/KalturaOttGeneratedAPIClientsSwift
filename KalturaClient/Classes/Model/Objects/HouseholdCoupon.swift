@@ -33,35 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filtering cloud external recordings  */
-open class CloudRecordingFilter: ExternalRecordingFilter {
+/**  Household Coupon details  */
+open class HouseholdCoupon: CrudObject {
 
-	public class CloudRecordingFilterTokenizer: ExternalRecordingFilter.ExternalRecordingFilterTokenizer {
+	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
 		
-		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+		public var code: BaseTokenizedObject {
 			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
+				return self.append("code") 
 			}
 		}
 	}
 
-	/**  Adapter Data  */
-	public var adapterData: Dictionary<String, StringValue>? = nil
+	/**  Coupon code  */
+	public var code: String? = nil
 
 
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["adapterData"] != nil {
-			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
+		if dict["code"] != nil {
+			code = dict["code"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!.toDictionary()
+		if(code != nil) {
+			dict["code"] = code!
 		}
 		return dict
 	}

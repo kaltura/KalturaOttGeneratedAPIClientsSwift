@@ -33,35 +33,38 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filtering cloud external recordings  */
-open class CloudRecordingFilter: ExternalRecordingFilter {
+open class CouponFilter: Filter {
 
-	public class CloudRecordingFilterTokenizer: ExternalRecordingFilter.ExternalRecordingFilterTokenizer {
+	public class CouponFilterTokenizer: Filter.FilterTokenizer {
 		
-		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+		public var couponCodesIn: BaseTokenizedObject {
 			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
+				return self.append("couponCodesIn") 
 			}
 		}
 	}
 
-	/**  Adapter Data  */
-	public var adapterData: Dictionary<String, StringValue>? = nil
+	/**  Comma separated list of coupon codes.  */
+	public var couponCodesIn: String? = nil
 
 
+	public func setMultiRequestToken(couponCodesIn: String) {
+		self.dict["couponCodesIn"] = couponCodesIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["adapterData"] != nil {
-			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
+		if dict["couponCodesIn"] != nil {
+			couponCodesIn = dict["couponCodesIn"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!.toDictionary()
+		if(couponCodesIn != nil) {
+			dict["couponCodesIn"] = couponCodesIn!
 		}
 		return dict
 	}

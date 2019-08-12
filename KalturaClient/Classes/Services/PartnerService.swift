@@ -33,37 +33,15 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filtering cloud external recordings  */
-open class CloudRecordingFilter: ExternalRecordingFilter {
+public final class PartnerService{
 
-	public class CloudRecordingFilterTokenizer: ExternalRecordingFilter.ExternalRecordingFilterTokenizer {
-		
-		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
-			get {
-				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
-			}
-		}
+	public class ExternalLoginTokenizer: ClientTokenizer  {
 	}
 
-	/**  Adapter Data  */
-	public var adapterData: Dictionary<String, StringValue>? = nil
+	/**  Returns a login session for external system (like OVP)  */
+	public static func externalLogin() -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer> {
+		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer>(service: "partner", action: "externalLogin")
 
-
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["adapterData"] != nil {
-			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!.toDictionary()
-		}
-		return dict
+		return request
 	}
 }
-

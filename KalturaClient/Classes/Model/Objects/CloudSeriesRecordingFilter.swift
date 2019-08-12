@@ -38,26 +38,22 @@ open class CloudSeriesRecordingFilter: SeriesRecordingFilter {
 
 	public class CloudSeriesRecordingFilterTokenizer: SeriesRecordingFilter.SeriesRecordingFilterTokenizer {
 		
-		public var adapterData: BaseTokenizedObject {
+		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
 			get {
-				return self.append("adapterData") 
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
 			}
 		}
 	}
 
 	/**  Adapter Data  */
-	public var adapterData: String? = nil
+	public var adapterData: Dictionary<String, StringValue>? = nil
 
 
-	public func setMultiRequestToken(adapterData: String) {
-		self.dict["adapterData"] = adapterData
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["adapterData"] != nil {
-			adapterData = dict["adapterData"] as? String
+			adapterData = try JSONParser.parse(map: dict["adapterData"] as! [String: Any])
 		}
 
 	}
@@ -65,7 +61,7 @@ open class CloudSeriesRecordingFilter: SeriesRecordingFilter {
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
 		if(adapterData != nil) {
-			dict["adapterData"] = adapterData!
+			dict["adapterData"] = adapterData!.toDictionary()
 		}
 		return dict
 	}
