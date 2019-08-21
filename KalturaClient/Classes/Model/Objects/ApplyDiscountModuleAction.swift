@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ApplyDiscountModuleAction: RuleAction {
+open class ApplyDiscountModuleAction: BusinessModuleRuleAction {
 
-	public class ApplyDiscountModuleActionTokenizer: RuleAction.RuleActionTokenizer {
+	public class ApplyDiscountModuleActionTokenizer: BusinessModuleRuleAction.BusinessModuleRuleActionTokenizer {
 		
 		public var discountModuleId: BaseTokenizedObject {
 			get {

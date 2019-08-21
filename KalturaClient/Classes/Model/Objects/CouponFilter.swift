@@ -25,23 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
-	case HEADER = "HEADER"
-	case USER_SUBSCRIPTION = "USER_SUBSCRIPTION"
-	case ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION"
-	case USER_ROLE = "USER_ROLE"
+
+open class CouponFilter: Filter {
+
+	public class CouponFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var couponCodesIn: BaseTokenizedObject {
+			get {
+				return self.append("couponCodesIn") 
+			}
+		}
+	}
+
+	/**  Comma separated list of coupon codes.  */
+	public var couponCodesIn: String? = nil
+
+
+	public func setMultiRequestToken(couponCodesIn: String) {
+		self.dict["couponCodesIn"] = couponCodesIn
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["couponCodesIn"] != nil {
+			couponCodesIn = dict["couponCodesIn"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(couponCodesIn != nil) {
+			dict["couponCodesIn"] = couponCodesIn!
+		}
+		return dict
+	}
 }
+

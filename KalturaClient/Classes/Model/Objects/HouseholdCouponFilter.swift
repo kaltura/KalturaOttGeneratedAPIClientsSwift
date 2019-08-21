@@ -33,38 +33,56 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ListResponse: ObjectBase {
+open class HouseholdCouponFilter: CrudFilter {
 
-	public class ListResponseTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class HouseholdCouponFilterTokenizer: CrudFilter.CrudFilterTokenizer {
 		
-		public var totalCount: BaseTokenizedObject {
+		public var businessModuleTypeEqual: BaseTokenizedObject {
 			get {
-				return self.append("totalCount") 
+				return self.append("businessModuleTypeEqual") 
+			}
+		}
+		
+		public var businessModuleIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("businessModuleIdEqual") 
 			}
 		}
 	}
 
-	/**  Total items  */
-	public var totalCount: Int? = nil
+	/**  Indicates which household coupons list to return by their business module type.  */
+	public var businessModuleTypeEqual: TransactionType? = nil
+	/**  Indicates which household coupons list to return by their business module ID.  */
+	public var businessModuleIdEqual: Int64? = nil
 
 
-	public func setMultiRequestToken(totalCount: String) {
-		self.dict["totalCount"] = totalCount
+	public func setMultiRequestToken(businessModuleTypeEqual: String) {
+		self.dict["businessModuleTypeEqual"] = businessModuleTypeEqual
+	}
+	
+	public func setMultiRequestToken(businessModuleIdEqual: String) {
+		self.dict["businessModuleIdEqual"] = businessModuleIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["totalCount"] != nil {
-			totalCount = dict["totalCount"] as? Int
+		if dict["businessModuleTypeEqual"] != nil {
+			businessModuleTypeEqual = TransactionType(rawValue: "\(dict["businessModuleTypeEqual"]!)")
+		}
+		if dict["businessModuleIdEqual"] != nil {
+			businessModuleIdEqual = Int64("\(dict["businessModuleIdEqual"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(totalCount != nil) {
-			dict["totalCount"] = totalCount!
+		if(businessModuleTypeEqual != nil) {
+			dict["businessModuleTypeEqual"] = businessModuleTypeEqual!.rawValue
+		}
+		if(businessModuleIdEqual != nil) {
+			dict["businessModuleIdEqual"] = businessModuleIdEqual!
 		}
 		return dict
 	}

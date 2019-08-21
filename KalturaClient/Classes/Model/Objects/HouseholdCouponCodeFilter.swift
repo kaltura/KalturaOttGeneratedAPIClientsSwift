@@ -25,23 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
-	case HEADER = "HEADER"
-	case USER_SUBSCRIPTION = "USER_SUBSCRIPTION"
-	case ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION"
-	case USER_ROLE = "USER_ROLE"
+
+/**  Kaltura Houseold CouponCode Filter  */
+open class HouseholdCouponCodeFilter: RelatedObjectFilter {
+
+	public class HouseholdCouponCodeFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

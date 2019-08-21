@@ -25,23 +25,49 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
-	case HEADER = "HEADER"
-	case USER_SUBSCRIPTION = "USER_SUBSCRIPTION"
-	case ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION"
-	case USER_ROLE = "USER_ROLE"
+
+/**  Household Coupon details  */
+open class HouseholdCoupon: CrudObject {
+
+	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
+		
+		public var code: BaseTokenizedObject {
+			get {
+				return self.append("code") 
+			}
+		}
+	}
+
+	/**  Coupon code  */
+	public var code: String? = nil
+
+
+	public func setMultiRequestToken(code: String) {
+		self.dict["code"] = code
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["code"] != nil {
+			code = dict["code"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(code != nil) {
+			dict["code"] = code!
+		}
+		return dict
+	}
 }
+

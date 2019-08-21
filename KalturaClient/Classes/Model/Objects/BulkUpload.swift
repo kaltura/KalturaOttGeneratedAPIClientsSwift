@@ -91,6 +91,12 @@ open class BulkUpload: ObjectBase {
 				return ArrayTokenizedObject<BulkUploadResult.BulkUploadResultTokenizer>(self.append("results"))
 			} 
 		}
+		
+		public var errors: ArrayTokenizedObject<Message.MessageTokenizer> {
+			get {
+				return ArrayTokenizedObject<Message.MessageTokenizer>(self.append("errors"))
+			} 
+		}
 	}
 
 	/**  Bulk identifier  */
@@ -112,6 +118,8 @@ open class BulkUpload: ObjectBase {
 	public var uploadedByUserId: Int64? = nil
 	/**  A list of results  */
 	public var results: Array<BulkUploadResult>? = nil
+	/**  A list of errors  */
+	public var errors: Array<Message>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -175,6 +183,9 @@ open class BulkUpload: ObjectBase {
 		}
 		if dict["results"] != nil {
 			results = try JSONParser.parse(array: dict["results"] as! [Any])
+		}
+		if dict["errors"] != nil {
+			errors = try JSONParser.parse(array: dict["errors"] as! [Any])
 		}
 
 	}
