@@ -25,23 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
-	case HEADER = "HEADER"
-	case USER_SUBSCRIPTION = "USER_SUBSCRIPTION"
-	case ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION"
-	case USER_ROLE = "USER_ROLE"
+
+/**  AssetSubscription Condition - indicates which assets this rule is applied on by
+  their subscriptions  */
+open class AssetSubscriptionCondition: SubscriptionCondition {
+
+	public class AssetSubscriptionConditionTokenizer: SubscriptionCondition.SubscriptionConditionTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

@@ -53,6 +53,12 @@ open class AssetRuleFilter: Filter {
 				return self.append("actionsContainType") 
 			}
 		}
+		
+		public var assetRuleIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("assetRuleIdEqual") 
+			}
+		}
 	}
 
 	/**  Indicates which asset rule list to return by it KalturaRuleConditionType.       
@@ -62,6 +68,8 @@ open class AssetRuleFilter: Filter {
 	public var assetApplied: SlimAsset? = nil
 	/**  Indicates which asset rule list to return by this KalturaRuleActionType.  */
 	public var actionsContainType: RuleActionType? = nil
+	/**  Asset rule id  */
+	public var assetRuleIdEqual: Int64? = nil
 
 
 	public func setMultiRequestToken(conditionsContainType: String) {
@@ -70,6 +78,10 @@ open class AssetRuleFilter: Filter {
 	
 	public func setMultiRequestToken(actionsContainType: String) {
 		self.dict["actionsContainType"] = actionsContainType
+	}
+	
+	public func setMultiRequestToken(assetRuleIdEqual: String) {
+		self.dict["assetRuleIdEqual"] = assetRuleIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -82,6 +94,9 @@ open class AssetRuleFilter: Filter {
 		assetApplied = try JSONParser.parse(object: dict["assetApplied"] as! [String: Any])		}
 		if dict["actionsContainType"] != nil {
 			actionsContainType = RuleActionType(rawValue: "\(dict["actionsContainType"]!)")
+		}
+		if dict["assetRuleIdEqual"] != nil {
+			assetRuleIdEqual = Int64("\(dict["assetRuleIdEqual"]!)")
 		}
 
 	}
@@ -96,6 +111,9 @@ open class AssetRuleFilter: Filter {
 		}
 		if(actionsContainType != nil) {
 			dict["actionsContainType"] = actionsContainType!.rawValue
+		}
+		if(assetRuleIdEqual != nil) {
+			dict["assetRuleIdEqual"] = assetRuleIdEqual!
 		}
 		return dict
 	}
