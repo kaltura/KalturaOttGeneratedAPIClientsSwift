@@ -133,12 +133,6 @@ open class Asset: ObjectBase {
 				return self.append("externalId") 
 			}
 		}
-		
-		public var indexStatus: BaseTokenizedObject {
-			get {
-				return self.append("indexStatus") 
-			}
-		}
 	}
 
 	/**  Unique identifier for the asset  */
@@ -181,8 +175,6 @@ open class Asset: ObjectBase {
 	public var updateDate: Int64? = nil
 	/**  External identifier for the asset  */
 	public var externalId: String? = nil
-	/**  The media asset index status  */
-	public var indexStatus: AssetIndexStatus? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -219,10 +211,6 @@ open class Asset: ObjectBase {
 	
 	public func setMultiRequestToken(externalId: String) {
 		self.dict["externalId"] = externalId
-	}
-	
-	public func setMultiRequestToken(indexStatus: String) {
-		self.dict["indexStatus"] = indexStatus
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -275,9 +263,6 @@ open class Asset: ObjectBase {
 		}
 		if dict["externalId"] != nil {
 			externalId = dict["externalId"] as? String
-		}
-		if dict["indexStatus"] != nil {
-			indexStatus = AssetIndexStatus(rawValue: "\(dict["indexStatus"]!)")
 		}
 
 	}
