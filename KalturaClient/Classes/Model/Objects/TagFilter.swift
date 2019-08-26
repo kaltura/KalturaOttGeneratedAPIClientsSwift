@@ -60,12 +60,6 @@ open class TagFilter: Filter {
 				return self.append("languageEqual") 
 			}
 		}
-		
-		public var idIn: BaseTokenizedObject {
-			get {
-				return self.append("idIn") 
-			}
-		}
 	}
 
 	/**  Tag to filter by  */
@@ -76,8 +70,6 @@ open class TagFilter: Filter {
 	public var typeEqual: Int? = nil
 	/**  Language to filter by  */
 	public var languageEqual: String? = nil
-	/**  Comma separated identifiers  */
-	public var idIn: String? = nil
 
 
 	public func setMultiRequestToken(tagEqual: String) {
@@ -96,10 +88,6 @@ open class TagFilter: Filter {
 		self.dict["languageEqual"] = languageEqual
 	}
 	
-	public func setMultiRequestToken(idIn: String) {
-		self.dict["idIn"] = idIn
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -114,9 +102,6 @@ open class TagFilter: Filter {
 		}
 		if dict["languageEqual"] != nil {
 			languageEqual = dict["languageEqual"] as? String
-		}
-		if dict["idIn"] != nil {
-			idIn = dict["idIn"] as? String
 		}
 
 	}
@@ -134,9 +119,6 @@ open class TagFilter: Filter {
 		}
 		if(languageEqual != nil) {
 			dict["languageEqual"] = languageEqual!
-		}
-		if(idIn != nil) {
-			dict["idIn"] = idIn!
 		}
 		return dict
 	}

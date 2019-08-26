@@ -33,58 +33,16 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class AssetLifeCycleBuisnessModuleTransitionAction: AssetLifeCycleTransitionAction {
+open class BusinessModuleRuleAction: RuleAction {
 
-	public class AssetLifeCycleBuisnessModuleTransitionActionTokenizer: AssetLifeCycleTransitionAction.AssetLifeCycleTransitionActionTokenizer {
-		
-		public var fileTypeIds: BaseTokenizedObject {
-			get {
-				return self.append("fileTypeIds") 
-			}
-		}
-		
-		public var ppvIds: BaseTokenizedObject {
-			get {
-				return self.append("ppvIds") 
-			}
-		}
+	public class BusinessModuleRuleActionTokenizer: RuleAction.RuleActionTokenizer {
 	}
 
-	/**  Comma separated list of fileType Ids.  */
-	public var fileTypeIds: String? = nil
-	/**  Comma separated list of ppv Ids.  */
-	public var ppvIds: String? = nil
 
 
-	public func setMultiRequestToken(fileTypeIds: String) {
-		self.dict["fileTypeIds"] = fileTypeIds
-	}
-	
-	public func setMultiRequestToken(ppvIds: String) {
-		self.dict["ppvIds"] = ppvIds
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["fileTypeIds"] != nil {
-			fileTypeIds = dict["fileTypeIds"] as? String
-		}
-		if dict["ppvIds"] != nil {
-			ppvIds = dict["ppvIds"] as? String
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(fileTypeIds != nil) {
-			dict["fileTypeIds"] = fileTypeIds!
-		}
-		if(ppvIds != nil) {
-			dict["ppvIds"] = ppvIds!
-		}
-		return dict
-	}
 }
 

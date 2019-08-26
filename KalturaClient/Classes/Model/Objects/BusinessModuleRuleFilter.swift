@@ -55,6 +55,12 @@ open class BusinessModuleRuleFilter: Filter {
 				return self.append("segmentIdsApplied") 
 			}
 		}
+		
+		public var actionsContainType: BaseTokenizedObject {
+			get {
+				return self.append("actionsContainType") 
+			}
+		}
 	}
 
 	/**  Business module type the rules applied on  */
@@ -63,6 +69,8 @@ open class BusinessModuleRuleFilter: Filter {
 	public var businessModuleIdApplied: Int64? = nil
 	/**  Comma separated segment IDs the rules applied on  */
 	public var segmentIdsApplied: String? = nil
+	/**  Indicates which business module rule list to return by their action.  */
+	public var actionsContainType: RuleActionType? = nil
 
 
 	public func setMultiRequestToken(businessModuleTypeApplied: String) {
@@ -77,6 +85,10 @@ open class BusinessModuleRuleFilter: Filter {
 		self.dict["segmentIdsApplied"] = segmentIdsApplied
 	}
 	
+	public func setMultiRequestToken(actionsContainType: String) {
+		self.dict["actionsContainType"] = actionsContainType
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +100,9 @@ open class BusinessModuleRuleFilter: Filter {
 		}
 		if dict["segmentIdsApplied"] != nil {
 			segmentIdsApplied = dict["segmentIdsApplied"] as? String
+		}
+		if dict["actionsContainType"] != nil {
+			actionsContainType = RuleActionType(rawValue: "\(dict["actionsContainType"]!)")
 		}
 
 	}
@@ -102,6 +117,9 @@ open class BusinessModuleRuleFilter: Filter {
 		}
 		if(segmentIdsApplied != nil) {
 			dict["segmentIdsApplied"] = segmentIdsApplied!
+		}
+		if(actionsContainType != nil) {
+			dict["actionsContainType"] = actionsContainType!.rawValue
 		}
 		return dict
 	}
