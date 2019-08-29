@@ -36,4 +36,5 @@ public enum LinearChannelType: String {
 	case DTT = "DTT"
 	case OTT = "OTT"
 	case DTT_AND_OTT = "DTT_AND_OTT"
+	case VRM_EXPORT = "VRM_EXPORT"
 }
