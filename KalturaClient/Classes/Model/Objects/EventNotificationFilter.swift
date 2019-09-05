@@ -49,9 +49,9 @@ open class EventNotificationFilter: CrudFilter {
 			}
 		}
 		
-		public var objectTypeEqual: BaseTokenizedObject {
+		public var eventObjectTypeEqual: BaseTokenizedObject {
 			get {
-				return self.append("objectTypeEqual") 
+				return self.append("eventObjectTypeEqual") 
 			}
 		}
 	}
@@ -61,7 +61,7 @@ open class EventNotificationFilter: CrudFilter {
 	/**  Indicates which objectId to return by their event notifications.  */
 	public var objectIdEqual: Int64? = nil
 	/**  Indicates which objectType to return by their event notifications.  */
-	public var objectTypeEqual: String? = nil
+	public var eventObjectTypeEqual: String? = nil
 
 
 	public func setMultiRequestToken(idEqual: String) {
@@ -72,8 +72,8 @@ open class EventNotificationFilter: CrudFilter {
 		self.dict["objectIdEqual"] = objectIdEqual
 	}
 	
-	public func setMultiRequestToken(objectTypeEqual: String) {
-		self.dict["objectTypeEqual"] = objectTypeEqual
+	public func setMultiRequestToken(eventObjectTypeEqual: String) {
+		self.dict["eventObjectTypeEqual"] = eventObjectTypeEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -85,8 +85,8 @@ open class EventNotificationFilter: CrudFilter {
 		if dict["objectIdEqual"] != nil {
 			objectIdEqual = Int64("\(dict["objectIdEqual"]!)")
 		}
-		if dict["objectTypeEqual"] != nil {
-			objectTypeEqual = dict["objectTypeEqual"] as? String
+		if dict["eventObjectTypeEqual"] != nil {
+			eventObjectTypeEqual = dict["eventObjectTypeEqual"] as? String
 		}
 
 	}
@@ -99,8 +99,8 @@ open class EventNotificationFilter: CrudFilter {
 		if(objectIdEqual != nil) {
 			dict["objectIdEqual"] = objectIdEqual!
 		}
-		if(objectTypeEqual != nil) {
-			dict["objectTypeEqual"] = objectTypeEqual!
+		if(eventObjectTypeEqual != nil) {
+			dict["eventObjectTypeEqual"] = eventObjectTypeEqual!
 		}
 		return dict
 	}
