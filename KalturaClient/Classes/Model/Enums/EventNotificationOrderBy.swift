@@ -31,10 +31,6 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum LinearChannelType: String {
-	case UNKNOWN = "UNKNOWN"
-	case DTT = "DTT"
-	case OTT = "OTT"
-	case DTT_AND_OTT = "DTT_AND_OTT"
-	case VRM_EXPORT = "VRM_EXPORT"
+public enum EventNotificationOrderBy: String {
+	case NONE = "NONE"
 }

@@ -31,10 +31,9 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum LinearChannelType: String {
-	case UNKNOWN = "UNKNOWN"
-	case DTT = "DTT"
-	case OTT = "OTT"
-	case DTT_AND_OTT = "DTT_AND_OTT"
-	case VRM_EXPORT = "VRM_EXPORT"
+public enum EventNotificationStatus: String {
+	case SENT = "SENT"
+	case FAILED = "FAILED"
+	case SUCCESS = "SUCCESS"
+	case FAILED_TO_SEND = "FAILED_TO_SEND"
 }
