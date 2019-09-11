@@ -35,4 +35,5 @@ public enum AssetReferenceType: String {
 	case MEDIA = "media"
 	case EPG_INTERNAL = "epg_internal"
 	case EPG_EXTERNAL = "epg_external"
+	case NPVR = "npvr"
 }

@@ -91,6 +91,12 @@ open class IngestProfile: ObjectBase {
 				return self.append("defaultOverlapPolicy") 
 			}
 		}
+		
+		public var overlapChannels: BaseTokenizedObject {
+			get {
+				return self.append("overlapChannels") 
+			}
+		}
 	}
 
 	/**  Ingest profile identifier  */
@@ -111,6 +117,8 @@ open class IngestProfile: ObjectBase {
 	public var defaultAutoFillPolicy: IngestProfileAutofillPolicy? = nil
 	/**  Ingest profile default Overlap policy  */
 	public var defaultOverlapPolicy: IngestProfileOverlapPolicy? = nil
+	/**  Ingest profile overlap channels  */
+	public var overlapChannels: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -145,6 +153,10 @@ open class IngestProfile: ObjectBase {
 		self.dict["defaultOverlapPolicy"] = defaultOverlapPolicy
 	}
 	
+	public func setMultiRequestToken(overlapChannels: String) {
+		self.dict["overlapChannels"] = overlapChannels
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -175,6 +187,9 @@ open class IngestProfile: ObjectBase {
 		if dict["defaultOverlapPolicy"] != nil {
 			defaultOverlapPolicy = IngestProfileOverlapPolicy(rawValue: "\(dict["defaultOverlapPolicy"]!)")
 		}
+		if dict["overlapChannels"] != nil {
+			overlapChannels = dict["overlapChannels"] as? String
+		}
 
 	}
 
@@ -203,6 +218,9 @@ open class IngestProfile: ObjectBase {
 		}
 		if(defaultOverlapPolicy != nil) {
 			dict["defaultOverlapPolicy"] = defaultOverlapPolicy!.rawValue
+		}
+		if(overlapChannels != nil) {
+			dict["overlapChannels"] = overlapChannels!
 		}
 		return dict
 	}
