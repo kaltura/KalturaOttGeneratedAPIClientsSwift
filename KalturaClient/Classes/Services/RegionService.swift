@@ -35,38 +35,6 @@
 
 public final class RegionService{
 
-	public class AddTokenizer: ClientTokenizer  {
-		
-		public func region<T: Region.RegionTokenizer>() -> T {
-			return T(self.append("region"))
-		}
-	}
-
-	/**  Adds a new region for partner  */
-	public static func add(region: Region) -> RequestBuilder<Region, Region.RegionTokenizer, AddTokenizer> {
-		let request: RequestBuilder<Region, Region.RegionTokenizer, AddTokenizer> = RequestBuilder<Region, Region.RegionTokenizer, AddTokenizer>(service: "region", action: "add")
-			.setParam(key: "region", value: region)
-
-		return request
-	}
-
-	public class DeleteTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-	}
-
-	/**  Delete an existing region  */
-	public static func delete(id: Int) -> NullRequestBuilder<DeleteTokenizer> {
-		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "region", action: "delete")
-			.setParam(key: "id", value: id)
-
-		return request
-	}
-
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: RegionFilter.RegionFilterTokenizer>() -> T {
@@ -78,28 +46,6 @@ public final class RegionService{
 	public static func list(filter: RegionFilter) -> RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> = RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer>(service: "region", action: "list")
 			.setParam(key: "filter", value: filter)
-
-		return request
-	}
-
-	public class UpdateTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
-		public func region<T: Region.RegionTokenizer>() -> T {
-			return T(self.append("region"))
-		}
-	}
-
-	/**  Update an existing region  */
-	public static func update(id: Int, region: Region) -> RequestBuilder<Region, Region.RegionTokenizer, UpdateTokenizer> {
-		let request: RequestBuilder<Region, Region.RegionTokenizer, UpdateTokenizer> = RequestBuilder<Region, Region.RegionTokenizer, UpdateTokenizer>(service: "region", action: "update")
-			.setParam(key: "id", value: id)
-			.setParam(key: "region", value: region)
 
 		return request
 	}

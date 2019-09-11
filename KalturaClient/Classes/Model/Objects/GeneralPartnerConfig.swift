@@ -97,18 +97,6 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 				return self.append("householdLimitationModule") 
 			}
 		}
-		
-		public var enableRegionFiltering: BaseTokenizedObject {
-			get {
-				return self.append("enableRegionFiltering") 
-			}
-		}
-		
-		public var defaultRegion: BaseTokenizedObject {
-			get {
-				return self.append("defaultRegion") 
-			}
-		}
 	}
 
 	/**  Partner name  */
@@ -131,10 +119,6 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var dateFormat: String? = nil
 	/**  Household limitation&amp;#160;module  */
 	public var householdLimitationModule: Int? = nil
-	/**  Enable Region Filtering  */
-	public var enableRegionFiltering: Bool? = nil
-	/**  Default Region  */
-	public var defaultRegion: Int? = nil
 
 
 	public func setMultiRequestToken(partnerName: String) {
@@ -177,14 +161,6 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		self.dict["householdLimitationModule"] = householdLimitationModule
 	}
 	
-	public func setMultiRequestToken(enableRegionFiltering: String) {
-		self.dict["enableRegionFiltering"] = enableRegionFiltering
-	}
-	
-	public func setMultiRequestToken(defaultRegion: String) {
-		self.dict["defaultRegion"] = defaultRegion
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -217,12 +193,6 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if dict["householdLimitationModule"] != nil {
 			householdLimitationModule = dict["householdLimitationModule"] as? Int
-		}
-		if dict["enableRegionFiltering"] != nil {
-			enableRegionFiltering = dict["enableRegionFiltering"] as? Bool
-		}
-		if dict["defaultRegion"] != nil {
-			defaultRegion = dict["defaultRegion"] as? Int
 		}
 
 	}
@@ -258,12 +228,6 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if(householdLimitationModule != nil) {
 			dict["householdLimitationModule"] = householdLimitationModule!
-		}
-		if(enableRegionFiltering != nil) {
-			dict["enableRegionFiltering"] = enableRegionFiltering!
-		}
-		if(defaultRegion != nil) {
-			dict["defaultRegion"] = defaultRegion!
 		}
 		return dict
 	}

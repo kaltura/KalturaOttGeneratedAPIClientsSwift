@@ -33,6 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
+/**  Base Crud filter  */
 open class CrudFilter: Filter {
 
 	public class CrudFilterTokenizer: Filter.FilterTokenizer {

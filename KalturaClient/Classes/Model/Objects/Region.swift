@@ -66,12 +66,6 @@ open class Region: ObjectBase {
 				return ArrayTokenizedObject<RegionalChannel.RegionalChannelTokenizer>(self.append("linearChannels"))
 			} 
 		}
-		
-		public var parentId: BaseTokenizedObject {
-			get {
-				return self.append("parentId") 
-			}
-		}
 	}
 
 	/**  Region identifier  */
@@ -84,8 +78,6 @@ open class Region: ObjectBase {
 	public var isDefault: Bool? = nil
 	/**  List of associated linear channels  */
 	public var linearChannels: Array<RegionalChannel>? = nil
-	/**  Parent region ID  */
-	public var parentId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -102,10 +94,6 @@ open class Region: ObjectBase {
 	
 	public func setMultiRequestToken(isDefault: String) {
 		self.dict["isDefault"] = isDefault
-	}
-	
-	public func setMultiRequestToken(parentId: String) {
-		self.dict["parentId"] = parentId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -126,9 +114,6 @@ open class Region: ObjectBase {
 		if dict["linearChannels"] != nil {
 			linearChannels = try JSONParser.parse(array: dict["linearChannels"] as! [Any])
 		}
-		if dict["parentId"] != nil {
-			parentId = Int64("\(dict["parentId"]!)")
-		}
 
 	}
 
@@ -143,11 +128,11 @@ open class Region: ObjectBase {
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
 		}
+		if(isDefault != nil) {
+			dict["isDefault"] = isDefault!
+		}
 		if(linearChannels != nil) {
 			dict["linearChannels"] = linearChannels!.map { value in value.toDictionary() }
-		}
-		if(parentId != nil) {
-			dict["parentId"] = parentId!
 		}
 		return dict
 	}

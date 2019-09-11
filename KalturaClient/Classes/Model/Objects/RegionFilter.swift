@@ -42,50 +42,14 @@ open class RegionFilter: Filter {
 				return self.append("externalIdIn") 
 			}
 		}
-		
-		public var idIn: BaseTokenizedObject {
-			get {
-				return self.append("idIn") 
-			}
-		}
-		
-		public var parentIdEqual: BaseTokenizedObject {
-			get {
-				return self.append("parentIdEqual") 
-			}
-		}
-		
-		public var liveAssetIdEqual: BaseTokenizedObject {
-			get {
-				return self.append("liveAssetIdEqual") 
-			}
-		}
 	}
 
-	/**  List of comma separated regions external IDs  */
+	/**  List of comma separated regions external identifiers  */
 	public var externalIdIn: String? = nil
-	/**  List of comma separated regions Ids  */
-	public var idIn: String? = nil
-	/**  Region parent ID to filter by  */
-	public var parentIdEqual: Int? = nil
-	/**  Region parent ID to filter by  */
-	public var liveAssetIdEqual: Int? = nil
 
 
 	public func setMultiRequestToken(externalIdIn: String) {
 		self.dict["externalIdIn"] = externalIdIn
-	}
-	
-	public func setMultiRequestToken(idIn: String) {
-		self.dict["idIn"] = idIn
-	}
-	
-	public func setMultiRequestToken(parentIdEqual: String) {
-		self.dict["parentIdEqual"] = parentIdEqual
-	}
-	
-	public func setMultiRequestToken(liveAssetIdEqual: String) {
-		self.dict["liveAssetIdEqual"] = liveAssetIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -94,15 +58,6 @@ open class RegionFilter: Filter {
 		if dict["externalIdIn"] != nil {
 			externalIdIn = dict["externalIdIn"] as? String
 		}
-		if dict["idIn"] != nil {
-			idIn = dict["idIn"] as? String
-		}
-		if dict["parentIdEqual"] != nil {
-			parentIdEqual = dict["parentIdEqual"] as? Int
-		}
-		if dict["liveAssetIdEqual"] != nil {
-			liveAssetIdEqual = dict["liveAssetIdEqual"] as? Int
-		}
 
 	}
 
@@ -110,15 +65,6 @@ open class RegionFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(externalIdIn != nil) {
 			dict["externalIdIn"] = externalIdIn!
-		}
-		if(idIn != nil) {
-			dict["idIn"] = idIn!
-		}
-		if(parentIdEqual != nil) {
-			dict["parentIdEqual"] = parentIdEqual!
-		}
-		if(liveAssetIdEqual != nil) {
-			dict["liveAssetIdEqual"] = liveAssetIdEqual!
 		}
 		return dict
 	}
