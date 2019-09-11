@@ -33,16 +33,41 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CrudFilter: Filter {
+/**  Password policy settings filter  */
+open class PasswordPolicyFilter: CrudFilter {
 
-	public class CrudFilterTokenizer: Filter.FilterTokenizer {
+	public class PasswordPolicyFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+		
+		public var userRoleIdIn: BaseTokenizedObject {
+			get {
+				return self.append("userRoleIdIn") 
+			}
+		}
 	}
 
+	/**  Comma separated list of role Ids.  */
+	public var userRoleIdIn: String? = nil
 
 
+	public func setMultiRequestToken(userRoleIdIn: String) {
+		self.dict["userRoleIdIn"] = userRoleIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["userRoleIdIn"] != nil {
+			userRoleIdIn = dict["userRoleIdIn"] as? String
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(userRoleIdIn != nil) {
+			dict["userRoleIdIn"] = userRoleIdIn!
+		}
+		return dict
+	}
 }
 

@@ -33,16 +33,36 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CrudFilter: Filter {
+open class PasswordPolicyListResponse: ListResponse {
 
-	public class CrudFilterTokenizer: Filter.FilterTokenizer {
+	public class PasswordPolicyListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<PasswordPolicy.PasswordPolicyTokenizer> {
+			get {
+				return ArrayTokenizedObject<PasswordPolicy.PasswordPolicyTokenizer>(self.append("objects"))
+			} 
+		}
 	}
 
+	/**  A list of objects  */
+	public var objects: Array<PasswordPolicy>? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
 

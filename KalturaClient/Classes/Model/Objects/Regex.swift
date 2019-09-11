@@ -33,16 +33,59 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CrudFilter: Filter {
+/**  KalturaRegex  */
+open class Regex: ObjectBase {
 
-	public class CrudFilterTokenizer: Filter.FilterTokenizer {
+	public class RegexTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var expression: BaseTokenizedObject {
+			get {
+				return self.append("expression") 
+			}
+		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
 	}
 
+	/**  regex expression  */
+	public var expression: String? = nil
+	/**  description  */
+	public var description: String? = nil
 
 
+	public func setMultiRequestToken(expression: String) {
+		self.dict["expression"] = expression
+	}
+	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["expression"] != nil {
+			expression = dict["expression"] as? String
+		}
+		if dict["description"] != nil {
+			description = dict["description"] as? String
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(expression != nil) {
+			dict["expression"] = expression!
+		}
+		if(description != nil) {
+			dict["description"] = description!
+		}
+		return dict
+	}
 }
 
