@@ -75,7 +75,7 @@ public final class HouseholdCouponService{
 	}
 
 	public static func list() -> RequestBuilder<HouseholdCouponListResponse, HouseholdCouponListResponse.HouseholdCouponListResponseTokenizer, ListTokenizer> {
-		return list(filter: )
+		return list(filter: nil)
 	}
 
 	/**  Gets all HouseholdCoupon items for a household  */
