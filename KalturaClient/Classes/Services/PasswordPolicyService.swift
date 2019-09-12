@@ -96,7 +96,11 @@ public final class PasswordPolicyService{
 		}
 	}
 
-	public static func list(filter: PasswordPolicyFilter) -> RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer> {
+	public static func list() -> RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	public static func list(filter: PasswordPolicyFilter?) -> RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer> = RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer>(service: "passwordpolicy", action: "list")
 			.setParam(key: "filter", value: filter)
 
