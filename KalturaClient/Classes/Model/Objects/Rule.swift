@@ -34,9 +34,9 @@
  */
 
 /**  Rule base  */
-open class Rule: ObjectBase {
+open class Rule: OTTObjectSupportNullable {
 
-	public class RuleTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class RuleTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
