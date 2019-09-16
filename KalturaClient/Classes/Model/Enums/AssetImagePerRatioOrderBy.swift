@@ -31,6 +31,6 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum AssetFirstImagePerRatioOrderBy: String {
+public enum AssetImagePerRatioOrderBy: String {
 	case NONE = "NONE"
 }

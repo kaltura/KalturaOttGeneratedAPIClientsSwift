@@ -33,10 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Kaltura asset first image per ratio filter  */
-open class AssetFirstImagePerRatioFilter: RelatedObjectFilter {
+/**  Kaltura asset image per ratio filter  */
+open class AssetImagePerRatioFilter: RelatedObjectFilter {
 
-	public class AssetFirstImagePerRatioFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
+	public class AssetImagePerRatioFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
 	}
 
 
