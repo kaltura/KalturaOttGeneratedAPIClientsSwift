@@ -34,9 +34,9 @@
  */
 
 /**  KalturaRegex  */
-open class Regex: ObjectBase {
+open class RegexExpression: ObjectBase {
 
-	public class RegexTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class RegexExpressionTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var expression: BaseTokenizedObject {
 			get {

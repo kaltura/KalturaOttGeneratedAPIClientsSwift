@@ -68,9 +68,9 @@ open class PasswordPolicy: CrudObject {
 			}
 		}
 		
-		public var complexities: ArrayTokenizedObject<Regex.RegexTokenizer> {
+		public var complexities: ArrayTokenizedObject<RegexExpression.RegexExpressionTokenizer> {
 			get {
-				return ArrayTokenizedObject<Regex.RegexTokenizer>(self.append("complexities"))
+				return ArrayTokenizedObject<RegexExpression.RegexExpressionTokenizer>(self.append("complexities"))
 			} 
 		}
 		
@@ -93,7 +93,7 @@ open class PasswordPolicy: CrudObject {
 	/**  When should the password expire (will represent time as days).  */
 	public var expiration: Int? = nil
 	/**  array of  KalturaRegex  */
-	public var complexities: Array<Regex>? = nil
+	public var complexities: Array<RegexExpression>? = nil
 	/**  the number of passwords failures before the account is locked.  */
 	public var lockoutFailuresCount: Int? = nil
 
