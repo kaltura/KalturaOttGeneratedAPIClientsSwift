@@ -48,12 +48,28 @@ open class HouseholdCouponFilter: CrudFilter {
 				return self.append("businessModuleIdEqual") 
 			}
 		}
+		
+		public var couponCode: BaseTokenizedObject {
+			get {
+				return self.append("couponCode") 
+			}
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
 	}
 
 	/**  Indicates which household coupons list to return by their business module type.  */
 	public var businessModuleTypeEqual: TransactionType? = nil
 	/**  Indicates which household coupons list to return by their business module ID.  */
 	public var businessModuleIdEqual: Int64? = nil
+	/**  Allow clients to inquiry if a specific coupon is part of an HH’s wallet or not  */
+	public var couponCode: String? = nil
+	/**  Allow clients to filter out coupons which are valid/invalid  */
+	public var status: CouponStatus? = nil
 
 
 	public func setMultiRequestToken(businessModuleTypeEqual: String) {
@@ -62,6 +78,14 @@ open class HouseholdCouponFilter: CrudFilter {
 	
 	public func setMultiRequestToken(businessModuleIdEqual: String) {
 		self.dict["businessModuleIdEqual"] = businessModuleIdEqual
+	}
+	
+	public func setMultiRequestToken(couponCode: String) {
+		self.dict["couponCode"] = couponCode
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -73,6 +97,12 @@ open class HouseholdCouponFilter: CrudFilter {
 		if dict["businessModuleIdEqual"] != nil {
 			businessModuleIdEqual = Int64("\(dict["businessModuleIdEqual"]!)")
 		}
+		if dict["couponCode"] != nil {
+			couponCode = dict["couponCode"] as? String
+		}
+		if dict["status"] != nil {
+			status = CouponStatus(rawValue: "\(dict["status"]!)")
+		}
 
 	}
 
@@ -83,6 +113,12 @@ open class HouseholdCouponFilter: CrudFilter {
 		}
 		if(businessModuleIdEqual != nil) {
 			dict["businessModuleIdEqual"] = businessModuleIdEqual!
+		}
+		if(couponCode != nil) {
+			dict["couponCode"] = couponCode!
+		}
+		if(status != nil) {
+			dict["status"] = status!.rawValue
 		}
 		return dict
 	}

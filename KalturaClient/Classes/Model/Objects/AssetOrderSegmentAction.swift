@@ -33,57 +33,53 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Household Coupon details  */
-open class HouseholdCoupon: CrudObject {
+/**  Asset order segment action  */
+open class AssetOrderSegmentAction: BaseSegmentAction {
 
-	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
+	public class AssetOrderSegmentActionTokenizer: BaseSegmentAction.BaseSegmentActionTokenizer {
 		
-		public var code: BaseTokenizedObject {
+		public var name: BaseTokenizedObject {
 			get {
-				return self.append("code") 
+				return self.append("name") 
 			}
 		}
 		
-		public var lastUsageDate: BaseTokenizedObject {
+		public var values: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
 			get {
-				return self.append("lastUsageDate") 
-			}
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("values"))
+			} 
 		}
 	}
 
-	/**  Coupon code  */
-	public var code: String? = nil
-	/**  Last Usage Date  */
-	public var lastUsageDate: Int64? = nil
+	/**  Action name  */
+	public var name: String? = nil
+	/**  Action values  */
+	public var values: Array<StringValue>? = nil
 
 
-	public func setMultiRequestToken(code: String) {
-		self.dict["code"] = code
-	}
-	
-	public func setMultiRequestToken(lastUsageDate: String) {
-		self.dict["lastUsageDate"] = lastUsageDate
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["code"] != nil {
-			code = dict["code"] as? String
+		if dict["name"] != nil {
+			name = dict["name"] as? String
 		}
-		if dict["lastUsageDate"] != nil {
-			lastUsageDate = Int64("\(dict["lastUsageDate"]!)")
+		if dict["values"] != nil {
+			values = try JSONParser.parse(array: dict["values"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(code != nil) {
-			dict["code"] = code!
+		if(name != nil) {
+			dict["name"] = name!
 		}
-		if(lastUsageDate != nil) {
-			dict["lastUsageDate"] = lastUsageDate!
+		if(values != nil) {
+			dict["values"] = values!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

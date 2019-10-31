@@ -33,57 +33,32 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Household Coupon details  */
-open class HouseholdCoupon: CrudObject {
+/**  Kaltura event notification object scope  */
+open class EventNotificationObjectScope: EventNotificationScope {
 
-	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
+	public class EventNotificationObjectScopeTokenizer: EventNotificationScope.EventNotificationScopeTokenizer {
 		
-		public var code: BaseTokenizedObject {
-			get {
-				return self.append("code") 
-			}
-		}
-		
-		public var lastUsageDate: BaseTokenizedObject {
-			get {
-				return self.append("lastUsageDate") 
-			}
+		public func eventObject<T: EventObject.EventObjectTokenizer>() -> T {
+			return T(self.append("eventObject"))
 		}
 	}
 
-	/**  Coupon code  */
-	public var code: String? = nil
-	/**  Last Usage Date  */
-	public var lastUsageDate: Int64? = nil
+	/**  Event object to fire  */
+	public var eventObject: EventObject? = nil
 
 
-	public func setMultiRequestToken(code: String) {
-		self.dict["code"] = code
-	}
-	
-	public func setMultiRequestToken(lastUsageDate: String) {
-		self.dict["lastUsageDate"] = lastUsageDate
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["code"] != nil {
-			code = dict["code"] as? String
-		}
-		if dict["lastUsageDate"] != nil {
-			lastUsageDate = Int64("\(dict["lastUsageDate"]!)")
-		}
+		if dict["eventObject"] != nil {
+		eventObject = try JSONParser.parse(object: dict["eventObject"] as! [String: Any])		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(code != nil) {
-			dict["code"] = code!
-		}
-		if(lastUsageDate != nil) {
-			dict["lastUsageDate"] = lastUsageDate!
+		if(eventObject != nil) {
+			dict["eventObject"] = eventObject!.toDictionary()
 		}
 		return dict
 	}

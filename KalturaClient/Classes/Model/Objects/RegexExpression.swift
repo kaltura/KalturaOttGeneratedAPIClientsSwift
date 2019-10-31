@@ -33,57 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Household Coupon details  */
-open class HouseholdCoupon: CrudObject {
+/**  KalturaRegexExpression  */
+open class RegexExpression: ObjectBase {
 
-	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
+	public class RegexExpressionTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var code: BaseTokenizedObject {
+		public var expression: BaseTokenizedObject {
 			get {
-				return self.append("code") 
+				return self.append("expression") 
 			}
 		}
 		
-		public var lastUsageDate: BaseTokenizedObject {
+		public var description: BaseTokenizedObject {
 			get {
-				return self.append("lastUsageDate") 
+				return self.append("description") 
 			}
 		}
 	}
 
-	/**  Coupon code  */
-	public var code: String? = nil
-	/**  Last Usage Date  */
-	public var lastUsageDate: Int64? = nil
+	/**  regex expression  */
+	public var expression: String? = nil
+	/**  description  */
+	public var description: String? = nil
 
 
-	public func setMultiRequestToken(code: String) {
-		self.dict["code"] = code
+	public func setMultiRequestToken(expression: String) {
+		self.dict["expression"] = expression
 	}
 	
-	public func setMultiRequestToken(lastUsageDate: String) {
-		self.dict["lastUsageDate"] = lastUsageDate
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["code"] != nil {
-			code = dict["code"] as? String
+		if dict["expression"] != nil {
+			expression = dict["expression"] as? String
 		}
-		if dict["lastUsageDate"] != nil {
-			lastUsageDate = Int64("\(dict["lastUsageDate"]!)")
+		if dict["description"] != nil {
+			description = dict["description"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(code != nil) {
-			dict["code"] = code!
+		if(expression != nil) {
+			dict["expression"] = expression!
 		}
-		if(lastUsageDate != nil) {
-			dict["lastUsageDate"] = lastUsageDate!
+		if(description != nil) {
+			dict["description"] = description!
 		}
 		return dict
 	}

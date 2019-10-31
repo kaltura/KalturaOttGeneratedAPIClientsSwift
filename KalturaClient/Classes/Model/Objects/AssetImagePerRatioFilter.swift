@@ -33,59 +33,17 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  KalturaRegex  */
-open class Regex: ObjectBase {
+/**  Kaltura asset image per ratio filter  */
+open class AssetImagePerRatioFilter: RelatedObjectFilter {
 
-	public class RegexTokenizer: ObjectBase.ObjectBaseTokenizer {
-		
-		public var expression: BaseTokenizedObject {
-			get {
-				return self.append("expression") 
-			}
-		}
-		
-		public var description: BaseTokenizedObject {
-			get {
-				return self.append("description") 
-			}
-		}
+	public class AssetImagePerRatioFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
 	}
 
-	/**  regex expression  */
-	public var expression: String? = nil
-	/**  description  */
-	public var description: String? = nil
 
 
-	public func setMultiRequestToken(expression: String) {
-		self.dict["expression"] = expression
-	}
-	
-	public func setMultiRequestToken(description: String) {
-		self.dict["description"] = description
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["expression"] != nil {
-			expression = dict["expression"] as? String
-		}
-		if dict["description"] != nil {
-			description = dict["description"] as? String
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(expression != nil) {
-			dict["expression"] = expression!
-		}
-		if(description != nil) {
-			dict["description"] = description!
-		}
-		return dict
-	}
 }
 

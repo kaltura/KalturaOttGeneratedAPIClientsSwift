@@ -62,6 +62,12 @@ open class SegmentationType: ObjectBase {
 			} 
 		}
 		
+		public var actions: ArrayTokenizedObject<BaseSegmentAction.BaseSegmentActionTokenizer> {
+			get {
+				return ArrayTokenizedObject<BaseSegmentAction.BaseSegmentActionTokenizer>(self.append("actions"))
+			} 
+		}
+		
 		public func value<T: BaseSegmentValue.BaseSegmentValueTokenizer>() -> T {
 			return T(self.append("value"))
 		}
@@ -87,6 +93,8 @@ open class SegmentationType: ObjectBase {
 	public var description: String? = nil
 	/**  Segmentation conditions - can be empty  */
 	public var conditions: Array<BaseSegmentCondition>? = nil
+	/**  Segmentation conditions - can be empty  */
+	public var actions: Array<BaseSegmentAction>? = nil
 	/**  Segmentation values - can be empty (so only one segment will be created)  */
 	public var value: BaseSegmentValue? = nil
 	/**  Create date of segmentation type  */
@@ -130,6 +138,9 @@ open class SegmentationType: ObjectBase {
 		if dict["conditions"] != nil {
 			conditions = try JSONParser.parse(array: dict["conditions"] as! [Any])
 		}
+		if dict["actions"] != nil {
+			actions = try JSONParser.parse(array: dict["actions"] as! [Any])
+		}
 		if dict["value"] != nil {
 		value = try JSONParser.parse(object: dict["value"] as! [String: Any])		}
 		if dict["createDate"] != nil {
@@ -151,6 +162,9 @@ open class SegmentationType: ObjectBase {
 		}
 		if(conditions != nil) {
 			dict["conditions"] = conditions!.map { value in value.toDictionary() }
+		}
+		if(actions != nil) {
+			dict["actions"] = actions!.map { value in value.toDictionary() }
 		}
 		if(value != nil) {
 			dict["value"] = value!.toDictionary()

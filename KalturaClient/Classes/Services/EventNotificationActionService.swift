@@ -33,59 +33,20 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Household Coupon details  */
-open class HouseholdCoupon: CrudObject {
+public final class EventNotificationActionService{
 
-	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
+	public class DispatchTokenizer: ClientTokenizer  {
 		
-		public var code: BaseTokenizedObject {
-			get {
-				return self.append("code") 
-			}
-		}
-		
-		public var lastUsageDate: BaseTokenizedObject {
-			get {
-				return self.append("lastUsageDate") 
-			}
+		public func scope<T: EventNotificationScope.EventNotificationScopeTokenizer>() -> T {
+			return T(self.append("scope"))
 		}
 	}
 
-	/**  Coupon code  */
-	public var code: String? = nil
-	/**  Last Usage Date  */
-	public var lastUsageDate: Int64? = nil
+	/**  Dispatches event notification  */
+	public static func dispatch(scope: EventNotificationScope) -> RequestBuilder<Bool, BaseTokenizedObject, DispatchTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DispatchTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DispatchTokenizer>(service: "eventnotificationaction", action: "dispatch")
+			.setParam(key: "scope", value: scope)
 
-
-	public func setMultiRequestToken(code: String) {
-		self.dict["code"] = code
-	}
-	
-	public func setMultiRequestToken(lastUsageDate: String) {
-		self.dict["lastUsageDate"] = lastUsageDate
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["code"] != nil {
-			code = dict["code"] as? String
-		}
-		if dict["lastUsageDate"] != nil {
-			lastUsageDate = Int64("\(dict["lastUsageDate"]!)")
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(code != nil) {
-			dict["code"] = code!
-		}
-		if(lastUsageDate != nil) {
-			dict["lastUsageDate"] = lastUsageDate!
-		}
-		return dict
+		return request
 	}
 }
-
