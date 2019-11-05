@@ -43,14 +43,26 @@ open class PpvFilter: Filter {
 				return self.append("idIn") 
 			}
 		}
+		
+		public var couponGroupIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("couponGroupIdEqual") 
+			}
+		}
 	}
 
 	/**  Comma separated identifiers  */
 	public var idIn: String? = nil
+	/**  couponGroupIdEqual  */
+	public var couponGroupIdEqual: Int? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
 		self.dict["idIn"] = idIn
+	}
+	
+	public func setMultiRequestToken(couponGroupIdEqual: String) {
+		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -59,6 +71,9 @@ open class PpvFilter: Filter {
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
 		}
+		if dict["couponGroupIdEqual"] != nil {
+			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
+		}
 
 	}
 
@@ -66,6 +81,9 @@ open class PpvFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
+		}
+		if(couponGroupIdEqual != nil) {
+			dict["couponGroupIdEqual"] = couponGroupIdEqual!
 		}
 		return dict
 	}
