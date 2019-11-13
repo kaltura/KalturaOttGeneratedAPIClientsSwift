@@ -187,14 +187,25 @@ public final class AssetService{
 		public func contextDataParams<T: PlaybackContextOptions.PlaybackContextOptionsTokenizer>() -> T {
 			return T(self.append("contextDataParams"))
 		}
+		
+		public var sourceType: BaseTokenizedObject {
+			get {
+				return self.append("sourceType") 
+			}
+		}
+	}
+
+	public static func getPlaybackContext(assetId: String, assetType: AssetType, contextDataParams: PlaybackContextOptions) -> RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer> {
+		return getPlaybackContext(assetId: assetId, assetType: assetType, contextDataParams: contextDataParams, sourceType: nil)
 	}
 
 	/**  This action delivers all data relevant for player  */
-	public static func getPlaybackContext(assetId: String, assetType: AssetType, contextDataParams: PlaybackContextOptions) -> RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer> {
+	public static func getPlaybackContext(assetId: String, assetType: AssetType, contextDataParams: PlaybackContextOptions, sourceType: String?) -> RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer> {
 		let request: RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer> = RequestBuilder<PlaybackContext, PlaybackContext.PlaybackContextTokenizer, GetPlaybackContextTokenizer>(service: "asset", action: "getPlaybackContext")
 			.setParam(key: "assetId", value: assetId)
 			.setParam(key: "assetType", value: assetType.rawValue)
 			.setParam(key: "contextDataParams", value: contextDataParams)
+			.setParam(key: "sourceType", value: sourceType)
 
 		return request
 	}

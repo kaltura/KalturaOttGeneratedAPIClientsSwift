@@ -68,6 +68,12 @@ open class MonetizationCondition: BaseSegmentCondition {
 				return self.append("operator_") 
 			}
 		}
+		
+		public var businessModuleIdIn: BaseTokenizedObject {
+			get {
+				return self.append("businessModuleIdIn") 
+			}
+		}
 	}
 
 	/**  The minimum value to be met  */
@@ -80,6 +86,8 @@ open class MonetizationCondition: BaseSegmentCondition {
 	public var type: MonetizationType? = nil
 	/**  Mathermtical operator to calculate  */
 	public var operator_: MathemticalOperatorType? = nil
+	/**  Comma saperated list of business module IDs  */
+	public var businessModuleIdIn: String? = nil
 
 
 	public func setMultiRequestToken(minValue: String) {
@@ -102,6 +110,10 @@ open class MonetizationCondition: BaseSegmentCondition {
 		self.dict["operator"] = operator_
 	}
 	
+	public func setMultiRequestToken(businessModuleIdIn: String) {
+		self.dict["businessModuleIdIn"] = businessModuleIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -119,6 +131,9 @@ open class MonetizationCondition: BaseSegmentCondition {
 		}
 		if dict["operator"] != nil {
 			operator_ = MathemticalOperatorType(rawValue: "\(dict["operator"]!)")
+		}
+		if dict["businessModuleIdIn"] != nil {
+			businessModuleIdIn = dict["businessModuleIdIn"] as? String
 		}
 
 	}
@@ -139,6 +154,9 @@ open class MonetizationCondition: BaseSegmentCondition {
 		}
 		if(operator_ != nil) {
 			dict["operator"] = operator_!.rawValue
+		}
+		if(businessModuleIdIn != nil) {
+			dict["businessModuleIdIn"] = businessModuleIdIn!
 		}
 		return dict
 	}
