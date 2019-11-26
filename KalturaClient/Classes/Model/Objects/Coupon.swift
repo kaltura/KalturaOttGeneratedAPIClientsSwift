@@ -59,6 +59,12 @@ open class Coupon: ObjectBase {
 				return self.append("leftUses") 
 			}
 		}
+		
+		public var couponCode: BaseTokenizedObject {
+			get {
+				return self.append("couponCode") 
+			}
+		}
 	}
 
 	/**  Coupons group details  */
@@ -69,6 +75,8 @@ open class Coupon: ObjectBase {
 	public var totalUses: Int? = nil
 	/**  Left coupon uses  */
 	public var leftUses: Int? = nil
+	/**  Coupon code  */
+	public var couponCode: String? = nil
 
 
 	public func setMultiRequestToken(status: String) {
@@ -81,6 +89,10 @@ open class Coupon: ObjectBase {
 	
 	public func setMultiRequestToken(leftUses: String) {
 		self.dict["leftUses"] = leftUses
+	}
+	
+	public func setMultiRequestToken(couponCode: String) {
+		self.dict["couponCode"] = couponCode
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -96,6 +108,9 @@ open class Coupon: ObjectBase {
 		}
 		if dict["leftUses"] != nil {
 			leftUses = dict["leftUses"] as? Int
+		}
+		if dict["couponCode"] != nil {
+			couponCode = dict["couponCode"] as? String
 		}
 
 	}

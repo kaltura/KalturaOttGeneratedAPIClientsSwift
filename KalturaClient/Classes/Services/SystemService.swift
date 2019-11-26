@@ -35,6 +35,48 @@
 
 public final class SystemService{
 
+	public class ClearLocalServerCacheTokenizer: ClientTokenizer  {
+		
+		public var action: BaseTokenizedObject {
+			get {
+				return self.append("action") 
+			}
+		}
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+	}
+
+	public static func clearLocalServerCache() -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
+		return clearLocalServerCache(action: nil)
+	}
+
+	public static func clearLocalServerCache(action: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
+		return clearLocalServerCache(action: action, key: nil)
+	}
+
+	/**  Clear local server cache  */
+	public static func clearLocalServerCache(action: String?, key: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer>(service: "system", action: "clearLocalServerCache")
+			.setParam(key: "action", value: action)
+			.setParam(key: "key", value: key)
+
+		return request
+	}
+
+	public class GetLogLevelTokenizer: ClientTokenizer  {
+	}
+
+	/**  Gets the current level of the KLogger  */
+	public static func getLogLevel() -> RequestBuilder<String, BaseTokenizedObject, GetLogLevelTokenizer> {
+		let request: RequestBuilder<String, BaseTokenizedObject, GetLogLevelTokenizer> = RequestBuilder<String, BaseTokenizedObject, GetLogLevelTokenizer>(service: "system", action: "getLogLevel")
+
+		return request
+	}
+
 	public class GetTimeTokenizer: ClientTokenizer  {
 	}
 
@@ -55,12 +97,52 @@ public final class SystemService{
 		return request
 	}
 
+	public class IncrementLayeredCacheGroupConfigVersionTokenizer: ClientTokenizer  {
+		
+		public var groupId: BaseTokenizedObject {
+			get {
+				return self.append("groupId") 
+			}
+		}
+	}
+
+	public static func incrementLayeredCacheGroupConfigVersion() -> RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer> {
+		return incrementLayeredCacheGroupConfigVersion(groupId: 0)
+	}
+
+	/**  Returns true if version has been incremented successfully or false otherwise.
+	  You need to send groupId only if you wish to increment for a specific groupId
+	  and not the one the KS belongs to.  */
+	public static func incrementLayeredCacheGroupConfigVersion(groupId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer>(service: "system", action: "incrementLayeredCacheGroupConfigVersion")
+			.setParam(key: "groupId", value: groupId)
+
+		return request
+	}
+
 	public class PingTokenizer: ClientTokenizer  {
 	}
 
 	/**  Returns true  */
 	public static func ping() -> RequestBuilder<Bool, BaseTokenizedObject, PingTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, PingTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, PingTokenizer>(service: "system", action: "ping")
+
+		return request
+	}
+
+	public class SetLogLevelTokenizer: ClientTokenizer  {
+		
+		public var level: BaseTokenizedObject {
+			get {
+				return self.append("level") 
+			}
+		}
+	}
+
+	/**  Sets the current level of the KLogger  */
+	public static func setLogLevel(level: LogLevel) -> RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer>(service: "system", action: "setLogLevel")
+			.setParam(key: "level", value: level.rawValue)
 
 		return request
 	}

@@ -33,7 +33,6 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Base list wrapper  */
 open class ListResponse: ObjectBase {
 
 	public class ListResponseTokenizer: ObjectBase.ObjectBaseTokenizer {

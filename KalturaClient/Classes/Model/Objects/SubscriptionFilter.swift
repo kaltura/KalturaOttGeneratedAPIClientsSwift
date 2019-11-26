@@ -54,6 +54,12 @@ open class SubscriptionFilter: Filter {
 				return self.append("externalIdIn") 
 			}
 		}
+		
+		public var couponGroupIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("couponGroupIdEqual") 
+			}
+		}
 	}
 
 	/**  Comma separated subscription IDs to get the subscriptions by  */
@@ -62,6 +68,8 @@ open class SubscriptionFilter: Filter {
 	public var mediaFileIdEqual: Int? = nil
 	/**  Comma separated subscription external IDs to get the subscriptions by  */
 	public var externalIdIn: String? = nil
+	/**  couponGroupIdEqual  */
+	public var couponGroupIdEqual: Int? = nil
 
 
 	public func setMultiRequestToken(subscriptionIdIn: String) {
@@ -76,6 +84,10 @@ open class SubscriptionFilter: Filter {
 		self.dict["externalIdIn"] = externalIdIn
 	}
 	
+	public func setMultiRequestToken(couponGroupIdEqual: String) {
+		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -87,6 +99,9 @@ open class SubscriptionFilter: Filter {
 		}
 		if dict["externalIdIn"] != nil {
 			externalIdIn = dict["externalIdIn"] as? String
+		}
+		if dict["couponGroupIdEqual"] != nil {
+			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
 		}
 
 	}
@@ -101,6 +116,9 @@ open class SubscriptionFilter: Filter {
 		}
 		if(externalIdIn != nil) {
 			dict["externalIdIn"] = externalIdIn!
+		}
+		if(couponGroupIdEqual != nil) {
+			dict["couponGroupIdEqual"] = couponGroupIdEqual!
 		}
 		return dict
 	}
