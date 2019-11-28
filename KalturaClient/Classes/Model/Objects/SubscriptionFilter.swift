@@ -60,6 +60,12 @@ open class SubscriptionFilter: Filter {
 				return self.append("couponGroupIdEqual") 
 			}
 		}
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
 	}
 
 	/**  Comma separated subscription IDs to get the subscriptions by  */
@@ -70,6 +76,8 @@ open class SubscriptionFilter: Filter {
 	public var externalIdIn: String? = nil
 	/**  couponGroupIdEqual  */
 	public var couponGroupIdEqual: Int? = nil
+	/**  KSQL expression  */
+	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(subscriptionIdIn: String) {
@@ -88,6 +96,10 @@ open class SubscriptionFilter: Filter {
 		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
 	}
 	
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -102,6 +114,9 @@ open class SubscriptionFilter: Filter {
 		}
 		if dict["couponGroupIdEqual"] != nil {
 			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
+		}
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
 		}
 
 	}
@@ -119,6 +134,9 @@ open class SubscriptionFilter: Filter {
 		}
 		if(couponGroupIdEqual != nil) {
 			dict["couponGroupIdEqual"] = couponGroupIdEqual!
+		}
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
 		}
 		return dict
 	}

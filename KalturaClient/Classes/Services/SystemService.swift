@@ -35,38 +35,6 @@
 
 public final class SystemService{
 
-	public class ClearLocalServerCacheTokenizer: ClientTokenizer  {
-		
-		public var action: BaseTokenizedObject {
-			get {
-				return self.append("action") 
-			}
-		}
-		
-		public var key: BaseTokenizedObject {
-			get {
-				return self.append("key") 
-			}
-		}
-	}
-
-	public static func clearLocalServerCache() -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
-		return clearLocalServerCache(action: nil)
-	}
-
-	public static func clearLocalServerCache(action: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
-		return clearLocalServerCache(action: action, key: nil)
-	}
-
-	/**  Clear local server cache  */
-	public static func clearLocalServerCache(action: String?, key: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer>(service: "system", action: "clearLocalServerCache")
-			.setParam(key: "action", value: action)
-			.setParam(key: "key", value: key)
-
-		return request
-	}
-
 	public class GetLogLevelTokenizer: ClientTokenizer  {
 	}
 
@@ -93,29 +61,6 @@ public final class SystemService{
 	/**  Returns current server version  */
 	public static func getVersion() -> RequestBuilder<String, BaseTokenizedObject, GetVersionTokenizer> {
 		let request: RequestBuilder<String, BaseTokenizedObject, GetVersionTokenizer> = RequestBuilder<String, BaseTokenizedObject, GetVersionTokenizer>(service: "system", action: "getVersion")
-
-		return request
-	}
-
-	public class IncrementLayeredCacheGroupConfigVersionTokenizer: ClientTokenizer  {
-		
-		public var groupId: BaseTokenizedObject {
-			get {
-				return self.append("groupId") 
-			}
-		}
-	}
-
-	public static func incrementLayeredCacheGroupConfigVersion() -> RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer> {
-		return incrementLayeredCacheGroupConfigVersion(groupId: 0)
-	}
-
-	/**  Returns true if version has been incremented successfully or false otherwise.
-	  You need to send groupId only if you wish to increment for a specific groupId
-	  and not the one the KS belongs to.  */
-	public static func incrementLayeredCacheGroupConfigVersion(groupId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, IncrementLayeredCacheGroupConfigVersionTokenizer>(service: "system", action: "incrementLayeredCacheGroupConfigVersion")
-			.setParam(key: "groupId", value: groupId)
 
 		return request
 	}

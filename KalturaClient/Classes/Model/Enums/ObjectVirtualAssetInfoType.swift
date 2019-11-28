@@ -25,67 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  Filter for segmentation types  */
-open class SegmentationTypeFilter: Filter {
-
-	public class SegmentationTypeFilterTokenizer: Filter.FilterTokenizer {
-		
-		public var idIn: BaseTokenizedObject {
-			get {
-				return self.append("idIn") 
-			}
-		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
-		}
-	}
-
-	/**  Comma separated segmentation types identifieridentifiers  */
-	public var idIn: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
-
-
-	public func setMultiRequestToken(idIn: String) {
-		self.dict["idIn"] = idIn
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["idIn"] != nil {
-			idIn = dict["idIn"] as? String
-		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(idIn != nil) {
-			dict["idIn"] = idIn!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
-		}
-		return dict
-	}
+public enum ObjectVirtualAssetInfoType: String {
+	case SUBSCRIPTION = "Subscription"
+	case SEGMENT = "Segment"
 }
-
