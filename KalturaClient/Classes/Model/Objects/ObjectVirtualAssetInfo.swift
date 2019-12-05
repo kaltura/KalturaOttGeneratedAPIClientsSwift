@@ -33,57 +33,74 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for segmentation types  */
-open class SegmentationTypeFilter: Filter {
+open class ObjectVirtualAssetInfo: ObjectBase {
 
-	public class SegmentationTypeFilterTokenizer: Filter.FilterTokenizer {
+	public class ObjectVirtualAssetInfoTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var idIn: BaseTokenizedObject {
+		public var assetStructId: BaseTokenizedObject {
 			get {
-				return self.append("idIn") 
+				return self.append("assetStructId") 
 			}
 		}
 		
-		public var kSql: BaseTokenizedObject {
+		public var metaId: BaseTokenizedObject {
 			get {
-				return self.append("kSql") 
+				return self.append("metaId") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
 			}
 		}
 	}
 
-	/**  Comma separated segmentation types identifieridentifiers  */
-	public var idIn: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
+	/**  Asset struct identifier  */
+	public var assetStructId: Int? = nil
+	/**  Meta identifier  */
+	public var metaId: Int? = nil
+	/**  Object virtual asset info type  */
+	public var type: ObjectVirtualAssetInfoType? = nil
 
 
-	public func setMultiRequestToken(idIn: String) {
-		self.dict["idIn"] = idIn
+	public func setMultiRequestToken(assetStructId: String) {
+		self.dict["assetStructId"] = assetStructId
 	}
 	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
+	public func setMultiRequestToken(metaId: String) {
+		self.dict["metaId"] = metaId
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["idIn"] != nil {
-			idIn = dict["idIn"] as? String
+		if dict["assetStructId"] != nil {
+			assetStructId = dict["assetStructId"] as? Int
 		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["metaId"] != nil {
+			metaId = dict["metaId"] as? Int
+		}
+		if dict["type"] != nil {
+			type = ObjectVirtualAssetInfoType(rawValue: "\(dict["type"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(idIn != nil) {
-			dict["idIn"] = idIn!
+		if(assetStructId != nil) {
+			dict["assetStructId"] = assetStructId!
 		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(metaId != nil) {
+			dict["metaId"] = metaId!
+		}
+		if(type != nil) {
+			dict["type"] = type!.rawValue
 		}
 		return dict
 	}

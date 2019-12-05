@@ -37,4 +37,5 @@ public enum PartnerConfigurationType: String {
 	case OSSADAPTER = "OSSAdapter"
 	case CONCURRENCY = "Concurrency"
 	case GENERAL = "General"
+	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
 }

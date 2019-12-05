@@ -33,57 +33,34 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for segmentation types  */
-open class SegmentationTypeFilter: Filter {
+open class ObjectVirtualAssetPartnerConfig: PartnerConfiguration {
 
-	public class SegmentationTypeFilterTokenizer: Filter.FilterTokenizer {
+	public class ObjectVirtualAssetPartnerConfigTokenizer: PartnerConfiguration.PartnerConfigurationTokenizer {
 		
-		public var idIn: BaseTokenizedObject {
+		public var objectVirtualAssets: ArrayTokenizedObject<ObjectVirtualAssetInfo.ObjectVirtualAssetInfoTokenizer> {
 			get {
-				return self.append("idIn") 
-			}
-		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
+				return ArrayTokenizedObject<ObjectVirtualAssetInfo.ObjectVirtualAssetInfoTokenizer>(self.append("objectVirtualAssets"))
+			} 
 		}
 	}
 
-	/**  Comma separated segmentation types identifieridentifiers  */
-	public var idIn: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
+	/**  List of object virtual asset info  */
+	public var objectVirtualAssets: Array<ObjectVirtualAssetInfo>? = nil
 
 
-	public func setMultiRequestToken(idIn: String) {
-		self.dict["idIn"] = idIn
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["idIn"] != nil {
-			idIn = dict["idIn"] as? String
-		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["objectVirtualAssets"] != nil {
+			objectVirtualAssets = try JSONParser.parse(array: dict["objectVirtualAssets"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(idIn != nil) {
-			dict["idIn"] = idIn!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(objectVirtualAssets != nil) {
+			dict["objectVirtualAssets"] = objectVirtualAssets!.map { value in value.toDictionary() }
 		}
 		return dict
 	}
