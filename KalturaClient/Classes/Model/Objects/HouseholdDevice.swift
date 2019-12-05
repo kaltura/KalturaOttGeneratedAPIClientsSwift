@@ -34,9 +34,9 @@
  */
 
 /**  Device details  */
-open class HouseholdDevice: ObjectBase {
+open class HouseholdDevice: OTTObjectSupportNullable {
 
-	public class HouseholdDeviceTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class HouseholdDeviceTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var householdId: BaseTokenizedObject {
 			get {
@@ -83,6 +83,12 @@ open class HouseholdDevice: ObjectBase {
 		public func drm<T: CustomDrmPlaybackPluginData.CustomDrmPlaybackPluginDataTokenizer>() -> T {
 			return T(self.append("drm"))
 		}
+		
+		public var externalId: BaseTokenizedObject {
+			get {
+				return self.append("externalId") 
+			}
+		}
 	}
 
 	/**  Household identifier  */
@@ -101,6 +107,8 @@ open class HouseholdDevice: ObjectBase {
 	public var deviceFamilyId: Int64? = nil
 	/**  Device DRM data  */
 	public var drm: CustomDrmPlaybackPluginData? = nil
+	/**  external Id  */
+	public var externalId: String? = nil
 
 
 	public func setMultiRequestToken(householdId: String) {
@@ -131,6 +139,10 @@ open class HouseholdDevice: ObjectBase {
 		self.dict["deviceFamilyId"] = deviceFamilyId
 	}
 	
+	public func setMultiRequestToken(externalId: String) {
+		self.dict["externalId"] = externalId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -157,6 +169,9 @@ open class HouseholdDevice: ObjectBase {
 		}
 		if dict["drm"] != nil {
 		drm = try JSONParser.parse(object: dict["drm"] as! [String: Any])		}
+		if dict["externalId"] != nil {
+			externalId = dict["externalId"] as? String
+		}
 
 	}
 
@@ -176,6 +191,9 @@ open class HouseholdDevice: ObjectBase {
 		}
 		if(activatedOn != nil) {
 			dict["activatedOn"] = activatedOn!
+		}
+		if(externalId != nil) {
+			dict["externalId"] = externalId!
 		}
 		return dict
 	}

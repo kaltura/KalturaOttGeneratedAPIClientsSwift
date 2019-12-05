@@ -48,12 +48,20 @@ open class HouseholdDeviceFilter: Filter {
 				return self.append("deviceFamilyIdIn") 
 			}
 		}
+		
+		public var externalIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("externalIdEqual") 
+			}
+		}
 	}
 
 	/**  The identifier of the household  */
 	public var householdIdEqual: Int? = nil
 	/**  Device family Ids  */
 	public var deviceFamilyIdIn: String? = nil
+	/**  External Id  */
+	public var externalIdEqual: String? = nil
 
 
 	public func setMultiRequestToken(householdIdEqual: String) {
@@ -62,6 +70,10 @@ open class HouseholdDeviceFilter: Filter {
 	
 	public func setMultiRequestToken(deviceFamilyIdIn: String) {
 		self.dict["deviceFamilyIdIn"] = deviceFamilyIdIn
+	}
+	
+	public func setMultiRequestToken(externalIdEqual: String) {
+		self.dict["externalIdEqual"] = externalIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -73,6 +85,9 @@ open class HouseholdDeviceFilter: Filter {
 		if dict["deviceFamilyIdIn"] != nil {
 			deviceFamilyIdIn = dict["deviceFamilyIdIn"] as? String
 		}
+		if dict["externalIdEqual"] != nil {
+			externalIdEqual = dict["externalIdEqual"] as? String
+		}
 
 	}
 
@@ -83,6 +98,9 @@ open class HouseholdDeviceFilter: Filter {
 		}
 		if(deviceFamilyIdIn != nil) {
 			dict["deviceFamilyIdIn"] = deviceFamilyIdIn!
+		}
+		if(externalIdEqual != nil) {
+			dict["externalIdEqual"] = externalIdEqual!
 		}
 		return dict
 	}

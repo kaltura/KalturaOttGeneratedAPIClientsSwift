@@ -60,12 +60,6 @@ open class RegionFilter: Filter {
 				return self.append("liveAssetIdEqual") 
 			}
 		}
-		
-		public var parentOnly: BaseTokenizedObject {
-			get {
-				return self.append("parentOnly") 
-			}
-		}
 	}
 
 	/**  List of comma separated regions external IDs  */
@@ -76,8 +70,6 @@ open class RegionFilter: Filter {
 	public var parentIdEqual: Int? = nil
 	/**  Region parent ID to filter by  */
 	public var liveAssetIdEqual: Int? = nil
-	/**  Parent region to filter by  */
-	public var parentOnly: Bool? = nil
 
 
 	public func setMultiRequestToken(externalIdIn: String) {
@@ -96,10 +88,6 @@ open class RegionFilter: Filter {
 		self.dict["liveAssetIdEqual"] = liveAssetIdEqual
 	}
 	
-	public func setMultiRequestToken(parentOnly: String) {
-		self.dict["parentOnly"] = parentOnly
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -114,9 +102,6 @@ open class RegionFilter: Filter {
 		}
 		if dict["liveAssetIdEqual"] != nil {
 			liveAssetIdEqual = dict["liveAssetIdEqual"] as? Int
-		}
-		if dict["parentOnly"] != nil {
-			parentOnly = dict["parentOnly"] as? Bool
 		}
 
 	}
@@ -134,9 +119,6 @@ open class RegionFilter: Filter {
 		}
 		if(liveAssetIdEqual != nil) {
 			dict["liveAssetIdEqual"] = liveAssetIdEqual!
-		}
-		if(parentOnly != nil) {
-			dict["parentOnly"] = parentOnly!
 		}
 		return dict
 	}
