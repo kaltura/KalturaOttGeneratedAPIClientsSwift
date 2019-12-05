@@ -72,12 +72,21 @@ public final class RegionService{
 		public func filter<T: RegionFilter.RegionFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
+	}
+
+	public static func list(filter: RegionFilter) -> RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
 	}
 
 	/**  Returns all regions for the partner  */
-	public static func list(filter: RegionFilter) -> RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: RegionFilter, pager: FilterPager?) -> RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer> = RequestBuilder<RegionListResponse, RegionListResponse.RegionListResponseTokenizer, ListTokenizer>(service: "region", action: "list")
 			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
 
 		return request
 	}
