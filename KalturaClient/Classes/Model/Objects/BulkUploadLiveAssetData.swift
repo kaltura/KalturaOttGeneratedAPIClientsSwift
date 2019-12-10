@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class BulkUploadLiveAssetResult: BulkUploadMediaAssetResult {
+/**  indicates the media asset object type in the bulk file  */
+open class BulkUploadLiveAssetData: BulkUploadMediaAssetData {
 
-	public class BulkUploadLiveAssetResultTokenizer: BulkUploadMediaAssetResult.BulkUploadMediaAssetResultTokenizer {
+	public class BulkUploadLiveAssetDataTokenizer: BulkUploadMediaAssetData.BulkUploadMediaAssetDataTokenizer {
 	}
 
 
