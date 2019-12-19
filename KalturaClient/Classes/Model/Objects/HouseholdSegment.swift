@@ -33,57 +33,75 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for user segments  */
-open class UserSegmentFilter: Filter {
+/**  Indicates a segment of a household  */
+open class HouseholdSegment: ObjectBase {
 
-	public class UserSegmentFilterTokenizer: Filter.FilterTokenizer {
+	public class HouseholdSegmentTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var userIdEqual: BaseTokenizedObject {
+		public var householdId: BaseTokenizedObject {
 			get {
-				return self.append("userIdEqual") 
+				return self.append("householdId") 
 			}
 		}
 		
-		public var kSql: BaseTokenizedObject {
+		public var householdId: BaseTokenizedObject {
 			get {
-				return self.append("kSql") 
+				return self.append("householdId") 
+			}
+		}
+		
+		public var blockingSegmentIds: BaseTokenizedObject {
+			get {
+				return self.append("blockingSegmentIds") 
 			}
 		}
 	}
 
-	/**  User ID  */
-	public var userIdEqual: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
+	/**  Household SegmentId  */
+	public var householdId: Int64? = nil
+	/**  Segment Id  */
+	public var householdId: Int64? = nil
+	/**  Blocking segment Ids  */
+	public var blockingSegmentIds: String? = nil
 
 
-	public func setMultiRequestToken(userIdEqual: String) {
-		self.dict["userIdEqual"] = userIdEqual
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
 	}
 	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
+	}
+	
+	public func setMultiRequestToken(blockingSegmentIds: String) {
+		self.dict["blockingSegmentIds"] = blockingSegmentIds
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["userIdEqual"] != nil {
-			userIdEqual = dict["userIdEqual"] as? String
+		if dict["householdId"] != nil {
+			householdId = Int64("\(dict["householdId"]!)")
 		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["householdId"] != nil {
+			householdId = Int64("\(dict["householdId"]!)")
+		}
+		if dict["blockingSegmentIds"] != nil {
+			blockingSegmentIds = dict["blockingSegmentIds"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(userIdEqual != nil) {
-			dict["userIdEqual"] = userIdEqual!
+		if(householdId != nil) {
+			dict["householdId"] = householdId!
 		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(householdId != nil) {
+			dict["householdId"] = householdId!
+		}
+		if(blockingSegmentIds != nil) {
+			dict["blockingSegmentIds"] = blockingSegmentIds!
 		}
 		return dict
 	}
