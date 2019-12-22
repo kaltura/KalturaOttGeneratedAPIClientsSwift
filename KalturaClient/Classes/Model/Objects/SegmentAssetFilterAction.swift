@@ -33,10 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  segment asset filter for segment action  */
-open class SegementAssetFilterSegmentAction: SegementAssetFilterAction {
+/**  Asset filter action  */
+open class SegmentAssetFilterAction: KsqlSegmentAction {
 
-	public class SegementAssetFilterSegmentActionTokenizer: SegementAssetFilterAction.SegementAssetFilterActionTokenizer {
+	public class SegmentAssetFilterActionTokenizer: KsqlSegmentAction.KsqlSegmentActionTokenizer {
 	}
 
 
