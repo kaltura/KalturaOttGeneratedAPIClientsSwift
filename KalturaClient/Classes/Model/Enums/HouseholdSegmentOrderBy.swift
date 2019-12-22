@@ -25,67 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-
-/**  Indicates a segment of a household  */
-open class HouseholdSegment: CrudObject {
-
-	public class HouseholdSegmentTokenizer: CrudObject.CrudObjectTokenizer {
-		
-		public var segmentId: BaseTokenizedObject {
-			get {
-				return self.append("segmentId") 
-			}
-		}
-		
-		public var householdId: BaseTokenizedObject {
-			get {
-				return self.append("householdId") 
-			}
-		}
-	}
-
-	/**  Segment Id  */
-	public var segmentId: Int64? = nil
-	/**  Segment Id  */
-	public var householdId: Int64? = nil
-
-
-	public func setMultiRequestToken(segmentId: String) {
-		self.dict["segmentId"] = segmentId
-	}
-	
-	public func setMultiRequestToken(householdId: String) {
-		self.dict["householdId"] = householdId
-	}
-	
-	internal override func populate(_ dict: [String: Any]) throws {
-		try super.populate(dict);
-		// set members values:
-		if dict["segmentId"] != nil {
-			segmentId = Int64("\(dict["segmentId"]!)")
-		}
-		if dict["householdId"] != nil {
-			householdId = Int64("\(dict["householdId"]!)")
-		}
-
-	}
-
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(segmentId != nil) {
-			dict["segmentId"] = segmentId!
-		}
-		if(householdId != nil) {
-			dict["householdId"] = householdId!
-		}
-		return dict
-	}
+public enum HouseholdSegmentOrderBy: String {
+	case NONE = "NONE"
 }
-

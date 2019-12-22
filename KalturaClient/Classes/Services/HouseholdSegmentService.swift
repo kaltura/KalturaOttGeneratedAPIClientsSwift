@@ -37,49 +37,51 @@ public final class HouseholdSegmentService{
 
 	public class AddTokenizer: ClientTokenizer  {
 		
-		public func householdSegment<T: HouseholdSegment.HouseholdSegmentTokenizer>() -> T {
-			return T(self.append("householdSegment"))
+		public func objectToAdd<T: HouseholdSegment.HouseholdSegmentTokenizer>() -> T {
+			return T(self.append("objectToAdd"))
 		}
 	}
 
-	/**  Adds a segment to a household  */
-	public static func add(householdSegment: HouseholdSegment) -> RequestBuilder<HouseholdSegment, HouseholdSegment.HouseholdSegmentTokenizer, AddTokenizer> {
+	/**  householdSegment add  */
+	public static func add(objectToAdd: HouseholdSegment) -> RequestBuilder<HouseholdSegment, HouseholdSegment.HouseholdSegmentTokenizer, AddTokenizer> {
 		let request: RequestBuilder<HouseholdSegment, HouseholdSegment.HouseholdSegmentTokenizer, AddTokenizer> = RequestBuilder<HouseholdSegment, HouseholdSegment.HouseholdSegmentTokenizer, AddTokenizer>(service: "householdsegment", action: "add")
-			.setParam(key: "householdSegment", value: householdSegment)
+			.setParam(key: "objectToAdd", value: objectToAdd)
 
 		return request
 	}
 
 	public class DeleteTokenizer: ClientTokenizer  {
 		
-		public var householdId: BaseTokenizedObject {
+		public var id: BaseTokenizedObject {
 			get {
-				return self.append("householdId") 
-			}
-		}
-		
-		public var segmentId: BaseTokenizedObject {
-			get {
-				return self.append("segmentId") 
+				return self.append("id") 
 			}
 		}
 	}
 
-	/**  Deletes a segment from a household  */
-	public static func delete(householdId: Int64, segmentId: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
-		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "householdsegment", action: "delete")
-			.setParam(key: "householdId", value: householdId)
-			.setParam(key: "segmentId", value: segmentId)
+	/**  Remove segment from household  */
+	public static func delete(id: Int64) -> NullRequestBuilder<DeleteTokenizer> {
+		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "householdsegment", action: "delete")
+			.setParam(key: "id", value: id)
 
 		return request
 	}
 
 	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: HouseholdSegmentFilter.HouseholdSegmentFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
 	}
 
-	/**  Retrieve all the segments that apply for given household  */
 	public static func list() -> RequestBuilder<HouseholdSegmentListResponse, HouseholdSegmentListResponse.HouseholdSegmentListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	/**  Gets all HouseholdSegment items for a household  */
+	public static func list(filter: HouseholdSegmentFilter?) -> RequestBuilder<HouseholdSegmentListResponse, HouseholdSegmentListResponse.HouseholdSegmentListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<HouseholdSegmentListResponse, HouseholdSegmentListResponse.HouseholdSegmentListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdSegmentListResponse, HouseholdSegmentListResponse.HouseholdSegmentListResponseTokenizer, ListTokenizer>(service: "householdsegment", action: "list")
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

@@ -33,7 +33,6 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  List of user segments  */
 open class HouseholdSegmentListResponse: ListResponse {
 
 	public class HouseholdSegmentListResponseTokenizer: ListResponse.ListResponseTokenizer {
@@ -45,7 +44,7 @@ open class HouseholdSegmentListResponse: ListResponse {
 		}
 	}
 
-	/**  Segmentation Types  */
+	/**  A list of objects  */
 	public var objects: Array<HouseholdSegment>? = nil
 
 
