@@ -34,9 +34,9 @@
  */
 
 /**  segment asset filter for subscription action  */
-open class SegementAssetFilterSubscriptionAction: SegmentAssetFilterAction {
+open class SegmentAssetFilterSubscriptionAction: SegmentAssetFilterAction {
 
-	public class SegementAssetFilterSubscriptionActionTokenizer: SegmentAssetFilterAction.SegmentAssetFilterActionTokenizer {
+	public class SegmentAssetFilterSubscriptionActionTokenizer: SegmentAssetFilterAction.SegmentAssetFilterActionTokenizer {
 	}
 
 
