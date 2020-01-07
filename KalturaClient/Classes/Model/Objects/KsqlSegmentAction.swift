@@ -33,57 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for user segments  */
-open class UserSegmentFilter: Filter {
+/**  Segment action with ksql  */
+open class KsqlSegmentAction: BaseSegmentAction {
 
-	public class UserSegmentFilterTokenizer: Filter.FilterTokenizer {
+	public class KsqlSegmentActionTokenizer: BaseSegmentAction.BaseSegmentActionTokenizer {
 		
-		public var userIdEqual: BaseTokenizedObject {
+		public var ksql: BaseTokenizedObject {
 			get {
-				return self.append("userIdEqual") 
-			}
-		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
+				return self.append("ksql") 
 			}
 		}
 	}
 
-	/**  User ID  */
-	public var userIdEqual: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
+	/**  KSQL  */
+	public var ksql: String? = nil
 
 
-	public func setMultiRequestToken(userIdEqual: String) {
-		self.dict["userIdEqual"] = userIdEqual
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
+	public func setMultiRequestToken(ksql: String) {
+		self.dict["ksql"] = ksql
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["userIdEqual"] != nil {
-			userIdEqual = dict["userIdEqual"] as? String
-		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["ksql"] != nil {
+			ksql = dict["ksql"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(userIdEqual != nil) {
-			dict["userIdEqual"] = userIdEqual!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(ksql != nil) {
+			dict["ksql"] = ksql!
 		}
 		return dict
 	}

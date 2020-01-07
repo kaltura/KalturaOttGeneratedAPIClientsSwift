@@ -33,57 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for user segments  */
-open class UserSegmentFilter: Filter {
+/**  Indicates a segment of a household  */
+open class HouseholdSegment: CrudObject {
 
-	public class UserSegmentFilterTokenizer: Filter.FilterTokenizer {
+	public class HouseholdSegmentTokenizer: CrudObject.CrudObjectTokenizer {
 		
-		public var userIdEqual: BaseTokenizedObject {
+		public var segmentId: BaseTokenizedObject {
 			get {
-				return self.append("userIdEqual") 
+				return self.append("segmentId") 
 			}
 		}
 		
-		public var kSql: BaseTokenizedObject {
+		public var householdId: BaseTokenizedObject {
 			get {
-				return self.append("kSql") 
+				return self.append("householdId") 
 			}
 		}
 	}
 
-	/**  User ID  */
-	public var userIdEqual: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
+	/**  Segment Id  */
+	public var segmentId: Int64? = nil
+	/**  Segment Id  */
+	public var householdId: Int64? = nil
 
 
-	public func setMultiRequestToken(userIdEqual: String) {
-		self.dict["userIdEqual"] = userIdEqual
+	public func setMultiRequestToken(segmentId: String) {
+		self.dict["segmentId"] = segmentId
 	}
 	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
+	public func setMultiRequestToken(householdId: String) {
+		self.dict["householdId"] = householdId
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["userIdEqual"] != nil {
-			userIdEqual = dict["userIdEqual"] as? String
+		if dict["segmentId"] != nil {
+			segmentId = Int64("\(dict["segmentId"]!)")
 		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["householdId"] != nil {
+			householdId = Int64("\(dict["householdId"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(userIdEqual != nil) {
-			dict["userIdEqual"] = userIdEqual!
+		if(segmentId != nil) {
+			dict["segmentId"] = segmentId!
 		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(householdId != nil) {
+			dict["householdId"] = householdId!
 		}
 		return dict
 	}

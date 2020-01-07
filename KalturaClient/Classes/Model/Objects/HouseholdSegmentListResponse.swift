@@ -33,57 +33,34 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for user segments  */
-open class UserSegmentFilter: Filter {
+open class HouseholdSegmentListResponse: ListResponse {
 
-	public class UserSegmentFilterTokenizer: Filter.FilterTokenizer {
+	public class HouseholdSegmentListResponseTokenizer: ListResponse.ListResponseTokenizer {
 		
-		public var userIdEqual: BaseTokenizedObject {
+		public var objects: ArrayTokenizedObject<HouseholdSegment.HouseholdSegmentTokenizer> {
 			get {
-				return self.append("userIdEqual") 
-			}
-		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
+				return ArrayTokenizedObject<HouseholdSegment.HouseholdSegmentTokenizer>(self.append("objects"))
+			} 
 		}
 	}
 
-	/**  User ID  */
-	public var userIdEqual: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
+	/**  A list of objects  */
+	public var objects: Array<HouseholdSegment>? = nil
 
 
-	public func setMultiRequestToken(userIdEqual: String) {
-		self.dict["userIdEqual"] = userIdEqual
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["userIdEqual"] != nil {
-			userIdEqual = dict["userIdEqual"] as? String
-		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(userIdEqual != nil) {
-			dict["userIdEqual"] = userIdEqual!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

@@ -33,59 +33,17 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for user segments  */
-open class UserSegmentFilter: Filter {
+/**  segment asset filter for segment action  */
+open class SegmentAssetFilterSegmentAction: SegmentAssetFilterAction {
 
-	public class UserSegmentFilterTokenizer: Filter.FilterTokenizer {
-		
-		public var userIdEqual: BaseTokenizedObject {
-			get {
-				return self.append("userIdEqual") 
-			}
-		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
-		}
+	public class SegmentAssetFilterSegmentActionTokenizer: SegmentAssetFilterAction.SegmentAssetFilterActionTokenizer {
 	}
 
-	/**  User ID  */
-	public var userIdEqual: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
 
 
-	public func setMultiRequestToken(userIdEqual: String) {
-		self.dict["userIdEqual"] = userIdEqual
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
-	}
-	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
-		// set members values:
-		if dict["userIdEqual"] != nil {
-			userIdEqual = dict["userIdEqual"] as? String
-		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
-		}
-
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(userIdEqual != nil) {
-			dict["userIdEqual"] = userIdEqual!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
-		}
-		return dict
-	}
 }
 
