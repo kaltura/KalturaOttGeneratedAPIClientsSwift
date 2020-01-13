@@ -37,9 +37,9 @@ public final class SystemService{
 
 	public class ClearLocalServerCacheTokenizer: ClientTokenizer  {
 		
-		public var action: BaseTokenizedObject {
+		public var clearCacheAction: BaseTokenizedObject {
 			get {
-				return self.append("action") 
+				return self.append("clearCacheAction") 
 			}
 		}
 		
@@ -51,17 +51,17 @@ public final class SystemService{
 	}
 
 	public static func clearLocalServerCache() -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
-		return clearLocalServerCache(action: nil)
+		return clearLocalServerCache(clearCacheAction: nil)
 	}
 
-	public static func clearLocalServerCache(action: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
-		return clearLocalServerCache(action: action, key: nil)
+	public static func clearLocalServerCache(clearCacheAction: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
+		return clearLocalServerCache(clearCacheAction: clearCacheAction, key: nil)
 	}
 
 	/**  Clear local server cache  */
-	public static func clearLocalServerCache(action: String?, key: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
+	public static func clearLocalServerCache(clearCacheAction: String?, key: String?) -> RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ClearLocalServerCacheTokenizer>(service: "system", action: "clearLocalServerCache")
-			.setParam(key: "action", value: action)
+			.setParam(key: "clearCacheAction", value: clearCacheAction)
 			.setParam(key: "key", value: key)
 
 		return request
