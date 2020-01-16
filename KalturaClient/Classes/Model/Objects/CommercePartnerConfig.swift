@@ -25,18 +25,46 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
+
+/**  partner configuration for commerce  */
+open class CommercePartnerConfig: PartnerConfiguration {
+
+	public class CommercePartnerConfigTokenizer: PartnerConfiguration.PartnerConfigurationTokenizer {
+		
+		public var bookmarkEventThresholds: ArrayTokenizedObject<BookmarkEventThreshold.BookmarkEventThresholdTokenizer> {
+			get {
+				return ArrayTokenizedObject<BookmarkEventThreshold.BookmarkEventThresholdTokenizer>(self.append("bookmarkEventThresholds"))
+			} 
+		}
+	}
+
+	/**  configuration for bookmark event threshold (when to dispatch the event) in
+	  seconds.  */
+	public var bookmarkEventThresholds: Array<BookmarkEventThreshold>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["bookmarkEventThresholds"] != nil {
+			bookmarkEventThresholds = try JSONParser.parse(array: dict["bookmarkEventThresholds"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(bookmarkEventThresholds != nil) {
+			dict["bookmarkEventThresholds"] = bookmarkEventThresholds!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+
