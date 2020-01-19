@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class RegionFilter: Filter {
+open class RegionFilter: BaseRegionFilter {
 
-	public class RegionFilterTokenizer: Filter.FilterTokenizer {
+	public class RegionFilterTokenizer: BaseRegionFilter.BaseRegionFilterTokenizer {
 		
 		public var externalIdIn: BaseTokenizedObject {
 			get {
