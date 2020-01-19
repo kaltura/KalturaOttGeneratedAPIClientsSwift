@@ -72,6 +72,18 @@ open class BookmarkEvent: EventObject {
 				return self.append("action") 
 			}
 		}
+		
+		public var productType: BaseTokenizedObject {
+			get {
+				return self.append("productType") 
+			}
+		}
+		
+		public var productId: BaseTokenizedObject {
+			get {
+				return self.append("productId") 
+			}
+		}
 	}
 
 	/**  User Id  */
@@ -86,6 +98,10 @@ open class BookmarkEvent: EventObject {
 	public var position: Int? = nil
 	/**  Bookmark Action Type  */
 	public var action: BookmarkActionType? = nil
+	/**  Product Type  */
+	public var productType: TransactionType? = nil
+	/**  Product Id  */
+	public var productId: Int? = nil
 
 
 	public func setMultiRequestToken(userId: String) {
@@ -112,6 +128,14 @@ open class BookmarkEvent: EventObject {
 		self.dict["action"] = action
 	}
 	
+	public func setMultiRequestToken(productType: String) {
+		self.dict["productType"] = productType
+	}
+	
+	public func setMultiRequestToken(productId: String) {
+		self.dict["productId"] = productId
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -132,6 +156,12 @@ open class BookmarkEvent: EventObject {
 		}
 		if dict["action"] != nil {
 			action = BookmarkActionType(rawValue: "\(dict["action"]!)")
+		}
+		if dict["productType"] != nil {
+			productType = TransactionType(rawValue: "\(dict["productType"]!)")
+		}
+		if dict["productId"] != nil {
+			productId = dict["productId"] as? Int
 		}
 
 	}
@@ -155,6 +185,12 @@ open class BookmarkEvent: EventObject {
 		}
 		if(action != nil) {
 			dict["action"] = action!.rawValue
+		}
+		if(productType != nil) {
+			dict["productType"] = productType!.rawValue
+		}
+		if(productId != nil) {
+			dict["productId"] = productId!
 		}
 		return dict
 	}
