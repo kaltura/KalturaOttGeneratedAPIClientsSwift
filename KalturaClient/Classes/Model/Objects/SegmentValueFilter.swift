@@ -33,36 +33,23 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Filter for segmentation types  */
-open class SegmentationTypeFilter: BaseSegmentationTypeFilter {
+open class SegmentValueFilter: BaseSegmentationTypeFilter {
 
-	public class SegmentationTypeFilterTokenizer: BaseSegmentationTypeFilter.BaseSegmentationTypeFilterTokenizer {
+	public class SegmentValueFilterTokenizer: BaseSegmentationTypeFilter.BaseSegmentationTypeFilterTokenizer {
 		
 		public var idIn: BaseTokenizedObject {
 			get {
 				return self.append("idIn") 
 			}
 		}
-		
-		public var kSql: BaseTokenizedObject {
-			get {
-				return self.append("kSql") 
-			}
-		}
 	}
 
-	/**  Comma separated segmentation types identifiers  */
+	/**  Comma separated segmentation identifiers  */
 	public var idIn: String? = nil
-	/**  KSQL expression  */
-	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
 		self.dict["idIn"] = idIn
-	}
-	
-	public func setMultiRequestToken(kSql: String) {
-		self.dict["kSql"] = kSql
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -71,9 +58,6 @@ open class SegmentationTypeFilter: BaseSegmentationTypeFilter {
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
 		}
-		if dict["kSql"] != nil {
-			kSql = dict["kSql"] as? String
-		}
 
 	}
 
@@ -81,9 +65,6 @@ open class SegmentationTypeFilter: BaseSegmentationTypeFilter {
 		var dict: [String: Any] = super.toDictionary()
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
-		}
-		if(kSql != nil) {
-			dict["kSql"] = kSql!
 		}
 		return dict
 	}
