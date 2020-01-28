@@ -69,7 +69,7 @@ public final class SegmentationTypeService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: BaseSegmentationTypeFilter.BaseSegmentationTypeFilterTokenizer>() -> T {
+		public func filter<T: SegmentationTypeFilter.SegmentationTypeFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
 		
@@ -82,12 +82,12 @@ public final class SegmentationTypeService{
 		return list(filter: nil)
 	}
 
-	public static func list(filter: BaseSegmentationTypeFilter?) -> RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: SegmentationTypeFilter?) -> RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Lists all segmentation types in group  */
-	public static func list(filter: BaseSegmentationTypeFilter?, pager: FilterPager?) -> RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: SegmentationTypeFilter?, pager: FilterPager?) -> RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer> = RequestBuilder<SegmentationTypeListResponse, SegmentationTypeListResponse.SegmentationTypeListResponseTokenizer, ListTokenizer>(service: "segmentationtype", action: "list")
 			.setParam(key: "filter", value: filter)
 			.setParam(key: "pager", value: pager)

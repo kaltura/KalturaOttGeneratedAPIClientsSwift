@@ -34,9 +34,9 @@
  */
 
 /**  Filter for segmentation types  */
-open class SegmentationTypeFilter: BaseSegmentationTypeFilter {
+open class SegmentationTypeFilter: Filter {
 
-	public class SegmentationTypeFilterTokenizer: BaseSegmentationTypeFilter.BaseSegmentationTypeFilterTokenizer {
+	public class SegmentationTypeFilterTokenizer: Filter.FilterTokenizer {
 		
 		public var idIn: BaseTokenizedObject {
 			get {
@@ -51,7 +51,7 @@ open class SegmentationTypeFilter: BaseSegmentationTypeFilter {
 		}
 	}
 
-	/**  Comma separated segmentation types identifiers  */
+	/**  Comma separated segmentation types identifieridentifiers  */
 	public var idIn: String? = nil
 	/**  KSQL expression  */
 	public var kSql: String? = nil
