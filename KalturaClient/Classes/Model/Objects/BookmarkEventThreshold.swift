@@ -25,18 +25,66 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
+
+open class BookmarkEventThreshold: ObjectBase {
+
+	public class BookmarkEventThresholdTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var transactionType: BaseTokenizedObject {
+			get {
+				return self.append("transactionType") 
+			}
+		}
+		
+		public var threshold: BaseTokenizedObject {
+			get {
+				return self.append("threshold") 
+			}
+		}
+	}
+
+	/**  bookmark transaction type  */
+	public var transactionType: TransactionType? = nil
+	/**  event threshold in seconds  */
+	public var threshold: Int? = nil
+
+
+	public func setMultiRequestToken(transactionType: String) {
+		self.dict["transactionType"] = transactionType
+	}
+	
+	public func setMultiRequestToken(threshold: String) {
+		self.dict["threshold"] = threshold
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["transactionType"] != nil {
+			transactionType = TransactionType(rawValue: "\(dict["transactionType"]!)")
+		}
+		if dict["threshold"] != nil {
+			threshold = dict["threshold"] as? Int
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(transactionType != nil) {
+			dict["transactionType"] = transactionType!.rawValue
+		}
+		if(threshold != nil) {
+			dict["threshold"] = threshold!
+		}
+		return dict
+	}
 }
+
