@@ -57,7 +57,7 @@ public final class PartnerConfigurationService{
 		}
 	}
 
-	/**  Update/set Partner Configuration  */
+	/**  Update Partner Configuration  */
 	public static func update(configuration: PartnerConfiguration) -> RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateTokenizer>(service: "partnerconfiguration", action: "update")
 			.setParam(key: "configuration", value: configuration)
