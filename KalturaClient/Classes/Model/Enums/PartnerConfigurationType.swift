@@ -38,5 +38,4 @@ public enum PartnerConfigurationType: String {
 	case CONCURRENCY = "Concurrency"
 	case GENERAL = "General"
 	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
 }
