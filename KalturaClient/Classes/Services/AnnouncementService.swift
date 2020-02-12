@@ -77,6 +77,23 @@ public final class AnnouncementService{
 		return request
 	}
 
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Get announcement by Id  */
+	public static func get(id: Int64) -> RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, GetTokenizer> {
+		let request: RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, GetTokenizer> = RequestBuilder<Announcement, Announcement.AnnouncementTokenizer, GetTokenizer>(service: "announcement", action: "get")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: AnnouncementFilter.AnnouncementFilterTokenizer>() -> T {
