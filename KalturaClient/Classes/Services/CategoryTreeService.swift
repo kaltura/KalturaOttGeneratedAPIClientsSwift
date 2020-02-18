@@ -25,14 +25,47 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+public final class CategoryTreeService{
+
+	public class DuplicateTokenizer: ClientTokenizer  {
+		
+		public var categoryItemId: BaseTokenizedObject {
+			get {
+				return self.append("categoryItemId") 
+			}
+		}
+	}
+
+	/**  Duplicate category Item  */
+	public static func duplicate(categoryItemId: Int64) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer> {
+		let request: RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer> = RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer>(service: "categorytree", action: "duplicate")
+			.setParam(key: "categoryItemId", value: categoryItemId)
+
+		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var categoryItemId: BaseTokenizedObject {
+			get {
+				return self.append("categoryItemId") 
+			}
+		}
+	}
+
+	/**  Retrive category tree.  */
+	public static func get(categoryItemId: Int64) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer> {
+		let request: RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer> = RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer>(service: "categorytree", action: "get")
+			.setParam(key: "categoryItemId", value: categoryItemId)
+
+		return request
+	}
 }

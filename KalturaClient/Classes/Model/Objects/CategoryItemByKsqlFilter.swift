@@ -25,14 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+open class CategoryItemByKsqlFilter: CategoryItemFilter {
+
+	public class CategoryItemByKsqlFilterTokenizer: CategoryItemFilter.CategoryItemFilterTokenizer {
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
+	}
+
+	/**  KSQL expression  */
+	public var kSql: String? = nil
+
+
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
+		}
+		return dict
+	}
 }
+

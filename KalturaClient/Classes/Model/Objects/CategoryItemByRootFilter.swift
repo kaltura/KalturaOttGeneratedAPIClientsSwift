@@ -25,14 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+open class CategoryItemByRootFilter: CategoryItemFilter {
+
+	public class CategoryItemByRootFilterTokenizer: CategoryItemFilter.CategoryItemFilterTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

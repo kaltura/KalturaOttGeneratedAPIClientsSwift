@@ -25,14 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+open class CategoryItemByIdInFilter: CategoryItemFilter {
+
+	public class CategoryItemByIdInFilterTokenizer: CategoryItemFilter.CategoryItemFilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
+	}
+
+	/**  Category item identifiers  */
+	public var idIn: String? = nil
+
+
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
+		}
+		return dict
+	}
 }
+

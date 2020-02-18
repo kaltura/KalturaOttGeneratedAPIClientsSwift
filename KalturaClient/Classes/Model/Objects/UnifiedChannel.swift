@@ -25,14 +25,66 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+open class UnifiedChannel: ObjectBase {
+
+	public class UnifiedChannelTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+	}
+
+	/**  Channel&amp;#160;identifier  */
+	public var id: Int64? = nil
+	/**  Channel Type  */
+	public var type: ChannelType? = nil
+
+
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["id"] != nil {
+			id = Int64("\(dict["id"]!)")
+		}
+		if dict["type"] != nil {
+			type = ChannelType(rawValue: "\(dict["type"]!)")
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
+		if(type != nil) {
+			dict["type"] = type!.rawValue
+		}
+		return dict
+	}
 }
+

@@ -25,14 +25,44 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+open class CategoryItemListResponse: ListResponse {
+
+	public class CategoryItemListResponseTokenizer: ListResponse.ListResponseTokenizer {
+		
+		public var objects: ArrayTokenizedObject<CategoryItem.CategoryItemTokenizer> {
+			get {
+				return ArrayTokenizedObject<CategoryItem.CategoryItemTokenizer>(self.append("objects"))
+			} 
+		}
+	}
+
+	/**  A list of objects  */
+	public var objects: Array<CategoryItem>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["objects"] != nil {
+			objects = try JSONParser.parse(array: dict["objects"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(objects != nil) {
+			dict["objects"] = objects!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+
