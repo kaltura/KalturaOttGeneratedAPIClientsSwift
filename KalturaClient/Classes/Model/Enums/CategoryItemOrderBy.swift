@@ -32,5 +32,8 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum CategoryItemOrderBy: String {
-	case NONE = "NONE"
+	case NAME_ASC = "NAME_ASC"
+	case NAME_DESC = "NAME_DESC"
+	case CREATE_DATE_ASC = "CREATE_DATE_ASC"
+	case CREATE_DATE_DESC = "CREATE_DATE_DESC"
 }

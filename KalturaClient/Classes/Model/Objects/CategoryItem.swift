@@ -134,8 +134,8 @@ open class CategoryItem: CrudObject {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(parentCategoryId != nil) {
-			dict["parentCategoryId"] = parentCategoryId!
+		if(childCategoriesIds != nil) {
+			dict["childCategoriesIds"] = childCategoriesIds!
 		}
 		if(unifiedChannels != nil) {
 			dict["unifiedChannels"] = unifiedChannels!.map { value in value.toDictionary() }

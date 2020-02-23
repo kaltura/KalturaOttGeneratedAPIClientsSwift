@@ -33,16 +33,58 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CategoryItemByRootFilter: CategoryItemFilter {
+open class CategoryItemSearchFilter: CategoryItemFilter {
 
-	public class CategoryItemByRootFilterTokenizer: CategoryItemFilter.CategoryItemFilterTokenizer {
+	public class CategoryItemSearchFilterTokenizer: CategoryItemFilter.CategoryItemFilterTokenizer {
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
+		
+		public var rootOnly: BaseTokenizedObject {
+			get {
+				return self.append("rootOnly") 
+			}
+		}
 	}
 
+	/**  KSQL expression  */
+	public var kSql: String? = nil
+	/**  Root only  */
+	public var rootOnly: Bool? = nil
 
 
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(rootOnly: String) {
+		self.dict["rootOnly"] = rootOnly
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
+		}
+		if dict["rootOnly"] != nil {
+			rootOnly = dict["rootOnly"] as? Bool
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
+		}
+		if(rootOnly != nil) {
+			dict["rootOnly"] = rootOnly!
+		}
+		return dict
+	}
 }
 
