@@ -100,12 +100,16 @@ public final class CategoryItemService{
 		}
 	}
 
+	public static func list() -> RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
 	public static func list(filter: CategoryItemFilter?) -> RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer> {
-		return list(filter: filter, pager: )
+		return list(filter: filter, pager: nil)
 	}
 
 	/**  Gets all categoryItem items  */
-	public static func list(filter: CategoryItemFilter?, pager: FilterPager) -> RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: CategoryItemFilter?, pager: FilterPager?) -> RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer> = RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer>(service: "categoryitem", action: "list")
 			.setParam(key: "filter", value: filter)
 			.setParam(key: "pager", value: pager)

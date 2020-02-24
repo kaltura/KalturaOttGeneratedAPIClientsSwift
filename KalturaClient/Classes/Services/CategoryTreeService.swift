@@ -42,12 +42,19 @@ public final class CategoryTreeService{
 				return self.append("categoryItemId") 
 			}
 		}
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
 	}
 
 	/**  Duplicate category Item  */
-	public static func duplicate(categoryItemId: Int64) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer> {
+	public static func duplicate(categoryItemId: Int64, name: String) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer> {
 		let request: RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer> = RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, DuplicateTokenizer>(service: "categorytree", action: "duplicate")
 			.setParam(key: "categoryItemId", value: categoryItemId)
+			.setParam(key: "name", value: name)
 
 		return request
 	}

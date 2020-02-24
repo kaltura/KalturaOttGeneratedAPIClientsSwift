@@ -68,9 +68,9 @@ open class CategoryTree: ObjectBase {
 			}
 		}
 		
-		public var images: ArrayTokenizedObject<MediaImage.MediaImageTokenizer> {
+		public var images: ArrayTokenizedObject<Image.ImageTokenizer> {
 			get {
-				return ArrayTokenizedObject<MediaImage.MediaImageTokenizer>(self.append("images"))
+				return ArrayTokenizedObject<Image.ImageTokenizer>(self.append("images"))
 			} 
 		}
 	}
@@ -86,7 +86,7 @@ open class CategoryTree: ObjectBase {
 	/**  Dynamic data  */
 	public var dynamicData: Dictionary<String, StringValue>? = nil
 	/**  Category images  */
-	public var images: Array<MediaImage>? = nil
+	public var images: Array<Image>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
