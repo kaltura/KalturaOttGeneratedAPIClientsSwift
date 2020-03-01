@@ -50,15 +50,15 @@ open class CategoryItem: CrudObject {
 			}
 		}
 		
-		public var parentCategoryId: BaseTokenizedObject {
+		public var parentId: BaseTokenizedObject {
 			get {
-				return self.append("parentCategoryId") 
+				return self.append("parentId") 
 			}
 		}
 		
-		public var childCategoriesIds: BaseTokenizedObject {
+		public var childrenIds: BaseTokenizedObject {
 			get {
-				return self.append("childCategoriesIds") 
+				return self.append("childrenIds") 
 			}
 		}
 		
@@ -80,9 +80,9 @@ open class CategoryItem: CrudObject {
 	/**  Category name  */
 	public var name: String? = nil
 	/**  Category parent identifier  */
-	public var parentCategoryId: Int64? = nil
+	public var parentId: Int64? = nil
 	/**  Comma separated list of child categories&amp;#39; Ids.  */
-	public var childCategoriesIds: String? = nil
+	public var childrenIds: String? = nil
 	/**  List of unified Channels.  */
 	public var unifiedChannels: Array<UnifiedChannel>? = nil
 	/**  Dynamic data  */
@@ -97,12 +97,12 @@ open class CategoryItem: CrudObject {
 		self.dict["name"] = name
 	}
 	
-	public func setMultiRequestToken(parentCategoryId: String) {
-		self.dict["parentCategoryId"] = parentCategoryId
+	public func setMultiRequestToken(parentId: String) {
+		self.dict["parentId"] = parentId
 	}
 	
-	public func setMultiRequestToken(childCategoriesIds: String) {
-		self.dict["childCategoriesIds"] = childCategoriesIds
+	public func setMultiRequestToken(childrenIds: String) {
+		self.dict["childrenIds"] = childrenIds
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -114,11 +114,11 @@ open class CategoryItem: CrudObject {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["parentCategoryId"] != nil {
-			parentCategoryId = Int64("\(dict["parentCategoryId"]!)")
+		if dict["parentId"] != nil {
+			parentId = Int64("\(dict["parentId"]!)")
 		}
-		if dict["childCategoriesIds"] != nil {
-			childCategoriesIds = dict["childCategoriesIds"] as? String
+		if dict["childrenIds"] != nil {
+			childrenIds = dict["childrenIds"] as? String
 		}
 		if dict["unifiedChannels"] != nil {
 			unifiedChannels = try JSONParser.parse(array: dict["unifiedChannels"] as! [Any])
@@ -134,8 +134,8 @@ open class CategoryItem: CrudObject {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(childCategoriesIds != nil) {
-			dict["childCategoriesIds"] = childCategoriesIds!
+		if(childrenIds != nil) {
+			dict["childrenIds"] = childrenIds!
 		}
 		if(unifiedChannels != nil) {
 			dict["unifiedChannels"] = unifiedChannels!.map { value in value.toDictionary() }
