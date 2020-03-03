@@ -50,6 +50,12 @@ open class CategoryTree: ObjectBase {
 			}
 		}
 		
+		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
+			} 
+		}
+		
 		public var children: ArrayTokenizedObject<CategoryTree.CategoryTreeTokenizer> {
 			get {
 				return ArrayTokenizedObject<CategoryTree.CategoryTreeTokenizer>(self.append("children"))
@@ -79,6 +85,8 @@ open class CategoryTree: ObjectBase {
 	public var id: Int64? = nil
 	/**  Category name  */
 	public var name: String? = nil
+	/**  Category name  */
+	public var multilingualName: Array<TranslationToken>? = nil
 	/**  List of category tree  */
 	public var children: Array<CategoryTree>? = nil
 	/**  List of unified Channels.  */
@@ -106,6 +114,9 @@ open class CategoryTree: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
+		if dict["multilingualName"] != nil {
+			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
+		}
 		if dict["children"] != nil {
 			children = try JSONParser.parse(array: dict["children"] as! [Any])
 		}
@@ -123,8 +134,8 @@ open class CategoryTree: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(name != nil) {
-			dict["name"] = name!
+		if(multilingualName != nil) {
+			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
 		if(unifiedChannels != nil) {
 			dict["unifiedChannels"] = unifiedChannels!.map { value in value.toDictionary() }

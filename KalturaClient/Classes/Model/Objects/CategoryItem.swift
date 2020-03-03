@@ -50,6 +50,12 @@ open class CategoryItem: CrudObject {
 			}
 		}
 		
+		public var multilingualName: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
+			get {
+				return ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer>(self.append("multilingualName"))
+			} 
+		}
+		
 		public var parentId: BaseTokenizedObject {
 			get {
 				return self.append("parentId") 
@@ -79,6 +85,8 @@ open class CategoryItem: CrudObject {
 	public var id: Int64? = nil
 	/**  Category name  */
 	public var name: String? = nil
+	/**  Category name  */
+	public var multilingualName: Array<TranslationToken>? = nil
 	/**  Category parent identifier  */
 	public var parentId: Int64? = nil
 	/**  Comma separated list of child categories&amp;#39; Ids.  */
@@ -114,6 +122,9 @@ open class CategoryItem: CrudObject {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
+		if dict["multilingualName"] != nil {
+			multilingualName = try JSONParser.parse(array: dict["multilingualName"] as! [Any])
+		}
 		if dict["parentId"] != nil {
 			parentId = Int64("\(dict["parentId"]!)")
 		}
@@ -131,8 +142,8 @@ open class CategoryItem: CrudObject {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(name != nil) {
-			dict["name"] = name!
+		if(multilingualName != nil) {
+			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
 		}
 		if(childrenIds != nil) {
 			dict["childrenIds"] = childrenIds!
