@@ -79,6 +79,12 @@ open class CategoryItem: CrudObject {
 				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
 			}
 		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the category  */
@@ -95,6 +101,9 @@ open class CategoryItem: CrudObject {
 	public var unifiedChannels: Array<UnifiedChannel>? = nil
 	/**  Dynamic data  */
 	public var dynamicData: Dictionary<String, StringValue>? = nil
+	/**  Specifies when was the Category last updated. Date and time represented as
+	  epoch.  */
+	public var updateDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -111,6 +120,10 @@ open class CategoryItem: CrudObject {
 	
 	public func setMultiRequestToken(childrenIds: String) {
 		self.dict["childrenIds"] = childrenIds
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -136,6 +149,9 @@ open class CategoryItem: CrudObject {
 		}
 		if dict["dynamicData"] != nil {
 			dynamicData = try JSONParser.parse(map: dict["dynamicData"] as! [String: Any])
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 
 	}

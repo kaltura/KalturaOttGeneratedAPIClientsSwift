@@ -36,4 +36,5 @@ public enum CategoryItemOrderBy: String {
 	case NAME_DESC = "NAME_DESC"
 	case CREATE_DATE_ASC = "CREATE_DATE_ASC"
 	case CREATE_DATE_DESC = "CREATE_DATE_DESC"
+	case NONE = "NONE"
 }
