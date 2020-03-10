@@ -25,14 +25,48 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+
+open class UnifiedChannelInfo: UnifiedChannel {
+
+	public class UnifiedChannelInfoTokenizer: UnifiedChannel.UnifiedChannelTokenizer {
+		
+		public var name: BaseTokenizedObject {
+			get {
+				return self.append("name") 
+			}
+		}
+	}
+
+	/**  Channel&amp;#160;name  */
+	public var name: String? = nil
+
+
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["name"] != nil {
+			name = dict["name"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(name != nil) {
+			dict["name"] = name!
+		}
+		return dict
+	}
 }
+

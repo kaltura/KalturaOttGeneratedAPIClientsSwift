@@ -31,8 +31,7 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+public enum ChannelType: String {
+	case INTERNAL = "Internal"
+	case EXTERNAL = "External"
 }

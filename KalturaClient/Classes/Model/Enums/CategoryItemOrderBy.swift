@@ -31,8 +31,10 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum ObjectVirtualAssetInfoType: String {
-	case SUBSCRIPTION = "Subscription"
-	case SEGMENT = "Segment"
-	case CATEGORY = "Category"
+public enum CategoryItemOrderBy: String {
+	case NAME_ASC = "NAME_ASC"
+	case NAME_DESC = "NAME_DESC"
+	case CREATE_DATE_ASC = "CREATE_DATE_ASC"
+	case CREATE_DATE_DESC = "CREATE_DATE_DESC"
+	case NONE = "NONE"
 }
