@@ -49,12 +49,20 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 				return self.append("evictionPolicy") 
 			}
 		}
+		
+		public var devicePlayDataExpirationTTL: BaseTokenizedObject {
+			get {
+				return self.append("devicePlayDataExpirationTTL") 
+			}
+		}
 	}
 
 	/**  Comma separated list of device Family Ids order by their priority.  */
 	public var deviceFamilyIds: String? = nil
 	/**  Policy of eviction devices  */
 	public var evictionPolicy: EvictionPolicyType? = nil
+	/**  Device play data expiration TTL  */
+	public var devicePlayDataExpirationTTL: Int64? = nil
 
 
 	public func setMultiRequestToken(deviceFamilyIds: String) {
@@ -63,6 +71,10 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 	
 	public func setMultiRequestToken(evictionPolicy: String) {
 		self.dict["evictionPolicy"] = evictionPolicy
+	}
+	
+	public func setMultiRequestToken(devicePlayDataExpirationTTL: String) {
+		self.dict["devicePlayDataExpirationTTL"] = devicePlayDataExpirationTTL
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +86,9 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		if dict["evictionPolicy"] != nil {
 			evictionPolicy = EvictionPolicyType(rawValue: "\(dict["evictionPolicy"]!)")
 		}
+		if dict["devicePlayDataExpirationTTL"] != nil {
+			devicePlayDataExpirationTTL = Int64("\(dict["devicePlayDataExpirationTTL"]!)")
+		}
 
 	}
 
@@ -84,6 +99,9 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		}
 		if(evictionPolicy != nil) {
 			dict["evictionPolicy"] = evictionPolicy!.rawValue
+		}
+		if(devicePlayDataExpirationTTL != nil) {
+			dict["devicePlayDataExpirationTTL"] = devicePlayDataExpirationTTL!
 		}
 		return dict
 	}
