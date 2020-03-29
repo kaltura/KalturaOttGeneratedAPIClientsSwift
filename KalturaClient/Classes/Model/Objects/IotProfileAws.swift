@@ -80,12 +80,6 @@ open class IotProfileAws: CrudObject {
 			}
 		}
 		
-		public var tTL: BaseTokenizedObject {
-			get {
-				return self.append("tTL") 
-			}
-		}
-		
 		public var iotPolicyName: BaseTokenizedObject {
 			get {
 				return self.append("iotPolicyName") 
@@ -137,8 +131,6 @@ open class IotProfileAws: CrudObject {
 	public var accessKeyId: String? = nil
 	/**  secretAccessKey  */
 	public var secretAccessKey: String? = nil
-	/**  tTL  */
-	public var tTL: String? = nil
 	/**  iotPolicyName  */
 	public var iotPolicyName: String? = nil
 	/**  userPoolId  */
@@ -179,10 +171,6 @@ open class IotProfileAws: CrudObject {
 	
 	public func setMultiRequestToken(secretAccessKey: String) {
 		self.dict["secretAccessKey"] = secretAccessKey
-	}
-	
-	public func setMultiRequestToken(tTL: String) {
-		self.dict["tTL"] = tTL
 	}
 	
 	public func setMultiRequestToken(iotPolicyName: String) {
@@ -233,9 +221,6 @@ open class IotProfileAws: CrudObject {
 		if dict["secretAccessKey"] != nil {
 			secretAccessKey = dict["secretAccessKey"] as? String
 		}
-		if dict["tTL"] != nil {
-			tTL = dict["tTL"] as? String
-		}
 		if dict["iotPolicyName"] != nil {
 			iotPolicyName = dict["iotPolicyName"] as? String
 		}
@@ -279,9 +264,6 @@ open class IotProfileAws: CrudObject {
 		}
 		if(secretAccessKey != nil) {
 			dict["secretAccessKey"] = secretAccessKey!
-		}
-		if(tTL != nil) {
-			dict["tTL"] = tTL!
 		}
 		if(iotPolicyName != nil) {
 			dict["iotPolicyName"] = iotPolicyName!
