@@ -109,6 +109,10 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 				return self.append("defaultRegion") 
 			}
 		}
+		
+		public func rollingDeviceData<T: RollingDeviceRemovalData.RollingDeviceRemovalDataTokenizer>() -> T {
+			return T(self.append("rollingDeviceData"))
+		}
 	}
 
 	/**  Partner name  */
@@ -135,6 +139,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var enableRegionFiltering: Bool? = nil
 	/**  Default Region  */
 	public var defaultRegion: Int? = nil
+	/**  Rolling Device Policy  */
+	public var rollingDeviceData: RollingDeviceRemovalData? = nil
 
 
 	public func setMultiRequestToken(partnerName: String) {
@@ -224,6 +230,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		if dict["defaultRegion"] != nil {
 			defaultRegion = dict["defaultRegion"] as? Int
 		}
+		if dict["rollingDeviceData"] != nil {
+		rollingDeviceData = try JSONParser.parse(object: dict["rollingDeviceData"] as! [String: Any])		}
 
 	}
 
@@ -264,6 +272,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if(defaultRegion != nil) {
 			dict["defaultRegion"] = defaultRegion!
+		}
+		if(rollingDeviceData != nil) {
+			dict["rollingDeviceData"] = rollingDeviceData!.toDictionary()
 		}
 		return dict
 	}
