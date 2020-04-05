@@ -25,19 +25,42 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
+
+/**  Playback adapter partner configuration  */
+open class PlaybackPartnerConfig: PartnerConfiguration {
+
+	public class PlaybackPartnerConfigTokenizer: PartnerConfiguration.PartnerConfigurationTokenizer {
+		
+		public func defaultAdapters<T: DefaultPlaybackAdapters.DefaultPlaybackAdaptersTokenizer>() -> T {
+			return T(self.append("defaultAdapters"))
+		}
+	}
+
+	/**  default adapter configuration for: media, epg,recording.  */
+	public var defaultAdapters: DefaultPlaybackAdapters? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["defaultAdapters"] != nil {
+		defaultAdapters = try JSONParser.parse(object: dict["defaultAdapters"] as! [String: Any])		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(defaultAdapters != nil) {
+			dict["defaultAdapters"] = defaultAdapters!.toDictionary()
+		}
+		return dict
+	}
 }
+

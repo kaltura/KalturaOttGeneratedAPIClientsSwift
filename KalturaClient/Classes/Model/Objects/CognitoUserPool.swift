@@ -25,19 +25,41 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
+
+open class CognitoUserPool: ObjectBase {
+
+	public class CognitoUserPoolTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public func default<T: Default.DefaultTokenizer>() -> T {
+			return T(self.append("default"))
+		}
+	}
+
+	/**  Default  */
+	public var default: Default? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["default"] != nil {
+		default = try JSONParser.parse(object: dict["default"] as! [String: Any])		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(default != nil) {
+			dict["default"] = default!.toDictionary()
+		}
+		return dict
+	}
 }
+

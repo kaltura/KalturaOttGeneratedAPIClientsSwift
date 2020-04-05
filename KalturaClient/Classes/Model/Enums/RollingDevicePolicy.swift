@@ -31,13 +31,9 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
+public enum RollingDevicePolicy: String {
+	case NONE = "NONE"
+	case LIFO = "LIFO"
+	case FIFO = "FIFO"
+	case ACTIVE_DEVICE_ASCENDING = "ACTIVE_DEVICE_ASCENDING"
 }

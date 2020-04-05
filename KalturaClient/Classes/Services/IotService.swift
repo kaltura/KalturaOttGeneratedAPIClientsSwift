@@ -25,19 +25,33 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
+
+public final class IotService{
+
+	public class GetClientConfigurationTokenizer: ClientTokenizer  {
+	}
+
+	/**  Get iot Client Configuration  */
+	public static func getClientConfiguration() -> RequestBuilder<IotClientConfiguration, IotClientConfiguration.IotClientConfigurationTokenizer, GetClientConfigurationTokenizer> {
+		let request: RequestBuilder<IotClientConfiguration, IotClientConfiguration.IotClientConfigurationTokenizer, GetClientConfigurationTokenizer> = RequestBuilder<IotClientConfiguration, IotClientConfiguration.IotClientConfigurationTokenizer, GetClientConfigurationTokenizer>(service: "iot", action: "getClientConfiguration")
+
+		return request
+	}
+
+	public class RegisterTokenizer: ClientTokenizer  {
+	}
+
+	/**  Register IOT device  */
+	public static func register() -> RequestBuilder<Iot, Iot.IotTokenizer, RegisterTokenizer> {
+		let request: RequestBuilder<Iot, Iot.IotTokenizer, RegisterTokenizer> = RequestBuilder<Iot, Iot.IotTokenizer, RegisterTokenizer>(service: "iot", action: "register")
+
+		return request
+	}
 }

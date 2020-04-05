@@ -25,19 +25,41 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
+
+open class CredentialsProvider: ObjectBase {
+
+	public class CredentialsProviderTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public func cognitoIdentity<T: CognitoIdentity.CognitoIdentityTokenizer>() -> T {
+			return T(self.append("cognitoIdentity"))
+		}
+	}
+
+	/**  KalturaCognitoIdentity  */
+	public var cognitoIdentity: CognitoIdentity? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["cognitoIdentity"] != nil {
+		cognitoIdentity = try JSONParser.parse(object: dict["cognitoIdentity"] as! [String: Any])		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(cognitoIdentity != nil) {
+			dict["cognitoIdentity"] = cognitoIdentity!.toDictionary()
+		}
+		return dict
+	}
 }
+
