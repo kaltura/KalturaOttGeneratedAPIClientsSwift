@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class Default: ObjectBase {
+open class IotDefault: ObjectBase {
 
-	public class DefaultTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class IotDefaultTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var poolId: BaseTokenizedObject {
 			get {
