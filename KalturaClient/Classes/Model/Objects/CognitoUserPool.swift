@@ -37,27 +37,27 @@ open class CognitoUserPool: ObjectBase {
 
 	public class CognitoUserPoolTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public func default<T: Default.DefaultTokenizer>() -> T {
-			return T(self.append("default"))
+		public func iotDefault<T: IotDefault.IotDefaultTokenizer>() -> T {
+			return T(self.append("iotDefault"))
 		}
 	}
 
 	/**  Default  */
-	public var default: Default? = nil
+	public var iotDefault: IotDefault? = nil
 
 
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["default"] != nil {
-		default = try JSONParser.parse(object: dict["default"] as! [String: Any])		}
+		if dict["iotDefault"] != nil {
+		iotDefault = try JSONParser.parse(object: dict["iotDefault"] as! [String: Any])		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(default != nil) {
-			dict["default"] = default!.toDictionary()
+		if(iotDefault != nil) {
+			dict["iotDefault"] = iotDefault!.toDictionary()
 		}
 		return dict
 	}
