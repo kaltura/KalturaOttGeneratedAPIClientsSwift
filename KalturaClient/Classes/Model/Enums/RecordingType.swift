@@ -35,4 +35,5 @@ public enum RecordingType: String {
 	case SINGLE = "SINGLE"
 	case SEASON = "SEASON"
 	case SERIES = "SERIES"
+	case ORIGINALBROADCAST = "OriginalBroadcast"
 }
