@@ -84,6 +84,30 @@ public final class SsoAdapterProfileService{
 		return request
 	}
 
+	public class InvokeTokenizer: ClientTokenizer  {
+		
+		public var intent: BaseTokenizedObject {
+			get {
+				return self.append("intent") 
+			}
+		}
+		
+		public var adapterData: ArrayTokenizedObject<KeyValue.KeyValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<KeyValue.KeyValueTokenizer>(self.append("adapterData"))
+			} 
+		}
+	}
+
+	/**  Request validation against 3rd party  */
+	public static func invoke(intent: String, adapterData: Array<KeyValue>) -> RequestBuilder<SSOAdapterProfileInvoke, SSOAdapterProfileInvoke.SSOAdapterProfileInvokeTokenizer, InvokeTokenizer> {
+		let request: RequestBuilder<SSOAdapterProfileInvoke, SSOAdapterProfileInvoke.SSOAdapterProfileInvokeTokenizer, InvokeTokenizer> = RequestBuilder<SSOAdapterProfileInvoke, SSOAdapterProfileInvoke.SSOAdapterProfileInvokeTokenizer, InvokeTokenizer>(service: "ssoadapterprofile", action: "invoke")
+			.setParam(key: "intent", value: intent)
+			.setParam(key: "adapterData", value: adapterData)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 	}
 
