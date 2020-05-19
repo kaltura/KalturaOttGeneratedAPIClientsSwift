@@ -79,6 +79,24 @@ open class CategoryTree: ObjectBase {
 				return ArrayTokenizedObject<Image.ImageTokenizer>(self.append("images"))
 			} 
 		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var startDateInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("startDateInSeconds") 
+			}
+		}
+		
+		public var endDateInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("endDateInSeconds") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the category item  */
@@ -95,6 +113,12 @@ open class CategoryTree: ObjectBase {
 	public var dynamicData: Dictionary<String, StringValue>? = nil
 	/**  Category images  */
 	public var images: Array<Image>? = nil
+	/**  Category active status  */
+	public var isActive: Bool? = nil
+	/**  Start date in seconds  */
+	public var startDateInSeconds: Int64? = nil
+	/**  End date in seconds  */
+	public var endDateInSeconds: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -103,6 +127,18 @@ open class CategoryTree: ObjectBase {
 	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(startDateInSeconds: String) {
+		self.dict["startDateInSeconds"] = startDateInSeconds
+	}
+	
+	public func setMultiRequestToken(endDateInSeconds: String) {
+		self.dict["endDateInSeconds"] = endDateInSeconds
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -129,6 +165,15 @@ open class CategoryTree: ObjectBase {
 		if dict["images"] != nil {
 			images = try JSONParser.parse(array: dict["images"] as! [Any])
 		}
+		if dict["isActive"] != nil {
+			isActive = dict["isActive"] as? Bool
+		}
+		if dict["startDateInSeconds"] != nil {
+			startDateInSeconds = Int64("\(dict["startDateInSeconds"]!)")
+		}
+		if dict["endDateInSeconds"] != nil {
+			endDateInSeconds = Int64("\(dict["endDateInSeconds"]!)")
+		}
 
 	}
 
@@ -145,6 +190,15 @@ open class CategoryTree: ObjectBase {
 		}
 		if(images != nil) {
 			dict["images"] = images!.map { value in value.toDictionary() }
+		}
+		if(isActive != nil) {
+			dict["isActive"] = isActive!
+		}
+		if(startDateInSeconds != nil) {
+			dict["startDateInSeconds"] = startDateInSeconds!
+		}
+		if(endDateInSeconds != nil) {
+			dict["endDateInSeconds"] = endDateInSeconds!
 		}
 		return dict
 	}
