@@ -31,14 +31,10 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
-	case PAYMENT = "Payment"
+public enum DurationUnit: String {
+	case MINUTES = "Minutes"
+	case HOURS = "Hours"
+	case DAYS = "Days"
+	case MONTHS = "Months"
+	case YEARS = "Years"
 }

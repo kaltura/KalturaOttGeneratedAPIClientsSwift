@@ -25,20 +25,67 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
-	case PAYMENT = "Payment"
+
+/**  representation of duration time unit and value  */
+open class Duration: ObjectBase {
+
+	public class DurationTokenizer: ObjectBase.ObjectBaseTokenizer {
+		
+		public var unit: BaseTokenizedObject {
+			get {
+				return self.append("unit") 
+			}
+		}
+		
+		public var value: BaseTokenizedObject {
+			get {
+				return self.append("value") 
+			}
+		}
+	}
+
+	/**  duration unit  */
+	public var unit: DurationUnit? = nil
+	/**  duration value  */
+	public var value: Int? = nil
+
+
+	public func setMultiRequestToken(unit: String) {
+		self.dict["unit"] = unit
+	}
+	
+	public func setMultiRequestToken(value: String) {
+		self.dict["value"] = value
+	}
+	
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["unit"] != nil {
+			unit = DurationUnit(rawValue: "\(dict["unit"]!)")
+		}
+		if dict["value"] != nil {
+			value = dict["value"] as? Int
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(unit != nil) {
+			dict["unit"] = unit!.rawValue
+		}
+		if(value != nil) {
+			dict["value"] = value!
+		}
+		return dict
+	}
 }
+

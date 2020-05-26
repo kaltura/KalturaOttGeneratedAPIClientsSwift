@@ -25,20 +25,45 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum PartnerConfigurationType: String {
-	case DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway"
-	case ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection"
-	case OSSADAPTER = "OSSAdapter"
-	case CONCURRENCY = "Concurrency"
-	case GENERAL = "General"
-	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
-	case COMMERCE = "Commerce"
-	case PLAYBACK = "Playback"
-	case PAYMENT = "Payment"
+
+/**  Partner billing configuration  */
+open class PaymentPartnerConfig: PartnerConfiguration {
+
+	public class PaymentPartnerConfigTokenizer: PartnerConfiguration.PartnerConfigurationTokenizer {
+		
+		public var unifiedBillingCycles: ArrayTokenizedObject<UnifiedBillingCycle.UnifiedBillingCycleTokenizer> {
+			get {
+				return ArrayTokenizedObject<UnifiedBillingCycle.UnifiedBillingCycleTokenizer>(self.append("unifiedBillingCycles"))
+			} 
+		}
+	}
+
+	/**  configuration for unified billing cycles.  */
+	public var unifiedBillingCycles: Array<UnifiedBillingCycle>? = nil
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["unifiedBillingCycles"] != nil {
+			unifiedBillingCycles = try JSONParser.parse(array: dict["unifiedBillingCycles"] as! [Any])
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(unifiedBillingCycles != nil) {
+			dict["unifiedBillingCycles"] = unifiedBillingCycles!.map { value in value.toDictionary() }
+		}
+		return dict
+	}
 }
+
