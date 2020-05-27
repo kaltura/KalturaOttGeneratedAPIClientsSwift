@@ -31,12 +31,6 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum CategoryItemOrderBy: String {
-	case NAME_ASC = "NAME_ASC"
-	case NAME_DESC = "NAME_DESC"
-	case CREATE_DATE_ASC = "CREATE_DATE_ASC"
-	case CREATE_DATE_DESC = "CREATE_DATE_DESC"
+public enum ExternalRecordingResponseProfileOrderBy: String {
 	case NONE = "NONE"
-	case UPDATE_DATE_ASC = "UPDATE_DATE_ASC"
-	case UPDATE_DATE_DESC = "UPDATE_DATE_DESC"
 }

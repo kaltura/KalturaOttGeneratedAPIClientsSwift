@@ -68,11 +68,20 @@ public final class ExternalChannelProfileService{
 	}
 
 	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: ExternalChannelProfileFilter.ExternalChannelProfileFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
 	}
 
 	/**  Returns all External channels for partner  */
-	public static func list() -> RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: ExternalChannelProfileFilter?) -> RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer> = RequestBuilder<ExternalChannelProfileListResponse, ExternalChannelProfileListResponse.ExternalChannelProfileListResponseTokenizer, ListTokenizer>(service: "externalchannelprofile", action: "list")
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

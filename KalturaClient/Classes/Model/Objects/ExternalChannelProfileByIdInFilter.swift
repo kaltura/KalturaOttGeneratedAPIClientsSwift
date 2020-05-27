@@ -33,33 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ChannelsFilter: Filter {
+open class ExternalChannelProfileByIdInFilter: ExternalChannelProfileFilter {
 
-	public class ChannelsFilterTokenizer: Filter.FilterTokenizer {
-		
-		public var idEqual: BaseTokenizedObject {
-			get {
-				return self.append("idEqual") 
-			}
-		}
-		
-		public var mediaIdEqual: BaseTokenizedObject {
-			get {
-				return self.append("mediaIdEqual") 
-			}
-		}
-		
-		public var nameEqual: BaseTokenizedObject {
-			get {
-				return self.append("nameEqual") 
-			}
-		}
-		
-		public var nameStartsWith: BaseTokenizedObject {
-			get {
-				return self.append("nameStartsWith") 
-			}
-		}
+	public class ExternalChannelProfileByIdInFilterTokenizer: ExternalChannelProfileFilter.ExternalChannelProfileFilterTokenizer {
 		
 		public var idIn: BaseTokenizedObject {
 			get {
@@ -68,34 +44,10 @@ open class ChannelsFilter: Filter {
 		}
 	}
 
-	/**  channel identifier to filter by  */
-	public var idEqual: Int? = nil
-	/**  media identifier to filter by  */
-	public var mediaIdEqual: Int64? = nil
-	/**  Exact channel name to filter by  */
-	public var nameEqual: String? = nil
-	/**  Channel name starts with (auto-complete)  */
-	public var nameStartsWith: String? = nil
-	/**  Comma separated channel ids  */
+	/**  Comma separated external channel profile ids  */
 	public var idIn: String? = nil
 
 
-	public func setMultiRequestToken(idEqual: String) {
-		self.dict["idEqual"] = idEqual
-	}
-	
-	public func setMultiRequestToken(mediaIdEqual: String) {
-		self.dict["mediaIdEqual"] = mediaIdEqual
-	}
-	
-	public func setMultiRequestToken(nameEqual: String) {
-		self.dict["nameEqual"] = nameEqual
-	}
-	
-	public func setMultiRequestToken(nameStartsWith: String) {
-		self.dict["nameStartsWith"] = nameStartsWith
-	}
-	
 	public func setMultiRequestToken(idIn: String) {
 		self.dict["idIn"] = idIn
 	}
@@ -103,18 +55,6 @@ open class ChannelsFilter: Filter {
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["idEqual"] != nil {
-			idEqual = dict["idEqual"] as? Int
-		}
-		if dict["mediaIdEqual"] != nil {
-			mediaIdEqual = Int64("\(dict["mediaIdEqual"]!)")
-		}
-		if dict["nameEqual"] != nil {
-			nameEqual = dict["nameEqual"] as? String
-		}
-		if dict["nameStartsWith"] != nil {
-			nameStartsWith = dict["nameStartsWith"] as? String
-		}
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
 		}
@@ -123,18 +63,6 @@ open class ChannelsFilter: Filter {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(idEqual != nil) {
-			dict["idEqual"] = idEqual!
-		}
-		if(mediaIdEqual != nil) {
-			dict["mediaIdEqual"] = mediaIdEqual!
-		}
-		if(nameEqual != nil) {
-			dict["nameEqual"] = nameEqual!
-		}
-		if(nameStartsWith != nil) {
-			dict["nameStartsWith"] = nameStartsWith!
-		}
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
 		}

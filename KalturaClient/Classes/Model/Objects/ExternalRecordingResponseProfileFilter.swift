@@ -25,18 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum CategoryItemOrderBy: String {
-	case NAME_ASC = "NAME_ASC"
-	case NAME_DESC = "NAME_DESC"
-	case CREATE_DATE_ASC = "CREATE_DATE_ASC"
-	case CREATE_DATE_DESC = "CREATE_DATE_DESC"
-	case NONE = "NONE"
-	case UPDATE_DATE_ASC = "UPDATE_DATE_ASC"
-	case UPDATE_DATE_DESC = "UPDATE_DATE_DESC"
+
+/**  Kaltura External Recording ResponseProfile Filter  */
+open class ExternalRecordingResponseProfileFilter: RelatedObjectFilter {
+
+	public class ExternalRecordingResponseProfileFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
+	}
+
+
+
+	internal override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+	}
+
 }
+

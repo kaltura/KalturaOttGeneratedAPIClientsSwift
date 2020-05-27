@@ -44,30 +44,6 @@ open class IotProfileAws: CrudObject {
 			}
 		}
 		
-		public var pfxPath: BaseTokenizedObject {
-			get {
-				return self.append("pfxPath") 
-			}
-		}
-		
-		public var pfxPassword: BaseTokenizedObject {
-			get {
-				return self.append("pfxPassword") 
-			}
-		}
-		
-		public var certificatePath: BaseTokenizedObject {
-			get {
-				return self.append("certificatePath") 
-			}
-		}
-		
-		public var brokerPort: BaseTokenizedObject {
-			get {
-				return self.append("brokerPort") 
-			}
-		}
-		
 		public var accessKeyId: BaseTokenizedObject {
 			get {
 				return self.append("accessKeyId") 
@@ -77,12 +53,6 @@ open class IotProfileAws: CrudObject {
 		public var secretAccessKey: BaseTokenizedObject {
 			get {
 				return self.append("secretAccessKey") 
-			}
-		}
-		
-		public var iotPolicyName: BaseTokenizedObject {
-			get {
-				return self.append("iotPolicyName") 
 			}
 		}
 		
@@ -119,20 +89,10 @@ open class IotProfileAws: CrudObject {
 
 	/**  iotEndPoint  */
 	public var iotEndPoint: String? = nil
-	/**  pfxPath  */
-	public var pfxPath: String? = nil
-	/**  pfxPassword  */
-	public var pfxPassword: String? = nil
-	/**  certificatePath  */
-	public var certificatePath: String? = nil
-	/**  brokerPort  */
-	public var brokerPort: Int? = nil
 	/**  accessKeyId  */
 	public var accessKeyId: String? = nil
 	/**  secretAccessKey  */
 	public var secretAccessKey: String? = nil
-	/**  iotPolicyName  */
-	public var iotPolicyName: String? = nil
 	/**  userPoolId  */
 	public var userPoolId: String? = nil
 	/**  clientId  */
@@ -149,32 +109,12 @@ open class IotProfileAws: CrudObject {
 		self.dict["iotEndPoint"] = iotEndPoint
 	}
 	
-	public func setMultiRequestToken(pfxPath: String) {
-		self.dict["pfxPath"] = pfxPath
-	}
-	
-	public func setMultiRequestToken(pfxPassword: String) {
-		self.dict["pfxPassword"] = pfxPassword
-	}
-	
-	public func setMultiRequestToken(certificatePath: String) {
-		self.dict["certificatePath"] = certificatePath
-	}
-	
-	public func setMultiRequestToken(brokerPort: String) {
-		self.dict["brokerPort"] = brokerPort
-	}
-	
 	public func setMultiRequestToken(accessKeyId: String) {
 		self.dict["accessKeyId"] = accessKeyId
 	}
 	
 	public func setMultiRequestToken(secretAccessKey: String) {
 		self.dict["secretAccessKey"] = secretAccessKey
-	}
-	
-	public func setMultiRequestToken(iotPolicyName: String) {
-		self.dict["iotPolicyName"] = iotPolicyName
 	}
 	
 	public func setMultiRequestToken(userPoolId: String) {
@@ -203,26 +143,11 @@ open class IotProfileAws: CrudObject {
 		if dict["iotEndPoint"] != nil {
 			iotEndPoint = dict["iotEndPoint"] as? String
 		}
-		if dict["pfxPath"] != nil {
-			pfxPath = dict["pfxPath"] as? String
-		}
-		if dict["pfxPassword"] != nil {
-			pfxPassword = dict["pfxPassword"] as? String
-		}
-		if dict["certificatePath"] != nil {
-			certificatePath = dict["certificatePath"] as? String
-		}
-		if dict["brokerPort"] != nil {
-			brokerPort = dict["brokerPort"] as? Int
-		}
 		if dict["accessKeyId"] != nil {
 			accessKeyId = dict["accessKeyId"] as? String
 		}
 		if dict["secretAccessKey"] != nil {
 			secretAccessKey = dict["secretAccessKey"] as? String
-		}
-		if dict["iotPolicyName"] != nil {
-			iotPolicyName = dict["iotPolicyName"] as? String
 		}
 		if dict["userPoolId"] != nil {
 			userPoolId = dict["userPoolId"] as? String
@@ -247,26 +172,11 @@ open class IotProfileAws: CrudObject {
 		if(iotEndPoint != nil) {
 			dict["iotEndPoint"] = iotEndPoint!
 		}
-		if(pfxPath != nil) {
-			dict["pfxPath"] = pfxPath!
-		}
-		if(pfxPassword != nil) {
-			dict["pfxPassword"] = pfxPassword!
-		}
-		if(certificatePath != nil) {
-			dict["certificatePath"] = certificatePath!
-		}
-		if(brokerPort != nil) {
-			dict["brokerPort"] = brokerPort!
-		}
 		if(accessKeyId != nil) {
 			dict["accessKeyId"] = accessKeyId!
 		}
 		if(secretAccessKey != nil) {
 			dict["secretAccessKey"] = secretAccessKey!
-		}
-		if(iotPolicyName != nil) {
-			dict["iotPolicyName"] = iotPolicyName!
 		}
 		if(userPoolId != nil) {
 			dict["userPoolId"] = userPoolId!
