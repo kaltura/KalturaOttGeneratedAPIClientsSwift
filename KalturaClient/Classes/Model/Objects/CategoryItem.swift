@@ -85,6 +85,24 @@ open class CategoryItem: CrudObject {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var startDateInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("startDateInSeconds") 
+			}
+		}
+		
+		public var endDateInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("endDateInSeconds") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the category  */
@@ -104,6 +122,12 @@ open class CategoryItem: CrudObject {
 	/**  Specifies when was the Category last updated. Date and time represented as
 	  epoch.  */
 	public var updateDate: Int64? = nil
+	/**  Category active status  */
+	public var isActive: Bool? = nil
+	/**  Start date in seconds  */
+	public var startDateInSeconds: Int64? = nil
+	/**  End date in seconds  */
+	public var endDateInSeconds: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -124,6 +148,18 @@ open class CategoryItem: CrudObject {
 	
 	public func setMultiRequestToken(updateDate: String) {
 		self.dict["updateDate"] = updateDate
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(startDateInSeconds: String) {
+		self.dict["startDateInSeconds"] = startDateInSeconds
+	}
+	
+	public func setMultiRequestToken(endDateInSeconds: String) {
+		self.dict["endDateInSeconds"] = endDateInSeconds
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -153,6 +189,15 @@ open class CategoryItem: CrudObject {
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
 		}
+		if dict["isActive"] != nil {
+			isActive = dict["isActive"] as? Bool
+		}
+		if dict["startDateInSeconds"] != nil {
+			startDateInSeconds = Int64("\(dict["startDateInSeconds"]!)")
+		}
+		if dict["endDateInSeconds"] != nil {
+			endDateInSeconds = Int64("\(dict["endDateInSeconds"]!)")
+		}
 
 	}
 
@@ -169,6 +214,15 @@ open class CategoryItem: CrudObject {
 		}
 		if(dynamicData != nil) {
 			dict["dynamicData"] = dynamicData!.toDictionary()
+		}
+		if(isActive != nil) {
+			dict["isActive"] = isActive!
+		}
+		if(startDateInSeconds != nil) {
+			dict["startDateInSeconds"] = startDateInSeconds!
+		}
+		if(endDateInSeconds != nil) {
+			dict["endDateInSeconds"] = endDateInSeconds!
 		}
 		return dict
 	}

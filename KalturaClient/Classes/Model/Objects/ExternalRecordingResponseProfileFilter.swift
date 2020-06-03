@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CrudObject: OTTObjectSupportNullable {
+/**  Kaltura External Recording ResponseProfile Filter  */
+open class ExternalRecordingResponseProfileFilter: RelatedObjectFilter {
 
-	public class CrudObjectTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
+	public class ExternalRecordingResponseProfileFilterTokenizer: RelatedObjectFilter.RelatedObjectFilterTokenizer {
 	}
 
 

@@ -33,16 +33,40 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CrudObject: OTTObjectSupportNullable {
+open class ExternalChannelProfileByIdInFilter: ExternalChannelProfileFilter {
 
-	public class CrudObjectTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
+	public class ExternalChannelProfileByIdInFilterTokenizer: ExternalChannelProfileFilter.ExternalChannelProfileFilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
 	}
 
+	/**  Comma separated external channel profile ids  */
+	public var idIn: String? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
+		}
+		return dict
+	}
 }
 

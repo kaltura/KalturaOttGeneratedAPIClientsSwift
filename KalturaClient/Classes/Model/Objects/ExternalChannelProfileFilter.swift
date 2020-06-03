@@ -33,9 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CrudObject: OTTObjectSupportNullable {
+/**  External channel profile filter  */
+open class ExternalChannelProfileFilter: Filter {
 
-	public class CrudObjectTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
+	public class ExternalChannelProfileFilterTokenizer: Filter.FilterTokenizer {
 	}
 
 

@@ -42,14 +42,38 @@ open class UnifiedChannelInfo: UnifiedChannel {
 				return self.append("name") 
 			}
 		}
+		
+		public var startDateInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("startDateInSeconds") 
+			}
+		}
+		
+		public var endDateInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("endDateInSeconds") 
+			}
+		}
 	}
 
 	/**  Channel&amp;#160;name  */
 	public var name: String? = nil
+	/**  Start date in seconds  */
+	public var startDateInSeconds: Int64? = nil
+	/**  End date in seconds  */
+	public var endDateInSeconds: Int64? = nil
 
 
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(startDateInSeconds: String) {
+		self.dict["startDateInSeconds"] = startDateInSeconds
+	}
+	
+	public func setMultiRequestToken(endDateInSeconds: String) {
+		self.dict["endDateInSeconds"] = endDateInSeconds
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -58,6 +82,12 @@ open class UnifiedChannelInfo: UnifiedChannel {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
+		if dict["startDateInSeconds"] != nil {
+			startDateInSeconds = Int64("\(dict["startDateInSeconds"]!)")
+		}
+		if dict["endDateInSeconds"] != nil {
+			endDateInSeconds = Int64("\(dict["endDateInSeconds"]!)")
+		}
 
 	}
 
@@ -65,6 +95,12 @@ open class UnifiedChannelInfo: UnifiedChannel {
 		var dict: [String: Any] = super.toDictionary()
 		if(name != nil) {
 			dict["name"] = name!
+		}
+		if(startDateInSeconds != nil) {
+			dict["startDateInSeconds"] = startDateInSeconds!
+		}
+		if(endDateInSeconds != nil) {
+			dict["endDateInSeconds"] = endDateInSeconds!
 		}
 		return dict
 	}

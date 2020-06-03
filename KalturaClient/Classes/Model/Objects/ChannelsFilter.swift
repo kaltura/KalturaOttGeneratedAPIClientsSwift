@@ -60,6 +60,12 @@ open class ChannelsFilter: Filter {
 				return self.append("nameStartsWith") 
 			}
 		}
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
 	}
 
 	/**  channel identifier to filter by  */
@@ -70,6 +76,8 @@ open class ChannelsFilter: Filter {
 	public var nameEqual: String? = nil
 	/**  Channel name starts with (auto-complete)  */
 	public var nameStartsWith: String? = nil
+	/**  Comma separated channel ids  */
+	public var idIn: String? = nil
 
 
 	public func setMultiRequestToken(idEqual: String) {
@@ -88,6 +96,10 @@ open class ChannelsFilter: Filter {
 		self.dict["nameStartsWith"] = nameStartsWith
 	}
 	
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -102,6 +114,9 @@ open class ChannelsFilter: Filter {
 		}
 		if dict["nameStartsWith"] != nil {
 			nameStartsWith = dict["nameStartsWith"] as? String
+		}
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
 		}
 
 	}
@@ -119,6 +134,9 @@ open class ChannelsFilter: Filter {
 		}
 		if(nameStartsWith != nil) {
 			dict["nameStartsWith"] = nameStartsWith!
+		}
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
 		}
 		return dict
 	}

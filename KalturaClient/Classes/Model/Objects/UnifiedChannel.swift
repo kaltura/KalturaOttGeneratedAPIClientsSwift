@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class UnifiedChannel: ObjectBase {
+open class UnifiedChannel: OTTObjectSupportNullable {
 
-	public class UnifiedChannelTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class UnifiedChannelTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
