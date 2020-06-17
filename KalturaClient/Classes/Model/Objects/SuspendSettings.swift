@@ -33,67 +33,57 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class UnifiedBillingCycle: ObjectBase {
+/**  Suspend Settings  */
+open class SuspendSettings: ObjectBase {
 
-	public class UnifiedBillingCycleTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class SuspendSettingsTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var name: BaseTokenizedObject {
+		public var revokeEntitlements: BaseTokenizedObject {
 			get {
-				return self.append("name") 
+				return self.append("revokeEntitlements") 
 			}
 		}
 		
-		public func duration<T: Duration.DurationTokenizer>() -> T {
-			return T(self.append("duration"))
-		}
-		
-		public var paymentGatewayId: BaseTokenizedObject {
+		public var stopRenew: BaseTokenizedObject {
 			get {
-				return self.append("paymentGatewayId") 
+				return self.append("stopRenew") 
 			}
 		}
 	}
 
-	/**  UnifiedBillingCycle name  */
-	public var name: String? = nil
-	/**  cycle duration  */
-	public var duration: Duration? = nil
-	/**  Payment Gateway Id  */
-	public var paymentGatewayId: Int? = nil
+	/**  revoke entitlements  */
+	public var revokeEntitlements: Bool? = nil
+	/**  stop renew  */
+	public var stopRenew: Bool? = nil
 
 
-	public func setMultiRequestToken(name: String) {
-		self.dict["name"] = name
+	public func setMultiRequestToken(revokeEntitlements: String) {
+		self.dict["revokeEntitlements"] = revokeEntitlements
 	}
 	
-	public func setMultiRequestToken(paymentGatewayId: String) {
-		self.dict["paymentGatewayId"] = paymentGatewayId
+	public func setMultiRequestToken(stopRenew: String) {
+		self.dict["stopRenew"] = stopRenew
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["name"] != nil {
-			name = dict["name"] as? String
+		if dict["revokeEntitlements"] != nil {
+			revokeEntitlements = dict["revokeEntitlements"] as? Bool
 		}
-		if dict["duration"] != nil {
-		duration = try JSONParser.parse(object: dict["duration"] as! [String: Any])		}
-		if dict["paymentGatewayId"] != nil {
-			paymentGatewayId = dict["paymentGatewayId"] as? Int
+		if dict["stopRenew"] != nil {
+			stopRenew = dict["stopRenew"] as? Bool
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(name != nil) {
-			dict["name"] = name!
+		if(revokeEntitlements != nil) {
+			dict["revokeEntitlements"] = revokeEntitlements!
 		}
-		if(duration != nil) {
-			dict["duration"] = duration!.toDictionary()
-		}
-		if(paymentGatewayId != nil) {
-			dict["paymentGatewayId"] = paymentGatewayId!
+		if(stopRenew != nil) {
+			dict["stopRenew"] = stopRenew!
 		}
 		return dict
 	}
