@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -60,6 +60,18 @@ open class PushMessage: ObjectBase {
 				return self.append("url") 
 			}
 		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var pushChannels: BaseTokenizedObject {
+			get {
+				return self.append("pushChannels") 
+			}
+		}
 	}
 
 	/**  The message that will be presented to the user.  */
@@ -71,6 +83,10 @@ open class PushMessage: ObjectBase {
 	public var action: String? = nil
 	/**  Optional. Used to direct the application to the relevant page.  */
 	public var url: String? = nil
+	/**  Device unique identifier  */
+	public var udid: String? = nil
+	/**  PushChannels - separated with comma  */
+	public var pushChannels: String? = nil
 
 
 	public func setMultiRequestToken(message: String) {
@@ -89,6 +105,14 @@ open class PushMessage: ObjectBase {
 		self.dict["url"] = url
 	}
 	
+	public func setMultiRequestToken(udid: String) {
+		self.dict["udid"] = udid
+	}
+	
+	public func setMultiRequestToken(pushChannels: String) {
+		self.dict["pushChannels"] = pushChannels
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -103,6 +127,12 @@ open class PushMessage: ObjectBase {
 		}
 		if dict["url"] != nil {
 			url = dict["url"] as? String
+		}
+		if dict["udid"] != nil {
+			udid = dict["udid"] as? String
+		}
+		if dict["pushChannels"] != nil {
+			pushChannels = dict["pushChannels"] as? String
 		}
 
 	}
@@ -120,6 +150,12 @@ open class PushMessage: ObjectBase {
 		}
 		if(url != nil) {
 			dict["url"] = url!
+		}
+		if(udid != nil) {
+			dict["udid"] = udid!
+		}
+		if(pushChannels != nil) {
+			dict["pushChannels"] = pushChannels!
 		}
 		return dict
 	}

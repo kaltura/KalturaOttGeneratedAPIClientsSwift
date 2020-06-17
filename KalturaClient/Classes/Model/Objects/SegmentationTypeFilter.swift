@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -34,23 +34,35 @@
  */
 
 /**  Filter for segmentation types  */
-open class SegmentationTypeFilter: Filter {
+open class SegmentationTypeFilter: BaseSegmentationTypeFilter {
 
-	public class SegmentationTypeFilterTokenizer: Filter.FilterTokenizer {
+	public class SegmentationTypeFilterTokenizer: BaseSegmentationTypeFilter.BaseSegmentationTypeFilterTokenizer {
 		
 		public var idIn: BaseTokenizedObject {
 			get {
 				return self.append("idIn") 
 			}
 		}
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
 	}
 
-	/**  Comma separated segmentation types identifieridentifiers  */
+	/**  Comma separated segmentation types identifiers  */
 	public var idIn: String? = nil
+	/**  KSQL expression  */
+	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
 		self.dict["idIn"] = idIn
+	}
+	
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -59,6 +71,9 @@ open class SegmentationTypeFilter: Filter {
 		if dict["idIn"] != nil {
 			idIn = dict["idIn"] as? String
 		}
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
+		}
 
 	}
 
@@ -66,6 +81,9 @@ open class SegmentationTypeFilter: Filter {
 		var dict: [String: Any] = super.toDictionary()
 		if(idIn != nil) {
 			dict["idIn"] = idIn!
+		}
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
 		}
 		return dict
 	}

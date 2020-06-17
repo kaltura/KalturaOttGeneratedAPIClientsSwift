@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -35,4 +35,5 @@ public enum RecordingType: String {
 	case SINGLE = "SINGLE"
 	case SEASON = "SEASON"
 	case SERIES = "SERIES"
+	case ORIGINALBROADCAST = "OriginalBroadcast"
 }

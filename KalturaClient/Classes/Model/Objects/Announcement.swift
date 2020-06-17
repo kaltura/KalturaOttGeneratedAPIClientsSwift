@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -114,6 +114,12 @@ open class Announcement: ObjectBase {
 				return self.append("includeSms") 
 			}
 		}
+		
+		public var includeIot: BaseTokenizedObject {
+			get {
+				return self.append("includeIot") 
+			}
+		}
 	}
 
 	/**  Announcement name  */
@@ -142,6 +148,8 @@ open class Announcement: ObjectBase {
 	public var mailSubject: String? = nil
 	/**  Include SMS  */
 	public var includeSms: Bool? = nil
+	/**  Include IOT  */
+	public var includeIot: Bool? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -196,6 +204,10 @@ open class Announcement: ObjectBase {
 		self.dict["includeSms"] = includeSms
 	}
 	
+	public func setMultiRequestToken(includeIot: String) {
+		self.dict["includeIot"] = includeIot
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -238,6 +250,9 @@ open class Announcement: ObjectBase {
 		if dict["includeSms"] != nil {
 			includeSms = dict["includeSms"] as? Bool
 		}
+		if dict["includeIot"] != nil {
+			includeIot = dict["includeIot"] as? Bool
+		}
 
 	}
 
@@ -275,6 +290,9 @@ open class Announcement: ObjectBase {
 		}
 		if(includeSms != nil) {
 			dict["includeSms"] = includeSms!
+		}
+		if(includeIot != nil) {
+			dict["includeIot"] = includeIot!
 		}
 		return dict
 	}

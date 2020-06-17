@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -49,12 +49,20 @@ open class CollectionFilter: Filter {
 				return self.append("mediaFileIdEqual") 
 			}
 		}
+		
+		public var couponGroupIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("couponGroupIdEqual") 
+			}
+		}
 	}
 
 	/**  Comma separated collection IDs  */
 	public var collectionIdIn: String? = nil
 	/**  Media-file ID to get the subscriptions by  */
 	public var mediaFileIdEqual: Int? = nil
+	/**  couponGroupIdEqual  */
+	public var couponGroupIdEqual: Int? = nil
 
 
 	public func setMultiRequestToken(collectionIdIn: String) {
@@ -63,6 +71,10 @@ open class CollectionFilter: Filter {
 	
 	public func setMultiRequestToken(mediaFileIdEqual: String) {
 		self.dict["mediaFileIdEqual"] = mediaFileIdEqual
+	}
+	
+	public func setMultiRequestToken(couponGroupIdEqual: String) {
+		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +86,9 @@ open class CollectionFilter: Filter {
 		if dict["mediaFileIdEqual"] != nil {
 			mediaFileIdEqual = dict["mediaFileIdEqual"] as? Int
 		}
+		if dict["couponGroupIdEqual"] != nil {
+			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
+		}
 
 	}
 
@@ -84,6 +99,9 @@ open class CollectionFilter: Filter {
 		}
 		if(mediaFileIdEqual != nil) {
 			dict["mediaFileIdEqual"] = mediaFileIdEqual!
+		}
+		if(couponGroupIdEqual != nil) {
+			dict["couponGroupIdEqual"] = couponGroupIdEqual!
 		}
 		return dict
 	}

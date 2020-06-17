@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -34,6 +34,30 @@
  */
 
 public final class EntitlementService{
+
+	public class ApplyCouponTokenizer: ClientTokenizer  {
+		
+		public var purchaseId: BaseTokenizedObject {
+			get {
+				return self.append("purchaseId") 
+			}
+		}
+		
+		public var couponCode: BaseTokenizedObject {
+			get {
+				return self.append("couponCode") 
+			}
+		}
+	}
+
+	/**  Apply new coupon for existing subscription  */
+	public static func applyCoupon(purchaseId: Int64, couponCode: String) -> NullRequestBuilder<ApplyCouponTokenizer> {
+		let request: NullRequestBuilder<ApplyCouponTokenizer> = NullRequestBuilder<ApplyCouponTokenizer>(service: "entitlement", action: "applyCoupon")
+			.setParam(key: "purchaseId", value: purchaseId)
+			.setParam(key: "couponCode", value: couponCode)
+
+		return request
+	}
 
 	public class CancelTokenizer: ClientTokenizer  {
 		

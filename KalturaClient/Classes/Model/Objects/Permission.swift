@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -54,6 +54,18 @@ open class Permission: ObjectBase {
 				return self.append("friendlyName") 
 			}
 		}
+		
+		public var dependsOnPermissionNames: BaseTokenizedObject {
+			get {
+				return self.append("dependsOnPermissionNames") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
 	}
 
 	/**  Permission identifier  */
@@ -62,6 +74,10 @@ open class Permission: ObjectBase {
 	public var name: String? = nil
 	/**  Permission friendly name  */
 	public var friendlyName: String? = nil
+	/**  Comma separated permissions names from type SPECIAL_FEATURE  */
+	public var dependsOnPermissionNames: String? = nil
+	/**  Comma separated permissions names from type SPECIAL_FEATURE  */
+	public var type: PermissionType? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -76,6 +92,14 @@ open class Permission: ObjectBase {
 		self.dict["friendlyName"] = friendlyName
 	}
 	
+	public func setMultiRequestToken(dependsOnPermissionNames: String) {
+		self.dict["dependsOnPermissionNames"] = dependsOnPermissionNames
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +112,12 @@ open class Permission: ObjectBase {
 		if dict["friendlyName"] != nil {
 			friendlyName = dict["friendlyName"] as? String
 		}
+		if dict["dependsOnPermissionNames"] != nil {
+			dependsOnPermissionNames = dict["dependsOnPermissionNames"] as? String
+		}
+		if dict["type"] != nil {
+			type = PermissionType(rawValue: "\(dict["type"]!)")
+		}
 
 	}
 
@@ -98,6 +128,9 @@ open class Permission: ObjectBase {
 		}
 		if(friendlyName != nil) {
 			dict["friendlyName"] = friendlyName!
+		}
+		if(type != nil) {
+			dict["type"] = type!.rawValue
 		}
 		return dict
 	}

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -37,13 +37,37 @@
 open class AnnouncementFilter: Filter {
 
 	public class AnnouncementFilterTokenizer: Filter.FilterTokenizer {
+		
+		public var idIn: BaseTokenizedObject {
+			get {
+				return self.append("idIn") 
+			}
+		}
 	}
 
+	/**  A list of comma separated announcement ids.  */
+	public var idIn: String? = nil
 
 
+	public func setMultiRequestToken(idIn: String) {
+		self.dict["idIn"] = idIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
+		// set members values:
+		if dict["idIn"] != nil {
+			idIn = dict["idIn"] as? String
+		}
+
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(idIn != nil) {
+			dict["idIn"] = idIn!
+		}
+		return dict
+	}
 }
 

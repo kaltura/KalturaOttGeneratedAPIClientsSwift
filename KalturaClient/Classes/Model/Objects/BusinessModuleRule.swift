@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -44,9 +44,9 @@ open class BusinessModuleRule: Rule {
 			} 
 		}
 		
-		public var actions: ArrayTokenizedObject<ApplyDiscountModuleAction.ApplyDiscountModuleActionTokenizer> {
+		public var actions: ArrayTokenizedObject<BusinessModuleRuleAction.BusinessModuleRuleActionTokenizer> {
 			get {
-				return ArrayTokenizedObject<ApplyDiscountModuleAction.ApplyDiscountModuleActionTokenizer>(self.append("actions"))
+				return ArrayTokenizedObject<BusinessModuleRuleAction.BusinessModuleRuleActionTokenizer>(self.append("actions"))
 			} 
 		}
 		
@@ -66,7 +66,7 @@ open class BusinessModuleRule: Rule {
 	/**  List of conditions for the rule  */
 	public var conditions: Array<Condition>? = nil
 	/**  List of actions for the rule  */
-	public var actions: Array<ApplyDiscountModuleAction>? = nil
+	public var actions: Array<BusinessModuleRuleAction>? = nil
 	/**  Create date of the rule  */
 	public var createDate: Int64? = nil
 	/**  Update date of the rule  */

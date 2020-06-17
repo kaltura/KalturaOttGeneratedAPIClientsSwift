@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -61,12 +61,5 @@ open class GroupPermission: Permission {
 
 	}
 
-	internal override func toDictionary() -> [String: Any] {
-		var dict: [String: Any] = super.toDictionary()
-		if(group != nil) {
-			dict["group"] = group!
-		}
-		return dict
-	}
 }
 

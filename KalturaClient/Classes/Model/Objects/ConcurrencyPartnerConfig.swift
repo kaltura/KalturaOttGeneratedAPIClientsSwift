@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -49,12 +49,20 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 				return self.append("evictionPolicy") 
 			}
 		}
+		
+		public var concurrencyThresholdInSeconds: BaseTokenizedObject {
+			get {
+				return self.append("concurrencyThresholdInSeconds") 
+			}
+		}
 	}
 
 	/**  Comma separated list of device Family Ids order by their priority.  */
 	public var deviceFamilyIds: String? = nil
 	/**  Policy of eviction devices  */
 	public var evictionPolicy: EvictionPolicyType? = nil
+	/**  Concurrency threshold in seconds  */
+	public var concurrencyThresholdInSeconds: Int64? = nil
 
 
 	public func setMultiRequestToken(deviceFamilyIds: String) {
@@ -63,6 +71,10 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 	
 	public func setMultiRequestToken(evictionPolicy: String) {
 		self.dict["evictionPolicy"] = evictionPolicy
+	}
+	
+	public func setMultiRequestToken(concurrencyThresholdInSeconds: String) {
+		self.dict["concurrencyThresholdInSeconds"] = concurrencyThresholdInSeconds
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +86,9 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		if dict["evictionPolicy"] != nil {
 			evictionPolicy = EvictionPolicyType(rawValue: "\(dict["evictionPolicy"]!)")
 		}
+		if dict["concurrencyThresholdInSeconds"] != nil {
+			concurrencyThresholdInSeconds = Int64("\(dict["concurrencyThresholdInSeconds"]!)")
+		}
 
 	}
 
@@ -84,6 +99,9 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		}
 		if(evictionPolicy != nil) {
 			dict["evictionPolicy"] = evictionPolicy!.rawValue
+		}
+		if(concurrencyThresholdInSeconds != nil) {
+			dict["concurrencyThresholdInSeconds"] = concurrencyThresholdInSeconds!
 		}
 		return dict
 	}

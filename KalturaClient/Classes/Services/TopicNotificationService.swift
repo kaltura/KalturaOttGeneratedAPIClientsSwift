@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -74,12 +74,8 @@ public final class TopicNotificationService{
 		}
 	}
 
-	public static func list() -> RequestBuilder<TopicNotificationListResponse, TopicNotificationListResponse.TopicNotificationListResponseTokenizer, ListTokenizer> {
-		return list(filter: nil)
-	}
-
 	/**  Lists all topic notifications in the system.  */
-	public static func list(filter: TopicNotificationFilter?) -> RequestBuilder<TopicNotificationListResponse, TopicNotificationListResponse.TopicNotificationListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: TopicNotificationFilter) -> RequestBuilder<TopicNotificationListResponse, TopicNotificationListResponse.TopicNotificationListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<TopicNotificationListResponse, TopicNotificationListResponse.TopicNotificationListResponseTokenizer, ListTokenizer> = RequestBuilder<TopicNotificationListResponse, TopicNotificationListResponse.TopicNotificationListResponseTokenizer, ListTokenizer>(service: "topicnotification", action: "list")
 			.setParam(key: "filter", value: filter)
 

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -137,6 +137,18 @@ open class OTTUser: BaseOTTUser {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var lastLoginDate: BaseTokenizedObject {
+			get {
+				return self.append("lastLoginDate") 
+			}
+		}
+		
+		public var failedLoginCount: BaseTokenizedObject {
+			get {
+				return self.append("failedLoginCount") 
+			}
+		}
 	}
 
 	/**  Household identifier  */
@@ -173,6 +185,10 @@ open class OTTUser: BaseOTTUser {
 	public var createDate: Int64? = nil
 	/**  User last update date  */
 	public var updateDate: Int64? = nil
+	/**  The date of the last successful login  */
+	public var lastLoginDate: Int64? = nil
+	/**  The number of failed login attempts since the last successful login  */
+	public var failedLoginCount: Int? = nil
 
 
 	public func setMultiRequestToken(householdId: String) {
@@ -235,6 +251,14 @@ open class OTTUser: BaseOTTUser {
 		self.dict["updateDate"] = updateDate
 	}
 	
+	public func setMultiRequestToken(lastLoginDate: String) {
+		self.dict["lastLoginDate"] = lastLoginDate
+	}
+	
+	public func setMultiRequestToken(failedLoginCount: String) {
+		self.dict["failedLoginCount"] = failedLoginCount
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -287,6 +311,12 @@ open class OTTUser: BaseOTTUser {
 		}
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
+		}
+		if dict["lastLoginDate"] != nil {
+			lastLoginDate = Int64("\(dict["lastLoginDate"]!)")
+		}
+		if dict["failedLoginCount"] != nil {
+			failedLoginCount = dict["failedLoginCount"] as? Int
 		}
 
 	}

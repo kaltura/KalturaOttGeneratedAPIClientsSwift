@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -70,6 +70,12 @@ open class TopicNotificationMessage: ObjectBase {
 				return ArrayTokenizedObject<Dispatcher.DispatcherTokenizer>(self.append("dispatchers"))
 			} 
 		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
 	}
 
 	/**  Topic notification message ID  */
@@ -84,6 +90,8 @@ open class TopicNotificationMessage: ObjectBase {
 	public var trigger: Trigger? = nil
 	/**  Topic notification message dispatchers  */
 	public var dispatchers: Array<Dispatcher>? = nil
+	/**  Message status  */
+	public var status: AnnouncementStatus? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -100,6 +108,10 @@ open class TopicNotificationMessage: ObjectBase {
 	
 	public func setMultiRequestToken(topicNotificationId: String) {
 		self.dict["topicNotificationId"] = topicNotificationId
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
 	}
 	
 	internal override func populate(_ dict: [String: Any]) throws {
@@ -121,6 +133,9 @@ open class TopicNotificationMessage: ObjectBase {
 		trigger = try JSONParser.parse(object: dict["trigger"] as! [String: Any])		}
 		if dict["dispatchers"] != nil {
 			dispatchers = try JSONParser.parse(array: dict["dispatchers"] as! [Any])
+		}
+		if dict["status"] != nil {
+			status = AnnouncementStatus(rawValue: "\(dict["status"]!)")
 		}
 
 	}

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -54,6 +54,18 @@ open class SubscriptionFilter: Filter {
 				return self.append("externalIdIn") 
 			}
 		}
+		
+		public var couponGroupIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("couponGroupIdEqual") 
+			}
+		}
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
 	}
 
 	/**  Comma separated subscription IDs to get the subscriptions by  */
@@ -62,6 +74,10 @@ open class SubscriptionFilter: Filter {
 	public var mediaFileIdEqual: Int? = nil
 	/**  Comma separated subscription external IDs to get the subscriptions by  */
 	public var externalIdIn: String? = nil
+	/**  couponGroupIdEqual  */
+	public var couponGroupIdEqual: Int? = nil
+	/**  KSQL expression  */
+	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(subscriptionIdIn: String) {
@@ -76,6 +92,14 @@ open class SubscriptionFilter: Filter {
 		self.dict["externalIdIn"] = externalIdIn
 	}
 	
+	public func setMultiRequestToken(couponGroupIdEqual: String) {
+		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
+	}
+	
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -87,6 +111,12 @@ open class SubscriptionFilter: Filter {
 		}
 		if dict["externalIdIn"] != nil {
 			externalIdIn = dict["externalIdIn"] as? String
+		}
+		if dict["couponGroupIdEqual"] != nil {
+			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
+		}
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
 		}
 
 	}
@@ -101,6 +131,12 @@ open class SubscriptionFilter: Filter {
 		}
 		if(externalIdIn != nil) {
 			dict["externalIdIn"] = externalIdIn!
+		}
+		if(couponGroupIdEqual != nil) {
+			dict["couponGroupIdEqual"] = couponGroupIdEqual!
+		}
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
 		}
 		return dict
 	}

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -48,6 +48,21 @@ public final class CouponService{
 	public static func get(code: String) -> RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> {
 		let request: RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer> = RequestBuilder<Coupon, Coupon.CouponTokenizer, GetTokenizer>(service: "coupon", action: "get")
 			.setParam(key: "code", value: code)
+
+		return request
+	}
+
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: CouponFilter.CouponFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+	}
+
+	/**  Lists coupon codes.  */
+	public static func list(filter: CouponFilter) -> RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer>(service: "coupon", action: "list")
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

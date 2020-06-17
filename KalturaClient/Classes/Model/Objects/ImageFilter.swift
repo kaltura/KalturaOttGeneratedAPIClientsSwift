@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -60,6 +60,12 @@ open class ImageFilter: Filter {
 				return self.append("isDefaultEqual") 
 			}
 		}
+		
+		public var imageObjectIdIn: BaseTokenizedObject {
+			get {
+				return self.append("imageObjectIdIn") 
+			}
+		}
 	}
 
 	/**  IDs to filter by  */
@@ -70,6 +76,8 @@ open class ImageFilter: Filter {
 	public var imageObjectTypeEqual: ImageObjectType? = nil
 	/**  Filter images that are default on at least on image type or not default at any  */
 	public var isDefaultEqual: Bool? = nil
+	/**  Comma separated imageObject ids list  */
+	public var imageObjectIdIn: String? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
@@ -88,6 +96,10 @@ open class ImageFilter: Filter {
 		self.dict["isDefaultEqual"] = isDefaultEqual
 	}
 	
+	public func setMultiRequestToken(imageObjectIdIn: String) {
+		self.dict["imageObjectIdIn"] = imageObjectIdIn
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -102,6 +114,9 @@ open class ImageFilter: Filter {
 		}
 		if dict["isDefaultEqual"] != nil {
 			isDefaultEqual = dict["isDefaultEqual"] as? Bool
+		}
+		if dict["imageObjectIdIn"] != nil {
+			imageObjectIdIn = dict["imageObjectIdIn"] as? String
 		}
 
 	}
@@ -119,6 +134,9 @@ open class ImageFilter: Filter {
 		}
 		if(isDefaultEqual != nil) {
 			dict["isDefaultEqual"] = isDefaultEqual!
+		}
+		if(imageObjectIdIn != nil) {
+			dict["imageObjectIdIn"] = imageObjectIdIn!
 		}
 		return dict
 	}

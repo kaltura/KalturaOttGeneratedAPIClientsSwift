@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2019  Kaltura Inc.
+// Copyright (C) 2006-2020  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -80,6 +80,30 @@ public final class SsoAdapterProfileService{
 	public static func generateSharedSecret(ssoAdapterId: Int) -> RequestBuilder<SSOAdapterProfile, SSOAdapterProfile.SSOAdapterProfileTokenizer, GenerateSharedSecretTokenizer> {
 		let request: RequestBuilder<SSOAdapterProfile, SSOAdapterProfile.SSOAdapterProfileTokenizer, GenerateSharedSecretTokenizer> = RequestBuilder<SSOAdapterProfile, SSOAdapterProfile.SSOAdapterProfileTokenizer, GenerateSharedSecretTokenizer>(service: "ssoadapterprofile", action: "generateSharedSecret")
 			.setParam(key: "ssoAdapterId", value: ssoAdapterId)
+
+		return request
+	}
+
+	public class InvokeTokenizer: ClientTokenizer  {
+		
+		public var intent: BaseTokenizedObject {
+			get {
+				return self.append("intent") 
+			}
+		}
+		
+		public var adapterData: ArrayTokenizedObject<KeyValue.KeyValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<KeyValue.KeyValueTokenizer>(self.append("adapterData"))
+			} 
+		}
+	}
+
+	/**  Request validation against 3rd party  */
+	public static func invoke(intent: String, adapterData: Array<KeyValue>) -> RequestBuilder<SSOAdapterProfileInvoke, SSOAdapterProfileInvoke.SSOAdapterProfileInvokeTokenizer, InvokeTokenizer> {
+		let request: RequestBuilder<SSOAdapterProfileInvoke, SSOAdapterProfileInvoke.SSOAdapterProfileInvokeTokenizer, InvokeTokenizer> = RequestBuilder<SSOAdapterProfileInvoke, SSOAdapterProfileInvoke.SSOAdapterProfileInvokeTokenizer, InvokeTokenizer>(service: "ssoadapterprofile", action: "invoke")
+			.setParam(key: "intent", value: intent)
+			.setParam(key: "adapterData", value: adapterData)
 
 		return request
 	}
