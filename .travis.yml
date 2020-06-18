@@ -3,7 +3,7 @@ osx_image: xcode11
 before_script:
   - pod repo update
 script:
-  - pod lib lint --fail-fast --verbose
+  - pod lib lint --fail-fast --verbose --allow-warnings
 notifications:
   email:
     recipients:
