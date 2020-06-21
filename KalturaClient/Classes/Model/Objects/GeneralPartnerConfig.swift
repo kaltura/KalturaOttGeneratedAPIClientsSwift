@@ -113,6 +113,12 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		public func rollingDeviceData<T: RollingDeviceRemovalData.RollingDeviceRemovalDataTokenizer>() -> T {
 			return T(self.append("rollingDeviceData"))
 		}
+		
+		public var finishedPercentThreshold: BaseTokenizedObject {
+			get {
+				return self.append("finishedPercentThreshold") 
+			}
+		}
 	}
 
 	/**  Partner name  */
@@ -141,6 +147,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var defaultRegion: Int? = nil
 	/**  Rolling Device Policy  */
 	public var rollingDeviceData: RollingDeviceRemovalData? = nil
+	/**  Finished PercentThreshold  */
+	public var finishedPercentThreshold: Int? = nil
 
 
 	public func setMultiRequestToken(partnerName: String) {
@@ -191,6 +199,10 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		self.dict["defaultRegion"] = defaultRegion
 	}
 	
+	public func setMultiRequestToken(finishedPercentThreshold: String) {
+		self.dict["finishedPercentThreshold"] = finishedPercentThreshold
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -232,6 +244,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if dict["rollingDeviceData"] != nil {
 		rollingDeviceData = try JSONParser.parse(object: dict["rollingDeviceData"] as! [String: Any])		}
+		if dict["finishedPercentThreshold"] != nil {
+			finishedPercentThreshold = dict["finishedPercentThreshold"] as? Int
+		}
 
 	}
 
@@ -275,6 +290,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if(rollingDeviceData != nil) {
 			dict["rollingDeviceData"] = rollingDeviceData!.toDictionary()
+		}
+		if(finishedPercentThreshold != nil) {
+			dict["finishedPercentThreshold"] = finishedPercentThreshold!
 		}
 		return dict
 	}

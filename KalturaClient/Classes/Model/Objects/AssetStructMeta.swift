@@ -85,6 +85,12 @@ open class AssetStructMeta: ObjectBase {
 				return self.append("isInherited") 
 			}
 		}
+		
+		public var isLocationTag: BaseTokenizedObject {
+			get {
+				return self.append("isLocationTag") 
+			}
+		}
 	}
 
 	/**  Asset Struct id (template_id)  */
@@ -105,6 +111,8 @@ open class AssetStructMeta: ObjectBase {
 	public var updateDate: Int64? = nil
 	/**  Is inherited  */
 	public var isInherited: Bool? = nil
+	/**  Is Location Tag  */
+	public var isLocationTag: Bool? = nil
 
 
 	public func setMultiRequestToken(assetStructId: String) {
@@ -139,6 +147,10 @@ open class AssetStructMeta: ObjectBase {
 		self.dict["isInherited"] = isInherited
 	}
 	
+	public func setMultiRequestToken(isLocationTag: String) {
+		self.dict["isLocationTag"] = isLocationTag
+	}
+	
 	internal override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -166,6 +178,9 @@ open class AssetStructMeta: ObjectBase {
 		if dict["isInherited"] != nil {
 			isInherited = dict["isInherited"] as? Bool
 		}
+		if dict["isLocationTag"] != nil {
+			isLocationTag = dict["isLocationTag"] as? Bool
+		}
 
 	}
 
@@ -182,6 +197,9 @@ open class AssetStructMeta: ObjectBase {
 		}
 		if(isInherited != nil) {
 			dict["isInherited"] = isInherited!
+		}
+		if(isLocationTag != nil) {
+			dict["isLocationTag"] = isLocationTag!
 		}
 		return dict
 	}
