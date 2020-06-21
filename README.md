@@ -36,3 +36,4 @@ Authors and contributors: See [GitHub contributors list](https://github.com/kalt
 pod lib lint --fail-fast --allow-warnings
 pod trunk push KalturaOttClient.podspec --allow-warnings 
 ```
+
