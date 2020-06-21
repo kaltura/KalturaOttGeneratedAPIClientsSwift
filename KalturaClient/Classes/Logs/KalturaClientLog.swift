@@ -52,8 +52,12 @@ public let logger = KalturaLogger(logger: KalturaClientLogImplementor())
 /**
  Log level types
  */
-public enum LogLevel {
-    case trace, debug, info, warning, error
+public enum LogLevel: String {
+    case trace = "TRACE"
+    case debug = "DEBUG"
+    case info = "INFO"
+    case warning = "WARNING"
+    case error = "ERROR"
 }
 
 

@@ -1,16 +1,13 @@
 language: swift
-osx_image: xcode8.3
+osx_image: xcode11
 before_script:
   - pod repo update
 script:
-  - pod lib lint --fail-fast --verbose
+  - pod lib lint --fail-fast --verbose --allow-warnings
 notifications:
   email:
     recipients:
-      - moshe.maor@kaltura.com
-      - jess.portnoy@kaltura.com
-      - Jonathan.Kanarek@kaltura.com
-      - nir.belinky@kaltura.com
+      - israel.berezin@kaltura.com
       - noam.tamim@kaltura.com
     on_success: change
     on_failure: always
