@@ -79,6 +79,17 @@ class PrimitivesTest: QuickSpec {
                         })
                     }
                 })
+                /*
+                it("needs to return manifest") {
+                    waitUntil(timeout: 500) { done in
+                        self.getAssetManifest { (asset: AssetFile?, error: ApiException?) in
+                            expect(error).to(beNil())
+                            expect(asset).notTo(beNil())
+                            done()
+                        }
+                    }
+                }
+                */
             }
         }
     }
@@ -140,12 +151,25 @@ class PrimitivesTest: QuickSpec {
         
     }
     
-    private func getAssetManifest(completed: @escaping (_ result: Void?, _ error: ApiException?) -> Void) {
+    private func getAssetManifest(completed: @escaping (_ result: AssetFile?, _ error: ApiException?) -> Void) {
         
         let getAssetFiles = AssetService.get(id: TConfig.assetId, assetReferenceType: .MEDIA)
         
         getAssetFiles.set { (asset:Asset?, error:ApiException?) in
-            let playManifest = AssetFileService.playManifest(partnerId: TConfig.partnerId, assetId: TConfig.assetId, assetType: .MEDIA, assetFileId: Int64((asset?.mediaFiles?.last?.id)!), contextType: .PLAYBACK, ks: self.client?.ks).set(completion: { (result:Void?, error:ApiException?) in
+            
+            if let error = error {
+                completed(nil, error)
+                return
+            }
+            
+            let playManifest = AssetFileService.playManifest(partnerId: TConfig.partnerId,
+                                                             assetId: TConfig.assetId,
+                                                             assetType: .MEDIA,
+                                                             assetFileId: Int64((asset?.mediaFiles?.last?.id)!),
+                                                             contextType: .PLAYBACK,
+                                                             ks: self.client?.ks)
+            
+            playManifest.set(completion: { (result:AssetFile?, error:ApiException?) in
                 completed(result, error)
             })
         

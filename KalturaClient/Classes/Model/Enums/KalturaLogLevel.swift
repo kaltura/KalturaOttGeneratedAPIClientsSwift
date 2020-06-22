@@ -31,7 +31,7 @@
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum LogLevel: String {
+public enum KalturaLogLevel: String {
 	case TRACE = "TRACE"
 	case DEBUG = "DEBUG"
 	case INFO = "INFO"

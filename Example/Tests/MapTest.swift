@@ -48,7 +48,7 @@ class mapTest: QuickSpec {
     
     private func randomString(length: Int) -> String {
         let allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789"
-        let allowedCharsCount = UInt32(allowedChars.characters.count)
+        let allowedCharsCount = UInt32(allowedChars.count)
         var randomString = ""
         
         for _ in 0..<length {
