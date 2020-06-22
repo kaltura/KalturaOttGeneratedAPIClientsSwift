@@ -8,5 +8,7 @@ machine trunk.cocoapods.org
   password $PODS_PASS
 EOF
 
+chmod 0600 ~/.netrc
+
 # pod spec lint --verbose
 pod trunk push --verbose
