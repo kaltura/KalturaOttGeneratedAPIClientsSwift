@@ -2,9 +2,7 @@ name: Swift Build and Publish
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: '*'
 
 jobs:
   build:
