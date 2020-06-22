@@ -32,6 +32,4 @@ EOF
 
 cat post.json
 
-#curl https://api.github.com/repos/$GITHUB_REPOSITORY/releases -X POST -u "$GITHUB_TOKEN" -H 'Content-Type: application/json' -d@post.json
-
-# Push to trunk
+curl https://api.github.com/repos/$GITHUB_REPOSITORY/releases -X POST -u "$GITHUB_TOKEN" -H 'Content-Type: application/json' -d@post.json
