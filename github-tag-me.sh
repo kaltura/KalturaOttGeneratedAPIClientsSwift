@@ -7,8 +7,6 @@ fail() {
 
 set -u
 
-echo GITHUB_TOKEN LEN: ${#GITHUB_TOKEN}
-
 PODSPEC=*.podspec
 POD=$(basename $PODSPEC .podspec)
 
@@ -31,5 +29,8 @@ cat << EOF > post.json
 EOF
 
 cat post.json
+POST_URL=https://api.github.com/repos/$GITHUB_REPOSITORY/releases
 
-curl https://api.github.com/repos/$GITHUB_REPOSITORY/releases -X POST -u "$GITHUB_TOKEN" -H 'Content-Type: application/json' -d@post.json
+echo URL: $POST_URL
+
+curl $POST_URL -X POST -u "$GITHUB_TOKEN" -H 'Content-Type: application/json' -d@post.json
