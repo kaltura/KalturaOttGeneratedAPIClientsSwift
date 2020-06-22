@@ -33,4 +33,4 @@ POST_URL=https://api.github.com/repos/$GITHUB_REPOSITORY/releases
 
 echo URL: $POST_URL
 
-curl $POST_URL -X POST -u "$GITHUB_TOKEN" -H 'Content-Type: application/json' -d@post.json
+curl $POST_URL -X POST -u "$GITHUB_TOKEN" -H "Content-Type: application/json" -H "authorization: Bearer $GITHUB_TOKEN" -d@post.json
