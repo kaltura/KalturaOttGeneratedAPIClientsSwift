@@ -1,7 +1,7 @@
 #!/bin/bash
 
 fail() {
-	echo "$@" 1>&2
+  echo "$@" 1>&2
   exit 1
 }
 
@@ -35,6 +35,3 @@ cat post.json
 #curl https://api.github.com/repos/$GITHUB_REPOSITORY/releases -X POST -u "$GITHUB_TOKEN" -H 'Content-Type: application/json' -d@post.json
 
 # Push to trunk
-#pod trunk push --allow-warnings
-pod lib lint --allow-warnings
-#pod spec lint --allow-warnings
