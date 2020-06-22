@@ -8,4 +8,4 @@ machine trunk.cocoapods.org
   password $PODS_PASS
 EOF
 
-pod spec lint
+pod spec lint --verbose
