@@ -13,7 +13,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Update pods repo
       run: pod repo update
-    - name: Tag and Push
+    - name: Tag
       run: |
-        chmod +x github-tag-and-push.sh
-        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./github-tag-and-push.sh
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} sh github-tag-me.sh
+    - name: Push
+      run: |
+        PODS_USER=${{ secrets.PODS_USER }} PODS_PASS=${{ secrets.PODS_PASS }} sh github-push-me.sh
