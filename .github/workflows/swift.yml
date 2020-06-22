@@ -16,4 +16,4 @@ jobs:
     - name: Tag and Push
       run: |
         chmod +x github-tag-and-push.sh
-        ./github-tag-and-push.sh
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./github-tag-and-push.sh
