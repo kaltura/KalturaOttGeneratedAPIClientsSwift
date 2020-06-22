@@ -24,7 +24,7 @@ cat << EOF > post.json
   "name": "v$VERSION",
   "body": "# Kaltura OTT Client Library\n\n## Cocoapods install\n\`pod '$POD', '~> $VERSION'\`",
   "tag_name": "$TARGET_TAG",
-  "target_commitish": "$GITHUB_REF"
+  "target_commitish": "$GITHUB_SHA"
 }
 EOF
 
