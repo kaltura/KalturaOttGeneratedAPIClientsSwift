@@ -18,4 +18,5 @@ jobs:
         GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} sh .github/tag-me.sh
     - name: Push
       run: |
-        PODS_USER=${{ secrets.PODS_USER }} PODS_PASS=${{ secrets.PODS_PASS }} sh .github/push-me.sh
+        #PODS_USER=${{ secrets.PODS_USER }} PODS_PASS=${{ secrets.PODS_PASS }} sh .github/push-me.sh
+        NETRC=${{ secrets.PODS_NETRC }} sh .github/push-me.sh
