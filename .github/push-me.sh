@@ -2,11 +2,15 @@
 
 set -u
 
-cat << EOF > ~/.netrc
-machine trunk.cocoapods.org
-  login $PODS_USER
-  password $PODS_PASS
-EOF
+echo "$NETRC" > ~/.netrc
+
+
+
+# cat << EOF > ~/.netrc
+# machine trunk.cocoapods.org
+#   login $PODS_USER
+#   password $PODS_PASS
+# EOF
 
 chmod 0600 ~/.netrc
 
