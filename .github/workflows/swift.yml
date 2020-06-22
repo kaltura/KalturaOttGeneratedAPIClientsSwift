@@ -14,4 +14,6 @@ jobs:
     - name: Update pods repo
       run: pod repo update
     - name: Tag and Push
-      run: ./github-tag-and-push.sh
+      run: |
+        chmod +x github-tag-and-push.sh
+        ./github-tag-and-push.sh
