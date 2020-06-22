@@ -160,11 +160,9 @@
     
     public func cancel(id requestId: String) {
         let taskID = self.taskIdByRequestID[requestId]
-        let taskIndex = self.tasks.index { (
-            task) -> Bool in
-            return task.taskIdentifier == taskID
-        }
         
+        let taskIndex = self.tasks.firstIndex { $0.taskIdentifier == taskID }
+
         if let index = taskIndex {
             let task = self.tasks[index]
             task.cancel()
@@ -173,10 +171,7 @@
     
     public func remove(id requestId: String) {
         let taskID = self.taskIdByRequestID[requestId]
-        let taskIndex = self.tasks.index { (
-            task) -> Bool in
-            return task.taskIdentifier == taskID
-        }
+        let taskIndex = self.tasks.firstIndex { $0.taskIdentifier == taskID }
         
         if let index = taskIndex {
             self.taskIdByRequestID.removeValue(forKey: requestId)

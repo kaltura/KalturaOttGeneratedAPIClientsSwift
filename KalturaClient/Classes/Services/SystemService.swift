@@ -140,7 +140,7 @@ public final class SystemService{
 	}
 
 	/**  Sets the current level of the KLogger  */
-	public static func setLogLevel(level: LogLevel) -> RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer> {
+	public static func setLogLevel(level: KalturaLogLevel) -> RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SetLogLevelTokenizer>(service: "system", action: "setLogLevel")
 			.setParam(key: "level", value: level.rawValue)
 

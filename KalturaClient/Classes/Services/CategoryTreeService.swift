@@ -66,19 +66,12 @@ public final class CategoryTreeService{
 				return self.append("categoryItemId") 
 			}
 		}
-		
-		public var filter: BaseTokenizedObject {
-			get {
-				return self.append("filter") 
-			}
-		}
 	}
 
 	/**  Retrive category tree.  */
-	public static func get(categoryItemId: Int64, filter: Bool) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer> {
+	public static func get(categoryItemId: Int64) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer> {
 		let request: RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer> = RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetTokenizer>(service: "categorytree", action: "get")
 			.setParam(key: "categoryItemId", value: categoryItemId)
-			.setParam(key: "filter", value: filter)
 
 		return request
 	}
