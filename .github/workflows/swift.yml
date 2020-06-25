@@ -1,4 +1,4 @@
-name: Swift Build and Publish
+name: Tag and publish
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       run: pod repo update
     - name: Tag
       run: |
-        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} sh .github/tag-me.sh
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} sh .github/tag.sh
     - name: Push
       run: |
-        PODS_USER=${{ secrets.PODS_USER }} PODS_PASS=${{ secrets.PODS_PASS }} sh .github/push-me.sh
+        PODS_USER=${{ secrets.PODS_USER }} PODS_PASS=${{ secrets.PODS_PASS }} sh .github/publish.sh
