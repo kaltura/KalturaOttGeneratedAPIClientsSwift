@@ -52,7 +52,7 @@ open class PaymentMethodProfileFilter: Filter {
 		self.dict["paymentGatewayIdEqual"] = paymentGatewayIdEqual
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["paymentGatewayIdEqual"] != nil {

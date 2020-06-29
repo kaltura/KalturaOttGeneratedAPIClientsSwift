@@ -77,7 +77,7 @@ open class BulkUploadProgramAssetResult: BulkUploadResult {
 		self.dict["liveAssetId"] = liveAssetId
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["programId"] != nil {

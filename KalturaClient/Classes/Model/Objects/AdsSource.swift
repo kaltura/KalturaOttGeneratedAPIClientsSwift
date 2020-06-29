@@ -88,7 +88,7 @@ open class AdsSource: ObjectBase {
 		self.dict["adsParam"] = adsParam
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["id"] != nil {

@@ -41,7 +41,7 @@ open class StartDateOffsetRuleAction: TimeOffsetRuleAction {
 
 
 
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 	}
 

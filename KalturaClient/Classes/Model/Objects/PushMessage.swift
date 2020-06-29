@@ -113,7 +113,7 @@ open class PushMessage: ObjectBase {
 		self.dict["pushChannels"] = pushChannels
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["message"] != nil {

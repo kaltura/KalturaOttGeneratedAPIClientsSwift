@@ -52,7 +52,7 @@ open class UploadedFileTokenResource: ContentResource {
 		self.dict["token"] = token
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["token"] != nil {
