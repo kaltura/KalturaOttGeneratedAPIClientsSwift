@@ -76,7 +76,7 @@ open class AssetFileContext: ObjectBase {
 		self.dict["isOfflinePlayBack"] = isOfflinePlayBack
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["viewLifeCycle"] != nil {

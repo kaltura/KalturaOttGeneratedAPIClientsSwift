@@ -53,7 +53,7 @@ open class TvmDeviceRule: TvmRule {
 		self.dict["deviceBrandIds"] = deviceBrandIds
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["deviceBrandIds"] != nil {

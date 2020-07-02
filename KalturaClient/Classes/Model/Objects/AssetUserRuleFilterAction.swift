@@ -52,7 +52,7 @@ open class AssetUserRuleFilterAction: AssetUserRuleAction {
 		self.dict["applyOnChannel"] = applyOnChannel
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["applyOnChannel"] != nil {

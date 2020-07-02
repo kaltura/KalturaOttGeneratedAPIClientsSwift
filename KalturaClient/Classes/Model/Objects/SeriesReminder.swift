@@ -76,7 +76,7 @@ open class SeriesReminder: Reminder {
 		self.dict["epgChannelId"] = epgChannelId
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["seriesId"] != nil {

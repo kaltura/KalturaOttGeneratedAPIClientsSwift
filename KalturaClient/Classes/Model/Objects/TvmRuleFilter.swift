@@ -65,7 +65,7 @@ open class TvmRuleFilter: Filter {
 		self.dict["nameEqual"] = nameEqual
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["ruleTypeEqual"] != nil {
