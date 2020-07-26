@@ -206,6 +206,13 @@ internal class JSONParser{
             }
         }
         else if let _ = T.self as? Void.Type {
+            if let dict = json as? [String: Any],
+                let result = dict["result"] as? [String: Any],
+                let error = result["error"] as? [String: Any],
+                error["objectType"] as? String == "KalturaAPIException" {
+                throw try parse(object: dict) as ApiException
+            }
+
             return nil
         }
         else {

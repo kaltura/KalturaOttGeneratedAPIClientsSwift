@@ -17,6 +17,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* BaseTest.swift */; };
 		900A6BCA24A25CEE0030AC87 /* HouseholdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A6BC924A25CEE0030AC87 /* HouseholdTest.swift */; };
+		90AB8F9124AC92E200A40CFA /* EmptyResultTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AB8F9024AC92E200A40CFA /* EmptyResultTest.swift */; };
 		90BB1D4A24A09FB500B0A612 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00139DBE1F698AE0005D49EC /* TestConfig.plist */; };
 		C28D3A991F332878001D2A03 /* MultiRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28D3A951F33252B001D2A03 /* MultiRequestTest.swift */; };
 		C28D3A9A1F332880001D2A03 /* PrimitivesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28D3A961F33252B001D2A03 /* PrimitivesTest.swift */; };
@@ -55,6 +56,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* BaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
 		900A6BC924A25CEE0030AC87 /* HouseholdTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdTest.swift; sourceTree = "<group>"; };
+		90AB8F9024AC92E200A40CFA /* EmptyResultTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultTest.swift; sourceTree = "<group>"; };
 		9EEB332DC79B29F3773EBDAC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A828660A1AF9647D2ABD0F59 /* Pods_KalturaClient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalturaClient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33E0750ECAFC8D9419D0E2D /* KalturaOttClient.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KalturaOttClient.podspec; path = ../KalturaOttClient.podspec; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				C28D3A951F33252B001D2A03 /* MultiRequestTest.swift */,
 				C28D3A961F33252B001D2A03 /* PrimitivesTest.swift */,
 				607FACEB1AFB9204008FA782 /* BaseTest.swift */,
+				90AB8F9024AC92E200A40CFA /* EmptyResultTest.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -394,6 +397,7 @@
 				C28D3A9A1F332880001D2A03 /* PrimitivesTest.swift in Sources */,
 				C28D3ADA1F38ACC7001D2A03 /* MultiRequestWithPrimitives.swift in Sources */,
 				C28D3A991F332878001D2A03 /* MultiRequestTest.swift in Sources */,
+				90AB8F9124AC92E200A40CFA /* EmptyResultTest.swift in Sources */,
 				002EBA931F7A27F900C7E4F9 /* MapTest.swift in Sources */,
 				00139DC01F698B22005D49EC /* TestConfig.swift in Sources */,
 				900A6BCA24A25CEE0030AC87 /* HouseholdTest.swift in Sources */,
