@@ -65,7 +65,7 @@ open class PermissionFilter: Filter {
 		self.dict["roleIdIn"] = roleIdIn
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["currentUserPermissionsContains"] != nil {

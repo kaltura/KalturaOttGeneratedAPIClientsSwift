@@ -70,7 +70,7 @@ open class SocialFriendActivity: ObjectBase {
 		self.dict["userPictureUrl"] = userPictureUrl
 	}
 	
-	internal override func populate(_ dict: [String: Any]) throws {
+	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["userFullName"] != nil {
