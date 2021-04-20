@@ -55,9 +55,15 @@ open class EpgNotificationSettings: ObjectBase {
 			}
 		}
 		
-		public var timeRange: BaseTokenizedObject {
+		public var backwardTimeRange: BaseTokenizedObject {
 			get {
-				return self.append("timeRange") 
+				return self.append("backwardTimeRange") 
+			}
+		}
+		
+		public var forwardTimeRange: BaseTokenizedObject {
+			get {
+				return self.append("forwardTimeRange") 
 			}
 		}
 	}
@@ -68,10 +74,14 @@ open class EpgNotificationSettings: ObjectBase {
 	public var deviceFamilyIds: String? = nil
 	/**  Specify which live assets should fire notifications  */
 	public var liveAssetIds: String? = nil
-	/**  The range (in hours), in which, EPG updates triggers a notification,            
-	   every program that is updated and it’s starts time falls within this range
-	  shall trigger a notification  */
-	public var timeRange: Int? = nil
+	/**  The backward range (in hours), in which, EPG updates triggers a notification,   
+	            every program that is updated and it’s starts time falls within this
+	  range shall trigger a notification  */
+	public var backwardTimeRange: Int? = nil
+	/**  The forward range (in hours), in which, EPG updates triggers a notification,    
+	           every program that is updated and it’s starts time falls within this
+	  range shall trigger a notification  */
+	public var forwardTimeRange: Int? = nil
 
 
 	public func setMultiRequestToken(enabled: String) {
@@ -86,8 +96,12 @@ open class EpgNotificationSettings: ObjectBase {
 		self.dict["liveAssetIds"] = liveAssetIds
 	}
 	
-	public func setMultiRequestToken(timeRange: String) {
-		self.dict["timeRange"] = timeRange
+	public func setMultiRequestToken(backwardTimeRange: String) {
+		self.dict["backwardTimeRange"] = backwardTimeRange
+	}
+	
+	public func setMultiRequestToken(forwardTimeRange: String) {
+		self.dict["forwardTimeRange"] = forwardTimeRange
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -102,8 +116,11 @@ open class EpgNotificationSettings: ObjectBase {
 		if dict["liveAssetIds"] != nil {
 			liveAssetIds = dict["liveAssetIds"] as? String
 		}
-		if dict["timeRange"] != nil {
-			timeRange = dict["timeRange"] as? Int
+		if dict["backwardTimeRange"] != nil {
+			backwardTimeRange = dict["backwardTimeRange"] as? Int
+		}
+		if dict["forwardTimeRange"] != nil {
+			forwardTimeRange = dict["forwardTimeRange"] as? Int
 		}
 
 	}
@@ -119,8 +136,11 @@ open class EpgNotificationSettings: ObjectBase {
 		if(liveAssetIds != nil) {
 			dict["liveAssetIds"] = liveAssetIds!
 		}
-		if(timeRange != nil) {
-			dict["timeRange"] = timeRange!
+		if(backwardTimeRange != nil) {
+			dict["backwardTimeRange"] = backwardTimeRange!
+		}
+		if(forwardTimeRange != nil) {
+			dict["forwardTimeRange"] = forwardTimeRange!
 		}
 		return dict
 	}
