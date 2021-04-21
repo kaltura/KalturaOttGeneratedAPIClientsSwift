@@ -91,6 +91,12 @@ open class AssetStructMeta: ObjectBase {
 				return self.append("isLocationTag") 
 			}
 		}
+		
+		public var suppressedOrder: BaseTokenizedObject {
+			get {
+				return self.append("suppressedOrder") 
+			}
+		}
 	}
 
 	/**  Asset Struct id (template_id)  */
@@ -113,6 +119,8 @@ open class AssetStructMeta: ObjectBase {
 	public var isInherited: Bool? = nil
 	/**  Is Location Tag  */
 	public var isLocationTag: Bool? = nil
+	/**  suppressed Order, ascending  */
+	public var suppressedOrder: Int? = nil
 
 
 	public func setMultiRequestToken(assetStructId: String) {
@@ -151,6 +159,10 @@ open class AssetStructMeta: ObjectBase {
 		self.dict["isLocationTag"] = isLocationTag
 	}
 	
+	public func setMultiRequestToken(suppressedOrder: String) {
+		self.dict["suppressedOrder"] = suppressedOrder
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -181,6 +193,9 @@ open class AssetStructMeta: ObjectBase {
 		if dict["isLocationTag"] != nil {
 			isLocationTag = dict["isLocationTag"] as? Bool
 		}
+		if dict["suppressedOrder"] != nil {
+			suppressedOrder = dict["suppressedOrder"] as? Int
+		}
 
 	}
 
@@ -200,6 +215,9 @@ open class AssetStructMeta: ObjectBase {
 		}
 		if(isLocationTag != nil) {
 			dict["isLocationTag"] = isLocationTag!
+		}
+		if(suppressedOrder != nil) {
+			dict["suppressedOrder"] = suppressedOrder!
 		}
 		return dict
 	}

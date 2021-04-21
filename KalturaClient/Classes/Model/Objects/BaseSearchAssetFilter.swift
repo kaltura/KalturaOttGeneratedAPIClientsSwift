@@ -54,6 +54,12 @@ open class BaseSearchAssetFilter: AssetFilter {
 				return self.append("groupOrderBy") 
 			}
 		}
+		
+		public var groupingOptionEqual: BaseTokenizedObject {
+			get {
+				return self.append("groupingOptionEqual") 
+			}
+		}
 	}
 
 	/**  Search assets using dynamic criteria. Provided collection of nested expressions
@@ -85,6 +91,8 @@ open class BaseSearchAssetFilter: AssetFilter {
 	public var groupBy: Array<AssetGroupBy>? = nil
 	/**  order by of grouping  */
 	public var groupOrderBy: GroupByOrder? = nil
+	/**  Grouping Option, Omit if not specified otherwise  */
+	public var groupingOptionEqual: GroupingOption? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -93,6 +101,10 @@ open class BaseSearchAssetFilter: AssetFilter {
 	
 	public func setMultiRequestToken(groupOrderBy: String) {
 		self.dict["groupOrderBy"] = groupOrderBy
+	}
+	
+	public func setMultiRequestToken(groupingOptionEqual: String) {
+		self.dict["groupingOptionEqual"] = groupingOptionEqual
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -107,6 +119,9 @@ open class BaseSearchAssetFilter: AssetFilter {
 		if dict["groupOrderBy"] != nil {
 			groupOrderBy = GroupByOrder(rawValue: "\(dict["groupOrderBy"]!)")
 		}
+		if dict["groupingOptionEqual"] != nil {
+			groupingOptionEqual = GroupingOption(rawValue: "\(dict["groupingOptionEqual"]!)")
+		}
 
 	}
 
@@ -120,6 +135,9 @@ open class BaseSearchAssetFilter: AssetFilter {
 		}
 		if(groupOrderBy != nil) {
 			dict["groupOrderBy"] = groupOrderBy!.rawValue
+		}
+		if(groupingOptionEqual != nil) {
+			dict["groupingOptionEqual"] = groupingOptionEqual!.rawValue
 		}
 		return dict
 	}
