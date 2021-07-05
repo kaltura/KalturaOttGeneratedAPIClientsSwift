@@ -33,10 +33,10 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Premium service  */
-open class PremiumService: ObjectBase {
+/**  Coupons group details  */
+open class SubscriptionCouponGroup: ObjectBase {
 
-	public class PremiumServiceTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class SubscriptionCouponGroupTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -44,25 +44,37 @@ open class PremiumService: ObjectBase {
 			}
 		}
 		
-		public var name: BaseTokenizedObject {
+		public var startDate: BaseTokenizedObject {
 			get {
-				return self.append("name") 
+				return self.append("startDate") 
+			}
+		}
+		
+		public var endDate: BaseTokenizedObject {
+			get {
+				return self.append("endDate") 
 			}
 		}
 	}
 
-	/**  Service identifier  */
+	/**  Coupon group identifier  */
 	public var id: Int64? = nil
-	/**  Service name / description  */
-	public var name: String? = nil
+	/**  The first date the coupons in this coupons group are valid  */
+	public var startDate: Int64? = nil
+	/**  The last date the coupons in this coupons group are valid  */
+	public var endDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
 	}
 	
-	public func setMultiRequestToken(name: String) {
-		self.dict["name"] = name
+	public func setMultiRequestToken(startDate: String) {
+		self.dict["startDate"] = startDate
+	}
+	
+	public func setMultiRequestToken(endDate: String) {
+		self.dict["endDate"] = endDate
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -71,8 +83,11 @@ open class PremiumService: ObjectBase {
 		if dict["id"] != nil {
 			id = Int64("\(dict["id"]!)")
 		}
-		if dict["name"] != nil {
-			name = dict["name"] as? String
+		if dict["startDate"] != nil {
+			startDate = Int64("\(dict["startDate"]!)")
+		}
+		if dict["endDate"] != nil {
+			endDate = Int64("\(dict["endDate"]!)")
 		}
 
 	}
@@ -82,8 +97,11 @@ open class PremiumService: ObjectBase {
 		if(id != nil) {
 			dict["id"] = id!
 		}
-		if(name != nil) {
-			dict["name"] = name!
+		if(startDate != nil) {
+			dict["startDate"] = startDate!
+		}
+		if(endDate != nil) {
+			dict["endDate"] = endDate!
 		}
 		return dict
 	}

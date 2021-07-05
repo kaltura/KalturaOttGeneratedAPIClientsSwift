@@ -35,6 +35,38 @@
 
 public final class SubscriptionService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func subscription<T: Subscription.SubscriptionTokenizer>() -> T {
+			return T(self.append("subscription"))
+		}
+	}
+
+	/**  Internal API !!! Insert new subscription for partner  */
+	public static func add(subscription: Subscription) -> RequestBuilder<Subscription, Subscription.SubscriptionTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Subscription, Subscription.SubscriptionTokenizer, AddTokenizer> = RequestBuilder<Subscription, Subscription.SubscriptionTokenizer, AddTokenizer>(service: "subscription", action: "add")
+			.setParam(key: "subscription", value: subscription)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Internal API !!! Delete subscription  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "subscription", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: SubscriptionFilter.SubscriptionFilterTokenizer>() -> T {

@@ -50,6 +50,12 @@ open class Subscription: ObjectBase {
 			} 
 		}
 		
+		public var channelsIds: BaseTokenizedObject {
+			get {
+				return self.append("channelsIds") 
+			}
+		}
+		
 		public var startDate: BaseTokenizedObject {
 			get {
 				return self.append("startDate") 
@@ -66,6 +72,12 @@ open class Subscription: ObjectBase {
 			get {
 				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("fileTypes"))
 			} 
+		}
+		
+		public var fileTypesIds: BaseTokenizedObject {
+			get {
+				return self.append("fileTypesIds") 
+			}
 		}
 		
 		public var isRenewable: BaseTokenizedObject {
@@ -92,6 +104,12 @@ open class Subscription: ObjectBase {
 		
 		public func discountModule<T: DiscountModule.DiscountModuleTokenizer>() -> T {
 			return T(self.append("discountModule"))
+		}
+		
+		public var internalDiscountModuleId: BaseTokenizedObject {
+			get {
+				return self.append("internalDiscountModuleId") 
+			}
 		}
 		
 		public var name: BaseTokenizedObject {
@@ -138,6 +156,12 @@ open class Subscription: ObjectBase {
 		
 		public func previewModule<T: PreviewModule.PreviewModuleTokenizer>() -> T {
 			return T(self.append("previewModule"))
+		}
+		
+		public var previewModuleId: BaseTokenizedObject {
+			get {
+				return self.append("previewModuleId") 
+			}
 		}
 		
 		public var householdLimitationsId: BaseTokenizedObject {
@@ -194,6 +218,12 @@ open class Subscription: ObjectBase {
 			} 
 		}
 		
+		public var subscriptionCouponGroup: ArrayTokenizedObject<SubscriptionCouponGroup.SubscriptionCouponGroupTokenizer> {
+			get {
+				return ArrayTokenizedObject<SubscriptionCouponGroup.SubscriptionCouponGroupTokenizer>(self.append("subscriptionCouponGroup"))
+			} 
+		}
+		
 		public var productCodes: ArrayTokenizedObject<ProductCode.ProductCodeTokenizer> {
 			get {
 				return ArrayTokenizedObject<ProductCode.ProductCodeTokenizer>(self.append("productCodes"))
@@ -223,18 +253,40 @@ open class Subscription: ObjectBase {
 				return self.append("preSaleDate") 
 			}
 		}
+		
+		public var adsPolicy: BaseTokenizedObject {
+			get {
+				return self.append("adsPolicy") 
+			}
+		}
+		
+		public var adsParam: BaseTokenizedObject {
+			get {
+				return self.append("adsParam") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
 	}
 
 	/**  Subscription identifier  */
 	public var id: String? = nil
 	/**  A list of channels associated with this subscription  */
 	public var channels: Array<BaseChannel>? = nil
+	/**  Comma separated channels Ids associated with this subscription  */
+	public var channelsIds: String? = nil
 	/**  The first date the subscription is available for purchasing  */
 	public var startDate: Int64? = nil
 	/**  The last date the subscription is available for purchasing  */
 	public var endDate: Int64? = nil
 	/**  A list of file types identifiers that are supported in this subscription  */
 	public var fileTypes: Array<IntegerValue>? = nil
+	/**  Comma separated file types identifiers that are supported in this subscription  */
+	public var fileTypesIds: String? = nil
 	/**  Denotes whether or not this subscription can be renewed  */
 	public var isRenewable: Bool? = nil
 	/**  Defines the number of times this subscription will be renewed  */
@@ -245,6 +297,8 @@ open class Subscription: ObjectBase {
 	public var price: PriceDetails? = nil
 	/**  The internal discount module for the subscription  */
 	public var discountModule: DiscountModule? = nil
+	/**  The internal discount module identifier for the subscription  */
+	public var internalDiscountModuleId: Int64? = nil
 	/**  Name of the subscription  */
 	public var name: String? = nil
 	/**  Name of the subscription  */
@@ -261,6 +315,8 @@ open class Subscription: ObjectBase {
 	public var pricePlanIds: String? = nil
 	/**  Subscription preview module  */
 	public var previewModule: PreviewModule? = nil
+	/**  Subscription preview module identifier  */
+	public var previewModuleId: Int64? = nil
 	/**  The household limitation module identifier associated with this subscription  */
 	public var householdLimitationsId: Int? = nil
 	/**  The subscription grace period in minutes  */
@@ -282,6 +338,8 @@ open class Subscription: ObjectBase {
 	public var userTypes: Array<OTTUserType>? = nil
 	/**  List of Coupons group  */
 	public var couponsGroups: Array<CouponsGroup>? = nil
+	/**  List of subscription Coupons group  */
+	public var subscriptionCouponGroup: Array<SubscriptionCouponGroup>? = nil
 	/**  List of Subscription product codes  */
 	public var productCodes: Array<ProductCode>? = nil
 	/**  Dependency Type  */
@@ -292,10 +350,20 @@ open class Subscription: ObjectBase {
 	public var isCancellationBlocked: Bool? = nil
 	/**  The Pre-Sale date the subscription is available for purchasing  */
 	public var preSaleDate: Int64? = nil
+	/**  Ads policy  */
+	public var adsPolicy: AdsPolicy? = nil
+	/**  The parameters to pass to the ads server  */
+	public var adsParam: String? = nil
+	/**  Is active subscription  */
+	public var isActive: Bool? = nil
 
 
 	public func setMultiRequestToken(id: String) {
 		self.dict["id"] = id
+	}
+	
+	public func setMultiRequestToken(channelsIds: String) {
+		self.dict["channelsIds"] = channelsIds
 	}
 	
 	public func setMultiRequestToken(startDate: String) {
@@ -304,6 +372,10 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(endDate: String) {
 		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(fileTypesIds: String) {
+		self.dict["fileTypesIds"] = fileTypesIds
 	}
 	
 	public func setMultiRequestToken(isRenewable: String) {
@@ -316,6 +388,10 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(isInfiniteRenewal: String) {
 		self.dict["isInfiniteRenewal"] = isInfiniteRenewal
+	}
+	
+	public func setMultiRequestToken(internalDiscountModuleId: String) {
+		self.dict["internalDiscountModuleId"] = internalDiscountModuleId
 	}
 	
 	public func setMultiRequestToken(name: String) {
@@ -336,6 +412,10 @@ open class Subscription: ObjectBase {
 	
 	public func setMultiRequestToken(pricePlanIds: String) {
 		self.dict["pricePlanIds"] = pricePlanIds
+	}
+	
+	public func setMultiRequestToken(previewModuleId: String) {
+		self.dict["previewModuleId"] = previewModuleId
 	}
 	
 	public func setMultiRequestToken(householdLimitationsId: String) {
@@ -378,6 +458,18 @@ open class Subscription: ObjectBase {
 		self.dict["preSaleDate"] = preSaleDate
 	}
 	
+	public func setMultiRequestToken(adsPolicy: String) {
+		self.dict["adsPolicy"] = adsPolicy
+	}
+	
+	public func setMultiRequestToken(adsParam: String) {
+		self.dict["adsParam"] = adsParam
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -387,6 +479,9 @@ open class Subscription: ObjectBase {
 		if dict["channels"] != nil {
 			channels = try JSONParser.parse(array: dict["channels"] as! [Any])
 		}
+		if dict["channelsIds"] != nil {
+			channelsIds = dict["channelsIds"] as? String
+		}
 		if dict["startDate"] != nil {
 			startDate = Int64("\(dict["startDate"]!)")
 		}
@@ -395,6 +490,9 @@ open class Subscription: ObjectBase {
 		}
 		if dict["fileTypes"] != nil {
 			fileTypes = try JSONParser.parse(array: dict["fileTypes"] as! [Any])
+		}
+		if dict["fileTypesIds"] != nil {
+			fileTypesIds = dict["fileTypesIds"] as? String
 		}
 		if dict["isRenewable"] != nil {
 			isRenewable = dict["isRenewable"] as? Bool
@@ -409,6 +507,9 @@ open class Subscription: ObjectBase {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
 		if dict["discountModule"] != nil {
 		discountModule = try JSONParser.parse(object: dict["discountModule"] as! [String: Any])		}
+		if dict["internalDiscountModuleId"] != nil {
+			internalDiscountModuleId = Int64("\(dict["internalDiscountModuleId"]!)")
+		}
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
@@ -432,6 +533,9 @@ open class Subscription: ObjectBase {
 		}
 		if dict["previewModule"] != nil {
 		previewModule = try JSONParser.parse(object: dict["previewModule"] as! [String: Any])		}
+		if dict["previewModuleId"] != nil {
+			previewModuleId = Int64("\(dict["previewModuleId"]!)")
+		}
 		if dict["householdLimitationsId"] != nil {
 			householdLimitationsId = dict["householdLimitationsId"] as? Int
 		}
@@ -459,6 +563,9 @@ open class Subscription: ObjectBase {
 		if dict["couponsGroups"] != nil {
 			couponsGroups = try JSONParser.parse(array: dict["couponsGroups"] as! [Any])
 		}
+		if dict["subscriptionCouponGroup"] != nil {
+			subscriptionCouponGroup = try JSONParser.parse(array: dict["subscriptionCouponGroup"] as! [Any])
+		}
 		if dict["productCodes"] != nil {
 			productCodes = try JSONParser.parse(array: dict["productCodes"] as! [Any])
 		}
@@ -474,6 +581,15 @@ open class Subscription: ObjectBase {
 		if dict["preSaleDate"] != nil {
 			preSaleDate = Int64("\(dict["preSaleDate"]!)")
 		}
+		if dict["adsPolicy"] != nil {
+			adsPolicy = AdsPolicy(rawValue: "\(dict["adsPolicy"]!)")
+		}
+		if dict["adsParam"] != nil {
+			adsParam = dict["adsParam"] as? String
+		}
+		if dict["isActive"] != nil {
+			isActive = dict["isActive"] as? Bool
+		}
 
 	}
 
@@ -482,8 +598,8 @@ open class Subscription: ObjectBase {
 		if(id != nil) {
 			dict["id"] = id!
 		}
-		if(channels != nil) {
-			dict["channels"] = channels!.map { value in value.toDictionary() }
+		if(channelsIds != nil) {
+			dict["channelsIds"] = channelsIds!
 		}
 		if(startDate != nil) {
 			dict["startDate"] = startDate!
@@ -491,23 +607,11 @@ open class Subscription: ObjectBase {
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
 		}
-		if(fileTypes != nil) {
-			dict["fileTypes"] = fileTypes!.map { value in value.toDictionary() }
+		if(fileTypesIds != nil) {
+			dict["fileTypesIds"] = fileTypesIds!
 		}
-		if(isRenewable != nil) {
-			dict["isRenewable"] = isRenewable!
-		}
-		if(renewalsNumber != nil) {
-			dict["renewalsNumber"] = renewalsNumber!
-		}
-		if(isInfiniteRenewal != nil) {
-			dict["isInfiniteRenewal"] = isInfiniteRenewal!
-		}
-		if(price != nil) {
-			dict["price"] = price!.toDictionary()
-		}
-		if(discountModule != nil) {
-			dict["discountModule"] = discountModule!.toDictionary()
+		if(internalDiscountModuleId != nil) {
+			dict["internalDiscountModuleId"] = internalDiscountModuleId!
 		}
 		if(multilingualName != nil) {
 			dict["multilingualName"] = multilingualName!.map { value in value.toDictionary() }
@@ -515,17 +619,14 @@ open class Subscription: ObjectBase {
 		if(multilingualDescription != nil) {
 			dict["multilingualDescription"] = multilingualDescription!.map { value in value.toDictionary() }
 		}
-		if(mediaId != nil) {
-			dict["mediaId"] = mediaId!
-		}
 		if(prorityInOrder != nil) {
 			dict["prorityInOrder"] = prorityInOrder!
 		}
 		if(pricePlanIds != nil) {
 			dict["pricePlanIds"] = pricePlanIds!
 		}
-		if(previewModule != nil) {
-			dict["previewModule"] = previewModule!.toDictionary()
+		if(previewModuleId != nil) {
+			dict["previewModuleId"] = previewModuleId!
 		}
 		if(householdLimitationsId != nil) {
 			dict["householdLimitationsId"] = householdLimitationsId!
@@ -536,23 +637,8 @@ open class Subscription: ObjectBase {
 		if(premiumServices != nil) {
 			dict["premiumServices"] = premiumServices!.map { value in value.toDictionary() }
 		}
-		if(maxViewsNumber != nil) {
-			dict["maxViewsNumber"] = maxViewsNumber!
-		}
-		if(viewLifeCycle != nil) {
-			dict["viewLifeCycle"] = viewLifeCycle!
-		}
-		if(waiverPeriod != nil) {
-			dict["waiverPeriod"] = waiverPeriod!
-		}
-		if(isWaiverEnabled != nil) {
-			dict["isWaiverEnabled"] = isWaiverEnabled!
-		}
-		if(userTypes != nil) {
-			dict["userTypes"] = userTypes!.map { value in value.toDictionary() }
-		}
-		if(couponsGroups != nil) {
-			dict["couponsGroups"] = couponsGroups!.map { value in value.toDictionary() }
+		if(subscriptionCouponGroup != nil) {
+			dict["subscriptionCouponGroup"] = subscriptionCouponGroup!.map { value in value.toDictionary() }
 		}
 		if(productCodes != nil) {
 			dict["productCodes"] = productCodes!.map { value in value.toDictionary() }
@@ -568,6 +654,15 @@ open class Subscription: ObjectBase {
 		}
 		if(preSaleDate != nil) {
 			dict["preSaleDate"] = preSaleDate!
+		}
+		if(adsPolicy != nil) {
+			dict["adsPolicy"] = adsPolicy!.rawValue
+		}
+		if(adsParam != nil) {
+			dict["adsParam"] = adsParam!
+		}
+		if(isActive != nil) {
+			dict["isActive"] = isActive!
 		}
 		return dict
 	}
