@@ -125,6 +125,12 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 				return self.append("suspensionProfileInheritanceType") 
 			}
 		}
+		
+		public var allowDeviceMobility: BaseTokenizedObject {
+			get {
+				return self.append("allowDeviceMobility") 
+			}
+		}
 	}
 
 	/**  Partner name  */
@@ -157,6 +163,8 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var finishedPercentThreshold: Int? = nil
 	/**  Suspension Profile Inheritance  */
 	public var suspensionProfileInheritanceType: SuspensionProfileInheritanceType? = nil
+	/**  Allow Device Mobility  */
+	public var allowDeviceMobility: Bool? = nil
 
 
 	public func setMultiRequestToken(partnerName: String) {
@@ -215,6 +223,10 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		self.dict["suspensionProfileInheritanceType"] = suspensionProfileInheritanceType
 	}
 	
+	public func setMultiRequestToken(allowDeviceMobility: String) {
+		self.dict["allowDeviceMobility"] = allowDeviceMobility
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -261,6 +273,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if dict["suspensionProfileInheritanceType"] != nil {
 			suspensionProfileInheritanceType = SuspensionProfileInheritanceType(rawValue: "\(dict["suspensionProfileInheritanceType"]!)")
+		}
+		if dict["allowDeviceMobility"] != nil {
+			allowDeviceMobility = dict["allowDeviceMobility"] as? Bool
 		}
 
 	}
@@ -311,6 +326,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if(suspensionProfileInheritanceType != nil) {
 			dict["suspensionProfileInheritanceType"] = suspensionProfileInheritanceType!.rawValue
+		}
+		if(allowDeviceMobility != nil) {
+			dict["allowDeviceMobility"] = allowDeviceMobility!
 		}
 		return dict
 	}

@@ -43,18 +43,33 @@ open class CommercePartnerConfig: PartnerConfiguration {
 				return ArrayTokenizedObject<BookmarkEventThreshold.BookmarkEventThresholdTokenizer>(self.append("bookmarkEventThresholds"))
 			} 
 		}
+		
+		public var keepSubscriptionAddOns: BaseTokenizedObject {
+			get {
+				return self.append("keepSubscriptionAddOns") 
+			}
+		}
 	}
 
 	/**  configuration for bookmark event threshold (when to dispatch the event) in
 	  seconds.  */
 	public var bookmarkEventThresholds: Array<BookmarkEventThreshold>? = nil
+	/**  configuration for keep add-ons after subscription deletion  */
+	public var keepSubscriptionAddOns: Bool? = nil
 
 
+	public func setMultiRequestToken(keepSubscriptionAddOns: String) {
+		self.dict["keepSubscriptionAddOns"] = keepSubscriptionAddOns
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["bookmarkEventThresholds"] != nil {
 			bookmarkEventThresholds = try JSONParser.parse(array: dict["bookmarkEventThresholds"] as! [Any])
+		}
+		if dict["keepSubscriptionAddOns"] != nil {
+			keepSubscriptionAddOns = dict["keepSubscriptionAddOns"] as? Bool
 		}
 
 	}
@@ -63,6 +78,9 @@ open class CommercePartnerConfig: PartnerConfiguration {
 		var dict: [String: Any] = super.toDictionary()
 		if(bookmarkEventThresholds != nil) {
 			dict["bookmarkEventThresholds"] = bookmarkEventThresholds!.map { value in value.toDictionary() }
+		}
+		if(keepSubscriptionAddOns != nil) {
+			dict["keepSubscriptionAddOns"] = keepSubscriptionAddOns!
 		}
 		return dict
 	}
