@@ -86,8 +86,9 @@
         
         var task: URLSessionDataTask? = nil
         // settings headers:
-        task = session.dataTask(with: request) { (data, response, error) in
+        task = session.dataTask(with: request) { [weak self] (data, response, error) in
 
+            guard let self = self else { return }
             self.remove(id: r.requestId)
         
             DispatchQueue.main.async {
