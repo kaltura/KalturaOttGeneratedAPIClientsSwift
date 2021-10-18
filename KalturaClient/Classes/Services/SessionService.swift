@@ -35,6 +35,66 @@
 
 public final class SessionService{
 
+	public class CreateSessionCharacteristicTokenizer: ClientTokenizer  {
+		
+		public override var userId: BaseTokenizedObject {
+			get {
+				return self.append("userId") 
+			}
+		}
+		
+		public var householdId: BaseTokenizedObject {
+			get {
+				return self.append("householdId") 
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var expiration: BaseTokenizedObject {
+			get {
+				return self.append("expiration") 
+			}
+		}
+		
+		public var regionId: BaseTokenizedObject {
+			get {
+				return self.append("regionId") 
+			}
+		}
+		
+		public var sessionCharacteristicParams: DictionaryTokenizedObject<StringValueArray.StringValueArrayTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValueArray.StringValueArrayTokenizer>(self.append("sessionCharacteristicParams"))
+			}
+		}
+	}
+
+	public static func createSessionCharacteristic(userId: String, householdId: Int64, udid: String, expiration: Int64) -> RequestBuilder<SessionCharacteristic, SessionCharacteristic.SessionCharacteristicTokenizer, CreateSessionCharacteristicTokenizer> {
+		return createSessionCharacteristic(userId: userId, householdId: householdId, udid: udid, expiration: expiration, regionId: nil)
+	}
+
+	public static func createSessionCharacteristic(userId: String, householdId: Int64, udid: String, expiration: Int64, regionId: Int?) -> RequestBuilder<SessionCharacteristic, SessionCharacteristic.SessionCharacteristicTokenizer, CreateSessionCharacteristicTokenizer> {
+		return createSessionCharacteristic(userId: userId, householdId: householdId, udid: udid, expiration: expiration, regionId: regionId, sessionCharacteristicParams: nil)
+	}
+
+	/**  Create session characteristic  */
+	public static func createSessionCharacteristic(userId: String, householdId: Int64, udid: String, expiration: Int64, regionId: Int?, sessionCharacteristicParams: Dictionary<String, StringValueArray>?) -> RequestBuilder<SessionCharacteristic, SessionCharacteristic.SessionCharacteristicTokenizer, CreateSessionCharacteristicTokenizer> {
+		let request: RequestBuilder<SessionCharacteristic, SessionCharacteristic.SessionCharacteristicTokenizer, CreateSessionCharacteristicTokenizer> = RequestBuilder<SessionCharacteristic, SessionCharacteristic.SessionCharacteristicTokenizer, CreateSessionCharacteristicTokenizer>(service: "session", action: "createSessionCharacteristic")
+			.setParam(key: "userId", value: userId)
+			.setParam(key: "householdId", value: householdId)
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "expiration", value: expiration)
+			.setParam(key: "regionId", value: regionId)
+			.setParam(key: "sessionCharacteristicParams", value: sessionCharacteristicParams)
+
+		return request
+	}
+
 	public class GetTokenizer: ClientTokenizer  {
 		
 		public var session: BaseTokenizedObject {

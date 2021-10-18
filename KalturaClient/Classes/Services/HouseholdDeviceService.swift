@@ -198,18 +198,29 @@ public final class HouseholdDeviceService{
 				return self.append("udid") 
 			}
 		}
+		
+		public var extraParams: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("extraParams"))
+			}
+		}
 	}
 
 	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		return loginWithPin(partnerId: partnerId, pin: pin, udid: nil)
 	}
 
-	/**  User sign-in via a time-expired sign-in PIN.  */
 	public static func loginWithPin(partnerId: Int, pin: String, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		return loginWithPin(partnerId: partnerId, pin: pin, udid: udid, extraParams: nil)
+	}
+
+	/**  User sign-in via a time-expired sign-in PIN.  */
+	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, extraParams: Dictionary<String, StringValue>?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "householddevice", action: "loginWithPin")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "pin", value: pin)
 			.setParam(key: "udid", value: udid)
+			.setParam(key: "extraParams", value: extraParams)
 
 		return request
 	}

@@ -33,74 +33,38 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class SeriesRecordingOption: ObjectBase {
+open class FilterAssetByKsqlAction: FilterAction {
 
-	public class SeriesRecordingOptionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class FilterAssetByKsqlActionTokenizer: FilterAction.FilterActionTokenizer {
 		
-		public var minSeasonNumber: BaseTokenizedObject {
+		public var ksql: BaseTokenizedObject {
 			get {
-				return self.append("minSeasonNumber") 
-			}
-		}
-		
-		public var minEpisodeNumber: BaseTokenizedObject {
-			get {
-				return self.append("minEpisodeNumber") 
-			}
-		}
-		
-		public var chronologicalRecordStartTime: BaseTokenizedObject {
-			get {
-				return self.append("chronologicalRecordStartTime") 
+				return self.append("ksql") 
 			}
 		}
 	}
 
-	/**  min Season Number  */
-	public var minSeasonNumber: Int? = nil
-	/**  min Season Number  */
-	public var minEpisodeNumber: Int? = nil
-	/**  Record future only from selected value  */
-	public var chronologicalRecordStartTime: ChronologicalRecordStartTime? = nil
+	/**  ksql to filter assets by  */
+	public var ksql: String? = nil
 
 
-	public func setMultiRequestToken(minSeasonNumber: String) {
-		self.dict["minSeasonNumber"] = minSeasonNumber
-	}
-	
-	public func setMultiRequestToken(minEpisodeNumber: String) {
-		self.dict["minEpisodeNumber"] = minEpisodeNumber
-	}
-	
-	public func setMultiRequestToken(chronologicalRecordStartTime: String) {
-		self.dict["chronologicalRecordStartTime"] = chronologicalRecordStartTime
+	public func setMultiRequestToken(ksql: String) {
+		self.dict["ksql"] = ksql
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["minSeasonNumber"] != nil {
-			minSeasonNumber = dict["minSeasonNumber"] as? Int
-		}
-		if dict["minEpisodeNumber"] != nil {
-			minEpisodeNumber = dict["minEpisodeNumber"] as? Int
-		}
-		if dict["chronologicalRecordStartTime"] != nil {
-			chronologicalRecordStartTime = ChronologicalRecordStartTime(rawValue: "\(dict["chronologicalRecordStartTime"]!)")
+		if dict["ksql"] != nil {
+			ksql = dict["ksql"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(minSeasonNumber != nil) {
-			dict["minSeasonNumber"] = minSeasonNumber!
-		}
-		if(minEpisodeNumber != nil) {
-			dict["minEpisodeNumber"] = minEpisodeNumber!
-		}
-		if(chronologicalRecordStartTime != nil) {
-			dict["chronologicalRecordStartTime"] = chronologicalRecordStartTime!.rawValue
+		if(ksql != nil) {
+			dict["ksql"] = ksql!
 		}
 		return dict
 	}

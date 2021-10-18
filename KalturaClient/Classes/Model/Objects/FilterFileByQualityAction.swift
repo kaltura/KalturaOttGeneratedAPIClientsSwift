@@ -33,74 +33,39 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class SeriesRecordingOption: ObjectBase {
+/**  Filter Files By their Quality  */
+open class FilterFileByQualityAction: FilterAction {
 
-	public class SeriesRecordingOptionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class FilterFileByQualityActionTokenizer: FilterAction.FilterActionTokenizer {
 		
-		public var minSeasonNumber: BaseTokenizedObject {
+		public var qualityIn: BaseTokenizedObject {
 			get {
-				return self.append("minSeasonNumber") 
-			}
-		}
-		
-		public var minEpisodeNumber: BaseTokenizedObject {
-			get {
-				return self.append("minEpisodeNumber") 
-			}
-		}
-		
-		public var chronologicalRecordStartTime: BaseTokenizedObject {
-			get {
-				return self.append("chronologicalRecordStartTime") 
+				return self.append("qualityIn") 
 			}
 		}
 	}
 
-	/**  min Season Number  */
-	public var minSeasonNumber: Int? = nil
-	/**  min Season Number  */
-	public var minEpisodeNumber: Int? = nil
-	/**  Record future only from selected value  */
-	public var chronologicalRecordStartTime: ChronologicalRecordStartTime? = nil
+	/**  List of comma separated qualities  */
+	public var qualityIn: String? = nil
 
 
-	public func setMultiRequestToken(minSeasonNumber: String) {
-		self.dict["minSeasonNumber"] = minSeasonNumber
-	}
-	
-	public func setMultiRequestToken(minEpisodeNumber: String) {
-		self.dict["minEpisodeNumber"] = minEpisodeNumber
-	}
-	
-	public func setMultiRequestToken(chronologicalRecordStartTime: String) {
-		self.dict["chronologicalRecordStartTime"] = chronologicalRecordStartTime
+	public func setMultiRequestToken(qualityIn: String) {
+		self.dict["qualityIn"] = qualityIn
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["minSeasonNumber"] != nil {
-			minSeasonNumber = dict["minSeasonNumber"] as? Int
-		}
-		if dict["minEpisodeNumber"] != nil {
-			minEpisodeNumber = dict["minEpisodeNumber"] as? Int
-		}
-		if dict["chronologicalRecordStartTime"] != nil {
-			chronologicalRecordStartTime = ChronologicalRecordStartTime(rawValue: "\(dict["chronologicalRecordStartTime"]!)")
+		if dict["qualityIn"] != nil {
+			qualityIn = dict["qualityIn"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(minSeasonNumber != nil) {
-			dict["minSeasonNumber"] = minSeasonNumber!
-		}
-		if(minEpisodeNumber != nil) {
-			dict["minEpisodeNumber"] = minEpisodeNumber!
-		}
-		if(chronologicalRecordStartTime != nil) {
-			dict["chronologicalRecordStartTime"] = chronologicalRecordStartTime!.rawValue
+		if(qualityIn != nil) {
+			dict["qualityIn"] = qualityIn!
 		}
 		return dict
 	}

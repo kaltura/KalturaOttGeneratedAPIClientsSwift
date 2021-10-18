@@ -266,6 +266,12 @@ public final class OttUserService{
 				return self.append("secret") 
 			}
 		}
+		
+		public var extraParams: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("extraParams"))
+			}
+		}
 	}
 
 	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
@@ -276,13 +282,18 @@ public final class OttUserService{
 		return loginWithPin(partnerId: partnerId, pin: pin, udid: udid, secret: nil)
 	}
 
-	/**  User sign-in via a time-expired sign-in PIN.  */
 	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, secret: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		return loginWithPin(partnerId: partnerId, pin: pin, udid: udid, secret: secret, extraParams: nil)
+	}
+
+	/**  User sign-in via a time-expired sign-in PIN.  */
+	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, secret: String?, extraParams: Dictionary<String, StringValue>?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "ottuser", action: "loginWithPin")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "pin", value: pin)
 			.setParam(key: "udid", value: udid)
 			.setParam(key: "secret", value: secret)
+			.setParam(key: "extraParams", value: extraParams)
 
 		return request
 	}

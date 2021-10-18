@@ -33,74 +33,65 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class SeriesRecordingOption: ObjectBase {
+/**  User Session Profile  */
+open class UserSessionProfile: ObjectBase {
 
-	public class SeriesRecordingOptionTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class UserSessionProfileTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var minSeasonNumber: BaseTokenizedObject {
+		public var id: BaseTokenizedObject {
 			get {
-				return self.append("minSeasonNumber") 
+				return self.append("id") 
 			}
 		}
 		
-		public var minEpisodeNumber: BaseTokenizedObject {
+		public var name: BaseTokenizedObject {
 			get {
-				return self.append("minEpisodeNumber") 
+				return self.append("name") 
 			}
 		}
 		
-		public var chronologicalRecordStartTime: BaseTokenizedObject {
-			get {
-				return self.append("chronologicalRecordStartTime") 
-			}
+		public func expression<T: UserSessionProfileExpression.UserSessionProfileExpressionTokenizer>() -> T {
+			return T(self.append("expression"))
 		}
 	}
 
-	/**  min Season Number  */
-	public var minSeasonNumber: Int? = nil
-	/**  min Season Number  */
-	public var minEpisodeNumber: Int? = nil
-	/**  Record future only from selected value  */
-	public var chronologicalRecordStartTime: ChronologicalRecordStartTime? = nil
+	/**  The user session profile id.  */
+	public var id: Int64? = nil
+	/**  The user session profile name for presentation.  */
+	public var name: String? = nil
+	/**  expression  */
+	public var expression: UserSessionProfileExpression? = nil
 
 
-	public func setMultiRequestToken(minSeasonNumber: String) {
-		self.dict["minSeasonNumber"] = minSeasonNumber
-	}
-	
-	public func setMultiRequestToken(minEpisodeNumber: String) {
-		self.dict["minEpisodeNumber"] = minEpisodeNumber
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
 	}
 	
-	public func setMultiRequestToken(chronologicalRecordStartTime: String) {
-		self.dict["chronologicalRecordStartTime"] = chronologicalRecordStartTime
+	public func setMultiRequestToken(name: String) {
+		self.dict["name"] = name
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["minSeasonNumber"] != nil {
-			minSeasonNumber = dict["minSeasonNumber"] as? Int
+		if dict["id"] != nil {
+			id = Int64("\(dict["id"]!)")
 		}
-		if dict["minEpisodeNumber"] != nil {
-			minEpisodeNumber = dict["minEpisodeNumber"] as? Int
+		if dict["name"] != nil {
+			name = dict["name"] as? String
 		}
-		if dict["chronologicalRecordStartTime"] != nil {
-			chronologicalRecordStartTime = ChronologicalRecordStartTime(rawValue: "\(dict["chronologicalRecordStartTime"]!)")
-		}
+		if dict["expression"] != nil {
+		expression = try JSONParser.parse(object: dict["expression"] as! [String: Any])		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(minSeasonNumber != nil) {
-			dict["minSeasonNumber"] = minSeasonNumber!
+		if(name != nil) {
+			dict["name"] = name!
 		}
-		if(minEpisodeNumber != nil) {
-			dict["minEpisodeNumber"] = minEpisodeNumber!
-		}
-		if(chronologicalRecordStartTime != nil) {
-			dict["chronologicalRecordStartTime"] = chronologicalRecordStartTime!.rawValue
+		if(expression != nil) {
+			dict["expression"] = expression!.toDictionary()
 		}
 		return dict
 	}
