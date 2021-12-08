@@ -106,7 +106,9 @@ open class Configurations: ObjectBase {
 	public var platform: Platform? = nil
 	/**  External push id  */
 	public var externalPushId: String? = nil
-	/**  Is force update  */
+	/**  The default value for &amp;quot;isForceUpdate&amp;quot; is
+	  &amp;quot;FALSE&amp;quot;. When &amp;quot;isForceUpdate&amp;quot; is not
+	  populated it will revert to its default value.  */
 	public var isForceUpdate: Bool? = nil
 	/**  Content  */
 	public var content: String? = nil
