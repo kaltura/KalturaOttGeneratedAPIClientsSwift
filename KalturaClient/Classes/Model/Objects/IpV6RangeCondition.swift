@@ -25,32 +25,67 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * This class was generated using exec.php
  * against an XML schema provided by Kaltura.
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum RuleConditionType: String {
-	case ASSET = "ASSET"
-	case COUNTRY = "COUNTRY"
-	case CONCURRENCY = "CONCURRENCY"
-	case IP_RANGE = "IP_RANGE"
-	case BUSINESS_MODULE = "BUSINESS_MODULE"
-	case SEGMENTS = "SEGMENTS"
-	case DATE = "DATE"
-	case OR = "OR"
-	case HEADER = "HEADER"
-	case USER_SUBSCRIPTION = "USER_SUBSCRIPTION"
-	case ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION"
-	case USER_ROLE = "USER_ROLE"
-	case DEVICE_BRAND = "DEVICE_BRAND"
-	case DEVICE_FAMILY = "DEVICE_FAMILY"
-	case DEVICE_MANUFACTURER = "DEVICE_MANUFACTURER"
-	case DEVICE_MODEL = "DEVICE_MODEL"
-	case DEVICE_UDID_DYNAMIC_LIST = "DEVICE_UDID_DYNAMIC_LIST"
-	case DYNAMIC_KEYS = "DYNAMIC_KEYS"
-	case USER_SESSION_PROFILE = "USER_SESSION_PROFILE"
-	case DEVICE_DYNAMIC_DATA = "DEVICE_DYNAMIC_DATA"
-	case IP_V6_RANGE = "IP_V6_RANGE"
+
+/**  IP V6 range condition  */
+open class IpV6RangeCondition: Condition {
+
+	public class IpV6RangeConditionTokenizer: Condition.ConditionTokenizer {
+		
+		public var fromIP: BaseTokenizedObject {
+			get {
+				return self.append("fromIP") 
+			}
+		}
+		
+		public var toIP: BaseTokenizedObject {
+			get {
+				return self.append("toIP") 
+			}
+		}
+	}
+
+	/**  From IP address range  */
+	public var fromIP: String? = nil
+	/**  TO IP address range  */
+	public var toIP: String? = nil
+
+
+	public func setMultiRequestToken(fromIP: String) {
+		self.dict["fromIP"] = fromIP
+	}
+	
+	public func setMultiRequestToken(toIP: String) {
+		self.dict["toIP"] = toIP
+	}
+	
+	public override func populate(_ dict: [String: Any]) throws {
+		try super.populate(dict);
+		// set members values:
+		if dict["fromIP"] != nil {
+			fromIP = dict["fromIP"] as? String
+		}
+		if dict["toIP"] != nil {
+			toIP = dict["toIP"] as? String
+		}
+
+	}
+
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(fromIP != nil) {
+			dict["fromIP"] = fromIP!
+		}
+		if(toIP != nil) {
+			dict["toIP"] = toIP!
+		}
+		return dict
+	}
 }
+
