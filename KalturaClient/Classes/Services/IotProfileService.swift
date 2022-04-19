@@ -50,7 +50,7 @@ public final class IotProfileService{
 		return request
 	}
 
-	public class DeleteTokenizer: ClientTokenizer  {
+	public class GetTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -60,8 +60,8 @@ public final class IotProfileService{
 	}
 
 	/**  Get existing KalturaIotProfile  */
-	public static func delete(id: Int64) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, DeleteTokenizer> {
-		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, DeleteTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, DeleteTokenizer>(service: "iotprofile", action: "delete")
+	public static func get(id: Int64) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> {
+		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer>(service: "iotprofile", action: "get")
 			.setParam(key: "id", value: id)
 
 		return request
