@@ -97,7 +97,7 @@
                         // cancel3ed
                         logger.debug("request has been canceled")
                     } else {
-                        let result = Result<Any>(data: nil, error: ApiClientException(message: error.localizedDescription, code: ApiClientException.ErrorCode.httpError))
+                        let result = Result<Any>(data: nil, error: ApiClientException(message: error.localizedDescription, code: ApiClientException.ErrorCode.httpError.rawValue))
                         r.completion(result)
                         // some other error
                     }
