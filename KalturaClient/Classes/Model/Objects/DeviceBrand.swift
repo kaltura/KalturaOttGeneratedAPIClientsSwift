@@ -50,9 +50,9 @@ open class DeviceBrand: ObjectBase {
 			}
 		}
 		
-		public var deviceFamilyId: BaseTokenizedObject {
+		public var deviceFamilyid: BaseTokenizedObject {
 			get {
-				return self.append("deviceFamilyId") 
+				return self.append("deviceFamilyid") 
 			}
 		}
 		
@@ -68,7 +68,7 @@ open class DeviceBrand: ObjectBase {
 	/**  Device brand name  */
 	public var name: String? = nil
 	/**  Device family identifier  */
-	public var deviceFamilyId: Int64? = nil
+	public var deviceFamilyid: Int64? = nil
 	/**  Type of device family.               if this device family belongs only to this
 	  group,               otherwise.  */
 	public var type: DeviceBrandType? = nil
@@ -82,8 +82,8 @@ open class DeviceBrand: ObjectBase {
 		self.dict["name"] = name
 	}
 	
-	public func setMultiRequestToken(deviceFamilyId: String) {
-		self.dict["deviceFamilyId"] = deviceFamilyId
+	public func setMultiRequestToken(deviceFamilyid: String) {
+		self.dict["deviceFamilyid"] = deviceFamilyid
 	}
 	
 	public func setMultiRequestToken(type: String) {
@@ -99,8 +99,8 @@ open class DeviceBrand: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["deviceFamilyId"] != nil {
-			deviceFamilyId = Int64("\(dict["deviceFamilyId"]!)")
+		if dict["deviceFamilyid"] != nil {
+			deviceFamilyid = Int64("\(dict["deviceFamilyid"]!)")
 		}
 		if dict["type"] != nil {
 			type = DeviceBrandType(rawValue: "\(dict["type"]!)")
@@ -116,8 +116,8 @@ open class DeviceBrand: ObjectBase {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(deviceFamilyId != nil) {
-			dict["deviceFamilyId"] = deviceFamilyId!
+		if(deviceFamilyid != nil) {
+			dict["deviceFamilyid"] = deviceFamilyid!
 		}
 		return dict
 	}
