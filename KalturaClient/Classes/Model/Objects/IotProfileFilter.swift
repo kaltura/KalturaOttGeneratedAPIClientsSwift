@@ -34,9 +34,9 @@
  */
 
 /**  Iot settings filter  */
-open class IotProfileFilter: CrudFilter {
+open class IotProfileFilter: Filter {
 
-	public class IotProfileFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+	public class IotProfileFilterTokenizer: Filter.FilterTokenizer {
 	}
 
 

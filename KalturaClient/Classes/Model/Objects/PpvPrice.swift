@@ -56,10 +56,6 @@ open class PpvPrice: ProductPrice {
 			}
 		}
 		
-		public func fullPrice<T: Price.PriceTokenizer>() -> T {
-			return T(self.append("fullPrice"))
-		}
-		
 		public var subscriptionId: BaseTokenizedObject {
 			get {
 				return self.append("subscriptionId") 
@@ -146,8 +142,6 @@ open class PpvPrice: ProductPrice {
 	/**  Denotes whether this object is available only as part of a subscription or can
 	  be sold separately  */
 	public var isSubscriptionOnly: Bool? = nil
-	/**  The full price of the item (with no discounts)  */
-	public var fullPrice: Price? = nil
 	/**  The identifier of the relevant subscription  */
 	public var subscriptionId: String? = nil
 	/**  The identifier of the relevant collection  */
@@ -248,8 +242,6 @@ open class PpvPrice: ProductPrice {
 		if dict["isSubscriptionOnly"] != nil {
 			isSubscriptionOnly = dict["isSubscriptionOnly"] as? Bool
 		}
-		if dict["fullPrice"] != nil {
-		fullPrice = try JSONParser.parse(object: dict["fullPrice"] as! [String: Any])		}
 		if dict["subscriptionId"] != nil {
 			subscriptionId = dict["subscriptionId"] as? String
 		}
@@ -302,9 +294,6 @@ open class PpvPrice: ProductPrice {
 		}
 		if(isSubscriptionOnly != nil) {
 			dict["isSubscriptionOnly"] = isSubscriptionOnly!
-		}
-		if(fullPrice != nil) {
-			dict["fullPrice"] = fullPrice!.toDictionary()
 		}
 		if(subscriptionId != nil) {
 			dict["subscriptionId"] = subscriptionId!

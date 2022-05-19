@@ -33,4 +33,7 @@
  */
 public enum GroupByField: String {
 	case MEDIA_TYPE_ID = "media_type_id"
+	case SUPPRESSED = "suppressed"
+	case CRID = "crid"
+	case LINEAR_MEDIA_ID = "linear_media_id"
 }

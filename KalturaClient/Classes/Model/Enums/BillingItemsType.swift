@@ -38,4 +38,5 @@ public enum BillingItemsType: String {
 	case PRE_PAID = "pre_paid"
 	case PRE_PAID_EXPIRED = "pre_paid_expired"
 	case COLLECTION = "collection"
+	case PROGRAM_ASSET_GROUP_OFFER = "program_asset_group_offer"
 }

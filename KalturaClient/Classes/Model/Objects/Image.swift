@@ -55,6 +55,12 @@ open class Image: ObjectBase {
 			}
 		}
 		
+		public var imageTypeName: BaseTokenizedObject {
+			get {
+				return self.append("imageTypeName") 
+			}
+		}
+		
 		public var imageObjectId: BaseTokenizedObject {
 			get {
 				return self.append("imageObjectId") 
@@ -98,6 +104,8 @@ open class Image: ObjectBase {
 	public var version: String? = nil
 	/**  Image type ID  */
 	public var imageTypeId: Int64? = nil
+	/**  Image type Name  */
+	public var imageTypeName: String? = nil
 	/**  ID of the object the image is related to  */
 	public var imageObjectId: Int64? = nil
 	/**  Type of the object the image is related to  */
@@ -122,6 +130,10 @@ open class Image: ObjectBase {
 	
 	public func setMultiRequestToken(imageTypeId: String) {
 		self.dict["imageTypeId"] = imageTypeId
+	}
+	
+	public func setMultiRequestToken(imageTypeName: String) {
+		self.dict["imageTypeName"] = imageTypeName
 	}
 	
 	public func setMultiRequestToken(imageObjectId: String) {
@@ -160,6 +172,9 @@ open class Image: ObjectBase {
 		if dict["imageTypeId"] != nil {
 			imageTypeId = Int64("\(dict["imageTypeId"]!)")
 		}
+		if dict["imageTypeName"] != nil {
+			imageTypeName = dict["imageTypeName"] as? String
+		}
 		if dict["imageObjectId"] != nil {
 			imageObjectId = Int64("\(dict["imageObjectId"]!)")
 		}
@@ -185,6 +200,9 @@ open class Image: ObjectBase {
 		var dict: [String: Any] = super.toDictionary()
 		if(imageTypeId != nil) {
 			dict["imageTypeId"] = imageTypeId!
+		}
+		if(imageTypeName != nil) {
+			dict["imageTypeName"] = imageTypeName!
 		}
 		if(imageObjectId != nil) {
 			dict["imageObjectId"] = imageObjectId!

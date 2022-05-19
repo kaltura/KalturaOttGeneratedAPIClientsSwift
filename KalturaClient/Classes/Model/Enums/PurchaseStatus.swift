@@ -47,4 +47,6 @@ public enum PurchaseStatus: String {
 	case NOT_FOR_PURCHASE = "not_for_purchase"
 	case INVALID_CURRENCY = "invalid_currency"
 	case CURRENCY_NOT_DEFINED_ON_PRICE_CODE = "currency_not_defined_on_price_code"
+	case PENDING_ENTITLEMENT = "pending_entitlement"
+	case PROGRAM_ASSET_GROUP_OFFER_PURCHASED = "program_asset_group_offer_purchased"
 }

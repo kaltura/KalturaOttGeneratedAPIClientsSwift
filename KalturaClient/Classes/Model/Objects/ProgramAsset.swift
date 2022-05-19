@@ -91,6 +91,12 @@ open class ProgramAsset: Asset {
 				return self.append("enableTrickPlay") 
 			}
 		}
+		
+		public var externalOfferIds: BaseTokenizedObject {
+			get {
+				return self.append("externalOfferIds") 
+			}
+		}
 	}
 
 	/**  EPG channel identifier  */
@@ -103,14 +109,33 @@ open class ProgramAsset: Asset {
 	public var crid: String? = nil
 	/**  Id of linear media asset  */
 	public var linearAssetId: Int64? = nil
-	/**  Is CDVR enabled for this asset  */
+	/**  Is CDVR enabled for this asset              Please, note that value of this
+	  property is strictly connected with CDV-R setting on Partner and
+	  KalturaLiveAsset levels.              In order to enable CDV-R for
+	  KalturaProgramAsset, Partner and KalturaLiveAsset CDV-R settings should be
+	  enabled.  */
 	public var enableCdvr: Bool? = nil
-	/**  Is catch-up enabled for this asset  */
+	/**  Is catch-up enabled for this asset              Please, note that value of this
+	  property is strictly connected with Catch Up setting on Partner and
+	  KalturaLiveAsset levels.              In order to enable Catch Up for
+	  KalturaProgramAsset, Partner and KalturaLiveAsset Catch Up settings should be
+	  enabled.  */
 	public var enableCatchUp: Bool? = nil
-	/**  Is start over enabled for this asset  */
+	/**  Is start over enabled for this asset              Please, note that value of
+	  this property is strictly connected with Start Over setting on Partner and
+	  KalturaLiveAsset levels.              In order to enable Start Over for
+	  KalturaProgramAsset, Partner and KalturaLiveAsset Start Over settings should be
+	  enabled.  */
 	public var enableStartOver: Bool? = nil
-	/**  Is trick-play enabled for this asset  */
+	/**  Is trick-play enabled for this asset              Please, note that value of
+	  this property is strictly connected with Trick Play setting on Partner and
+	  KalturaLiveAsset levels.              In order to enable Trick Play for
+	  KalturaProgramAsset, Partner and KalturaLiveAsset Trick Play settings should be
+	  enabled.  */
 	public var enableTrickPlay: Bool? = nil
+	/**  Contains comma separate list of KalturaProgramAssetGroupOffer.externalOfferId
+	  values indicating the PAGOs to which the Program Asset is bound.  */
+	public var externalOfferIds: String? = nil
 
 
 	public func setMultiRequestToken(epgChannelId: String) {
@@ -149,6 +174,10 @@ open class ProgramAsset: Asset {
 		self.dict["enableTrickPlay"] = enableTrickPlay
 	}
 	
+	public func setMultiRequestToken(externalOfferIds: String) {
+		self.dict["externalOfferIds"] = externalOfferIds
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -179,6 +208,9 @@ open class ProgramAsset: Asset {
 		if dict["enableTrickPlay"] != nil {
 			enableTrickPlay = dict["enableTrickPlay"] as? Bool
 		}
+		if dict["externalOfferIds"] != nil {
+			externalOfferIds = dict["externalOfferIds"] as? String
+		}
 
 	}
 
@@ -204,6 +236,9 @@ open class ProgramAsset: Asset {
 		}
 		if(enableTrickPlay != nil) {
 			dict["enableTrickPlay"] = enableTrickPlay!
+		}
+		if(externalOfferIds != nil) {
+			dict["externalOfferIds"] = externalOfferIds!
 		}
 		return dict
 	}

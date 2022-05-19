@@ -35,6 +35,38 @@
 
 public final class PriceDetailsService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func priceDetails<T: PriceDetails.PriceDetailsTokenizer>() -> T {
+			return T(self.append("priceDetails"))
+		}
+	}
+
+	/**  Insert new PriceDetails for partner  */
+	public static func add(priceDetails: PriceDetails) -> RequestBuilder<PriceDetails, PriceDetails.PriceDetailsTokenizer, AddTokenizer> {
+		let request: RequestBuilder<PriceDetails, PriceDetails.PriceDetailsTokenizer, AddTokenizer> = RequestBuilder<PriceDetails, PriceDetails.PriceDetailsTokenizer, AddTokenizer>(service: "pricedetails", action: "add")
+			.setParam(key: "priceDetails", value: priceDetails)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete PriceDetails  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "pricedetails", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: PriceDetailsFilter.PriceDetailsFilterTokenizer>() -> T {
@@ -50,6 +82,28 @@ public final class PriceDetailsService{
 	public static func list(filter: PriceDetailsFilter?) -> RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer> = RequestBuilder<PriceDetailsListResponse, PriceDetailsListResponse.PriceDetailsListResponseTokenizer, ListTokenizer>(service: "pricedetails", action: "list")
 			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func priceDetails<T: PriceDetails.PriceDetailsTokenizer>() -> T {
+			return T(self.append("priceDetails"))
+		}
+	}
+
+	/**  update existing PriceDetails  */
+	public static func update(id: Int64, priceDetails: PriceDetails) -> RequestBuilder<PriceDetails, PriceDetails.PriceDetailsTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<PriceDetails, PriceDetails.PriceDetailsTokenizer, UpdateTokenizer> = RequestBuilder<PriceDetails, PriceDetails.PriceDetailsTokenizer, UpdateTokenizer>(service: "pricedetails", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "priceDetails", value: priceDetails)
 
 		return request
 	}

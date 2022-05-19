@@ -35,4 +35,7 @@ public enum ObjectVirtualAssetInfoType: String {
 	case SUBSCRIPTION = "Subscription"
 	case SEGMENT = "Segment"
 	case CATEGORY = "Category"
+	case TVOD = "Tvod"
+	case BOXSET = "Boxset"
+	case PAGO = "PAGO"
 }

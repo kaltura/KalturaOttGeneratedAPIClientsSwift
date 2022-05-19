@@ -35,6 +35,21 @@
 
 public final class EventNotificationService{
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: EventNotificationFilter.EventNotificationFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+	}
+
+	/**  Gets all EventNotification items for a given Object id and type  */
+	public static func list(filter: EventNotificationFilter) -> RequestBuilder<EventNotificationListResponse, EventNotificationListResponse.EventNotificationListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<EventNotificationListResponse, EventNotificationListResponse.EventNotificationListResponseTokenizer, ListTokenizer> = RequestBuilder<EventNotificationListResponse, EventNotificationListResponse.EventNotificationListResponseTokenizer, ListTokenizer>(service: "eventnotification", action: "list")
+			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
 	public class UpdateTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
@@ -53,21 +68,6 @@ public final class EventNotificationService{
 		let request: RequestBuilder<EventNotification, EventNotification.EventNotificationTokenizer, UpdateTokenizer> = RequestBuilder<EventNotification, EventNotification.EventNotificationTokenizer, UpdateTokenizer>(service: "eventnotification", action: "update")
 			.setParam(key: "id", value: id)
 			.setParam(key: "objectToUpdate", value: objectToUpdate)
-
-		return request
-	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: EventNotificationFilter.EventNotificationFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	/**  Gets all EventNotification items for a given Object id and type  */
-	public static func list(filter: EventNotificationFilter) -> RequestBuilder<EventNotificationListResponse, EventNotificationListResponse.EventNotificationListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<EventNotificationListResponse, EventNotificationListResponse.EventNotificationListResponseTokenizer, ListTokenizer> = RequestBuilder<EventNotificationListResponse, EventNotificationListResponse.EventNotificationListResponseTokenizer, ListTokenizer>(service: "eventnotification", action: "list")
-			.setParam(key: "filter", value: filter)
 
 		return request
 	}

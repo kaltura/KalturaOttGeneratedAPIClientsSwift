@@ -60,6 +60,12 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 				return self.append("endDateLessThanOrNull") 
 			}
 		}
+		
+		public var seriesIdsIn: BaseTokenizedObject {
+			get {
+				return self.append("seriesIdsIn") 
+			}
+		}
 	}
 
 	/**  The type of recordings to return  */
@@ -70,6 +76,8 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 	public var startDateGreaterThanOrNull: Int64? = nil
 	/**  end date  */
 	public var endDateLessThanOrNull: Int64? = nil
+	/**  Series to filter by  */
+	public var seriesIdsIn: String? = nil
 
 
 	public func setMultiRequestToken(recordingTypeEqual: String) {
@@ -88,6 +96,10 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 		self.dict["endDateLessThanOrNull"] = endDateLessThanOrNull
 	}
 	
+	public func setMultiRequestToken(seriesIdsIn: String) {
+		self.dict["seriesIdsIn"] = seriesIdsIn
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -102,6 +114,9 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 		}
 		if dict["endDateLessThanOrNull"] != nil {
 			endDateLessThanOrNull = Int64("\(dict["endDateLessThanOrNull"]!)")
+		}
+		if dict["seriesIdsIn"] != nil {
+			seriesIdsIn = dict["seriesIdsIn"] as? String
 		}
 
 	}
@@ -119,6 +134,9 @@ open class ScheduledRecordingProgramFilter: AssetFilter {
 		}
 		if(endDateLessThanOrNull != nil) {
 			dict["endDateLessThanOrNull"] = endDateLessThanOrNull!
+		}
+		if(seriesIdsIn != nil) {
+			dict["seriesIdsIn"] = seriesIdsIn!
 		}
 		return dict
 	}

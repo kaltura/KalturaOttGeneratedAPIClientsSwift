@@ -114,6 +114,12 @@ open class AssetStruct: ObjectBase {
 				return self.append("connectedParentMetaId") 
 			}
 		}
+		
+		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
+			}
+		}
 	}
 
 	/**  Asset Struct id  */
@@ -145,6 +151,8 @@ open class AssetStruct: ObjectBase {
 	public var connectingMetaId: Int64? = nil
 	/**  connectedParentMetaId  */
 	public var connectedParentMetaId: Int64? = nil
+	/**  Dynamic data  */
+	public var dynamicData: Dictionary<String, StringValue>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -237,6 +245,9 @@ open class AssetStruct: ObjectBase {
 		if dict["connectedParentMetaId"] != nil {
 			connectedParentMetaId = Int64("\(dict["connectedParentMetaId"]!)")
 		}
+		if dict["dynamicData"] != nil {
+			dynamicData = try JSONParser.parse(map: dict["dynamicData"] as! [String: Any])
+		}
 
 	}
 
@@ -268,6 +279,9 @@ open class AssetStruct: ObjectBase {
 		}
 		if(connectedParentMetaId != nil) {
 			dict["connectedParentMetaId"] = connectedParentMetaId!
+		}
+		if(dynamicData != nil) {
+			dict["dynamicData"] = dynamicData!.toDictionary()
 		}
 		return dict
 	}

@@ -115,6 +115,12 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 				return self.append("externalVerification") 
 			}
 		}
+		
+		public var isAsyncPolicy: BaseTokenizedObject {
+			get {
+				return self.append("isAsyncPolicy") 
+			}
+		}
 	}
 
 	/**  Payment gateway is active status  */
@@ -143,6 +149,8 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 	public var renewStartMinutes: Int? = nil
 	/**  Payment gateway external verification  */
 	public var externalVerification: Bool? = nil
+	/**  Payment gateway - Support asynchronous purchase  */
+	public var isAsyncPolicy: Bool? = nil
 
 
 	public func setMultiRequestToken(isActive: String) {
@@ -193,6 +201,10 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 		self.dict["externalVerification"] = externalVerification
 	}
 	
+	public func setMultiRequestToken(isAsyncPolicy: String) {
+		self.dict["isAsyncPolicy"] = isAsyncPolicy
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -234,6 +246,9 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 		}
 		if dict["externalVerification"] != nil {
 			externalVerification = dict["externalVerification"] as? Bool
+		}
+		if dict["isAsyncPolicy"] != nil {
+			isAsyncPolicy = dict["isAsyncPolicy"] as? Bool
 		}
 
 	}
@@ -278,6 +293,9 @@ open class PaymentGatewayProfile: PaymentGatewayBaseProfile {
 		}
 		if(externalVerification != nil) {
 			dict["externalVerification"] = externalVerification!
+		}
+		if(isAsyncPolicy != nil) {
+			dict["isAsyncPolicy"] = isAsyncPolicy!
 		}
 		return dict
 	}

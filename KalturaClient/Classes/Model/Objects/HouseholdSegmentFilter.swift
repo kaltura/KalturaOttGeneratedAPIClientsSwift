@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class HouseholdSegmentFilter: CrudFilter {
+open class HouseholdSegmentFilter: Filter {
 
-	public class HouseholdSegmentFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+	public class HouseholdSegmentFilterTokenizer: Filter.FilterTokenizer {
 		
 		public var kSql: BaseTokenizedObject {
 			get {

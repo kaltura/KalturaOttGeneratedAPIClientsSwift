@@ -34,9 +34,9 @@
  */
 
 /**  Household Coupon details  */
-open class EventNotification: CrudObject {
+open class EventNotification: OTTObjectSupportNullable {
 
-	public class EventNotificationTokenizer: CrudObject.CrudObjectTokenizer {
+	public class EventNotificationTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {

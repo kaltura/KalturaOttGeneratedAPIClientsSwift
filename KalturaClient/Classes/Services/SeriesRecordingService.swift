@@ -177,4 +177,21 @@ public final class SeriesRecordingService{
 
 		return request
 	}
+
+	public class RebookCanceledByEpgIdTokenizer: ClientTokenizer  {
+		
+		public var epgId: BaseTokenizedObject {
+			get {
+				return self.append("epgId") 
+			}
+		}
+	}
+
+	/**  Enable EPG recording that was canceled as part of series  */
+	public static func rebookCanceledByEpgId(epgId: Int64) -> RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, RebookCanceledByEpgIdTokenizer> {
+		let request: RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, RebookCanceledByEpgIdTokenizer> = RequestBuilder<SeriesRecording, SeriesRecording.SeriesRecordingTokenizer, RebookCanceledByEpgIdTokenizer>(service: "seriesrecording", action: "rebookCanceledByEpgId")
+			.setParam(key: "epgId", value: epgId)
+
+		return request
+	}
 }

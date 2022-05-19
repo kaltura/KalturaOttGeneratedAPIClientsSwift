@@ -54,6 +54,12 @@ open class AssetFileContext: ObjectBase {
 				return self.append("isOfflinePlayBack") 
 			}
 		}
+		
+		public var isLivePlayBack: BaseTokenizedObject {
+			get {
+				return self.append("isLivePlayBack") 
+			}
+		}
 	}
 
 	/**  viewLifeCycle  */
@@ -62,6 +68,8 @@ open class AssetFileContext: ObjectBase {
 	public var fullLifeCycle: String? = nil
 	/**  isOfflinePlayBack  */
 	public var isOfflinePlayBack: Bool? = nil
+	/**  Is Live PlayBack  */
+	public var isLivePlayBack: Bool? = nil
 
 
 	public func setMultiRequestToken(viewLifeCycle: String) {
@@ -76,6 +84,10 @@ open class AssetFileContext: ObjectBase {
 		self.dict["isOfflinePlayBack"] = isOfflinePlayBack
 	}
 	
+	public func setMultiRequestToken(isLivePlayBack: String) {
+		self.dict["isLivePlayBack"] = isLivePlayBack
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -87,6 +99,9 @@ open class AssetFileContext: ObjectBase {
 		}
 		if dict["isOfflinePlayBack"] != nil {
 			isOfflinePlayBack = dict["isOfflinePlayBack"] as? Bool
+		}
+		if dict["isLivePlayBack"] != nil {
+			isLivePlayBack = dict["isLivePlayBack"] as? Bool
 		}
 
 	}

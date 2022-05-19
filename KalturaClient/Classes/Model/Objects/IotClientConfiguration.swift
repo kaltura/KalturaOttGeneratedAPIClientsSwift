@@ -57,6 +57,12 @@ open class IotClientConfiguration: ObjectBase {
 				return self.append("json") 
 			}
 		}
+		
+		public var topics: BaseTokenizedObject {
+			get {
+				return self.append("topics") 
+			}
+		}
 	}
 
 	/**  announcementTopic  */
@@ -67,6 +73,8 @@ open class IotClientConfiguration: ObjectBase {
 	public var cognitoUserPool: CognitoUserPool? = nil
 	/**  json  */
 	public var json: String? = nil
+	/**  topics  */
+	public var topics: String? = nil
 
 
 	public func setMultiRequestToken(announcementTopic: String) {
@@ -75,6 +83,10 @@ open class IotClientConfiguration: ObjectBase {
 	
 	public func setMultiRequestToken(json: String) {
 		self.dict["json"] = json
+	}
+	
+	public func setMultiRequestToken(topics: String) {
+		self.dict["topics"] = topics
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -89,6 +101,9 @@ open class IotClientConfiguration: ObjectBase {
 		cognitoUserPool = try JSONParser.parse(object: dict["cognitoUserPool"] as! [String: Any])		}
 		if dict["json"] != nil {
 			json = dict["json"] as? String
+		}
+		if dict["topics"] != nil {
+			topics = dict["topics"] as? String
 		}
 
 	}
@@ -106,6 +121,9 @@ open class IotClientConfiguration: ObjectBase {
 		}
 		if(json != nil) {
 			dict["json"] = json!
+		}
+		if(topics != nil) {
+			dict["topics"] = topics!
 		}
 		return dict
 	}

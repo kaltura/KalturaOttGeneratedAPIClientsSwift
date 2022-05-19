@@ -159,11 +159,20 @@ open class LiveAsset: MediaAsset {
 	public var externalEpgIngestId: String? = nil
 	/**  External identifier for the CDVR  */
 	public var externalCdvrId: String? = nil
-	/**  Is CDVR enabled for this asset  */
+	/**  Is CDVR enabled for this asset              Please, note that value of this
+	  property is strictly connected with CDV-R setting on Partner level.             
+	  In order to enable CDV-R for KalturaLiveAsset, Partner CDV-R setting should be
+	  enabled.  */
 	public var enableCdvr: Bool? = nil
-	/**  Is catch-up enabled for this asset  */
+	/**  Is catch-up enabled for this asset              Please, note that value of this
+	  property is strictly connected with Catch Up setting on Partner level.          
+	     In order to enable Catch Up for KalturaLiveAsset, Partner Catch Up setting
+	  should be enabled.  */
 	public var enableCatchUp: Bool? = nil
-	/**  Is start over enabled for this asset  */
+	/**  Is start over enabled for this asset              Please, note that value of
+	  this property is strictly connected with Start Over setting on Partner level.   
+	            In order to enable Start Over for KalturaLiveAsset, Partner Start Over
+	  setting should be enabled.  */
 	public var enableStartOver: Bool? = nil
 	/**  summed Catch-up buffer, the TimeShiftedTvPartnerSettings are also taken into
 	  consideration  */
@@ -173,7 +182,10 @@ open class LiveAsset: MediaAsset {
 	public var trickPlayBuffer: Int64? = nil
 	/**  Is recording playback for non entitled channel enabled for this asset  */
 	public var enableRecordingPlaybackNonEntitledChannel: Bool? = nil
-	/**  Is trick-play enabled for this asset  */
+	/**  Is trick-play enabled for this asset              Please, note that value of
+	  this property is strictly connected with Trick Play setting on Partner level.   
+	            In order to enable Trick Play for KalturaLiveAsset, Partner Trick Play
+	  setting should be enabled.  */
 	public var enableTrickPlay: Bool? = nil
 	/**  channel type, possible values: UNKNOWN, DTT, OTT, DTT_AND_OTT  */
 	public var channelType: LinearChannelType? = nil

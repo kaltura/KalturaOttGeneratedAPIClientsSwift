@@ -79,6 +79,18 @@ open class MediaImage: ObjectBase {
 				return self.append("isDefault") 
 			}
 		}
+		
+		public var imageTypeId: BaseTokenizedObject {
+			get {
+				return self.append("imageTypeId") 
+			}
+		}
+		
+		public var imageTypeName: BaseTokenizedObject {
+			get {
+				return self.append("imageTypeName") 
+			}
+		}
 	}
 
 	/**  Image aspect ratio  */
@@ -95,6 +107,10 @@ open class MediaImage: ObjectBase {
 	public var id: String? = nil
 	/**  Determined whether image was taken from default configuration or not  */
 	public var isDefault: Bool? = nil
+	/**  Image type identifier  */
+	public var imageTypeId: Int64? = nil
+	/**  Image type Name  */
+	public var imageTypeName: String? = nil
 
 
 	public func setMultiRequestToken(ratio: String) {
@@ -125,6 +141,14 @@ open class MediaImage: ObjectBase {
 		self.dict["isDefault"] = isDefault
 	}
 	
+	public func setMultiRequestToken(imageTypeId: String) {
+		self.dict["imageTypeId"] = imageTypeId
+	}
+	
+	public func setMultiRequestToken(imageTypeName: String) {
+		self.dict["imageTypeName"] = imageTypeName
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -149,6 +173,12 @@ open class MediaImage: ObjectBase {
 		if dict["isDefault"] != nil {
 			isDefault = dict["isDefault"] as? Bool
 		}
+		if dict["imageTypeId"] != nil {
+			imageTypeId = Int64("\(dict["imageTypeId"]!)")
+		}
+		if dict["imageTypeName"] != nil {
+			imageTypeName = dict["imageTypeName"] as? String
+		}
 
 	}
 
@@ -171,6 +201,12 @@ open class MediaImage: ObjectBase {
 		}
 		if(isDefault != nil) {
 			dict["isDefault"] = isDefault!
+		}
+		if(imageTypeId != nil) {
+			dict["imageTypeId"] = imageTypeId!
+		}
+		if(imageTypeName != nil) {
+			dict["imageTypeName"] = imageTypeName!
 		}
 		return dict
 	}

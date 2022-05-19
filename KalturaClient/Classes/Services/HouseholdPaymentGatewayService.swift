@@ -137,12 +137,23 @@ public final class HouseholdPaymentGatewayService{
 				return self.append("paymentGatewayId") 
 			}
 		}
+		
+		public var adapterData: ArrayTokenizedObject<KeyValue.KeyValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<KeyValue.KeyValueTokenizer>(self.append("adapterData"))
+			} 
+		}
+	}
+
+	public static func resume(paymentGatewayId: Int) -> NullRequestBuilder<ResumeTokenizer> {
+		return resume(paymentGatewayId: paymentGatewayId, adapterData: nil)
 	}
 
 	/**  Resumes all the entitlements of the given payment gateway  */
-	public static func resume(paymentGatewayId: Int) -> NullRequestBuilder<ResumeTokenizer> {
+	public static func resume(paymentGatewayId: Int, adapterData: Array<KeyValue>?) -> NullRequestBuilder<ResumeTokenizer> {
 		let request: NullRequestBuilder<ResumeTokenizer> = NullRequestBuilder<ResumeTokenizer>(service: "householdpaymentgateway", action: "resume")
 			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "adapterData", value: adapterData)
 
 		return request
 	}
@@ -179,12 +190,21 @@ public final class HouseholdPaymentGatewayService{
 				return self.append("paymentGatewayId") 
 			}
 		}
+		
+		public func suspendSettings<T: SuspendSettings.SuspendSettingsTokenizer>() -> T {
+			return T(self.append("suspendSettings"))
+		}
+	}
+
+	public static func suspend(paymentGatewayId: Int) -> NullRequestBuilder<SuspendTokenizer> {
+		return suspend(paymentGatewayId: paymentGatewayId, suspendSettings: nil)
 	}
 
 	/**  Suspends all the entitlements of the given payment gateway  */
-	public static func suspend(paymentGatewayId: Int) -> NullRequestBuilder<SuspendTokenizer> {
+	public static func suspend(paymentGatewayId: Int, suspendSettings: SuspendSettings?) -> NullRequestBuilder<SuspendTokenizer> {
 		let request: NullRequestBuilder<SuspendTokenizer> = NullRequestBuilder<SuspendTokenizer>(service: "householdpaymentgateway", action: "suspend")
 			.setParam(key: "paymentGatewayId", value: paymentGatewayId)
+			.setParam(key: "suspendSettings", value: suspendSettings)
 
 		return request
 	}

@@ -123,6 +123,23 @@ public final class OttUserService{
 		return request
 	}
 
+	public class DeleteDynamicDataTokenizer: ClientTokenizer  {
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+	}
+
+	/**  Deletes dynamic data item for a user.  */
+	public static func deleteDynamicData(key: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteDynamicDataTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteDynamicDataTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteDynamicDataTokenizer>(service: "ottuser", action: "deleteDynamicData")
+			.setParam(key: "key", value: key)
+
+		return request
+	}
+
 	public class GetTokenizer: ClientTokenizer  {
 	}
 
@@ -249,6 +266,12 @@ public final class OttUserService{
 				return self.append("secret") 
 			}
 		}
+		
+		public var extraParams: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("extraParams"))
+			}
+		}
 	}
 
 	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
@@ -259,23 +282,39 @@ public final class OttUserService{
 		return loginWithPin(partnerId: partnerId, pin: pin, udid: udid, secret: nil)
 	}
 
-	/**  User sign-in via a time-expired sign-in PIN.  */
 	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, secret: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		return loginWithPin(partnerId: partnerId, pin: pin, udid: udid, secret: secret, extraParams: nil)
+	}
+
+	/**  User sign-in via a time-expired sign-in PIN.  */
+	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, secret: String?, extraParams: Dictionary<String, StringValue>?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "ottuser", action: "loginWithPin")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "pin", value: pin)
 			.setParam(key: "udid", value: udid)
 			.setParam(key: "secret", value: secret)
+			.setParam(key: "extraParams", value: extraParams)
 
 		return request
 	}
 
 	public class LogoutTokenizer: ClientTokenizer  {
+		
+		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
+			}
+		}
+	}
+
+	public static func logout() -> RequestBuilder<Bool, BaseTokenizedObject, LogoutTokenizer> {
+		return logout(adapterData: nil)
 	}
 
 	/**  Logout the calling user.  */
-	public static func logout() -> RequestBuilder<Bool, BaseTokenizedObject, LogoutTokenizer> {
+	public static func logout(adapterData: Dictionary<String, StringValue>?) -> RequestBuilder<Bool, BaseTokenizedObject, LogoutTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, LogoutTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, LogoutTokenizer>(service: "ottuser", action: "logout")
+			.setParam(key: "adapterData", value: adapterData)
 
 		return request
 	}
@@ -439,7 +478,9 @@ public final class OttUserService{
 		}
 	}
 
-	/**  Update user dynamic data  */
+	/**  Update user dynamic data. If it is needed to update several items, use a
+	  multi-request to avoid race conditions.              This API endpoint will
+	  deprecated soon. Please use UpsertDynamicData instead of it.  */
 	public static func updateDynamicData(key: String, value: StringValue) -> RequestBuilder<OTTUserDynamicData, OTTUserDynamicData.OTTUserDynamicDataTokenizer, UpdateDynamicDataTokenizer> {
 		let request: RequestBuilder<OTTUserDynamicData, OTTUserDynamicData.OTTUserDynamicDataTokenizer, UpdateDynamicDataTokenizer> = RequestBuilder<OTTUserDynamicData, OTTUserDynamicData.OTTUserDynamicDataTokenizer, UpdateDynamicDataTokenizer>(service: "ottuser", action: "updateDynamicData")
 			.setParam(key: "key", value: key)
@@ -499,6 +540,29 @@ public final class OttUserService{
 		let request: NullRequestBuilder<UpdatePasswordTokenizer> = NullRequestBuilder<UpdatePasswordTokenizer>(service: "ottuser", action: "updatePassword")
 			.setParam(key: "userId", value: userId)
 			.setParam(key: "password", value: password)
+
+		return request
+	}
+
+	public class UpsertDynamicDataTokenizer: ClientTokenizer  {
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+		
+		public func value<T: StringValue.StringValueTokenizer>() -> T {
+			return T(self.append("value"))
+		}
+	}
+
+	/**  Adds or updates dynamic data item for a user. If it is needed to update several
+	  items, use a multi-request to avoid race conditions.  */
+	public static func upsertDynamicData(key: String, value: StringValue) -> RequestBuilder<DynamicData, DynamicData.DynamicDataTokenizer, UpsertDynamicDataTokenizer> {
+		let request: RequestBuilder<DynamicData, DynamicData.DynamicDataTokenizer, UpsertDynamicDataTokenizer> = RequestBuilder<DynamicData, DynamicData.DynamicDataTokenizer, UpsertDynamicDataTokenizer>(service: "ottuser", action: "upsertDynamicData")
+			.setParam(key: "key", value: key)
+			.setParam(key: "value", value: value)
 
 		return request
 	}

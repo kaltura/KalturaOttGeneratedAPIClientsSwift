@@ -34,9 +34,9 @@
  */
 
 /**  Filtering Asset Structs  */
-open class AssetStructFilter: Filter {
+open class AssetStructFilter: BaseAssetStructFilter {
 
-	public class AssetStructFilterTokenizer: Filter.FilterTokenizer {
+	public class AssetStructFilterTokenizer: BaseAssetStructFilter.BaseAssetStructFilterTokenizer {
 		
 		public var idIn: BaseTokenizedObject {
 			get {
@@ -55,6 +55,12 @@ open class AssetStructFilter: Filter {
 				return self.append("isProtectedEqual") 
 			}
 		}
+		
+		public var objectVirtualAssetInfoTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("objectVirtualAssetInfoTypeEqual") 
+			}
+		}
 	}
 
 	/**  Comma separated identifiers, id = 0 is identified as program AssetStruct  */
@@ -63,6 +69,8 @@ open class AssetStructFilter: Filter {
 	public var metaIdEqual: Int64? = nil
 	/**  Filter Asset Structs by isProtectedEqual value  */
 	public var isProtectedEqual: Bool? = nil
+	/**  Filter Asset Structs by object virtual asset info type value  */
+	public var objectVirtualAssetInfoTypeEqual: ObjectVirtualAssetInfoType? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
@@ -77,6 +85,10 @@ open class AssetStructFilter: Filter {
 		self.dict["isProtectedEqual"] = isProtectedEqual
 	}
 	
+	public func setMultiRequestToken(objectVirtualAssetInfoTypeEqual: String) {
+		self.dict["objectVirtualAssetInfoTypeEqual"] = objectVirtualAssetInfoTypeEqual
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +100,9 @@ open class AssetStructFilter: Filter {
 		}
 		if dict["isProtectedEqual"] != nil {
 			isProtectedEqual = dict["isProtectedEqual"] as? Bool
+		}
+		if dict["objectVirtualAssetInfoTypeEqual"] != nil {
+			objectVirtualAssetInfoTypeEqual = ObjectVirtualAssetInfoType(rawValue: "\(dict["objectVirtualAssetInfoTypeEqual"]!)")
 		}
 
 	}
@@ -102,6 +117,9 @@ open class AssetStructFilter: Filter {
 		}
 		if(isProtectedEqual != nil) {
 			dict["isProtectedEqual"] = isProtectedEqual!
+		}
+		if(objectVirtualAssetInfoTypeEqual != nil) {
+			dict["objectVirtualAssetInfoTypeEqual"] = objectVirtualAssetInfoTypeEqual!.rawValue
 		}
 		return dict
 	}

@@ -86,4 +86,37 @@ public final class CategoryTreeService{
 
 		return request
 	}
+
+	public class GetByVersionTokenizer: ClientTokenizer  {
+		
+		public var versionId: BaseTokenizedObject {
+			get {
+				return self.append("versionId") 
+			}
+		}
+		
+		public var deviceFamilyId: BaseTokenizedObject {
+			get {
+				return self.append("deviceFamilyId") 
+			}
+		}
+	}
+
+	public static func getByVersion() -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetByVersionTokenizer> {
+		return getByVersion(versionId: nil)
+	}
+
+	public static func getByVersion(versionId: Int64?) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetByVersionTokenizer> {
+		return getByVersion(versionId: versionId, deviceFamilyId: nil)
+	}
+
+	/**  Retrieve default category tree of deviceFamilyId by KS or specific one if
+	  versionId is set.  */
+	public static func getByVersion(versionId: Int64?, deviceFamilyId: Int?) -> RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetByVersionTokenizer> {
+		let request: RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetByVersionTokenizer> = RequestBuilder<CategoryTree, CategoryTree.CategoryTreeTokenizer, GetByVersionTokenizer>(service: "categorytree", action: "getByVersion")
+			.setParam(key: "versionId", value: versionId)
+			.setParam(key: "deviceFamilyId", value: deviceFamilyId)
+
+		return request
+	}
 }

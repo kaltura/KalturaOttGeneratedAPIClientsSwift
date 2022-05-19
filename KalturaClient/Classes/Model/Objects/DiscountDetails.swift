@@ -67,6 +67,18 @@ open class DiscountDetails: ObjectBase {
 				return self.append("endDate") 
 			}
 		}
+		
+		public var whenAlgoTimes: BaseTokenizedObject {
+			get {
+				return self.append("whenAlgoTimes") 
+			}
+		}
+		
+		public var whenAlgoType: BaseTokenizedObject {
+			get {
+				return self.append("whenAlgoType") 
+			}
+		}
 	}
 
 	/**  The discount ID  */
@@ -79,6 +91,10 @@ open class DiscountDetails: ObjectBase {
 	public var startDate: Int64? = nil
 	/**  End date represented as epoch  */
 	public var endDate: Int64? = nil
+	/**  End date represented as epoch  */
+	public var whenAlgoTimes: Int? = nil
+	/**  End date represented as epoch  */
+	public var whenAlgoType: Int? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -95,6 +111,14 @@ open class DiscountDetails: ObjectBase {
 	
 	public func setMultiRequestToken(endDate: String) {
 		self.dict["endDate"] = endDate
+	}
+	
+	public func setMultiRequestToken(whenAlgoTimes: String) {
+		self.dict["whenAlgoTimes"] = whenAlgoTimes
+	}
+	
+	public func setMultiRequestToken(whenAlgoType: String) {
+		self.dict["whenAlgoType"] = whenAlgoType
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -115,6 +139,12 @@ open class DiscountDetails: ObjectBase {
 		if dict["endDate"] != nil {
 			endDate = Int64("\(dict["endDate"]!)")
 		}
+		if dict["whenAlgoTimes"] != nil {
+			whenAlgoTimes = dict["whenAlgoTimes"] as? Int
+		}
+		if dict["whenAlgoType"] != nil {
+			whenAlgoType = dict["whenAlgoType"] as? Int
+		}
 
 	}
 
@@ -131,6 +161,12 @@ open class DiscountDetails: ObjectBase {
 		}
 		if(endDate != nil) {
 			dict["endDate"] = endDate!
+		}
+		if(whenAlgoTimes != nil) {
+			dict["whenAlgoTimes"] = whenAlgoTimes!
+		}
+		if(whenAlgoType != nil) {
+			dict["whenAlgoType"] = whenAlgoType!
 		}
 		return dict
 	}

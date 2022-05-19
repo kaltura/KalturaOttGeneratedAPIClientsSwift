@@ -102,6 +102,12 @@ public final class AssetFileService{
 				return self.append("tokenizedUrl") 
 			}
 		}
+		
+		public var isAltUrl: BaseTokenizedObject {
+			get {
+				return self.append("isAltUrl") 
+			}
+		}
 	}
 
 	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType) -> RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> {
@@ -112,8 +118,12 @@ public final class AssetFileService{
 		return playManifest(partnerId: partnerId, assetId: assetId, assetType: assetType, assetFileId: assetFileId, contextType: contextType, ks: ks, tokenizedUrl: nil)
 	}
 
-	/**  Redirects to play manifest  */
 	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?, tokenizedUrl: String?) -> RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> {
+		return playManifest(partnerId: partnerId, assetId: assetId, assetType: assetType, assetFileId: assetFileId, contextType: contextType, ks: ks, tokenizedUrl: tokenizedUrl, isAltUrl: false)
+	}
+
+	/**  Redirects to play manifest  */
+	public static func playManifest(partnerId: Int, assetId: String, assetType: AssetType, assetFileId: Int64, contextType: PlaybackContextType, ks: String?, tokenizedUrl: String?, isAltUrl: Bool?) -> RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> {
 		let request: RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer> = RequestBuilder<AssetFile, AssetFile.AssetFileTokenizer, PlayManifestTokenizer>(service: "assetfile", action: "playManifest")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "assetId", value: assetId)
@@ -122,6 +132,7 @@ public final class AssetFileService{
 			.setParam(key: "contextType", value: contextType.rawValue)
 			.setParam(key: "ks", value: ks)
 			.setParam(key: "tokenizedUrl", value: tokenizedUrl)
+			.setParam(key: "isAltUrl", value: isAltUrl)
 
 		return request
 	}

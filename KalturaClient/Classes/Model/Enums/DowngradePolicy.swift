@@ -34,4 +34,5 @@
 public enum DowngradePolicy: String {
 	case LIFO = "LIFO"
 	case FIFO = "FIFO"
+	case ACTIVE_DATE = "ACTIVE_DATE"
 }

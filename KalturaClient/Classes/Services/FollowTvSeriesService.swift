@@ -60,9 +60,7 @@ public final class FollowTvSeriesService{
 		}
 	}
 
-	/**  Delete a user&amp;#39;s tv series follow.              Possible status codes:
-	  UserNotFollowing = 8012, NotFound = 500007, InvalidAssetId = 4024,
-	  AnnouncementNotFound = 8006  */
+	/**  Delete a user&amp;#39;s tv series follow.  */
 	public static func delete(assetId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "followtvseries", action: "delete")
 			.setParam(key: "assetId", value: assetId)

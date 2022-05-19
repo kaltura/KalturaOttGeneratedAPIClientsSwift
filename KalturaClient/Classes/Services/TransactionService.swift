@@ -73,8 +73,9 @@ public final class TransactionService{
 		}
 	}
 
-	/**  Purchase specific product or subscription for a household. Upon successful
-	  charge entitlements to use the requested product or subscription are granted.  */
+	/**  Purchase specific product, subscription or Program asset group offer (PAGO) for
+	  a household. Upon successful charge entitlements to use the requested product or
+	  subscription are granted.  */
 	public static func purchase(purchase_: Purchase) -> RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer> {
 		let request: RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer> = RequestBuilder<Transaction, Transaction.TransactionTokenizer, PurchaseTokenizer>(service: "transaction", action: "purchase")
 			.setParam(key: "purchase", value: purchase_)

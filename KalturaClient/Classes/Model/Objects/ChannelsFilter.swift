@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class ChannelsFilter: Filter {
+open class ChannelsFilter: ChannelsBaseFilter {
 
-	public class ChannelsFilterTokenizer: Filter.FilterTokenizer {
+	public class ChannelsFilterTokenizer: ChannelsBaseFilter.ChannelsBaseFilterTokenizer {
 		
 		public var idEqual: BaseTokenizedObject {
 			get {

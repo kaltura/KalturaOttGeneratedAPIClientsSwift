@@ -60,6 +60,18 @@ open class PlaybackSource: MediaFile {
 				return self.append("isTokenized") 
 			}
 		}
+		
+		public var businessModuleId: BaseTokenizedObject {
+			get {
+				return self.append("businessModuleId") 
+			}
+		}
+		
+		public var businessModuleType: BaseTokenizedObject {
+			get {
+				return self.append("businessModuleType") 
+			}
+		}
 	}
 
 	/**  Source format according to delivery profile streamer type (applehttp, mpegdash
@@ -72,6 +84,10 @@ open class PlaybackSource: MediaFile {
 	public var drm: Array<DrmPlaybackPluginData>? = nil
 	/**  Is Tokenized  */
 	public var isTokenized: Bool? = nil
+	/**  Business Module Id  */
+	public var businessModuleId: Int? = nil
+	/**  Business Module Type  */
+	public var businessModuleType: TransactionType? = nil
 
 
 	public func setMultiRequestToken(format: String) {
@@ -84,6 +100,14 @@ open class PlaybackSource: MediaFile {
 	
 	public func setMultiRequestToken(isTokenized: String) {
 		self.dict["isTokenized"] = isTokenized
+	}
+	
+	public func setMultiRequestToken(businessModuleId: String) {
+		self.dict["businessModuleId"] = businessModuleId
+	}
+	
+	public func setMultiRequestToken(businessModuleType: String) {
+		self.dict["businessModuleType"] = businessModuleType
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -100,6 +124,12 @@ open class PlaybackSource: MediaFile {
 		}
 		if dict["isTokenized"] != nil {
 			isTokenized = dict["isTokenized"] as? Bool
+		}
+		if dict["businessModuleId"] != nil {
+			businessModuleId = dict["businessModuleId"] as? Int
+		}
+		if dict["businessModuleType"] != nil {
+			businessModuleType = TransactionType(rawValue: "\(dict["businessModuleType"]!)")
 		}
 
 	}

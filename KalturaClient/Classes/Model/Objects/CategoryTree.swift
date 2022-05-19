@@ -97,6 +97,30 @@ open class CategoryTree: ObjectBase {
 				return self.append("endDateInSeconds") 
 			}
 		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var versionId: BaseTokenizedObject {
+			get {
+				return self.append("versionId") 
+			}
+		}
+		
+		public var virtualAssetId: BaseTokenizedObject {
+			get {
+				return self.append("virtualAssetId") 
+			}
+		}
+		
+		public var referenceId: BaseTokenizedObject {
+			get {
+				return self.append("referenceId") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the category item  */
@@ -119,6 +143,14 @@ open class CategoryTree: ObjectBase {
 	public var startDateInSeconds: Int64? = nil
 	/**  End date in seconds  */
 	public var endDateInSeconds: Int64? = nil
+	/**  Category type  */
+	public var type: String? = nil
+	/**  Unique identifier for the category version  */
+	public var versionId: Int64? = nil
+	/**  Virtual asset id  */
+	public var virtualAssetId: Int64? = nil
+	/**  Category reference identifier  */
+	public var referenceId: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -139,6 +171,22 @@ open class CategoryTree: ObjectBase {
 	
 	public func setMultiRequestToken(endDateInSeconds: String) {
 		self.dict["endDateInSeconds"] = endDateInSeconds
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(versionId: String) {
+		self.dict["versionId"] = versionId
+	}
+	
+	public func setMultiRequestToken(virtualAssetId: String) {
+		self.dict["virtualAssetId"] = virtualAssetId
+	}
+	
+	public func setMultiRequestToken(referenceId: String) {
+		self.dict["referenceId"] = referenceId
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -174,6 +222,18 @@ open class CategoryTree: ObjectBase {
 		if dict["endDateInSeconds"] != nil {
 			endDateInSeconds = Int64("\(dict["endDateInSeconds"]!)")
 		}
+		if dict["type"] != nil {
+			type = dict["type"] as? String
+		}
+		if dict["versionId"] != nil {
+			versionId = Int64("\(dict["versionId"]!)")
+		}
+		if dict["virtualAssetId"] != nil {
+			virtualAssetId = Int64("\(dict["virtualAssetId"]!)")
+		}
+		if dict["referenceId"] != nil {
+			referenceId = dict["referenceId"] as? String
+		}
 
 	}
 
@@ -199,6 +259,9 @@ open class CategoryTree: ObjectBase {
 		}
 		if(endDateInSeconds != nil) {
 			dict["endDateInSeconds"] = endDateInSeconds!
+		}
+		if(type != nil) {
+			dict["type"] = type!
 		}
 		return dict
 	}

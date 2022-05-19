@@ -35,6 +35,38 @@
 
 public final class HouseholdLimitationsService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func householdLimitations<T: HouseholdLimitations.HouseholdLimitationsTokenizer>() -> T {
+			return T(self.append("householdLimitations"))
+		}
+	}
+
+	/**  Add household limitation  */
+	public static func add(householdLimitations: HouseholdLimitations) -> RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, AddTokenizer> {
+		let request: RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, AddTokenizer> = RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, AddTokenizer>(service: "householdlimitations", action: "add")
+			.setParam(key: "householdLimitations", value: householdLimitations)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var householdLimitationsId: BaseTokenizedObject {
+			get {
+				return self.append("householdLimitationsId") 
+			}
+		}
+	}
+
+	/**  Delete household limitation  */
+	public static func delete(householdLimitationsId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "householdlimitations", action: "delete")
+			.setParam(key: "householdLimitationsId", value: householdLimitationsId)
+
+		return request
+	}
+
 	public class GetTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
@@ -52,12 +84,51 @@ public final class HouseholdLimitationsService{
 		return request
 	}
 
+	public class IsUsedTokenizer: ClientTokenizer  {
+		
+		public var dlmId: BaseTokenizedObject {
+			get {
+				return self.append("dlmId") 
+			}
+		}
+	}
+
+	/**  Checks if the DLM is used  */
+	public static func isUsed(dlmId: Int) -> RequestBuilder<Bool, BaseTokenizedObject, IsUsedTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, IsUsedTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, IsUsedTokenizer>(service: "householdlimitations", action: "isUsed")
+			.setParam(key: "dlmId", value: dlmId)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 	}
 
 	/**  Get the list of PartnerConfiguration  */
 	public static func list() -> RequestBuilder<HouseholdLimitationsListResponse, HouseholdLimitationsListResponse.HouseholdLimitationsListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<HouseholdLimitationsListResponse, HouseholdLimitationsListResponse.HouseholdLimitationsListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdLimitationsListResponse, HouseholdLimitationsListResponse.HouseholdLimitationsListResponseTokenizer, ListTokenizer>(service: "householdlimitations", action: "list")
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var dlmId: BaseTokenizedObject {
+			get {
+				return self.append("dlmId") 
+			}
+		}
+		
+		public func householdLimitation<T: HouseholdLimitations.HouseholdLimitationsTokenizer>() -> T {
+			return T(self.append("householdLimitation"))
+		}
+	}
+
+	/**  Updates household limitation  */
+	public static func update(dlmId: Int, householdLimitation: HouseholdLimitations) -> RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, UpdateTokenizer> = RequestBuilder<HouseholdLimitations, HouseholdLimitations.HouseholdLimitationsTokenizer, UpdateTokenizer>(service: "householdlimitations", action: "update")
+			.setParam(key: "dlmId", value: dlmId)
+			.setParam(key: "householdLimitation", value: householdLimitation)
 
 		return request
 	}

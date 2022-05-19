@@ -42,32 +42,10 @@ public final class PasswordPolicyService{
 		}
 	}
 
-	/**  Add an object  */
+	/**  Add new KalturaPasswordPolicy  */
 	public static func add(objectToAdd: PasswordPolicy) -> RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, AddTokenizer> {
 		let request: RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, AddTokenizer> = RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, AddTokenizer>(service: "passwordpolicy", action: "add")
 			.setParam(key: "objectToAdd", value: objectToAdd)
-
-		return request
-	}
-
-	public class UpdateTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
-		public func objectToUpdate<T: PasswordPolicy.PasswordPolicyTokenizer>() -> T {
-			return T(self.append("objectToUpdate"))
-		}
-	}
-
-	/**  Update an object  */
-	public static func update(id: Int64, objectToUpdate: PasswordPolicy) -> RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, UpdateTokenizer> {
-		let request: RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, UpdateTokenizer> = RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, UpdateTokenizer>(service: "passwordpolicy", action: "update")
-			.setParam(key: "id", value: id)
-			.setParam(key: "objectToUpdate", value: objectToUpdate)
 
 		return request
 	}
@@ -81,7 +59,7 @@ public final class PasswordPolicyService{
 		}
 	}
 
-	/**  Delete an object  */
+	/**  Delete existing PasswordPolicy  */
 	public static func delete(id: Int64) -> NullRequestBuilder<DeleteTokenizer> {
 		let request: NullRequestBuilder<DeleteTokenizer> = NullRequestBuilder<DeleteTokenizer>(service: "passwordpolicy", action: "delete")
 			.setParam(key: "id", value: id)
@@ -100,9 +78,32 @@ public final class PasswordPolicyService{
 		return list(filter: nil)
 	}
 
+	/**  Returns the list of available KalturaPasswordPolicy  */
 	public static func list(filter: PasswordPolicyFilter?) -> RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer> = RequestBuilder<PasswordPolicyListResponse, PasswordPolicyListResponse.PasswordPolicyListResponseTokenizer, ListTokenizer>(service: "passwordpolicy", action: "list")
 			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func objectToUpdate<T: PasswordPolicy.PasswordPolicyTokenizer>() -> T {
+			return T(self.append("objectToUpdate"))
+		}
+	}
+
+	/**  Update existing KalturaPasswordPolicy  */
+	public static func update(id: Int64, objectToUpdate: PasswordPolicy) -> RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, UpdateTokenizer> = RequestBuilder<PasswordPolicy, PasswordPolicy.PasswordPolicyTokenizer, UpdateTokenizer>(service: "passwordpolicy", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "objectToUpdate", value: objectToUpdate)
 
 		return request
 	}

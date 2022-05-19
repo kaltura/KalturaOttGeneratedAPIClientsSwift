@@ -60,6 +60,18 @@ open class UserRole: ObjectBase {
 				return self.append("excludedPermissionNames") 
 			}
 		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
+		
+		public var profile: BaseTokenizedObject {
+			get {
+				return self.append("profile") 
+			}
+		}
 	}
 
 	/**  User role identifier  */
@@ -70,6 +82,10 @@ open class UserRole: ObjectBase {
 	public var permissionNames: String? = nil
 	/**  permissions associated with the user role in is_exclueded = true  */
 	public var excludedPermissionNames: String? = nil
+	/**  Role type  */
+	public var type: UserRoleType? = nil
+	/**  Role profile  */
+	public var profile: UserRoleProfile? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -88,6 +104,14 @@ open class UserRole: ObjectBase {
 		self.dict["excludedPermissionNames"] = excludedPermissionNames
 	}
 	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
+	}
+	
+	public func setMultiRequestToken(profile: String) {
+		self.dict["profile"] = profile
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -103,6 +127,12 @@ open class UserRole: ObjectBase {
 		if dict["excludedPermissionNames"] != nil {
 			excludedPermissionNames = dict["excludedPermissionNames"] as? String
 		}
+		if dict["type"] != nil {
+			type = UserRoleType(rawValue: "\(dict["type"]!)")
+		}
+		if dict["profile"] != nil {
+			profile = UserRoleProfile(rawValue: "\(dict["profile"]!)")
+		}
 
 	}
 
@@ -116,6 +146,9 @@ open class UserRole: ObjectBase {
 		}
 		if(excludedPermissionNames != nil) {
 			dict["excludedPermissionNames"] = excludedPermissionNames!
+		}
+		if(profile != nil) {
+			dict["profile"] = profile!.rawValue
 		}
 		return dict
 	}

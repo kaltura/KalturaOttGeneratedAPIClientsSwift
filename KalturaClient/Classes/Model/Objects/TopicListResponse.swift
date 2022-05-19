@@ -33,7 +33,7 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  List of inbox message.  */
+/**  List of Topics.  */
 open class TopicListResponse: ListResponse {
 
 	public class TopicListResponseTokenizer: ListResponse.ListResponseTokenizer {
@@ -45,7 +45,7 @@ open class TopicListResponse: ListResponse {
 		}
 	}
 
-	/**  Follow data list  */
+	/**  List of Topics  */
 	public var objects: Array<Topic>? = nil
 
 

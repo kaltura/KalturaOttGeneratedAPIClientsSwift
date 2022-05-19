@@ -35,6 +35,38 @@
 
 public final class CollectionService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func collection<T: Collection.CollectionTokenizer>() -> T {
+			return T(self.append("collection"))
+		}
+	}
+
+	/**  Insert new collection for partner  */
+	public static func add(collection: Collection) -> RequestBuilder<Collection, Collection.CollectionTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Collection, Collection.CollectionTokenizer, AddTokenizer> = RequestBuilder<Collection, Collection.CollectionTokenizer, AddTokenizer>(service: "collection", action: "add")
+			.setParam(key: "collection", value: collection)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete collection  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "collection", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: CollectionFilter.CollectionFilterTokenizer>() -> T {
@@ -54,11 +86,34 @@ public final class CollectionService{
 		return list(filter: filter, pager: nil)
 	}
 
-	/**  Returns a list of subscriptions requested by Subscription ID or file ID  */
+	/**  Returns a list of collections requested by Collection IDs or file identifier or
+	  coupon group identifier  */
 	public static func list(filter: CollectionFilter?, pager: FilterPager?) -> RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer> = RequestBuilder<CollectionListResponse, CollectionListResponse.CollectionListResponseTokenizer, ListTokenizer>(service: "collection", action: "list")
 			.setParam(key: "filter", value: filter)
 			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func collection<T: Collection.CollectionTokenizer>() -> T {
+			return T(self.append("collection"))
+		}
+	}
+
+	/**  Update Collection  */
+	public static func update(id: Int64, collection: Collection) -> RequestBuilder<Collection, Collection.CollectionTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Collection, Collection.CollectionTokenizer, UpdateTokenizer> = RequestBuilder<Collection, Collection.CollectionTokenizer, UpdateTokenizer>(service: "collection", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "collection", value: collection)
 
 		return request
 	}

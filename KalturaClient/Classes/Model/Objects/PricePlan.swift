@@ -110,6 +110,15 @@ open class PricePlan: UsageModule {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(isRenewable != nil) {
+			dict["isRenewable"] = isRenewable!
+		}
+		if(renewalsNumber != nil) {
+			dict["renewalsNumber"] = renewalsNumber!
+		}
+		if(discountId != nil) {
+			dict["discountId"] = discountId!
+		}
 		if(priceDetailsId != nil) {
 			dict["priceDetailsId"] = priceDetailsId!
 		}

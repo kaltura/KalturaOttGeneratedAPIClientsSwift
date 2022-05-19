@@ -54,6 +54,12 @@ open class ObjectVirtualAssetInfo: ObjectBase {
 				return self.append("type") 
 			}
 		}
+		
+		public var extendedTypes: DictionaryTokenizedObject<LongValue.LongValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<LongValue.LongValueTokenizer>(self.append("extendedTypes"))
+			}
+		}
 	}
 
 	/**  Asset struct identifier  */
@@ -62,6 +68,8 @@ open class ObjectVirtualAssetInfo: ObjectBase {
 	public var metaId: Int? = nil
 	/**  Object virtual asset info type  */
 	public var type: ObjectVirtualAssetInfoType? = nil
+	/**  Extended types mapping  */
+	public var extendedTypes: Dictionary<String, LongValue>? = nil
 
 
 	public func setMultiRequestToken(assetStructId: String) {
@@ -88,6 +96,9 @@ open class ObjectVirtualAssetInfo: ObjectBase {
 		if dict["type"] != nil {
 			type = ObjectVirtualAssetInfoType(rawValue: "\(dict["type"]!)")
 		}
+		if dict["extendedTypes"] != nil {
+			extendedTypes = try JSONParser.parse(map: dict["extendedTypes"] as! [String: Any])
+		}
 
 	}
 
@@ -101,6 +112,9 @@ open class ObjectVirtualAssetInfo: ObjectBase {
 		}
 		if(type != nil) {
 			dict["type"] = type!.rawValue
+		}
+		if(extendedTypes != nil) {
+			dict["extendedTypes"] = extendedTypes!.toDictionary()
 		}
 		return dict
 	}

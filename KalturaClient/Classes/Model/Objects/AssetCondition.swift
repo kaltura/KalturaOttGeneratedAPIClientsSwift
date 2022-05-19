@@ -34,9 +34,9 @@
  */
 
 /**  Asset Condition  */
-open class AssetCondition: Condition {
+open class AssetCondition: AssetConditionBase {
 
-	public class AssetConditionTokenizer: Condition.ConditionTokenizer {
+	public class AssetConditionTokenizer: AssetConditionBase.AssetConditionBaseTokenizer {
 		
 		public var ksql: BaseTokenizedObject {
 			get {

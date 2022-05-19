@@ -144,6 +144,14 @@ open class NotificationsPartnerSettings: ObjectBase {
 				return self.append("iotEnabled") 
 			}
 		}
+		
+		public func epgNotification<T: EpgNotificationSettings.EpgNotificationSettingsTokenizer>() -> T {
+			return T(self.append("epgNotification"))
+		}
+		
+		public func lineupNotification<T: LineupNotificationSettings.LineupNotificationSettingsTokenizer>() -> T {
+			return T(self.append("lineupNotification"))
+		}
 	}
 
 	/**  Push notification capability is enabled for the account  */
@@ -182,6 +190,10 @@ open class NotificationsPartnerSettings: ObjectBase {
 	public var smsEnabled: Bool? = nil
 	/**  IOT capability is enabled for the account  */
 	public var iotEnabled: Bool? = nil
+	/**  Settings for epg notifications  */
+	public var epgNotification: EpgNotificationSettings? = nil
+	/**  Settings for lineup notifications  */
+	public var lineupNotification: LineupNotificationSettings? = nil
 
 
 	public func setMultiRequestToken(pushNotificationEnabled: String) {
@@ -313,6 +325,10 @@ open class NotificationsPartnerSettings: ObjectBase {
 		if dict["iotEnabled"] != nil {
 			iotEnabled = dict["iotEnabled"] as? Bool
 		}
+		if dict["epgNotification"] != nil {
+		epgNotification = try JSONParser.parse(object: dict["epgNotification"] as! [String: Any])		}
+		if dict["lineupNotification"] != nil {
+		lineupNotification = try JSONParser.parse(object: dict["lineupNotification"] as! [String: Any])		}
 
 	}
 
@@ -371,6 +387,12 @@ open class NotificationsPartnerSettings: ObjectBase {
 		}
 		if(iotEnabled != nil) {
 			dict["iotEnabled"] = iotEnabled!
+		}
+		if(epgNotification != nil) {
+			dict["epgNotification"] = epgNotification!.toDictionary()
+		}
+		if(lineupNotification != nil) {
+			dict["lineupNotification"] = lineupNotification!.toDictionary()
 		}
 		return dict
 	}

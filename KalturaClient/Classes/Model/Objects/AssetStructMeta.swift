@@ -85,6 +85,24 @@ open class AssetStructMeta: ObjectBase {
 				return self.append("isInherited") 
 			}
 		}
+		
+		public var isLocationTag: BaseTokenizedObject {
+			get {
+				return self.append("isLocationTag") 
+			}
+		}
+		
+		public var suppressedOrder: BaseTokenizedObject {
+			get {
+				return self.append("suppressedOrder") 
+			}
+		}
+		
+		public var aliasName: BaseTokenizedObject {
+			get {
+				return self.append("aliasName") 
+			}
+		}
 	}
 
 	/**  Asset Struct id (template_id)  */
@@ -105,6 +123,12 @@ open class AssetStructMeta: ObjectBase {
 	public var updateDate: Int64? = nil
 	/**  Is inherited  */
 	public var isInherited: Bool? = nil
+	/**  Is Location Tag  */
+	public var isLocationTag: Bool? = nil
+	/**  suppressed Order, ascending  */
+	public var suppressedOrder: Int? = nil
+	/**  Case sensitive alias value  */
+	public var aliasName: String? = nil
 
 
 	public func setMultiRequestToken(assetStructId: String) {
@@ -139,6 +163,18 @@ open class AssetStructMeta: ObjectBase {
 		self.dict["isInherited"] = isInherited
 	}
 	
+	public func setMultiRequestToken(isLocationTag: String) {
+		self.dict["isLocationTag"] = isLocationTag
+	}
+	
+	public func setMultiRequestToken(suppressedOrder: String) {
+		self.dict["suppressedOrder"] = suppressedOrder
+	}
+	
+	public func setMultiRequestToken(aliasName: String) {
+		self.dict["aliasName"] = aliasName
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -166,6 +202,15 @@ open class AssetStructMeta: ObjectBase {
 		if dict["isInherited"] != nil {
 			isInherited = dict["isInherited"] as? Bool
 		}
+		if dict["isLocationTag"] != nil {
+			isLocationTag = dict["isLocationTag"] as? Bool
+		}
+		if dict["suppressedOrder"] != nil {
+			suppressedOrder = dict["suppressedOrder"] as? Int
+		}
+		if dict["aliasName"] != nil {
+			aliasName = dict["aliasName"] as? String
+		}
 
 	}
 
@@ -182,6 +227,15 @@ open class AssetStructMeta: ObjectBase {
 		}
 		if(isInherited != nil) {
 			dict["isInherited"] = isInherited!
+		}
+		if(isLocationTag != nil) {
+			dict["isLocationTag"] = isLocationTag!
+		}
+		if(suppressedOrder != nil) {
+			dict["suppressedOrder"] = suppressedOrder!
+		}
+		if(aliasName != nil) {
+			dict["aliasName"] = aliasName!
 		}
 		return dict
 	}

@@ -38,9 +38,9 @@ open class AssetUserRule: AssetRuleBase {
 
 	public class AssetUserRuleTokenizer: AssetRuleBase.AssetRuleBaseTokenizer {
 		
-		public var conditions: ArrayTokenizedObject<AssetCondition.AssetConditionTokenizer> {
+		public var conditions: ArrayTokenizedObject<AssetConditionBase.AssetConditionBaseTokenizer> {
 			get {
-				return ArrayTokenizedObject<AssetCondition.AssetConditionTokenizer>(self.append("conditions"))
+				return ArrayTokenizedObject<AssetConditionBase.AssetConditionBaseTokenizer>(self.append("conditions"))
 			} 
 		}
 		
@@ -51,8 +51,8 @@ open class AssetUserRule: AssetRuleBase {
 		}
 	}
 
-	/**  List of Ksql conditions for the user rule  */
-	public var conditions: Array<AssetCondition>? = nil
+	/**  List of conditions for the user rule  */
+	public var conditions: Array<AssetConditionBase>? = nil
 	/**  List of actions for the user rule  */
 	public var actions: Array<AssetUserRuleAction>? = nil
 

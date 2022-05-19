@@ -40,4 +40,11 @@ public enum PartnerConfigurationType: String {
 	case OBJECTVIRTUALASSET = "ObjectVirtualAsset"
 	case COMMERCE = "Commerce"
 	case PLAYBACK = "Playback"
+	case PAYMENT = "Payment"
+	case CATALOG = "Catalog"
+	case SECURITY = "Security"
+	case OPC = "Opc"
+	case BASE = "Base"
+	case CUSTOMFIELDS = "CustomFields"
+	case DEFAULTPARENTALSETTINGS = "DefaultParentalSettings"
 }

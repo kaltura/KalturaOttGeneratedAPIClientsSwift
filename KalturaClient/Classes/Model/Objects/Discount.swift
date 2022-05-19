@@ -62,5 +62,12 @@ open class Discount: Price {
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(percentage != nil) {
+			dict["percentage"] = percentage!
+		}
+		return dict
+	}
 }
 

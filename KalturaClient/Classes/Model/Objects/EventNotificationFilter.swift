@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class EventNotificationFilter: CrudFilter {
+open class EventNotificationFilter: Filter {
 
-	public class EventNotificationFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+	public class EventNotificationFilterTokenizer: Filter.FilterTokenizer {
 		
 		public var idEqual: BaseTokenizedObject {
 			get {

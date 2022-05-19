@@ -50,6 +50,25 @@ public final class RecordingService{
 		return request
 	}
 
+	public class BulkdeleteTokenizer: ClientTokenizer  {
+		
+		public var recordingIds: BaseTokenizedObject {
+			get {
+				return self.append("recordingIds") 
+			}
+		}
+	}
+
+	/**  Delete list of user&amp;#39;s recordings. Recording can be deleted only in
+	  status Recorded.              Possible error codes for each recording:
+	  RecordingNotFound = 3039, RecordingStatusNotValid = 3043, Error = 1  */
+	public static func bulkdelete(recordingIds: String) -> ArrayRequestBuilder<ActionResult, ArrayTokenizedObject<ActionResult.ActionResultTokenizer>, BulkdeleteTokenizer> {
+		let request: ArrayRequestBuilder<ActionResult, ArrayTokenizedObject<ActionResult.ActionResultTokenizer>, BulkdeleteTokenizer> = ArrayRequestBuilder<ActionResult, ArrayTokenizedObject<ActionResult.ActionResultTokenizer>, BulkdeleteTokenizer>(service: "recording", action: "bulkdelete")
+			.setParam(key: "recordingIds", value: recordingIds)
+
+		return request
+	}
+
 	public class CancelTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {

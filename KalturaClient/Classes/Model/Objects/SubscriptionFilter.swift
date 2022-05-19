@@ -61,9 +61,33 @@ open class SubscriptionFilter: Filter {
 			}
 		}
 		
+		public var previewModuleIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("previewModuleIdEqual") 
+			}
+		}
+		
+		public var pricePlanIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("pricePlanIdEqual") 
+			}
+		}
+		
+		public var channelIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("channelIdEqual") 
+			}
+		}
+		
 		public var kSql: BaseTokenizedObject {
 			get {
 				return self.append("kSql") 
+			}
+		}
+		
+		public var alsoInactive: BaseTokenizedObject {
+			get {
+				return self.append("alsoInactive") 
 			}
 		}
 	}
@@ -76,8 +100,16 @@ open class SubscriptionFilter: Filter {
 	public var externalIdIn: String? = nil
 	/**  couponGroupIdEqual  */
 	public var couponGroupIdEqual: Int? = nil
+	/**  previewModuleIdEqual  */
+	public var previewModuleIdEqual: Int64? = nil
+	/**  pricePlanIdEqual  */
+	public var pricePlanIdEqual: Int64? = nil
+	/**  channelIdEqual  */
+	public var channelIdEqual: Int64? = nil
 	/**  KSQL expression  */
 	public var kSql: String? = nil
+	/**  return also inactive  */
+	public var alsoInactive: Bool? = nil
 
 
 	public func setMultiRequestToken(subscriptionIdIn: String) {
@@ -96,8 +128,24 @@ open class SubscriptionFilter: Filter {
 		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
 	}
 	
+	public func setMultiRequestToken(previewModuleIdEqual: String) {
+		self.dict["previewModuleIdEqual"] = previewModuleIdEqual
+	}
+	
+	public func setMultiRequestToken(pricePlanIdEqual: String) {
+		self.dict["pricePlanIdEqual"] = pricePlanIdEqual
+	}
+	
+	public func setMultiRequestToken(channelIdEqual: String) {
+		self.dict["channelIdEqual"] = channelIdEqual
+	}
+	
 	public func setMultiRequestToken(kSql: String) {
 		self.dict["kSql"] = kSql
+	}
+	
+	public func setMultiRequestToken(alsoInactive: String) {
+		self.dict["alsoInactive"] = alsoInactive
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -115,8 +163,20 @@ open class SubscriptionFilter: Filter {
 		if dict["couponGroupIdEqual"] != nil {
 			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
 		}
+		if dict["previewModuleIdEqual"] != nil {
+			previewModuleIdEqual = Int64("\(dict["previewModuleIdEqual"]!)")
+		}
+		if dict["pricePlanIdEqual"] != nil {
+			pricePlanIdEqual = Int64("\(dict["pricePlanIdEqual"]!)")
+		}
+		if dict["channelIdEqual"] != nil {
+			channelIdEqual = Int64("\(dict["channelIdEqual"]!)")
+		}
 		if dict["kSql"] != nil {
 			kSql = dict["kSql"] as? String
+		}
+		if dict["alsoInactive"] != nil {
+			alsoInactive = dict["alsoInactive"] as? Bool
 		}
 
 	}
@@ -135,8 +195,20 @@ open class SubscriptionFilter: Filter {
 		if(couponGroupIdEqual != nil) {
 			dict["couponGroupIdEqual"] = couponGroupIdEqual!
 		}
+		if(previewModuleIdEqual != nil) {
+			dict["previewModuleIdEqual"] = previewModuleIdEqual!
+		}
+		if(pricePlanIdEqual != nil) {
+			dict["pricePlanIdEqual"] = pricePlanIdEqual!
+		}
+		if(channelIdEqual != nil) {
+			dict["channelIdEqual"] = channelIdEqual!
+		}
 		if(kSql != nil) {
 			dict["kSql"] = kSql!
+		}
+		if(alsoInactive != nil) {
+			dict["alsoInactive"] = alsoInactive!
 		}
 		return dict
 	}

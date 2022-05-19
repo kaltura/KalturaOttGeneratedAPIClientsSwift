@@ -42,11 +42,19 @@ open class ManualChannel: Channel {
 				return self.append("mediaIds") 
 			}
 		}
+		
+		public var assets: ArrayTokenizedObject<ManualCollectionAsset.ManualCollectionAssetTokenizer> {
+			get {
+				return ArrayTokenizedObject<ManualCollectionAsset.ManualCollectionAssetTokenizer>(self.append("assets"))
+			} 
+		}
 	}
 
 	/**  A list of comma separated media ids associated with this channel, according to
 	  the order of the medias in the channel.  */
 	public var mediaIds: String? = nil
+	/**  List of assets identifier  */
+	public var assets: Array<ManualCollectionAsset>? = nil
 
 
 	public func setMultiRequestToken(mediaIds: String) {
@@ -59,6 +67,9 @@ open class ManualChannel: Channel {
 		if dict["mediaIds"] != nil {
 			mediaIds = dict["mediaIds"] as? String
 		}
+		if dict["assets"] != nil {
+			assets = try JSONParser.parse(array: dict["assets"] as! [Any])
+		}
 
 	}
 
@@ -66,6 +77,9 @@ open class ManualChannel: Channel {
 		var dict: [String: Any] = super.toDictionary()
 		if(mediaIds != nil) {
 			dict["mediaIds"] = mediaIds!
+		}
+		if(assets != nil) {
+			dict["assets"] = assets!.map { value in value.toDictionary() }
 		}
 		return dict
 	}

@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class CategoryItemFilter: CrudFilter {
+open class CategoryItemFilter: Filter {
 
-	public class CategoryItemFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+	public class CategoryItemFilterTokenizer: Filter.FilterTokenizer {
 	}
 
 

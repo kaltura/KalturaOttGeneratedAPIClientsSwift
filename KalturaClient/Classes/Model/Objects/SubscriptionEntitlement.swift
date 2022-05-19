@@ -91,6 +91,10 @@ open class SubscriptionEntitlement: Entitlement {
 				return self.append("isSuspended") 
 			}
 		}
+		
+		public func priceDetails<T: EntitlementPriceDetails.EntitlementPriceDetailsTokenizer>() -> T {
+			return T(self.append("priceDetails"))
+		}
 	}
 
 	/**  The date of the next renewal (only for subscription)  */
@@ -112,6 +116,8 @@ open class SubscriptionEntitlement: Entitlement {
 	public var unifiedPaymentId: Int64? = nil
 	/**  Indicates if the subscription suspended  */
 	public var isSuspended: Bool? = nil
+	/**  Price details  */
+	public var priceDetails: EntitlementPriceDetails? = nil
 
 
 	public func setMultiRequestToken(nextRenewalDate: String) {
@@ -180,6 +186,8 @@ open class SubscriptionEntitlement: Entitlement {
 		if dict["isSuspended"] != nil {
 			isSuspended = dict["isSuspended"] as? Bool
 		}
+		if dict["priceDetails"] != nil {
+		priceDetails = try JSONParser.parse(object: dict["priceDetails"] as! [String: Any])		}
 
 	}
 

@@ -168,6 +168,12 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 				return self.append("privateCopyEnabled") 
 			}
 		}
+		
+		public var defaultQuota: BaseTokenizedObject {
+			get {
+				return self.append("defaultQuota") 
+			}
+		}
 	}
 
 	/**  Is catch-up enabled  */
@@ -219,6 +225,8 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 	public var recoveryGracePeriod: Int? = nil
 	/**  Is private copy enabled for the account  */
 	public var privateCopyEnabled: Bool? = nil
+	/**  Quota in seconds  */
+	public var defaultQuota: Int? = nil
 
 
 	public func setMultiRequestToken(catchUpEnabled: String) {
@@ -309,6 +317,10 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 		self.dict["privateCopyEnabled"] = privateCopyEnabled
 	}
 	
+	public func setMultiRequestToken(defaultQuota: String) {
+		self.dict["defaultQuota"] = defaultQuota
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -377,6 +389,9 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 		}
 		if dict["privateCopyEnabled"] != nil {
 			privateCopyEnabled = dict["privateCopyEnabled"] as? Bool
+		}
+		if dict["defaultQuota"] != nil {
+			defaultQuota = dict["defaultQuota"] as? Int
 		}
 
 	}
@@ -448,6 +463,9 @@ open class TimeShiftedTvPartnerSettings: ObjectBase {
 		}
 		if(privateCopyEnabled != nil) {
 			dict["privateCopyEnabled"] = privateCopyEnabled!
+		}
+		if(defaultQuota != nil) {
+			dict["defaultQuota"] = defaultQuota!
 		}
 		return dict
 	}

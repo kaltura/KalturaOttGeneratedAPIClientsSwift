@@ -43,18 +43,65 @@ open class CommercePartnerConfig: PartnerConfiguration {
 				return ArrayTokenizedObject<BookmarkEventThreshold.BookmarkEventThresholdTokenizer>(self.append("bookmarkEventThresholds"))
 			} 
 		}
+		
+		public var keepSubscriptionAddOns: BaseTokenizedObject {
+			get {
+				return self.append("keepSubscriptionAddOns") 
+			}
+		}
+		
+		public var programAssetEntitlementPaddingStart: BaseTokenizedObject {
+			get {
+				return self.append("programAssetEntitlementPaddingStart") 
+			}
+		}
+		
+		public var programAssetEntitlementPaddingEnd: BaseTokenizedObject {
+			get {
+				return self.append("programAssetEntitlementPaddingEnd") 
+			}
+		}
 	}
 
 	/**  configuration for bookmark event threshold (when to dispatch the event) in
 	  seconds.  */
 	public var bookmarkEventThresholds: Array<BookmarkEventThreshold>? = nil
+	/**  configuration for keep add-ons after subscription deletion  */
+	public var keepSubscriptionAddOns: Bool? = nil
+	/**  configuration for asset start entitlement padding e.g. asset start time -
+	  padding still relevant for asset  */
+	public var programAssetEntitlementPaddingStart: Int? = nil
+	/**  configuration for asset end entitlement padding e.g. asset end time + padding
+	  still relevant for asset  */
+	public var programAssetEntitlementPaddingEnd: Int? = nil
 
 
+	public func setMultiRequestToken(keepSubscriptionAddOns: String) {
+		self.dict["keepSubscriptionAddOns"] = keepSubscriptionAddOns
+	}
+	
+	public func setMultiRequestToken(programAssetEntitlementPaddingStart: String) {
+		self.dict["programAssetEntitlementPaddingStart"] = programAssetEntitlementPaddingStart
+	}
+	
+	public func setMultiRequestToken(programAssetEntitlementPaddingEnd: String) {
+		self.dict["programAssetEntitlementPaddingEnd"] = programAssetEntitlementPaddingEnd
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["bookmarkEventThresholds"] != nil {
 			bookmarkEventThresholds = try JSONParser.parse(array: dict["bookmarkEventThresholds"] as! [Any])
+		}
+		if dict["keepSubscriptionAddOns"] != nil {
+			keepSubscriptionAddOns = dict["keepSubscriptionAddOns"] as? Bool
+		}
+		if dict["programAssetEntitlementPaddingStart"] != nil {
+			programAssetEntitlementPaddingStart = dict["programAssetEntitlementPaddingStart"] as? Int
+		}
+		if dict["programAssetEntitlementPaddingEnd"] != nil {
+			programAssetEntitlementPaddingEnd = dict["programAssetEntitlementPaddingEnd"] as? Int
 		}
 
 	}
@@ -63,6 +110,15 @@ open class CommercePartnerConfig: PartnerConfiguration {
 		var dict: [String: Any] = super.toDictionary()
 		if(bookmarkEventThresholds != nil) {
 			dict["bookmarkEventThresholds"] = bookmarkEventThresholds!.map { value in value.toDictionary() }
+		}
+		if(keepSubscriptionAddOns != nil) {
+			dict["keepSubscriptionAddOns"] = keepSubscriptionAddOns!
+		}
+		if(programAssetEntitlementPaddingStart != nil) {
+			dict["programAssetEntitlementPaddingStart"] = programAssetEntitlementPaddingStart!
+		}
+		if(programAssetEntitlementPaddingEnd != nil) {
+			dict["programAssetEntitlementPaddingEnd"] = programAssetEntitlementPaddingEnd!
 		}
 		return dict
 	}

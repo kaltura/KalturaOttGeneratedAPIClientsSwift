@@ -38,4 +38,5 @@ public enum BillingAction: String {
 	case RENEW_CANCELED_SUBSCRIPTION = "renew_canceled_subscription"
 	case CANCEL_SUBSCRIPTION_ORDER = "cancel_subscription_order"
 	case SUBSCRIPTION_DATE_CHANGED = "subscription_date_changed"
+	case PENDING = "pending"
 }

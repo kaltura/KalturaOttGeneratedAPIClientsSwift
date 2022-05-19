@@ -34,9 +34,9 @@
  */
 
 /**  IOT DEVICE  */
-open class Iot: CrudObject {
+open class Iot: OTTObjectSupportNullable {
 
-	public class IotTokenizer: CrudObject.CrudObjectTokenizer {
+	public class IotTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var udid: BaseTokenizedObject {
 			get {

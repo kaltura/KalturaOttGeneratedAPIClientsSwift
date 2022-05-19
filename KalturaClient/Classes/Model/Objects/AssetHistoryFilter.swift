@@ -60,6 +60,12 @@ open class AssetHistoryFilter: Filter {
 				return self.append("daysLessThanOrEqual") 
 			}
 		}
+		
+		public var kSql: BaseTokenizedObject {
+			get {
+				return self.append("kSql") 
+			}
+		}
 	}
 
 	/**  Comma separated list of asset types to search within.              Possible
@@ -77,6 +83,8 @@ open class AssetHistoryFilter: Filter {
 	public var statusEqual: WatchStatus? = nil
 	/**  How many days back to return the watched media. If omitted, default to 7 days  */
 	public var daysLessThanOrEqual: Int? = nil
+	/**  KSQL expression  */
+	public var kSql: String? = nil
 
 
 	public func setMultiRequestToken(typeIn: String) {
@@ -95,6 +103,10 @@ open class AssetHistoryFilter: Filter {
 		self.dict["daysLessThanOrEqual"] = daysLessThanOrEqual
 	}
 	
+	public func setMultiRequestToken(kSql: String) {
+		self.dict["kSql"] = kSql
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -109,6 +121,9 @@ open class AssetHistoryFilter: Filter {
 		}
 		if dict["daysLessThanOrEqual"] != nil {
 			daysLessThanOrEqual = dict["daysLessThanOrEqual"] as? Int
+		}
+		if dict["kSql"] != nil {
+			kSql = dict["kSql"] as? String
 		}
 
 	}
@@ -126,6 +141,9 @@ open class AssetHistoryFilter: Filter {
 		}
 		if(daysLessThanOrEqual != nil) {
 			dict["daysLessThanOrEqual"] = daysLessThanOrEqual!
+		}
+		if(kSql != nil) {
+			dict["kSql"] = kSql!
 		}
 		return dict
 	}

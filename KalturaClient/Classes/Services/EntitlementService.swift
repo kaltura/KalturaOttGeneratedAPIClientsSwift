@@ -74,8 +74,9 @@ public final class EntitlementService{
 		}
 	}
 
-	/**  Immediately cancel a subscription, PPV or collection. Cancel is possible only if
-	  within cancellation window and content not already consumed  */
+	/**  Immediately cancel a subscription, PPV, collection or programAssetGroupOffer.
+	  Cancel is possible only if within cancellation window and content not already
+	  consumed  */
 	public static func cancel(assetId: Int, productType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CancelTokenizer>(service: "entitlement", action: "cancel")
 			.setParam(key: "assetId", value: assetId)
@@ -146,8 +147,8 @@ public final class EntitlementService{
 		}
 	}
 
-	/**  Immediately cancel a subscription, PPV or collection. Cancel applies regardless
-	  of cancellation window and content consumption status  */
+	/**  Immediately cancel a subscription, PPV, collection or programAssetGroupOffer.
+	  Cancel applies regardless of cancellation window and content consumption status  */
 	public static func forceCancel(assetId: Int, productType: TransactionType) -> RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, ForceCancelTokenizer>(service: "entitlement", action: "forceCancel")
 			.setParam(key: "assetId", value: assetId)
@@ -204,7 +205,8 @@ public final class EntitlementService{
 		return grant(productId: productId, productType: productType, history: history, contentId: 0)
 	}
 
-	/**  Grant household for an entitlement for a PPV or Subscription.  */
+	/**  Grant household for an entitlement for a PPV, Subscription or
+	  programAssetGroupOffer.  */
 	public static func grant(productId: Int, productType: TransactionType, history: Bool, contentId: Int?) -> RequestBuilder<Bool, BaseTokenizedObject, GrantTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, GrantTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, GrantTokenizer>(service: "entitlement", action: "grant")
 			.setParam(key: "productId", value: productId)
@@ -217,7 +219,7 @@ public final class EntitlementService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: EntitlementFilter.EntitlementFilterTokenizer>() -> T {
+		public func filter<T: BaseEntitlementFilter.BaseEntitlementFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
 		
@@ -226,12 +228,12 @@ public final class EntitlementService{
 		}
 	}
 
-	public static func list(filter: EntitlementFilter) -> RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: BaseEntitlementFilter) -> RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> {
 		return list(filter: filter, pager: nil)
 	}
 
 	/**  Gets all the entitled media items for a household  */
-	public static func list(filter: EntitlementFilter, pager: FilterPager?) -> RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: BaseEntitlementFilter, pager: FilterPager?) -> RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer> = RequestBuilder<EntitlementListResponse, EntitlementListResponse.EntitlementListResponseTokenizer, ListTokenizer>(service: "entitlement", action: "list")
 			.setParam(key: "filter", value: filter)
 			.setParam(key: "pager", value: pager)

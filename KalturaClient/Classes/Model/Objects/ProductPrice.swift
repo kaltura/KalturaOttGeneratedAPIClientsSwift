@@ -53,10 +53,18 @@ open class ProductPrice: ObjectBase {
 			return T(self.append("price"))
 		}
 		
+		public func fullPrice<T: Price.PriceTokenizer>() -> T {
+			return T(self.append("fullPrice"))
+		}
+		
 		public var purchaseStatus: BaseTokenizedObject {
 			get {
 				return self.append("purchaseStatus") 
 			}
+		}
+		
+		public func promotionInfo<T: PromotionInfo.PromotionInfoTokenizer>() -> T {
+			return T(self.append("promotionInfo"))
 		}
 	}
 
@@ -66,8 +74,12 @@ open class ProductPrice: ObjectBase {
 	public var productType: TransactionType? = nil
 	/**  Product price  */
 	public var price: Price? = nil
+	/**  The full price of the item (with no discounts)  */
+	public var fullPrice: Price? = nil
 	/**  Product purchase status  */
 	public var purchaseStatus: PurchaseStatus? = nil
+	/**  Promotion Info  */
+	public var promotionInfo: PromotionInfo? = nil
 
 
 	public func setMultiRequestToken(productId: String) {
@@ -93,9 +105,13 @@ open class ProductPrice: ObjectBase {
 		}
 		if dict["price"] != nil {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
+		if dict["fullPrice"] != nil {
+		fullPrice = try JSONParser.parse(object: dict["fullPrice"] as! [String: Any])		}
 		if dict["purchaseStatus"] != nil {
 			purchaseStatus = PurchaseStatus(rawValue: "\(dict["purchaseStatus"]!)")
 		}
+		if dict["promotionInfo"] != nil {
+		promotionInfo = try JSONParser.parse(object: dict["promotionInfo"] as! [String: Any])		}
 
 	}
 
@@ -110,8 +126,14 @@ open class ProductPrice: ObjectBase {
 		if(price != nil) {
 			dict["price"] = price!.toDictionary()
 		}
+		if(fullPrice != nil) {
+			dict["fullPrice"] = fullPrice!.toDictionary()
+		}
 		if(purchaseStatus != nil) {
 			dict["purchaseStatus"] = purchaseStatus!.rawValue
+		}
+		if(promotionInfo != nil) {
+			dict["promotionInfo"] = promotionInfo!.toDictionary()
 		}
 		return dict
 	}

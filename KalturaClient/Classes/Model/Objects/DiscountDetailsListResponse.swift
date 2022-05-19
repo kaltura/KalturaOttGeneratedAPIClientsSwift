@@ -44,7 +44,7 @@ open class DiscountDetailsListResponse: ListResponse {
 		}
 	}
 
-	/**  A list of price details  */
+	/**  A list of discount details  */
 	public var objects: Array<DiscountDetails>? = nil
 
 

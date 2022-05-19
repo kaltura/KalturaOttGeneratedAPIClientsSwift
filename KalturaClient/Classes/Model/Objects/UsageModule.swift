@@ -185,5 +185,33 @@ open class UsageModule: ObjectBase {
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
+		if(name != nil) {
+			dict["name"] = name!
+		}
+		if(maxViewsNumber != nil) {
+			dict["maxViewsNumber"] = maxViewsNumber!
+		}
+		if(viewLifeCycle != nil) {
+			dict["viewLifeCycle"] = viewLifeCycle!
+		}
+		if(fullLifeCycle != nil) {
+			dict["fullLifeCycle"] = fullLifeCycle!
+		}
+		if(waiverPeriod != nil) {
+			dict["waiverPeriod"] = waiverPeriod!
+		}
+		if(isWaiverEnabled != nil) {
+			dict["isWaiverEnabled"] = isWaiverEnabled!
+		}
+		if(isOfflinePlayback != nil) {
+			dict["isOfflinePlayback"] = isOfflinePlayback!
+		}
+		return dict
+	}
 }
 

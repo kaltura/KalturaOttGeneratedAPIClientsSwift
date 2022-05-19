@@ -66,6 +66,12 @@ open class RegionFilter: BaseRegionFilter {
 				return self.append("parentOnly") 
 			}
 		}
+		
+		public var exclusiveLcn: BaseTokenizedObject {
+			get {
+				return self.append("exclusiveLcn") 
+			}
+		}
 	}
 
 	/**  List of comma separated regions external IDs  */
@@ -78,6 +84,8 @@ open class RegionFilter: BaseRegionFilter {
 	public var liveAssetIdEqual: Int? = nil
 	/**  Parent region to filter by  */
 	public var parentOnly: Bool? = nil
+	/**  Retrieves only the channels belonging specifically to the child region  */
+	public var exclusiveLcn: Bool? = nil
 
 
 	public func setMultiRequestToken(externalIdIn: String) {
@@ -100,6 +108,10 @@ open class RegionFilter: BaseRegionFilter {
 		self.dict["parentOnly"] = parentOnly
 	}
 	
+	public func setMultiRequestToken(exclusiveLcn: String) {
+		self.dict["exclusiveLcn"] = exclusiveLcn
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -117,6 +129,9 @@ open class RegionFilter: BaseRegionFilter {
 		}
 		if dict["parentOnly"] != nil {
 			parentOnly = dict["parentOnly"] as? Bool
+		}
+		if dict["exclusiveLcn"] != nil {
+			exclusiveLcn = dict["exclusiveLcn"] as? Bool
 		}
 
 	}
@@ -137,6 +152,9 @@ open class RegionFilter: BaseRegionFilter {
 		}
 		if(parentOnly != nil) {
 			dict["parentOnly"] = parentOnly!
+		}
+		if(exclusiveLcn != nil) {
+			dict["exclusiveLcn"] = exclusiveLcn!
 		}
 		return dict
 	}

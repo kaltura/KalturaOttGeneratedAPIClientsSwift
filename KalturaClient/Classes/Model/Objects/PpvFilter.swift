@@ -49,12 +49,20 @@ open class PpvFilter: Filter {
 				return self.append("couponGroupIdEqual") 
 			}
 		}
+		
+		public var alsoInactive: BaseTokenizedObject {
+			get {
+				return self.append("alsoInactive") 
+			}
+		}
 	}
 
 	/**  Comma separated identifiers  */
 	public var idIn: String? = nil
 	/**  couponGroupIdEqual  */
 	public var couponGroupIdEqual: Int? = nil
+	/**  return also inactive  */
+	public var alsoInactive: Bool? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
@@ -63,6 +71,10 @@ open class PpvFilter: Filter {
 	
 	public func setMultiRequestToken(couponGroupIdEqual: String) {
 		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
+	}
+	
+	public func setMultiRequestToken(alsoInactive: String) {
+		self.dict["alsoInactive"] = alsoInactive
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +86,9 @@ open class PpvFilter: Filter {
 		if dict["couponGroupIdEqual"] != nil {
 			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
 		}
+		if dict["alsoInactive"] != nil {
+			alsoInactive = dict["alsoInactive"] as? Bool
+		}
 
 	}
 
@@ -84,6 +99,9 @@ open class PpvFilter: Filter {
 		}
 		if(couponGroupIdEqual != nil) {
 			dict["couponGroupIdEqual"] = couponGroupIdEqual!
+		}
+		if(alsoInactive != nil) {
+			dict["alsoInactive"] = alsoInactive!
 		}
 		return dict
 	}

@@ -66,6 +66,12 @@ open class Permission: ObjectBase {
 				return self.append("type") 
 			}
 		}
+		
+		public var permissionItemsIds: BaseTokenizedObject {
+			get {
+				return self.append("permissionItemsIds") 
+			}
+		}
 	}
 
 	/**  Permission identifier  */
@@ -76,8 +82,10 @@ open class Permission: ObjectBase {
 	public var friendlyName: String? = nil
 	/**  Comma separated permissions names from type SPECIAL_FEATURE  */
 	public var dependsOnPermissionNames: String? = nil
-	/**  Comma separated permissions names from type SPECIAL_FEATURE  */
+	/**  Permission type  */
 	public var type: PermissionType? = nil
+	/**  Comma separated associated permission items IDs  */
+	public var permissionItemsIds: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -100,6 +108,10 @@ open class Permission: ObjectBase {
 		self.dict["type"] = type
 	}
 	
+	public func setMultiRequestToken(permissionItemsIds: String) {
+		self.dict["permissionItemsIds"] = permissionItemsIds
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -118,6 +130,9 @@ open class Permission: ObjectBase {
 		if dict["type"] != nil {
 			type = PermissionType(rawValue: "\(dict["type"]!)")
 		}
+		if dict["permissionItemsIds"] != nil {
+			permissionItemsIds = dict["permissionItemsIds"] as? String
+		}
 
 	}
 
@@ -131,6 +146,9 @@ open class Permission: ObjectBase {
 		}
 		if(type != nil) {
 			dict["type"] = type!.rawValue
+		}
+		if(permissionItemsIds != nil) {
+			dict["permissionItemsIds"] = permissionItemsIds!
 		}
 		return dict
 	}

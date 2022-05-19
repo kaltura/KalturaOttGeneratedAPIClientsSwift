@@ -33,4 +33,6 @@
  */
 public enum HouseholdDeviceOrderBy: String {
 	case NONE = "NONE"
+	case CREATED_DATE_ASC = "CREATED_DATE_ASC"
+	case CREATED_DATE_DESC = "CREATED_DATE_DESC"
 }

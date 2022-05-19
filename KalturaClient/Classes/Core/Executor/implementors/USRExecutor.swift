@@ -86,8 +86,9 @@
         
         var task: URLSessionDataTask? = nil
         // settings headers:
-        task = session.dataTask(with: request) { (data, response, error) in
+        task = session.dataTask(with: request) { [weak self] (data, response, error) in
 
+            guard let self = self else { return }
             self.remove(id: r.requestId)
         
             DispatchQueue.main.async {
@@ -96,7 +97,7 @@
                         // cancel3ed
                         logger.debug("request has been canceled")
                     } else {
-                        let result = Result<Any>(data: nil, error: ApiClientException(message: error.localizedDescription, code: ApiClientException.ErrorCode.httpError))
+                        let result = Result<Any>(data: nil, error: ApiClientException(message: error.localizedDescription, code: ApiClientException.ErrorCode.httpError.rawValue))
                         r.completion(result)
                         // some other error
                     }

@@ -35,6 +35,38 @@
 
 public final class DrmProfileService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func drmProfile<T: DrmProfile.DrmProfileTokenizer>() -> T {
+			return T(self.append("drmProfile"))
+		}
+	}
+
+	/**  Internal API !!! Insert new DrmProfile  */
+	public static func add(drmProfile: DrmProfile) -> RequestBuilder<DrmProfile, DrmProfile.DrmProfileTokenizer, AddTokenizer> {
+		let request: RequestBuilder<DrmProfile, DrmProfile.DrmProfileTokenizer, AddTokenizer> = RequestBuilder<DrmProfile, DrmProfile.DrmProfileTokenizer, AddTokenizer>(service: "drmprofile", action: "add")
+			.setParam(key: "drmProfile", value: drmProfile)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Internal API !!! Delete DrmProfile  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "drmprofile", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 	}
 

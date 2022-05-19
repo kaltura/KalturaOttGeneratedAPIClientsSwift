@@ -55,14 +55,22 @@ open class CollectionFilter: Filter {
 				return self.append("couponGroupIdEqual") 
 			}
 		}
+		
+		public var alsoInactive: BaseTokenizedObject {
+			get {
+				return self.append("alsoInactive") 
+			}
+		}
 	}
 
 	/**  Comma separated collection IDs  */
 	public var collectionIdIn: String? = nil
-	/**  Media-file ID to get the subscriptions by  */
+	/**  Media-file ID to get the collections by  */
 	public var mediaFileIdEqual: Int? = nil
 	/**  couponGroupIdEqual  */
 	public var couponGroupIdEqual: Int? = nil
+	/**  return also inactive  */
+	public var alsoInactive: Bool? = nil
 
 
 	public func setMultiRequestToken(collectionIdIn: String) {
@@ -77,6 +85,10 @@ open class CollectionFilter: Filter {
 		self.dict["couponGroupIdEqual"] = couponGroupIdEqual
 	}
 	
+	public func setMultiRequestToken(alsoInactive: String) {
+		self.dict["alsoInactive"] = alsoInactive
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +100,9 @@ open class CollectionFilter: Filter {
 		}
 		if dict["couponGroupIdEqual"] != nil {
 			couponGroupIdEqual = dict["couponGroupIdEqual"] as? Int
+		}
+		if dict["alsoInactive"] != nil {
+			alsoInactive = dict["alsoInactive"] as? Bool
 		}
 
 	}
@@ -102,6 +117,9 @@ open class CollectionFilter: Filter {
 		}
 		if(couponGroupIdEqual != nil) {
 			dict["couponGroupIdEqual"] = couponGroupIdEqual!
+		}
+		if(alsoInactive != nil) {
+			dict["alsoInactive"] = alsoInactive!
 		}
 		return dict
 	}

@@ -91,6 +91,30 @@ public final class HouseholdDeviceService{
 		return request
 	}
 
+	public class DeleteDynamicDataTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+	}
+
+	/**  Deletes dynamic data item with key  for device with identifier .  */
+	public static func deleteDynamicData(udid: String, key: String) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteDynamicDataTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteDynamicDataTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteDynamicDataTokenizer>(service: "householddevice", action: "deleteDynamicData")
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "key", value: key)
+
+		return request
+	}
+
 	public class GeneratePinTokenizer: ClientTokenizer  {
 		
 		public var udid: BaseTokenizedObject {
@@ -174,18 +198,29 @@ public final class HouseholdDeviceService{
 				return self.append("udid") 
 			}
 		}
+		
+		public var extraParams: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("extraParams"))
+			}
+		}
 	}
 
 	public static func loginWithPin(partnerId: Int, pin: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		return loginWithPin(partnerId: partnerId, pin: pin, udid: nil)
 	}
 
-	/**  User sign-in via a time-expired sign-in PIN.  */
 	public static func loginWithPin(partnerId: Int, pin: String, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
+		return loginWithPin(partnerId: partnerId, pin: pin, udid: udid, extraParams: nil)
+	}
+
+	/**  User sign-in via a time-expired sign-in PIN.  */
+	public static func loginWithPin(partnerId: Int, pin: String, udid: String?, extraParams: Dictionary<String, StringValue>?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> {
 		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginWithPinTokenizer>(service: "householddevice", action: "loginWithPin")
 			.setParam(key: "partnerId", value: partnerId)
 			.setParam(key: "pin", value: pin)
 			.setParam(key: "udid", value: udid)
+			.setParam(key: "extraParams", value: extraParams)
 
 		return request
 	}
@@ -232,6 +267,36 @@ public final class HouseholdDeviceService{
 		let request: RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, UpdateStatusTokenizer>(service: "householddevice", action: "updateStatus")
 			.setParam(key: "udid", value: udid)
 			.setParam(key: "status", value: status.rawValue)
+
+		return request
+	}
+
+	public class UpsertDynamicDataTokenizer: ClientTokenizer  {
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+		
+		public var key: BaseTokenizedObject {
+			get {
+				return self.append("key") 
+			}
+		}
+		
+		public func value<T: StringValue.StringValueTokenizer>() -> T {
+			return T(self.append("value"))
+		}
+	}
+
+	/**  Adds or updates dynamic data item for device with identifier udid. If it is
+	  needed to update several items, use a multi-request to avoid race conditions.  */
+	public static func upsertDynamicData(udid: String, key: String, value: StringValue) -> RequestBuilder<DynamicData, DynamicData.DynamicDataTokenizer, UpsertDynamicDataTokenizer> {
+		let request: RequestBuilder<DynamicData, DynamicData.DynamicDataTokenizer, UpsertDynamicDataTokenizer> = RequestBuilder<DynamicData, DynamicData.DynamicDataTokenizer, UpsertDynamicDataTokenizer>(service: "householddevice", action: "upsertDynamicData")
+			.setParam(key: "udid", value: udid)
+			.setParam(key: "key", value: key)
+			.setParam(key: "value", value: value)
 
 		return request
 	}

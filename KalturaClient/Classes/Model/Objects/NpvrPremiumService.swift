@@ -62,5 +62,12 @@ open class NpvrPremiumService: PremiumService {
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(quotaInMinutes != nil) {
+			dict["quotaInMinutes"] = quotaInMinutes!
+		}
+		return dict
+	}
 }
 

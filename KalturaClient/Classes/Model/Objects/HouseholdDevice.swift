@@ -89,6 +89,42 @@ open class HouseholdDevice: OTTObjectSupportNullable {
 				return self.append("externalId") 
 			}
 		}
+		
+		public var macAddress: BaseTokenizedObject {
+			get {
+				return self.append("macAddress") 
+			}
+		}
+		
+		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
+			}
+		}
+		
+		public var model: BaseTokenizedObject {
+			get {
+				return self.append("model") 
+			}
+		}
+		
+		public var manufacturer: BaseTokenizedObject {
+			get {
+				return self.append("manufacturer") 
+			}
+		}
+		
+		public var manufacturerId: BaseTokenizedObject {
+			get {
+				return self.append("manufacturerId") 
+			}
+		}
+		
+		public var lastActivityTime: BaseTokenizedObject {
+			get {
+				return self.append("lastActivityTime") 
+			}
+		}
 	}
 
 	/**  Household identifier  */
@@ -109,6 +145,18 @@ open class HouseholdDevice: OTTObjectSupportNullable {
 	public var drm: CustomDrmPlaybackPluginData? = nil
 	/**  external Id  */
 	public var externalId: String? = nil
+	/**  mac address  */
+	public var macAddress: String? = nil
+	/**  Dynamic data  */
+	public var dynamicData: Dictionary<String, StringValue>? = nil
+	/**  model  */
+	public var model: String? = nil
+	/**  manufacturer  */
+	public var manufacturer: String? = nil
+	/**  manufacturer Id, read only  */
+	public var manufacturerId: Int64? = nil
+	/**  Last Activity Time, read only  */
+	public var lastActivityTime: Int64? = nil
 
 
 	public func setMultiRequestToken(householdId: String) {
@@ -143,6 +191,26 @@ open class HouseholdDevice: OTTObjectSupportNullable {
 		self.dict["externalId"] = externalId
 	}
 	
+	public func setMultiRequestToken(macAddress: String) {
+		self.dict["macAddress"] = macAddress
+	}
+	
+	public func setMultiRequestToken(model: String) {
+		self.dict["model"] = model
+	}
+	
+	public func setMultiRequestToken(manufacturer: String) {
+		self.dict["manufacturer"] = manufacturer
+	}
+	
+	public func setMultiRequestToken(manufacturerId: String) {
+		self.dict["manufacturerId"] = manufacturerId
+	}
+	
+	public func setMultiRequestToken(lastActivityTime: String) {
+		self.dict["lastActivityTime"] = lastActivityTime
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -172,6 +240,24 @@ open class HouseholdDevice: OTTObjectSupportNullable {
 		if dict["externalId"] != nil {
 			externalId = dict["externalId"] as? String
 		}
+		if dict["macAddress"] != nil {
+			macAddress = dict["macAddress"] as? String
+		}
+		if dict["dynamicData"] != nil {
+			dynamicData = try JSONParser.parse(map: dict["dynamicData"] as! [String: Any])
+		}
+		if dict["model"] != nil {
+			model = dict["model"] as? String
+		}
+		if dict["manufacturer"] != nil {
+			manufacturer = dict["manufacturer"] as? String
+		}
+		if dict["manufacturerId"] != nil {
+			manufacturerId = Int64("\(dict["manufacturerId"]!)")
+		}
+		if dict["lastActivityTime"] != nil {
+			lastActivityTime = Int64("\(dict["lastActivityTime"]!)")
+		}
 
 	}
 
@@ -194,6 +280,18 @@ open class HouseholdDevice: OTTObjectSupportNullable {
 		}
 		if(externalId != nil) {
 			dict["externalId"] = externalId!
+		}
+		if(macAddress != nil) {
+			dict["macAddress"] = macAddress!
+		}
+		if(dynamicData != nil) {
+			dict["dynamicData"] = dynamicData!.toDictionary()
+		}
+		if(model != nil) {
+			dict["model"] = model!
+		}
+		if(manufacturer != nil) {
+			dict["manufacturer"] = manufacturer!
 		}
 		return dict
 	}

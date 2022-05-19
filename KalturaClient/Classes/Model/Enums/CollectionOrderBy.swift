@@ -33,4 +33,8 @@
  */
 public enum CollectionOrderBy: String {
 	case NONE = "NONE"
+	case NAME_ASC = "NAME_ASC"
+	case NAME_DESC = "NAME_DESC"
+	case UPDATE_DATE_ASC = "UPDATE_DATE_ASC"
+	case UPDATE_DATE_DESC = "UPDATE_DATE_DESC"
 }

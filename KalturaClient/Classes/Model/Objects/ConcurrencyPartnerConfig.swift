@@ -55,6 +55,12 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 				return self.append("concurrencyThresholdInSeconds") 
 			}
 		}
+		
+		public var revokeOnDeviceDelete: BaseTokenizedObject {
+			get {
+				return self.append("revokeOnDeviceDelete") 
+			}
+		}
 	}
 
 	/**  Comma separated list of device Family Ids order by their priority.  */
@@ -63,6 +69,8 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 	public var evictionPolicy: EvictionPolicyType? = nil
 	/**  Concurrency threshold in seconds  */
 	public var concurrencyThresholdInSeconds: Int64? = nil
+	/**  Revoke on device delete  */
+	public var revokeOnDeviceDelete: Bool? = nil
 
 
 	public func setMultiRequestToken(deviceFamilyIds: String) {
@@ -77,6 +85,10 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		self.dict["concurrencyThresholdInSeconds"] = concurrencyThresholdInSeconds
 	}
 	
+	public func setMultiRequestToken(revokeOnDeviceDelete: String) {
+		self.dict["revokeOnDeviceDelete"] = revokeOnDeviceDelete
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +100,9 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		}
 		if dict["concurrencyThresholdInSeconds"] != nil {
 			concurrencyThresholdInSeconds = Int64("\(dict["concurrencyThresholdInSeconds"]!)")
+		}
+		if dict["revokeOnDeviceDelete"] != nil {
+			revokeOnDeviceDelete = dict["revokeOnDeviceDelete"] as? Bool
 		}
 
 	}
@@ -102,6 +117,9 @@ open class ConcurrencyPartnerConfig: PartnerConfiguration {
 		}
 		if(concurrencyThresholdInSeconds != nil) {
 			dict["concurrencyThresholdInSeconds"] = concurrencyThresholdInSeconds!
+		}
+		if(revokeOnDeviceDelete != nil) {
+			dict["revokeOnDeviceDelete"] = revokeOnDeviceDelete!
 		}
 		return dict
 	}

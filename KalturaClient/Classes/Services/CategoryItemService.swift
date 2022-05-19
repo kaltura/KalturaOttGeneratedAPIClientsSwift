@@ -50,28 +50,6 @@ public final class CategoryItemService{
 		return request
 	}
 
-	public class UpdateTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
-		public func objectToUpdate<T: CategoryItem.CategoryItemTokenizer>() -> T {
-			return T(self.append("objectToUpdate"))
-		}
-	}
-
-	/**  categoryItem update  */
-	public static func update(id: Int64, objectToUpdate: CategoryItem) -> RequestBuilder<CategoryItem, CategoryItem.CategoryItemTokenizer, UpdateTokenizer> {
-		let request: RequestBuilder<CategoryItem, CategoryItem.CategoryItemTokenizer, UpdateTokenizer> = RequestBuilder<CategoryItem, CategoryItem.CategoryItemTokenizer, UpdateTokenizer>(service: "categoryitem", action: "update")
-			.setParam(key: "id", value: id)
-			.setParam(key: "objectToUpdate", value: objectToUpdate)
-
-		return request
-	}
-
 	public class DeleteTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
@@ -113,6 +91,28 @@ public final class CategoryItemService{
 		let request: RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer> = RequestBuilder<CategoryItemListResponse, CategoryItemListResponse.CategoryItemListResponseTokenizer, ListTokenizer>(service: "categoryitem", action: "list")
 			.setParam(key: "filter", value: filter)
 			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func objectToUpdate<T: CategoryItem.CategoryItemTokenizer>() -> T {
+			return T(self.append("objectToUpdate"))
+		}
+	}
+
+	/**  categoryItem update  */
+	public static func update(id: Int64, objectToUpdate: CategoryItem) -> RequestBuilder<CategoryItem, CategoryItem.CategoryItemTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<CategoryItem, CategoryItem.CategoryItemTokenizer, UpdateTokenizer> = RequestBuilder<CategoryItem, CategoryItem.CategoryItemTokenizer, UpdateTokenizer>(service: "categoryitem", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "objectToUpdate", value: objectToUpdate)
 
 		return request
 	}

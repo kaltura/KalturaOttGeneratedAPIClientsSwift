@@ -49,12 +49,21 @@ open class RecordingAsset: ProgramAsset {
 				return self.append("recordingType") 
 			}
 		}
+		
+		public var viewableUntilDate: BaseTokenizedObject {
+			get {
+				return self.append("viewableUntilDate") 
+			}
+		}
 	}
 
 	/**  Recording identifier  */
 	public var recordingId: String? = nil
 	/**  Recording Type: single/season/series  */
 	public var recordingType: RecordingType? = nil
+	/**  Specifies until when the recording is available for viewing. Date and time
+	  represented as epoch.  */
+	public var viewableUntilDate: Int64? = nil
 
 
 	public func setMultiRequestToken(recordingId: String) {
@@ -63,6 +72,10 @@ open class RecordingAsset: ProgramAsset {
 	
 	public func setMultiRequestToken(recordingType: String) {
 		self.dict["recordingType"] = recordingType
+	}
+	
+	public func setMultiRequestToken(viewableUntilDate: String) {
+		self.dict["viewableUntilDate"] = viewableUntilDate
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +87,9 @@ open class RecordingAsset: ProgramAsset {
 		if dict["recordingType"] != nil {
 			recordingType = RecordingType(rawValue: "\(dict["recordingType"]!)")
 		}
+		if dict["viewableUntilDate"] != nil {
+			viewableUntilDate = Int64("\(dict["viewableUntilDate"]!)")
+		}
 
 	}
 
@@ -84,6 +100,9 @@ open class RecordingAsset: ProgramAsset {
 		}
 		if(recordingType != nil) {
 			dict["recordingType"] = recordingType!.rawValue
+		}
+		if(viewableUntilDate != nil) {
+			dict["viewableUntilDate"] = viewableUntilDate!
 		}
 		return dict
 	}

@@ -103,6 +103,18 @@ open class HouseholdLimitations: ObjectBase {
 				return ArrayTokenizedObject<HouseholdDeviceFamilyLimitations.HouseholdDeviceFamilyLimitationsTokenizer>(self.append("deviceFamiliesLimitations"))
 			} 
 		}
+		
+		public var description: BaseTokenizedObject {
+			get {
+				return self.append("description") 
+			}
+		}
+		
+		public var associatedDeviceFamiliesIdsIn: BaseTokenizedObject {
+			get {
+				return self.append("associatedDeviceFamiliesIdsIn") 
+			}
+		}
 	}
 
 	/**  Household limitation module identifier  */
@@ -127,6 +139,10 @@ open class HouseholdLimitations: ObjectBase {
 	public var usersLimit: Int? = nil
 	/**  Device families limitations  */
 	public var deviceFamiliesLimitations: Array<HouseholdDeviceFamilyLimitations>? = nil
+	/**  Allowed device change frequency description  */
+	public var description: String? = nil
+	/**  Associated Device Families ids  */
+	public var associatedDeviceFamiliesIdsIn: String? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -169,6 +185,14 @@ open class HouseholdLimitations: ObjectBase {
 		self.dict["usersLimit"] = usersLimit
 	}
 	
+	public func setMultiRequestToken(description: String) {
+		self.dict["description"] = description
+	}
+	
+	public func setMultiRequestToken(associatedDeviceFamiliesIdsIn: String) {
+		self.dict["associatedDeviceFamiliesIdsIn"] = associatedDeviceFamiliesIdsIn
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -205,8 +229,45 @@ open class HouseholdLimitations: ObjectBase {
 		if dict["deviceFamiliesLimitations"] != nil {
 			deviceFamiliesLimitations = try JSONParser.parse(array: dict["deviceFamiliesLimitations"] as! [Any])
 		}
+		if dict["description"] != nil {
+			description = dict["description"] as? String
+		}
+		if dict["associatedDeviceFamiliesIdsIn"] != nil {
+			associatedDeviceFamiliesIdsIn = dict["associatedDeviceFamiliesIdsIn"] as? String
+		}
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(name != nil) {
+			dict["name"] = name!
+		}
+		if(concurrentLimit != nil) {
+			dict["concurrentLimit"] = concurrentLimit!
+		}
+		if(deviceLimit != nil) {
+			dict["deviceLimit"] = deviceLimit!
+		}
+		if(deviceFrequency != nil) {
+			dict["deviceFrequency"] = deviceFrequency!
+		}
+		if(userFrequency != nil) {
+			dict["userFrequency"] = userFrequency!
+		}
+		if(usersLimit != nil) {
+			dict["usersLimit"] = usersLimit!
+		}
+		if(deviceFamiliesLimitations != nil) {
+			dict["deviceFamiliesLimitations"] = deviceFamiliesLimitations!.map { value in value.toDictionary() }
+		}
+		if(description != nil) {
+			dict["description"] = description!
+		}
+		if(associatedDeviceFamiliesIdsIn != nil) {
+			dict["associatedDeviceFamiliesIdsIn"] = associatedDeviceFamiliesIdsIn!
+		}
+		return dict
+	}
 }
 

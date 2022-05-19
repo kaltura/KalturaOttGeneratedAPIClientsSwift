@@ -38,6 +38,12 @@ open class DiscountModule: ObjectBase {
 
 	public class DiscountModuleTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
 		public var percent: BaseTokenizedObject {
 			get {
 				return self.append("percent") 
@@ -57,6 +63,8 @@ open class DiscountModule: ObjectBase {
 		}
 	}
 
+	/**  Discount module identifier  */
+	public var id: Int64? = nil
 	/**  The discount percentage  */
 	public var percent: Double? = nil
 	/**  The first date the discount is available  */
@@ -65,6 +73,10 @@ open class DiscountModule: ObjectBase {
 	public var endDate: Int64? = nil
 
 
+	public func setMultiRequestToken(id: String) {
+		self.dict["id"] = id
+	}
+	
 	public func setMultiRequestToken(percent: String) {
 		self.dict["percent"] = percent
 	}
@@ -80,6 +92,9 @@ open class DiscountModule: ObjectBase {
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
+		if dict["id"] != nil {
+			id = Int64("\(dict["id"]!)")
+		}
 		if dict["percent"] != nil {
 			percent = dict["percent"] as? Double
 		}
@@ -94,6 +109,9 @@ open class DiscountModule: ObjectBase {
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
 		if(percent != nil) {
 			dict["percent"] = percent!
 		}

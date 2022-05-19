@@ -48,12 +48,20 @@ open class DrmPlaybackPluginData: PluginData {
 				return self.append("licenseURL") 
 			}
 		}
+		
+		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
+			}
+		}
 	}
 
 	/**  Scheme  */
 	public var scheme: DrmSchemeName? = nil
 	/**  License URL  */
 	public var licenseURL: String? = nil
+	/**  Dynamic data  */
+	public var dynamicData: Dictionary<String, StringValue>? = nil
 
 
 	public func setMultiRequestToken(scheme: String) {
@@ -73,6 +81,9 @@ open class DrmPlaybackPluginData: PluginData {
 		if dict["licenseURL"] != nil {
 			licenseURL = dict["licenseURL"] as? String
 		}
+		if dict["dynamicData"] != nil {
+			dynamicData = try JSONParser.parse(map: dict["dynamicData"] as! [String: Any])
+		}
 
 	}
 
@@ -83,6 +94,9 @@ open class DrmPlaybackPluginData: PluginData {
 		}
 		if(licenseURL != nil) {
 			dict["licenseURL"] = licenseURL!
+		}
+		if(dynamicData != nil) {
+			dict["dynamicData"] = dynamicData!.toDictionary()
 		}
 		return dict
 	}

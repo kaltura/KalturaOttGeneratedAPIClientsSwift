@@ -62,6 +62,12 @@ open class MediaFile: AssetFile {
 			}
 		}
 		
+		public var altUrl: BaseTokenizedObject {
+			get {
+				return self.append("altUrl") 
+			}
+		}
+		
 		public var duration: BaseTokenizedObject {
 			get {
 				return self.append("duration") 
@@ -163,6 +169,22 @@ open class MediaFile: AssetFile {
 				return self.append("catalogEndDate") 
 			}
 		}
+		
+		public var opl: BaseTokenizedObject {
+			get {
+				return self.append("opl") 
+			}
+		}
+		
+		public func businessModuleDetails<T: BusinessModuleDetails.BusinessModuleDetailsTokenizer>() -> T {
+			return T(self.append("businessModuleDetails"))
+		}
+		
+		public var labels: BaseTokenizedObject {
+			get {
+				return self.append("labels") 
+			}
+		}
 	}
 
 	/**  Unique identifier for the asset  */
@@ -173,6 +195,8 @@ open class MediaFile: AssetFile {
 	public var type: String? = nil
 	/**  Device types identifier as defined in the system  */
 	public var typeId: Int? = nil
+	/**  URL of the media file to be played  */
+	public var altUrl: String? = nil
 	/**  Duration of the media file  */
 	public var duration: Int64? = nil
 	/**  External identifier for the media file  */
@@ -207,6 +231,12 @@ open class MediaFile: AssetFile {
 	public var status: Bool? = nil
 	/**  Catalog end date  */
 	public var catalogEndDate: Int64? = nil
+	/**  OPL  */
+	public var opl: String? = nil
+	/**  businessModuleDetails  */
+	public var businessModuleDetails: BusinessModuleDetails? = nil
+	/**  Labels associated with the media file  */
+	public var labels: String? = nil
 
 
 	public func setMultiRequestToken(assetId: String) {
@@ -223,6 +253,10 @@ open class MediaFile: AssetFile {
 	
 	public func setMultiRequestToken(typeId: String) {
 		self.dict["typeId"] = typeId
+	}
+	
+	public func setMultiRequestToken(altUrl: String) {
+		self.dict["altUrl"] = altUrl
 	}
 	
 	public func setMultiRequestToken(duration: String) {
@@ -293,6 +327,14 @@ open class MediaFile: AssetFile {
 		self.dict["catalogEndDate"] = catalogEndDate
 	}
 	
+	public func setMultiRequestToken(opl: String) {
+		self.dict["opl"] = opl
+	}
+	
+	public func setMultiRequestToken(labels: String) {
+		self.dict["labels"] = labels
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -307,6 +349,9 @@ open class MediaFile: AssetFile {
 		}
 		if dict["typeId"] != nil {
 			typeId = dict["typeId"] as? Int
+		}
+		if dict["altUrl"] != nil {
+			altUrl = dict["altUrl"] as? String
 		}
 		if dict["duration"] != nil {
 			duration = Int64("\(dict["duration"]!)")
@@ -359,6 +404,14 @@ open class MediaFile: AssetFile {
 		if dict["catalogEndDate"] != nil {
 			catalogEndDate = Int64("\(dict["catalogEndDate"]!)")
 		}
+		if dict["opl"] != nil {
+			opl = dict["opl"] as? String
+		}
+		if dict["businessModuleDetails"] != nil {
+		businessModuleDetails = try JSONParser.parse(object: dict["businessModuleDetails"] as! [String: Any])		}
+		if dict["labels"] != nil {
+			labels = dict["labels"] as? String
+		}
 
 	}
 
@@ -369,6 +422,9 @@ open class MediaFile: AssetFile {
 		}
 		if(typeId != nil) {
 			dict["typeId"] = typeId!
+		}
+		if(altUrl != nil) {
+			dict["altUrl"] = altUrl!
 		}
 		if(duration != nil) {
 			dict["duration"] = duration!
@@ -420,6 +476,15 @@ open class MediaFile: AssetFile {
 		}
 		if(catalogEndDate != nil) {
 			dict["catalogEndDate"] = catalogEndDate!
+		}
+		if(opl != nil) {
+			dict["opl"] = opl!
+		}
+		if(businessModuleDetails != nil) {
+			dict["businessModuleDetails"] = businessModuleDetails!.toDictionary()
+		}
+		if(labels != nil) {
+			dict["labels"] = labels!
 		}
 		return dict
 	}

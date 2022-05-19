@@ -54,18 +54,42 @@ open class Ppv: ObjectBase {
 			return T(self.append("price"))
 		}
 		
+		public var priceDetailsId: BaseTokenizedObject {
+			get {
+				return self.append("priceDetailsId") 
+			}
+		}
+		
 		public var fileTypes: ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer> {
 			get {
 				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("fileTypes"))
 			} 
 		}
 		
+		public var fileTypesIds: BaseTokenizedObject {
+			get {
+				return self.append("fileTypesIds") 
+			}
+		}
+		
 		public func discountModule<T: DiscountModule.DiscountModuleTokenizer>() -> T {
 			return T(self.append("discountModule"))
 		}
 		
+		public var discountId: BaseTokenizedObject {
+			get {
+				return self.append("discountId") 
+			}
+		}
+		
 		public func couponsGroup<T: CouponsGroup.CouponsGroupTokenizer>() -> T {
 			return T(self.append("couponsGroup"))
+		}
+		
+		public var couponsGroupId: BaseTokenizedObject {
+			get {
+				return self.append("couponsGroupId") 
+			}
 		}
 		
 		public var descriptions: ArrayTokenizedObject<TranslationToken.TranslationTokenTokenizer> {
@@ -95,20 +119,64 @@ open class Ppv: ObjectBase {
 		public func usageModule<T: UsageModule.UsageModuleTokenizer>() -> T {
 			return T(self.append("usageModule"))
 		}
+		
+		public var usageModuleId: BaseTokenizedObject {
+			get {
+				return self.append("usageModuleId") 
+			}
+		}
+		
+		public var adsPolicy: BaseTokenizedObject {
+			get {
+				return self.append("adsPolicy") 
+			}
+		}
+		
+		public var isActive: BaseTokenizedObject {
+			get {
+				return self.append("isActive") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var virtualAssetId: BaseTokenizedObject {
+			get {
+				return self.append("virtualAssetId") 
+			}
+		}
 	}
 
 	/**  PPV identifier  */
 	public var id: String? = nil
 	/**  the name for the ppv  */
 	public var name: String? = nil
-	/**  The price of the ppv  */
+	/**  This property will deprecated soon. Please use PriceId instead of it.  */
 	public var price: PriceDetails? = nil
-	/**  A list of file types identifiers that are supported in this ppv  */
+	/**  The price if of the ppv  */
+	public var priceDetailsId: Int? = nil
+	/**  This property will deprecated soon. Please use fileTypesIds instead of it.  */
 	public var fileTypes: Array<IntegerValue>? = nil
-	/**  The internal discount module for the ppv  */
+	/**  Comma separated file types identifiers that are supported in this subscription  */
+	public var fileTypesIds: String? = nil
+	/**  This property will deprecated soon. Please use DiscountId instead of it.  */
 	public var discountModule: DiscountModule? = nil
-	/**  Coupons group for the ppv  */
+	/**  The discount id for the ppv  */
+	public var discountId: Int64? = nil
+	/**  This property will deprecated soon. Please use CouponsGroupId instead of it.  */
 	public var couponsGroup: CouponsGroup? = nil
+	/**  Coupons group id for the ppv  */
+	public var couponsGroupId: Int64? = nil
 	/**  A list of the descriptions of the ppv on different languages (language code and
 	  translation)  */
 	public var descriptions: Array<TranslationToken>? = nil
@@ -119,8 +187,20 @@ open class Ppv: ObjectBase {
 	public var isSubscriptionOnly: Bool? = nil
 	/**  Indicates whether or not this ppv can be consumed only on the first device  */
 	public var firstDeviceLimitation: Bool? = nil
-	/**  PPV usage module  */
+	/**  This property will deprecated soon. Please use UsageModuleId instead of it.  */
 	public var usageModule: UsageModule? = nil
+	/**  PPV usage module Id  */
+	public var usageModuleId: Int64? = nil
+	/**  adsPolicy  */
+	public var adsPolicy: AdsPolicy? = nil
+	/**  Is active ppv  */
+	public var isActive: Bool? = nil
+	/**  Specifies when was the ppv last updated. Date and time represented as epoch.  */
+	public var updateDate: Int64? = nil
+	/**  Specifies when was the ppv created. Date and time represented as epoch.  */
+	public var createDate: Int64? = nil
+	/**  Virtual asset id  */
+	public var virtualAssetId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -129,6 +209,22 @@ open class Ppv: ObjectBase {
 	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(priceDetailsId: String) {
+		self.dict["priceDetailsId"] = priceDetailsId
+	}
+	
+	public func setMultiRequestToken(fileTypesIds: String) {
+		self.dict["fileTypesIds"] = fileTypesIds
+	}
+	
+	public func setMultiRequestToken(discountId: String) {
+		self.dict["discountId"] = discountId
+	}
+	
+	public func setMultiRequestToken(couponsGroupId: String) {
+		self.dict["couponsGroupId"] = couponsGroupId
 	}
 	
 	public func setMultiRequestToken(productCode: String) {
@@ -143,6 +239,30 @@ open class Ppv: ObjectBase {
 		self.dict["firstDeviceLimitation"] = firstDeviceLimitation
 	}
 	
+	public func setMultiRequestToken(usageModuleId: String) {
+		self.dict["usageModuleId"] = usageModuleId
+	}
+	
+	public func setMultiRequestToken(adsPolicy: String) {
+		self.dict["adsPolicy"] = adsPolicy
+	}
+	
+	public func setMultiRequestToken(isActive: String) {
+		self.dict["isActive"] = isActive
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(virtualAssetId: String) {
+		self.dict["virtualAssetId"] = virtualAssetId
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -154,13 +274,25 @@ open class Ppv: ObjectBase {
 		}
 		if dict["price"] != nil {
 		price = try JSONParser.parse(object: dict["price"] as! [String: Any])		}
+		if dict["priceDetailsId"] != nil {
+			priceDetailsId = dict["priceDetailsId"] as? Int
+		}
 		if dict["fileTypes"] != nil {
 			fileTypes = try JSONParser.parse(array: dict["fileTypes"] as! [Any])
 		}
+		if dict["fileTypesIds"] != nil {
+			fileTypesIds = dict["fileTypesIds"] as? String
+		}
 		if dict["discountModule"] != nil {
 		discountModule = try JSONParser.parse(object: dict["discountModule"] as! [String: Any])		}
+		if dict["discountId"] != nil {
+			discountId = Int64("\(dict["discountId"]!)")
+		}
 		if dict["couponsGroup"] != nil {
 		couponsGroup = try JSONParser.parse(object: dict["couponsGroup"] as! [String: Any])		}
+		if dict["couponsGroupId"] != nil {
+			couponsGroupId = Int64("\(dict["couponsGroupId"]!)")
+		}
 		if dict["descriptions"] != nil {
 			descriptions = try JSONParser.parse(array: dict["descriptions"] as! [Any])
 		}
@@ -175,6 +307,24 @@ open class Ppv: ObjectBase {
 		}
 		if dict["usageModule"] != nil {
 		usageModule = try JSONParser.parse(object: dict["usageModule"] as! [String: Any])		}
+		if dict["usageModuleId"] != nil {
+			usageModuleId = Int64("\(dict["usageModuleId"]!)")
+		}
+		if dict["adsPolicy"] != nil {
+			adsPolicy = AdsPolicy(rawValue: "\(dict["adsPolicy"]!)")
+		}
+		if dict["isActive"] != nil {
+			isActive = dict["isActive"] as? Bool
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
+		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["virtualAssetId"] != nil {
+			virtualAssetId = Int64("\(dict["virtualAssetId"]!)")
+		}
 
 	}
 
@@ -186,17 +336,17 @@ open class Ppv: ObjectBase {
 		if(name != nil) {
 			dict["name"] = name!
 		}
-		if(price != nil) {
-			dict["price"] = price!.toDictionary()
+		if(priceDetailsId != nil) {
+			dict["priceDetailsId"] = priceDetailsId!
 		}
-		if(fileTypes != nil) {
-			dict["fileTypes"] = fileTypes!.map { value in value.toDictionary() }
+		if(fileTypesIds != nil) {
+			dict["fileTypesIds"] = fileTypesIds!
 		}
-		if(discountModule != nil) {
-			dict["discountModule"] = discountModule!.toDictionary()
+		if(discountId != nil) {
+			dict["discountId"] = discountId!
 		}
-		if(couponsGroup != nil) {
-			dict["couponsGroup"] = couponsGroup!.toDictionary()
+		if(couponsGroupId != nil) {
+			dict["couponsGroupId"] = couponsGroupId!
 		}
 		if(descriptions != nil) {
 			dict["descriptions"] = descriptions!.map { value in value.toDictionary() }
@@ -210,8 +360,14 @@ open class Ppv: ObjectBase {
 		if(firstDeviceLimitation != nil) {
 			dict["firstDeviceLimitation"] = firstDeviceLimitation!
 		}
-		if(usageModule != nil) {
-			dict["usageModule"] = usageModule!.toDictionary()
+		if(usageModuleId != nil) {
+			dict["usageModuleId"] = usageModuleId!
+		}
+		if(adsPolicy != nil) {
+			dict["adsPolicy"] = adsPolicy!.rawValue
+		}
+		if(isActive != nil) {
+			dict["isActive"] = isActive!
 		}
 		return dict
 	}

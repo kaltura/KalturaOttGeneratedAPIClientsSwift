@@ -51,19 +51,4 @@ public final class CouponService{
 
 		return request
 	}
-
-	public class ListTokenizer: ClientTokenizer  {
-		
-		public func filter<T: CouponFilter.CouponFilterTokenizer>() -> T {
-			return T(self.append("filter"))
-		}
-	}
-
-	/**  Lists coupon codes.  */
-	public static func list(filter: CouponFilter) -> RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> {
-		let request: RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer> = RequestBuilder<CouponListResponse, CouponListResponse.CouponListResponseTokenizer, ListTokenizer>(service: "coupon", action: "list")
-			.setParam(key: "filter", value: filter)
-
-		return request
-	}
 }

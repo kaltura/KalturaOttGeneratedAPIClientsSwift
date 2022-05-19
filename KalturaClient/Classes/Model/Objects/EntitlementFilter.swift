@@ -34,9 +34,9 @@
  */
 
 /**  Entitlements filter  */
-open class EntitlementFilter: Filter {
+open class EntitlementFilter: BaseEntitlementFilter {
 
-	public class EntitlementFilterTokenizer: Filter.FilterTokenizer {
+	public class EntitlementFilterTokenizer: BaseEntitlementFilter.BaseEntitlementFilterTokenizer {
 		
 		public var productTypeEqual: BaseTokenizedObject {
 			get {

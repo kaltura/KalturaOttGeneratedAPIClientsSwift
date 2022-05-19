@@ -34,9 +34,9 @@
  */
 
 /**  Household Coupon details  */
-open class HouseholdCoupon: CrudObject {
+open class HouseholdCoupon: OTTObjectSupportNullable {
 
-	public class HouseholdCouponTokenizer: CrudObject.CrudObjectTokenizer {
+	public class HouseholdCouponTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var code: BaseTokenizedObject {
 			get {

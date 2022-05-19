@@ -34,9 +34,9 @@
  */
 
 /**  Slim channel  */
-open class BaseChannel: ObjectBase {
+open class BaseChannel: OTTObjectSupportNullable {
 
-	public class BaseChannelTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class BaseChannelTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {
@@ -62,5 +62,12 @@ open class BaseChannel: ObjectBase {
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
+		return dict
+	}
 }
 

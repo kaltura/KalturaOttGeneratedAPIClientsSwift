@@ -42,18 +42,40 @@ public final class UserLoginPinService{
 				return self.append("secret") 
 			}
 		}
+		
+		public var pinUsages: BaseTokenizedObject {
+			get {
+				return self.append("pinUsages") 
+			}
+		}
+		
+		public var pinDuration: BaseTokenizedObject {
+			get {
+				return self.append("pinDuration") 
+			}
+		}
 	}
 
 	public static func add() -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
 		return add(secret: nil)
 	}
 
-	/**  Generate a time and usage expiry login-PIN that can allow a single login per
-	  PIN. If an active login-PIN already exists. Calling this API again for same user
-	  will add another login-PIN  */
 	public static func add(secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
+		return add(secret: secret, pinUsages: nil)
+	}
+
+	public static func add(secret: String?, pinUsages: Int?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
+		return add(secret: secret, pinUsages: pinUsages, pinDuration: nil)
+	}
+
+	/**  Generate a time and usage expiry login-PIN that can allow a single/multiple
+	  login/s per PIN.               If an active login-PIN already exists. Calling
+	  this API again for same user will add another login-PIN  */
+	public static func add(secret: String?, pinUsages: Int?, pinDuration: Int?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> {
 		let request: RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer> = RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, AddTokenizer>(service: "userloginpin", action: "add")
 			.setParam(key: "secret", value: secret)
+			.setParam(key: "pinUsages", value: pinUsages)
+			.setParam(key: "pinDuration", value: pinDuration)
 
 		return request
 	}
@@ -98,19 +120,41 @@ public final class UserLoginPinService{
 				return self.append("secret") 
 			}
 		}
+		
+		public var pinUsages: BaseTokenizedObject {
+			get {
+				return self.append("pinUsages") 
+			}
+		}
+		
+		public var pinDuration: BaseTokenizedObject {
+			get {
+				return self.append("pinDuration") 
+			}
+		}
 	}
 
 	public static func update(pinCode: String) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
 		return update(pinCode: pinCode, secret: nil)
 	}
 
+	public static func update(pinCode: String, secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
+		return update(pinCode: pinCode, secret: secret, pinUsages: nil)
+	}
+
+	public static func update(pinCode: String, secret: String?, pinUsages: Int?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
+		return update(pinCode: pinCode, secret: secret, pinUsages: pinUsages, pinDuration: nil)
+	}
+
 	/**  Set a time and usage expiry login-PIN that can allow a single login per PIN. If
 	  an active login-PIN already exists. Calling this API again for same user will
 	  add another login-PIN  */
-	public static func update(pinCode: String, secret: String?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
+	public static func update(pinCode: String, secret: String?, pinUsages: Int?, pinDuration: Int?) -> RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer> = RequestBuilder<UserLoginPin, UserLoginPin.UserLoginPinTokenizer, UpdateTokenizer>(service: "userloginpin", action: "update")
 			.setParam(key: "pinCode", value: pinCode)
 			.setParam(key: "secret", value: secret)
+			.setParam(key: "pinUsages", value: pinUsages)
+			.setParam(key: "pinDuration", value: pinDuration)
 
 		return request
 	}

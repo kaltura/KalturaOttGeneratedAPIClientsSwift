@@ -40,17 +40,58 @@ open class AssetFilter: PersistedFilter {
 		public func dynamicOrderBy<T: DynamicOrderBy.DynamicOrderByTokenizer>() -> T {
 			return T(self.append("dynamicOrderBy"))
 		}
+		
+		public var orderingParameters: ArrayTokenizedObject<BaseAssetOrder.BaseAssetOrderTokenizer> {
+			get {
+				return ArrayTokenizedObject<BaseAssetOrder.BaseAssetOrderTokenizer>(self.append("orderingParameters"))
+			} 
+		}
+		
+		public var trendingDaysEqual: BaseTokenizedObject {
+			get {
+				return self.append("trendingDaysEqual") 
+			}
+		}
+		
+		public var shouldApplyPriorityGroupsEqual: BaseTokenizedObject {
+			get {
+				return self.append("shouldApplyPriorityGroupsEqual") 
+			}
+		}
 	}
 
 	/**  dynamicOrderBy - order by Meta  */
 	public var dynamicOrderBy: DynamicOrderBy? = nil
+	/**  Parameters for asset list sorting.  */
+	public var orderingParameters: Array<BaseAssetOrder>? = nil
+	/**  Trending Days Equal  */
+	public var trendingDaysEqual: Int? = nil
+	/**  Should apply priority groups filter or not.  */
+	public var shouldApplyPriorityGroupsEqual: Bool? = nil
 
 
+	public func setMultiRequestToken(trendingDaysEqual: String) {
+		self.dict["trendingDaysEqual"] = trendingDaysEqual
+	}
+	
+	public func setMultiRequestToken(shouldApplyPriorityGroupsEqual: String) {
+		self.dict["shouldApplyPriorityGroupsEqual"] = shouldApplyPriorityGroupsEqual
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
 		if dict["dynamicOrderBy"] != nil {
 		dynamicOrderBy = try JSONParser.parse(object: dict["dynamicOrderBy"] as! [String: Any])		}
+		if dict["orderingParameters"] != nil {
+			orderingParameters = try JSONParser.parse(array: dict["orderingParameters"] as! [Any])
+		}
+		if dict["trendingDaysEqual"] != nil {
+			trendingDaysEqual = dict["trendingDaysEqual"] as? Int
+		}
+		if dict["shouldApplyPriorityGroupsEqual"] != nil {
+			shouldApplyPriorityGroupsEqual = dict["shouldApplyPriorityGroupsEqual"] as? Bool
+		}
 
 	}
 
@@ -58,6 +99,15 @@ open class AssetFilter: PersistedFilter {
 		var dict: [String: Any] = super.toDictionary()
 		if(dynamicOrderBy != nil) {
 			dict["dynamicOrderBy"] = dynamicOrderBy!.toDictionary()
+		}
+		if(orderingParameters != nil) {
+			dict["orderingParameters"] = orderingParameters!.map { value in value.toDictionary() }
+		}
+		if(trendingDaysEqual != nil) {
+			dict["trendingDaysEqual"] = trendingDaysEqual!
+		}
+		if(shouldApplyPriorityGroupsEqual != nil) {
+			dict["shouldApplyPriorityGroupsEqual"] = shouldApplyPriorityGroupsEqual!
 		}
 		return dict
 	}

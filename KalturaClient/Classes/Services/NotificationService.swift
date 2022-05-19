@@ -88,12 +88,34 @@ public final class NotificationService{
 				return self.append("message") 
 			}
 		}
+		
+		public var phoneNumber: BaseTokenizedObject {
+			get {
+				return self.append("phoneNumber") 
+			}
+		}
+		
+		public var adapterData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("adapterData"))
+			}
+		}
+	}
+
+	public static func sendSms(message: String) -> RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> {
+		return sendSms(message: message, phoneNumber: nil)
+	}
+
+	public static func sendSms(message: String, phoneNumber: String?) -> RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> {
+		return sendSms(message: message, phoneNumber: phoneNumber, adapterData: nil)
 	}
 
 	/**  Sends SMS notification to user  */
-	public static func sendSms(message: String) -> RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> {
+	public static func sendSms(message: String, phoneNumber: String?, adapterData: Dictionary<String, StringValue>?) -> RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> {
 		let request: RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, SendSmsTokenizer>(service: "notification", action: "sendSms")
 			.setParam(key: "message", value: message)
+			.setParam(key: "phoneNumber", value: phoneNumber)
+			.setParam(key: "adapterData", value: adapterData)
 
 		return request
 	}

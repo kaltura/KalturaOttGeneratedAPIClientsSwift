@@ -34,9 +34,9 @@
  */
 
 /**  IOT PROFILE  */
-open class IotProfile: CrudObject {
+open class IotProfile: OTTObjectSupportNullable {
 
-	public class IotProfileTokenizer: CrudObject.CrudObjectTokenizer {
+	public class IotProfileTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var adapterUrl: BaseTokenizedObject {
 			get {

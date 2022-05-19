@@ -49,12 +49,21 @@ open class DeviceFamilyBase: ObjectBase {
 				return self.append("name") 
 			}
 		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
+			}
+		}
 	}
 
 	/**  Device family identifier  */
 	public var id: Int64? = nil
 	/**  Device family name  */
 	public var name: String? = nil
+	/**  Type of device family.               if this device family belongs only to this
+	  group,               otherwise.  */
+	public var type: DeviceFamilyType? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -63,6 +72,10 @@ open class DeviceFamilyBase: ObjectBase {
 	
 	public func setMultiRequestToken(name: String) {
 		self.dict["name"] = name
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -74,11 +87,17 @@ open class DeviceFamilyBase: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
+		if dict["type"] != nil {
+			type = DeviceFamilyType(rawValue: "\(dict["type"]!)")
+		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
 		if(name != nil) {
 			dict["name"] = name!
 		}

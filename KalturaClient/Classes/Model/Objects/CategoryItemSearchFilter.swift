@@ -48,12 +48,20 @@ open class CategoryItemSearchFilter: CategoryItemFilter {
 				return self.append("rootOnly") 
 			}
 		}
+		
+		public var typeEqual: BaseTokenizedObject {
+			get {
+				return self.append("typeEqual") 
+			}
+		}
 	}
 
 	/**  KSQL expression  */
 	public var kSql: String? = nil
 	/**  Root only  */
 	public var rootOnly: Bool? = nil
+	/**  Indicates which category to return by their type.  */
+	public var typeEqual: String? = nil
 
 
 	public func setMultiRequestToken(kSql: String) {
@@ -62,6 +70,10 @@ open class CategoryItemSearchFilter: CategoryItemFilter {
 	
 	public func setMultiRequestToken(rootOnly: String) {
 		self.dict["rootOnly"] = rootOnly
+	}
+	
+	public func setMultiRequestToken(typeEqual: String) {
+		self.dict["typeEqual"] = typeEqual
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -73,6 +85,9 @@ open class CategoryItemSearchFilter: CategoryItemFilter {
 		if dict["rootOnly"] != nil {
 			rootOnly = dict["rootOnly"] as? Bool
 		}
+		if dict["typeEqual"] != nil {
+			typeEqual = dict["typeEqual"] as? String
+		}
 
 	}
 
@@ -83,6 +98,9 @@ open class CategoryItemSearchFilter: CategoryItemFilter {
 		}
 		if(rootOnly != nil) {
 			dict["rootOnly"] = rootOnly!
+		}
+		if(typeEqual != nil) {
+			dict["typeEqual"] = typeEqual!
 		}
 		return dict
 	}

@@ -80,6 +80,12 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 			}
 		}
 		
+		public var downgradePriorityFamilyIds: BaseTokenizedObject {
+			get {
+				return self.append("downgradePriorityFamilyIds") 
+			}
+		}
+		
 		public var mailSettings: BaseTokenizedObject {
 			get {
 				return self.append("mailSettings") 
@@ -113,6 +119,36 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		public func rollingDeviceData<T: RollingDeviceRemovalData.RollingDeviceRemovalDataTokenizer>() -> T {
 			return T(self.append("rollingDeviceData"))
 		}
+		
+		public var linearWatchHistoryThreshold: BaseTokenizedObject {
+			get {
+				return self.append("linearWatchHistoryThreshold") 
+			}
+		}
+		
+		public var finishedPercentThreshold: BaseTokenizedObject {
+			get {
+				return self.append("finishedPercentThreshold") 
+			}
+		}
+		
+		public var suspensionProfileInheritanceType: BaseTokenizedObject {
+			get {
+				return self.append("suspensionProfileInheritanceType") 
+			}
+		}
+		
+		public var allowDeviceMobility: BaseTokenizedObject {
+			get {
+				return self.append("allowDeviceMobility") 
+			}
+		}
+		
+		public var enableMultiLcns: BaseTokenizedObject {
+			get {
+				return self.append("enableMultiLcns") 
+			}
+		}
 	}
 
 	/**  Partner name  */
@@ -129,6 +165,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var secondaryCurrencies: String? = nil
 	/**  Downgrade policy  */
 	public var downgradePolicy: DowngradePolicy? = nil
+	/**  Priority Family Ids to remove devices on downgrade (first in the list first to
+	  remove)  */
+	public var downgradePriorityFamilyIds: String? = nil
 	/**  Mail settings  */
 	public var mailSettings: String? = nil
 	/**  Default Date Format for Email notifications (default should be: DD Month YYYY)  */
@@ -141,6 +180,16 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	public var defaultRegion: Int? = nil
 	/**  Rolling Device Policy  */
 	public var rollingDeviceData: RollingDeviceRemovalData? = nil
+	/**  minimum bookmark position of a linear channel to be included in a watch history  */
+	public var linearWatchHistoryThreshold: Int? = nil
+	/**  Finished PercentThreshold  */
+	public var finishedPercentThreshold: Int? = nil
+	/**  Suspension Profile Inheritance  */
+	public var suspensionProfileInheritanceType: SuspensionProfileInheritanceType? = nil
+	/**  Allow Device Mobility  */
+	public var allowDeviceMobility: Bool? = nil
+	/**  Enable multi LCNs per linear channel  */
+	public var enableMultiLcns: Bool? = nil
 
 
 	public func setMultiRequestToken(partnerName: String) {
@@ -171,6 +220,10 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		self.dict["downgradePolicy"] = downgradePolicy
 	}
 	
+	public func setMultiRequestToken(downgradePriorityFamilyIds: String) {
+		self.dict["downgradePriorityFamilyIds"] = downgradePriorityFamilyIds
+	}
+	
 	public func setMultiRequestToken(mailSettings: String) {
 		self.dict["mailSettings"] = mailSettings
 	}
@@ -189,6 +242,26 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 	
 	public func setMultiRequestToken(defaultRegion: String) {
 		self.dict["defaultRegion"] = defaultRegion
+	}
+	
+	public func setMultiRequestToken(linearWatchHistoryThreshold: String) {
+		self.dict["linearWatchHistoryThreshold"] = linearWatchHistoryThreshold
+	}
+	
+	public func setMultiRequestToken(finishedPercentThreshold: String) {
+		self.dict["finishedPercentThreshold"] = finishedPercentThreshold
+	}
+	
+	public func setMultiRequestToken(suspensionProfileInheritanceType: String) {
+		self.dict["suspensionProfileInheritanceType"] = suspensionProfileInheritanceType
+	}
+	
+	public func setMultiRequestToken(allowDeviceMobility: String) {
+		self.dict["allowDeviceMobility"] = allowDeviceMobility
+	}
+	
+	public func setMultiRequestToken(enableMultiLcns: String) {
+		self.dict["enableMultiLcns"] = enableMultiLcns
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -215,6 +288,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		if dict["downgradePolicy"] != nil {
 			downgradePolicy = DowngradePolicy(rawValue: "\(dict["downgradePolicy"]!)")
 		}
+		if dict["downgradePriorityFamilyIds"] != nil {
+			downgradePriorityFamilyIds = dict["downgradePriorityFamilyIds"] as? String
+		}
 		if dict["mailSettings"] != nil {
 			mailSettings = dict["mailSettings"] as? String
 		}
@@ -232,6 +308,21 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if dict["rollingDeviceData"] != nil {
 		rollingDeviceData = try JSONParser.parse(object: dict["rollingDeviceData"] as! [String: Any])		}
+		if dict["linearWatchHistoryThreshold"] != nil {
+			linearWatchHistoryThreshold = dict["linearWatchHistoryThreshold"] as? Int
+		}
+		if dict["finishedPercentThreshold"] != nil {
+			finishedPercentThreshold = dict["finishedPercentThreshold"] as? Int
+		}
+		if dict["suspensionProfileInheritanceType"] != nil {
+			suspensionProfileInheritanceType = SuspensionProfileInheritanceType(rawValue: "\(dict["suspensionProfileInheritanceType"]!)")
+		}
+		if dict["allowDeviceMobility"] != nil {
+			allowDeviceMobility = dict["allowDeviceMobility"] as? Bool
+		}
+		if dict["enableMultiLcns"] != nil {
+			enableMultiLcns = dict["enableMultiLcns"] as? Bool
+		}
 
 	}
 
@@ -258,6 +349,9 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		if(downgradePolicy != nil) {
 			dict["downgradePolicy"] = downgradePolicy!.rawValue
 		}
+		if(downgradePriorityFamilyIds != nil) {
+			dict["downgradePriorityFamilyIds"] = downgradePriorityFamilyIds!
+		}
 		if(mailSettings != nil) {
 			dict["mailSettings"] = mailSettings!
 		}
@@ -275,6 +369,21 @@ open class GeneralPartnerConfig: PartnerConfiguration {
 		}
 		if(rollingDeviceData != nil) {
 			dict["rollingDeviceData"] = rollingDeviceData!.toDictionary()
+		}
+		if(linearWatchHistoryThreshold != nil) {
+			dict["linearWatchHistoryThreshold"] = linearWatchHistoryThreshold!
+		}
+		if(finishedPercentThreshold != nil) {
+			dict["finishedPercentThreshold"] = finishedPercentThreshold!
+		}
+		if(suspensionProfileInheritanceType != nil) {
+			dict["suspensionProfileInheritanceType"] = suspensionProfileInheritanceType!.rawValue
+		}
+		if(allowDeviceMobility != nil) {
+			dict["allowDeviceMobility"] = allowDeviceMobility!
+		}
+		if(enableMultiLcns != nil) {
+			dict["enableMultiLcns"] = enableMultiLcns!
 		}
 		return dict
 	}

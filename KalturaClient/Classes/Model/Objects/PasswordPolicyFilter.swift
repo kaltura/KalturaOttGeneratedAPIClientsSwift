@@ -34,9 +34,9 @@
  */
 
 /**  Password policy settings filter  */
-open class PasswordPolicyFilter: CrudFilter {
+open class PasswordPolicyFilter: Filter {
 
-	public class PasswordPolicyFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+	public class PasswordPolicyFilterTokenizer: Filter.FilterTokenizer {
 		
 		public var userRoleIdIn: BaseTokenizedObject {
 			get {

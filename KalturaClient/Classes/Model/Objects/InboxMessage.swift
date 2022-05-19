@@ -72,6 +72,12 @@ open class InboxMessage: ObjectBase {
 				return self.append("url") 
 			}
 		}
+		
+		public var campaignId: BaseTokenizedObject {
+			get {
+				return self.append("campaignId") 
+			}
+		}
 	}
 
 	/**  message id  */
@@ -86,6 +92,8 @@ open class InboxMessage: ObjectBase {
 	public var createdAt: Int64? = nil
 	/**  url  */
 	public var url: String? = nil
+	/**  campaignId  */
+	public var campaignId: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -112,6 +120,10 @@ open class InboxMessage: ObjectBase {
 		self.dict["url"] = url
 	}
 	
+	public func setMultiRequestToken(campaignId: String) {
+		self.dict["campaignId"] = campaignId
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -132,6 +144,9 @@ open class InboxMessage: ObjectBase {
 		}
 		if dict["url"] != nil {
 			url = dict["url"] as? String
+		}
+		if dict["campaignId"] != nil {
+			campaignId = Int64("\(dict["campaignId"]!)")
 		}
 
 	}

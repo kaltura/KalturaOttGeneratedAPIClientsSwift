@@ -109,6 +109,12 @@ open class Meta: ObjectBase {
 				return self.append("updateDate") 
 			}
 		}
+		
+		public var dynamicData: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("dynamicData"))
+			}
+		}
 	}
 
 	/**  Meta id  */
@@ -135,6 +141,8 @@ open class Meta: ObjectBase {
 	public var createDate: Int64? = nil
 	/**  Specifies when was the meta last updated. Date and time represented as epoch.  */
 	public var updateDate: Int64? = nil
+	/**  Dynamic data  */
+	public var dynamicData: Dictionary<String, StringValue>? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -220,6 +228,9 @@ open class Meta: ObjectBase {
 		if dict["updateDate"] != nil {
 			updateDate = Int64("\(dict["updateDate"]!)")
 		}
+		if dict["dynamicData"] != nil {
+			dynamicData = try JSONParser.parse(map: dict["dynamicData"] as! [String: Any])
+		}
 
 	}
 
@@ -248,6 +259,9 @@ open class Meta: ObjectBase {
 		}
 		if(parentId != nil) {
 			dict["parentId"] = parentId!
+		}
+		if(dynamicData != nil) {
+			dict["dynamicData"] = dynamicData!.toDictionary()
 		}
 		return dict
 	}

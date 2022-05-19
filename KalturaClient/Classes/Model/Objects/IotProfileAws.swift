@@ -34,9 +34,9 @@
  */
 
 /**  kalturaIotProfileAws  */
-open class IotProfileAws: CrudObject {
+open class IotProfileAws: OTTObjectSupportNullable {
 
-	public class IotProfileAwsTokenizer: CrudObject.CrudObjectTokenizer {
+	public class IotProfileAwsTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var iotEndPoint: BaseTokenizedObject {
 			get {

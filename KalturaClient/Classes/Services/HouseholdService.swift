@@ -93,6 +93,30 @@ public final class HouseholdService{
 		return request
 	}
 
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: HouseholdFilter.HouseholdFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
+	}
+
+	public static func list(filter: HouseholdFilter) -> RequestBuilder<HouseholdListResponse, HouseholdListResponse.HouseholdListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
+	}
+
+	/**  Retrive household for the partner filter by external identifier  */
+	public static func list(filter: HouseholdFilter, pager: FilterPager?) -> RequestBuilder<HouseholdListResponse, HouseholdListResponse.HouseholdListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<HouseholdListResponse, HouseholdListResponse.HouseholdListResponseTokenizer, ListTokenizer> = RequestBuilder<HouseholdListResponse, HouseholdListResponse.HouseholdListResponseTokenizer, ListTokenizer>(service: "household", action: "list")
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
 	public class PurgeTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {

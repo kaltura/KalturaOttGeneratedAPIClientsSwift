@@ -34,9 +34,9 @@
  */
 
 /**  Permissions filter  */
-open class PermissionFilter: Filter {
+open class PermissionFilter: BasePermissionFilter {
 
-	public class PermissionFilterTokenizer: Filter.FilterTokenizer {
+	public class PermissionFilterTokenizer: BasePermissionFilter.BasePermissionFilterTokenizer {
 		
 		public var currentUserPermissionsContains: BaseTokenizedObject {
 			get {

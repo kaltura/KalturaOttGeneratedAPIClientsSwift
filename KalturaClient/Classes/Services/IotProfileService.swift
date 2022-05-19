@@ -42,10 +42,27 @@ public final class IotProfileService{
 		}
 	}
 
-	/**  Add an object  */
+	/**  Add new KalturaIotProfile  */
 	public static func add(objectToAdd: IotProfile) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, AddTokenizer> {
 		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, AddTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, AddTokenizer>(service: "iotprofile", action: "add")
 			.setParam(key: "objectToAdd", value: objectToAdd)
+
+		return request
+	}
+
+	public class GetTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Get existing KalturaIotProfile  */
+	public static func get(id: Int64) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> {
+		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer>(service: "iotprofile", action: "get")
+			.setParam(key: "id", value: id)
 
 		return request
 	}
@@ -63,28 +80,11 @@ public final class IotProfileService{
 		}
 	}
 
-	/**  Update an object  */
+	/**  Update existing KalturaIotProfile  */
 	public static func update(id: Int64, objectToUpdate: IotProfile) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, UpdateTokenizer> {
 		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, UpdateTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, UpdateTokenizer>(service: "iotprofile", action: "update")
 			.setParam(key: "id", value: id)
 			.setParam(key: "objectToUpdate", value: objectToUpdate)
-
-		return request
-	}
-
-	public class GetTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-	}
-
-	/**  Get an object  */
-	public static func get(id: Int64) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> {
-		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer>(service: "iotprofile", action: "get")
-			.setParam(key: "id", value: id)
 
 		return request
 	}

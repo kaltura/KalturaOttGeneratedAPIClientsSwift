@@ -35,12 +35,67 @@
 
 public final class DeviceBrandService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func deviceBrand<T: DeviceBrand.DeviceBrandTokenizer>() -> T {
+			return T(self.append("deviceBrand"))
+		}
+	}
+
+	/**  Adds a new device brand which belongs to a specific group.  */
+	public static func add(deviceBrand: DeviceBrand) -> RequestBuilder<DeviceBrand, DeviceBrand.DeviceBrandTokenizer, AddTokenizer> {
+		let request: RequestBuilder<DeviceBrand, DeviceBrand.DeviceBrandTokenizer, AddTokenizer> = RequestBuilder<DeviceBrand, DeviceBrand.DeviceBrandTokenizer, AddTokenizer>(service: "devicebrand", action: "add")
+			.setParam(key: "deviceBrand", value: deviceBrand)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: DeviceBrandFilter.DeviceBrandFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	public static func list(filter: DeviceBrandFilter?) -> RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
 	}
 
 	/**  Return a list of the available device brands.  */
-	public static func list() -> RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: DeviceBrandFilter?, pager: FilterPager?) -> RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer> = RequestBuilder<DeviceBrandListResponse, DeviceBrandListResponse.DeviceBrandListResponseTokenizer, ListTokenizer>(service: "devicebrand", action: "list")
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func deviceBrand<T: DeviceBrand.DeviceBrandTokenizer>() -> T {
+			return T(self.append("deviceBrand"))
+		}
+	}
+
+	/**  Updates an existing device brand which belongs to a specific group.  */
+	public static func update(id: Int64, deviceBrand: DeviceBrand) -> RequestBuilder<DeviceBrand, DeviceBrand.DeviceBrandTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<DeviceBrand, DeviceBrand.DeviceBrandTokenizer, UpdateTokenizer> = RequestBuilder<DeviceBrand, DeviceBrand.DeviceBrandTokenizer, UpdateTokenizer>(service: "devicebrand", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "deviceBrand", value: deviceBrand)
 
 		return request
 	}

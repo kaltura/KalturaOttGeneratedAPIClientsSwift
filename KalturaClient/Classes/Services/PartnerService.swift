@@ -35,12 +35,78 @@
 
 public final class PartnerService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func partner<T: Partner.PartnerTokenizer>() -> T {
+			return T(self.append("partner"))
+		}
+		
+		public func partnerSetup<T: PartnerSetup.PartnerSetupTokenizer>() -> T {
+			return T(self.append("partnerSetup"))
+		}
+	}
+
+	/**  Add a partner with default user  */
+	public static func add(partner: Partner, partnerSetup: PartnerSetup) -> RequestBuilder<Partner, Partner.PartnerTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Partner, Partner.PartnerTokenizer, AddTokenizer> = RequestBuilder<Partner, Partner.PartnerTokenizer, AddTokenizer>(service: "partner", action: "add")
+			.setParam(key: "partner", value: partner)
+			.setParam(key: "partnerSetup", value: partnerSetup)
+
+		return request
+	}
+
+	public class CreateIndexesTokenizer: ClientTokenizer  {
+	}
+
+	/**  Internal API !!! create ElasticSearch indexes for partner  */
+	public static func createIndexes() -> RequestBuilder<Bool, BaseTokenizedObject, CreateIndexesTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, CreateIndexesTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, CreateIndexesTokenizer>(service: "partner", action: "createIndexes")
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Internal API !!! Delete Partner  */
+	public static func delete(id: Int) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "partner", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ExternalLoginTokenizer: ClientTokenizer  {
 	}
 
 	/**  Returns a login session for external system (like OVP)  */
 	public static func externalLogin() -> RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer> {
 		let request: RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer> = RequestBuilder<LoginSession, LoginSession.LoginSessionTokenizer, ExternalLoginTokenizer>(service: "partner", action: "externalLogin")
+
+		return request
+	}
+
+	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: PartnerFilter.PartnerFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<PartnerListResponse, PartnerListResponse.PartnerListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	/**  Internal API !!! Returns the list of active Partners  */
+	public static func list(filter: PartnerFilter?) -> RequestBuilder<PartnerListResponse, PartnerListResponse.PartnerListResponseTokenizer, ListTokenizer> {
+		let request: RequestBuilder<PartnerListResponse, PartnerListResponse.PartnerListResponseTokenizer, ListTokenizer> = RequestBuilder<PartnerListResponse, PartnerListResponse.PartnerListResponseTokenizer, ListTokenizer>(service: "partner", action: "list")
+			.setParam(key: "filter", value: filter)
 
 		return request
 	}

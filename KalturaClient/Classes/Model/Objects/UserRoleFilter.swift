@@ -49,12 +49,28 @@ open class UserRoleFilter: Filter {
 				return self.append("currentUserRoleIdsContains") 
 			}
 		}
+		
+		public var typeEqual: BaseTokenizedObject {
+			get {
+				return self.append("typeEqual") 
+			}
+		}
+		
+		public var profileEqual: BaseTokenizedObject {
+			get {
+				return self.append("profileEqual") 
+			}
+		}
 	}
 
 	/**  Comma separated roles identifiers  */
 	public var idIn: String? = nil
 	/**  Indicates whether the results should be filtered by userId using the current  */
 	public var currentUserRoleIdsContains: Bool? = nil
+	/**  User role type  */
+	public var typeEqual: UserRoleType? = nil
+	/**  User role profile  */
+	public var profileEqual: UserRoleProfile? = nil
 
 
 	public func setMultiRequestToken(idIn: String) {
@@ -63,6 +79,14 @@ open class UserRoleFilter: Filter {
 	
 	public func setMultiRequestToken(currentUserRoleIdsContains: String) {
 		self.dict["currentUserRoleIdsContains"] = currentUserRoleIdsContains
+	}
+	
+	public func setMultiRequestToken(typeEqual: String) {
+		self.dict["typeEqual"] = typeEqual
+	}
+	
+	public func setMultiRequestToken(profileEqual: String) {
+		self.dict["profileEqual"] = profileEqual
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -74,6 +98,12 @@ open class UserRoleFilter: Filter {
 		if dict["currentUserRoleIdsContains"] != nil {
 			currentUserRoleIdsContains = dict["currentUserRoleIdsContains"] as? Bool
 		}
+		if dict["typeEqual"] != nil {
+			typeEqual = UserRoleType(rawValue: "\(dict["typeEqual"]!)")
+		}
+		if dict["profileEqual"] != nil {
+			profileEqual = UserRoleProfile(rawValue: "\(dict["profileEqual"]!)")
+		}
 
 	}
 
@@ -84,6 +114,12 @@ open class UserRoleFilter: Filter {
 		}
 		if(currentUserRoleIdsContains != nil) {
 			dict["currentUserRoleIdsContains"] = currentUserRoleIdsContains!
+		}
+		if(typeEqual != nil) {
+			dict["typeEqual"] = typeEqual!.rawValue
+		}
+		if(profileEqual != nil) {
+			dict["profileEqual"] = profileEqual!.rawValue
 		}
 		return dict
 	}

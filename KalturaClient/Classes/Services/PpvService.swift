@@ -35,6 +35,38 @@
 
 public final class PpvService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func ppv<T: Ppv.PpvTokenizer>() -> T {
+			return T(self.append("ppv"))
+		}
+	}
+
+	/**  Add new ppv  */
+	public static func add(ppv: Ppv) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, AddTokenizer> {
+		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, AddTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, AddTokenizer>(service: "ppv", action: "add")
+			.setParam(key: "ppv", value: ppv)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete Ppv  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "ppv", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class GetTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
@@ -57,16 +89,47 @@ public final class PpvService{
 		public func filter<T: PpvFilter.PpvFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
 	}
 
 	public static func list() -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
 		return list(filter: nil)
 	}
 
-	/**  Returns all ppv objects  */
 	public static func list(filter: PpvFilter?) -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
+	}
+
+	/**  Returns all ppv objects  */
+	public static func list(filter: PpvFilter?, pager: FilterPager?) -> RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer> = RequestBuilder<PpvListResponse, PpvListResponse.PpvListResponseTokenizer, ListTokenizer>(service: "ppv", action: "list")
 			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func ppv<T: Ppv.PpvTokenizer>() -> T {
+			return T(self.append("ppv"))
+		}
+	}
+
+	/**  Update ppv  */
+	public static func update(id: Int, ppv: Ppv) -> RequestBuilder<Ppv, Ppv.PpvTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Ppv, Ppv.PpvTokenizer, UpdateTokenizer> = RequestBuilder<Ppv, Ppv.PpvTokenizer, UpdateTokenizer>(service: "ppv", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "ppv", value: ppv)
 
 		return request
 	}

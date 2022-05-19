@@ -90,6 +90,10 @@ open class SeriesRecording: ObjectBase {
 				return ArrayTokenizedObject<IntegerValue.IntegerValueTokenizer>(self.append("excludedSeasons"))
 			} 
 		}
+		
+		public func seriesRecordingOption<T: SeriesRecordingOption.SeriesRecordingOptionTokenizer>() -> T {
+			return T(self.append("seriesRecordingOption"))
+		}
 	}
 
 	/**  Kaltura unique ID representing the series recording identifier  */
@@ -112,6 +116,8 @@ open class SeriesRecording: ObjectBase {
 	public var updateDate: Int64? = nil
 	/**  List of the season numbers to exclude.  */
 	public var excludedSeasons: Array<IntegerValue>? = nil
+	/**  Series Recording Option  */
+	public var seriesRecordingOption: SeriesRecordingOption? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -176,6 +182,8 @@ open class SeriesRecording: ObjectBase {
 		if dict["excludedSeasons"] != nil {
 			excludedSeasons = try JSONParser.parse(array: dict["excludedSeasons"] as! [Any])
 		}
+		if dict["seriesRecordingOption"] != nil {
+		seriesRecordingOption = try JSONParser.parse(object: dict["seriesRecordingOption"] as! [String: Any])		}
 
 	}
 
@@ -195,6 +203,9 @@ open class SeriesRecording: ObjectBase {
 		}
 		if(type != nil) {
 			dict["type"] = type!.rawValue
+		}
+		if(seriesRecordingOption != nil) {
+			dict["seriesRecordingOption"] = seriesRecordingOption!.toDictionary()
 		}
 		return dict
 	}

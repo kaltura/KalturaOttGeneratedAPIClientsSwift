@@ -55,6 +55,30 @@ open class TransactionHistoryFilter: Filter {
 				return self.append("endDateLessThanOrEqual") 
 			}
 		}
+		
+		public var entitlementIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("entitlementIdEqual") 
+			}
+		}
+		
+		public var externalIdEqual: BaseTokenizedObject {
+			get {
+				return self.append("externalIdEqual") 
+			}
+		}
+		
+		public var billingItemsTypeEqual: BaseTokenizedObject {
+			get {
+				return self.append("billingItemsTypeEqual") 
+			}
+		}
+		
+		public var billingActionEqual: BaseTokenizedObject {
+			get {
+				return self.append("billingActionEqual") 
+			}
+		}
 	}
 
 	/**  Reference type to filter by  */
@@ -63,6 +87,14 @@ open class TransactionHistoryFilter: Filter {
 	public var startDateGreaterThanOrEqual: Int? = nil
 	/**  Filter transactions earlier than specific date  */
 	public var endDateLessThanOrEqual: Int? = nil
+	/**  Filter transaction by entitlement id  */
+	public var entitlementIdEqual: Int64? = nil
+	/**  Filter transaction by external Id  */
+	public var externalIdEqual: String? = nil
+	/**  Filter transaction by billing item type  */
+	public var billingItemsTypeEqual: BillingItemsType? = nil
+	/**  Filter transaction by billing action  */
+	public var billingActionEqual: BillingAction? = nil
 
 
 	public func setMultiRequestToken(entityReferenceEqual: String) {
@@ -77,6 +109,22 @@ open class TransactionHistoryFilter: Filter {
 		self.dict["endDateLessThanOrEqual"] = endDateLessThanOrEqual
 	}
 	
+	public func setMultiRequestToken(entitlementIdEqual: String) {
+		self.dict["entitlementIdEqual"] = entitlementIdEqual
+	}
+	
+	public func setMultiRequestToken(externalIdEqual: String) {
+		self.dict["externalIdEqual"] = externalIdEqual
+	}
+	
+	public func setMultiRequestToken(billingItemsTypeEqual: String) {
+		self.dict["billingItemsTypeEqual"] = billingItemsTypeEqual
+	}
+	
+	public func setMultiRequestToken(billingActionEqual: String) {
+		self.dict["billingActionEqual"] = billingActionEqual
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +136,18 @@ open class TransactionHistoryFilter: Filter {
 		}
 		if dict["endDateLessThanOrEqual"] != nil {
 			endDateLessThanOrEqual = dict["endDateLessThanOrEqual"] as? Int
+		}
+		if dict["entitlementIdEqual"] != nil {
+			entitlementIdEqual = Int64("\(dict["entitlementIdEqual"]!)")
+		}
+		if dict["externalIdEqual"] != nil {
+			externalIdEqual = dict["externalIdEqual"] as? String
+		}
+		if dict["billingItemsTypeEqual"] != nil {
+			billingItemsTypeEqual = BillingItemsType(rawValue: "\(dict["billingItemsTypeEqual"]!)")
+		}
+		if dict["billingActionEqual"] != nil {
+			billingActionEqual = BillingAction(rawValue: "\(dict["billingActionEqual"]!)")
 		}
 
 	}
@@ -102,6 +162,18 @@ open class TransactionHistoryFilter: Filter {
 		}
 		if(endDateLessThanOrEqual != nil) {
 			dict["endDateLessThanOrEqual"] = endDateLessThanOrEqual!
+		}
+		if(entitlementIdEqual != nil) {
+			dict["entitlementIdEqual"] = entitlementIdEqual!
+		}
+		if(externalIdEqual != nil) {
+			dict["externalIdEqual"] = externalIdEqual!
+		}
+		if(billingItemsTypeEqual != nil) {
+			dict["billingItemsTypeEqual"] = billingItemsTypeEqual!.rawValue
+		}
+		if(billingActionEqual != nil) {
+			dict["billingActionEqual"] = billingActionEqual!.rawValue
 		}
 		return dict
 	}

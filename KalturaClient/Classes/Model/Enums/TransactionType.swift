@@ -35,4 +35,5 @@ public enum TransactionType: String {
 	case PPV = "ppv"
 	case SUBSCRIPTION = "subscription"
 	case COLLECTION = "collection"
+	case PROGRAMASSETGROUPOFFER = "programAssetGroupOffer"
 }

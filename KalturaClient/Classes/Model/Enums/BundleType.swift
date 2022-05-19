@@ -34,4 +34,5 @@
 public enum BundleType: String {
 	case SUBSCRIPTION = "subscription"
 	case COLLECTION = "collection"
+	case PAGO = "pago"
 }

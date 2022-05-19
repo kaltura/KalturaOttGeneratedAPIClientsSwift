@@ -127,6 +127,18 @@ open class Household: ObjectBase {
 				return self.append("roleId") 
 			}
 		}
+		
+		public var createDate: BaseTokenizedObject {
+			get {
+				return self.append("createDate") 
+			}
+		}
+		
+		public var updateDate: BaseTokenizedObject {
+			get {
+				return self.append("updateDate") 
+			}
+		}
 	}
 
 	/**  Household identifier  */
@@ -159,6 +171,10 @@ open class Household: ObjectBase {
 	public var restriction: HouseholdRestriction? = nil
 	/**  suspended roleId  */
 	public var roleId: Int? = nil
+	/**  create date  */
+	public var createDate: Int64? = nil
+	/**  update date  */
+	public var updateDate: Int64? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -221,6 +237,14 @@ open class Household: ObjectBase {
 		self.dict["roleId"] = roleId
 	}
 	
+	public func setMultiRequestToken(createDate: String) {
+		self.dict["createDate"] = createDate
+	}
+	
+	public func setMultiRequestToken(updateDate: String) {
+		self.dict["updateDate"] = updateDate
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -268,6 +292,12 @@ open class Household: ObjectBase {
 		}
 		if dict["roleId"] != nil {
 			roleId = dict["roleId"] as? Int
+		}
+		if dict["createDate"] != nil {
+			createDate = Int64("\(dict["createDate"]!)")
+		}
+		if dict["updateDate"] != nil {
+			updateDate = Int64("\(dict["updateDate"]!)")
 		}
 
 	}

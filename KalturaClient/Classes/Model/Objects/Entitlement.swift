@@ -121,6 +121,12 @@ open class Entitlement: ObjectBase {
 				return self.append("householdId") 
 			}
 		}
+		
+		public var isPending: BaseTokenizedObject {
+			get {
+				return self.append("isPending") 
+			}
+		}
 	}
 
 	/**  Purchase identifier (for subscriptions and collections only)  */
@@ -152,6 +158,8 @@ open class Entitlement: ObjectBase {
 	public var userId: String? = nil
 	/**  The Identifier of the purchasing household  */
 	public var householdId: Int64? = nil
+	/**  Indicates whether the asynchronous purchase is pending  */
+	public var isPending: Bool? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -210,6 +218,10 @@ open class Entitlement: ObjectBase {
 		self.dict["householdId"] = householdId
 	}
 	
+	public func setMultiRequestToken(isPending: String) {
+		self.dict["isPending"] = isPending
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -255,8 +267,21 @@ open class Entitlement: ObjectBase {
 		if dict["householdId"] != nil {
 			householdId = Int64("\(dict["householdId"]!)")
 		}
+		if dict["isPending"] != nil {
+			isPending = dict["isPending"] as? Bool
+		}
 
 	}
 
+	internal override func toDictionary() -> [String: Any] {
+		var dict: [String: Any] = super.toDictionary()
+		if(endDate != nil) {
+			dict["endDate"] = endDate!
+		}
+		if(isPending != nil) {
+			dict["isPending"] = isPending!
+		}
+		return dict
+	}
 }
 

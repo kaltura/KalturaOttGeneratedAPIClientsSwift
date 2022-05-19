@@ -54,6 +54,23 @@ public final class AssetHistoryService{
 		return request
 	}
 
+	public class GetNextEpisodeTokenizer: ClientTokenizer  {
+		
+		public var assetId: BaseTokenizedObject {
+			get {
+				return self.append("assetId") 
+			}
+		}
+	}
+
+	/**  Get next episode by last watch asset in given assetId  */
+	public static func getNextEpisode(assetId: Int64) -> RequestBuilder<AssetHistory, AssetHistory.AssetHistoryTokenizer, GetNextEpisodeTokenizer> {
+		let request: RequestBuilder<AssetHistory, AssetHistory.AssetHistoryTokenizer, GetNextEpisodeTokenizer> = RequestBuilder<AssetHistory, AssetHistory.AssetHistoryTokenizer, GetNextEpisodeTokenizer>(service: "assethistory", action: "getNextEpisode")
+			.setParam(key: "assetId", value: assetId)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: AssetHistoryFilter.AssetHistoryFilterTokenizer>() -> T {

@@ -50,6 +50,54 @@ public final class RegionService{
 		return request
 	}
 
+	public class LinearchannelbulkaddTokenizer: ClientTokenizer  {
+		
+		public var linearChannelId: BaseTokenizedObject {
+			get {
+				return self.append("linearChannelId") 
+			}
+		}
+		
+		public var regionChannelNumbers: ArrayTokenizedObject<RegionChannelNumber.RegionChannelNumberTokenizer> {
+			get {
+				return ArrayTokenizedObject<RegionChannelNumber.RegionChannelNumberTokenizer>(self.append("regionChannelNumbers"))
+			} 
+		}
+	}
+
+	/**  Adds a linear channel to the list of regions.  */
+	public static func linearchannelbulkadd(linearChannelId: Int64, regionChannelNumbers: Array<RegionChannelNumber>) -> RequestBuilder<Bool, BaseTokenizedObject, LinearchannelbulkaddTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, LinearchannelbulkaddTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, LinearchannelbulkaddTokenizer>(service: "region", action: "linearchannelbulkadd")
+			.setParam(key: "linearChannelId", value: linearChannelId)
+			.setParam(key: "regionChannelNumbers", value: regionChannelNumbers)
+
+		return request
+	}
+
+	public class LinearchannelbulkdeleteTokenizer: ClientTokenizer  {
+		
+		public var linearChannelId: BaseTokenizedObject {
+			get {
+				return self.append("linearChannelId") 
+			}
+		}
+		
+		public var regionIds: BaseTokenizedObject {
+			get {
+				return self.append("regionIds") 
+			}
+		}
+	}
+
+	/**  Deletes a linear channel from the list of regions.  */
+	public static func linearchannelbulkdelete(linearChannelId: Int64, regionIds: String) -> RequestBuilder<Bool, BaseTokenizedObject, LinearchannelbulkdeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, LinearchannelbulkdeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, LinearchannelbulkdeleteTokenizer>(service: "region", action: "linearchannelbulkdelete")
+			.setParam(key: "linearChannelId", value: linearChannelId)
+			.setParam(key: "regionIds", value: regionIds)
+
+		return request
+	}
+
 	public class DeleteTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {

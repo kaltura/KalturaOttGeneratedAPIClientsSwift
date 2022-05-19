@@ -50,9 +50,15 @@ open class DeviceBrand: ObjectBase {
 			}
 		}
 		
-		public var deviceFamilyid: BaseTokenizedObject {
+		public var deviceFamilyId: BaseTokenizedObject {
 			get {
-				return self.append("deviceFamilyid") 
+				return self.append("deviceFamilyId") 
+			}
+		}
+		
+		public var type: BaseTokenizedObject {
+			get {
+				return self.append("type") 
 			}
 		}
 	}
@@ -62,7 +68,10 @@ open class DeviceBrand: ObjectBase {
 	/**  Device brand name  */
 	public var name: String? = nil
 	/**  Device family identifier  */
-	public var deviceFamilyid: Int64? = nil
+	public var deviceFamilyId: Int64? = nil
+	/**  Type of device family.               if this device family belongs only to this
+	  group,               otherwise.  */
+	public var type: DeviceBrandType? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -73,8 +82,12 @@ open class DeviceBrand: ObjectBase {
 		self.dict["name"] = name
 	}
 	
-	public func setMultiRequestToken(deviceFamilyid: String) {
-		self.dict["deviceFamilyid"] = deviceFamilyid
+	public func setMultiRequestToken(deviceFamilyId: String) {
+		self.dict["deviceFamilyId"] = deviceFamilyId
+	}
+	
+	public func setMultiRequestToken(type: String) {
+		self.dict["type"] = type
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -86,16 +99,25 @@ open class DeviceBrand: ObjectBase {
 		if dict["name"] != nil {
 			name = dict["name"] as? String
 		}
-		if dict["deviceFamilyid"] != nil {
-			deviceFamilyid = Int64("\(dict["deviceFamilyid"]!)")
+		if dict["deviceFamilyId"] != nil {
+			deviceFamilyId = Int64("\(dict["deviceFamilyId"]!)")
+		}
+		if dict["type"] != nil {
+			type = DeviceBrandType(rawValue: "\(dict["type"]!)")
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
+		if(id != nil) {
+			dict["id"] = id!
+		}
 		if(name != nil) {
 			dict["name"] = name!
+		}
+		if(deviceFamilyId != nil) {
+			dict["deviceFamilyId"] = deviceFamilyId!
 		}
 		return dict
 	}

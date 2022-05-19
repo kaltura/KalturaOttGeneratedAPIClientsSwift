@@ -49,6 +49,12 @@ open class AssetUserRuleFilter: Filter {
 				return self.append("actionsContainType") 
 			}
 		}
+		
+		public var conditionsContainType: BaseTokenizedObject {
+			get {
+				return self.append("conditionsContainType") 
+			}
+		}
 	}
 
 	/**  Indicates if to get the asset user rule list for the attached user or for the
@@ -56,6 +62,9 @@ open class AssetUserRuleFilter: Filter {
 	public var attachedUserIdEqualCurrent: Bool? = nil
 	/**  Indicates which asset rule list to return by this KalturaRuleActionType.  */
 	public var actionsContainType: RuleActionType? = nil
+	/**  Indicates that only asset rules are returned that have exactly one and not more
+	  associated condition.  */
+	public var conditionsContainType: RuleConditionType? = nil
 
 
 	public func setMultiRequestToken(attachedUserIdEqualCurrent: String) {
@@ -64,6 +73,10 @@ open class AssetUserRuleFilter: Filter {
 	
 	public func setMultiRequestToken(actionsContainType: String) {
 		self.dict["actionsContainType"] = actionsContainType
+	}
+	
+	public func setMultiRequestToken(conditionsContainType: String) {
+		self.dict["conditionsContainType"] = conditionsContainType
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -75,6 +88,9 @@ open class AssetUserRuleFilter: Filter {
 		if dict["actionsContainType"] != nil {
 			actionsContainType = RuleActionType(rawValue: "\(dict["actionsContainType"]!)")
 		}
+		if dict["conditionsContainType"] != nil {
+			conditionsContainType = RuleConditionType(rawValue: "\(dict["conditionsContainType"]!)")
+		}
 
 	}
 
@@ -85,6 +101,9 @@ open class AssetUserRuleFilter: Filter {
 		}
 		if(actionsContainType != nil) {
 			dict["actionsContainType"] = actionsContainType!.rawValue
+		}
+		if(conditionsContainType != nil) {
+			dict["conditionsContainType"] = conditionsContainType!.rawValue
 		}
 		return dict
 	}

@@ -34,9 +34,9 @@
  */
 
 /**  Password policy settings  */
-open class PasswordPolicy: CrudObject {
+open class PasswordPolicy: OTTObjectSupportNullable {
 
-	public class PasswordPolicyTokenizer: CrudObject.CrudObjectTokenizer {
+	public class PasswordPolicyTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var id: BaseTokenizedObject {
 			get {

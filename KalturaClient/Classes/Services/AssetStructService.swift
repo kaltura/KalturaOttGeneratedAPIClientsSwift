@@ -86,7 +86,7 @@ public final class AssetStructService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: AssetStructFilter.AssetStructFilterTokenizer>() -> T {
+		public func filter<T: BaseAssetStructFilter.BaseAssetStructFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
 	}
@@ -96,7 +96,7 @@ public final class AssetStructService{
 	}
 
 	/**  Return a list of asset structs for the account with optional filter  */
-	public static func list(filter: AssetStructFilter?) -> RequestBuilder<AssetStructListResponse, AssetStructListResponse.AssetStructListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: BaseAssetStructFilter?) -> RequestBuilder<AssetStructListResponse, AssetStructListResponse.AssetStructListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<AssetStructListResponse, AssetStructListResponse.AssetStructListResponseTokenizer, ListTokenizer> = RequestBuilder<AssetStructListResponse, AssetStructListResponse.AssetStructListResponseTokenizer, ListTokenizer>(service: "assetstruct", action: "list")
 			.setParam(key: "filter", value: filter)
 

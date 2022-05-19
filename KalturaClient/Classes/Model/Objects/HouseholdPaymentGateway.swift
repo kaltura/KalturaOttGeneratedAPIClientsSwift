@@ -60,6 +60,10 @@ open class HouseholdPaymentGateway: ObjectBase {
 				return self.append("selectedBy") 
 			}
 		}
+		
+		public func suspendSettings<T: SuspendSettings.SuspendSettingsTokenizer>() -> T {
+			return T(self.append("suspendSettings"))
+		}
 	}
 
 	/**  payment gateway id  */
@@ -70,6 +74,8 @@ open class HouseholdPaymentGateway: ObjectBase {
 	public var isDefault: Bool? = nil
 	/**  distinction payment gateway selected by account or household  */
 	public var selectedBy: HouseholdPaymentGatewaySelectedBy? = nil
+	/**  suspend settings  */
+	public var suspendSettings: SuspendSettings? = nil
 
 
 	public func setMultiRequestToken(id: String) {
@@ -103,6 +109,8 @@ open class HouseholdPaymentGateway: ObjectBase {
 		if dict["selectedBy"] != nil {
 			selectedBy = HouseholdPaymentGatewaySelectedBy(rawValue: "\(dict["selectedBy"]!)")
 		}
+		if dict["suspendSettings"] != nil {
+		suspendSettings = try JSONParser.parse(object: dict["suspendSettings"] as! [String: Any])		}
 
 	}
 

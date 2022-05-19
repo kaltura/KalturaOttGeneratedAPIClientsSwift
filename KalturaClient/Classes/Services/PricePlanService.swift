@@ -35,6 +35,38 @@
 
 public final class PricePlanService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func pricePlan<T: PricePlan.PricePlanTokenizer>() -> T {
+			return T(self.append("pricePlan"))
+		}
+	}
+
+	/**  Insert new PricePlan  */
+	public static func add(pricePlan: PricePlan) -> RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, AddTokenizer> {
+		let request: RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, AddTokenizer> = RequestBuilder<PricePlan, PricePlan.PricePlanTokenizer, AddTokenizer>(service: "priceplan", action: "add")
+			.setParam(key: "pricePlan", value: pricePlan)
+
+		return request
+	}
+
+	public class DeleteTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+	}
+
+	/**  Delete PricePlan  */
+	public static func delete(id: Int64) -> RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, DeleteTokenizer>(service: "priceplan", action: "delete")
+			.setParam(key: "id", value: id)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
 		
 		public func filter<T: PricePlanFilter.PricePlanFilterTokenizer>() -> T {

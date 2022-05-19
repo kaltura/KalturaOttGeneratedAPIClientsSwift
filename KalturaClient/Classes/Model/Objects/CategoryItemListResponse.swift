@@ -44,7 +44,7 @@ open class CategoryItemListResponse: ListResponse {
 		}
 	}
 
-	/**  A list of objects  */
+	/**  A list of CategoryItem  */
 	public var objects: Array<CategoryItem>? = nil
 
 

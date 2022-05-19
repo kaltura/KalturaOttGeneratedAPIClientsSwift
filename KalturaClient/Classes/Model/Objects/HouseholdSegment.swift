@@ -34,9 +34,9 @@
  */
 
 /**  Indicates a segment of a household  */
-open class HouseholdSegment: CrudObject {
+open class HouseholdSegment: OTTObjectSupportNullable {
 
-	public class HouseholdSegmentTokenizer: CrudObject.CrudObjectTokenizer {
+	public class HouseholdSegmentTokenizer: OTTObjectSupportNullable.OTTObjectSupportNullableTokenizer {
 		
 		public var segmentId: BaseTokenizedObject {
 			get {

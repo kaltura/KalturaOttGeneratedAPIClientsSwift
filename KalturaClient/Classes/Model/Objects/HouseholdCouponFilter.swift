@@ -33,9 +33,9 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-open class HouseholdCouponFilter: CrudFilter {
+open class HouseholdCouponFilter: Filter {
 
-	public class HouseholdCouponFilterTokenizer: CrudFilter.CrudFilterTokenizer {
+	public class HouseholdCouponFilterTokenizer: Filter.FilterTokenizer {
 		
 		public var businessModuleTypeEqual: BaseTokenizedObject {
 			get {

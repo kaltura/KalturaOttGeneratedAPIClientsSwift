@@ -66,6 +66,12 @@ open class ProductPriceFilter: Filter {
 				return self.append("couponCodeEqual") 
 			}
 		}
+		
+		public var programAssetGroupOfferIdIn: BaseTokenizedObject {
+			get {
+				return self.append("programAssetGroupOfferIdIn") 
+			}
+		}
 	}
 
 	/**  Comma separated subscriptions identifiers  */
@@ -78,6 +84,8 @@ open class ProductPriceFilter: Filter {
 	public var isLowest: Bool? = nil
 	/**  Discount coupon code  */
 	public var couponCodeEqual: String? = nil
+	/**  Comma separated ProgramAssetGroupOffer identifiers  */
+	public var programAssetGroupOfferIdIn: String? = nil
 
 
 	public func setMultiRequestToken(subscriptionIdIn: String) {
@@ -100,6 +108,10 @@ open class ProductPriceFilter: Filter {
 		self.dict["couponCodeEqual"] = couponCodeEqual
 	}
 	
+	public func setMultiRequestToken(programAssetGroupOfferIdIn: String) {
+		self.dict["programAssetGroupOfferIdIn"] = programAssetGroupOfferIdIn
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -117,6 +129,9 @@ open class ProductPriceFilter: Filter {
 		}
 		if dict["couponCodeEqual"] != nil {
 			couponCodeEqual = dict["couponCodeEqual"] as? String
+		}
+		if dict["programAssetGroupOfferIdIn"] != nil {
+			programAssetGroupOfferIdIn = dict["programAssetGroupOfferIdIn"] as? String
 		}
 
 	}
@@ -137,6 +152,9 @@ open class ProductPriceFilter: Filter {
 		}
 		if(couponCodeEqual != nil) {
 			dict["couponCodeEqual"] = couponCodeEqual!
+		}
+		if(programAssetGroupOfferIdIn != nil) {
+			dict["programAssetGroupOfferIdIn"] = programAssetGroupOfferIdIn!
 		}
 		return dict
 	}

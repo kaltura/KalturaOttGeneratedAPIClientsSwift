@@ -90,6 +90,12 @@ open class Channel: BaseChannel {
 			return T(self.append("orderBy"))
 		}
 		
+		public var orderingParametersEqual: ArrayTokenizedObject<BaseChannelOrder.BaseChannelOrderTokenizer> {
+			get {
+				return ArrayTokenizedObject<BaseChannelOrder.BaseChannelOrderTokenizer>(self.append("orderingParametersEqual"))
+			} 
+		}
+		
 		public var createDate: BaseTokenizedObject {
 			get {
 				return self.append("createDate") 
@@ -119,6 +125,12 @@ open class Channel: BaseChannel {
 				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("metaData"))
 			}
 		}
+		
+		public var virtualAssetId: BaseTokenizedObject {
+			get {
+				return self.append("virtualAssetId") 
+			}
+		}
 	}
 
 	/**  Channel name  */
@@ -139,6 +151,8 @@ open class Channel: BaseChannel {
 	public var isActive: Bool? = nil
 	/**  Channel order by  */
 	public var orderBy: ChannelOrder? = nil
+	/**  Parameters for asset list sorting.  */
+	public var orderingParametersEqual: Array<BaseChannelOrder>? = nil
 	/**  Specifies when was the Channel was created. Date and time represented as epoch.  */
 	public var createDate: Int64? = nil
 	/**  Specifies when was the Channel last updated. Date and time represented as epoch.  */
@@ -150,6 +164,8 @@ open class Channel: BaseChannel {
 	public var assetUserRuleId: Int64? = nil
 	/**  key/value map field for extra data  */
 	public var metaData: Dictionary<String, StringValue>? = nil
+	/**  Virtual asset id  */
+	public var virtualAssetId: Int64? = nil
 
 
 	public func setMultiRequestToken(name: String) {
@@ -192,6 +208,10 @@ open class Channel: BaseChannel {
 		self.dict["assetUserRuleId"] = assetUserRuleId
 	}
 	
+	public func setMultiRequestToken(virtualAssetId: String) {
+		self.dict["virtualAssetId"] = virtualAssetId
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -221,6 +241,9 @@ open class Channel: BaseChannel {
 		}
 		if dict["orderBy"] != nil {
 		orderBy = try JSONParser.parse(object: dict["orderBy"] as! [String: Any])		}
+		if dict["orderingParametersEqual"] != nil {
+			orderingParametersEqual = try JSONParser.parse(array: dict["orderingParametersEqual"] as! [Any])
+		}
 		if dict["createDate"] != nil {
 			createDate = Int64("\(dict["createDate"]!)")
 		}
@@ -235,6 +258,9 @@ open class Channel: BaseChannel {
 		}
 		if dict["metaData"] != nil {
 			metaData = try JSONParser.parse(map: dict["metaData"] as! [String: Any])
+		}
+		if dict["virtualAssetId"] != nil {
+			virtualAssetId = Int64("\(dict["virtualAssetId"]!)")
 		}
 
 	}
@@ -261,6 +287,9 @@ open class Channel: BaseChannel {
 		}
 		if(orderBy != nil) {
 			dict["orderBy"] = orderBy!.toDictionary()
+		}
+		if(orderingParametersEqual != nil) {
+			dict["orderingParametersEqual"] = orderingParametersEqual!.map { value in value.toDictionary() }
 		}
 		if(supportSegmentBasedOrdering != nil) {
 			dict["supportSegmentBasedOrdering"] = supportSegmentBasedOrdering!

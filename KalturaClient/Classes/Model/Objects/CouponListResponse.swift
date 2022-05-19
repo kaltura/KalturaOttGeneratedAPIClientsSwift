@@ -44,7 +44,7 @@ open class CouponListResponse: ListResponse {
 		}
 	}
 
-	/**  Coupons  */
+	/**  A list of Coupons  */
 	public var objects: Array<Coupon>? = nil
 
 

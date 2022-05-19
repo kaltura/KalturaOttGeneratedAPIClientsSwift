@@ -76,7 +76,8 @@ open class PlaybackContextOptions: ObjectBase {
 
 	/**  Protocol of the specific media object (http / https).  */
 	public var mediaProtocol: String? = nil
-	/**  Playback streamer type: applehttp, mpegdash, url, smothstreaming, none  */
+	/**  Playback streamer type: applehttp, mpegdash, url, smothstreaming, multicast,
+	  none  */
 	public var streamerType: String? = nil
 	/**  List of comma separated media file IDs  */
 	public var assetFileIds: String? = nil

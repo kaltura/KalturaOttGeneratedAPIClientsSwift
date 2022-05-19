@@ -35,12 +35,67 @@
 
 public final class DeviceFamilyService{
 
+	public class AddTokenizer: ClientTokenizer  {
+		
+		public func deviceFamily<T: DeviceFamily.DeviceFamilyTokenizer>() -> T {
+			return T(self.append("deviceFamily"))
+		}
+	}
+
+	/**  Adds a new device family which belongs to a specific group.  */
+	public static func add(deviceFamily: DeviceFamily) -> RequestBuilder<DeviceFamily, DeviceFamily.DeviceFamilyTokenizer, AddTokenizer> {
+		let request: RequestBuilder<DeviceFamily, DeviceFamily.DeviceFamilyTokenizer, AddTokenizer> = RequestBuilder<DeviceFamily, DeviceFamily.DeviceFamilyTokenizer, AddTokenizer>(service: "devicefamily", action: "add")
+			.setParam(key: "deviceFamily", value: deviceFamily)
+
+		return request
+	}
+
 	public class ListTokenizer: ClientTokenizer  {
+		
+		public func filter<T: DeviceFamilyFilter.DeviceFamilyFilterTokenizer>() -> T {
+			return T(self.append("filter"))
+		}
+		
+		public func pager<T: FilterPager.FilterPagerTokenizer>() -> T {
+			return T(self.append("pager"))
+		}
+	}
+
+	public static func list() -> RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> {
+		return list(filter: nil)
+	}
+
+	public static func list(filter: DeviceFamilyFilter?) -> RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> {
+		return list(filter: filter, pager: nil)
 	}
 
 	/**  Return a list of the available device families.  */
-	public static func list() -> RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: DeviceFamilyFilter?, pager: FilterPager?) -> RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer> = RequestBuilder<DeviceFamilyListResponse, DeviceFamilyListResponse.DeviceFamilyListResponseTokenizer, ListTokenizer>(service: "devicefamily", action: "list")
+			.setParam(key: "filter", value: filter)
+			.setParam(key: "pager", value: pager)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func deviceFamily<T: DeviceFamily.DeviceFamilyTokenizer>() -> T {
+			return T(self.append("deviceFamily"))
+		}
+	}
+
+	/**  Updates an existing device family which belongs to a specific group.  */
+	public static func update(id: Int64, deviceFamily: DeviceFamily) -> RequestBuilder<DeviceFamily, DeviceFamily.DeviceFamilyTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<DeviceFamily, DeviceFamily.DeviceFamilyTokenizer, UpdateTokenizer> = RequestBuilder<DeviceFamily, DeviceFamily.DeviceFamilyTokenizer, UpdateTokenizer>(service: "devicefamily", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "deviceFamily", value: deviceFamily)
 
 		return request
 	}

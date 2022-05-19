@@ -55,6 +55,18 @@ open class HouseholdDeviceFamilyLimitations: DeviceFamilyBase {
 				return self.append("concurrentLimit") 
 			}
 		}
+		
+		public var isDefaultDeviceLimit: BaseTokenizedObject {
+			get {
+				return self.append("isDefaultDeviceLimit") 
+			}
+		}
+		
+		public var isDefaultConcurrentLimit: BaseTokenizedObject {
+			get {
+				return self.append("isDefaultConcurrentLimit") 
+			}
+		}
 	}
 
 	/**  Allowed device change frequency code  */
@@ -63,6 +75,10 @@ open class HouseholdDeviceFamilyLimitations: DeviceFamilyBase {
 	public var deviceLimit: Int? = nil
 	/**  Max number of streams allowed for this family  */
 	public var concurrentLimit: Int? = nil
+	/**  Is the Max number of devices allowed for this family is default value or not  */
+	public var isDefaultDeviceLimit: Bool? = nil
+	/**  Is the Max number of streams allowed for this family is default value or not  */
+	public var isDefaultConcurrentLimit: Bool? = nil
 
 
 	public func setMultiRequestToken(frequency: String) {
@@ -77,6 +93,14 @@ open class HouseholdDeviceFamilyLimitations: DeviceFamilyBase {
 		self.dict["concurrentLimit"] = concurrentLimit
 	}
 	
+	public func setMultiRequestToken(isDefaultDeviceLimit: String) {
+		self.dict["isDefaultDeviceLimit"] = isDefaultDeviceLimit
+	}
+	
+	public func setMultiRequestToken(isDefaultConcurrentLimit: String) {
+		self.dict["isDefaultConcurrentLimit"] = isDefaultConcurrentLimit
+	}
+	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
@@ -88,6 +112,12 @@ open class HouseholdDeviceFamilyLimitations: DeviceFamilyBase {
 		}
 		if dict["concurrentLimit"] != nil {
 			concurrentLimit = dict["concurrentLimit"] as? Int
+		}
+		if dict["isDefaultDeviceLimit"] != nil {
+			isDefaultDeviceLimit = dict["isDefaultDeviceLimit"] as? Bool
+		}
+		if dict["isDefaultConcurrentLimit"] != nil {
+			isDefaultConcurrentLimit = dict["isDefaultConcurrentLimit"] as? Bool
 		}
 
 	}

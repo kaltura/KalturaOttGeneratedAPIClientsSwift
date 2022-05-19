@@ -50,6 +50,30 @@ public final class PermissionService{
 		return request
 	}
 
+	public class AddPermissionItemTokenizer: ClientTokenizer  {
+		
+		public var permissionId: BaseTokenizedObject {
+			get {
+				return self.append("permissionId") 
+			}
+		}
+		
+		public var permissionItemId: BaseTokenizedObject {
+			get {
+				return self.append("permissionItemId") 
+			}
+		}
+	}
+
+	/**  Adds permission item to permission  */
+	public static func addPermissionItem(permissionId: Int64, permissionItemId: Int64) -> NullRequestBuilder<AddPermissionItemTokenizer> {
+		let request: NullRequestBuilder<AddPermissionItemTokenizer> = NullRequestBuilder<AddPermissionItemTokenizer>(service: "permission", action: "addPermissionItem")
+			.setParam(key: "permissionId", value: permissionId)
+			.setParam(key: "permissionItemId", value: permissionItemId)
+
+		return request
+	}
+
 	public class DeleteTokenizer: ClientTokenizer  {
 		
 		public var id: BaseTokenizedObject {
@@ -79,7 +103,7 @@ public final class PermissionService{
 
 	public class ListTokenizer: ClientTokenizer  {
 		
-		public func filter<T: PermissionFilter.PermissionFilterTokenizer>() -> T {
+		public func filter<T: BasePermissionFilter.BasePermissionFilterTokenizer>() -> T {
 			return T(self.append("filter"))
 		}
 	}
@@ -90,9 +114,55 @@ public final class PermissionService{
 
 	/**  Retrieving permissions by identifiers, if filter is empty, returns all partner
 	  permissions  */
-	public static func list(filter: PermissionFilter?) -> RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer> {
+	public static func list(filter: BasePermissionFilter?) -> RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer> {
 		let request: RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer> = RequestBuilder<PermissionListResponse, PermissionListResponse.PermissionListResponseTokenizer, ListTokenizer>(service: "permission", action: "list")
 			.setParam(key: "filter", value: filter)
+
+		return request
+	}
+
+	public class RemovePermissionItemTokenizer: ClientTokenizer  {
+		
+		public var permissionId: BaseTokenizedObject {
+			get {
+				return self.append("permissionId") 
+			}
+		}
+		
+		public var permissionItemId: BaseTokenizedObject {
+			get {
+				return self.append("permissionItemId") 
+			}
+		}
+	}
+
+	/**  Removes permission item from permission  */
+	public static func removePermissionItem(permissionId: Int64, permissionItemId: Int64) -> NullRequestBuilder<RemovePermissionItemTokenizer> {
+		let request: NullRequestBuilder<RemovePermissionItemTokenizer> = NullRequestBuilder<RemovePermissionItemTokenizer>(service: "permission", action: "removePermissionItem")
+			.setParam(key: "permissionId", value: permissionId)
+			.setParam(key: "permissionItemId", value: permissionItemId)
+
+		return request
+	}
+
+	public class UpdateTokenizer: ClientTokenizer  {
+		
+		public var id: BaseTokenizedObject {
+			get {
+				return self.append("id") 
+			}
+		}
+		
+		public func permission<T: Permission.PermissionTokenizer>() -> T {
+			return T(self.append("permission"))
+		}
+	}
+
+	/**  Update an existing permission.  */
+	public static func update(id: Int64, permission: Permission) -> RequestBuilder<Permission, Permission.PermissionTokenizer, UpdateTokenizer> {
+		let request: RequestBuilder<Permission, Permission.PermissionTokenizer, UpdateTokenizer> = RequestBuilder<Permission, Permission.PermissionTokenizer, UpdateTokenizer>(service: "permission", action: "update")
+			.setParam(key: "id", value: id)
+			.setParam(key: "permission", value: permission)
 
 		return request
 	}

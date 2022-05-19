@@ -43,15 +43,28 @@ open class BulkUploadIngestJobData: BulkUploadJobData {
 				return self.append("ingestProfileId") 
 			}
 		}
+		
+		public var disableEpgNotification: BaseTokenizedObject {
+			get {
+				return self.append("disableEpgNotification") 
+			}
+		}
 	}
 
 	/**  Identifies the ingest profile that will handle the ingest of programs           
 	    Ingest profiles are created separately using the ingest profile service  */
 	public var ingestProfileId: Int? = nil
+	/**  By default, after the successful ingest, devices will be notified about changes
+	  in epg channels.              This parameter disables this notification.  */
+	public var disableEpgNotification: Bool? = nil
 
 
 	public func setMultiRequestToken(ingestProfileId: String) {
 		self.dict["ingestProfileId"] = ingestProfileId
+	}
+	
+	public func setMultiRequestToken(disableEpgNotification: String) {
+		self.dict["disableEpgNotification"] = disableEpgNotification
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
@@ -60,6 +73,9 @@ open class BulkUploadIngestJobData: BulkUploadJobData {
 		if dict["ingestProfileId"] != nil {
 			ingestProfileId = dict["ingestProfileId"] as? Int
 		}
+		if dict["disableEpgNotification"] != nil {
+			disableEpgNotification = dict["disableEpgNotification"] as? Bool
+		}
 
 	}
 
@@ -67,6 +83,9 @@ open class BulkUploadIngestJobData: BulkUploadJobData {
 		var dict: [String: Any] = super.toDictionary()
 		if(ingestProfileId != nil) {
 			dict["ingestProfileId"] = ingestProfileId!
+		}
+		if(disableEpgNotification != nil) {
+			dict["disableEpgNotification"] = disableEpgNotification!
 		}
 		return dict
 	}
