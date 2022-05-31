@@ -62,6 +62,18 @@ open class LiveAsset: MediaAsset {
 			}
 		}
 		
+		public var paddingBeforeProgramStarts: BaseTokenizedObject {
+			get {
+				return self.append("paddingBeforeProgramStarts") 
+			}
+		}
+		
+		public var paddingAfterProgramEnds: BaseTokenizedObject {
+			get {
+				return self.append("paddingAfterProgramEnds") 
+			}
+		}
+		
 		public var bufferTrickPlaySetting: BaseTokenizedObject {
 			get {
 				return self.append("bufferTrickPlaySetting") 
@@ -149,6 +161,14 @@ open class LiveAsset: MediaAsset {
 	public var enableStartOverState: TimeShiftedTvState? = nil
 	/**  buffer Catch-up, configuration only  */
 	public var bufferCatchUpSetting: Int64? = nil
+	/**  Returns padding before program starts in seconds from a live asset if
+	  configured,              otherwise returns corresponding value from
+	  TimeShiftedTvPartnerSettings.  */
+	public var paddingBeforeProgramStarts: Int64? = nil
+	/**  Returns padding after program ends in seconds from a live asset if configured,  
+	             otherwise returns corresponding value from
+	  TimeShiftedTvPartnerSettings.  */
+	public var paddingAfterProgramEnds: Int64? = nil
 	/**  buffer Trick-play, configuration only  */
 	public var bufferTrickPlaySetting: Int64? = nil
 	/**  Enable Recording playback for non entitled channel, configuration only  */
@@ -205,6 +225,14 @@ open class LiveAsset: MediaAsset {
 	
 	public func setMultiRequestToken(bufferCatchUpSetting: String) {
 		self.dict["bufferCatchUpSetting"] = bufferCatchUpSetting
+	}
+	
+	public func setMultiRequestToken(paddingBeforeProgramStarts: String) {
+		self.dict["paddingBeforeProgramStarts"] = paddingBeforeProgramStarts
+	}
+	
+	public func setMultiRequestToken(paddingAfterProgramEnds: String) {
+		self.dict["paddingAfterProgramEnds"] = paddingAfterProgramEnds
 	}
 	
 	public func setMultiRequestToken(bufferTrickPlaySetting: String) {
@@ -274,6 +302,12 @@ open class LiveAsset: MediaAsset {
 		if dict["bufferCatchUpSetting"] != nil {
 			bufferCatchUpSetting = Int64("\(dict["bufferCatchUpSetting"]!)")
 		}
+		if dict["paddingBeforeProgramStarts"] != nil {
+			paddingBeforeProgramStarts = Int64("\(dict["paddingBeforeProgramStarts"]!)")
+		}
+		if dict["paddingAfterProgramEnds"] != nil {
+			paddingAfterProgramEnds = Int64("\(dict["paddingAfterProgramEnds"]!)")
+		}
 		if dict["bufferTrickPlaySetting"] != nil {
 			bufferTrickPlaySetting = Int64("\(dict["bufferTrickPlaySetting"]!)")
 		}
@@ -329,6 +363,12 @@ open class LiveAsset: MediaAsset {
 		}
 		if(bufferCatchUpSetting != nil) {
 			dict["bufferCatchUpSetting"] = bufferCatchUpSetting!
+		}
+		if(paddingBeforeProgramStarts != nil) {
+			dict["paddingBeforeProgramStarts"] = paddingBeforeProgramStarts!
+		}
+		if(paddingAfterProgramEnds != nil) {
+			dict["paddingAfterProgramEnds"] = paddingAfterProgramEnds!
 		}
 		if(bufferTrickPlaySetting != nil) {
 			dict["bufferTrickPlaySetting"] = bufferTrickPlaySetting!

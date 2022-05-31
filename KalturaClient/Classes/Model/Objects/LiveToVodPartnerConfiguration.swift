@@ -33,91 +33,76 @@
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-/**  Device brand details  */
-open class DeviceBrand: ObjectBase {
+open class LiveToVodPartnerConfiguration: ObjectBase {
 
-	public class DeviceBrandTokenizer: ObjectBase.ObjectBaseTokenizer {
+	public class LiveToVodPartnerConfigurationTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var id: BaseTokenizedObject {
+		public var isL2vEnabled: BaseTokenizedObject {
 			get {
-				return self.append("id") 
+				return self.append("isL2vEnabled") 
 			}
 		}
 		
-		public var name: BaseTokenizedObject {
+		public var retentionPeriodDays: BaseTokenizedObject {
 			get {
-				return self.append("name") 
+				return self.append("retentionPeriodDays") 
 			}
 		}
 		
-		public var deviceFamilyid: BaseTokenizedObject {
+		public var metadataClassifier: BaseTokenizedObject {
 			get {
-				return self.append("deviceFamilyid") 
-			}
-		}
-		
-		public var type: BaseTokenizedObject {
-			get {
-				return self.append("type") 
+				return self.append("metadataClassifier") 
 			}
 		}
 	}
 
-	/**  Device brand identifier  */
-	public var id: Int64? = nil
-	/**  Device brand name  */
-	public var name: String? = nil
-	/**  Device family identifier  */
-	public var deviceFamilyid: Int64? = nil
-	/**  Type of device family.               if this device family belongs only to this
-	  group,               otherwise.  */
-	public var type: DeviceBrandType? = nil
+	/**  Enable/disable the feature globally. If disabled, then all linear assets are not
+	  enabled.  */
+	public var isL2vEnabled: Bool? = nil
+	/**  Number of days the L2V asset is retained in the system.  */
+	public var retentionPeriodDays: Int? = nil
+	/**  The name (label) of the metadata field marking the program asset to be
+	  duplicated as a L2V asset.  */
+	public var metadataClassifier: String? = nil
 
 
-	public func setMultiRequestToken(id: String) {
-		self.dict["id"] = id
+	public func setMultiRequestToken(isL2vEnabled: String) {
+		self.dict["isL2vEnabled"] = isL2vEnabled
 	}
 	
-	public func setMultiRequestToken(name: String) {
-		self.dict["name"] = name
+	public func setMultiRequestToken(retentionPeriodDays: String) {
+		self.dict["retentionPeriodDays"] = retentionPeriodDays
 	}
 	
-	public func setMultiRequestToken(deviceFamilyid: String) {
-		self.dict["deviceFamilyid"] = deviceFamilyid
-	}
-	
-	public func setMultiRequestToken(type: String) {
-		self.dict["type"] = type
+	public func setMultiRequestToken(metadataClassifier: String) {
+		self.dict["metadataClassifier"] = metadataClassifier
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["id"] != nil {
-			id = Int64("\(dict["id"]!)")
+		if dict["isL2vEnabled"] != nil {
+			isL2vEnabled = dict["isL2vEnabled"] as? Bool
 		}
-		if dict["name"] != nil {
-			name = dict["name"] as? String
+		if dict["retentionPeriodDays"] != nil {
+			retentionPeriodDays = dict["retentionPeriodDays"] as? Int
 		}
-		if dict["deviceFamilyid"] != nil {
-			deviceFamilyid = Int64("\(dict["deviceFamilyid"]!)")
-		}
-		if dict["type"] != nil {
-			type = DeviceBrandType(rawValue: "\(dict["type"]!)")
+		if dict["metadataClassifier"] != nil {
+			metadataClassifier = dict["metadataClassifier"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(id != nil) {
-			dict["id"] = id!
+		if(isL2vEnabled != nil) {
+			dict["isL2vEnabled"] = isL2vEnabled!
 		}
-		if(name != nil) {
-			dict["name"] = name!
+		if(retentionPeriodDays != nil) {
+			dict["retentionPeriodDays"] = retentionPeriodDays!
 		}
-		if(deviceFamilyid != nil) {
-			dict["deviceFamilyid"] = deviceFamilyid!
+		if(metadataClassifier != nil) {
+			dict["metadataClassifier"] = metadataClassifier!
 		}
 		return dict
 	}
