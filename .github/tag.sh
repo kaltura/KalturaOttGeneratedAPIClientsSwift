@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -u
+set -ue
 
 PODSPEC=*.podspec
 POD=$(basename $PODSPEC .podspec)
