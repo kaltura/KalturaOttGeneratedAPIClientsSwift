@@ -38,92 +38,264 @@ open class IotClientConfiguration: ObjectBase {
 
 	public class IotClientConfigurationTokenizer: ObjectBase.ObjectBaseTokenizer {
 		
-		public var announcementTopic: BaseTokenizedObject {
+		public var identityPoolId: BaseTokenizedObject {
 			get {
-				return self.append("announcementTopic") 
+				return self.append("identityPoolId") 
 			}
 		}
 		
-		public func credentialsProvider<T: CredentialsProvider.CredentialsProviderTokenizer>() -> T {
-			return T(self.append("credentialsProvider"))
-		}
-		
-		public func cognitoUserPool<T: CognitoUserPool.CognitoUserPoolTokenizer>() -> T {
-			return T(self.append("cognitoUserPool"))
-		}
-		
-		public var json: BaseTokenizedObject {
+		public var userPoolId: BaseTokenizedObject {
 			get {
-				return self.append("json") 
+				return self.append("userPoolId") 
 			}
 		}
 		
-		public var topics: BaseTokenizedObject {
+		public var awsRegion: BaseTokenizedObject {
 			get {
-				return self.append("topics") 
+				return self.append("awsRegion") 
+			}
+		}
+		
+		public var appClientId: BaseTokenizedObject {
+			get {
+				return self.append("appClientId") 
+			}
+		}
+		
+		public var legacyEndPoint: BaseTokenizedObject {
+			get {
+				return self.append("legacyEndPoint") 
+			}
+		}
+		
+		public var endPoint: BaseTokenizedObject {
+			get {
+				return self.append("endPoint") 
+			}
+		}
+		
+		public var thingName: BaseTokenizedObject {
+			get {
+				return self.append("thingName") 
+			}
+		}
+		
+		public var thingArn: BaseTokenizedObject {
+			get {
+				return self.append("thingArn") 
+			}
+		}
+		
+		public var thingId: BaseTokenizedObject {
+			get {
+				return self.append("thingId") 
+			}
+		}
+		
+		public var username: BaseTokenizedObject {
+			get {
+				return self.append("username") 
+			}
+		}
+		
+		public var password: BaseTokenizedObject {
+			get {
+				return self.append("password") 
+			}
+		}
+		
+		public var topics: ArrayTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return ArrayTokenizedObject<StringValue.StringValueTokenizer>(self.append("topics"))
+			} 
+		}
+		
+		public var status: BaseTokenizedObject {
+			get {
+				return self.append("status") 
+			}
+		}
+		
+		public var message: BaseTokenizedObject {
+			get {
+				return self.append("message") 
 			}
 		}
 	}
 
-	/**  announcementTopic  */
-	public var announcementTopic: String? = nil
-	/**  KalturaCredentialsProvider  */
-	public var credentialsProvider: CredentialsProvider? = nil
-	/**  CognitoUserPool  */
-	public var cognitoUserPool: CognitoUserPool? = nil
-	/**  json  */
-	public var json: String? = nil
+	/**  IdentityPoolId  */
+	public var identityPoolId: String? = nil
+	/**  UserPoolId  */
+	public var userPoolId: String? = nil
+	/**  AwsRegion  */
+	public var awsRegion: String? = nil
+	/**  appClientId  */
+	public var appClientId: String? = nil
+	/**  legacyEndPoint  */
+	public var legacyEndPoint: String? = nil
+	/**  endPoint  */
+	public var endPoint: String? = nil
+	/**  thingName  */
+	public var thingName: String? = nil
+	/**  thingArn  */
+	public var thingArn: String? = nil
+	/**  thingId  */
+	public var thingId: String? = nil
+	/**  username  */
+	public var username: String? = nil
+	/**  password  */
+	public var password: String? = nil
 	/**  topics  */
-	public var topics: String? = nil
+	public var topics: Array<StringValue>? = nil
+	/**  status  */
+	public var status: String? = nil
+	/**  message  */
+	public var message: String? = nil
 
 
-	public func setMultiRequestToken(announcementTopic: String) {
-		self.dict["announcementTopic"] = announcementTopic
+	public func setMultiRequestToken(identityPoolId: String) {
+		self.dict["identityPoolId"] = identityPoolId
 	}
 	
-	public func setMultiRequestToken(json: String) {
-		self.dict["json"] = json
+	public func setMultiRequestToken(userPoolId: String) {
+		self.dict["userPoolId"] = userPoolId
 	}
 	
-	public func setMultiRequestToken(topics: String) {
-		self.dict["topics"] = topics
+	public func setMultiRequestToken(awsRegion: String) {
+		self.dict["awsRegion"] = awsRegion
+	}
+	
+	public func setMultiRequestToken(appClientId: String) {
+		self.dict["appClientId"] = appClientId
+	}
+	
+	public func setMultiRequestToken(legacyEndPoint: String) {
+		self.dict["legacyEndPoint"] = legacyEndPoint
+	}
+	
+	public func setMultiRequestToken(endPoint: String) {
+		self.dict["endPoint"] = endPoint
+	}
+	
+	public func setMultiRequestToken(thingName: String) {
+		self.dict["thingName"] = thingName
+	}
+	
+	public func setMultiRequestToken(thingArn: String) {
+		self.dict["thingArn"] = thingArn
+	}
+	
+	public func setMultiRequestToken(thingId: String) {
+		self.dict["thingId"] = thingId
+	}
+	
+	public func setMultiRequestToken(username: String) {
+		self.dict["username"] = username
+	}
+	
+	public func setMultiRequestToken(password: String) {
+		self.dict["password"] = password
+	}
+	
+	public func setMultiRequestToken(status: String) {
+		self.dict["status"] = status
+	}
+	
+	public func setMultiRequestToken(message: String) {
+		self.dict["message"] = message
 	}
 	
 	public override func populate(_ dict: [String: Any]) throws {
 		try super.populate(dict);
 		// set members values:
-		if dict["announcementTopic"] != nil {
-			announcementTopic = dict["announcementTopic"] as? String
+		if dict["identityPoolId"] != nil {
+			identityPoolId = dict["identityPoolId"] as? String
 		}
-		if dict["credentialsProvider"] != nil {
-		credentialsProvider = try JSONParser.parse(object: dict["credentialsProvider"] as! [String: Any])		}
-		if dict["cognitoUserPool"] != nil {
-		cognitoUserPool = try JSONParser.parse(object: dict["cognitoUserPool"] as! [String: Any])		}
-		if dict["json"] != nil {
-			json = dict["json"] as? String
+		if dict["userPoolId"] != nil {
+			userPoolId = dict["userPoolId"] as? String
+		}
+		if dict["awsRegion"] != nil {
+			awsRegion = dict["awsRegion"] as? String
+		}
+		if dict["appClientId"] != nil {
+			appClientId = dict["appClientId"] as? String
+		}
+		if dict["legacyEndPoint"] != nil {
+			legacyEndPoint = dict["legacyEndPoint"] as? String
+		}
+		if dict["endPoint"] != nil {
+			endPoint = dict["endPoint"] as? String
+		}
+		if dict["thingName"] != nil {
+			thingName = dict["thingName"] as? String
+		}
+		if dict["thingArn"] != nil {
+			thingArn = dict["thingArn"] as? String
+		}
+		if dict["thingId"] != nil {
+			thingId = dict["thingId"] as? String
+		}
+		if dict["username"] != nil {
+			username = dict["username"] as? String
+		}
+		if dict["password"] != nil {
+			password = dict["password"] as? String
 		}
 		if dict["topics"] != nil {
-			topics = dict["topics"] as? String
+			topics = try JSONParser.parse(array: dict["topics"] as! [Any])
+		}
+		if dict["status"] != nil {
+			status = dict["status"] as? String
+		}
+		if dict["message"] != nil {
+			message = dict["message"] as? String
 		}
 
 	}
 
 	internal override func toDictionary() -> [String: Any] {
 		var dict: [String: Any] = super.toDictionary()
-		if(announcementTopic != nil) {
-			dict["announcementTopic"] = announcementTopic!
+		if(identityPoolId != nil) {
+			dict["identityPoolId"] = identityPoolId!
 		}
-		if(credentialsProvider != nil) {
-			dict["credentialsProvider"] = credentialsProvider!.toDictionary()
+		if(userPoolId != nil) {
+			dict["userPoolId"] = userPoolId!
 		}
-		if(cognitoUserPool != nil) {
-			dict["cognitoUserPool"] = cognitoUserPool!.toDictionary()
+		if(awsRegion != nil) {
+			dict["awsRegion"] = awsRegion!
 		}
-		if(json != nil) {
-			dict["json"] = json!
+		if(appClientId != nil) {
+			dict["appClientId"] = appClientId!
+		}
+		if(legacyEndPoint != nil) {
+			dict["legacyEndPoint"] = legacyEndPoint!
+		}
+		if(endPoint != nil) {
+			dict["endPoint"] = endPoint!
+		}
+		if(thingName != nil) {
+			dict["thingName"] = thingName!
+		}
+		if(thingArn != nil) {
+			dict["thingArn"] = thingArn!
+		}
+		if(thingId != nil) {
+			dict["thingId"] = thingId!
+		}
+		if(username != nil) {
+			dict["username"] = username!
+		}
+		if(password != nil) {
+			dict["password"] = password!
 		}
 		if(topics != nil) {
-			dict["topics"] = topics!
+			dict["topics"] = topics!.map { value in value.toDictionary() }
+		}
+		if(status != nil) {
+			dict["status"] = status!
+		}
+		if(message != nil) {
+			dict["message"] = message!
 		}
 		return dict
 	}

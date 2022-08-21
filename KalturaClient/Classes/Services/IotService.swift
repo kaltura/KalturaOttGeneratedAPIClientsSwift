@@ -49,8 +49,8 @@ public final class IotService{
 	}
 
 	/**  Register IOT device  */
-	public static func register() -> RequestBuilder<Iot, Iot.IotTokenizer, RegisterTokenizer> {
-		let request: RequestBuilder<Iot, Iot.IotTokenizer, RegisterTokenizer> = RequestBuilder<Iot, Iot.IotTokenizer, RegisterTokenizer>(service: "iot", action: "register")
+	public static func register() -> RequestBuilder<Bool, BaseTokenizedObject, RegisterTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, RegisterTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, RegisterTokenizer>(service: "iot", action: "register")
 
 		return request
 	}

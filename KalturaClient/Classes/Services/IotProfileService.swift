@@ -36,55 +36,11 @@
 public final class IotProfileService{
 
 	public class AddTokenizer: ClientTokenizer  {
-		
-		public func objectToAdd<T: IotProfile.IotProfileTokenizer>() -> T {
-			return T(self.append("objectToAdd"))
-		}
 	}
 
-	/**  Add new KalturaIotProfile  */
-	public static func add(objectToAdd: IotProfile) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, AddTokenizer> {
-		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, AddTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, AddTokenizer>(service: "iotprofile", action: "add")
-			.setParam(key: "objectToAdd", value: objectToAdd)
-
-		return request
-	}
-
-	public class GetTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-	}
-
-	/**  Get existing KalturaIotProfile  */
-	public static func get(id: Int64) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> {
-		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, GetTokenizer>(service: "iotprofile", action: "get")
-			.setParam(key: "id", value: id)
-
-		return request
-	}
-
-	public class UpdateTokenizer: ClientTokenizer  {
-		
-		public var id: BaseTokenizedObject {
-			get {
-				return self.append("id") 
-			}
-		}
-		
-		public func objectToUpdate<T: IotProfile.IotProfileTokenizer>() -> T {
-			return T(self.append("objectToUpdate"))
-		}
-	}
-
-	/**  Update existing KalturaIotProfile  */
-	public static func update(id: Int64, objectToUpdate: IotProfile) -> RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, UpdateTokenizer> {
-		let request: RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, UpdateTokenizer> = RequestBuilder<IotProfile, IotProfile.IotProfileTokenizer, UpdateTokenizer>(service: "iotprofile", action: "update")
-			.setParam(key: "id", value: id)
-			.setParam(key: "objectToUpdate", value: objectToUpdate)
+	/**  Add new environment in aws  */
+	public static func add() -> RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> {
+		let request: RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer> = RequestBuilder<Bool, BaseTokenizedObject, AddTokenizer>(service: "iotprofile", action: "add")
 
 		return request
 	}
