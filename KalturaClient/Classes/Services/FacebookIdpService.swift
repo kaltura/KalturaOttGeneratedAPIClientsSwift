@@ -1,0 +1,172 @@
+// ===================================================================================================
+//                           _  __     _ _
+//                          | |/ /__ _| | |_ _  _ _ _ __ _
+//                          | ' </ _` | |  _| || | '_/ _` |
+//                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
+//
+// This file is part of the Kaltura Collaborative Media Suite which allows users
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// text.
+//
+// Copyright (C) 2006-2020  Kaltura Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @ignore
+// ===================================================================================================
+
+/**
+ * This class was generated using exec.php
+ * against an XML schema provided by Kaltura.
+ * 
+ * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
+ */
+
+public final class FacebookIdpService{
+
+	public class AttachTokenizer: ClientTokenizer  {
+		
+		public var accessToken: BaseTokenizedObject {
+			get {
+				return self.append("accessToken") 
+			}
+		}
+	}
+
+	/**  Attaches the KS’s ottUser to a Facebook identity. Note: Attempting to attach
+	  to an IDP, a user that is already attached to the IDP in question, will fail
+	  with the appropriate error.  */
+	public static func attach(accessToken: String) -> RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, AttachTokenizer> {
+		let request: RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, AttachTokenizer> = RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, AttachTokenizer>(service: "facebookidp", action: "attach")
+			.setParam(key: "accessToken", value: accessToken)
+
+		return request
+	}
+
+	public class DetachTokenizer: ClientTokenizer  {
+	}
+
+	/**  Detaches the KS’s ottUser from the Facebook identity that he is connected to.
+	  Note: Attempting to detach from an IDP, a user that is not attached to the IDP
+	  in question, will fail with the appropriate error.  */
+	public static func detach() -> RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, DetachTokenizer> {
+		let request: RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, DetachTokenizer> = RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, DetachTokenizer>(service: "facebookidp", action: "detach")
+
+		return request
+	}
+
+	public class GetServiceIdTokenizer: ClientTokenizer  {
+	}
+
+	/**  Returns the identification of Kaltura’s partner (acting as the service
+	  provider) in Facebook (acting as the identity provider).  */
+	public static func getServiceId() -> RequestBuilder<SocialServiceId, SocialServiceId.SocialServiceIdTokenizer, GetServiceIdTokenizer> {
+		let request: RequestBuilder<SocialServiceId, SocialServiceId.SocialServiceIdTokenizer, GetServiceIdTokenizer> = RequestBuilder<SocialServiceId, SocialServiceId.SocialServiceIdTokenizer, GetServiceIdTokenizer>(service: "facebookidp", action: "getServiceId")
+
+		return request
+	}
+
+	public class IsAttachedTokenizer: ClientTokenizer  {
+	}
+
+	/**  Returns whether the user in question is attached to the Facebook.  */
+	public static func isAttached() -> RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, IsAttachedTokenizer> {
+		let request: RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, IsAttachedTokenizer> = RequestBuilder<SocialAttachStatus, SocialAttachStatus.SocialAttachStatusTokenizer, IsAttachedTokenizer>(service: "facebookidp", action: "isAttached")
+
+		return request
+	}
+
+	public class LoginTokenizer: ClientTokenizer  {
+		
+		public override var partnerId: BaseTokenizedObject {
+			get {
+				return self.append("partnerId") 
+			}
+		}
+		
+		public var accessToken: BaseTokenizedObject {
+			get {
+				return self.append("accessToken") 
+			}
+		}
+		
+		public var extraParams: DictionaryTokenizedObject<StringValue.StringValueTokenizer> {
+			get {
+				return DictionaryTokenizedObject<StringValue.StringValueTokenizer>(self.append("extraParams"))
+			}
+		}
+		
+		public var udid: BaseTokenizedObject {
+			get {
+				return self.append("udid") 
+			}
+		}
+	}
+
+	public static func login(partnerId: Int, accessToken: String) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> {
+		return login(partnerId: partnerId, accessToken: accessToken, extraParams: nil)
+	}
+
+	public static func login(partnerId: Int, accessToken: String, extraParams: Dictionary<String, StringValue>?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> {
+		return login(partnerId: partnerId, accessToken: accessToken, extraParams: extraParams, udid: nil)
+	}
+
+	/**  Login an ottUser (acquire KS) using a Facebook access token.  */
+	public static func login(partnerId: Int, accessToken: String, extraParams: Dictionary<String, StringValue>?, udid: String?) -> RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> {
+		let request: RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer> = RequestBuilder<LoginResponse, LoginResponse.LoginResponseTokenizer, LoginTokenizer>(service: "facebookidp", action: "login")
+			.setParam(key: "partnerId", value: partnerId)
+			.setParam(key: "accessToken", value: accessToken)
+			.setParam(key: "extraParams", value: extraParams)
+			.setParam(key: "udid", value: udid)
+
+		return request
+	}
+
+	public class SetSecretTokenizer: ClientTokenizer  {
+		
+		public var secret: BaseTokenizedObject {
+			get {
+				return self.append("secret") 
+			}
+		}
+	}
+
+	/**  Sets the secret that is shared between Kaltura’s partner (that acts as a
+	  service provider) in Facebook (that acts as identity provider) that enables
+	  Facebook to identify the partner.  */
+	public static func setSecret(secret: String) -> RequestBuilder<SocialSetSecretResponse, SocialSetSecretResponse.SocialSetSecretResponseTokenizer, SetSecretTokenizer> {
+		let request: RequestBuilder<SocialSetSecretResponse, SocialSetSecretResponse.SocialSetSecretResponseTokenizer, SetSecretTokenizer> = RequestBuilder<SocialSetSecretResponse, SocialSetSecretResponse.SocialSetSecretResponseTokenizer, SetSecretTokenizer>(service: "facebookidp", action: "setSecret")
+			.setParam(key: "secret", value: secret)
+
+		return request
+	}
+
+	public class SetServiceIdTokenizer: ClientTokenizer  {
+		
+		public var serviceId: BaseTokenizedObject {
+			get {
+				return self.append("serviceId") 
+			}
+		}
+	}
+
+	/**  Sets the identification of Kaltura’s partner (that acts as a service provider)
+	  in Facebook (that acts as identity provider).  */
+	public static func setServiceId(serviceId: String) -> RequestBuilder<SocialServiceId, SocialServiceId.SocialServiceIdTokenizer, SetServiceIdTokenizer> {
+		let request: RequestBuilder<SocialServiceId, SocialServiceId.SocialServiceIdTokenizer, SetServiceIdTokenizer> = RequestBuilder<SocialServiceId, SocialServiceId.SocialServiceIdTokenizer, SetServiceIdTokenizer>(service: "facebookidp", action: "setServiceId")
+			.setParam(key: "serviceId", value: serviceId)
+
+		return request
+	}
+}
